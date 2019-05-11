@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>$taskboard['name']</title>
+		<!--{template mobile/mobile_header}-->
+		<script type="text/javascript" src="{MOD_PATH}/scripts/mobile/task.js?{VERHASH}"></script>
+	</head>
+	<body>
+		<header class="weui-taskboard-new weui-flex">
+			<div class="placeholder weui-taskboard-cancel">
+			<a href="javascript:;" class="weui-taskboard-macke-close">取消</a></div>
+			<div class="weui-flex__item">邀请成员</div>
+			<button class=" weui-taskboard-new-keep" type="submit">确定</button>
+		</header>
+		<section class="weui-search-bar weui-member-search" id="searchBar">
+		    <form class="weui-search-bar__form" action="" onsubmit="return false;">
+		        <div class="weui-search-bar__box">
+		
+		            <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="全部或部分文件名" required="">
+		            <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel"><i class="weui-icon-clear"></i></a>
+		        </div>
+		        <label class="weui-search-bar__label" id="searchText">
+		            <span>通过名称或电子邮箱搜索</span>
+		            <i class="weui-icon-search"></i>
+		        </label>
+		    </form>
+		</section>
+		
+		<!--搜索内容开始 -->
+		<section class="weui-cells">
+			<div class="weui-cell weui-cell_access" >
+		        <div class="weui-cell__hd"><img src="avatar.php?uid=1" class="img-circle special_avatar_class" title="admin"></div>
+		        <div class="weui-cell__bd">
+		            <p>素昂月份</p>
+		            <h4>@user72516633</h4>		    
+		        </div>
+		        <div class="weui-cell__mt">
+		        	已是看板成员
+		        </div>
+		   </div>
+		   <div class="weui-cell weui-cell_access" >
+		        <div class="weui-cell__hd"><img src="avatar.php?uid=1" class="img-circle special_avatar_class" title="admin"></div>
+		        <div class="weui-cell__bd">
+		            <p>link</p>
+		            <h4>@user72516633</h4>		    
+		        </div>
+		        <div class="weui-cell__mt">
+		        	已是看板成员
+		        </div>
+		   </div>
+		</section>
+	</body>
+	<script>
+		$(document).on('touchend','.weui-taskboard-cancel',function(){
+			window.history.go(-1);
+		})
+	</script>
+</html>

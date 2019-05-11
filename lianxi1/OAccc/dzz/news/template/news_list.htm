@@ -1,0 +1,325 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<!--{if $perm>1}-->
+<link href="static/colorPicker/jquery.colorPicker.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/datepicker.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/icheck/skins/minimal/blue.css?{VERHASH}" rel="stylesheet" media="all">
+<!--{/if}-->
+
+<link href="static/select2/select2.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/select2/select2-bootstrap.css?{VERHASH}" rel="stylesheet" media="all">
+
+<!-- <link rel="stylesheet" href="static/css/checkbox.css"> -->
+
+<link rel="stylesheet" href="static/css/checkbox.css">
+
+
+<link href="{MOD_PATH}/images/news.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<style type="text/css">
+  .pagination{
+      float: none!important;
+  }
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover{
+background-color: #e11d2a;
+border-color: #e11d2a;
+}
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<div class="bs-container clearfix">
+    <!-- 左边部分 -->
+    <div class="bs-left-container affix-top clearfix">
+        <!--{template setting_left}-->
+    </div>
+    <!-- 左边拖动部分 -->
+    <div class="left-drager">
+		<div class="left-drager-op">
+			<div class="left-drager-sub"></div>
+		</div>
+	</div>	
+    <!-- 结束 -->
+    <!-- 右边部分 -->
+    <div class="bs-main-container clearfix" style="overflow:auto;">  
+    <!-- 添加信息-->
+    <!--{if $perm>0}--><a href="{MOD_URL}&op=edit&catid=$catid" class="news_add">+</a><!--{/if}-->
+    <!-- 结束 -->
+
+        <div class="main-content" id="middleconMenu" style="min-width:722px;overflow:auto">
+			<div class="main-title clearfix">
+				<span class="news_all pull-left">
+	                <!--{if $perm>1}-->
+                    <div class="checkbox-custom checkbox-primary checkbox-custom1" style="margin-right:15px;">
+                        <input type="checkbox" name="chkall" id="chkall">
+                        <label>{lang all_news}</label>
+                    </div>
+	                <!--{/if}-->	
+	            </span>
+	            <!--{if $perm>1}--> 
+	            <button class="btn btn-simple js-popbox" style="display:none;margin-top:12px;" id="news_op_menu" data-href="{MOD_URL}&op=menu&do=newsmenu&status=$status" data-placement="bottom" data-auto-adapt="true">{lang controller_options} <i class="caret"></i></button>
+	            <!--{/if}--> 
+				<ul class="group-tabul" >
+			   		<li <!--{if $status==1 || $status==0}-->class="active"<!--{/if}-->><a href="{MOD_URL}&catid=$catid&status=1">{lang have_published}</a></li>
+			        <li <!--{if $status==4}-->class="active"<!--{/if}-->><a href="{MOD_URL}&catid=$catid&status=4">{lang unread}</a></li>
+			        <li <!--{if $status==5}-->class="active"<!--{/if}-->><a href="{MOD_URL}&catid=$catid&status=5">{lang read}</a></li>
+			        <!--{if $perm>0}--> 
+			        <li <!--{if $status==2}-->class="active"<!--{/if}-->><a href="{MOD_URL}&catid=$catid&status=2">{lang check_pending}</a></li>
+			        <li <!--{if $status==3}-->class="active"<!--{/if}-->><a href="{MOD_URL}&catid=$catid&status=3">{lang draft}</a></li>
+			        <!--{/if}-->
+			    </ul> 
+			</div>
+          <!--{if $data}--> 
+            <table class="table table-hover" style="table-layout: fixed">
+                <!--{loop $data $value}-->
+                <tr>
+                    <!--{if $perm>1}-->
+                    <td width="40px" style="padding-right:0px;">
+                        <div class="checkbox-custom checkbox-primary">
+                            <input type="checkbox" name="chk" id="$value[newid]" value="$value[newid]">
+                            <label></label>
+                        </div>
+                    </td>
+                    <!--{else}-->
+                    <td width="10px" style="padding-right:0px;"></td>
+                    <!--{/if}-->
+                    <td <!--{if $ismobile}--><!--{if $value[type]==2}--> onclick="news_click('$value[newid]');"<!--{else}-->onclick="location.href='{MOD_URL}&op=view&newid=$value[newid]&refer=$refer'"<!--{/if}--><!--{/if}-->   style="padding-left:0px;">
+                        <div class="list-title"> 
+                            <!--{if $value[type]==2}--> 
+                            <a class="title" id="news_title_{$value[newid]}" data-topendtime="{$value[real_set_topendtime]}" data-endtime="{$value[real_set_endtime]}" href="$value[url]" onclick="news_click('$value[newid]');" target="_blank" style="<!--{if $value[ishighlight]}-->$value[highlightstyle]<!--{/if}-->" title="<!--{if $value[ishighlight]}-->{lang highlight_deadline}：{eval echo dgmdate($value[highlightendtime],'Y-m-d');}<!--{/if}-->">$value[subject]
+                            <!--{if $value[istop]}-->&nbsp;<img src="{MOD_PATH}/images/pin_{$value[istop]}.gif" title="{lang top_off_date}：{eval echo dgmdate($value[topendtime],'Y-m-d');}"><!--{/if}-->
+                            </a> 
+                            <!--{else}--> 
+                            <a class="title" id="news_title_{$value[newid]}" data-topendtime="{$value[real_set_topendtime]}" data-endtime="{$value[real_set_endtime]}" data-val="$value[subject]" href="{MOD_URL}&op=view&newid=$value[newid]&refer=$refer" style="<!--{if $value[ishighlight]}-->$value[highlightstyle]<!--{/if}-->" title="<!--{if $value[ishighlight]}-->{lang highlight_deadline}：{eval echo dgmdate($value[highlightendtime],'Y-m-d');}<!--{/if}-->">
+                            <!--{if strlen($value[subject])>69}-->
+                            {eval echo mb_substr($value[subject],0,23,"UTF8")."..."}
+                            <!--{else}-->
+                            {eval echo $value[subject]}
+                            <!--{/if}--> </a> 
+                            <!--{if $value[istop]}-->&nbsp;<!-- <img src="{MOD_PATH}/images/pin_{$value[istop]}.gif" title="{lang top_off_date}：{eval echo dgmdate($value[topendtime],'Y-m-d');}"> -->
+                            <span class="onready_top">已置顶</span>
+                            <!--{/if}-->
+                            
+                            <!--{/if}--> 
+                        </div>
+                        <!--{if $value['status']==2 && $value[moduid]>0}-->
+            
+                        <div class="alert alert-warning mod_back_reason" style="margin:10px 0 10px 30px;">
+                            <p class="mb10"><a href="user.php?uid=$value[moduid]">$value[modusername]</a> {lang back_in}  {eval echo dgmdate($value[modtime],'u');}</p>
+                            <p><b>{lang reasons_for_returning}：</b>$value['modreason']</p>
+                        </div>
+                        <!--{/if}-->                       
+                    </td>
+                    <td class="list-td" width="220">
+                    	<!--{if !$ismobile}-->
+                        <div class="list-info"> 
+                            <!--{if $value['opuid']}--> 
+                            <span title="{lang last_modified}"  class="poster">$value[opauthor]&nbsp;&nbsp;{eval echo dgmdate($value[updatetime],'u');}</span> 
+                            <!--{else}-->
+                            <span title="{lang promulgator}"  class="poster">$value[author]&nbsp;&nbsp;{eval echo dgmdate($value[dateline],'u');}</span> 
+                            <!--{/if}--> 
+                        </div>
+                    </td>
+                    <td class="list-td" width="100">
+                        <div class="list-info">
+                            <!--{if $value['comments']}--><a href="javascript:;" title="{lang comments}" class="views"><div class="dzz dzz-sms"></div>&nbsp;$value[comments]{lang people}</a>
+                            <!--{else}-->
+                            <a href="javascript:;" title="{lang comments}" class="views"><div class="dzz dzz-sms"></div>&nbsp;0{lang people}</a>
+                            <!--{/if}--> 
+                        </div>
+                    </td>
+                    <td class="list-td"  width="120">
+                        <div class="list-info">
+                            <!--{if $value['views']}--><span title="{lang human_count}" class="views"><div class="dzz dzz-visibility"></div>&nbsp;$value[views]{lang people}</span>
+                            <!--{else}-->
+                            <span title="{lang human_count}" class="views"><div class="dzz dzz-visibility"></div>&nbsp;0{lang people}</span>
+                            <!--{/if}--> 
+                            
+                            <!--{if $value['status']==2 && $perm<2}-->
+                            <button class="btn btn-link btn-sm" style="padding:0 5px;" data-loading-text="{lang information_transmission}" onclick="sendModMessage(this,'$value[newid]')" title=""><i class="glyphicon glyphicon-bell"></i> {lang remind_the_administrator_to_review}</button>
+                            <!--{/if}--> 
+                        </div>
+                        <!--{/if}--> 
+                    </td>
+                     <!--{if $perm>1 || $value['authorid']==$_G[uid]}--> 
+                    <td class="list-td" width="100">
+                        <div class="list-icon"> 
+                            <a class="edit" href="{DZZSCRIPT}?mod={MOD_NAME}&op=edit&newid=$value[newid]" title="{lang compile}"><span class="dzz dzz-create"></span></a>&nbsp;
+                            <a class="delete btn-Dialog" href="javascript:;" title="{lang delete}" newid="$value[newid]" onclick="news_dl(this)"><span class="dzz dzz-delete"></span></a>
+                        </div>
+                         </div>
+
+                       
+                    </td>
+                  <!--{/if}--> 
+                </tr>
+                <!--{/loop}-->
+                 
+                <!-- <tr style="background:none;">
+
+                    <td colspan="6" style="border:none;text-align:center;">
+                        
+                    </td>
+                </tr> -->
+                
+            </table>
+                <!--{if $multi}-->
+                <div style="text-align:center;">$multi </div>
+                <!--{/if}--> 
+            <!--{else}-->
+            <div style="text-align: center;position: absolute;top: 35%;left: 50%;">
+                <img src="{MOD_PATH}/images/no_list.png" /><br/>
+                <span style="font-size: 18px;color: #AAA;">{lang there_is_no_news_in_the_current_version}</span>
+            </div>
+             <!--{/if}--> 
+    </div>
+</div>
+<!--<div class="popbox clearfix" style="display: none;">
+    <div class="loadding"></div>
+</div>-->
+<script type="text/javascript">
+jQuery('.left-drager').leftDrager_layout(null,{'cookieid':'news_index'});
+jQuery(document).ready(function(e) {
+   
+  //更新浏览数
+  jQuery(document).on('click','.share_to_desktop',function(){
+	  jQuery.getJSON(DZZSCRIPT+'?mod=system&op=dzzcp&do=linktodesktop&link='+encodeURIComponent(this.href),function(json){
+		  if(json.error){
+			  alert(json.error);
+		  }else{
+			  try{
+				  parent._ico.createIco(json);
+				 parent.showmessage(__lang.successfully_add_desktop_shortcuts,'success',3000,1);
+			  }catch(e){
+				  alert(__lang.successfully_add_desktop_shortcuts);
+			  }
+		  }
+	  });
+	  return false;
+  });
+  <!--{if $perm>1}-->
+  
+  	jQuery('.js-popbox').each(function(){
+			jQuery(this).popbox();
+		});
+	   /*jQuery('input').iCheck({
+		 	  checkboxClass: 'icheckbox_minimal-blue',
+		 	  radioClass: 'iradio_minimal-blue',
+		 	});
+		 jQuery('#chkall').on('ifChecked',function(){
+		 	jQuery('input[name=chk]').iCheck('check');
+		 });
+		 jQuery('#chkall').on('ifUnchecked',function(){
+		 	jQuery('input[name=chk]').iCheck('uncheck');
+		 });
+		 jQuery('input[name=chk]').on('ifChecked',function(){
+		 	jQuery('#news_op_menu').show().trigger('click');
+		 });
+		 jQuery('input[name=chk]').on('ifUnchecked',function(){
+		 	var opened=0;
+		 	jQuery('input[name=chk]').each(function(){
+		 		if( jQuery(this).prop('checked')){
+		 			 opened=1;
+		 			 return ;
+		 		}
+		 	});
+		 	if(!opened){
+		 		jQuery('#news_op_menu').hide();
+		 		jQuery('.popbox .close').trigger('click');;
+		 	}
+		 });*/
+    //全选
+    var newcheids = [];
+    jQuery(document).off('click.chechallnew').on('click.chechallnew','#chkall',function(){
+        var ckeck = jQuery(this).prop('checked');
+        if(ckeck){
+            jQuery('input[name=chk]').each(function(){
+                jQuery(this).prop('checked',ckeck);
+                jQuery(this).closest('tr').addClass('tr_checked');
+                var newid = jQuery(this).val();
+                if(jQuery.inArray(newid,newcheids) == -1){
+                    newcheids.push(newid);
+                }
+            })
+        }else{
+            jQuery('input[name=chk]').each(function(){
+                jQuery(this).closest('tr').removeClass('tr_checked');
+                jQuery(this).prop('checked',ckeck);
+                var newid = jQuery(this).val();
+                var index = jQuery.inArray(newid,newcheids);
+                if(index > -1){
+                    newcheids.splice(index,1);
+                }
+            })
+        }
+        check_select();
+    })
+    // 选中
+    jQuery('input[name=chk]').click(function(){
+        if(this.checked){
+            jQuery(this).closest('tr').addClass('tr_checked');
+            var newid = jQuery(this).val();
+            if(jQuery.inArray(newid,newcheids) == -1){
+                newcheids.push(newid);
+            }
+        }else{
+            jQuery(this).closest('tr').removeClass('tr_checked');
+            var newid = jQuery(this).val();
+            var index = jQuery.inArray(newid,newcheids);
+            if(index > -1){
+                newcheids.splice(index,1);
+            }
+        }
+        check_select();
+    })
+
+    function check_select(){
+        var num = newcheids.length;
+        if(num > 0){
+            jQuery('#news_op_menu').show();
+            jQuery('#chkall').prop('checked',true);
+        }else{
+            jQuery('#news_op_menu').hide();
+            jQuery('#chkall').prop('checked',false);
+        }
+    }
+    // 结束
+		jQuery('.table-news-list tr').mouseenter(function(){
+			jQuery(this).find('.list-op').show().end().find('.list-views').hide();;
+			
+		});
+		jQuery('.table-news-list tr').mouseleave(function(){
+			jQuery(this).find('.list-op').hide().end().find('.list-views').show();;
+			
+		});
+	<!--{/if}-->
+
+
+});
+function news_dl(obj){
+    var msg = __lang.are_you_sure_you_want_to_delete_the_selected_information;
+    var mode = 'confirm';
+    var title = '';
+    var cover = '1';
+    var leftmsg = '';
+    var confirmtxt = __lang.confirms;
+    var canceltxt = __lang.cancel;
+    showDialog(msg,mode,title,function(){news_delete(jQuery(obj))},1);
+};
+
+</script>
+
+<!--{if $perm>1}--> 
+<!--弹出菜单-->
+<!--icheck--> 
+<script type="text/javascript" src="static/icheck/icheck.min.js?{VERHASH}"></script>
+<!--datepicker--> 
+<script  type="text/javascript" src="static/js/jquery.ui.core.js?{VERHASH}"></script>
+<script  type="text/javascript" src="static/js/datepicker/jquery.ui.datepicker.js?{VERHASH}"></script> 
+<script  type="text/javascript" src="static/js/datepicker/jquery.datepicker-zh-CN.js?{VERHASH}"></script>
+<!--colorPicker--> 
+<script  type="text/javascript" src="static/colorPicker/jquery.colorPicker.js?{VERHASH}"></script>
+<!--{/if}--> 
+<script type="text/javascript" src="{MOD_PATH}/scripts/news.js?{VERHASH}"></script>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--codestrings--> 
+<!--{template common/footer_simple}-->

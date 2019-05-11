@@ -1,0 +1,28 @@
+<!--{if empty($cmtlist)}-->
+    <div class="searchImg-wrap">
+        <div class="info-container">
+            <img src="{MOD_PATH}/images/search_empty.png" alt="">
+            <p>{lang no_content}</p>
+        </div>
+    </div>
+<!--{/if}-->
+<!--{loop $cmtlist $value}-->
+<div class="weui-panel weui-panel2" id="comment-item-{$value[cid]}">
+    <div class="weui-panel__hd info-top">{lang i_commented}<a class="board-a" href="user.php?uid={$value[pauthorid]}">{$value[post][author]}</a>{lang de_post}：</div>
+    <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_text" style="padding-top: 7px;">
+            <p class="weui-media-box__desc info">{$value[content]}</p>
+            <ul class="weui-media-box__info info-ul">
+                <li class="weui-media-box__info__meta info-botItem">{eval echo dgmdate($value[time],'u')}</li>
+                <li class="weui-media-box__info__meta info-botItem item1"><a href="javascript:;" ontouchend="deleteOne('{$value[cid]}')"><i class="dzz dzz-delete"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--{/loop}-->
+<!--{if $nextpage}-->
+    <div class="weui-loadmore" data-url="{$theurl}&ajax=1&page={$nextpage}">
+      <i class="weui-loading"></i>
+      <span class="weui-loadmore__tips">{lang loading}</span>
+    </div>
+<!--{/if}-->

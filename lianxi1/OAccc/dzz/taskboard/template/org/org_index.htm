@@ -1,0 +1,80 @@
+    <div class="member-boards-view container">
+     <!--{if $perm}-->
+        <div class="window-module window-module-my ">
+            <div class="window-module-title window-module-title-no-divider">
+				<span class="dzz dzz-person"></span><span class="article_title">我的</span>
+			</div>
+            <ul id="board_list_{$orgid}" class="board-list list-unstyled u-gutter clearfix">
+                <!--{if ($newarr=createBoardPerm($orgid)) && $newarr['new']>0}-->
+                <li class="js-add-board"><a class="board-title board-add" onclick="showWindow('create','{MOD_URL}&op=ajax&do=create&orgid=$org[orgid]','get',0)" title="创建新任务板" href="javascript:;"><span>创建新任务板</span></a></li>
+                <!--{/if}-->
+            
+                <!--{loop $my $value}-->
+                <li data-tbid="$value[tbid]" class="starred" id="board_star_$value[tbid]">
+                  
+                    <a class="board-title js-open-board highlight-icon color-block-$value[aid]" href="{MOD_URL}&op=list&tbid=$value[tbid]" title="$value[name]">
+                        <span class="board-title-fade"></span>
+                        <span class="board-title-details" title="$value[name]">
+                            <span title="$value[name]" class="board-title-details-name">$value[name]</span>
+                            <span title="$value[desc]" class="board-title-details-desc">$value[desc]</span>
+                        </span>
+                        <span class="board-title-options">
+                       		<span class="unread-indicator js-unread <!--{if $value['lastvisit'] && $value['updatetime'] && $value['lastvisit']<$value['updatetime']}-->any<!--{/if}--> " title="{lang new_change}"></span>
+                       		<span title="点击加星这个任务板。它将会显示在我的列表上方。" class="icon-sm dzz dzz-star-border  board-title-options-star-icon js-star-board <!--{if in_array($value[tbid],$stared_tbids)}-->is-starred<!--{/if}-->"  data-tbid="$value[tbid]"></span>
+                        </span>
+                    </a>
+                </li>
+                <!--{/loop}-->
+            </ul>
+        </div>
+        <!--{/if}-->
+        
+        <div class="window-module window-module-org">
+        
+           
+             <div class="window-module-title window-module-title-no-divider">
+				 <!--{if $perm>0}--><span class="dzz dzz-group"></span><span class="article_title">其他可见的</span><!--{/if}-->
+			</div>
+            <!--{if $visible}-->
+            <ul class="board-list u-gutter clearfix list-unstyled js-board-list">
+                <!--{loop $visible $value}-->
+                <li data-tbid="$value[tbid]" class="starred" id="board_star_$value[tbid]">
+                   
+                <a class="board-title js-open-board highlight-icon color-block-$value[aid]" href="{MOD_URL}&op=list&tbid=$value[tbid]" target="_blank" title="$value[name]">
+                   <span class="board-title-fade"></span>
+                   <span class="board-title-details" title="$value[name]"><span title="$value[name]"  class="board-title-details-name">$value[name]</span></span>
+                   <span class="board-title-options">
+                   		<span class="unread-indicator js-unread <!--{if $value['lastvisit'] && $value['updatetime'] && $value['lastvisit']<$value['updatetime']}-->any<!--{/if}--> " title="{lang new_change}"></span>
+                   		<span title="点击加星这个任务板。它将会显示在我的列表上方。" class="icon-sm dzz dzz-star-border  board-title-options-star-icon js-star-board <!--{if in_array($value[tbid],$stared_tbids)}-->is-starred<!--{/if}-->"  data-tbid="$value[tbid]"></span>
+                    </span>
+                </a>
+            </li>
+                <!--{/loop}-->
+            </ul>
+                <!--{else}-->
+            	<p class="help-block u-gutter" style="padding-left: 19px;">{lang no_visible_board}</p>
+                <!--{/if}-->
+         </div> 
+    </div>
+   
+   
+<script type="text/javascript">
+
+jQuery(document).ready(function(e) {
+	jQuery(document).on('click','.js-star-board',function(){
+		var el=jQuery(this);
+		var tbid=el.data('tbid');
+		var action='';
+		if(el.hasClass('is-starred')){
+			action='remove';
+			el.removeClass('is-starred');
+		}else{
+			action='add';
+			el.addClass('is-starred');
+		}
+		jQuery.post('{MOD_URL}&op=ajax&do=addStar',{"tbid":tbid,'action':action});
+		return false;
+	});
+});
+
+</script>

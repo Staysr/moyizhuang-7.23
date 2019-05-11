@@ -1,0 +1,39 @@
+<link rel="stylesheet" type="text/css" href="js/autocomplete/jquery.autocomplete.css" />
+<script type="text/javascript" src="js/autocomplete/jquery.autocomplete.js"></script>
+
+<div class="m-search">
+	<form method="post" action="search.php">
+		<input type="hidden" name="action" value="search" />
+		<input type="hidden" name="field" value="subject" />
+		<input type="hidden" name="cid" value="" />
+		<input type="hidden" name="nid" value="" />
+		<input type="hidden" name="orderway" value="postdate" />
+		<input type="hidden" name="asc" value="DESC" />
+		<input type="hidden" name="lines" value="20" />
+		<input type="hidden" name="showtype" value="0" />
+		<div class="input-group search-input">
+			<input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="submit">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					搜索
+				</button>
+			</span>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#keyword').autocomplete({
+			showHint:false,
+			limit:20,
+			source:[{
+				url:"ajax.php?action=search_auto_complete&keyword=%QUERY%",
+				type:'remote',
+				ajax:{
+					dataType : 'json'
+				}
+			}]
+		});
+	});
+</script>

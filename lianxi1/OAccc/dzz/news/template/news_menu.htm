@@ -1,0 +1,409 @@
+<!--{if $do=='newsmenu'}-->
+ 	<!--{if !$step}-->
+    <!-- <div class="popbox-header"> -->
+        <!-- <button class="close glyphicon glyphicon-remove" ></button>
+        <h3>操作选项</h3> -->
+    <!-- </div> -->
+    <div class="popbox-body">
+        <ul class="popbox-menu list-unstyled">
+            <li><a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=newsmenu&step=1" data-placement="right" data-auto-adapt="true"><!-- <i class="glyphicon glyphicon-log-out"></i> --> {lang move}</a></li>
+            <li><a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=newsmenu&step=2" data-placement="right" data-auto-adapt="true"><!-- <i class="glyphicon glyphicon-bookmark"></i> --> {lang top_off}</a></li>
+            <li><a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=newsmenu&step=3" data-placement="right" data-auto-adapt="true"><!-- <i class="glyphicon glyphicon-certificate"></i> --> {lang highlight}</a></li>
+            <!--{if $status==2}--><li><a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=newsmenu&step=5" data-placement="right" data-auto-adapt="true"><!-- <i class="glyphicon glyphicon-ok"></i> --> {lang check}</a></li>
+            <!--{/if}-->
+            <li class="divider"></li>
+            <li><a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=newsmenu&step=4" data-placement="right" data-auto-adapt="true"><!-- <i class="danger glyphicon glyphicon-certificate"></i> --> {lang delete}</a></li>
+        </ul>
+    </div>
+    <!--{elseif $step==1}-->
+        <div class="popbox-header"> 
+            <button  class="back glyphicon glyphicon-chevron-left js-popbox-prev"></button>
+            <button class="close glyphicon glyphicon-remove" ></button>
+            <h3 class="">{lang move_to_scan}</h3>
+        </div>
+        
+        <div class="popbox-body">
+       	  
+        <form class="form-horizontal " id="catmove" role="form" method="post" action="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=newsmenu&step=1" onsubmit="catmove_submit();return false">
+            <input type="hidden" name="handlekey" value="catmove" />
+            <input type="hidden" name="catmovesubmit" value="true" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+            <input type="hidden" id="move_newids" name="newid" value="" />
+            <select name="catid" class="form-control" >
+                $catoptions
+            </select></form>
+        </div>
+        <div class="popbox-footer" style="text-align:right">
+        	<button  class="btn btn-simple js-popbox-prev">{lang cancel}</button>&nbsp;&nbsp;
+            <button id="catmove_return" type="submit" onclick="catmove_submit()"  class="btn btn-success mr15" data-loading-text="{lang In_the_save}" >{lang confirms}</button>
+        </div>   
+        
+       
+        <script type="text/javascript" reload="1">
+			function catmove_submit(){
+				var form=document.getElementById('catmove');
+				//提交前获取newids
+				var newids=[];
+				jQuery('input[name=chk]').each(function(){
+					if(jQuery(this).prop('checked')){
+						newids.push(this.value);
+					}
+				});
+				//console.log(newids);
+				jQuery('#move_newids').val(newids.join(','));
+				jQuery('#catmove_return').button('loading');
+				ajaxpost('catmove','catmove_return','catmove_return');
+			}
+			 function succeedhandle_catmove(url, message, values) {
+				jQuery('.popbox .popbox-header .js-popbox-prev').trigger('click');
+				location.reload();
+			 };
+		</script>
+     
+      
+    
+	<!--{elseif $step==2}-->
+    	<div class="popbox-header">
+         <button  class="back glyphicon glyphicon-chevron-left js-popbox-prev"></button>
+          <button class="close glyphicon glyphicon-remove" ></button>
+        <h3>{lang term_set_top}</h3>
+      </div>
+      <div class="popbox-body" style="width:270px;">
+      <form class="form-horizontal " id="istop_form" role="form" method="post" action="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=newsmenu&step=2" onsubmit="istop_submit();return false">
+            <input type="hidden" name="handlekey" value="istop" />
+            <input type="hidden" name="istopsubmit" value="true" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+            <input type="hidden" id="istop_newids" name="newid" value="" />
+     		<input type="text" class="form-control" name="topendtime" id="datepicker_input" value="$now" />
+      		<span class="help-inline">{lang select_the_top_closing_date_and_leave_the_top_blank}</span>
+      </div>
+      <div class="popbox-footer" style="text-align:right">
+        	<button  class="btn btn-simple js-popbox-prev">{lang cancel}</button>&nbsp;&nbsp;
+            <button id="istop_return" type="submit" onclick="istop_submit()"  class="btn btn-success mr15" data-loading-text="{lang In_the_save}" >{lang confirms}</button>
+        </div>   
+         <script type="text/javascript" reload="1">
+			jQuery('#datepicker_input').datepicker();
+		//jQuery('.dzzdate').datepicker("setDate",jQuery('#datepicker_input').val());
+			function istop_submit(){
+				var form=document.getElementById('istop_form');
+				//提交前获取newids
+				var newids=[];
+				jQuery('input[name=chk]').each(function(){
+					if(jQuery(this).prop('checked')){
+						newids.push(this.value);
+					}
+				});
+				jQuery('#istop_newids').val(newids.join(','));
+				jQuery('#istop_return').button('loading');
+				ajaxpost('istop_form','istop_return','istop_return');
+			}
+			 function succeedhandle_istop(url, message, values) {
+				jQuery('.popbox .popbox-header .js-popbox-prev').trigger('click');
+				location.reload();
+			 };
+            var nownewids=[];
+            jQuery('input[name=chk]').each(function(){
+				if(jQuery(this).prop('checked')){
+					nownewids.push(this.value);
+				}
+			});
+            if(nownewids.length==1){
+                var endtime = jQuery("#news_title_"+nownewids[0]).data("topendtime"); 
+                jQuery("#datepicker_input").val(endtime); 
+            }
+		</script>
+      <!--{elseif $step==3}-->
+    	<div class="popbox-header">
+         <button  class="back glyphicon glyphicon-chevron-left js-popbox-prev"></button>
+          <button class="close glyphicon glyphicon-remove" ></button>
+        <h3>{lang highlight_set}</h3>
+      </div>
+      <div class="popbox-body" style="width:270px;">
+      <form class="form-horizontal " id="highlight_form" role="form" method="post" action="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=newsmenu&step=3" onsubmit="highlight_submit();return false">
+            <input type="hidden" name="handlekey" value="highlight" />
+            <input type="hidden" name="highlightsubmit" value="true" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+            <input type="hidden" id="highlight_newids" name="newid" value="" />
+            <div class="control-group mb20">
+                <input type="text" class="form-control" name="highlightendtime" id="datepicker_input" value="$now" />
+                <span class="help-inline">{lang select_the_highlight_deadline_and_leave_the_highlight_blank}</span>
+            </div>
+           <div class="control-group ">
+			<div class="controls editor-btnbar" id="simple_editor">
+            	<a href="javascript:;" id="color_picker" class="editor-btn" title="{lang click_choose_color}" ></a>
+                <a href="javascript:;" id="bold_btn"  class="editor-btn " title="{lang bold}" style="font-weight:700" onclick="jQuery(this).toggleClass('active');jQuery('#highlight_bold').val(jQuery('#highlight_bold').val()>0?0:1)">B</a>
+                <a href="javascript:;" id="italic_btn" class="editor-btn " title="{lang italic}" style="font-style: italic;" onclick="jQuery(this).toggleClass('active');jQuery('#highlight_italic').val(jQuery('#highlight_italic').val()>0?0:1)">I</a>
+                <a href="javascript:;" id="underline_btn" class="editor-btn " title="{lang underline}" style="text-decoration: underline;" onclick="jQuery(this).toggleClass('active');jQuery('#highlight_underline').val(jQuery('#highlight_underline').val()>0?0:1)">U</a>
+            </div>
+			<input type="hidden" id="highlight_color" name="highlight_color" value="">
+			<input type="hidden" id="highlight_bold" name="highlight_bold" value="0">
+			<input type="hidden" id="highlight_italic" name="highlight_italic" value="0">
+			<input type="hidden" id="highlight_underline" name="highlight_underline" value="0">
+		</div>
+      		
+      </div>
+      <div class="popbox-footer" style="text-align:right">
+        	<button  class="btn btn-simple js-popbox-prev">{lang cancel}</button>&nbsp;&nbsp;
+            <button id="highlight_return" type="submit" onclick="highlight_submit()"  class="btn btn-success mr15" data-loading-text="{lang In_the_save}" >{lang confirms}</button>
+        </div>   
+         <script type="text/javascript" reload="1">
+		 	jQuery('#color_picker').colorPicker({input:jQuery('#highlight_color')});
+			jQuery('#datepicker_input').datepicker();
+		//jQuery('.dzzdate').datepicker("setDefaults",jQuery('#datepicker_input').val());
+			function highlight_submit(){
+				var form=document.getElementById('highlight_form');
+				//提交前获取newids
+				var newids=[];
+				jQuery('input[name=chk]').each(function(){
+					if(jQuery(this).prop('checked')){
+						newids.push(this.value);
+					}
+				});
+				
+				jQuery('#highlight_newids').val(newids.join(','));
+				jQuery('#highlight_return').button('loading');
+				ajaxpost('highlight_form','highlight_return','highlight_return');
+			}
+			 function succeedhandle_highlight(url, message, values) {
+				jQuery('.popbox .popbox-header .js-popbox-prev').trigger('click');
+				location.reload();
+			 };
+            var nownewids=[];
+            jQuery('input[name=chk]').each(function(){
+				if(jQuery(this).prop('checked')){
+					nownewids.push(this.value);
+				}
+			});
+            if(nownewids.length==1){
+                var endtime = jQuery("#news_title_"+nownewids[0]).data("endtime"); 
+                if(endtime) jQuery("#datepicker_input").val(endtime); 
+                var str = jQuery("#news_title_"+nownewids[0]).attr("style");
+                var strarr = str.split(";");
+                jQuery.each(strarr,function(i){ 
+                    var tt=strarr[i]; 
+                    if( tt ){
+                        var ss=tt.split(":");
+                         if(ss[0]=='color' ){
+                            jQuery("#highlight_color").val(ss[1]);
+                            jQuery("#color_picker").css('background',ss[1]);
+                        }else if( ss[0]=='font-weight'){
+                            jQuery("#highlight_bold").val(1);
+                            jQuery("#bold_btn").addClass("active");
+                        }else if( ss[0]=='font-style' ){
+                            jQuery("#highlight_italic").val(1);
+                            jQuery("#italic_btn").addClass("active");
+                        }else if(ss[0]=='text-decoration' ){
+                            jQuery("#highlight_underline").val(1);
+                            jQuery("#underline_btn").addClass("active");
+                        } 
+                    }
+                });
+            }
+		</script>
+     
+    <!--{elseif $step==4}-->
+    	<div class="popbox-header"> 
+        	<button class="back glyphicon glyphicon-chevron-left js-popbox-prev" ></button> 
+            <button class="close glyphicon glyphicon-remove"></button> 
+            <h3>{lang delete}</h3> 
+         </div> 
+         <div class="popbox-body" style="max-width:240px;"> 
+         	
+    	<form class="form-horizontal " id="delete_form" role="form" method="post" action="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=newsmenu&step=4" onsubmit="delete_submit();return false">
+            <input type="hidden" name="handlekey" value="delete" />
+            <input type="hidden" name="deletesubmit" value="true" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+            <input type="hidden" id="delete_newids" name="newid" value="" />
+     		
+      		<span class="danger">{lang are_you_sure_you_want_to_delete_the_selected_information}</span>
+      </div>
+      <div class="popbox-footer" style="text-align:right">
+        	<button  class="btn btn-simple js-popbox-prev">{lang cancel}</button>&nbsp;&nbsp;
+            <button id="delete_return" type="submit" onclick="delete_submit()"  class="btn btn-danger mr15" data-loading-text="{lang In_the_save}" >{lang confirms}{lang delete}</button>
+        </div>   
+         <script type="text/javascript" reload="1">
+		
+			function delete_submit(){
+				var form=document.getElementById('delete_form');
+				//提交前获取newids
+				var newids=[];
+				jQuery('input[name=chk]').each(function(){
+					if(jQuery(this).prop('checked')){
+						newids.push(this.value);
+					}
+				});
+				
+				jQuery('#delete_newids').val(newids.join(','));
+				jQuery('#delete_return').button('loading');
+				ajaxpost('delete_form','delete_return','delete_return');
+			}
+			 function succeedhandle_delete(url, message, values) {
+				jQuery('.popbox .popbox-header .js-popbox-prev').trigger('click');
+				location.reload();
+			 };
+		</script>
+       <!--{elseif $step==5}-->
+    	<div class="popbox-header"> 
+        	<button class="back glyphicon glyphicon-chevron-left js-popbox-prev" ></button> 
+            <button class="close glyphicon glyphicon-remove"></button> 
+            <h3>{lang audit_opinion}</h3> 
+         </div> 
+         <div class="popbox-body" style="max-width:300px;"> 
+         	
+    	<form class="form-horizontal " id="mod_form" role="form" method="post" action="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=newsmenu&step=5" onsubmit="mod_submit('1');return false;">
+            <input type="hidden" name="handlekey" value="moderator" />
+            <input type="hidden" name="modsubmit" value="true" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+            <input type="hidden" id="mod_newids" name="newid" value="" />
+            <input type="hidden" id="mod_pass" name="pass" value="1" />
+          
+     		<textarea class="form-control" name="modreason"></textarea>
+      		<span class="help-inline">{lang review_comments_to_inform_the_user_of_the_failure_of_the_cause}</span>
+      </div>
+      <div class="popbox-footer" style="text-align:right">
+        	 <button id="mod_return_0" type="submit" onclick="mod_submit('0')"  class="btn btn-simple mr15" data-loading-text="{lang In_the_save}" >{lang Review the return}</button>&nbsp;&nbsp;
+            <button id="mod_return_1" type="submit" onclick="mod_submit('1')"  class="btn btn-success mr15" data-loading-text="{lang In_the_save}" >{lang pass_the_audit}</button>
+        </div>   
+         <script type="text/javascript" reload="1">
+		
+			function mod_submit(pass){
+				jQuery('#mod_pass').val(pass);
+				var form=document.getElementById('delete_form');
+				//提交前获取newids
+				var newids=[];
+				jQuery('input[name=chk]').each(function(){
+					if(jQuery(this).prop('checked')){
+						newids.push(this.value);
+					}
+				});
+				
+				jQuery('#mod_newids').val(newids.join(','));
+				jQuery('#mod_return_'+pass).button('loading');
+				ajaxpost('mod_form','mod_return_'+pass,'mod_return_'+pass);
+			}
+			 function succeedhandle_moderator(url, message, values) {
+				jQuery('.popbox .popbox-header .js-popbox-prev').trigger('click');
+				location.reload();
+			 };
+		</script>
+    <!--{/if}--> 
+ 
+<!--{elseif $do=='catmenu'}-->
+	<!--{if !$step}-->
+      <div class="popbox-header">
+         <button class="close glyphicon glyphicon-remove" ></button>
+        <h3>{lang controller_options}</h3>
+      </div>
+      <div class="popbox-body">
+        <ul class="popbox-menu list-unstyled">
+          <li><a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$catid&step=1" data-placement="right" data-auto-adapt="true"><i class="glyphicon glyphicon-plus"></i> {lang add}</a></li>
+          <li><a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$catid&step=2" data-placement="right" data-auto-adapt="true"><i class="glyphicon glyphicon-edit"></i> {lang edit}</a></li>
+          <li><a href="javascript:;" class="cancel"  onclick="cat_move('$catid',1)"><i class="glyphicon glyphicon-arrow-up"></i> {lang move_up}</a></li>
+          <li><a href="javascript:;"  class="cancel"  onclick="cat_move('$catid',0)"><i class="glyphicon glyphicon-arrow-up"></i> {lang shift_down}</a></li>
+         
+          <li class="divider"></li>
+         <li><a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$catid&step=4" data-placement="right" data-auto-adapt="true"><i class="danger glyphicon glyphicon-remove"></i> {lang delete}</a></li>
+        </ul>
+     </div>
+    <!--{elseif $step==1 || $step==2}-->
+        <div class="popbox-header"> 
+          <button  class="back glyphicon glyphicon-chevron-left js-popbox-prev"></button>
+          <button class="close glyphicon glyphicon-remove" ></button>
+          <h3 class="">{lang add_type}</h3>
+        </div>
+        
+        <div class="popbox-body" style="width:300px">
+       	  
+          <form class="form-horizontal" id="catedit" role="form" method="post" action="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$catid&step=$step" onsubmit="catedit_submit();return false;">
+            <input type="hidden" name="handlekey" value="catedit" />
+            <input type="hidden" name="cateditsubmit" value="true" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+            <input type="hidden" name="ncatid" value="$cat[catid]" /> 
+             <div class="form-group">
+                <label class="control-label col-xs-4">{lang classify_name}</label>
+                <div class=" col-xs-8"> <input type="text" class="form-control" id="cat_name" name="name"  placeholder="{lang classify_name}" value="$cat[name]"></div>
+             </div> 
+             <div class="form-group">
+             	<label class="control-label col-xs-4">{lang category_parent}</label>
+                <div class=" col-xs-8">
+                    <select name="pid" class="form-control" >
+                        <option value="0" select="selected">{lang none}</option>
+                        $catoptions
+                    </select>
+                </div>
+             </div>
+            </form>
+         </div>
+        <div class="popbox-footer" style="text-align:right">
+        	<button  class="btn btn-simple js-popbox-prev">{lang cancel}</button>&nbsp;&nbsp;
+            <button id="catedit_return" type="submit" onclick="catedit_submit()"  class="btn btn-success mr15" data-loading-text="{lang In_the_save}" >{lang confirms}</button>
+        </div>   
+        
+       
+        <script type="text/javascript" reload="1">
+			function catedit_submit(){
+				var form=document.getElementById('catmove');
+				//提交前获取newids
+				if(jQuery('#cat_name').val()=='') {
+					jQuery('#cat_name').focus();
+					return false;
+				}
+				
+				jQuery('#catedit_return').button('loading');
+				ajaxpost('catedit','catedit_return','catedit_return');
+			}
+			 function succeedhandle_catedit(url, message, values) {
+				jQuery('.popbox .popbox-header .close').trigger('click');
+				var data= eval('(' + decodeURIComponent(values['data']) + ')');
+				var el=jQuery('#cat_'+data.catid);
+				if(!el.length){//新增加
+					el=jQuery('<li id="cat_1" role="presentation" data-catid="'+data.catid+'" data-pid="'+data.pid+'"><a href="'+DZZSCRIPT+'?mod={MOD_NAME}&catid='+data.catid+'"><span class="catname">'+data.name+'</span><span class="cat-ctrl js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid='+data.catid+'" data-placement="right" data-auto-adapt="true"><i class="glyphicon glyphicon-chevron-right"></i></span></a><ul class="nav nav-pills nav-stacked nav-zstacked" role="tablist"></ul></li>').appendTo('#cat_'+data.pid+'>.nav-zstacked');
+				}else{//编辑
+					var pid=el.data('pid');
+					el.find('.catname').html(data.name).data('pid',data.pid);
+					if(pid!=data.pid){
+						el.appendTo('#cat_'+data.pid+'>.nav-zstacked');
+					}
+				}
+				
+			 };
+		</script>
+     <!--{elseif $step==4}-->
+    	<div class="popbox-header"> 
+        	<button class="back glyphicon glyphicon-chevron-left js-popbox-prev" ></button> 
+            <button class="close glyphicon glyphicon-remove"></button> 
+            <h3>{lang category_delete}</h3> 
+         </div> 
+         <div class="popbox-body" style="max-width:300px; word-break:break-all"> 
+         	
+    	<form class="form-horizontal " id="catdelete_form" role="form" method="post" action="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&step=4" onsubmit="catdelete_submit();return false">
+            <input type="hidden" name="handlekey" value="catdelete" />
+            <input type="hidden" name="catdeletesubmit" value="true" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+           <input type="hidden" name="catid" value="$catid" /> 
+     		
+      		<span class="danger">{lang determine_to_delete_the_taxonomy}<b>"$cat[name]"</b>{lang classification_of_all_subordinates}</span>
+      </div>
+      <div class="popbox-footer" style="text-align:right">
+        	<button  class="btn btn-simple js-popbox-prev">{lang cancel}</button>&nbsp;&nbsp;
+            <button id="catdelete_return" type="submit" onclick="catdelete_submit()"  class="btn btn-danger mr15" data-loading-text="{lang In_the_save}" >{lang confirms}{lang delete}</button>
+        </div>   
+         <script type="text/javascript" reload="1">
+		
+			function catdelete_submit(){
+				var form=document.getElementById('catdelete_form');
+				jQuery('#catdelete_return').button('loading');
+				ajaxpost('catdelete_form','catdelete_return','catdelete_return');
+			}
+			 function succeedhandle_catdelete(url, message, values) {
+				jQuery('.popbox .popbox-header .close').trigger('click');
+				jQuery('#cat_'+values['catid']).remove();
+			 };
+		</script>
+		
+	
+    <!--{/if}--> 
+		
+	
+	
+<!--{/if}--> 

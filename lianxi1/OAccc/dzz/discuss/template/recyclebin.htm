@@ -1,0 +1,200 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/discuss.css?{VERHASH}" rel="stylesheet" media="all">
+<link rel="stylesheet" href="static/css/checkbox.css">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="dzz/discuss/scripts/discuss.js?{VERHASH}"></script>
+<style>
+    html,body{
+        overflow:hidden;
+    }
+    body{
+        background:rgba(241, 241, 241, 1);
+    }
+    .navbar-inverse {
+        background-color: rgba(255, 90, 58, 1);
+    }
+    .bs-main-container{
+        margin-left:210px;
+    }
+
+    .modal .modal-content{
+        background:#FBFBFB;
+    }
+    .modal .modal-body{
+        padding:0;
+    }
+    .modal .modal-footer{
+        border-top:1px solid #FFF;
+    }
+    .modal .list-group{
+        margin:0
+    }
+    .modal .list-group .list-group-item{
+        position:relative;border-left:0;border-right:0;border-top:1px solid #FFF;border-bottom:1px solid #e1e1e1;margin-bottom:0;background-color:#FBFBFB;
+        border-radius:0;
+        min-height:50px;
+    }
+    .list-group-item h4{
+        font-size:16px;
+    }
+    .modal .list-group .list-group-item:hover,.modal .list-group .list-group-item:active{
+        background-color:#F7F7F7;
+    }
+    .modal .list-group .list-group-item .board-icon{
+        position:absolute;left:10px;top:10px;
+    }
+    .modal .list-group .list-group-item .list-group-content{
+        padding-left:42px;
+        font-size:12px;
+    }
+
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+
+<div class="bs-container clearfix" style="height: 100%;">
+    <div class="bs-left-container  clearfix" style="height: 100%;">
+        <!--{template left}-->
+    </div>
+    <div class="left-drager"></div>
+    <div class="bs-main-container">
+        <div class="trash-wrap">
+            <!--{if $list}-->
+            <div class="trash-top">
+                <span class="trash-num">{lang trash_num_g}<span>{$count}</span>{lang trash_num_x}</span>
+                <div class="trash-btnGroup">
+                    <a href="javascript:;" class="btn deleteBtn" style="display: inline-block;font-size:13px" onclick="deleteAll()"><i class="dzz dzz-delete"></i> {lang empty_recycle_bin}</a>
+                    <div class="btn-group" style="display: inline-block;vertical-align: middle;">
+                        <button type="button" class="btn drop-btn" data-toggle="dropdown" aria-expanded="false" style="padding-top: 0;padding-bottom: 0;">
+                            <!--{if $type == 'thread'}-->{lang thread}<!--{elseif $type == 'discuss'}-->{lang discuss}<!--{else}-->{lang all}<!--{/if}-->  <span class="dzz dzz-expand-more"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{MOD_URL}&op=recyclebin">{lang all}</a></li>
+                            <li><a href="{MOD_URL}&op=recyclebin&type=thread">{lang thread}</a></li>
+                            <li><a href="{MOD_URL}&op=recyclebin&type=discuss">{lang discuss}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--{/if}-->
+            <div class="trash-con">
+                <!--{if empty($list)}-->
+                    <div class="searchImg-wrap">
+                        <img src="{MOD_PATH}/images/search_empty.png" alt="">
+                        <p>{lang recycle_bin_nothing}</p>
+                    </div>
+                <!--{/if}-->
+                <!--{loop $list $value}-->
+                    <!--{if $value[type] == 'thread'}-->
+                        <div class="trash-item">
+                            <div class="trash-img">{eval echo avatar_block($value[thread][uid])}</div>
+                            <div class="trash-right">
+                                <div class="right-top clearfix">
+                                    <a class="xst" title="{$value[thread][subject]}">{$value[thread][subject]}</a>
+                                    <div class="com-btn combtn1">
+                                        <a href="javascript:;" onclick="recoverDele(this,'{$value[rid]}')" class="refresh" style="margin-right: 15px"><i class="dzz dzz-refresh" data-toggle="tooltip" data-placement="bottom" data-original-title="{lang reduction}"></i></a>
+                                        <a href="javascript:;" onclick="deleteTho(this,'{$value[rid]}')" class="delete"><i class="dzz dzz-delete" data-toggle="tooltip" data-placement="bottom" data-original-title="{lang delete}"></i></a>
+                                    </div>
+                                </div>
+                                <div class="title-bot clearfix title-wrap" style="padding-left: 0;">
+                                    <a href="{MOD_URL}&op=list&fid={$value[fid]}&forward=$forward" class="board-a">#{$value[disname]}</a>
+                                    <span class="card-user" style="margin-right: 0;">{lang deleter}：</span><a href="user.php?uid=1" class="card-user">{$value[deleter]}</a>
+
+                                    <div class="pre-info">
+                                        <span class="xi1">{lang delete_date}：{eval echo dgmdate($value['deletetime'],'u');}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--{else}-->
+
+                        <div class="trash-item">
+                            <div class="dis-icon dis-icon1"><div class="dis-img dis-img1" style="background-color: {$value[discuss][iconcolor]}">{$value[discuss][name]}</div></div>
+                            <div class="trash-right">
+                                <div class="right-top clearfix">
+                                    <a href="javascript:;" class="xst" title="{$value[discuss][name]}">{$value[discuss][name]}</a>
+                                    <div class="com-btn combtn1">
+                                        <a href="javascript:;" onclick="recoverDele(this,'{$value[rid]}')" class="refresh" style="margin-right: 15px"><i class="dzz dzz-refresh" data-toggle="tooltip" data-placement="bottom" data-original-title="{lang reduction}"></i></a>
+                                        <a href="javascript:;" onclick="deleteTho(this,'{$value[rid]}')" class="delete"><i class="dzz dzz-delete" data-toggle="tooltip" data-placement="bottom" data-original-title="{lang delete}"></i></a>
+                                    </div>
+                                </div>
+                                <div class="title-bot clearfix title-wrap" style="padding-left: 0;">
+                                    <span class="card-user" style="margin-right: 15px;">{lang thread}：{$value[discuss][threads]}</span><span class="card-user">{lang post}：{$value[discuss][posts]}</span>
+                                    <span class="card-user" style="margin-right: 0px;">{lang deleter}：</span><a href="user.php?uid=1" class="card-user">admin</a>
+
+                                    <div class="pre-info">
+                                        <span class="xi1">{lang delete_date}：{eval echo dgmdate($value['deletetime'],'u');}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--{/if}-->
+                <!--{/loop}-->
+            </div>
+              <!--{if $multi}-->
+            <div class="trash-item">
+                <div class="page-wrap">
+                    {$multi}
+                </div>
+            </div>
+            <!--{/if}-->
+        </div>
+    </div>
+</div>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<script>
+    jQuery(function () {
+        jQuery('.left-drager').leftDrager_layout();
+    })
+    function deleteTho(el,num) {
+        showDialog('确定要彻底删除吗？','confirm','',function () {
+            jQuery.ajax({
+                url:'{MOD_URL}&op=ajax&do=thgdel',
+                type:'post',
+                dataType:'json',
+                data:{'rid':num},
+                success:function (res) {
+                    if(res.code==200) {
+                        showmessage(res.message,'success',1000,1);
+                        jQuery(el).parents('.trash-item').slideUp();
+                    }
+                }
+            })
+        })
+    }
+    function recoverDele(el,num) {
+        showDialog('{lang true_recovery}','confirm','',function () {
+            jQuery.ajax({
+                url:'{MOD_URL}&op=ajax&do=recovery',
+                type:'post',
+                dataType:'json',
+                data:{'rid':num},
+                success:function (res) {
+                    if(res.code==200) {
+                        showmessage(res.message,'success',1000,1);
+                        jQuery(el).parents('.trash-item').slideUp();
+                    }
+                }
+            })
+        })
+    }
+    function deleteAll() {
+        showDialog('{lang true_empty_recycle_bin}','confirm','',function () {
+            jQuery.ajax({
+                url:'{MOD_URL}&op=ajax&do=thgdelall',
+                type:'post',
+                dataType:'json',
+                success:function (res) {
+                    if(res.code==200) {
+                        showmessage(res.message,'success',1000,1);
+                        jQuery('.trash-con').slideUp();
+                    }
+                }
+            })
+        })
+    }
+</script>
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->
+

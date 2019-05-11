@@ -1,0 +1,148 @@
+<!--<?php
+include_once gettpl('top');
+if (empty($action)){
+print <<<EOT
+-->
+<form action="$basename&" method="post">
+	<input type="hidden" name="action" value="search">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">搜索评论</td>
+		</tr>
+		<tr>
+			<td>用户名包含 <br />(可使用通配符"*")</td>
+			<td><input type="text" size="20" maxlength="14" name="author"> <label><input name="author_s" type="checkbox" value="1" checked="checked"> 精确匹配</label></td>
+		</tr>
+		<tr>
+			<td>评论内容包含 <br />(可使用通配符"*")</td>
+			<td><input type="text" size="20" name="content"></td>
+		</tr>
+		<tr>
+			<td>评论时间大于</td>
+			<td>
+				<select name="postdate">
+					<option value="all">不限制</option>
+					<option value="86400">一天</option>
+					<option value="172800">二天</option>
+					<option value="604800">一星期</option>
+					<option value="2592000">一个月</option>
+					<option value="7776000">三个月</option>
+					<option value="15552000">六个月</option>
+					<option value="31536000">一年</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>评论审核</td>
+			<td>
+				<select name="yz">
+					<option value="all">无限制</option>
+					<option value="1">已通过</option>
+					<option value="0">未审核</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>排序方式</td>
+			<td>
+				<select name="orderway">
+					<option value="postdate">发布时间</option>
+					<option value="authorid">会员ID</option>
+				</select>
+				<label><input type="radio" size="5" name="asc" value="" checked="checked"> 升序</label>
+				<label><input type="radio" size="5" name="asc" value="DESC"> 降序</label>
+			</td>
+		</tr>
+		<tr>
+			<td>每页显示行数</td>
+			<td><input type="text" size="5" name="lines" value="100"></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<!--
+EOT;
+}elseif($action==search){print <<<EOT
+-->
+<form action="$basename&" method="post">
+	<input type="hidden" name="action" value="check">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="7">会员评论列表</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'selid');"></td>
+			<td width="5%">ID</td>
+			<td width="20%">影片名称</td>
+			<td width="10%">评论会员</td>
+			<td width="30%">评论内容</td>
+			<td width="20%">发布时间</td>
+			<td width="10%">审核</td>
+		</tr>
+<!--
+EOT;
+foreach($schdb as $key=>$sch){
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="selid[]" value="$sch[id]"></td>
+			<td>$sch[id]</td>
+			<td><a href="read.php?vid=$sch[vid]" target="_blank">$sch[subject]</a></td>
+			<td>$sch[author]</td>
+			<td><a href="$basename&action=read&id=$sch[id]">$sch[content]</a></td>
+			<td>$sch[postdate]</td>
+			<td>
+<!--
+EOT;
+if($sch[yz]==1){
+print <<<EOT
+-->
+				已通过
+<!--
+EOT;
+}else{
+print <<<EOT
+-->
+				未审核
+<!--
+EOT;
+}
+print <<<EOT
+-->
+			</td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<div class="pages">$pages</div>
+	<center>
+		<label><input type="radio" name="type" value="del"> 删除</label> 
+		<label><input type="radio" name="type" checked="checked" value="pass"> 通过</label>
+		<label><input type="checkbox" name="donotupdatecredit" value="1" checked="checked"> 删除评论不减用户积分</label>
+		<br /><br />
+		<input type="submit" value="提 交">
+	</center>
+</form>
+<!--
+EOT;
+}elseif($action==read){
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">评论内容</td>
+	</tr>
+	<tr>
+		<td>
+			<div style="word-break:break-all; padding: 10px;">$content</div>
+		</td>
+	</tr>
+</table><br />
+<center><input type="button" onclick="javascript:history.go(-1);" value="返 回"></center>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>-->

@@ -1,0 +1,12 @@
+-rw-r--r-- 1 ftp ftp            178 Jul 19  2017 autoload.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 bin
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 composer
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 doctrine
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 guzzlehttp
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 phpdocumentor
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 phpspec
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 phpunit
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 psr
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 sebastian
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 symfony
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 webmozart

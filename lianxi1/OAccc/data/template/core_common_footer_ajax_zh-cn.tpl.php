@@ -1,0 +1,2 @@
+<?php if(!defined('IN_DZZ')) exit('Access Denied'); /*a:1:{s:93:"/Applications/MAMP/htdocs/18031/lianxi1/OAccc//./core/template/default/common/footer_ajax.htm";i:1536850350;}*/?>
+<?php echo output_ajax(); ?>]]></root><?php exit;?>

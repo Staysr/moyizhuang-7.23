@@ -1,0 +1,90 @@
+<!--<?php
+include_once gettpl('top');
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">提示信息</td>
+	</tr>
+	<tr>
+		<td class="notice">显示数据库中的重复视频</td>
+	</tr>
+</table>
+<br />
+<!--
+EOT;
+if (empty($action)){
+print <<<EOT
+-->
+<form action="$basename&" method="post">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="3">重复视频列表</td>
+		</tr>
+		<tr class="field f-tac">
+			<td>标题</td>
+			<td width="15%">重复次数</td>
+			<td width="15%">操作</td>
+		</tr>
+<!--
+EOT;
+foreach($repeatdb as $key=>$video){
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><a href="$basename&action=show&subject=$video[subject]">$video[subject]</a></td>
+			<td>$video[count]</td>
+			<td><a href="$basename&action=show&subject=$video[subject]">查看</a></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+</form>
+<!--
+EOT;
+}
+elseif($action=='show'){
+print <<<EOT
+-->
+<form action="$basename&" method="post">
+	<input type="hidden" name="action" value="delvideo">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="7">视频列表</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'selid');"></td>
+			<td width="5%">ID</td>
+			<td width="10%">发表人</td>
+			<td>标题</td>
+			<td width="20%">发表时间</td>
+			<td width="20%">更新时间</td>
+			<td width="5%">编辑</td>
+		</tr>
+<!--
+EOT;
+foreach($videodb as $key=>$video){
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="selid[]" value="$video[vid]"></td>
+			<td>$video[vid]</td>
+			<td><a href="profile.php?action=show&id=$video[authorid]" target="_blank">$video[author]</a></td>
+			<td><a href="read.php?vid=$video[vid]" target="_blank">$video[subject]</a></td>
+			<td>$video[postdate]</td>
+			<td>$video[lastdate]</td>
+			<td><a href="post.php?action=modify&vid=$video[vid]" target="_blank">编辑</a></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table><br />
+	<center><input type="submit" value="删 除"></center>
+</form>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>-->

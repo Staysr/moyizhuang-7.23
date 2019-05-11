@@ -1,0 +1,53 @@
+/* pages/jifen/index.wxss */
+.liti{
+    height: 199rpx;
+    width: 707rpx;
+    /* align-items: center; */
+   color: rgba(0, 0, 0, .6);
+    background: rgba(243,169,53,0.6);
+    margin-left: 20rpx;
+    margin-top: 53rpx;
+    box-shadow:3px 5px 10px #e0e0e0; 
+   /* box-sizing: border-box */
+    border-radius: 13px;
+    color: #fff;
+}
+.jifen{
+  font-size: 30rpx;
+  margin-top: 12rpx;
+  margin-left: 12rpx;
+}
+.jifen1{
+    margin-top: 12rpx;
+    margin-left: 30rpx;
+}
+
+.container {
+  font-size: 16px;
+  padding: 0;
+}
+
+.section {
+display: flex;
+margin: 16rpx;
+padding: 16rpx;
+border-bottom: 1rpx solid #CFD8DC;
+}
+
+.text2 {
+  width: 652rpx;
+  color:rgba(36, 31, 31, 0.966);
+  font-size: 30rpx;
+}
+
+button {
+  margin: 16rpx;
+}
+
+.sendMsg {
+  font-size: 12;
+  margin-right: 0;
+  padding: 0;
+  height: inherit;
+  width: 80rpx;
+}

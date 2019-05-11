@@ -1,0 +1,27 @@
+<li  class="add pull-left" style="padding:10px;width:110px">
+	<div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;">
+		<a href="javascript:;" onclick="showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=seluser&token=$type&stype=2&multiple=1&ids={eval echo rawurlencode(implode(',',array_keys($users)));}','get','0')">
+			<img style="margin:10px" src="{MOD_PATH}/images/addUser.png" width="66" height="66" />
+		</a>
+	</div>
+	<p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;">
+		<span >
+			<a href="javascript:;"  onclick="showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=seluser_$type&stype=2&multiple=1&ids={eval echo rawurlencode(implode(',',array_keys($users)));}')">{lang add_user}</a>
+		</span>
+	</p>
+</li>
+
+<!--{loop $users $value}--> 
+<li id="user_{$value[uid]}" perm="$value[perm]" class="user-item pull-left" style="padding:10px;width:110px;position:relative"> 
+	<a href="javascript:;" class="delete" onclick="deleteUser('{$value[uid]}','$type');return false" style="position:absolute;top:0px;right:0px;">
+		<span style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: rgba(116, 116, 116, 1);text-align: center;line-height: 20px;">
+	  		<i style="color:#fff;font-size:16px;line-height: 20px" class="dzz dzz-close"></i>
+		</span>
+	</a>
+	<input type="hidden" name="uids_$type[]" value="$value[uid]" />
+	<div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;overflow: hidden;"> 
+	    {eval echo avatar_block($value[uid])}
+	</div>
+	<p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span> $value[username]</span> </p>
+</li>
+<!--{/loop}--> 

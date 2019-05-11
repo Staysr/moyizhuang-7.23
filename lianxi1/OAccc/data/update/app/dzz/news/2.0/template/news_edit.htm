@@ -1,0 +1,417 @@
+<!--{template common/header_simple_start}-->
+<link href="dzz/system/ueditor/themes/default/css/ueditor.css?{VERHASH}" rel="stylesheet" media="all">
+<!--{if $ismobile}--><link href="dzz/system/ueditor/themes/default/css/ueditor_add.css?{VERHASH}" rel="stylesheet" media="all"><!--{/if}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/icheck/skins/minimal/blue.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/select2/select2.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/select2/select2-bootstrap.css?{VERHASH}" rel="stylesheet" media="all">
+
+<link rel="stylesheet" href="static/css/checkbox.css">
+
+
+<link href="static/css/app_manage.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/news/images/news.css?{VERHASH}" rel="stylesheet" media="all">
+
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="dzz/system/scripts/selorg.js?{VERHASH}"></script>
+
+<script type="text/javascript" src="static/js/header.js"></script>	
+<script type="text/javascript">
+<!--{if $openarr}-->
+selorg.openarr=$openarr;  
+<!--{/if}-->
+var i=0;
+var needsave=0;
+try{
+	var api=_api.init();
+	api.setFileExt(['image','document','attach','link','dzzdoc','video']);
+}catch(e){};
+
+</script>
+<style type="text/css">
+  .image-body .image-item{
+    padding: 0px;
+  }
+
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+ 
+<div class="bs-container clearfix" style="padding：0px;">
+    <div class="bs-left-container  affix-top clearfix">
+        <div style="padding:10px">
+            <div class="form-group">
+                <label>{lang news_type}</label>
+                <select class="form-control" id="left_catid" name="catid" onchange="jQuery('#catid').val(this.value);">
+                    <option value="0" selected="selected">{lang choose_news_type} </option>
+                    $catoptions
+                </select>
+            </div>
+            <div class="form-group">
+                <label>{lang news_content_type}</label>
+                <select class="form-control"  onchange="news_type_switch(this.value);">
+                
+                  <option value="0" <!--{if !$news[type]}-->selected="selected"<!--{/if}-->>{lang text_content}
+                  </option>
+                  <option value="1" <!--{if $news[type]=='1'}-->selected="selected"<!--{/if}-->>{lang img_content}
+                  </option>
+                  <option value="2" <!--{if $news[type]=='2'}-->selected="selected"<!--{/if}-->>{lang ahref_address}
+                  </option>
+                </select>
+            </div>
+            <div class="form-group">
+
+                <label>{lang comment_switch}</label>
+                <div class="controls">
+                    <div class="radio-custom radio-primary col-xs-6">
+                        <input type="radio" name="news[commentstatus]" value="1" <!--{if $news[commentstatus]>0}-->checked="checked"<!--{/if}--> onclick="jQuery('#commentstatus').val('1');">
+                        <label>{lang open_start}</label>
+                    </div>
+                    <div class="radio-custom radio-primary col-xs-6">
+                        <input type="radio" name="news[commentstatus]" value="0" <!--{if !$news[commentstatus]}-->checked="checked"<!--{/if}--> onclick="jQuery('#commentstatus').val('0');">
+                        <label>{lang close}</label>
+                    </div>
+                </div>
+
+                
+                <!-- <div class="controls">
+                    <label class="radio-inline">开启</label>
+                    <label class="radio-inline">关闭</label>
+                </div> -->
+            </div>
+            <div class="form-group">
+                <label>{lang vote_switch}</label>
+                <div class="controls">
+                    <div class="radio-custom radio-primary col-xs-6">
+                        <input type="radio" name="news[votestatus]" value="1" <!--{if $news[votestatus]>0}-->checked="checked"<!--{/if}--> onclick="jQuery('#vote_container').show();jQuery('#votestatus').val('1');">
+                        <label>{lang open_start}</label>
+                    </div>
+                    <div class="radio-custom radio-primary col-xs-6">
+                        <input type="radio" name="news[votestatus]" value="0" <!--{if !$news[votestatus]}-->checked="checked"<!--{/if}--> onclick="jQuery('#vote_container').hide();jQuery('#votestatus').val('0');">    
+                        <label>{lang close}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="left-drager">
+        <div class="left-drager-op"><div class="left-drager-sub"></div></div>
+    </div>
+    <div class="bs-main-container" >
+        <div class="main-content clearfix" style="padding:15px 0;position:relative">
+        <form id="ueditorform" name="ueditorform" class="form-horizontal form-horizontal-left" action="{DZZSCRIPT}?mod=news&op=edit" method="post" style="margin:0" onsubmit="validate(this);return false" >
+            <input type="hidden" name="edit" value="true" />
+            <input type="hidden" name="news[newid]" value="$news[newid]" />
+            <input type="hidden" id="catid" name="news[catid]" value="$news[catid]"/>
+            <input type="hidden" id="type" name="news[type]" value="$news[type]"/>
+            <input type="hidden" id="commentstatus" name="news[commentstatus]" value="$news[commentstatus]"/>
+            <input type="hidden" id="votestatus" name="news[votestatus]" value="$news[votestatus]"/>
+            <input type="hidden" name="handlekey" value="ueditorform" />
+            <input type="hidden" name="news[content]" id="message" value=""/>
+            <input type="hidden" name="formhash" value="{FORMHASH}" />
+            <input type="hidden" name="news[status]" value="$news[status]"/>
+            <input type="hidden" name="refer" value="$refer"/>
+            <div class="form-group">
+                <label class="title_label">{lang information_title}：</label>
+                <input id="subject" name="news[subject]" class="form-control"  value="$news[subject]" placeholder="{lang information_title}" autocomplete="off"  onkeyup="strLenCalc(this, 'checklen', 200);" required="true" onblur="if(this.value==''){jQuery(this).addClass('input-error')}else{jQuery(this).removeClass('input-error');}" >
+                <span class="help-inline" style="padding:6px 10px;">{lang can_also_type_in}<b id="checklen">200</b>{lang character}</span> 
+            </div>
+            <div class="form-group">
+                <label class="title_label">
+                    <div class="dropdown">
+                      <a href="javascript:;" class="dropdown-toggle" id="orgids_Menu" data-toggle="dropdown">{lang issue_range}<span class="caret"></span></a>
+                      <div id="orgids_dropdown_menu" class="dropdown-menu org-sel-box" role="menu" aria-labelledby="orgids_Menu">
+                           <iframe name="orgids_iframe" class="org-sel-box-iframe" src="{DZZSCRIPT}?mod=system&op=orgtree&ctrlid=orgids&multiple=1" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" allowtransparency="true" ></iframe>
+                      </div>
+                    </div>
+                </label>   
+                <div class="controls" style="float:left;padding-left:10px;">
+                    <div id="orgids"> 
+                        <!--{loop $sel_org $value}-->
+                        <button id="orgids_sl_$value[orgid]" type="button" class="btn btn-simple btn-sorg" data-val="$value['orgid']">
+                        {eval echo avatar_group($value['orgid'],null,'iconFirstWord');}
+                        
+                        $value[orgname] <a href="javascript:;" class="ibtn dzz dzz-close"  title="{lang delete}" onclick="selorg.remove('orgids',this);"></a>
+                        </button>
+                        <!--{/loop}--> 
+                        <!--{loop $sel_user $value1}-->
+                        <button id="orgids_sl_uid_$value1[uid]" data-val="uid_$value1['uid']" type="button" class="btn btn-simple btn-sorg">
+                        {eval echo avatar_block($value1[uid],null,'iconFirstWord');} $value1[username] <a href="javascript:;" class="ibtn dzz dzz-close" title="{lang delete}" onclick="selorg.remove('orgids',this);"></a>
+                        </button>
+                        <!--{/loop}--> 
+                    </div>
+                    <span class="help-inline" style="padding-left:0;line-height:32px;">{lang no_choose_click_add_issue_range}</span>
+                    <input id="sel_orgids" name="news[orgids]" type="hidden" value="$sel" />
+                </div>
+            </div>
+      
+            <!--信息内容区域-->
+            <div class="form-group div_zIndex">
+                <div class="tab-content nav-content">
+                    <div class="tab-pane <!--{if !$news[type]}-->active<!--{/if}--> clearfix" id="news_type_0"> 
+                        <script type="text/plain" id="editor" style="position:relative;height:220px;margin:0 auto;border:0">$news[content]</script> 
+                    </div>
+										<div class="tab-pane <!--{if $news[type]==1}-->active<!--{/if}--> clearfix" id="news_type_1">
+												<label class="pull-left" style="line-height:33px;">{lang img_content}：</label>
+												<div class="controls" style="">
+													<div id="image_container" class="image-container" >
+															<div class="image-header clearfix" style="padding-bottom:10px;" >
+																	<div class="pull-left" style="position:relative;overflow:hidden">
+																		<button class="btn btn-simple">{lang upload_image}</button>
+																		<input id="image_upload" name="files[]" tabindex="-1" style="position: absolute;outline:none; filter: alpha(opacity=0); PADDING-BOTTOM: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; font-family: Arial; font-size: 180px;height:33px;width:114px;display:inline-block;top: 0px; cursor: pointer; right: 0px; padding-top: 0px; opacity: 0;direction:ltr;background-image:none" type="file" multiple>
+																	</div>
+																	<!-- <div class="pull-left ml20"><button class="btn btn-simple needindzz" onclick="uploadfrom_desktop();return false">{lang from_desktop_selection}</button></div> -->
+																																			<!-- <span class="help-inline">{lang can_drag_img_this_place}</span> -->
+												</div>
+												<div class="image-body clearfix" style="padding-top:10px;">
+													<!--{loop $pics $value}-->
+													<div class="image-item"> 
+																																								<div style="position:absolute;right:15px;top:15px;" onclick="jQuery(this).parent().remove();"><i class="ibtn dzz dzz-delete"></i></div>
+																																								<div class="thumbnail">
+																																											<img src="$value[img]" alt="$value[title]" />
+																																											<div class="caption text-center" style="">
+																																												<input type="text" class="form-control input-imag-title" name="pic[{$value[picid]}][title]" value="$value[title]" /><input type="hidden" name="pic[{$value[picid]}][aid]" value="$value[aid]" />
+																																												</div>
+																																								</div>
+																																				</div>
+																																				<!--{/loop}-->  
+																																</div>
+																												</div>
+																								</div>
+																				</div>
+																				<div class="tab-pane <!--{if $news[type]==2}-->active<!--{/if}--> clearfix" id="news_type_2">
+																							<label style="float:left;line-height:33px;">{lang href_address}：</label>
+																								<input class="form-control" placeholder="{lang input_link_address}" id="news_url"  name="news[url]" style="width:450px;" type="text" value="$news[url]" onblur="if(this.value==''){jQuery(this).addClass('input-error')}else{jQuery(this).removeClass('input-error');}" />  
+																				</div> 
+																</div>
+												</div>
+            <!--信息区域--> 
+  
+            <div class="form-group" id="vote_container" <!--{if $news[votestatus]<1}-->style="display:none"<!--{/if}-->>
+  	            <div id="vote_container_body">
+ 	                <script>ajaxget('{DZZSCRIPT}?mod=dzzvote&op=ajax&do=getvotepost&id=$news[newid]&idtype=news','vote_container_body','vote_container_body');</script>
+                </div>
+            </div>
+  
+            <!--信息内容区域-->
+            <!-- <div class="form-group btn_save" style='z-index:0'> -->
+            <button type="submit" id="ueditorform_btn" class="btn btn-primary  pull-left" style="padding:6px 25px" data-loading-text="{lang In_the_save}">{lang submit}</button>
+            <div class="checkbox-custom checkbox-primary pull-left" style="margin-left:25px;margin-top:7px;">
+                <input name="isdraft" type="checkbox" value="3" <!--{if $news[status]==3}-->checked="checked"<!--{/if}--> />
+                <label class="btn_save">{lang save_as_draft}</label>
+            </div>
+                <!-- <small id="error_msg"  style="color:red;padding:0 10px;line-height:30px;"></small>  -->
+            <!-- </div> -->
+            <div style="clear:both;margin-bottom:20px;"></div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+ jQuery('.left-drager').leftDrager_layout(null,{'cookieid':'news_edit'}); 
+ jQuery(document).ready(function(e) {
+	// strLenCalc(document.getElementById('subject'), 'checklen', 200)
+	// jQuery('input').iCheck({
+	// 	  checkboxClass: 'icheckbox_minimal-blue',
+	// 	  radioClass: 'iradio_minimal-blue',
+	// });
+	// jQuery('input').on('ifChecked',function(e){
+	// 	jQuery(this).trigger('click');
+		
+	// });
+     jQuery('select').select2({minimumResultsForSearch:-1});
+	 
+  var ue = UE.getEditor('editor', {
+	    UEDITOR_HOME_URL:SITEURL+'dzz/system/ueditor/',
+		serverUrl:SITEURL+DZZSCRIPT + "?mod=attach&op=controller",
+		focus: true,
+		zIndex : 1900,
+		formid:'ueditorform',
+		<!--{if $ismobile}-->
+		
+		toolbars: UEDITOR_CONFIG.mode.mini,
+		iframeCssUrl:'dzz/system/ueditor/themes/iframe1.css',
+		autoHeightEnabled:false,
+		initialFrameWidth:'100%', //初始化编辑器宽度,默认500
+		<!--{else}-->
+		toolbars: UEDITOR_CONFIG.mode.simple,
+		initialFrameWidth:'750px', //初始化编辑器宽度,默认500
+		<!--{/if}-->
+		initialFrameHeight:220 , //初始化编辑器高度,默认500
+		topOffset:jQuery('.bs-main-container').offset().top+1,
+		scrollContainer:'.bs-main-container'
+	});
+		
+	ue.addListener( 'contentChange', function() {
+		 needsave=1;
+		 try{api.win.needsave=needsave;}catch(e){}
+		 i++;
+		// if(i>10) AutoSave();
+	 });
+	 //增加ctrl+enter提交表单
+	// ue.addshortcutkey("autosubmit", "ctrl+13"); 
+	 try{
+		 window.onbeforeunload=function(){
+			if(jQuery('#type').val()<1 && needsave>0) return __lang.no_save_leave_sure;
+		 }
+	 }catch(e){}
+(function(){
+ jQuery('#image_upload').fileupload({
+        url: DZZSCRIPT+'?mod=news&op=ajax&do=imageupload',
+        dataType: 'json',
+		autoUpload: true,
+		maxFileSize: 2000000, // 2 MB
+		maxChunkSize:2000000, //2M
+		acceptFileTypes:new RegExp("(\.|\/)([jpeg|gif|png|bmp])$",'i'),
+		dropZone:jQuery('#image_container'),
+		pasteZone:jQuery('#image_container'),
+		sequentialUploads:true,
+		add:function(e,data){
+			 data.context = jQuery('<div class="image-item"></div>');
+			 if(jQuery('#image_container .image-body .image-item').length>0) jQuery('#image_container .image-body .image-item:first').before(data.context);
+			 else{
+				 jQuery('#image_container .image-body').append(data.context);
+			 }
+			jQuery.each(data.files, function (index, file) {
+				if(!file.name) file.name='clipboardData.png';
+				var html='';
+					html+='  <div style="position:absolute;right:15px;top:15px;" onclick="jQuery(this).parent().remove();"><i class="ibtn dzz dzz-delete"></i></div>';
+					html+=' <div class="thumbnail">';
+					html+='		<img  src="dzz/images/default/upload_failure.png">';
+					html+='    <div class="caption text-center">';
+					html+='      <div class="progress-container" >';
+					html+='  		  <div class="progress active" style="margin:0;" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">';
+					html+='            	<div class="progress-bar progress-bar-success" style="width:0%;"></div>';
+					html+='           </div>';
+					html+='       </div>';
+					html+='    </div>';
+					html+=' </div>';
+				jQuery(html).appendTo(data.context);
+			});
+			data.process().done(function () {
+				data.submit();
+			});
+			
+		},
+		progress: function (e,data){
+			 var index = 0;//data.index,
+             var  node = jQuery(data.context.children()[index]);
+			 var progress = parseInt(data.loaded / data.total * 100, 10);
+			 node.find('.progress-bar').css(
+				'width',
+				progress + '%'
+			 );
+		},
+        done: function (e, data) {
+            jQuery.each(data.result.files, function (index, file) {
+				if(file.error){
+					data.context.find('.progress-container').replaceWith('<span class="text-danger">'+file.error+'</span>');
+				}else{
+					var html='<input type="text" class="form-control input-imag-title" name="picnew[title][]" value="'+file.data.filename+'" /><input type="hidden" name="picnew[aid][]" value="'+file.data.aid+'" />';
+					
+					data.context.find('img').attr('src',file.data.img).end().find('.progress-container').replaceWith(html);
+					
+				}
+            });
+        }
+    });
+}());
+
+});
+function validate(form){
+	  needsave=0;
+	  window.onbeforeunload=null;
+	 try{ 
+	    api.win.needsave=0;
+	    api.setFileExt([]);
+	  }catch(e){}
+	 
+	  if(trim(document.getElementById('subject').value)==''){
+		   document.getElementById('subject').focus();
+		  return false;
+	  }
+	 //将左侧数据附加到form
+	 jQuery('#catid').val(jQuery('#left_catid').val());
+	 
+	 var type=jQuery('#type').val();
+	 if(type==2){//链接地址
+		 if(!jQuery('#news_url').val()){
+			 jQuery('#news_url').focus();
+			 showError(__lang.input_link_address);
+			 return false;
+		 }
+	 }else if(type==1){//图片内容
+		 if(!jQuery('#image_container .image-body .image-item').length){
+			  showError(__lang.no_any_pictures);
+			  return false;
+		 }
+	 }else{//文本内容
+		  var message=UE.getEditor('editor').getContent();
+		  if(jQuery('#votestatus').val()<1 && message.length<10){//发贴内容最少需要10个字符
+			  UE.getEditor('editor').focus();
+			   showError(__lang.too_little_information);
+			  return false;
+		  }else{
+			 document.getElementById('message').value = message;
+		  }
+	 }
+	 //验证投票相关
+	 if(jQuery('#votestatus').val()>0 && type!=2){ //链接方式时忽略投票选项
+		 var voteitemnum=0;
+		 if(jQuery('input[name="vote[type]"]').val()>1){//图片投票模式
+		 	 if(!jQuery('input[name=vote_subject_2]').val()){
+				 showError(__lang.the_poll_title_cannot_be_empty);
+				 jQuery('input[name=vote_subject_2]').focus();
+				  return false;
+			 }
+			 jQuery('.dzzvote-post-image-item input[type=hidden]').each(function(index){
+				 if(jQuery(this).val()>0) voteitemnum++;
+			 });
+		 }else{ //文本投票模式
+		     if(!jQuery('input[name=vote_subject_1]').val()){
+				 showError(__lang.the_poll_title_cannot_be_empty);
+				jQuery('input[name=vote_subject_1]').focus();
+				 return false;
+			 }
+			 jQuery('.dzzvote-post-text-item input[type=text]').each(function(index){
+				 if(jQuery(this).val()) voteitemnum++;
+			 });
+		 }
+		 if(voteitemnum<2) {
+			  showError(__lang.vote_for_at_least_two_items);
+			  return false;
+		 }
+	 }
+	
+	  jQuery('#ueditorform_btn').button('loading');
+	  ajaxpost(form.id,'ueditorform_btn','ueditorform_btn',null,null,function(){
+		  window.setTimeout(function(){jQuery('#ueditorform_btn').button('reset');},3000);
+	  });
+ }
+ function succeedhandle_ueditorform(url, message, values) {
+	var data= eval('(' + decodeURIComponent(values['data']) + ')');
+	//创建目录树
+	if(data.newid>0) location.href=data.forward;
+	else{
+		showError(data.error);
+	}
+};
+
+</script> 
+<script type="text/javascript" src="dzz/news/scripts/news.js?{VERHASH}"></script> 
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script> 
+
+<script src="dzz/system/ueditor/ueditor.config.js?{VERHASH}"></script> 
+<script src="dzz/system/ueditor/ueditor.all.js?{VERHASH}"></script> 
+<script src="dzz/system/ueditor/lang/$_G['language']/$_G['language'].js?{VERHASH}"></script> 
+<script src="data/cache/smilies_var.js?{VERHASH}"></script> 
+<!-- <script type="text/javascript" src="static/icheck/icheck.min.js?{VERHASH}"></script>  -->
+<script type="text/javascript" src="static/select2/select2.min.js?{VERHASH}"></script> 
+<script type="text/javascript" src="static/select2/select2_locale_zh-CN.js?{VERHASH}"></script> 
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.ui.widget.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.iframe-transport.js?{VERHASH}"></script>
+<!-- The basic File Upload plugin -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-process.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-validate.js?{VERHASH}"></script>
+<!--{template common/footer_simple}--> 

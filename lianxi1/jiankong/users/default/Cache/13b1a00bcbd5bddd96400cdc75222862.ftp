@@ -1,0 +1,7 @@
+-rw-r--r-- 1 ftp ftp           1667 Mar 03  2017 CachedDoubler.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 ClassPatch
+-rw-r--r-- 1 ftp ftp            482 Mar 03  2017 DoubleInterface.php
+-rw-r--r-- 1 ftp ftp           4239 Mar 03  2017 Doubler.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 Generator
+-rw-r--r-- 1 ftp ftp           3398 Mar 03  2017 LazyDouble.php
+-rw-r--r-- 1 ftp ftp           1162 Mar 03  2017 NameGenerator.php

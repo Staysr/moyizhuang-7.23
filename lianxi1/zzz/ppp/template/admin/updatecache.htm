@@ -1,0 +1,55 @@
+<!--<?php
+include_once gettpl('top');
+print <<<EOT
+-->
+<form action="$basename&" method="post">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="3">更新缓存</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'action');"></td>
+			<td width="15%">名称</td>
+			<td width="80%">描述</td>
+		</tr>
+		<tr class="f-tac">
+			<td><input type="checkbox" name="action[]" value="cache" checked="checked" /></td>
+			<td>更新配置缓存</td>
+			<td>更新网站所有缓存数据，当刚完成数据转换或前台不能正常访问时，可以使用此功能更新缓存</td>
+		</tr>
+		<tr class="f-tac">
+			<td><input type="checkbox" name="action[]" value="data_cache" checked="checked" /></td>
+			<td>清空数据缓存</td>
+			<td>清空filecache/memcache/apc/redis中存放的缓存数据</td>
+		</tr>
+		<tr class="f-tac">
+			<td><input type="checkbox" name="action[]" value="template_cache" /></td>
+			<td>更新模板缓存</td>
+			<td>更新当前模板缓存数据，编辑完模板后前台显示不正常时，可以使用此功能更新缓存</td>
+		</tr>
+		<tr class="f-tac">
+			<td><input type="checkbox" name="action[]" value="siteinfo" /></td>
+			<td>更新站点信息</td>
+			<td>更新网站会员数、视频数、最新成员等</td>
+		</tr>
+		<tr class="f-tac">
+			<td><input type="checkbox" name="action[]" value="memberid_cache" /></td>
+			<td>更新会员组头衔</td>
+			<td>根据升级积分更新用户的头衔</td>
+		</tr>
+		<tr class="f-tac">
+			<td><input type="checkbox" name="action[]" value="video_count" /></td>
+			<td>更新栏目影片数</td>
+			<td>更新各栏目下的影片数量</td>
+		</tr>
+	</table>
+	<br />
+	<center>
+		<input type="submit" value="提 交" />
+	</center>
+</form>
+<br />
+<!--
+EOT;
+include_once gettpl('adminbottom');
+?>-->

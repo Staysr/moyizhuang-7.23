@@ -1,0 +1,43 @@
+<!--{loop $list $value}-->
+    <div class="card-item">
+        <div class="card">
+            <!--{if $_GET['op'] == 'list'}-->
+            <div class="checkbox-custom checkbox-warning fold" onclick="select_one()" style="margin:  0 !important;font-size: 15px">
+                <input type="checkbox" name="board" data-tid="$value[tid]" <!--{if $value['fid'] != $fid || ($value[displayorder] < 3 && !$_G['adminid'])}-->disabled="disabled"<!--{/if}--> >
+                <label></label>
+            </div>
+            <!--{else}-->
+                <span class="dzz {if $value[folder] == 'new'}dzz-folder fold<!--{else}-->dzz-file file<!--{/if}-->"></span>
+            <!--{/if}-->
+            <div class="title-wrap">
+                <div class="title-top">
+                    <a href="{MOD_URL}&op=viewthread&fid=$value[fid]&tid=$value[tid]&extra=$extra&forward=$forward" class="xst" <!--{if $value[starthighlight] < TIMESTAMP}-->$value['highlight']<!--{/if}-->  title="$value[subject]">$value['subject']</a>
+                      <a class="stick" <!--{if !$value[displayorder] || $value[startstick] > TIMESTAMP}-->style="display:none;"<!--{/if}-->><i class="dzz dzz-top"></i>
+                        <!--{if $value[displayorder] == 1}-->
+                          {lang class}
+                        <!--{elseif $value[displayorder] == 2}-->
+                          {lang plate}
+                        <!--{elseif $value[displayorder] == 3}-->
+                          {lang global}
+                        <!--{/if}-->
+                      </a>
+                    <a class="cream" <!--{if !$value[digest] || $value[startdigest] > TIMESTAMP}-->style="display:none;"<!--{/if}-->>{lang essence}<small>$value[digest]</small></a>
+                </div>
+                <div class="title-bot cleargfix">
+                    <!--{if $_GET[op] != 'list'}--><a href="{MOD_URL}&op=list&fid={$value[fid]}" class="board-a">#{$value['forumname']}</a><!--{/if}-->
+                    <a href="user.php?uid=$value[authorid]" class="card-user">$value[author]</a>
+                    <span>$value[dateline]</span>
+                    <div class="pre-info">
+                        <span class="preview"><i class="dzz dzz-visibility"></i>  $value[views]</span>
+                        <span class="reply"><i class="dzz dzz-sensitive"></i> $value[replies]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!--{/loop}-->
+<!--{if $multi}-->
+  <div class="page-wrap">
+      {$multi}
+  </div>
+<!--{/if}-->

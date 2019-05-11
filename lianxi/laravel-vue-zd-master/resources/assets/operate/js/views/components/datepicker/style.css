@@ -1,0 +1,459 @@
+/**
+* actionsheet
+*/
+/**
+* en: primary type text color of menu item
+* zh-CN: 菜单项primary类型的文本颜色
+*/
+/**
+* en: warn type text color of menu item
+* zh-CN: 菜单项warn类型的文本颜色
+*/
+/**
+* en: default type text color of menu item
+* zh-CN: 菜单项default类型的文本颜色
+*/
+/**
+* en: disabled type text color of menu item
+* zh-CN: 菜单项disabled类型的文本颜色
+*/
+/**
+* datetime
+*/
+/**
+* tabbar
+*/
+/**
+* tab
+*/
+/**
+* dialog
+*/
+/**
+* en: title and content's padding-left and padding-right
+* zh-CN: 标题及内容区域的 padding-left 和 padding-right
+*/
+/**
+* x-number
+*/
+/**
+* checkbox
+*/
+/**
+* check-icon
+*/
+/**
+* Cell
+*/
+/**
+* Mask
+*/
+/**
+* Range
+*/
+/**
+* Tabbar
+*/
+/**
+* Header
+*/
+/**
+* Timeline
+*/
+/**
+* Switch
+*/
+/**
+* Button
+*/
+/**
+* en: margin-top value between previous button, not works when there is only one button
+* zh-CN: 与相邻按钮的 margin-top 间隙，只有一个按钮时不生效
+*/
+/**
+* swipeout
+*/
+/**
+* Cell
+*/
+/**
+* Badge
+*/
+/**
+* en: badge background color
+* zh-CN: badge的背景颜色
+*/
+/**
+* Popover
+*/
+/**
+* Button tab
+*/
+/**
+* en: not used
+* zh-CN: 未被使用
+*/
+/**
+* en: border radius color
+* zh-CN: 圆角边框的半径
+*/
+/**
+* en: border color
+* zh-CN: 边框的颜色
+*/
+/**
+* en: not used
+* zh-CN: 默认状态下圆角边框的颜色
+*/
+/**
+* en: not used
+* zh-CN: 未被使用
+*/
+/**
+* en: default background color
+* zh-CN: 默认状态下的背景颜色
+*/
+/**
+* en: selected background color
+* zh-CN: 选中状态下的背景颜色
+*/
+/**
+* en: not used
+* zh-CN: 未被使用
+*/
+/* alias */
+/**
+* en: not used
+* zh-CN: 未被使用
+*/
+/**
+* en: default text color
+* zh-CN: 默认状态下的文本颜色
+*/
+/**
+* en: height
+* zh-CN: 元素高度
+*/
+/**
+* en: line height
+* zh-CN: 元素行高
+*/
+/**
+* Swiper
+*/
+/**
+* checklist
+*/
+/**
+* popup-picker
+*/
+/**
+* popup
+*/
+/**
+* popup-header
+*/
+/**
+* form-preview
+*/
+/**
+* sticky
+*/
+/**
+* group
+*/
+/**
+* en: margin-top of title
+* zh-CN: 标题的margin-top
+*/
+/**
+* en: margin-bottom of title
+* zh-CN: 标题的margin-bottom
+*/
+/**
+* en: margin-top of footer title
+* zh-CN: 底部标题的margin-top
+*/
+/**
+* en: margin-bottom of footer title
+* zh-CN: 底部标题的margin-bottom
+*/
+/**
+* toast
+*/
+/**
+* en: text color of content
+* zh-CN: 内容文本颜色
+*/
+/**
+* en: default top
+* zh-CN: 默认状态下距离顶部的高度
+*/
+/**
+* en: position top
+* zh-CN: 顶部显示的高度
+*/
+/**
+* en: position bottom
+* zh-CN: 底部显示的高度
+*/
+/**
+* en: z-index
+* zh-CN: z-index
+*/
+/**
+* icon
+*/
+/**
+* calendar
+*/
+/**
+* en: forward and backward arrows color
+* zh-CN: 前进后退的箭头颜色
+*/
+/**
+* en: text color of week highlight
+* zh-CN: 周末高亮的文本颜色
+*/
+/**
+* en: background color when selected
+* zh-CN: 选中时的背景颜色
+*/
+/**
+* en: text color when disabled
+* zh-CN: 禁用时的文本颜色
+*/
+/**
+* en: text color of today
+* zh-CN: 今天的文本颜色
+*/
+/**
+* en: font size of cell
+* zh-CN: 单元格的字号
+*/
+/**
+* en: background color
+* zh-CN: 背景颜色
+*/
+/**
+* en: size of date cell
+* zh-CN: 日期单元格尺寸大小
+*/
+/**
+* en: line height of date cell
+* zh-CN: 日期单元格的行高
+*/
+/**
+* en: text color of header
+* zh-CN: 头部的文本颜色
+*/
+/**
+* week-calendar
+*/
+/**
+* search
+*/
+/**
+* en: text color of cancel button
+* zh-CN: 取消按钮文本颜色
+*/
+/**
+* en: background color
+* zh-CN: 背景颜色
+*/
+/**
+* en: text color of placeholder
+* zh-CN: placeholder文本颜色
+*/
+/**
+* radio
+*/
+/**
+* en: checked icon color
+* zh-CN: 选中状态的图标颜色
+*/
+/**
+* loadmore
+*/
+/**
+* en: not used
+* zh-CN: 未被使用
+*/
+/**
+* loading
+*/
+/**
+* en: z-index
+* zh-CN: z-index
+*/
+.datepicker {
+  text-align: center;
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+  font-size: 34px;
+  position: relative;
+  overflow: hidden;
+}
+.datepicker .date_tabs {
+  width: 100%;
+  height: 88px;
+  line-height: 88px;
+  position: relative;
+  overflow: hidden;
+}
+.datepicker .date_tabs .circleleft,
+.datepicker .date_tabs .circleright {
+  height: 44px;
+  width: 44px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+}
+.datepicker .date_tabs .circleleft {
+  left: 20px;
+}
+.datepicker .date_tabs .circleright {
+  right: 20px;
+}
+.datepicker .vux-popup-header {
+  height: 55px;
+  line-height: 55px;
+  font-size: 28px;
+}
+.datepicker .weui-toast__content {
+  font-size: 30px;
+}
+.datepicker .dp-container.vux-datetime-view {
+  position: static;
+  transition: none;
+}
+.datepicker .dp-container.vux-datetime-view .dp-header {
+  display: none;
+}
+.datepicker .vux-datetime-clear {
+  text-align: center;
+}
+.datepicker .scroller-component {
+  display: block;
+  position: relative;
+  height: 238px;
+  overflow: hidden;
+  width: 100%;
+}
+.datepicker .scroller-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+.datepicker .scroller-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  margin: 0 auto;
+  width: 100%;
+  z-index: 3;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6)), linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
+  background-position: top, bottom;
+  background-size: 100% 102px;
+  background-repeat: no-repeat;
+}
+.datepicker .scroller-item {
+  text-align: center;
+  font-size: 30px;
+  height: 50px;
+  line-height: 50px;
+  color: #000;
+}
+.datepicker .scroller-indicator {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  left: 0;
+  top: 102px;
+  z-index: 3;
+  background-image: linear-gradient(to bottom, #d0d0d0, #d0d0d0, transparent, transparent), linear-gradient(to top, #d0d0d0, #d0d0d0, transparent, transparent);
+  background-position: top, bottom;
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+}
+.datepicker .dp-container {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 10000;
+  background-color: #fff;
+  display: none;
+  transition: transform 0.3s ease;
+  transform: translateY(100%);
+}
+.datepicker .dp-mask {
+  z-index: 998;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+  background-color: #000;
+  z-index: 9999;
+}
+.datepicker .dp-header {
+  display: flex;
+  width: 100%;
+  box-align: center;
+  align-items: center;
+  background-image: linear-gradient(to bottom, #e7e7e7, #e7e7e7, transparent, transparent);
+  background-position: bottom;
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+}
+.datepicker .dp-header .dp-item {
+  color: #04BE02;
+  font-size: 16px;
+  height: 44px;
+  line-height: 44px;
+  cursor: pointer;
+}
+.datepicker .dp-header .dp-item.dp-left {
+  color: #828282;
+}
+.datepicker .dp-header .dp-item.dp-right {
+  color: #04BE02;
+}
+.datepicker .dp-content {
+  display: flex;
+  width: 100%;
+  height: 300px;
+  box-align: center;
+  align-items: center;
+  padding: 10px 0;
+}
+.datepicker .dp-header .dp-item,
+.datepicker .dp-content .dp-item {
+  box-sizing: border-box;
+  flex: 1;
+}
+.datepicker .vux-datetime-cancel {
+  text-align: left;
+  padding-left: 15px;
+}
+.datepicker .vux-datetime-confirm {
+  text-align: right;
+  padding-right: 15px;
+}
+.datepicker .vux-datetime {
+  color: #000;
+}
+.datepicker .vux-datetime .vux-input-icon {
+  float: right;
+}
+.datepicker .vux-cell-primary {
+  flex: 1;
+}

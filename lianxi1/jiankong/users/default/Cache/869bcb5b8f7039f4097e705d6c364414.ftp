@@ -1,0 +1,8 @@
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 bin
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 command
+-rw-r--r-- 1 ftp ftp          10932 Sep 07  2018 Command.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 input
+-rw-r--r-- 1 ftp ftp          12622 Sep 07  2018 Input.php
+-rw-r--r-- 1 ftp ftp           1064 Sep 07  2018 LICENSE
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 output
+-rw-r--r-- 1 ftp ftp           5761 Sep 07  2018 Output.php

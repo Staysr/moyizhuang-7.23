@@ -1,0 +1,31 @@
+<!--{eval include_once gettpl("hack_top");}-->
+<ul class="nav">
+	<li><a href="$basename">资源库列表</a></li>
+	<li><a href="$basename&action=setup">采集设置</a></li>
+	<li><a href="$basename&action=record" class="active">自动采集记录</a></li>
+</ul>
+<br />
+
+<table class="tableborder f-w98 f-m0a">
+<tr><td colspan="5" class="header">自动采集记录</td></tr>
+<tr class="field f-tac">
+	<td width="5%">序号</td>
+	<td width="15%">资源库ID</td>
+	<td width="20%">新影片</td>
+	<td width="20%">连载更新</td>
+	<td>更新时间</td>
+</tr>
+<!--{loop $loglist $log}-->
+<tr class="f-tac">
+	<td>$log[lid]</td>
+	<td>$log[rid]</td>
+	<td>$log[log][new]</td>
+	<td>$log[log][serialise]</td>
+	<td>$log[log][datetime]</td>
+</tr>
+<!--{/loop}-->
+</table>
+<div class="pages">$pages</div>
+<center><input type="button" onclick="javascript:window.location.href='$basename&action=record&act=del'" value="清空记录" /></center>
+
+<!--{eval include_once gettpl("hack_bottom");}-->

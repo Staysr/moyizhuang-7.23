@@ -1,0 +1,15 @@
+# PC
+rewrite ^/category\-(\d+)(.*)$ /category.php?cid=$1 last;
+rewrite ^/class\-(\d+)\-(\d+)(.*)$ /class.php?cid=$1&page=$2 last;
+rewrite ^/class\-(\d+)(.*)$ /class.php?cid=$1 last;
+rewrite ^/read\-(\d+)(.*)$ /read.php?vid=$1 last;
+rewrite ^/play\-(\d+)\-(\d+)\-(\d+)(.*)$ /play.php?vid=$1&playgroup=$2&index=$3 last;
+rewrite ^/(.*)-htm-(.*)$ /$1.php?$2 last;
+
+# MOBILE
+rewrite ^/mobile/category\-(\d+)(.*)$ /mobile/category.php?cid=$1 last;
+rewrite ^/mobile/class\-(\d+)\-(\d+)(.*)$ /mobile/class.php?cid=$1&page=$2 last;
+rewrite ^/mobile/class\-(\d+)(.*)$ /mobile/class.php?cid=$1 last;
+rewrite ^/mobile/read\-(\d+)(.*)$ /mobile/read.php?vid=$1 last;
+rewrite ^/mobile/play\-(\d+)\-(\d+)\-(\d+)(.*)$ /mobile/play.php?vid=$1&playgroup=$2&index=$3 last;
+rewrite ^/mobile/(.*)-htm-(.*)$ /mobile/$1.php?$2 last;

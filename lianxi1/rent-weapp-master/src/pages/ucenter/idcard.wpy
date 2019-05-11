@@ -1,0 +1,158 @@
+<!-- index.wpy -->
+<style lang="less">
+.upload {
+  .title {
+    padding: 25rpx;
+    font-size: 33rpx;
+  }
+  .file {
+    background-color: #eee;
+    .file_box {
+      height: 473rpx;
+    }
+    .empty {
+      padding: 100rpx;
+    }
+  }
+}
+.start {
+  margin: 40rpx 20rpx 40rpx 20rpx;
+  border-radius: 200rpx;
+  width: 80%;
+  overflow: hidden;
+}
+.start wxc-button button {
+  width: 100%;
+}
+</style>
+<template>
+  <view class="wrap">
+    <!-- 上传正面 -->
+    <wxc-panel>
+      <view class="upload positive">
+        <wxc-cc>
+          <view class="title">请上传您身份证正面</view>
+        </wxc-cc>
+        <view class="file" >
+          <!-- 已上传 -->
+          <view wx:if="{{positive && positive !== ''}}" class="file_box full" data-type="0" bindtap="changePositive">
+            <image mode="aspectFit" src="{{userInfo.idcard_positive_img_url}}" />
+          </view>
+          <!-- 未上传 -->
+          <view wx:else class="file_box empty" data-type="0" bindtap="changePositive">
+            <image mode="aspectFit" src="https://test-1256171234.cos.ap-beijing.myqcloud.com/add.png" />
+          </view>
+        </view>
+      </view>
+    </wxc-panel>
+    <!-- 上传反面 -->
+    <wxc-panel>
+      <view class="upload opposite">
+        <wxc-cc>
+          <view class="title">请上传您身份证反面</view>
+        </wxc-cc>
+        <view class="file" >
+          <!-- 已上传 -->
+          <view wx:if="{{opposite && opposite !== ''}}" class="file_box full" data-type="1" bindtap="changePositive">
+            <image mode="aspectFit" src="{{userInfo.idcard_opposite_img_url}}" />
+          </view>
+          <!-- 未上传 -->
+          <view wx:else class="file_box empty" data-type="1" bindtap="changePositive">
+            <image mode="aspectFit" src="https://test-1256171234.cos.ap-beijing.myqcloud.com/add.png" />
+          </view>
+        </view>
+      </view>
+    </wxc-panel>
+  </view>
+  <!-- 操作按钮 -->
+  <wxc-cc>
+    <view class="start">
+      <wxc-button size="large" type="primary" bind:click="next">下一步</wxc-button>
+    </view>
+  </wxc-cc>
+  <!-- 操作按钮 -->
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import { urls } from '../../config/config'
+  import { storage2data } from '../../utils/util'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'test',
+      usingComponents: {
+        'wxc-loadmore': '../../../packages/@minui/wxc-loadmore/dist/index',
+        'wxc-panel': '../../../packages/@minui/wxc-panel/dist/index',
+        'wxc-button': '../../../packages/@minui/wxc-button/dist/index',
+        'wxc-cc': '../../../packages/@minui/wxc-cc/dist/index'
+      }
+    }
+    components = {}
+
+    mixins = []
+
+    data = {
+      userInfo: null,
+      positive: null,
+      opposite: null
+    }
+
+    computed = {}
+
+    methods = {
+      next() {
+        wx.navigateToP({ url: '/pages/ucenter/detail' })
+      },
+      async changePositive(e) {
+        const { type } = e.currentTarget.dataset
+        // 选择图片
+        const chooseImgParams = {
+          count: 1,
+          sizeType: ['original'],
+          sourceType: ['album']
+        }
+        const { tempFilePaths } = await wx.chooseImageP(chooseImgParams)
+        // 上传图片
+        const uploadImgParams = {
+          url: urls.UploadIdCard + '?type=' + type,
+          filePath: tempFilePaths[0],
+          name: 'vheeer',
+          header: {
+            'X-Nideshop-Token': wx.getStorageSync('token')
+          }
+        }
+
+        wx.showLoading({ title: '识别中', mask: true })
+        const { data } = await wx.uploadFileP(uploadImgParams)
+        wx.hideLoading()
+
+        const res = JSON.parse(data)
+        const { data: idCardUrl, errno, errmsg } = res
+        if (errno !== 0) {
+          await wx.showModalP({ title: '提示', content: errmsg })
+        } else {
+          await wx.showModalP({ title: '提示', content: '识别信息成功' })
+
+          if (type === '0') {
+            this.userInfo.idcard_positive_img_url = idCardUrl
+          } else if (type === '1') {
+            this.userInfo.idcard_opposite_img_url = idCardUrl
+          }
+        }
+        this.$apply()
+      }
+    }
+
+    events = {}
+
+    onLoad() {}
+
+    onShow() {
+      const _this = this
+      storage2data(_this)
+      _this.positive = _this.userInfo.idcard_positive_img_url
+      _this.opposite = _this.userInfo.idcard_opposite_img_url
+    }
+  }
+</script>

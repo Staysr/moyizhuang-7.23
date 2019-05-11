@@ -1,0 +1,185 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/discuss.css?{VERHASH}" rel="stylesheet" media="all">
+<link rel="stylesheet" href="static/css/checkbox.css">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="dzz/discuss/scripts/discuss.js?{VERHASH}"></script>
+<style>
+    html,body{
+        overflow:hidden;
+    }
+    body{
+        background:rgba(241, 241, 241, 1);
+    }
+    .navbar-inverse {
+        background-color: rgba(255, 90, 58, 1);
+    }
+    .bs-main-container{
+        margin-left:210px;
+    }
+
+    .modal .modal-content{
+        background:#FBFBFB;
+    }
+    .modal .modal-body{
+        padding:0;
+    }
+    .modal .modal-footer{
+        border-top:1px solid #FFF;
+    }
+    .modal .list-group{
+        margin:0
+    }
+    .modal .list-group .list-group-item{
+        position:relative;border-left:0;border-right:0;border-top:1px solid #FFF;border-bottom:1px solid #e1e1e1;margin-bottom:0;background-color:#FBFBFB;
+        border-radius:0;
+        min-height:50px;
+    }
+    .list-group-item h4{
+        font-size:16px;
+    }
+    .modal .list-group .list-group-item:hover,.modal .list-group .list-group-item:active{
+        background-color:#F7F7F7;
+    }
+    .modal .list-group .list-group-item .board-icon{
+        position:absolute;left:10px;top:10px;
+    }
+    .modal .list-group .list-group-item .list-group-content{
+        padding-left:42px;
+        font-size:12px;
+    }
+
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+
+<div class="bs-container clearfix" style="height: 100%;">
+    <div class="bs-left-container  clearfix" style="height: 100%;">
+        <!--{template left}-->
+    </div>
+    <div class="left-drager"></div>
+    <div class="bs-main-container" style="height: 100%">
+        <div class="comment-wrap">
+            <div class="comment-top clearfix">
+                <div class="thread-ordertype" style="padding:0">
+                    <div class="btn-group" style="vertical-align: -5px;">
+                        <a class="btn-a <!--{if !$type}-->btn-a-active<!--{/if}-->" href="{MOD_URL}&op=archive">{lang archived_thread}</a>
+                        <a class="btn-a <!--{if $type == 'discuss'}-->btn-a-active<!--{/if}-->" href="{MOD_URL}&op=archive&type=discuss">{lang archived_discuss}</a>
+                    </div>
+                    <div class="btn-group" style="float: right;vertical-align: middle;">
+                        <button type="button" class="btn drop-btn" data-toggle="dropdown" aria-expanded="false">
+                            <!--{if $orderby == 'arhtime'}-->{lang order_archive_time}<!--{else}--><!--{if $type == 'discuss'}-->{lang order_discuss_create_time}<!--{else}-->{lang order_post_sent_time}<!--{/if}--><!--{/if}-->  <span class="dzz dzz-expand-more"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{MOD_URL}&op=archive&ordertype=arhtime&type={$type}">{lang order_archive_time}</a></li>
+                            <li><a href="{MOD_URL}&op=archive&ordertype=dateline&type={$type}"><!--{if $type == 'discuss'}-->{lang order_discuss_create_time}<!--{else}-->{lang order_post_sent_time}<!--{/if}--></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="board-content">
+                <!--{if empty($list)}-->
+                    <div class="searchImg-wrap">
+                        <img src="{MOD_PATH}/images/search_empty.png" alt="">
+                        <p>{lang no_archive_content}</p>
+                    </div>
+                <!--{/if}-->
+                <!--归档的板块-->
+                <!--{if $type == 'discuss'}-->
+                    <div class="archive-wrap">
+                        <!--{loop $list $value}-->
+                        <div class="dis-item-mesh item mesh-item">
+                            <div class="mesh-con" style="cursor: pointer;" data-href="{MOD_URL}&op=list&fid={$value[fid]}&extra=$extra&forward=$forward">
+                                <div class="dis-icon mesh-icon"><div class="dis-img" style="background-color: #6c6ad7">{$value[name]}</div></div>
+                                <div class="dis-info mesh-info">
+                                    <a class="dis-top mesh-top" style="display: block">{$value[name]}</a>
+                                    <span style="margin-right: 20px;">{lang thread}：{$value[threads]}</span><span>{lang post}：{$value[posts]}</span>
+                                    <div class="title-info1">
+                                        <span class="info-word">{lang archived}</span>
+                                        <div href="javascript:;" class="stick cancel-btn" style="border-radius: 2px;cursor: pointer;" onclick="clnDisarh(this,'{$value[fid]}')">{lang cancel_archive}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--{/if}-->
+                    </div>
+                <!--{else}-->
+                <!--{loop $list $value}-->
+                <div class="card-item archive-item" style="margin: 0;">
+                    <div class="card">
+                        <span class="dzz dzz-file file"></span>
+                        <div class="title-wrap title-wrap1">
+                            <div class="title-top">
+                                <a href="{MOD_URL}&op=viewthread&fid={$value[fid]}&tid={$value[tid]}&extra=$extra&forward=$forward" class="xst" title="{$value[subject]}}">{$value[subject]}</a>
+                                <a class="stick" style="display:none;"><i class="dzz dzz-top"></i>
+                                </a>
+                                <a class="cream" style="display:none;">{lang essence}<small>0</small></a>
+                            </div>
+                            <div class="title-bot cleargfix">
+                                <a href="{MOD_URL}&op=list&fid={$value[fid]}&extra=$extra&forward=$forward" class="board-a">#{$value[name]}</a>
+                                <span><span>{eval echo dgmdate($value['archivetime'],'u');}</span></span>
+                            </div>
+                            <div class="title-info">
+                                <span class="info-word">{lang archived}</span>
+                                <a href="javascript:;" class="stick cancel-btn" style="border-radius: 2px;cursor: pointer;" onclick="canClearchive(this,'{$value[tid]}')">{lang cancel_archive}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--{/loop}-->
+                <!--{/if}-->
+                  <!--{if $multi}-->
+                    <div class="page-wrap">
+                        {$multi}
+                    </div>
+                  <!--{/if}-->
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<script>
+    jQuery(function () {
+        jQuery('.left-drager').leftDrager_layout();
+        jQuery('.archive-wrap').find('.mesh-con').click(function () {
+            window.location.href=jQuery(this).data('href');
+        })
+    })
+    function canClearchive(el,num) {
+        showDialog('{lang true_cancel_archive_thread}','confirm','',function () {
+            jQuery.ajax({
+                url:'{MOD_URL}&op=ajax&do=canclearchive',
+                type:'post',
+                dataType:'json',
+                data:{'tid':num},
+                success:function (res) {
+                    if(res.code==200) {
+                        showmessage('{lang cancel_success}','success',1000,1);
+                        jQuery(el).parents('.archive-item').slideUp();
+                    }
+                }
+            })
+        })
+    }
+    function clnDisarh(el,num) {
+        var e=event;
+        e.stopPropagation();
+        showDialog('{lang true_cancel_archive_discuss}','confirm','',function () {
+            jQuery.ajax({
+                url:'{MOD_URL}&op=ajax&do=clndisarh',
+                type:'post',
+                dataType:'json',
+                data:{'fid':num},
+                success:function (res) {
+                    if(res.code==200) {
+                        showmessage('{lang cancel_success}','success',1000,1);
+                        jQuery(el).parents('.mesh-item').slideUp();
+                    }
+                }
+            })
+        })
+    }
+</script>
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->

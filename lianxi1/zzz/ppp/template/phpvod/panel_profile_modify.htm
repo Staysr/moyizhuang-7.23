@@ -1,0 +1,115 @@
+<form action="profile.php" method="post" onsubmit="return procheck(this)" enctype="multipart/form-data">
+<input type="hidden" name="action" value="modify" />
+<input type="hidden" value="2" name="step" />
+<table class="table">
+	<thead>
+		<tr><td colspan="2" class="f-fs18"><strong>修改资料</strong></td></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="f-w40">系统风格</td>
+			<td><select name="userstyle">$styles</select></td>
+		</tr>
+		<tr>
+			<td>选择您的头像</td>
+			<td>
+				<img src="$iconpath" name="useravatars" width="120" height="120"/>
+				<select name="proicon" onchange="showimage('$imgpath',this.options[this.selectedIndex].value)">
+					<option value="none.gif">none.gif</option>
+					$imgselect
+				</select>
+				<!--{if $delicon=='1'}-->
+				<div class="f-mt5"><a href="profile.php?action=delicon">删除自定义头像</a></div>
+				<!--{/if}-->
+				<!--{if $gp_allowseticon=='1'}-->
+				<div class="f-mt5">头像位置 <input type="text" class="u-text" name="iconurl" value="$iconurl" /> <span class="f-gray">必须以 http://开头的路径</span></div>
+				<!--{if $db_iconupload=='1' && $gp_allowupicon=='1'}-->
+				<div class="f-mt5">头像上传 <input type="file" name="upicon" class="u-text" style="display:inline-block;" /></div>
+				<!--{/if}-->
+				<!--{/if}-->
+			</td>
+		</tr>
+		<tr>
+			<td>性别</td>
+			<td>
+				<select name="progender">
+					<option value="1" $gender_1>先生</option>
+					<option value="2" $gender_2>女士</option>
+					<option value="0" $gender_0>保密</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>生日</td>
+			<td>
+				<input type="text" class="u-text" id="datetimepicker" name="probday" value="$user[bday]">
+			</td>
+		</tr>
+		<!--{if $gp_allowhonor=='1'}-->
+		<tr>
+			<td>自定义头衔</td>
+			<td><input type="text" class="u-text" name="prohonor" value="$user[honor]"/></td>
+		</tr>
+		<!--{/if}-->
+		<tr>
+			<td>腾讯QQ</td>
+			<td><input type="text" class="u-text" name="prooicq" value="$user[oicq]"/></td>
+		</tr>
+		<tr>
+			<td>MSN</td>
+			<td><input type="text" class="u-text" name="promsn" value="$user[msn]"/></td>
+		</tr>
+		<tr>
+			<td>个人主页</td>
+			<td><input type="text" class="u-text" name="prosite" value="$user[site]"/></td>
+		</tr>
+		<tr>
+			<td>个性签名<br /><span class="f-gray">{$rg_regmaxsign}字节以内</span></td>
+			<td><textarea name="prosign" cols="50" rows="5">$user[signature]</textarea></td>
+		</tr>
+		<tr>
+			<td>是否公开邮箱</td>
+			<td>
+				<label class="f-fwn"><input type="radio" value="1" name="propublicmail" $publicmail_1> 公开</label>
+				<label class="f-fwn"><input type="radio" value="0" name="propublicmail" $publicmail_0> 隐藏</label>
+			</td>
+		</tr>
+		<tr>
+			<td>是否接收系统邮件</td>
+			<td>
+				<label class="f-fwn"><input type="radio" value="1" name="proreceivemail" $receivemail_1> 接收邮件</label>
+				<label class="f-fwn"><input type="radio" value="2" name="proreceivemail" $receivemail_2> 不接收邮件</label>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr><td colspan="2" class="f-tac"><button type="submit" class="u-btn f-mt10">提 交</button></td></tr>
+	</tfoot>
+</table>
+</form>
+<link rel="stylesheet" type="text/css" href="js/datetimepicker/jquery.datetimepicker.css" />
+<script type="text/javascript" src="js/datetimepicker/jquery.datetimepicker.js"></script>
+<script type="text/javascript">
+$("#datetimepicker").datetimepicker({
+	lang: 'zh',
+	mask: true,
+	validateOnBlur: false,
+	format: 'Y-m-d',
+	timepicker:false
+});
+function procheck(formct)
+{
+	if (formct.prosign.value.length > $rg_regmaxsign)
+	{
+		alert('个性签名太长，请在{$rg_regmaxsign}字节以内');
+		return false;
+	}
+}
+function showimage(imgpath,value)
+{
+	if(value!= '')
+		document.images.useravatars.src = imgpath+'/face/'+value;
+	else
+		document.images.useravatars.src = imgpath+'/face/none.gif';
+}
+</script>

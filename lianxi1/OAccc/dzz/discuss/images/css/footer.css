@@ -1,0 +1,91 @@
+.weui-tabbar {
+    border-bottom: 1px solid #c0bfc4;
+}
+.footer-container {
+    z-index: 1;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+.footer-container .nav-name {
+    opacity: 0.7;
+}
+.nav-name {
+    font-size: 12px;
+    margin-top: -3px;
+}
+.weui-tabbar__item.weui-bar__item--on .weui-tabbar__icon i {
+    color: rgba(96, 101, 105, 1);
+    opacity: 1;
+}
+.weui-tabbar__icon i {
+    font-size: 27px;
+    opacity: 0.7;
+}
+.weui-tabbar__icon .dzz-add {
+    opacity: 1;
+}
+.weui-tabbar__item.weui-bar__item--on .nav-name {
+    color: rgba(17, 17, 17, 1);
+    opacity: 1;
+}
+.add {
+    width: 60px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: rgba(255, 90, 58, 1);
+    vertical-align: middle;
+}
+.add i {
+    line-height: 40px;
+    color: #fff;
+}
+
+.create-modal {
+    background-color: #fff;
+}
+.create-icon {
+    width: 80px;
+    height: 80px;
+}
+.create-item:before {
+    border-right: 0;
+}
+.create-item:after {
+    border-bottom: 0;
+}
+.weui-popup__modal .createbar {
+    position: static;
+    background-color: #fff;
+    text-align: center;
+}
+.create-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-align-content: center;
+    align-content:center;
+    -webkit-justify-content: center;
+    justify-content:center;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.weui-popup__modal .create-con {
+    padding-top: 0;
+}
+.create-item {
+    display: inline-block;
+    width: 40%;
+    padding: 30px 10px;
+}
+.toolbar .close-btn {
+    position: static;
+    font-size: 26px;
+    margin: auto;
+}
+.close-btn i {
+    color: #999;
+}

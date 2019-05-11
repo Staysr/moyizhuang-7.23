@@ -1,0 +1,13 @@
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 dialogs
+-rw-r--r-- 1 ftp ftp           6775 Jun 18  2017 index.html
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 jsp
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 lang
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 net
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 themes
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 third-party
+-rw-r--r-- 1 ftp ftp        1140386 Jun 18  2017 ueditor.all.js
+-rw-r--r-- 1 ftp ftp         367806 Jun 18  2017 ueditor.all.min.js
+-rw-r--r-- 1 ftp ftp          20203 Jun 18  2017 ueditor.config.js
+-rw-r--r-- 1 ftp ftp          37808 Jun 18  2017 ueditor.parse.js
+-rw-r--r-- 1 ftp ftp          14356 Jun 18  2017 ueditor.parse.min.js

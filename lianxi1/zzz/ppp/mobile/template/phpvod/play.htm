@@ -1,0 +1,47 @@
+<div class="m-play" id="player">$player</div>
+
+<!--{loop $urldb $pg $msg}-->
+<section class="m-playlist">
+	<div class="caption">
+		<span class="f-fr">$msg[player]</span>
+		<span class="lab">播放组{$msg[playgroup]}</span>
+	</div>
+	<div class="content">
+		<!--{loop $msg[urls] $key $value}-->
+		<a href="play.php?vid=$msg[vid]&playgroup=$msg[playgroup]&index=$key" title="$value[caption]" <!--{if $msg[playgroup]==$playgroup && $key==$index}-->class="sel"<!--{/if}-->>$value[caption]</a>
+		<!--{/loop}-->
+	</div>
+</section>
+<!--{/loop}-->
+
+<div class="m-videoinfo">
+	<div class="subject">$video[subject]</div>
+	<div>
+		<p><label>栏目</label>$video[class_name]</p>
+		<p><label>地区</label>$video[nation_name]</p>
+	</div>
+	<div>
+		<p><label>年代</label>$video[year]</p>
+		<p><label>评分</label>$video[star] ($video[usernth]人参与评分)</p>
+	</div>
+	<div>
+		<p><label>演员</label>$video[playactor]</p>
+	</div>
+	<div class="synopsis">$video[synopsis]</div>
+</div>
+
+<script type="text/javascript">
+	function changeDivHeight(){               
+		var w = document.getElementById('player').clientWidth;
+		var h = w / 1.777778;
+		document.getElementById("ckplayer").style.width=w+"px";
+		document.getElementById("ckplayer").style.height=h+"px";
+	}
+	window.onload=function(){  
+		changeDivHeight();  
+	}  
+	//当浏览器窗口大小改变时，设置显示内容的高度  
+	window.onresize=function(){  
+		changeDivHeight();  
+	}  	
+</script>

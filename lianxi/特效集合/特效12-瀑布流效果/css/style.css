@@ -1,0 +1,21 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+#all{
+    position: relative;
+}
+.box{
+    width: 250px;
+    padding:5px;
+    float: left;
+}
+.pic{
+    width: 230px;
+    padding:10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+}

@@ -1,0 +1,16 @@
+<?php $runtime = runtime_end(); ?>
+		<br />
+		<hr class="line">
+		<center>
+			<span style="color:#999999">Copyright 2009-2099 <a href="http://www.phpvod.com" target="_blank"><b style="color:#000000">PHPVOD</b><b style="color:#FF9900">.com</b></a> All Rights Reserved. Processed in <?php echo $runtime;?> second(s)</span>
+			<br /><br /><br /><br />
+		</center>
+	</body>
+</html>
+<?php
+	$output = ob_get_contents();
+	$output = str_replace(array('<!--<!--<!---->','<!--<!---->','<!---->'),'',$output);
+	ob_end_clean();
+	$db_obstart == 1 && function_exists('ob_gzhandler') ? ob_start('ob_gzhandler') : ob_start(); 
+	echo $output;
+?>

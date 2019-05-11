@@ -1,0 +1,109 @@
+<div class="member-boards-view">
+    <div class="window-module window-module-star <!--{if !$stared}-->hide<!--{/if}-->" >
+    <div class="window-module-title window-module-title-no-divider">
+        <span class="dzz dzz-grade"></span><span class="article_title">{lang star_sign}</span>
+    </div>
+        <ul id="board_list_stared" class="board-list board-list-stared list-unstyled ui-sortable clearfix">
+            <!--{loop $stared $value}-->
+            <li data-tbid="$value[tbid]" class="starred" id="board_star_$value[tbid]">
+                   
+               <a class="board-title js-open-board highlight-icon color-block-$value[aid] <!--{if $value[aid]}-->color-white<!--{/if}-->" href="{MOD_URL}&op=list&tbid=$value[tbid]" title="$value[name]">
+                    
+                    <span class="board-title-fade"></span>
+                    <span class="board-title-details" title="$value[name]">
+                        <span title="$value[name]" class="board-title-details-name">$value[name]</span>
+                        <span title="$value[desc]" class="board-title-details-desc">$value[desc]</span>
+                    </span>
+                    <span class="board-title-options">
+                   		<span class="unread-indicator js-unread <!--{if $value['lastvisit'] && $value['updatetime'] && $value['lastvisit']<$value['updatetime']}-->any<!--{/if}--> " title="{lang new_change}"></span>
+                   		<span title="点击加星这个任务板。它将会显示在我的列表上方。" class="icon-sm dzz dzz-star-border  board-title-options-star-icon js-star-board is-starred"  data-tbid="$value[tbid]"></span>
+                        
+                    </span> 
+                </a>
+            </li>
+            <!--{/loop}-->
+           
+        </ul>
+    </div>
+    <div class="window-module window-module-my">
+        <div class="window-module-title window-module-title-no-divider">
+        	<span class="dzz dzz-person"></span><span class="article_title">{lang mine}</span>
+        </div>
+        <ul id="board_list_0" class="board-list list-unstyled clearfix"> 
+			 <!--{if ($newarr=createBoardPerm()) && $newarr['new']>0}-->
+            <li class="js-add-board"><a class="board-title board-add" onclick="showWindow('create','{MOD_URL}&op=ajax&do=create&orgid=0','get',0)" title="创建新任务板"href="javascript:;"><span>创建新任务板</span></a></li>
+            <!--{/if}-->
+
+            <!--{loop $my $value}-->
+            <li data-tbid="$value[tbid]" class="starred" id="board_star_$value[tbid]">
+                 
+                <a class="board-title js-open-board highlight-icon color-block-$value[aid]" href="{MOD_URL}&op=list&tbid=$value[tbid]" title="$value[name]">
+                    <span class="board-title-fade"></span>
+                    <span class="board-title-details" title="$value[name]">
+                        <span title="$value[name]" class="board-title-details-name">$value[name]</span>
+                        <span title="$value[desc]" class="board-title-details-desc">$value[desc]</span>
+                    </span>
+                    <span class="board-title-options">
+                   		<span class="unread-indicator js-unread <!--{if $value['lastvisit'] && $value['updatetime'] && $value['lastvisit']<$value['updatetime']}-->any<!--{/if}--> " title="{lang new_change}"></span>
+                   		<span title="点击加星这个任务板。它将会显示在我的列表上方。" class="icon-sm dzz dzz-star-border  board-title-options-star-icon js-star-board <!--{if $stared[$value[tbid]]}-->is-starred<!--{/if}-->"  data-tbid="$value[tbid]"></span>
+                    </span>
+                </a>
+            </li>
+            <!--{/loop}-->
+            
+        </ul>
+    </div>
+    <!--{loop $orglist $org}-->
+    <div class="window-module window-module-org">
+        <div class="window-module-title window-module-title-no-divider">
+            <!--{if $org['logo']}-->
+            <span class="icon-lg window-module-title-icon icon-organization mod-custom-image background-cover" style="background-image:url($org[logourl])" alt="logo"></span>
+        	<!--{else}-->
+            <span class="dzz dzz-group"></span>
+        	<!--{/if}-->
+            <!-- <h3>$org[name]</h3> -->
+            <span class="article_title">$org[name]<a class="u-inline-block quiet dark-hover js-view-org-profile" href="{MOD_URL}&op=org&orgid=$org[orgid]" style="margin-left:20px;"><i class="icon-sm icon-information fa fa-info-circle"></i> {lang team_details}</a></span>
+            <span class="js-ad"></span>
+        </div>
+        <ul id="board_list_$org[orgid]" class="board-list clearfix list-unstyled js-board-list">
+            <!--{if ($newarr=createBoardPerm($org['orgid'])) && $newarr['new']>0}-->
+            <li class="js-add-board"><a class="board-title board-add" onclick="showWindow('create','{MOD_URL}&op=ajax&do=create&orgid=$org[orgid]','get',0)" title="创建新任务板"href="javascript:;"><span>创建新任务板</span></a></li>
+             <!--{/if}-->
+            <!--{loop $org[list] $value}-->
+            <li data-tbid="$value[tbid]" class="starred" id="board_star_$value[tbid]">
+                   
+                <a class="board-title js-open-board highlight-icon color-block-$value[aid]" href="{MOD_URL}&op=list&tbid=$value[tbid]" title="$value[name]">
+                    <span class="board-title-fade"></span>
+                    <span class="board-title-details" title="$value[name]">
+                        <span title="$value[name]" class="board-title-details-name">$value[name]</span>
+                        <span title="$value[desc]" class="board-title-details-desc">$value[desc]</span>
+                    </span>
+                    <span class="board-title-options">
+                   		<span class="unread-indicator js-unread <!--{if $value['lastvisit'] && $value['updatetime'] && $value['lastvisit']>$value['updatetime']}-->any<!--{/if}--> " title="{lang new_change}"></span>
+                   		<span title="点击加星这个任务板。它将会显示在我的列表上方。" class="icon-sm dzz dzz-star-border  board-title-options-star-icon js-star-board <!--{if $stared[$value[tbid]]}-->is-starred<!--{/if}-->"  data-tbid="$value[tbid]"></span>
+                        
+                    </span>
+                </a>
+            </li>
+            <!--{/loop}-->
+             
+        </ul>
+     </div>
+    <!--{/loop}-->
+    <!--{if ($newarr=createOrgPerm()) && $newarr['new']>0}-->
+    <div class="window-module window-module-add u-gutter clearfix" style="margin-bottom:20px;">
+        <a class="quiet-button pull-left js-popbox" data-href="{MOD_URL}&op=menu&do=addorg" data-auto-adapt="true" title="{lang new_team}" data-placement="top"  href="javascript:;">{lang new_team}</a>
+    </div>
+    <!--{/if}-->
+</div>
+<script type="text/javascript">
+document.body.onmousewheel = function(event){
+    jQuery('.popbox-right').css('display','none');
+}
+document.body.addEventListener("DOMMouseScroll", function(event) {
+     jQuery('.popbox-right').css('display','none');
+});   
+
+    
+
+</script>

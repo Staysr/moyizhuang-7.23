@@ -1,0 +1,4 @@
+-rw-r--r-- 1 ftp ftp           1278 Jul 18  2017 Credential.php
+-rw-r--r-- 1 ftp ftp            196 Jul 18  2017 ISigner.php
+-rw-r--r-- 1 ftp ftp            340 Jul 18  2017 ShaHmac1Signer.php
+-rw-r--r-- 1 ftp ftp            346 Jul 18  2017 ShaHmac256Signer.php

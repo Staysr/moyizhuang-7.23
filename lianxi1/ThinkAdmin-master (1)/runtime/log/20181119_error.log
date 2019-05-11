@@ -1,0 +1,12 @@
+---------------------------------------------------------------
+[ 2018-11-19T17:36:45+08:00 ] ::1 GET localhost/lianxi1/ThinkAdmin-master%20(1)/
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'admin_v3'@'localhost' (using password: YES)[/Applications/MAMP/htdocs/18031/lianxi1/ThinkAdmin-master (1)/thinkphp/library/think/db/Connection.php:528]
+---------------------------------------------------------------
+[ 2018-11-19T17:36:50+08:00 ] ::1 GET localhost/lianxi1/ThinkAdmin-master%20(1)/
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'admin_v3'@'localhost' (using password: YES)[/Applications/MAMP/htdocs/18031/lianxi1/ThinkAdmin-master (1)/thinkphp/library/think/db/Connection.php:528]
+---------------------------------------------------------------
+[ 2018-11-19T17:37:11+08:00 ] ::1 GET localhost/lianxi1/ThinkAdmin-master%20(1)/
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'admin_v3'@'localhost' (using password: YES)[/Applications/MAMP/htdocs/18031/lianxi1/ThinkAdmin-master (1)/thinkphp/library/think/db/Connection.php:528]
+---------------------------------------------------------------
+[ 2018-11-19T17:41:23+08:00 ] ::1 GET localhost/lianxi1/ThinkAdmin-master%20(1)/
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'admin_v3'[/Applications/MAMP/htdocs/18031/lianxi1/ThinkAdmin-master (1)/thinkphp/library/think/db/Connection.php:528]

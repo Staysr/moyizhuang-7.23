@@ -1,0 +1,8 @@
+<br />
+<b>Warning</b>:  mysqli_connect(): (HY000/1049): Unknown database 'nv' in <b>D:\Documents\GitHub\uv\down.php</b> on line <b>7</b><br />
+<br />
+<b>Warning</b>:  mysqli_query() expects parameter 1 to be mysqli, boolean given in <b>D:\Documents\GitHub\uv\down.php</b> on line <b>8</b><br />
+<br />
+<b>Warning</b>:  mysqli_query() expects parameter 1 to be mysqli, boolean given in <b>D:\Documents\GitHub\uv\down.php</b> on line <b>10</b><br />
+名称	ID	粉丝量	男女比例	UV	软文单价	硬广单价	QQ	形式	类别	username<br />
+<b>Warning</b>:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in <b>D:\Documents\GitHub\uv\down.php</b> on line <b>12</b><br />

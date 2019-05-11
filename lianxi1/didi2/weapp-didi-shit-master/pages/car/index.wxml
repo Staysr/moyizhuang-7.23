@@ -1,0 +1,37 @@
+<view class="car-Top">
+  <view class="">
+   <open-data type="userAvatarUrl" class="open"></open-data>
+  </view>
+</view>
+<view class="head">
+	<view class="head-left" bindtap='cardingdan'>
+    <image src="/images/dingdan.png"></image>
+    <span>订单</span>
+	</view>
+  <view class="head-middle">
+    <image src="/images/qingjia.png"></image>
+    <span>请假</span>
+    <view class="dx">
+      <view class="switch-list">
+        <view class="switch-item">
+          <switch onChange="switchChange"/>
+        </view>
+      </view>
+		</view>
+  </view>
+  <view class="head-right" bindtap='guanli'>
+		<image src="/images/guanli.png"></image>
+    <span>车辆管理</span>     
+	</view>
+<view class="head-left" bindtap='shezhi'>
+    <image src="/images/shezhi.png"></image>
+    <span>设置</span>
+	</view>
+<view class="head-middle" bindtap='kefu'>
+    <image src="/images/kefu.png"></image>
+    <span>客服中心</span>
+  </view>
+  <view class="head-right" bindtap='xiaoxi'>
+    <image src="/images/xiaoxi.png"></image>
+    <span>消息</span> </view>
+</view>

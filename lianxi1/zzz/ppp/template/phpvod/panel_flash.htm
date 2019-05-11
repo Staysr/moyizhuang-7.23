@@ -1,0 +1,31 @@
+<!--{eval $picarray = unserialize($db_setshowpic);}-->
+<!--{if $db_showpic==1 && !empty($picarray)}-->
+<link rel="stylesheet" type="text/css" href="$imgpath/$stylepath/swiper/css/swiper.min.css" />
+<script src="$imgpath/$stylepath/swiper/js/swiper.jquery.min.js"></script>
+<div class="m-swiper">
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			<!--{loop $picarray $k $picstr}-->
+			<!--{eval $showpic = explode('|', $picstr);}-->
+			<div class="swiper-slide">
+				<a href="$showpic[1]" target="_blank"><img src="$imgpath/show/$showpic[0]" alt="$showpic[2]" title="$showpic[2]" /></a>
+			</div>
+			<!--{/loop}-->
+		</div>
+		<div class="swiper-pagination"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+	    var mySwiper = new Swiper('.swiper-container', {
+	        direction: 'horizontal',
+	        loop: true,
+	        pagination: '.swiper-pagination',
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev'
+	    })
+	});
+</script>
+<!--{/if}-->

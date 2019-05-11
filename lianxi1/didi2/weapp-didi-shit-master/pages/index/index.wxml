@@ -1,0 +1,58 @@
+<view class="container">
+   <map class="didiMap" id="didiMap" latitude="{{latitude}}" 
+    longitude="{{longitude}}" 
+    scale="{{scale}}" 
+    bindregionchange="bindregionchange" 
+    polyline="{{polyline}}" markers="{{markers}}" controls="{{controls}}" 
+    bindmarkertap="bindmarkertap"  
+    bindcontroltap="bindcontroltap" 
+    show-location>
+        <cover-view class="total-prompt">
+        <cover-image style="width: 40rpx;height:40rpx;float:left;margin-top:20rpx;margin-left:10rpx" bindtap='login' src="../../images/user.png"/>
+        <cover-image class="looking-img" bindtap="nser" style="width: 40rpx;height: 40rpx; float:right; margin-top:20rpx;margin-right:10rpx"src="../../images/nser.png"/>
+        </cover-view>
+
+    <cover-view class="ft">
+    
+    <cover-view class="nav bc_white"  style='width:100%;margin-bottom:30rpx'>
+   
+     <cover-view class="{{indexcar?'red':'default'}}" data-type='1' catchtap="indexcar">面包车</cover-view>
+    <cover-view class="{{indexcar1?'red':'default'}}" catchtap="indexcar1">小型厢货</cover-view>
+    <cover-view class="{{indexcar2?'red':'default'}}" catchtap="indexcar2">大型货车</cover-view>
+
+ 
+ </cover-view>
+    
+    <cover-view style="display:block;width:100%;justify-content:ceter">
+    <cover-view class="{{indexcar?'show':'hidden'}}">
+    <cover-image style='width:153rpx;height:92rpx;' src="../../images/qiche.png"></cover-image>
+    </cover-view>
+      
+      <cover-view class="{{indexcar1?'show':'hidden'}}">
+    <cover-image mode="aspectFit" style='width:153rpx;height:92rpx;' src="../../images/xiaoqiche.png"></cover-image>
+     </cover-view>
+
+      <cover-view class="{{indexcar2?'show':'hidden'}}">
+    <cover-image style='width:153rpx;height:92rpx;'  src="../../images/dahuoche.png"></cover-image>
+     </cover-view>
+     </cover-view>
+
+    <cover-view class='boder' ></cover-view>
+
+    <cover-view class="circle-str">
+    <!-- <cover-view class='boder'></cover-view> -->
+    </cover-view>
+   <cover-view class="weui_a" style='color:rgb(166,166,166);'bindtap="sexDeparture" id="clear" data-text="C">{{departure}}</cover-view> 
+
+     <cover-view class='boder'></cover-view>
+
+    <cover-view class="circle-end"></cover-view>
+    <cover-view style='color:rgb(166,166,166);'class="weui_a" bindtap="sexDestination" >{{destination}}</cover-view>
+    <cover-view class='boder'></cover-view>
+    <cover-view class="jiner">预计金额 ¥ {{jiner}}</cover-view>
+</cover-view> 
+        
+    <button class='button' bindtap='yongche'>立即用车</button>
+</map>
+
+</view>

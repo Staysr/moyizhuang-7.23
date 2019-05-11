@@ -1,0 +1,33 @@
+<!--{if !empty($pageinfo)}-->
+<nav>
+	<ul class="pagination">
+		<li>
+			<a href="{$pageinfo[url]}page={$pageinfo[page_up]}" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+
+		<!--{eval for($i=$pageinfo[page_current]-3;$i<$pageinfo[page_current];$i++) {}-->
+		<!--{eval if($i<1) continue;}-->
+		<li><a href="{$pageinfo[url]}page={$i}">$i</a></li>
+		<!--{eval }}-->	
+
+		<li class="active"><a href="{$pageinfo[url]}page={$pageinfo[page_current]}">{$pageinfo[page_current]}</a></li>
+
+		<!--{if $pageinfo[page_current]<$pageinfo[page_end]}-->
+		<!--{eval $flag=0;}-->
+		<!--{eval for($i=$pageinfo[page_current]+1;$i<=$pageinfo[page_end];$i++) {}-->
+		<li><a href="{$pageinfo[url]}page={$i}">$i</a></li>
+		<!--{eval $flag++;}-->
+		<!--{eval if($flag==4) break;}-->
+		<!--{eval }}-->
+		<!--{/if}-->	  
+
+		<li>
+			<a href="{$pageinfo[url]}page={$pageinfo[page_down]}" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+	</ul>
+</nav>
+<!--{/if}-->

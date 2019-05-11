@@ -1,0 +1,7 @@
+-rw-r--r-- 1 ftp ftp          18044 Jun 21  2017 ConfigurationTest.php
+-rw-r--r-- 1 ftp ftp           1367 Jun 21  2017 GetoptTest.php
+-rw-r--r-- 1 ftp ftp           1118 Jun 21  2017 GlobalStateTest.php
+-rw-r--r-- 1 ftp ftp           1416 Jun 21  2017 RegexTest.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 TestDox
+-rw-r--r-- 1 ftp ftp          23785 Jun 21  2017 TestTest.php
+-rw-r--r-- 1 ftp ftp          12180 Jun 21  2017 XMLTest.php

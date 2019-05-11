@@ -1,0 +1,215 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/corpus/images/themes/default/style.min.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/news/images/news.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<style>
+.user-item .delete{
+	display:none;
+}
+.user-item.hover .delete{
+	display:block;
+}
+.usertree-container{
+	border-top:1px solid #FFF;
+}
+.usertree-search {
+	position: relative;
+	left: 0;
+	top: 0;
+	padding:5px;
+	border-bottom:1px solid #AAAAAA
+}
+.usertree-search .search {
+	position: absolute;
+	right: 13px;
+	top: 13px;
+}
+.navbar-inverse{
+	background-color: #4664d2;
+	border-color: #f17327;
+}
+.usertree-search .form-control {
+	padding: 5px 40px 5px 5px;
+}
+</style>
+<div class="bs-container clearfix">
+  <div class="bs-left-container  clearfix">
+        <div  class="usertree-search">
+            <a href="javascript:;" class="search" onclick="jstree_search();return false"><i class="glyphicon glyphicon-search"></i></a>
+            <input id="jstree_search_input" type="text" class="form-control" placeholder="{lang enter_user_name_search}" onkeyup="if(event.keyCode==13){jstree_search()}" />
+        </div>
+    	<div id="usertree" class="usertree-container list-unstyled" style="padding:5px 0"></div>
+  </div>
+  <div class="left-drager">
+     <div class="left-drager-op"><div class="left-drager-sub"></div></div>
+  </div>
+  <div class="bs-main-container clearfix" >
+   		 <div class="main-header" style="padding:5px 10px;">
+        	{lang selected}&nbsp;<b style="color:red" id="count_selected_user">0</b>&nbsp;个&nbsp;<b>{$title}</b> &nbsp;&nbsp; &nbsp;&nbsp;<button type="button" class="btn btn-primary" onclick="document.getElementById('selectuserform').submit();">{lang confirms}</button>
+        </div>
+        <div class="main-content clearfix">
+   			<form id="selectuserform" name="selectuserform"  action="{BASESCRIPT}?mod=news&op=setting&operation=selectuser&type=$type" method="post" onsubmit="return validate(this);" >
+            <input type="hidden" name="selectsubmit" value="true" />
+            <input type="hidden" name="refer" value="$refer" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" />
+            <ul id="select_user_container" class="list-unstyled selected-user-container clearfix" style="padding:10px;"></ul>
+            </form>
+    	</div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+jQuery('.left-drager').leftDrager_layout(); 
+jQuery(document).ready(function(e) {
+	jQuery(document).on('mouseenter','.user-item',function(){
+		jQuery(this).addClass('hover');
+	});
+	jQuery(document).on('mouseleave','.user-item',function(){
+		jQuery(this).removeClass('hover');
+	});
+    jQuery("#usertree").jstree({ 
+		"core" : {
+			"multiple" : true,
+			"check_callback" : true,
+			"themes" : { 
+						     "responsive":false
+				},
+			'data':function(node,cb){
+				var self=this;
+				jQuery.getJSON(DZZSCRIPT+'?mod=system&op=orgtree&do=orgtree',{'id':node.id},function(json){
+					cb.call(this,json);
+				});
+			}
+		  },
+		 "types" : {
+				"#" : {
+				  "max_children" : -1, 
+				  "max_depth" : -1, 
+				  "valid_children" : -1
+				},
+				"org" : {
+				  "icon" : "dzz/system/images/organization.png",
+				  "valid_children" : ['org','user']
+				},
+				
+				"user" : {
+				  "icon" : "dzz/system/images/user.png",
+				  "valid_children" : []
+				}
+		  },
+		"checkbox" : {
+		  "keep_selected_style" : false
+		},
+		"search":{ 
+			 "show_only_matches":false
+			 ,"fuzzy":false
+			 ,"ajax":{'url' : '{DZZSCRIPT}?mod=system&op=orgtree&do=search','dataType':'json'}
+	   },
+		// List of active plugins
+		"plugins" : ['checkbox','types','search']
+	});
+	 jQuery("#usertree").on('changed.jstree',function(e,data){
+		updateSelectUsers(data.selected);
+	 }); 
+	jQuery("#usertree").on('select_node.jstree',function(e,data){
+		if(data.node.type!='user'){
+			if(data.node.state.loaded) open_node(data.node);
+			else jQuery("#usertree").jstree(true).load_node(data.node,function(){open_node(data.node)});
+		}
+	 });
+	 
+});
+var ajaxing=false;
+var arr=[];
+var timer=null;
+function open_node(node){
+	ajaxing=false;
+	var inst=jQuery("#usertree").jstree(true);
+	if(!node) return;
+	if(node.type=='user') return;
+	if(node && node.children && node.children.length){
+		for(var i=0 ;i<node.children.length;i++){
+			var t=inst.get_node(node.children[i]);
+			if(!t) continue;
+			if(t.id.indexOf('uid_')!==-1){
+				continue;
+			}else if(t.state.loaded){
+				open_node(inst.get_node(node.children[i]));
+			}else{
+				arr.push(node.children[i]);
+			}
+		}
+		open_run();
+	}
+}
+function open_run(){
+	if(timer || ajaxing) return;
+	if(!ajaxing){
+		if(arr.length>0){
+			timer=window.setInterval(function(){
+				ajaxing=true;
+				if(arr.length<1) return;
+				var nid=arr.shift();
+				if(nid.indexOf('uid_')!==-1) return;
+				var pnode=jQuery("#usertree").jstree(true).get_node(nid);
+				if(!pnode) return;
+				if(jQuery("#usertree").jstree(true).is_loaded(nid)){
+					open_node(pnode);
+				}else{
+					 jQuery("#usertree").jstree(true).load_node(nid,function(node,state){
+						 node.state.loaded=true;
+						open_node(pnode);
+					});
+				}
+			},50);
+		}else{
+			window.clearInterval(timer);
+		}
+	}
+}
+function jstree_search(){
+	jQuery("#usertree").jstree(true).search(jQuery('#jstree_search_input').val());
+}
+function deleteSelectUser(uid){
+	jQuery('#count_selected_user').html(jQuery('#select_user_container li').length);
+	var inst=jQuery('#usertree').jstree(true);
+	inst.deselect_node(jQuery('#user_'+uid).data('jstreeids'),true);
+	jQuery('#user_'+uid).remove();
+}
+function updateSelectUsers(selected){
+	jQuery('#select_user_container').empty();
+	var inst=jQuery('#usertree').jstree(true);
+	for(var i in selected){
+	
+		var node=inst.get_node(selected[i]);
+		if(node.type!='user') continue;
+		var uid=node.li_attr.uid;
+		var username=node.text;
+		if(document.getElementById('user_'+uid)){
+			var jstreeids=jQuery('#user_'+uid).data('jstreeids');
+			jstreeids.push(node.id);
+			jQuery('#user_'+uid).data('jstreeids',jstreeids);
+		}else{
+			var jstreeids=[node.id];
+			var li='';
+			li+=' <li id="user_'+uid+'"  class="user-item pull-left" style="padding:10px;width:110px;position:relative">';
+			li+='   <input type="hidden" name="uids[]" value="'+uid+'" />';
+			li+='   <a href="javascrip:;" class="delete"  style="position:absolute;top:0px;right:0px;" onclick="deleteSelectUser(\''+uid+'\');"><i class="glyphicon glyphicon-remove"></i></a>';
+			li+='   <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;"> ';
+			li+='      <img src="avatar.php?uid='+uid+'&size=middle" width="85" height="85" /> ';
+			li+='	</div>';
+			li+='   <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span >'+username+'</span> </p>';
+			li+=' </li>';
+			 jQuery(li).data('jstreeids',jstreeids).appendTo('#select_user_container');
+		}
+	}
+	jQuery('#count_selected_user').html(jQuery('#select_user_container li').length);
+}
+</script>
+<script type="text/javascript" src="static/js/jstree.min.js?{VERHASH}"></script>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--{template common/footer_simple}--> 

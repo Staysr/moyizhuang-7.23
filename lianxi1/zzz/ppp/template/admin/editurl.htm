@@ -1,0 +1,37 @@
+<!--<?php
+include_once gettpl('top');
+if(empty($action)){
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">提示信息</td>
+	</tr>
+	<tr>
+		<td class="notice">实现视频地址批量修改</td>
+	</tr>
+</table>
+<br />
+<form action="$basename" method="post">
+	<input type="hidden" name="action" value="shift">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">批量修改视频地址</td>
+		</tr>
+		<tr>
+			<td width="40%">查找所有视频地址里的</td>
+			<td><input type="text" name="urla" value="" size="40" /></td>
+		</tr>
+		<tr>
+			<td>替换为</td>
+			<td><input type="text" name="urlb" value="" size="40" /></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>
+-->

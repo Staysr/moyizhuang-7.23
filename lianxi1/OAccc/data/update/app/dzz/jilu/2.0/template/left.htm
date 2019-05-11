@@ -1,0 +1,87 @@
+<style>
+	.active1 {
+		background: #fcf1dd;
+		border-top: 1px solid #fcf1dd;
+		border-bottom: 1px solid #fcf1dd;
+	}
+	.panel-default>.panel-heading1 {
+		background-color: #fff;
+		padding: 0 ;
+	}
+	.panel-default {
+		border: none;
+		box-shadow: none;
+	}
+	.panel-body>li {
+		list-style: none;
+	}
+	.panel-default>.panel-heading1>a,.panel-body>li>a{
+		padding: 0 25px;
+		display: block;
+		height: 46px;
+		line-height: 46px;
+		font-size: 14px;
+		border-radius: 0;
+		color: rgba(117,117,117,.9);
+		padding-left: 45px;
+	}
+	.panel-default>.panel-heading1>a:hover {
+		background: #fcf1dd;
+		color: #f9a33c;
+		border: none;
+	}
+	.panel-body1 {
+		border: none !important;
+		padding: 0;
+	}
+	.panel-body>li>a {
+		color: rgba(117,117,117,.7);
+		font-size:12px;
+	}
+	.panel-body>li>a:hover {
+		background-color: #e3e9f1;
+	}
+	.panel-active {
+		background-color: #e3e9f1;
+	}
+	.nav-stacked i {
+		font-size: 22px;
+		margin-right: 14px;
+		vertical-align: -3px;
+		color: #4e5563;
+	}
+	.nav-stacked .active1 i {
+		color: #da8c04;
+	}
+	.bs-left-container .nav-stacked>li>a {
+		color: rgb(51, 51, 51);
+	}
+	.bs-left-container .nav-stacked>.active1>a {
+		background: #ffefc3;
+		color: #da8c04;
+		font-weight: 600;
+	}
+	.bs-left-container .nav-stacked>.active1>a:hover{
+		background: #ffefc3;
+	}
+</style>
+<ul class="nav-stacked">
+	<li <!--{if $_GET['op']=='item'}-->class="active1"<!--{/if}-->>
+	<a href="{MOD_URL}&op=item"><i class="dzz dzz-description"></i>{eval echo lang('w_my_jilu')}</a>
+	</li>
+	<li <!--{if empty($_GET['op']) && !$jilu['inarchive'] && !$jilu['deletetime']}-->class="active1"<!--{/if}-->>
+	<a href="{MOD_URL}"><i class="dzz dzz-assignment"></i>{eval echo lang('jilu')}</a>
+	</li>
+	<li <!--{if $_GET['op']=='archive' || $jilu['inarchive']}-->class="active1"<!--{/if}-->>
+		<a href="{MOD_URL}&op=archive"><i class="dzz dzz dzz-archive2"></i>{eval echo lang('navtitle_archived')}</a>
+	</li>
+	<li class="line3"></li>
+	<li <!--{if $_GET['op']=='recycle' || $jilu['deletetime']}-->class="active1"<!--{/if}-->>
+		<a href="{MOD_URL}&op=recycle"><i class="dzz dzz-delete"></i>{eval echo lang('recycle')}</a>
+	</li>
+	<!--{if getPermByUid($_G['uid']) > 1}-->
+	<li <!--{if $_GET['op']=='setting'}-->class="active1"<!--{/if}-->>
+		<a href="{MOD_URL}&op=setting"><i class="dzz dzz-settings"></i>{eval echo lang('set')}</a>
+	</li>
+	<!--{/if}-->
+</ul>

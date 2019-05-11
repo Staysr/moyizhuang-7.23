@@ -1,0 +1,31 @@
+<style>
+    .bs-left-container.affix-top {
+        background-color: rgba(247, 248, 250, 1);
+    }
+    .setting-active {
+        background-color: rgba(215, 221, 232, 1);
+        color: #424242;
+    }
+    .bs-left-container .setting-ul>li>a:hover {
+        background-color: #eeedf2;
+        color: #424242;
+    }
+    .bs-left-container .nav-stacked>.setting-active>a {
+        font-weight: 600;
+    }
+    .bs-left-container .setting-ul>.setting-active>a:hover {
+        background-color: rgba(215, 221, 232, 1);
+        color: #424242;
+    }
+    .setting-active>a {
+        color: #424242 !important;
+    }
+    .nav-pills-leftguide>li>a:hover {
+        border-left:3px solid transparent;
+    }
+</style>
+<ul class="nav nav-pills nav-stacked nav-pills-leftguide setting-ul" >
+    <li<!--{if $do=='basic'}--> class="setting-active"<!--{/if}-->> <a href="{BASESCRIPT}?mod=discuss&op=setting&do=basic" ><i class="dzz dzz-settings" style="margin-right: 14px;font-size: 22px;vertical-align: -4px;"></i>{lang basic}</a>
+    <li<!--{if $do=='manage'}--> class="setting-active"<!--{/if}-->> <a href="{BASESCRIPT}?mod=discuss&op=setting&do=manage" ><i class="dzz dzz-assignment" style="margin-right: 14px;font-size: 22px;vertical-align: -4px;"></i>{lang manage}</a>
+    <!--<li&lt;!&ndash;{if $do=='wxapp'}&ndash;&gt; class="setting-active"&lt;!&ndash;{/if}&ndash;&gt;> <a href="{BASESCRIPT}?mod=discuss&op=setting&do=wxapp" ><i class="dzz dzz-wechat" style="margin-right: 14px;font-size: 22px;vertical-align: -4px;"></i>微信设置</a>-->
+</ul>

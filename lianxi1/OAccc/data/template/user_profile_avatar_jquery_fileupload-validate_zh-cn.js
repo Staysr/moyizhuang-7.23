@@ -1,0 +1,1 @@
+if(!__lang){var __lang={};}__lang.more_largest_number="\u8d85\u8fc7\u6700\u5927\u6570\u91cf";__lang.allow_file_type="\u4e0d\u5141\u8bb8\u7684\u6587\u4ef6\u7c7b\u578b\uff01";__lang.file_too_large="\u6587\u4ef6\u592a\u5927\u4e86\uff01";__lang.file_too_small="\u6587\u4ef6\u592a\u5c0f\u4e86\uff01";

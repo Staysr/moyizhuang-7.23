@@ -1,0 +1,14 @@
+<!--{eval require_once PHPVOD_ROOT . 'require/header.php';}-->
+$str
+<div class="m-showmsg">
+	<p class="t">$content</p>
+	<p class="a"><a href="$url">如果您的浏览器没有自动跳转,请点击这里</a></p>
+</div>
+
+<script type="text/javascript">  
+	function jumpurl(){  
+		location='$url';  
+	}
+	setTimeout('jumpurl()',2000);  
+</script>
+<!--{eval footer();}-->

@@ -1,0 +1,46 @@
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<ol class="breadcrumb f-mt5">
+		  <li><a href="$db_wwwurl">首页</a></li>
+		  <li><a href="read.php?vid=$vid">$video[subject]</a></li>
+		  <li class="active">举报</li>
+		</ol>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<form action="report.php" method="post">
+		<input type="hidden" value="2" name="step" />
+		<input type="hidden" name="vid" value="$vid">
+		<table class="table">
+			<thead>
+				<tr><td colspan="2" class="f-fs18"><strong>视频举报</strong></td></tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="f-w40">视频名称</td>
+					<td><a href="read.php?vid=$vid">$video[subject]</a></td>
+				</tr>
+				<tr>
+					<td>报告为</td>
+					<td>
+						<select name="type">
+							<option value="链接失效">链接失效</option>
+							<option value="违禁视频">违禁视频</option>
+							<option value="其它原因">其它原因</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>原因</td>
+					<td><textarea name="reason" cols="60" rows="6"></textarea></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr><td colspan="2" class="f-tac"><input type="submit" value="提 交" class="u-btn f-mt10" /></td></tr>
+			</tfoot>
+		</table>
+		</form>
+	</div>
+</div>

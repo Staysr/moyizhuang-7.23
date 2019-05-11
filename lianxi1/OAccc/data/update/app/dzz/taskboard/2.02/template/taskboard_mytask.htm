@@ -1,0 +1,192 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/css/checkbox.css" rel="stylesheet" media="all" />
+<link href="static/dzzthumb/jquery.dzzthumb.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/event.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/attach/attach.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/comment/images/comment.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/taskboard.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/task.css?{VERHASH}" rel="stylesheet" media="all">
+
+<!--{if $taskboard['disable']<1}-->
+<link href="dzz/system/ueditor/themes/default/css/ueditor.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/system/ueditor/themes/default/css/ueditor_add.css?{VERHASH}" rel="stylesheet" media="all">
+<script src="dzz/system/ueditor/ueditor.config.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/ueditor.all.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/lang/$_G['language']/$_G['language'].js?{VERHASH}"></script>
+<script src="data/cache/smilies_var.js?{VERHASH}"></script>
+<!--{/if}-->
+
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="dzz/taskboard/scripts/task.js?{VERHASH}"></script>
+
+<style>
+
+.navbar-inverse{
+	background: #17ae4b;
+}
+
+.task-item-labels{
+	margin-top: 5px;
+	height: 7px;
+}
+.task-item-labels .task-label{
+	height: 4px;
+}
+.task-item-main{
+	float: left; 
+	width: 30%;
+}
+	.task-item-badges{
+		float:right;
+	}
+.task-item-badges .task-badge{
+	margin: 0 6px 4px 0;
+}
+.avatar.avatar-30 img{
+	width: 30px;
+	height: 30px;
+}
+.task-item-badges .task-badge{
+	border: 1px solid #e2e2e2;
+	background: #fbfbfb;
+	border-radius: 3px;
+	padding: 0px 5px;
+	margin: 0px;
+}
+.main-content>.task-item, .main-content>.task-item-list {
+    width: 100%;
+    max-width: 100%;
+    margin: 0px;
+    padding: 0px 8px 6px 8px;
+}
+.task-item-badges-info{
+	float: left;
+	text-align: right;
+	margin-right: 15px;
+}
+.task-item-members{
+	margin-top: -4px;
+	float:right;
+	/*display: none;*/
+}
+.task-item:hover{
+	background: #f2f2f2;
+}
+.task-item .task-item-main a.task-item-title{
+	line-height: 22px;
+	margin: 0 0 0 25px;
+}
+.task-item .task-item-main a.task-item-check{
+	top:2px;
+}
+.task-badge .dzz{
+	top:2px;
+}
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<div class="bs-container">
+  	<!-- 左边部分 -->
+    <!--{template taskboard_left}-->
+    <!-- 右边部分 -->
+    <div class="bs-main-container clearfix">
+        <div class="mytask_cont clearfix">
+
+	        <div class="navbarBox">
+	        	<ul class="group-tabul navbarUL pull-left">
+	                <li class="<!--{if $type=='0'}-->active<!--{/if}--> mr15"><a  href="{DZZSCRIPT}?mod={MOD_NAME}&op=mytask">待完成</a></li>
+	                <li class="<!--{if $type=='1'}-->active<!--{/if}--> mr15"><a href="{DZZSCRIPT}?mod={MOD_NAME}&op=mytask&type=1">已过期</a></li>
+	                <li class="<!--{if $type=='2'}-->active<!--{/if}--> mr15"><a href="{DZZSCRIPT}?mod={MOD_NAME}&op=mytask&type=2">已完成</a></li>
+	            </ul>
+	            <div class="clearfix"></div>
+	        </div>
+        	
+        
+	        <div id="taskboard_container" class="clearfix" >
+	        	<div class="main-content" style="padding-top:0px;">
+	            <!--{template taskboard_mytask_item}-->
+	      		</div>
+	        </div>
+	      
+	        <div id="taskpanel" class="task-panel-container" ><div class="loadding"></div></div>
+	    </div>
+    </div>
+</div>
+<div id="_blank"  unselectable="on" onselectstart="return event.srcElement.type== 'text';" style="display:none; background: url(dzz/images/b.gif); z-index:10000;width:100%;height:100%;margin:0;padding:0; right: 0px; bottom: 0px;position: absolute; top:0px; left: 0px;"></div>
+<script type="text/javascript"> 
+var board=$json_board;
+var ajaxurl='{MOD_URL}&op=list&tbid=$tbid';
+var cpurl='{MOD_URL}&op=cp&tbid=$tbid';
+jQuery('.left-drager').leftDrager_layout(); 
+jQuery(document).ready(function(e) {
+	
+	jQuery(document).on('mouseenter','.task-item',function(){jQuery(this).addClass('task-selected');});
+	jQuery(document).on('mouseleave','.task-item',function(){jQuery(this).removeClass('task-selected')});
+	jQuery(document).on('click','.task-item',function(e){
+		var tag = e.srcElement ? e.srcElement : e.target;
+		if(tag.closest('.task-item-check')){
+			 return;
+		}
+		jQuery('.popbox .close').trigger('click');
+		if(window.kp_only) return false;
+		var taskid=jQuery(this).attr('taskid');
+		showTaskPanel(taskid);
+		return false;
+	});
+
+	jQuery(document).on('click','.catlist-hide-icon',function(){
+		var el=jQuery(this).parent().parent();
+		el.toggleClass('catlistHide');
+		if(el.hasClass('catlistHide')){
+			jQuery(this).find('.glyphicon').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+		}else{
+			jQuery(this).find('.glyphicon').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+		}
+		return false;
+	});
+	jQuery('.js-popbox').each(function(){
+			jQuery(this).popbox();
+		});
+});
+jQuery('#taskboard_container').scroll(function(e) {
+	var clientHeight = jQuery('#taskboard_container').height();
+	var scrollHeight = jQuery('.main-content').outerHeight(true);
+    if(jQuery('#taskboard_container').scrollTop()+clientHeight>scrollHeight-20) jQuery('#btn-load-more').trigger('click');
+});
+function getMore(url,page){
+	jQuery.get(url+'&do=getMore',{'page':page},function(html){
+		jQuery('#btn-load-more').parent().replaceWith(html);
+	});
+}
+
+</script>
+<!--{if $taskboard['disable']<1}-->
+<script type="text/javascript" src="dzz/taskboard/scripts/jquery.dzzdragersort.js?{VERHASH}"></script>
+<script type="text/javascript"  src="dzz/taskboard/scripts/jquery.dragsort.js?{VERHASH}"></script>
+
+<!--{/if}-->
+<script  type="text/javascript" src="static/dzzthumb/jquery.dzzthumb.js?{VERHASH}"></script>
+
+<script  type="text/javascript" src="static/js/jquery.ui.core.js?{VERHASH}"></script>
+
+<script  type="text/javascript" src="static/js/datepicker/jquery.ui.datepicker.js?{VERHASH}"></script>
+<script  type="text/javascript" src="static/js/datepicker/jquery.datepicker-zh-CN.js?{VERHASH}"></script>
+
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.ui.widget.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.iframe-transport.js?{VERHASH}"></script>
+<!-- The basic File Upload plugin -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-process.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-validate.js?{VERHASH}"></script>
+
+<script src="dzz/comment/scripts/comment.js?{VERHASH}" type="text/javascript"></script>
+<script type="text/javascript"  src="static/js/smilies.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/ueditor.parse.js?{VERHASH}" type="text/javascript"></script>
+<script src="dzz/system/ueditor/third-party/dzzattach/dzzattach.js?{VERHASH}" type="text/javascript"></script>
+
+
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--@authorcode  f12c4e54920727fc04d615f7ab97416a-->
+<!--{template common/footer_simple}-->  

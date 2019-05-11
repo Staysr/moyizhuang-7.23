@@ -1,0 +1,23 @@
+<view >
+<view class='day_add'>
+ <span class="day_test">{{day}}</span>
+</view>
+<view class="gear">
+<span class="gear_add">{{gear}}</span>
+</view>
+
+<view class='day_add'>
+ <span class="day_test">{{day}}</span>
+</view>
+<view class="gear_xinxi">
+<span class="gear_add">{{dingdan}}</span>
+</view>
+
+<view class='day_add'>
+ <span class="day_test">{{day}}</span>
+</view>
+<view class="gear">
+<span class="gear_add">{{banben}}</span>
+</view>
+
+</view>

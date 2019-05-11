@@ -1,0 +1,89 @@
+<div class="comment-wrap">
+    <div class="comment-top clearfix">
+        <div class="thread-ordertype" style="padding:0">
+            <div class="btn-group" style="vertical-align: -5px;">
+                <a class="btn-a  <!--{if $do=='mythread'}-->btn-a-active<!--{/if}-->" onclick="location.href='{DZZSCRIPT}?mod=discuss&op=my&do=mythread'">{lang my_post}</a>
+                <a class="btn-a  <!--{if $do=='mycomments'}-->btn-a-active<!--{/if}-->" onclick="location.href='{DZZSCRIPT}?mod=discuss&op=my&do=mycomments'">{lang my_comment}</a>
+                <a class="btn-a  <!--{if $do=='receivedcmt'}-->btn-a-active<!--{/if}-->" onclick="location.href='{DZZSCRIPT}?mod=discuss&op=my&do=receivedcmt'">{lang received_comments}</a>
+            </div>
+            <div class="btn-group" style="float: right;vertical-align: middle;">
+                <button type="button" class="btn drop-btn" data-toggle="dropdown" aria-expanded="false">
+                    <!--{if $order == 'posttime'}-->{lang order_post_sent_time}<!--{else}-->{lang order_comment_time}<!--{/if}-->  <span class="dzz dzz-expand-more"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="{MOD_URL}&op=my&do=mycomments&ordertype=dateline">{lang order_comment_time}</a></li>
+                    <li><a href="{MOD_URL}&op=my&do=mycomments&ordertype=posttime">{lang order_post_sent_time}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="comment-con">
+        <!--{if empty($cmtlist)}-->
+            <div class="searchImg-wrap">
+                <img src="{MOD_PATH}/images/search_empty.png" alt="">
+                <p>{lang no_comment}</p>
+            </div>
+        <!--{/if}-->
+        <!--{loop $cmtlist $value}-->
+        <div class="comment-item" id="comment-item-{$value[cid]}">
+            <div class="comment-item-wrap">
+                <div class="user-img">{eval echo avatar_block($value[uid])}</div>
+                <div class="comment-item-info">
+                    <div class="cominfo-top clearfix">
+                        <a href="user.php?uid={$_G[uid]}">{$_G['username']}</a>
+                        <span class="info-date">{eval echo dgmdate($value[time],'u');}</span>
+                        <div class="com-btn">
+                            <a href="javascript:;" onclick="deleteCmt({$value[cid]})" class="delete"><i class="dzz dzz-delete" data-toggle="tooltip" data-placement="bottom" title="删除"></i></a>
+                        </div>
+                    </div>
+                    <div class="cominfo-con clearfix">
+                        <div class="com-con">
+                            {$value['content']}
+                        </div>
+                        <div class="board-con">
+                           <div class="board-con-wrap">
+                                <!--{if $value[noviewpost]}-->
+                                    <span>{lang no_right_to_view_this_post}</span>
+                                <!--{else}-->
+                                    <span>{lang comment}【<a href="{MOD_URL}&op=redirect&goto=findpost&fid={$value[fid]}&tid={$value[tid]}&pid={$value[pid]}&extra=$extra&forward=$forward">{$value[subject]}</a>】{lang de_post}：</span>
+                                    {$value['post']['message']}
+                                <!--{/if}-->
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--{/loop}-->
+        <!--{if $multi}-->
+          <div class="page-wrap" style="padding-bottom: 20px">
+              {$multi}
+          </div>
+        <!--{/if}-->
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("[data-toggle='tooltip']").tooltip();
+        jQuery('.left-drager').leftDrager_layout();
+
+    });
+
+    function deleteCmt(cid){
+        jQuery.ajax({
+            url: '{MOD_URL}&op=ajax&do=comment&position=deletecmt',
+            type:'post',
+            dataType:'json',
+            data:{'cid':cid},
+            success: function(res){
+                if (res.code == 200) {
+                    jQuery("#comment-item-"+cid).remove();
+                    showmessage(res.message, 'success', 1000, 1);
+                } else {
+                    showmessage(res.message, 'danger', 2000, 1);
+                }
+            }
+        })
+    }
+</script>
+  

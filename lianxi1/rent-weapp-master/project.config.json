@@ -1,0 +1,79 @@
+{
+	"description": "rent weapp",
+	"setting": {
+		"urlCheck": false,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"appid": "wxbd3457302f9c2d31",
+	"projectname": "rent-wepy-minui",
+	"miniprogramRoot": "./dist",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 1,
+			"list": [
+				{
+					"id": -1,
+					"name": "service",
+					"pathName": "pages/service",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "check",
+					"pathName": "pages/check",
+					"query": "goods_id=8",
+					"scene": "1011"
+				},
+				{
+					"id": 2,
+					"name": "ucenter",
+					"pathName": "pages/ucenter/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "order",
+					"pathName": "pages/order",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "refund_result",
+					"pathName": "pages/refund_result",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "ucenter/idcard",
+					"pathName": "pages/ucenter/idcard",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "ucenter/detail",
+					"pathName": "pages/ucenter/detail",
+					"query": ""
+				}
+			]
+		}
+	}
+}

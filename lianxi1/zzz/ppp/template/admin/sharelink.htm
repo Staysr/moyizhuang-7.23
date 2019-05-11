@@ -1,0 +1,98 @@
+<!--<?php
+include_once gettpl('top');
+if(empty($action)){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename" class="active">友情链接列表</a></li>
+	<li><a href="$basename&action=add">添加/编辑友情链接</a></li>
+</ul>
+<br />
+
+<form method="post" action="$basename">
+	<input name="action" type="hidden" value="del">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="7">管理友情连接</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'selid');"></td>
+			<td width="5%">ID</td>
+			<td width="20%">网站名称</td>
+			<td width="5%">顺序</td>
+			<td width="30%">网站URL</td>
+			<td width="30%">网站说明</td>
+			<td width="5%">操作</td>
+		</tr>
+<!--
+EOT;
+foreach($sharedb as $key=> $value){
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="selid[]" value="$value[sid]"></td>
+			<td>$value[sid]</td>
+			<td><a href="$basename&action=edit&sid=$value[sid]">$value[name]</a></td>
+			<td>$value[threadorder]</td>
+			<td>$value[url]</td>
+			<td>$value[descrip]</td>
+			<td><a href="$basename&action=edit&sid=$value[sid]">编辑</a></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<br />
+	<center>
+		<input type="submit" value="删 除">
+	</center>
+</form>
+<!--
+EOT;
+}elseif($action=='add' || $action=='edit'){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename">友情链接列表</a></li>
+	<li><a href="$basename&action=add" class="active">添加/编辑友情链接</a></li>
+</ul>
+<br />
+
+<form action="$basename" method="post">
+	<input type="hidden" name="action" value="$action">
+	<input type="hidden" name="step" value="2">
+	<input type="hidden" name="sid" value="$sid">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">添加/编辑友情链接</td>
+		</tr>
+		<tr>
+			<td width=40%>网站名称</td>
+			<td><input type="text" name="name" size="30" value="$name"></td>
+		</tr>
+		<tr>
+			<td>显示顺序(默认为0)</td>
+			<td><input type="text" name="threadorder" value="$threadorder" size="30"></td>
+		</tr>
+		<tr>
+			<td>网站URL</td>
+			<td><input type="text" name="url" value="$url" size="30"></td>
+		</tr>
+		<tr>
+			<td>网站说明</td>
+			<td><input type="text" name="descrip" value="$descrip" size="30"></td>
+		</tr>
+		<tr>
+			<td>网站Logo<br />(设置文字链接请留空)</td>
+			<td><input type="text" name="logo" value="$logo" size="30"></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>
+-->

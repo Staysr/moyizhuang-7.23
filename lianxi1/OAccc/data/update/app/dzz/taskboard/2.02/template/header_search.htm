@@ -1,0 +1,569 @@
+<style>
+.navbar-inverse {
+	z-index: 10;
+}
+.input-search.dropdown .form-search {
+	color: #333;
+	background: #FFF;
+	border-radius: 4px;
+}
+.input-search .input-search-drop {
+	right: 0;
+}
+
+ .input-search.dropdown .form-search::-webkit-input-placeholder { /* WebKit browsers */
+ color:   #999;
+}
+ .input-search.dropdown .form-search:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+ color:    #999;
+}
+ .input-search.dropdown .form-search::-moz-placeholder { /* Mozilla Firefox 19+ */
+ color:    #999;
+}
+ .input-search.dropdown .form-search:-ms-input-placeholder { /* Internet Explorer 10+ */
+ color:    #999;
+}
+.input-search.dropdown .input-search-icon, .input-search.dropdown .header-closebutton {
+	color: #666;
+}
+.input-search.dropdown .input-search-icon, .input-search.dropdown .header-closebutton {
+	opacity: 0.8;
+}
+.input-search .input-search-icon+.form-control {
+	padding-right: 75px;
+}
+.dropdown-width, .dropdown-height {
+	position: absolute;
+	left: 0;
+	top: 46px;
+	width: 100%;
+	background-color: #FFF;
+	display: none;
+	padding-left: 0;
+    border-top: 1px solid #e7e7e7;
+	border-radius:0 0 5px 5px;
+	box-shadow:0 5px 8px rgba(0,0,0,.2);
+}
+.dropdown-width .task-filter {
+	width: 100%;
+}
+.input-search .input-search-drop {
+	font-size: 30px;
+}
+.input-search.focus .input-search-drop {
+	color: #666;
+	opacity: 0.5;
+	outline: none;
+}
+.input-search.dropdown .input-search-drop {
+	color: #666;
+	opacity: 0.5;
+	outline: none;
+}
+.input-search .input-search-drop:hover {
+	opacity: 0.8;
+}
+#searchval {
+	border-width: 0;
+	border-bottom-style: solid;
+}
+	.input-search.focus .form-search{
+	border-radius:5px 5px 0 0;
+}
+.input-search.dropdown .form-search{
+	border-radius:5px 5px 0 0;
+}
+</style>
+<!--{if $_GET['op']=='setting'}-->
+
+<!--{elseif $_GET['op']=='list' && $_GET['do']==''}-->
+<style>
+.input-search {
+	margin: 0 auto;
+}
+.resNav .resNav-left{
+	max-width:300px
+}
+.resNav .resNav-center{
+	
+}
+.input-search .header-closebutton {
+	right: 34px;
+}
+.dropdown-height>li>a {
+	border-left: 2px solid transparent;
+	text-decoration: none;
+	color: #333;
+	display: block;
+	padding: 18px 15px;
+	font-weight: 100;
+	white-space: nowrap;
+}
+.dropdown-height>li>a:hover {
+	background-color: #f2f2f2;
+	background-image: none;
+	width: 100%;
+	border-left: 2px solid #17ae4b !important;
+	border-radius: 0 !important;
+}
+</style>
+<div class="resNav-center-left">
+  <div class="input-search">
+    <form name="search" action="{BASESCRIPT}" method="get" class="search_top" onsubmit="return false">
+      <input type="hidden" name="mod" value="{MOD_NAME}">
+      <input type="hidden" name="op" value="archive">
+      <i class="input-search-icon glyphicon glyphicon-search" aria-hidden="true" onclick="this.parentNode.onsubmit()"></i>
+      <input id="searchval" class="form-control search form-search" name="keyword" autocomplete="off"  type="text" value="" placeholder="任务名称"/>
+      <span aria-hidden="true" id="emptysearchcondition" class="header-closebutton">×</span>
+      <button type="button" class="input-search-drop dzz dzz-arrow-dropright"></button>
+      <ul class="dropdown-height less_searchcondition">
+        <li ><a href="javascript:;" onclick="filter_me('assign',this)" metype="assign">分配给我的任务</a></li>
+        <li><a href="javascript:;" onclick="filter_me('follow',this)" metype="follow">我关注的任务</a></li>
+        <li><a href="javascript:;" onclick="filter_me('create',this)" metype="create">我创建的任务</a></li>
+        <li role="separator" class="divider"></li>
+        <li class="dropdown"> <a href="javascript:;" onclick="jQuery('.input-search-drop').trigger('click')">更多筛选</a> </li>
+      </ul>
+      <div class="dropdown-width">
+        <div class="loadding"></div>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+	jQuery('.input-search .input-search-drop').on('click',function(){
+		var el=jQuery(this);
+		var tel=jQuery('.dropdown-width');
+		if(el.hasClass('dzz-arrow-dropright')){
+			el.removeClass('dzz-arrow-dropright').addClass('dzz-arrow-dropdown');
+			
+			el.closest('.input-search').addClass('dropdown');
+			if(el.data('loaded')){
+			   tel.show();
+			}else{
+				tel.html('<div class="loadding"></div>').show();
+				tel.load('{MOD_URL}&op=menu&do=filtermenu&tbid=$tbid',function(){
+					el.data('loaded',1);
+					filter_init();
+				});
+			}
+			jQuery('.dropdown-height').hide()
+			 jQuery(document).on('mousedown.input-search-drop', function (e) {
+				e = e ? e : window.event;
+				var obj = e.srcElement ? e.srcElement : e.target;
+				if (jQuery(obj).closest('.input-search').length < 1) {
+					el.removeClass('dzz-arrow-dropdown').addClass('dzz-arrow-dropright');
+					tel.hide();
+					el.closest('.input-search').removeClass('dropdown');
+					jQuery(document).off('.input-search-drop');
+					jQuery('.dropdown-height').hide()
+				}
+			});
+		}else{
+			el.removeClass('dzz-arrow-dropdown').addClass('dzz-arrow-dropright');
+			tel.hide();
+			el.closest('.input-search').removeClass('dropdown');
+		}
+		
+	});
+    jQuery('#searchval').focus(function (e) {//头部搜索框变颜色
+		jQuery(this).closest('.input-search').addClass('focus');
+		var eh=0;
+		if(this.value!=''){
+			jQuery('#emptysearchcondition').show();
+			if(filter.metype) {
+				dh=1;//jQuery(this).parent().find('.dropdown-height').show();
+			}
+		}else {
+			dh=1;//jQuery(this).parent().find('.dropdown-height').show();
+		}
+		if(dh){
+			var tel=jQuery(this).parent().find('.dropdown-height').show();
+			jQuery(document).off('.dropdown-height').on('mousedown.dropdown-height', function (e) {
+				e = e ? e : window.event;
+				var obj = e.srcElement ? e.srcElement : e.target;
+				if (jQuery(obj).closest('.input-search').length < 1) {
+					tel.hide();
+					jQuery(document).off('.dropdown-height');
+					jQuery('.dropdown-height').hide()
+				}
+			});
+		}
+		
+	});
+	jQuery('#emptysearchcondition').on('click',function(){
+		jQuery('#searchval').val('');
+		board_filter_empty();
+		board_filter();
+		jQuery('#emptysearchcondition').hide();
+		
+		jQuery('.input-search-drop').removeClass('dzz-arrow-dropdown').addClass('dzz-arrow-dropright');
+		jQuery('.dropdown-width').hide();
+		jQuery('.dropdown-height').hide();
+		jQuery('.dropdown-width').closest('.input-search').removeClass('dropdown');
+		return false;
+	});
+	jQuery('#searchval').keyup(function (e) {//失去焦点时
+		if(this.value!='') jQuery('#emptysearchcondition').show();
+		filter.keyword=this.value;
+	});
+	jQuery('#searchval').blur(function (e) {//失去焦点时
+		
+		 jQuery(this).closest('.input-search').removeClass('focus');
+		 if(this.value=='') jQuery('#emptysearchcondition').hide();
+		
+		//jQuery(this).parent().find('.dropdown-height').hide();
+		
+		
+	});
+	jQuery('#searchval').keyup(function (e) {//失去焦点时
+		if(this.value!='') jQuery('#emptysearchcondition').show();
+		if(e.keyCode==13){
+			var val=$('#searchval').val();
+			filter_split(val);
+			board_filter();
+			jQuery('.dropdown-width').hide();
+			jQuery('.dropdown-height').hide();
+			jQuery('.dropdown-width').closest('.input-search').removeClass('dropdown');
+			
+		}
+	});
+	jQuery(document).ready(function(){
+		filter_set();
+		board_filter();
+	});
+	
+	$(window).on('hashchange', function () {
+		filter_set();
+		filter_init();
+		board_filter();
+	});
+	
+</script>
+<div class="resNav-center-right">
+  <ul>
+    <li class="rightswitch" style="display: list-item;"> <a href="javascript:;" class="toggRight" onclick="toggleRight()"> <i class="dzz dzz-info" data-toggle="tooltip" data-placement="bottom" data-original-title="关闭右侧信息" title=""></i></a></li>
+    <li> 
+      
+      <!-- 未标星 --> 
+      <a href="javascript:"><i title="点击加星这个任务板。" class="dzz dzz-star-border  board-title-options-star-icon js-star-board <!--{if in_array($tbid,$stared)}-->is-starred<!--{/if}-->"  data-tbid="$value[tbid]"></i></a> </li>
+    <li> <a href="javascript:;" style="color: #FFFFFF;font-size: 18px;line-height: 34px;display: block;padding: 6px 10px;"> <span class="navbar-borderleft" style="border-left: 1px solid rgba(255,255,255,0.25);height: 22px;display: block;"></span> </a> </li>
+    <li class="<!--{if $do=='recycle'}-->active"><!--{/if}-->"> <a href="javascript:" data-href="{MOD_URL}&op=menu&do=taskheader&tbid=$tbid" data-placement="bottom" data-auto-adapt="true" title="更多" class="js-popbox"> <i class="dzz dzz-more"></i> </a>
+    </li>
+  
+    <li class="<!--{if $do=='archive'}-->active<!--{/if}-->"><a href="{MOD_URL}&op=list&do=archive&tbid=$tbid" title="归档任务和列表"><i class="dzz dzz-assignment_turned"></i></a></li>
+  </ul>
+</div>
+<!--{elseif $_GET['op']=='list' && $_GET['do']=='archive'}-->
+<style>
+.input-search.focus .form-search{
+	border-radius:5px 5px 0 0;
+}
+.input-search.dropdown .form-search{
+	border-radius:5px 5px 0 0;
+}
+.dropdown-height {
+	padding: 15px;
+}
+</style>
+<div class="input-search">
+	<form action="{DZZSCRIPT}"  method="get" >
+		<input type="hidden" name="mod" value="{MOD_NAME}">
+		<input type="hidden" name="op" value="$_GET['op']">
+		<input type="hidden" name="do" value="$_GET['do']">
+		<input type="hidden" name="tbid" value="$tbid">
+		<input type="hidden" name="type" value="$type">
+		 <i class="input-search-icon glyphicon glyphicon-search" aria-hidden="true" onclick="this.parentNode.submit()"></i>
+      <input id="searchval" class="form-control search form-search" name="keyword"  type="text" autocomplete="off" value="{eval echo ($keyword?'keyword:'.$keyword.';':'').(($_GET['starttime']?'endtime:'.$_GET['endtime'].';':'')).(($_GET['starttime']?'starttime:'.$_GET['starttime'].';':''));}" placeholder="按名称搜索"/>
+      <span aria-hidden="true" id="emptysearchcondition" class="header-closebutton">×</span>
+	   <div class="dropdown-height form-horizontal">
+	   		 <div class="form-group">
+				<label for="starttime" class="col-sm-2 control-label">开始时间</label>
+				<div class="col-sm-10">
+				  <input type="text" id="starttime" name="starttime" value="$_GET[starttime]" class="form-control datepicker" placeholder="开始时间" >
+				</div>
+			  </div>
+			  <div class="form-group">
+				<label for="endtime" class="col-sm-2 control-label">结束时间</label>
+				<div class="col-sm-10">
+				 <input type="text" id="endtime" name="endtime" value="$_GET['endtime']" class="form-control datepicker "  placeholder="结束时间" >
+				</div>
+			  </div>
+		 <div class="form-group">
+			 <label  class="col-sm-2 control-label"></label>
+			 <div class="col-sm-10">
+					<button class="btn btn-primary" type="submit">开始搜索</button>
+			  </div>
+		   </div>
+	  </div>
+
+	</form>
+</div>
+	<script type="text/javascript">
+
+	jQuery('#searchval').focus(function (e) {//头部搜索框变颜色
+		var el=jQuery(this);
+		var tel=el.parent().find('.dropdown-height');
+		this.value=filter_val(this.value);
+		el.closest('.input-search').addClass('focus');
+		if(this.value!='') jQuery('#emptysearchcondition').show();
+		tel.show();
+		el.closest('.input-search').addClass('dropdown');
+		jQuery(document).off('.dropdown-height').on('mousedown.dropdown-height', function (e) {
+			e = e ? e : window.event;
+			var obj = e.srcElement ? e.srcElement : e.target;
+			
+			if (jQuery(obj).closest('.input-search,.ui-datepicker').length < 1) {
+				tel.hide();
+				el.closest('.input-search').removeClass('dropdown');
+				jQuery(document).off('.dropdown-height');
+			}
+		});
+	});
+	jQuery('#searchval').blur(function (e) {//失去焦点时
+		 jQuery(this).closest('.input-search').removeClass('focus');
+		 if(this.value=='') jQuery('#emptysearchcondition').hide();
+	});
+	jQuery('#searchval').keyup(function (e) {//失去焦点时
+		if(this.value!='') jQuery('#emptysearchcondition').show();
+	});
+	jQuery('#emptysearchcondition').on('click',function(){
+		jQuery('#searchval').val('');
+		jQuery('#starttime,#endtime').val('');
+		jQuery('#searchval').closest('form').submit();
+		jQuery('#emptysearchcondition').hide();
+		return false;
+	});
+		function filter_val(val){
+			if(val=='') return '';
+			val=val.replace(/starttime:\d{4}-\d{1,2}-\d{1,2};/i,'').replace(/endtime:\d{4}-\d{1,2}-\d{1,2};/i,'').replace(/keyword:/,'').replace(/;/,'');
+			return val;
+		}
+	</script> 
+<!--{elseif $_GET['op']=='list' && $_GET['do']=='recycle'}-->
+<style>
+
+.dropdown-height {
+	padding: 15px;
+}
+</style>
+<div class="resNav-center-left" >
+<div class="input-search">
+	<form action="{DZZSCRIPT}"  method="get" >
+		<input type="hidden" name="mod" value="{MOD_NAME}">
+		<input type="hidden" name="op" value="$_GET['op']">
+		<input type="hidden" name="do" value="$_GET['do']">
+		<input type="hidden" name="tbid" value="$tbid">
+		<input type="hidden" name="type" value="$type">
+		 <i class="input-search-icon glyphicon glyphicon-search" aria-hidden="true" onclick="this.parentNode.submit()"></i>
+      <input id="searchval" class="form-control search form-search" name="keyword"  type="text" autocomplete="off" value="{eval echo ($keyword?'keyword:'.$keyword.';':'').(($_GET['starttime']?'endtime:'.$_GET['endtime'].';':'')).(($_GET['starttime']?'starttime:'.$_GET['starttime'].';':''));}" placeholder="按名称搜索"/>
+      <span aria-hidden="true" id="emptysearchcondition" class="header-closebutton">×</span>
+	   <div class="dropdown-height form-horizontal">
+	   		 <div class="form-group">
+				<label for="starttime" class="col-sm-3 control-label">开始时间</label>
+				<div class="col-sm-9">
+				  <input type="text" id="starttime" name="starttime" value="$_GET[starttime]" class="form-control datepicker" placeholder="开始时间" >
+				</div>
+			  </div>
+			  <div class="form-group">
+				<label for="endtime" class="col-sm-3 control-label">结束时间</label>
+				<div class="col-sm-9">
+				 <input type="text" id="endtime" name="endtime" value="$_GET['endtime']" class="form-control datepicker "  placeholder="结束时间" >
+				</div>
+			  </div>
+		 <div class="form-group">
+			 <label  class="col-sm-3 control-label"></label>
+			 <div class="col-sm-9">
+					<button class="btn btn-primary" type="submit">开始搜索</button>
+			  </div>
+		   </div>
+	  </div>
+
+	</form>
+</div>
+</div>
+<!--{if $taskboard['perm']>2 || $_G['adminid']==1}-->
+<div class="resNav-center-right">
+  <ul >
+	<li>
+		<button class="btn btn-danger"  onclick="board_recycle_empty('$tbid')">清空回收站</button>
+	</li>
+	</ul>
+</div>
+
+<!--{/if}-->
+	<script type="text/javascript">
+
+	jQuery('#searchval').focus(function (e) {//头部搜索框变颜色
+		var el=jQuery(this);
+		var tel=el.parent().find('.dropdown-height');
+		this.value=filter_val(this.value);
+		el.closest('.input-search').addClass('focus');
+		if(this.value!='') jQuery('#emptysearchcondition').show();
+		tel.show();
+		el.closest('.input-search').addClass('dropdown');
+		jQuery(document).off('.dropdown-height').on('mousedown.dropdown-height', function (e) {
+			e = e ? e : window.event;
+			var obj = e.srcElement ? e.srcElement : e.target;
+			
+			if (jQuery(obj).closest('.input-search,.ui-datepicker').length < 1) {
+				tel.hide();
+				el.closest('.input-search').removeClass('dropdown');
+				jQuery(document).off('.dropdown-height');
+			}
+		});
+	});
+	jQuery('#searchval').blur(function (e) {//失去焦点时
+		 jQuery(this).closest('.input-search').removeClass('focus');
+		 if(this.value=='') jQuery('#emptysearchcondition').hide();
+	});
+	jQuery('#searchval').keyup(function (e) {//失去焦点时
+		if(this.value!='') jQuery('#emptysearchcondition').show();
+	});
+	jQuery('#emptysearchcondition').on('click',function(){
+		jQuery('#searchval').val('');
+		jQuery('#starttime,#endtime').val('');
+		jQuery('#searchval').closest('form').submit();
+		jQuery('#emptysearchcondition').hide();
+		return false;
+	});
+		function filter_val(val){
+			if(val=='') return '';
+			val=val.replace(/starttime:\d{4}-\d{1,2}-\d{1,2};/i,'').replace(/endtime:\d{4}-\d{1,2}-\d{1,2};/i,'').replace(/keyword:/,'').replace(/;/,'');
+			return val;
+		}
+	</script> 	
+<!--{elseif $_GET['op']=='list' && $_GET['do']=='stats'}-->
+<div class="resNav-center-right" style="flex:0 0 100%">
+  <ul >
+	<li>
+		<select id="type" class="btn btn "  onchange="redirect(this.value);" >
+			<option  value="user"<!--{if $type=='user'}--> selected="selected"<!--{/if}-->>按成员</option>
+			<option value="cat"<!--{if $type=='cat'}--> selected="selected"<!--{/if}-->>按列表</option>
+			<option value="label"<!--{if $type=='label'}--> selected="selected"<!--{/if}-->>按标签</option>
+		</select>
+	</li>
+	</ul>
+</div>
+<!--{elseif empty($_GET['op']) || $_GET['op']=='my' || $_GET['op']=='mytask'}-->
+  
+  <div class="input-search">
+    <form name="search" action="{BASESCRIPT}" method="get" class="search_top">
+      <input type="hidden" name="mod" value="taskboard" />
+      <input type="hidden" name="op" value="$_GET['op']" />
+      <!--{if $_GET['op']=='mytask'}--><input type="hidden" name="type" value="$type" /><!--{/if}-->
+      <i class="input-search-icon dzz dzz-search" aria-hidden="true" onclick="this.parentNode.submit()"></i>
+      <input id="searchval" class="form-control search form-search" name="keyword"  type="text" value="$keyword" placeholder="任务板名称或创建者"/>
+      <span aria-hidden="true" id="emptysearchcondition" class="header-closebutton">×</span>
+    </form>
+  </div>
+   <script type="text/javascript">
+
+	jQuery('#searchval').focus(function (e) {//头部搜索框变颜色
+		jQuery(this).closest('.input-search').addClass('focus');
+		if(this.value!='') jQuery('#emptysearchcondition').show();
+	});
+	jQuery('#searchval').blur(function (e) {//失去焦点时
+		
+		 jQuery(this).closest('.input-search').removeClass('focus');
+		 if(this.value=='') jQuery('#emptysearchcondition').hide();
+	});
+	jQuery('#searchval').keyup(function (e) {//失去焦点时
+		if(this.value!='') jQuery('#emptysearchcondition').show();
+	});
+	jQuery('#emptysearchcondition').on('click',function(){
+		jQuery('#searchval').val('');
+		jQuery('#searchval').closest('form').submit();
+		jQuery('#emptysearchcondition').hide();
+		return false;
+	});
+	</script> 
+<!--{elseif $_GET['op']=='archive' || $_GET['op']=='recycle'}-->
+  <style>
+.input-search.focus .form-search{
+	border-radius:5px 5px 0 0;
+}
+.input-search.dropdown .form-search{
+	border-radius:5px 5px 0 0;
+}
+.dropdown-height {
+	padding: 15px;
+}
+</style>
+<div class="input-search">
+	<form action="{DZZSCRIPT}"  method="get" >
+		<input type="hidden" name="mod" value="{MOD_NAME}">
+		<input type="hidden" name="op" value="$_GET['op']">
+		<input type="hidden" name="do" value="$_GET['do']">
+		 <i class="input-search-icon glyphicon glyphicon-search" aria-hidden="true" onclick="this.parentNode.submit()"></i>
+      <input id="searchval" class="form-control search form-search" name="keyword"  type="text" autocomplete="off" value="{eval echo ($keyword?'keyword:'.$keyword.';':'').(($_GET['starttime']?'endtime:'.$_GET['endtime'].';':'')).(($_GET['starttime']?'starttime:'.$_GET['starttime'].';':''));}" placeholder="按名称搜索"/>
+      <span aria-hidden="true" id="emptysearchcondition" class="header-closebutton">×</span>
+	   <div class="dropdown-height form-horizontal">
+	   		 <div class="form-group">
+				<label for="starttime" class="col-sm-2 control-label">开始时间</label>
+				<div class="col-sm-10">
+				  <input type="text" id="starttime" name="starttime" value="$_GET[starttime]" class="form-control datepicker" placeholder="开始时间" >
+				</div>
+			  </div>
+			  <div class="form-group">
+				<label for="endtime" class="col-sm-2 control-label">结束时间</label>
+				<div class="col-sm-10">
+				 <input type="text" id="endtime" name="endtime" value="$_GET['endtime']" class="form-control datepicker "  placeholder="结束时间" >
+				</div>
+			  </div>
+		 <div class="form-group">
+			 <label  class="col-sm-2 control-label"></label>
+			 <div class="col-sm-10">
+					<button class="btn btn-primary" type="submit">开始搜索</button>
+			  </div>
+		   </div>
+	  </div>
+
+	</form>
+</div>
+	<script type="text/javascript">
+
+	jQuery('#searchval').focus(function (e) {//头部搜索框变颜色
+		var el=jQuery(this);
+		var tel=el.parent().find('.dropdown-height');
+		this.value=filter_val(this.value);
+		el.closest('.input-search').addClass('focus');
+		if(this.value!='') jQuery('#emptysearchcondition').show();
+		tel.show();
+		el.closest('.input-search').addClass('dropdown');
+		jQuery(document).off('.dropdown-height').on('mousedown.dropdown-height', function (e) {
+			e = e ? e : window.event;
+			var obj = e.srcElement ? e.srcElement : e.target;
+			
+			if (jQuery(obj).closest('.input-search,.ui-datepicker').length < 1) {
+				tel.hide();
+				el.closest('.input-search').removeClass('dropdown');
+				jQuery(document).off('.dropdown-height');
+			}
+		});
+	});
+	jQuery('#searchval').blur(function (e) {//失去焦点时
+		 jQuery(this).closest('.input-search').removeClass('focus');
+		 if(this.value=='') jQuery('#emptysearchcondition').hide();
+	});
+	jQuery('#searchval').keyup(function (e) {//失去焦点时
+		if(this.value!='') jQuery('#emptysearchcondition').show();
+	});
+	jQuery('#emptysearchcondition').on('click',function(){
+		jQuery('#searchval').val('');
+		jQuery('#starttime,#endtime').val('');
+		jQuery('#searchval').closest('form').submit();
+		jQuery('#emptysearchcondition').hide();
+		return false;
+	});
+		function filter_val(val){
+			if(val=='') return '';
+			val=val.replace(/starttime:\d{4}-\d{1,2}-\d{1,2};/i,'').replace(/endtime:\d{4}-\d{1,2}-\d{1,2};/i,'').replace(/keyword:/,'').replace(/;/,'');
+			return val;
+		}
+	</script> 
+  
+  <!--{/if}--> 
+ 
+
+
+

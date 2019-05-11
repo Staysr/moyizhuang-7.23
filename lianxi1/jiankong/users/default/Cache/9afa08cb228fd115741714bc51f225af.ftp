@@ -1,0 +1,10 @@
+-rw-r--r-- 1 ftp ftp           1036 Oct 02  2015 mocked_class.tpl.dist
+-rw-r--r-- 1 ftp ftp            237 Oct 02  2015 mocked_class_method.tpl.dist
+-rw-r--r-- 1 ftp ftp            132 Oct 02  2015 mocked_clone.tpl.dist
+-rw-r--r-- 1 ftp ftp            644 Oct 02  2015 mocked_method.tpl.dist
+-rw-r--r-- 1 ftp ftp            151 Oct 02  2015 mocked_static_method.tpl.dist
+-rw-r--r-- 1 ftp ftp            716 Oct 02  2015 proxied_method.tpl.dist
+-rw-r--r-- 1 ftp ftp             55 Oct 02  2015 trait_class.tpl.dist
+-rw-r--r-- 1 ftp ftp            159 Oct 02  2015 unmocked_clone.tpl.dist
+-rw-r--r-- 1 ftp ftp            179 Oct 02  2015 wsdl_class.tpl.dist
+-rw-r--r-- 1 ftp ftp             60 Oct 02  2015 wsdl_method.tpl.dist

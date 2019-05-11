@@ -1,0 +1,100 @@
+
+
+<div class="members-wrap container">
+    <div class="window-module  clearfix" style="margin-bottom:10px;">
+      <input class="pull-left js-search form-control" style="max-width:150px;" type="text" placeholder="{lang search_username}" >
+      <div class="org-members-options">
+      	<!--{if $perm>2}--><button class="btn btn-primary js-manage-members " data-href="{MOD_URL}&op=menu&do=org_member_add&orgid=$orgid" title="{lang add_user}" data-placement="bottom" data-auto-adapt="true"  href="javascript:;" onclick="showWindow('bordermenbers','index.php?mod=system&op=selorguser&do=border_users&stype=2&multiple=1&callback=callback_org_members&token=$orgid&ids={eval echo implode(',',array_keys($list));}','get',0)">{lang add_user}</button><!--{/if}-->
+      </div>
+    </div>
+    <div class="window-module u-bottom js-member-list">
+    <!--{loop $list $value}-->
+      <div class="member-list-item-detail clearfix" data-perm="$value[perm]" data-uid="$value[uid]">
+      
+        <div class="member member-no-menu">
+        	
+			{eval echo avatar_block($value[uid]);} $value[username]
+            <!--{if $value[perm]>2}-->
+            <span class="member-type admin" title="{lang manager}"></span>
+            <!--{elseif $value[perm]>1}-->
+            <span class="member-type" title="{lang member}"></span>
+            <!--{else}-->
+            <span class="member-type" title="{lang observer}"></span> 
+            <!--{/if}-->
+        </div>
+      	
+        <div class="details">
+          <p class="name-line"><span class="full-name">$value[username]</span></p>
+        </div>
+        <div class="options">
+       
+        	<!--{if $perm>2}--> 
+            	<!--<a class="option quiet-button js-view-activity" href="javascript:;">Activity</a>-->
+                <button class="option btn btn-default-outline js-change-role js-popbox" data-href="{MOD_URL}&op=menu&do=org_member_role&orgid=$orgid&uid=$value[uid]" title="{lang change_permissions}" data-placement="top"  href="javascript:;">{eval echo $permtitle[$value[perm]]} <span class="caret"></span></button>
+                <a class="option button-link remove-button js-remove-or-deactivate  js-popbox" data-auto-adapt="true" data-href="{MOD_URL}&op=menu&do=org_member_remove&orgid=$orgid&uid=$value[uid]" title="{lang remove}" data-placement="top"  href="javascript:;"> <!--{if $value['uid']==$_G['uid']}-->{lang status_away}<!--{else}-->{lang remove}<!--{/if}--></a>
+            <!--{else}-->
+            	<p class="option status quiet">{eval echo $permtitle[$value[perm]]}</p>
+                <!--{if $value['uid']==$_G['uid']}-->
+              	<button class="option btn btn-default-outline js-remove-or-deactivate  js-popbox" data-href="{MOD_URL}&op=menu&do=org_member_remove&orgid=$orgid&uid=$value[uid]" title="{lang remove}" data-auto-adapt="true" data-placement="top"  href="javascript:;"> {lang status_away}</button>
+            	<!--{/if}-->
+           <!--{/if}-->
+      
+        </div>
+      </div>
+      <!--{/loop}-->
+    </div>
+</div>
+<script type="text/javascript">
+function callback_org_members(ids,data,orgid){//任务板用户回调函数
+	jQuery.post('{MOD_URL}&op=ajax&do=org_member_set&output=json',{"ids":ids,"orgid":orgid},function(json){
+		if(json.success){
+			jQuery('#members_1').load('{MOD_URL}&op=org&do=members&orgid=$orgid&t=' + new Date().getTime());
+		}
+	},'json');
+}
+jQuery(document).ready(function(e) {
+	
+	//只有一个管理员时,不允许移除或离开
+	check_admin();
+	
+	jQuery('.js-search').on('keyup',function(){
+		var val=this.value;
+		if(val==''){
+			jQuery('.member-list-item-detail').removeClass('hide');
+		}
+		jQuery('.member-list-item-detail').each(function(index){
+			var uname=jQuery(this).find('.full-name').text();
+			if(uname.match(new RegExp(val))){
+				jQuery(this).removeClass('hide');
+			}else{
+				jQuery(this).addClass('hide');
+			}
+		})
+	});
+	jQuery(document).on('click','.js-invite-send-repeat',function(){
+		var el=jQuery(this);
+		el.button('loading');
+		jQuery.post(this.href,function(json){
+			if(json.msg=='success'){
+				el.html('发送成功！');
+			}else{
+				showmessage(json.error,'danger',3000,1);
+				window.setTimeout(function(){el.button('reset');},3000);
+			}
+		},'json');
+		return false;
+	});
+	jQuery('.js-popbox').each(function(){
+		if(jQuery(this).hasClass('disabled')) return;
+		jQuery(this).popbox();
+	});
+});
+function check_admin(){ //只有一个管理员时,不允许移除或离开
+	var adminitem=jQuery('.member-list-item-detail[data-perm="3"]');
+	if(adminitem.length<2){
+		adminitem.find('.js-remove-or-deactivate').addClass('disabled');
+	}else{
+		adminitem.find('.js-remove-or-deactivate').removeClass('disabled');
+	}
+}
+</script> 

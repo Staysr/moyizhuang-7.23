@@ -1,0 +1,47 @@
+<!--<?php
+include_once gettpl('top');
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">提示信息</td>
+	</tr>
+	<tr>
+		<td class="notice">
+			1. <font color="green">可写</font>：文件属性正常。<br />
+			2. <font color="red">不可写</font>：文件或目录没有写权限，程序可能无法正常运行。<br />
+			3. <font color="silver">文件不存在</font>：文件不存在，请检查文件是否上传完整。
+		</td>
+	</tr>
+</table>
+<br />
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header" colspan="2">文件属性检查</td>
+	</tr>
+<!--
+EOT;
+foreach($filepath as $key => $value){
+if($filemode[$key]==1){
+	$chmod="<font color='silver'>文件不存在</font>";
+}elseif($filemode[$key]==2){
+	$chmod="<font color='red'>不可写</font>";
+}else{
+	$chmod="<font color='green'>可写</font>";
+}
+print <<<EOT
+-->
+	<tr>
+		<td width="40%">$value</td>
+		<td>$chmod</td>
+	</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<!--
+EOT;
+include_once gettpl('adminbottom');
+?>
+-->

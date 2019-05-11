@@ -1,0 +1,94 @@
+ <style>
+  .shop_box {
+  	background-color: white;
+    border-bottom: solid 1px #eeeeee;
+  }
+  .shop_box .wrap {
+    display: flex;
+    padding: 6rpx 0;
+  }
+  .shop_box .item {
+    font-size: 20rpx;
+  }
+  .shop_box .item.side {
+    width: 150rpx;
+    flex-grow: 0;
+    position: relative;
+    padding: 20rpx 20rpx 10rpx 20rpx;
+  }
+  .shop_box .item.main {
+    flex-grow: 1;
+    padding: 0 20rpx 0 20rpx;
+    border-right: solid 1px #eeeeee;
+  }
+  .shop_box .button {
+    border: dashed 1px #555555;
+    padding: 10rpx 5rpx;
+    margin: 0 auto;
+  }
+  .shop_box .button button {
+    border: none;
+  }
+  .shop_box .vtitle {
+    font-weight: bold;
+    font-size: 27rpx;
+  }
+  .shop_box .vcontent {
+    font-size: 25rpx;
+    color: #666666;
+  }
+  .shop_box .side wxc-cc {
+    position: relative;
+    top: 20rpx;
+  }
+</style>
+<template>
+  <!-- 当前店铺开始 -->
+  <view class="shop_box">
+    <wxc-flex class="wrap">
+      <view class="item main">
+        <view class="vtitle">{{syncShop.cityShops[syncShop.currentShop]['name']}}</view>
+        <view class="vcontent">{{syncShop.currentRegion[0]}}{{syncShop.currentRegion[1]}}{{syncShop.currentRegion[2]}}{{syncShop.cityShops[syncShop.currentShop]['position']}}</view>
+      </view>
+      <view class="item side">
+        <wxc-button class="button" size="small" type="dark" plain="true" value="切换" @tap="change"></wxc-button>
+      </view>
+    </wxc-flex>
+  </view>
+  <!-- 当前店铺结束 -->
+</template>
+<script>
+  import wepy from 'wepy'
+  export default class Shop extends wepy.component {
+    props = {}
+
+    data = {
+      syncShop: {
+        type: Object,
+        default: null
+      },
+      name: '',
+      address: ''
+    }
+
+    events = {}
+
+    watch = {}
+
+    onShow () {
+      console.log('this', this)
+      console.log('this.syncShop', this.syncShop)
+      console.log('this.data.syncShop', this.data.syncShop)
+    }
+
+    methods = {
+      async change(e) {
+        await wx.switchTabP({ url: '/pages/ucenter/index' })
+        console.log(this.syncShop)
+      },
+      async test() {
+
+      }
+    }
+  }
+</script>

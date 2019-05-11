@@ -1,0 +1,5 @@
+-rw-r--r-- 1 ftp ftp            737 Jul 18  2017 Endpoint.php
+-rw-r--r-- 1 ftp ftp           2146 Jul 19  2017 EndpointConfig.php
+-rw-r--r-- 1 ftp ftp            981 Jul 18  2017 EndpointProvider.php
+-rw-r--r-- 1 ftp ftp         129932 Jul 17  2017 endpoints.xml
+-rw-r--r-- 1 ftp ftp            529 Jul 18  2017 ProductDomain.php

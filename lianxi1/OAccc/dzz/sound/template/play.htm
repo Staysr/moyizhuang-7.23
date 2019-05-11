@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+		<title>{lang simple_mp3_player}</title>
+		<script src="{MOD_PATH}/swfobject.js" type="text/javascript"></script>
+		<script> 
+			var exports = {}; 
+			var browsers = [
+			  [ 'chrome', /Chrom(?:e|ium)\/([0-9\.]+)(:?\s|$)/ ],
+			  [ 'firefox', /Firefox\/([0-9\.]+)(?:\s|$)/ ],
+			  [ 'opera', /Opera\/([0-9\.]+)(?:\s|$)/ ],
+			  [ 'ie', /Trident\/7\.0.*rv\:([0-9\.]+)\).*Gecko$/ ],
+			  [ 'ie', /MSIE\s([0-9\.]+);.*Trident\/[4-7].0/ ],
+			  [ 'ie', /MSIE\s(7\.0)/ ],
+			  [ 'ie', /MSIE\s(6\.0)/ ],
+			  [ 'bb10', /BB10;\sTouch.*Version\/([0-9\.]+)/ ],
+			  [ 'android', /Android\s([0-9\.]+)/ ],
+			  [ 'ios', /iPad\;\sCPU\sOS\s([0-9\._]+)/ ],
+			  [ 'ios',  /iPhone\;\sCPU\siPhone\sOS\s([0-9\._]+)/ ],
+			  [ 'safari', /Safari\/([0-9\._]+)/ ],
+			  [ 'edge', /Edge\/([0-9\._]+)/ ]
+			];
+			
+			var i = 0, mapped =[];
+			for (i = 0; i < browsers.length; i++) {
+			  browsers[i] = createMatch(browsers[i]);
+			  if (isMatch(browsers[i])) {
+			    mapped.push(browsers[i]);
+			  }
+			}
+			
+			var match = mapped[0];
+			var parts = match && match[3].split(/[._]/).slice(0,3);
+			
+			while (parts && parts.length < 3) {
+			  parts.push('0');
+			}
+			
+			// set the name and version
+			exports.name = match && match[0];
+			exports.version = parts && parts.join('.');
+			if(exports.name == 'ie'){
+				exports.version = parseInt(exports.version.substring(0, exports.version.indexOf('.'))); 
+			}
+			
+			function createMatch(pair) {
+			  return pair.concat(pair[1].exec(navigator.userAgent));
+			}
+			
+			function isMatch(pair) {
+			  return !!pair[2];
+			}		
+		
+			var audioMp3Flag = true;
+			
+			canPlayAudioMP3(function(flag){audioMp3Flag = flag;})			
+						
+			/**
+			 * 检测浏览器是否能使用Audio对象播放mp3文件 
+			 */
+			function canPlayAudioMP3(callback){
+				//1、try catch 判定浏览器中是否有Audio对象
+			    try {
+			        var audio = new Audio();
+					
+					//利用canPlayType方法，检测浏览器是否有MP3解码器
+			        if(audio.canPlayType('audio/mpeg') == "probably")
+			            callback(true);
+			        
+			        //利用canPlaythrough事件，监听音频是否可以加载成功
+			        audio.addEventListener('canplaythrough', function(e){
+			            callback(true);
+			        }, false);
+			        
+			        //利用error事件，监听音频播放是否会出现异常
+			        audio.addEventListener('error', function(e){
+			            callback(false);
+			        }, false);
+			        
+			        //base64编码最小的MP3文件
+			        audio.src = "data:audio/mpeg;base64,/+MYxAAAAANIAAAAAExBTUUzLjk4LjIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+			        audio.load();
+			        
+			    }catch(e){
+			        callback(false);
+			    }
+			}		
+						
+			/**
+			 * Music对象的构造函数
+			 * @param {Object} url	音乐文件地址
+			 * @param {Object} type 音乐类型、暂时只支持audio/mpeg，加一个参数便于拓展
+			 * @param {Object} viewCallback	音乐初始化、播放逻辑完成后的视图回调
+			 * @param {Object} eventCallback 音乐初始化、播放逻辑完成后的事件回调
+			 */
+			function Music(url, type, viewCallback, eventCallback){
+				this.url = url;
+				this.type = type;
+				this.viewCallback = viewCallback;
+				this.eventCallback = eventCallback;
+				this.isSupportAudio = isSupportAudio(this.type);
+			}
+			/**
+			 * init初始化方法
+			 * 在支持audio标签且能正常解码MP3的情况下创建audio标签
+			 * 否则使用flash的方式
+			 * 完成后，进行初始化方法的视图及事件回调
+			 */
+			Music.prototype.init = function(){
+				var self = this;
+				if (this.isSupportAudio) {
+					
+					
+					var content = document.getElementById('mp3_body');
+					var url = this.url;
+					content.innerHTML += '<video controls="" autoplay="" name="media"><source src="'+url+'" type="audio/mp3"></video>'; 
+					/*this.createAudioPlayer();
+					this.viewCallback['init'].call(this);
+					this.eventCallback['init'].call(this);*/
+				} else {
+					try{this.createSwfPlayer()}catch(e){};
+				} 
+			}
+						
+			Music.prototype.createAudioPlayer = function(){
+				var self = this;
+				this.musicEl = document.createElement('audio');
+				this.musicEl.src = this.url;
+				this.musicEl.type = this.type;
+				this.musicEl.stop = function(){
+					this.pause();
+					this.currentTime = 0.0;
+				}
+				addEvent(this.musicEl, 'ended', function(){
+					//m_console('播放结束停止MP3');
+					self.viewCallback['stop'].call();
+				});
+				this.musicEl.getPaused = function(){
+					return this.paused;
+				}
+			}
+			
+			Music.prototype.createSwfPlayer = function(){
+				var self = this;
+				var src =this.url; 
+				var autoplay = '$_GET[autoplay]' || 'yes'; 
+				var flashvars = { autoplay: autoplay, foreColor: "#281ca", filename: encodeURIComponent(src) };
+				var params = {
+					menu: "false",
+					scale: "Scale",
+					allowFullscreen: "true",
+					wmode: "transparent",
+					allowScriptAccess: "always",
+					bgcolor: "#FFFFFF"
+				};
+				if(src != '') swfobject.embedSWF("{MOD_PATH}/1bit.swf", "fileID", "50%", "50%", "9.0.0", "{MOD_PATH}/expressInstall.swf ", flashvars, params);  
+			}
+						
+			Music.prototype.play = function(){
+				//m_console('播放MP3');
+				this.musicEl.play();
+				this.viewCallback['play'].call();
+			}
+			
+			Music.prototype.stop = function(){
+				//m_console('手动停止MP3');
+				this.musicEl.stop();
+				this.viewCallback['stop'].call();
+			}
+			
+			Music.prototype.emit = function(){
+				if (this.musicEl.getPaused()) {
+					this.play();
+				} else {
+					this.stop();
+				}
+			}
+			
+			function isSupportAudio(type){
+				//return false;
+				if(type == "audio/mpeg") {
+					return audioMp3Flag;
+				}
+				return false;
+			}
+
+			/*
+			 * 生成嵌入网页的flash代码 
+			 * @param {Object} movieName 元素Id
+			 * @param {Object} src	swf文件
+			 * @param {Object} data 需要传入的参数
+			 */
+			function flashHtml(movieName, src, data) {
+				var autoplay = '$_GET[autoplay]' || 'yes'; 
+				var flashvars = { autoplay: autoplay, foreColor: "#281ca", filename: encodeURIComponent(src) };
+				var params = {
+					menu: "false",
+					scale: "Scale",
+					allowFullscreen: "true",
+					wmode: "transparent",
+					allowScriptAccess: "always",
+					bgcolor: "#FFFFFF"
+				};
+				if(src != '') swfobject.embedSWF("{MOD_PATH}/1bit.swf", "fileID", "50%", "50%", "9.0.0", "{MOD_PATH}/expressInstall.swf ", flashvars, params); 
+				//return false; 
+			}
+			
+			function v_init() {
+				//m_console('创建MP3视图回调');
+				var html = [
+					'<div id="player">',
+						'<img width="32px" height="32px" src="{MOD_PATH}/images/mySound.png"/>',
+					'</div>'
+				].join("");			
+				var content = document.getElementById('fileID');
+				content.innerHTML += html;
+			}
+
+			function e_init() {
+				//m_console('创建MP3事件回调');
+				var self = this;
+				var player = document.getElementById('player');
+				addEvent(player, 'click', function(){
+					self.emit();
+				})
+			}
+			
+			function v_play(){
+				//m_console('播放MP3视图回调');
+				var img = document.getElementById('player').childNodes[0];
+				img.src = img.src.replace("png","gif");
+			}
+			
+			function v_stop(){
+				//m_console('停止MP3视图回调');
+				var img = document.getElementById('player').childNodes[0];
+				img.src = img.src.replace("gif","png");
+			}			
+			
+			function addEvent(el, etype, fn){
+				if (window.addEventListener) {
+					el.addEventListener(etype, fn, false);
+				}else if (window.attachEvent) {
+					el.attachEvent('on' + etype, fn)
+				}else {
+					el['on' + etype] = fn;
+				}
+			}
+			
+			function m_console(msg) {
+				if (console && console.log) {
+					console.log(msg);
+				}
+			}
+		</script>
+		<style type="text/css">
+			html,body {
+				width: 100%;
+				height: 100%;
+				overflow: hidden
+			} 
+		 
+			#player{
+				float: left;
+			}
+		 
+			
+		</style>
+	</head> 
+	<body style="text-align: center;" id="mp3_body"> 
+		<div id="fileID"></div>
+		<script>
+			var mp3url = '{$stream}';
+			var music = new Music(mp3url, 'audio/mpeg', {'init' : v_init, 'play' : v_play, 'stop' : v_stop}, {'init' : e_init});
+			music.init();
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,3086 @@
+<!--{if $_GET['inajax']}-->
+<!--{template common/header_ajax}-->
+<!--{/if}-->
+<!--{if $do == 'create' }-->
+ <div style="background: #fff">
+    <div class="found_header" >
+   		<button type="button" class="close close1" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    	<!--<p class="mb20"><img src="dzz/images/extimg/txt.png" height="40" /></p>-->
+    	<h4 class="modal-title">{eval echo lang('create_jiluben')}</h4>
+        <p class="hide" id="return_$_GET[handlekey]"></p>
+        
+    </div>
+ </div>
+		<form id="newdocform" name="newdocform" class="" role="form" action="{MOD_URL}&op=ajax&do=create" method="post"  onsubmit="ajaxpost(this.id, 'return_$_GET[handlekey]','return_$_GET[handlekey]');" style="margin:0">
+			<input type="hidden" name="formhash" value="{FORMHASH}" />
+			<input type="hidden" name="createsubmit" value="true" />
+			<input type="hidden" name="privacy" value="1" />
+			
+			<!--{if $_G[inajax]}-->
+			<input type="hidden" name="handlekey" value="$_GET[handlekey]" />
+			<!--{/if}-->
+          <div class="modal-body text-center" >
+			<div class="inputWr1 input-black input-float" style="">
+                <label class="control-label  input-label">{eval echo lang('create_name_to_jilu')}</label>
+                <div class="input-animate">
+            	    <input class="form-control form-control-bborder input-input" autocomplete="off" name="title" value="" placeholder="" />
+                </div>
+            </div>
+              <div class="inputWr2 input-black input-float" style="">
+                  <label class="control-label  input-label">{eval echo lang('one_word_introduction')}</label>
+                  <div class="input-animate">
+                      <input class="form-control form-control-bborder input-input" autocomplete="off" name="desc" value="" placeholder="" />
+                  </div>
+              </div>
+            <div class="clearfix mb20" style="margin-bottom: 0">
+                <button type="submit" class="btn sureBtn">{eval echo lang('create')}</button>
+                <button type="button" class="btn btn-can cancelBtn" data-dismiss="modal">{eval echo lang('cancel')}</button>
+            </div>
+		  </div>		
+			
+			
+		</form>
+	
+	
+	<script type="text/javascript" reload="1">
+		jQuery(document).ready(function(){
+			jQuery('#newdocform .input-black').each(function(){
+                InputAnimate.init(jQuery(this));
+            })
+		})
+        jQuery('.fwinmask .focus').select();
+		function succeedhandle_$_GET['handlekey'](url, message, values) {
+			hideWindow('$_GET[handlekey]');
+			jQuery(".empty_alert").remove();
+			var jid=values['jid'];
+			jQuery.get('{MOD_URL}&op=ajax&do=getJiluList&jid='+jid,function(html){
+				if(jQuery('.jilu-my li.post').length){
+					jQuery(html).insertBefore(jQuery('.jilu-my li.post').first());
+				}else{
+					html = '<ul class="posts-group jilu-my" style="position: relative;">'+html+'</ul>';
+					jQuery('#itemContainer').html(html);
+				}
+				gridview9_init(jQuery('#jilu_'+jid+' .gridview9'));
+			});
+		};
+		function errorhandle_$_GET['handlekey'](message) {
+			showmessage(message,'danger',3000,1);
+			jQuery('#fwin_{$_GET[handlekey]} input[name="title"]').focus();
+		};
+		
+	</script> 
+<!--{elseif $do == 'publish' }-->
+<form id="publishform" name="form" class="form-horizontal publishform" action="{MOD_URL}&op=ajax&do=publish" method="post"  onsubmit="return validate_{$type}(this);" style="margin:0">
+    <input type="hidden" name="formhash" value="{FORMHASH}" />
+    <input type="hidden" name="publishsubmit" value="true" />
+    <input type="hidden" name="handlekey" value="$_GET['handlekey']" />
+    <input type="hidden" name="jid" value="$jid" /> 
+    <input type="hidden" name="type" value="$type" />
+    <!--{if $type=='text'}-->
+	<div class="modal-body">		
+        <textarea id="content_text" class="form-control focus" style="border-width:0;resize: none;" placeholder="{eval echo lang('what_write')}" name="content"  rows="2"></textarea>
+        <div class="location-select-box">
+            <a href="javascript:;" class="location-select" init="0" data-href="menu&jid=$jid" href="javascript:;"   data-placement="right" data-auto-adapt="true"><i class="glyphicon glyphicon-map-marker"></i> <span class="location-selected">{eval echo lang('location')}</span></a>
+            <ul class="locations list-unstyled">
+            	<div class="w-load2" style="text-align:left;margin:0"><div class="load" style="font-size:14px;">{eval echo lang('loading')}</div></div>
+            </ul>
+           
+            <script type="text/javascript">
+				if(window.wxready){
+					jQuery('.location-select-box').show();
+					jQuery('#publishform_{$type} .location-select').on('click',function(){
+						jQuery(this).parent().toggleClass('open');
+						if(!jQuery('#publishform_{$type} .locations li').length){
+							wx.getLocation({
+								success: function (res) {
+									var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+									var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+									jQuery.ajax({
+							             type: "get",
+							             url: 'http://api.map.baidu.com/geocoder/v2/?ak=8da47aa7e8422e9d73d06ea006d93453&location='+latitude+','+longitude+'&output=json&pois=1&coordtype=wgs84ll',
+							             dataType: "jsonp",
+							             jsonp: "callback",
+							             jsonpCallback:"loction_callback",
+							             error: function(){
+							                 showmessage('{eval echo lang("get_position_failed")}','danger',3000,1);
+							             }
+							         });
+								}
+								
+							});
+						}
+					});
+					function loction_callback(json){
+						if(json.status>0){
+							showmessage('{eval echo lang("get_position_failed")}','danger',3000,1);
+							return;
+						}
+						var html='<li class="header cancel">{eval echo lang("not_use_position")}</li>';
+						html+='<li class="header" x="'+json.result.location.lat+'" y="'+json.result.location.lng+'" address="'+json.result.formatted_address+'">'+json.result.formatted_address+'</li>';
+						
+						if(json.result.pois.length){
+							for(var i=0;i<json.result.pois.length;i++){
+								html+='<li x="'+json.result.pois[i].point.x+'" y="'+json.result.pois[i].point.y+'" address="'+json.result.pois[i].name+' '+json.result.pois[i].addr+'"><span class="pois-name">'+json.result.pois[i].name+'</span><span class="pois-addr">'+json.result.pois[i].addr+'</span></li>';
+							}
+						}
+						if(html) jQuery('#publishform_{$type} .locations').html(html).show();
+						jQuery('#publishform_{$type} .locations li').on('click',function(){
+							if(jQuery(this).hasClass('cancel')){
+								jQuery('#publishform_{$type} .location-select').html('<i class="glyphicon glyphicon-map-marker"></i><span>{eval echo lang('my_position')}</span>');
+							}else{
+								var x=jQuery(this).attr('x');
+								var y=jQuery(this).attr('y');
+								var address=jQuery(this).attr('address');
+								jQuery('#publishform_{$type} .location-select').html('<input type="hidden" name="x" value="'+x+'"><input type="hidden" name="y" value="'+y+'"><input type="hidden" name="location" value="'+address+'"><i class="glyphicon glyphicon-map-marker text-success"></i><span>'+address+'</span>');
+							}
+							jQuery('#publishform_{$type} .location-select-box').removeClass('open');
+						});
+					}
+				}
+				
+			</script>
+        </div>
+	</div>
+
+	<!--{elseif $type=='image'}-->
+
+	<div class="modal-body">		
+        <textarea id="content_{$type}" class="form-control form-control-bborder" style="border-width:0;resize: none;" placeholder="{eval echo lang('what_write')}" name="content"  rows="2"></textarea>
+       <div id="imageContainer_{$type}" class="imageContainer clearfix">
+       	  <div class="image-item add image-add" style="position:relative" title="{lang click_add_photo}"> 
+              <img src="{MOD_PATH}/images/add-01.png" alt="">
+                <div class="uploadwrap">
+                	<input type="file" name="files[]" id="fileupload_{$type}" multiple="multiple" accept="image/png,image/gif,image/jpeg"/>
+                </div>
+          </div>
+       </div>  
+       <div class="location-select-box">
+            <a href="javascript:;" class="location-select" init="0" data-href="menu&jid=$jid" href="javascript:;"   data-placement="right" data-auto-adapt="true"><i class="glyphicon glyphicon-map-marker"></i> <span class="location-selected">{eval echo lang('location')}</span></a>
+            <ul class="locations list-unstyled">
+            	<div class="w-load2" style="text-align:left;margin:0"><div class="load" style="font-size:14px;">{eval echo lang('loading')}</div></div>
+            </ul>
+           
+            <script type="text/javascript">
+				if(window.wxready){
+					jQuery('.location-select-box').show();
+					jQuery('#publishform_{$type} .location-select').on('click',function(){
+						jQuery(this).parent().toggleClass('open');
+						if(!jQuery('#publishform_{$type} .locations li').length){
+							wx.getLocation({
+								success: function (res) {
+									var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+									var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+									jQuery.ajax({
+							             type: "get",
+							             url: 'http://api.map.baidu.com/geocoder/v2/?ak=8da47aa7e8422e9d73d06ea006d93453&location='+latitude+','+longitude+'&output=json&pois=1&coordtype=wgs84ll',
+							             dataType: "jsonp",
+							             jsonp: "callback",
+							             jsonpCallback:"loction_callback",
+							             error: function(){
+							                 showmessage('{eval echo lang("get_position_failed")}','danger',3000,1);
+							             }
+							         });
+								}
+								
+							});
+						}
+					});
+
+					function loction_callback(json){
+						if(json.status>0){
+							showmessage('{eval echo lang("get_position_failed")}','danger',3000,1);
+							return;
+						}
+						var html='<li class="header cancel">{eval echo lang("not_use_position")}</li>';
+						html+='<li class="header" x="'+json.result.location.lat+'" y="'+json.result.location.lng+'" address="'+json.result.formatted_address+'">'+json.result.formatted_address+'</li>';
+						
+						if(json.result.pois.length){
+							for(var i=0;i<json.result.pois.length;i++){
+								html+='<li x="'+json.result.pois[i].point.x+'" y="'+json.result.pois[i].point.y+'" address="'+json.result.pois[i].name+' '+json.result.pois[i].addr+'"><span class="pois-name">'+json.result.pois[i].name+'</span><span class="pois-addr">'+json.result.pois[i].addr+'</span></li>';
+							}
+						}
+						if(html) jQuery('#publishform_{$type} .locations').html(html).show();
+						jQuery('#publishform_{$type} .locations li').on('click',function(){
+							if(jQuery(this).hasClass('cancel')){
+								jQuery('#publishform_{$type} .location-select').html('<i class="glyphicon glyphicon-map-marker"></i><span>{eval echo lang('my_position')}</span>');
+							}else{
+								var x=jQuery(this).attr('x');
+								var y=jQuery(this).attr('y');
+								var address=jQuery(this).attr('address');
+								jQuery('#publishform_{$type} .location-select').html('<input type="hidden" name="x" value="'+x+'"><input type="hidden" name="y" value="'+y+'"><input type="hidden" name="location" value="'+address+'"><i class="glyphicon glyphicon-map-marker text-success"></i><span>'+address+'</span>');
+							}
+							jQuery('#publishform_{$type} .location-select-box').removeClass('open');
+						});
+					}
+				}
+			</script>
+        </div>
+	</div>
+
+	<script type="text/javascript" reload="1">
+	if(window.wxready){
+		jQuery('#fileupload_image').on('click',function(){
+			 wx.chooseImage({
+			  success: function (res) {
+				for(var i=0;i<res.localIds.length;i++){
+					var html='<div class="image-item" >';
+						html+='     <a href="javascript:;" class="delete dzz dzz-close" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}"></a>';
+						html+='      <img class="img-thumb" src="'+res.localIds[i]+'" onload="image_resize(this,50)"><input type="hidden" name="localid[]" value="'+res.localIds[i]+'" />';
+						html+='      <div class="imgloading" onclick="runUpload()">';
+						html+='  		 <img src="{MOD_PATH}/images/loading.gif" >';
+						html+='       </div>';
+						html+='</div>';
+						jQuery(html).insertBefore('#imageContainer_{$type} .image-item.add');
+				}
+				runUpload();
+				
+			  }
+			});
+			return false;
+		});
+	}
+	function runUpload(){
+		var el=jQuery('#imageContainer_{$type} .image-item input[name="localid[]"]').first();
+		if(el.length){
+			wx.uploadImage({
+				localId: el.val(), // 需要上传的图片的本地ID，由chooseImage接口获得
+				isShowProgressTips: 1,// 默认为1，显示进度提示
+				success: function (res) {
+					var serverId = res.serverId; // 返回图片的服务器端ID
+					jQuery('<input type="hidden" name="attach[aid][]" value="0"><input type="hidden" name="attach[title][]" value="wxalbum"><input type="hidden" name="attach[ext][]" value=""><input type="hidden" name="attach[type][]" value="image"><input type="hidden" name="attach[mediaid][]" value="'+serverId+'" />').insertBefore(el);	
+					el.next('.imgloading').remove();
+					el.remove();
+					runUpload();
+				},
+				fail: function(res){
+					el.remove();
+					runUpload();
+				}
+			});
+		}
+	}
+	jQuery(document).on('click','#imageContainer_{$type} .image-item .delete',function(){
+					jQuery(this).parent().remove();
+	});
+	if (Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor')>0)  jQuery('#fileupload_image').removeAttr("multiple");
+	jQuery('#fileupload_image').fileupload({
+        url: '{MOD_URL}&op=ajax&do=imageupload_image',
+        dataType: 'json',
+		autoUpload: true,
+		maxChunkSize: (parseInt('{$_G[setting][maxChunkSize]}') || 2000000), //2M
+		maxFileSize: parseInt('{$space[maxattachsize]}')>0?parseInt('{$space[maxattachsize]}'):null, // 5 MB
+		acceptFileTypes:new RegExp("(\.|\/)([jpeg|jpg|gif|png|bmp])$",'i'),
+		dropZone:jQuery('#publishform'),
+		pasteZone:jQuery('#publishform'),
+		sequentialUploads:true
+		
+	}).on('fileuploadadd', function (e, data) {
+			data.context = jQuery('<div class="image-item"></div>').insertBefore('#imageContainer_{$type} .image-item.add');
+
+			jQuery.each(data.files, function (index, file) {
+				if(!file.name) file.name='clipboardData.png';
+					var img='dzz/images/default/thumb.png';
+					var type_arr = new Array('image/gif', 'image/png', 'image/jpg', 'image/jpeg');
+			  		if(jQuery.inArray(file.type, type_arr) < 0){
+			  			showmessage('{eval echo lang("please_select_pto")}', 'error', 1000, 1);
+			  			jQuery('#imageContainer_{$type} .image-item.add').prev().remove();
+			  			return;
+			  		}
+				var html='';
+				    html+='     <a href="javascript:;" class="delete dzz dzz-close" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang("delete")}"></a>';
+					html+='      <img class="img-thumb" src="'+img+'">';
+					html+='      <div class="imgloading" >';
+					html+='  		 <img src="{MOD_PATH}/images/loading.gif" >';
+					html+='       </div>';
+				jQuery(html).appendTo(data.context);
+				jQuery("[data-toggle='tooltip']").tooltip();
+			});
+			 data.context.find('.delete').off('click').on('click',function(){
+				data.abort();
+				jQuery(this).parent().remove();
+			});
+	
+		}).on('fileuploadfail', function (e, data) {
+			if(data.textStatus && data.textStatus=='abort'){
+			}else{
+				 jQuery.each(data.result.files, function (index, file) {
+					if(file.error){
+						data.context.find('img.img-thumb').attr('src','{MOD_PATH}/images/alert.png').attr('title',file.error);
+					}
+				 });
+			}
+		}).on('fileuploaddone', function (e, data) {
+            jQuery.each(data.result.files, function (index, file) {
+				if(file.error){
+				data.context.find('img.img-thumb').attr('src','{MOD_PATH}/images/alert.png').attr('title',file.error);
+				}else{
+					jQuery('<input type="hidden" name="attach[aid][]" value="'+file.data.aid+'"><input type="hidden" name="attach[title][]" value="'+file.data.filename+'"><input type="hidden" name="attach[ext][]" value="'+file.data.filetype+'"><input type="hidden" name="attach[type][]" value="'+((file.data.isimage>0)?'image':'attach')+'">').appendTo(data.context);
+					data.context.find('img.img-thumb').replaceWith('<img class="img-thumb" src="'+file.data.img+'" title="'+file.data.filename+'" onload="image_resize(this,50)" data-toggle="tooltip" data-placement="bottom" />').end().find('.imgloading').remove();
+				}
+            });
+        });
+	</script>
+    <!--{elseif $type=='attach'}-->
+
+	<div class="modal-body">		
+        <textarea id="content_{$type}" class="form-control form-control-bborder" style="border-width:0;resize: none;" placeholder="{eval echo lang('what_write')}" name="content"  rows="2"></textarea>
+       <div id="attachContainer_{$type}" class="attachContainer clearfix">
+       	  <div class="attach-item add file-add" title="{lang click_add_file}">
+              <img src="{MOD_PATH}/images/tup-01.png" alt="">
+                <div class="uploadwrap">
+                	<input type="file" name="files[]" id="fileupload_{$type}" multiple="multiple" />
+                </div>
+          </div>
+       </div>  
+       <div class="location-select-box">
+            <a href="javascript:;" class="location-select" init="0" data-href="menu&jid=$jid" href="javascript:;"   data-placement="right" data-auto-adapt="true"><i class="glyphicon glyphicon-map-marker"></i> <span class="location-selected">{eval echo lang('location')}</span></a>
+            <ul class="locations list-unstyled">
+            	<div class="w-load2" style="text-align:left;margin:0"><div class="load" style="font-size:14px;">{eval echo lang('loading')}</div></div>
+            </ul>
+           
+            <script type="text/javascript">
+				if(window.wxready){
+					jQuery('.location-select-box').show();
+					jQuery('#publishform_{$type} .location-select').on('click',function(){
+						jQuery(this).parent().toggleClass('open');
+						if(!jQuery('#publishform_{$type} .locations li').length){
+							wx.getLocation({
+								success: function (res) {
+									var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+									var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+									jQuery.ajax({
+							             type: "get",
+							             url: 'http://api.map.baidu.com/geocoder/v2/?ak=8da47aa7e8422e9d73d06ea006d93453&location='+latitude+','+longitude+'&output=json&pois=1&coordtype=wgs84ll',
+							             dataType: "jsonp",
+							             jsonp: "callback",
+							             jsonpCallback:"loction_callback",
+							             error: function(){
+							                 showmessage('{eval echo lang("get_position_failed")}','danger',3000,1);
+							             }
+							         });
+								}
+								
+							});
+						}
+					});
+					function loction_callback(json){
+						if(json.status>0){
+							showmessage('{eval echo lang("get_position_failed")}','danger',3000,1);
+							return;
+						}
+						var html='<li class="header cancel">{eval echo lang("not_use_position")}</li>';
+						html+='<li class="header" x="'+json.result.location.lat+'" y="'+json.result.location.lng+'" address="'+json.result.formatted_address+'">'+json.result.formatted_address+'</li>';
+						
+						if(json.result.pois.length){
+							for(var i=0;i<json.result.pois.length;i++){
+								html+='<li x="'+json.result.pois[i].point.x+'" y="'+json.result.pois[i].point.y+'" address="'+json.result.pois[i].name+' '+json.result.pois[i].addr+'"><span class="pois-name">'+json.result.pois[i].name+'</span><span class="pois-addr">'+json.result.pois[i].addr+'</span></li>';
+							}
+						}
+						if(html) jQuery('#publishform_{$type} .locations').html(html).show();
+						jQuery('#publishform_{$type} .locations li').on('click',function(){
+							if(jQuery(this).hasClass('cancel')){
+								jQuery('#publishform_{$type} .location-select').html('<i class="glyphicon glyphicon-map-marker"></i><span>{eval echo lang("my_position")}</span>');
+							}else{
+								var x=jQuery(this).attr('x');
+								var y=jQuery(this).attr('y');
+								var address=jQuery(this).attr('address');
+								jQuery('#publishform_{$type} .location-select').html('<input type="hidden" name="x" value="'+x+'"><input type="hidden" name="y" value="'+y+'"><input type="hidden" name="location" value="'+address+'"><i class="glyphicon glyphicon-map-marker text-success"></i><span>'+address+'</span>');
+							}
+							jQuery('#publishform_{$type} .location-select-box').removeClass('open');
+						});
+					}
+				}
+				
+			</script>
+        </div>
+	</div>
+	<script type="text/javascript" reload="1">
+	 if (Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor')>0)  jQuery('#fileupload_image').removeAttr("multiple");
+	 var attachextensions='{eval echo implode('|',$space[attachextensions]);}';
+	if(attachextensions=='') attachextensions="\.*$";
+	else attachextensions="(\.|\/)("+(attachextensions)+")$";
+	jQuery('#fileupload_attach').fileupload({
+        url: '{MOD_URL}&op=ajax&do=fileupload',
+        dataType: 'json',
+		autoUpload: true,
+		maxChunkSize:(parseInt('{$_G[setting][maxChunkSize]}') || 2000000), //2M
+		maxFileSize: parseInt('{$space[maxattachsize]}')>0?parseInt('{$space[maxattachsize]}'):null, // 5 MB
+		acceptFileTypes:new RegExp(attachextensions,'i'),
+		dropZone:jQuery('#publishform'),
+		pasteZone:jQuery('#publishform'),
+		sequentialUploads:true
+		
+	}).on('fileuploadadd', function (e, data) {
+				
+		
+			 data.context = jQuery('<div class="attach-item"></div>').insertBefore('#attachContainer_{$type} .attach-item.add');
+			 
+			jQuery.each(data.files, function (index, file) {
+				if(!file.name) file.name='clipboardData.png';
+				var ext=file.name.split('.').pop().toLowerCase();
+				if(jQuery.inArray(ext,['jpg','jpeg','gif','png','bmp'])>-1){
+					var img='dzz/images/default/thumb.png';
+				}else{
+					var img='dzz/images/extimg/'+ext+'.png';
+				}
+				var img_error='dzz/images/default/imageloading.gif';
+				if(!file.name) file.name='clipboardData.png';
+				var html='';
+				    html+='     <a href="javascript:;" class="delete dzz dzz-close" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}"></a>';
+					html+='      <img class="img-thumb dd" src="'+img+'">';
+					html+='      <div class="imgloading" onclick="jQuery(this).parent().remove();">';
+					html+='  		 <img src="{MOD_PATH}/images/loading.gif" >';
+					html+='       </div>';
+				jQuery(html).appendTo(data.context);
+				jQuery("[data-toggle='tooltip']").tooltip();
+				
+			});
+		   data.context.find('.delete').off('click').on('click',function(){
+				data.abort();
+				jQuery(this).parent().remove();
+			});
+	
+		}).on('fileuploadfail', function (e, data) {
+			if(data.textStatus && data.textStatus=='abort'){
+			}else{
+				 jQuery.each(data.result.files, function (index, file) {
+					if(file.error){
+						data.context.find('imgloading img').attr('src','{MOD_PATH}/images/alert.png').attr('title',file.error);
+					}
+				 });
+			}
+		}).on('fileuploaddone', function (e, data) {
+            jQuery.each(data.result.files, function (index, file) {
+				if(file.error){
+					data.context.find('imgloading img').attr('src','{MOD_PATH}/images/alert.png').attr('title',file.error);
+				}else{
+					jQuery('<input type="hidden" name="attach[aid][]" value="'+file.data.aid+'"><input type="hidden" name="attach[title][]" value="'+file.data.filename+'"><input type="hidden" name="attach[ext][]" value="'+file.data.filetype+'"><input type="hidden" name="attach[type][]" value="'+('attach')+'">').appendTo(data.context);
+					data.context.find('img.img-thumb').replaceWith('<img class="img-thumb" src="'+file.data.img+'" title="'+file.data.filename+'" onload="image_resize(this,50)" />').end().find('.imgloading').remove();
+				}
+            });
+        });
+	
+	</script>
+    <!--{elseif $type=='link'}-->
+
+        <div class="modal-body" id="body_link">
+        	<div class="contentContainer"> <textarea id="content_link" class="form-control " style="resize: none;border-width:0" placeholder="{lang what_write}" name="content" rows="2"></textarea></div>
+            <div class="linkContainer " style="display:none">
+                <div id="linkContainer" class="clearfix"></div>
+            </div>
+        	<div class="linkInputContainer mb20">
+                <div class="input-group">
+                    <div class="input-black input-static" style="margin-bottom: 3px;margin-right: 10px;">
+                        <div class="input-animate" style="padding-right: 30px;">
+                            <input id="link-input" type="text" class="form-control link-input" name="link" placeholder="{eval echo lang('input_link_address')}">
+                            <i class="dzz dzz-close link-close" onclick="emptyLink()"></i>
+                        </div>
+                    </div>
+ 					 <span class="input-group-btn" >
+ 					 	<button type="button" class="btn sureBtn" style="margin-right: 0;background-color: #eee;color: #787878;" data-loading-text="<img src='{MOD_PATH}/images/oval.svg' width='20' /> {lang adding}">{eval echo lang('add')}</button>
+ 					 </span>
+                </div>
+            </div>
+
+            <div class="location-select-box">
+            <a href="javascript:;" class="location-select" init="0" data-href="menu&jid=$jid" href="javascript:;"   data-placement="right" data-auto-adapt="true"><i class="glyphicon glyphicon-map-marker"></i> <span class="location-selected">{eval echo lang('location')}</span></a>
+            <ul class="locations list-unstyled">
+            	<div class="w-load2" style="text-align:left;margin:0"><div class="load" style="font-size:14px;">{eval echo lang('loading')}</div></div>
+            </ul>
+
+            <script type="text/javascript">
+
+				if(window.wxready){
+					jQuery('.location-select-box').show();
+					jQuery('#publishform_{$type} .location-select').on('click',function(){
+						jQuery(this).parent().toggleClass('open');
+						if(!jQuery('#publishform_{$type} .locations li').length){
+							wx.getLocation({
+								success: function (res) {
+									var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+									var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+									jQuery.ajax({
+							             type: "get",
+							             url: 'http://api.map.baidu.com/geocoder/v2/?ak=8da47aa7e8422e9d73d06ea006d93453&location='+latitude+','+longitude+'&output=json&pois=1&coordtype=wgs84ll',
+							             dataType: "jsonp",
+							             jsonp: "callback",
+							             jsonpCallback:"loction_callback",
+							             error: function(){
+							                 showmessage('{eval echo lang("get_position_failed")}','danger',3000,1);
+							             }
+							         });
+								}
+								
+							});
+						}
+					});
+					function loction_callback(json){
+						if(json.status>0){
+							showmessage('{eval echo lang("get_position_failed")}','danger',3000,1);
+							return;
+						}
+						var html='<li class="header cancel">{eval echo lang("not_use_position")}</li>';
+						html+='<li class="header" x="'+json.result.location.lat+'" y="'+json.result.location.lng+'" address="'+json.result.formatted_address+'">'+json.result.formatted_address+'</li>';
+						
+						if(json.result.pois.length){
+							for(var i=0;i<json.result.pois.length;i++){
+								html+='<li x="'+json.result.pois[i].point.x+'" y="'+json.result.pois[i].point.y+'" address="'+json.result.pois[i].name+' '+json.result.pois[i].addr+'"><span class="pois-name">'+json.result.pois[i].name+'</span><span class="pois-addr">'+json.result.pois[i].addr+'</span></li>';
+							}
+						}
+						if(html) jQuery('#publishform_{$type} .locations').html(html).show();
+						jQuery('#publishform_{$type} .locations li').on('click',function(){
+							if(jQuery(this).hasClass('cancel')){
+								jQuery('#publishform_{$type} .location-select').html('<i class="glyphicon glyphicon-map-marker"></i><span>{eval echo lang("my_position")}</span>');
+							}else{
+								var x=jQuery(this).attr('x');
+								var y=jQuery(this).attr('y');
+								var address=jQuery(this).attr('address');
+								jQuery('#publishform_{$type} .location-select').html('<input type="hidden" name="x" value="'+x+'"><input type="hidden" name="y" value="'+y+'"><input type="hidden" name="location" value="'+address+'"><i class="glyphicon glyphicon-map-marker text-success"></i><span>'+address+'</span>');
+							}
+							jQuery('#publishform_{$type} .location-select-box').removeClass('open');
+						});
+					}
+				}
+				
+			</script>
+        </div>
+          
+        </div>
+
+		<script type="text/javascript" reload="1">
+            function emptyLink() {
+                jQuery('.link-input').val('');
+            }
+            jQuery(function () {
+                jQuery('.link-input').on('input',function () {
+                    if(jQuery(this).val()!='' && !jQuery(this).parents(".input-group").find("button").prop("disabled")) {
+                        jQuery('.link-close').css('display','block');
+                        jQuery('.input-group-btn .btn').css({'background':'#fdd860','color':'#98670b'});
+                    } else if (jQuery(this).parents(".input-group").find("button").prop("disabled")){
+                    	jQuery('.link-close').css('display','none');
+                        jQuery('.input-group-btn .btn').css({'background':'#fff','color':'#787878'});
+                    } else {
+                        jQuery('.link-close').css('display','none');
+                        jQuery('.input-group-btn .btn').css({'background':'#eee','color':'#787878'});
+                    }
+                })
+                jQuery('.input-black').each(function() {
+                    InputAnimate.init(jQuery(this));
+                })
+
+                jQuery('.linkInputContainer .input-group-btn .btn').click(function(){
+                	getLinkInfo(jQuery(this).parent().prev().find('#link-input').val(),jQuery(this).parent().prev().find('#link-input'));
+                })
+                // jQuery('.linkInputContainer input').on('blur',function(){
+                //     getLinkInfo(this.value,this);
+                // });
+
+                jQuery('.linkInputContainer input').keyup(function(e){
+                    if(e.keyCode==13){
+                    	getLinkInfo(this.value,this); 
+                    }
+                });
+                function getLinkInfo(url,obj){
+                    if(!url) {
+                    	showmessage('{eval echo lang("input_link_address")}', 'danger', 1000, 1);
+                    	return;
+                    }
+                    // if(url==jQuery(obj).data('ourl')) return ;
+                    // jQuery(obj).data('ourl',url).prop('disabled','');
+                    jQuery(obj).prop('disabled','');
+                    jQuery(".linkInputContainer").find("button").css({'background':'#fff', 'padding':0,'color':'#787878'}).button('loading');
+                    // jQuery.post('{MOD_URL}&op=ajax&do=getLinkInfo',{'link':url},,'json');
+                    jQuery.ajax({
+                    	url:'{MOD_URL}&op=ajax&do=getLinkInfo',
+                    	data:{'link':url},
+                    	dataType:'json',
+                    	type:'post',
+                    	success:function(json){
+                        jQuery(obj).prop('disabled',false);
+						
+                        if(json.msg=='success'){
+                            var html='<div class="file_fed clearfix mb20">'
+                                +'  <a class="delete" title="{eval echo lang('delete')}" data-toggle="tooltip" data-placement="bottom" onclick="jQuery(this).parent().remove()"><i class="dzz dzz-delete"></i></a>'
+                                +'   <a class="edit" title="{eval echo lang('edit')}" data-toggle="tooltip" data-placement="bottom"><i class="dzz dzz-create"></i></a>'
+                                +'	<div class="ico_ffed">'
+
+                                +'		<img src="'+json.img+'" alt="" onload="image_resize(this,50)">'
+                                +'		<input type="hidden" name="attach[aid][]" value="'+json.aid+'">'
+                                +'		<input type="hidden" name="attach[type][]" value="'+json.type+'">'
+                                +'		<input type="hidden" name="attach[ext][]" value="'+json.ext+'">'
+                                +'		<input type="hidden" name="attach[link][]" value="'+url+'">';
+                            if(json.aid<1){
+                                html+='		<input type="hidden" name="attach[url][]" value="'+(json.url?json.url:'')+'">';
+                                html+='		<input type="hidden" name="attach[img][]" value="'+(json.img?json.img:'')+'">';
+                            }
+                            if(json.type=='video'){
+                                html+='		<a href="'+json.url+'" class="video-cover" target="_dzz"></a>';
+                            }
+                            html+='	</div>'
+                                +'	<div class="name_ffed" title="'+json.title+'" style="display:block">'
+                                +'		<div class="name-fed"><textarea class="form-control" name="attach[title][]" style="height:50px;resize:none;border-width:0" >'+json.title+'</textarea> </div>'
+                                +'   </div>'
+                                +' </div>';
+                            jQuery(obj).val('');
+                            var mb= jQuery('#body_link');
+                            mb.find('#linkContainer').append(html);
+                            jQuery("[data-toggle='tooltip']").tooltip();
+                            mb.find('.linkContainer').slideDown();
+                            jQuery(".file_fed").find(".edit").on('click', function(){
+                            	var val = jQuery(this).parent().find("textarea").val();
+                            	jQuery(this).parent().find("textarea").val('').focus().val(val);
+                            })
+                        }else{
+                            showmessage(json.error,'danger',3000,1);
+
+                        }
+                        jQuery(".linkInputContainer").find("button").css('background','#eee').button('reset');
+                    }
+                    })
+                }
+            })
+		</script>
+     <!--{elseif $type=='list'}-->
+        <div class="modal-body">
+        	<div class="contentContainer"> <textarea id="content_{$type}" class="form-control " style="resize: none;border-width:0" placeholder="{eval echo lang('what_write')}" name="content"  rows="2"></textarea></div>
+            <div  class="listContainer " style="padding:10px 0">
+            	<div id="lists" class="lists">
+                  <ul class="sortable list-unstyled">
+                    
+                  </ul>
+                </div>
+                <div class="new-list"> 
+                    <div class="btn-group">
+                      <input id="list_style" name="style" value="3" type="hidden"  />
+                    </div>
+                </div>
+            </div>
+            <div class="location-select-box">
+            <a href="javascript:;" class="location-select" init="0" data-href="menu&jid=$jid" href="javascript:;" data-placement="right" data-auto-adapt="true"><i class="glyphicon glyphicon-map-marker"></i> <span class="location-selected">{eval echo lang('location')}</span></a>
+            <ul class="locations list-unstyled">
+            	<div class="w-load2" style="text-align:left;margin:0"><div class="load" style="font-size:14px;">{eval echo lang('loading')}</div></div>
+            </ul>
+            <script type="text/javascript">
+				if(window.wxready){  
+					jQuery('.location-select-box').show();
+					jQuery('#publishform_{$type} .location-select').on('click',function(){
+						jQuery(this).parent().toggleClass('open');
+						if(!jQuery('#publishform_{$type} .locations li').length){
+							wx.getLocation({
+								success: function (res) {
+									var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+									var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+									jQuery.ajax({
+							             type: "get",
+							             url: 'http://api.map.baidu.com/geocoder/v2/?ak=8da47aa7e8422e9d73d06ea006d93453&location='+latitude+','+longitude+'&output=json&pois=1&coordtype=wgs84ll',
+							             dataType: "jsonp",
+							             jsonp: "callback",
+							             jsonpCallback:"loction_callback",
+							             error: function(){
+							                 showmessage('{eval echo lang("get_position_failed")}','danger',3000,1);
+							             }
+							         });
+								}
+								
+							});
+						}
+					});
+					function loction_callback(json){
+						if(json.status>0){
+							showmessage('{eval echo lang("get_position_failed")}','danger',3000,1);
+							return;
+						}
+						var html='<li class="header cancel">{eval echo lang("not_use_position")}</li>';
+						html+='<li class="header" x="'+json.result.location.lat+'" y="'+json.result.location.lng+'" address="'+json.result.formatted_address+'">'+json.result.formatted_address+'</li>';
+						
+						if(json.result.pois.length){
+							for(var i=0;i<json.result.pois.length;i++){
+								html+='<li x="'+json.result.pois[i].point.x+'" y="'+json.result.pois[i].point.y+'" address="'+json.result.pois[i].name+' '+json.result.pois[i].addr+'"><span class="pois-name">'+json.result.pois[i].name+'</span><span class="pois-addr">'+json.result.pois[i].addr+'</span></li>';
+							}
+						}
+						if(html) jQuery('#publishform_{$type} .locations').html(html).show();
+						jQuery('#publishform_{$type} .locations li').on('click',function(){
+							if(jQuery(this).hasClass('cancel')){
+								jQuery('#publishform_{$type} .location-select').html('<i class="glyphicon glyphicon-map-marker"></i><span>{eval echo lang("my_position")}</span>');
+							}else{
+								var x=jQuery(this).attr('x');
+								var y=jQuery(this).attr('y');
+								var address=jQuery(this).attr('address');
+								jQuery('#publishform_{$type} .location-select').html('<input type="hidden" name="x" value="'+x+'"><input type="hidden" name="y" value="'+y+'"><input type="hidden" name="location" value="'+address+'"><i class="glyphicon glyphicon-map-marker text-success"></i><span>'+address+'</span>');
+							}
+							jQuery('#publishform_{$type} .location-select-box').removeClass('open');
+						});
+					}
+				}
+				
+			</script>
+        </div>
+        </div>
+        <script type="text/javascript" reload="1">
+		list_item_add();
+		
+		jQuery(document).on('keyup','#lists .list-edit-control input[name="todo[content][]"]',function(e){
+			switch(e.keyCode){
+			 case 13:
+				list_item_add();
+				jQuery(".form-list:last").focus();
+				list_item_save(this);
+				return false;
+			 case 8:
+			 	if(this.value==''){
+					var prev=jQuery(this).closest('.todolist-item').prev('.todolist-item');
+					if(this.value==''){ //delete
+						prev.find('.list-p').trigger('click');
+						list_item_save(this);
+						return false;
+					}
+				}
+				break;
+			 case 46:
+			 	if(this.value==''){
+					var next=jQuery(this).closest('.todolist-item').next('.todolist-item');
+					if(this.value==''){ //delete
+						next.find('.list-p').trigger('click');
+						list_item_save(this);
+						return false;
+					}
+				}
+				break;
+			}
+		
+		});
+
+		function show_list_editor(obj){
+			 jQuery('#lists input[name="todo[content][]"]:visible').each(function(){
+				 list_item_save(this);
+			 });
+			 jQuery(obj).addClass('hide');
+			 jQuery(obj).next().removeClass('hide').find('input[name="todo[content][]"]').focus();
+			 
+		 }
+		function list_item_del(obj){
+			 jQuery(obj).closest('li.todolist-item').remove();
+			 list_item_add();
+			 jQuery(obj).focus();
+		}
+		function list_item_save(obj){
+			var c=jQuery(obj).closest('.todolist-item-edit');
+			var input=c.find('input[name="todo[content][]"]');
+			if(input.val()==''){
+				list_item_del(obj);
+			}else{
+				c.find('.list-p').removeClass('hide').text(input.val());
+				c.find('.edit').addClass('hide');
+			}
+			
+		}
+		function todolist_check(obj){
+			var obj = jQuery(obj);
+			if(obj.hasClass("checked")){
+				obj.find("input").prop("checked", false);
+				obj.removeClass("checked");
+				obj.next().removeClass("line-through");
+				obj.prev().val(0);
+			} else {
+				obj.find("input").prop("checked", true);
+				obj.addClass("checked");
+				obj.next().addClass("line-through");
+				obj.prev().val(1);
+			}
+		}
+		function list_item_add(){
+			 jQuery('#lists .todolist-item:not(:last) input[name="todo[content][]"]:visible').each(function(){
+				 // list_item_save(this);
+			 });
+			var last=jQuery('#lists .todolist-item').last();
+			if(last.find('input[name="todo[content][]"]').val()==''){
+				// last.find('input').focus();
+				return;
+			}
+			var html='<li class="todolist-item">'
+				+'		<input name="todo[checked][]" value="0" type="hidden">'
+                +'		<div class="checkbox-custom checkbox-warning todolist-item-check" onclick="todolist_check(this)" style="top:10px;"><input type="checkbox" name="inputCheckboxes"><label></label></div>'
+                +'      <div class="todolist-item-edit editable">'
+                +'       <p onClick="show_list_editor(this)" class="list-p hide"></p>'
+                +'       <div class="edit">'
+                +'          <div class="list-edit-control">'
+                +'            <input type="text" class="form-control form-list" name="todo[content][]" value="" placeholder="{eval echo lang("input_todo_content")}">'
+                +'           </div>'
+                +'          <button type="button" onClick="list_item_save(this)" class="btn btn-success list-save">{eval echo lang("save")} </button>'
+                +'          <a href="javascript:;" class="list-del" onClick="list_item_del(this)"><span style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: rgba(116, 116, 116, 1);text-align: center;line-height: 20px;"><i style="color:#fff;font-size:16px;line-height: 20px" class="dzz dzz-close"></i></span></a>'
+                +'        </div>'
+                +'      </div>'
+                +'    </li>';
+			jQuery(html).appendTo('#lists ul').find('input[name="todo[content][]"]').on("input propertychange",function(){
+				if(jQuery(this).val() != ''){
+					list_item_add();
+				}
+			});
+			if(jQuery(".form-list").length < 2){
+				jQuery(".form-list:last").focus();
+			}
+		}
+		</script>
+    <!--{/if}-->
+    </form>
+	<script type="text/javascript" reload="1">
+		 <!--{if $jid}-->
+		 atbox.init(jQuery('.atbox'));
+		 <!--{/if}-->
+		jQuery('#content_$type').TextAreaExpander(50,99999);
+		function validate_{$type}(form){
+			if('$type'=='text' && form.content.value==''){
+				 showmessage('{eval echo lang("please_input_content")}','danger',1000,1);
+				 return false;
+			}
+			if('$type'=='link'){
+				if(form.content.value=='' && jQuery('.linkContainer .file_fed').length<1){
+					showmessage('{eval echo lang("not_input_link")}','danger',1000,1);
+					return false;
+				}
+			}else if('$type'=='list'){
+				if(jQuery('#lists .todolist-item').length<1){
+					showmessage('{eval echo lang("not_input_todo")}','danger',1000,1);
+					return false;
+				}
+			}else if('$type'=='image'){
+				if(window.wxready){
+					if(form.content.value=='' && jQuery('#imageContainer_image .image-item').length<1){
+						showmessage('{eval echo lang("not_input_image")}','danger',1000,1);
+						return false;
+					}
+					if(jQuery('#imageContainer_image .image-item input[name="localid[]"]').length>0){
+						showmessage('{eval echo lang("image_not_finish_touch_continue")}','danger',1000,1);
+						return false;
+					}
+				}else{
+					if(form.content.value=='' && jQuery('#imageContainer_image .image-item input[name="attach[aid][]"').length<1){
+						showmessage('{eval echo lang("not_input_image")}','danger',1000,1);
+						return false;
+					}
+				}
+			}else if('$type'=='attach'){
+				if(form.content.value=='' && jQuery('#attachContainer_attach .attach-item input[name="attach[aid][]"]').length<1){
+					showmessage('{eval echo lang("not_input_attach")}','danger',1000,1);
+					return false;
+				}
+			
+			}
+			jQuery('publishform_{$type}_btn').button('loading');
+			ajaxpost(form.id, 'publishform_{$type}_btn','publishform_{$type}_btn');
+			
+			return false;
+		}
+		function succeedhandle_$_GET['handlekey'](url, message, values) {
+			hideWindow('$_GET[handlekey]');
+			jQuery(".empty_alert").remove();
+			var jid=values['jid'];
+			if(values['rid']>0){
+				jQuery.get('{MOD_URL}&op=ajax&do=getItem&rid='+values['rid']+'&ismy='+values['ismy'],function(html){
+					jQuery('#publishform_btn').html('{eval echo lang("confirms")}');
+					var tel=jQuery('#itemContainer>.list-item:first');
+					if(tel.length){
+						jQuery(html).hide().insertBefore(tel).slideDown();
+					}else{
+						jQuery(html).hide().appendTo('#itemContainer').slideDown();
+					}
+				});
+			}
+		};
+		function errorhandle_$_GET['handlekey'](message) {
+			showmessage(message,'danger',3000,1);
+			jQuery('#fwin_{$_GET[handlekey]} input[name="content"]').focus();
+		};
+		
+			var cachequeryMentions = [], itemsMentions;
+	<!--{if !empty($jid)}-->
+	jQuery(function(){
+	    jQuery('#content_$type').atwho({
+	       at: "@",
+			data: '{MOD_URL}&op=ajax&do=getAtList&jid=$jid',
+			callbacks:{
+						remote_filter: function (query, render_view) {
+							var thisVal = query,
+							self = jQuery(this);
+							if( !self.data('active') && thisVal.length >= 1 ){
+								self.data('active', true);                            
+								itemsMentions = cachequeryMentions[thisVal]
+								if(typeof itemsMentions == "object"){
+									render_view(itemsMentions);
+								}else
+								{                            
+									if (self.xhr) {
+										self.xhr.abort();
+									}
+									self.xhr = jQuery.getJSON('{MOD_URL}&op=ajax&do=getAtList&jid=$jid',{
+										term: thisVal
+									}, function(data) {
+										cachequeryMentions[thisVal] = data
+										render_view(data);
+									});
+								}                            
+								self.data('active', false);                            
+							}                    
+						}
+			},
+			 tpl: "<li data-value='@[${name}:${id}]' title='${title}'>${avatar}&nbsp;${name}</li>",
+			 search_key: "searchkey",
+			 start_with_space: false,
+			 limit: 5,
+			 max_len: 20,
+			 display_timeout: 300
+	    });
+	});
+	<!--{/if}-->
+	</script> 
+<!--{elseif $do == 'getJiluList'}-->
+	  <li class="post post2" id="jilu_{$data['jid']}" jid="{$data['jid']}" data-url="{MOD_URL}&id=$data[jid]" uperm="$data[perm]">
+          <a class="post-url title"  href="{MOD_URL}&id=$data[jid]" style="display: inline-block;width: 90%;overflow: hidden;text-overflow: ellipsis;">
+           <div class="upvote" >
+            	<div class="gridview9">
+               	<table style="table-layout:fixed;width:100%;height:100%">
+                <tr><td align="center" valign="middle">
+                 <!--{loop $data['cover_uids'] $uid}-->
+                 	{eval echo avatar_block($uid)}
+                 <!--{/loop}-->
+               	</td></tr></table>
+                </div>
+               <!--{if $data[new]}--> <span class="new">$data[new]</span><!--{/if}-->
+          </div>
+          <div class="post-content">
+            <div class="url clearfix">
+                <p class="title">$data[title]</p>
+            </div>
+
+            <div class="post-tagline description">
+                <!--{if $data['lastactive']}-->
+                	<span class="lastactive" style="margin-left:0">$data[lastactive][username]：
+                    <!--{if $data[lastactive][content]}-->$data[lastactive][content]
+                    <!--{else}-->
+                    	[{eval echo $publish_type[$data[lastactive][type]];}]
+                    <!--{/if}-->
+                    </span>
+                <!--{else}-->
+                	<span class="desc" style="margin:0">$data['desc']</span>
+                	
+                <!--{/if}-->   
+            </div> 
+          </div>
+          </a>
+          <div class="time-btn">
+              <span class="updatetime">{eval echo dgmdate($data[updatetime],'u');}</span>
+	            <!--{if $value['pin_type']}-->
+	                <!--{if $value['pin_type'] == 2}-->
+	                    <div class="admin-toped" title="{eval echo lang('admin_top')}">{eval echo lang("toped")}</div>
+	                <!--{else}-->
+	                    <div class="onready_top">{eval echo lang("toped")}</div>
+	                <!--{/if}-->
+	            <!--{else}-->
+	                <div class="click_top">{eval echo lang('top')}</div>
+	            <!--{/if}-->
+          </div>
+        </li>
+        <script type="text/javascript">
+        	jQuery(document).ready(function(){
+        		jQuery('.description .desc').each(function () {
+		            if(jQuery(this).text()=='') {
+		                jQuery(this).parent().prev().css('top','14px');
+		            }else {
+		                jQuery(this).parent().prev().css('top','0px');
+		            }
+		        });
+        	})
+        </script>
+
+<!--{elseif $do == 'loadmore' || $do=='loadnewest'}-->
+    <script>
+        function ReplyCon(rid,el) {
+            jQuery(el).find('.reply-send').css('color','#e6e6e6');
+            jQuery(el).find(".tooltip").remove();
+            document.getElementById('cmt_form_'+rid).onsubmit();
+            jQuery('#cmt_form_'+rid).find('.stateadd').remove();
+            jQuery('#cmt_form_'+rid).find('#cmt_input_'+rid).attr('placeholder','{eval echo lang("publish_your_comment")}');
+        }
+    </script>
+<!--{if $count}-->
+ <!--{loop $list  $value}-->
+     <div class="list-item" id="item_{$value[rid]}" type="$value['type']" rid="{$value[rid]}" perm="$perm" uperm="{eval echo (($value['authorid']==$_G['uid'] || $perm>2) && $jilu[inarchive]<1)?1:0;}">
+     	<div class="topImg-wrap">
+            <!--{if $value['pin_type']}-->
+            	<!--{if $value['pin_type'] == 1}-->
+            		<img src="{MOD_PATH}/images/topImg.gif" alt="">
+            	<!--{else}-->
+            		<img src="{MOD_PATH}/images/admin-topImg.png" alt="">
+            	<!--{/if}-->
+            <!--{/if}-->
+        </div>
+         <!--{if $jilu['deletetime'] <= 0 && $perm >= 2 && $jilu['inarchive'] < 1}-->
+     		<a data-href="{MOD_URL}&op=menu&do=itemmenu&rid=$value[rid]&jid=$value[jid]&ismy=$ismy" href="javascript:;"  class="bar-pin <!--{if $perm>=2 || ($value['authorid']==$_G['uid'] && $jilu[inarchive]<1)}-->js-popbox<!--{/if}-->" data-placement="right" data-auto-adapt="true">
+                <i class="dzz dzz-more moreChoose" title="{eval echo lang('more')}" data-toggle="tooltip" data-placement="bottom"></i>
+            </a>
+            <!--{/if}-->
+        <div class="item-right">
+        	<!--{if !$ismy}-->
+        	<div class="item-header clearfix">
+                <a href="user.php?uid=$value[authorid]" class="cmt-avatar viaWrap">
+                	{eval echo avatar_block($value[authorid]);}
+                </a>
+                <span class="name"><a href="user.php?uid=$value[authorid]">$value['author']</a></span>
+                <span>{eval echo dgmdate($value[dateline],'u');}</span>
+                <!--<span class="bar-pin js-popbox"><i class="glyphicon glyphicon-user"></i></span>-->
+             </div>
+             <!--{/if}-->
+             <!--{if $ismy}-->
+	           <div class="item-book item-header clearfix">
+	           		<span>{eval echo dgmdate($value[dateline ],'u');}</span> <span class="note-a"><!--{if $value[jilu]}--><a href="{MOD_URL}&id=$value[jid]" target="_dzz" class="note-a"><i class="dzz dzz-book" style="font-size: 18px;vertical-align: -2px;"></i> $value[jilu][title]</a><!--{/if}--></span>
+	            </div>
+	          <!--{/if}-->
+        	<div class="item-body">$value[content]</div>
+            <!--{if $value['type']=='image'}-->
+            	<div class="imageContainer clearfix">
+
+                	<!--{loop $value['attachs'] $attach}-->
+                	<div class="image-item image-item-2">
+                      	<a href="javascript:;"><img src="$attach[img]" alt="$attach[title]" data-original="$attach[big_img]" data-download="$attach[down_url]"></a>
+                     </div>
+                 	<!--{/loop}--> 
+                </div>
+              <!--{elseif $value['type']=='video'}-->
+            	<div class="videoContainer clearfix">
+               
+                	<!--{loop $value['attachs'] $attach}-->
+                    <div class="video-item" style="margin-bottom:10px;">
+                        <div class="clearfix">
+                            <video src="$attach[url]" controls="controls" style="max-width:100%;max-height:200px;">{eval echo lang('browser_not_support_this_video_format')}</video> 
+                         </div>
+                     </div>
+                 	<!--{/loop}--> 
+                
+              
+                </div>
+            <!--{elseif $value['type']=='list'}-->
+            <div class="todolistContainer clearfix"> 
+            	<ul class="list-unstyled">
+                {eval $i=0;}
+				 <!--{loop $value[todos] $todo}-->
+                 {eval $i++;}
+                  <li class="todolist-item"> 
+					<div class="checkbox-custom checkbox-warning todolist-item-check" <!--{if $todo[checked]}-->data-checked=1<!--{else}-->data-checked=0<!--{/if}--> <!--{if $perm > 2 && empty($jilu[inarchive])}-->onclick="todolist_toggle(this,'$todo[todoid]')"<!--{/if}-->>
+						<input type="checkbox" <!--{if $perm < 2}-->disabled<!--{/if}--> <!--{if $todo[checked]}-->checked=''<!--{/if}--> >
+						<label></label>
+					</div>
+                    <div class="todolist-item-edit">
+                      <p class="list-p  <!--{if $value['style']==3 && $todo['checked']>0}-->line-through<!--{/if}-->">$todo[content]</p>
+                    </div>
+                  </li>
+                  <!--{/loop}--> 
+                </ul>
+            </div>   
+            <!--{elseif $value['type']=='link'}-->
+            <div class="linkContainer clearfix">
+               <!--{loop $value['attachs'] $attach}-->
+            	 <div class="file_fed clearfix">
+                    <div class="ico_ffed">
+                		<!--{if $attach['type']=='image'}-->
+                        <a href="javascript:;"><img src="$attach[ico_img]" alt="$attach[filename]" data-original="$attach[big_img]" data-download="$attach[down_url]" onload="image_resize(this,50)"> </a>
+                        <!--{elseif $attach['type']=='video'}-->
+                        <a href="javascript:;" data-url="$attach[url]" class="video-cover"><img src="$attach[img]" alt="$attach[filename]" onload="image_resize(this,50)"></a> 
+                        <!--{else}-->
+                    	<a href="$attach['url']" icon="$attach[img]" title="$attach[title]" target="_dzz"><img src="$attach[img]" alt="$attach[filename]" onload="image_resize(this,50)"> </a>
+                        <!--{/if}-->
+                    </div>
+                    <div class="name_ffed" title="$attach[title]">
+                    <!--{if $attach['type']=='image'}-->
+                    <div class="name-fed"><a href="javascript:;" onclick="jQuery(this).parents('.file_fed').find('.ico_ffed').find('img').click();">$attach[title] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--></a></div>
+                     <!--{elseif $attach['type']=='video'}-->
+                     <a href="javascript:;" data-url="$attach[url]" class="video-cover">$attach[title]</a> 
+                     <!--{else}-->
+                     <div class="name-fed"><a href="$attach['url']" icon="$attach[img]"  target="_dzz">$attach[title] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--></a> </div>
+                     <!--{/if}-->
+                    </div>
+                  </div>
+               <!--{/loop}-->
+             </div>
+            <!--{elseif $value['type']=='attach'}-->
+            <div class="attachContainer clearfix">
+               <!--{loop $value['attachs'] $attach}-->
+            	 <div class="file_fed clearfix file_fed1" id="qid_$attach[qid]" >
+                    <div class="ico_ffed">
+                    	<!--{if $attach[isimage]}-->
+                        <a href="javascript:;"><img src="$attach[ico_img]" alt="$attach[title]" data-original="$attach[big_img]" data-download="$attach[down_url]"></a>
+                        <!--{else}-->
+                    	<a href="$attach['url']" data-qid="$attach[qid]" data-ext="$attach[ext]" onclick="attach_preview('$attach[qid]',this);return false"><img src="$attach[img]" alt="$attach[filename]" onload="image_resize(this,50)"> </a>
+                        <!--{/if}-->
+                    </div>
+                    <div class="name_ffed" title="$attach[title]">
+                   
+                    	<div class="name-fed">
+                        <!--{if $attach[isimage]}-->
+                   			 <a href="javascript:;" onclick="jQuery(this).parents('.name_ffed').prev().find('img').click()">$attach[title] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--></a>
+                        <!--{else}--> 
+                   			<a href="$attach['url']" data-qid="$attach[qid]" data-ext="$attach[ext]" onclick="attach_preview('$attach[qid]',this);return false">$attach[title] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--></a>
+                   		<!--{/if}--> 
+                  
+                  		</div>
+
+
+                    </div>
+                     <div class="down_ffed hidden-xs">
+                         <!--{if ($_G['uid']==$value[authorid] || $perm>2) && $jilu[inarchive]<1}--><a href="javascript:;" title="{eval echo lang('delete')}" data-toggle="tooltip" data-placement="bottom" hidefocus="true" class="del_dffed skip_mmfed"  onclick="attach_delete('$attach[qid]')"><i class="dzz dzz-delete"></i></a> <!--{/if}-->
+                         <a href="javascript:;" title="{lang download}" data-toggle="tooltip" data-placement="bottom" hidefocus="true" class="btn_dffed skip_mmfed"  onclick="attach_down('$attach[qid]')"><i class="dzz dzz-download"></i><!--{if $attach[downloads]>0}--><span class="text-gray">($attach[downloads]{eval echo lang('degree')})</span><!--{/if}--></a>
+                     </div>
+                  </div>
+               <!--{/loop}-->
+             </div>
+            
+           <!--{/if}-->
+           <div class="item-loaction">
+           		<!--{if $value[location]}--><a href="javascript:;" class="location-open" locationx="$value[location_x]" locationy="$value[location_y]" title=" $value[location_title]"><i class="glyphicon glyphicon-map-marker"></i> $value[location]</a><!--{/if}-->
+            </div>
+            
+            <div class="item-footer clearfix" <!--{if $jilu[inarchive] > 0 && empty($value[cmts]) && empty($value[zans])}-->style="border-bottom: none;margin-bottom:0px;"<!--{/if}-->>
+            	<!--{if !$ismy}-->
+                <!--{if $value[labels]}-->
+		            	<div class="item-tags item-tags1">
+
+		                    <span class="tagTit">{eval echo lang('label')}:</span>
+
+		                    <span id="tags_$value[rid]" class="tags-wrap clearfix">
+		                    <!--{loop $value[labels] $label}-->
+		                    	<span class="color-label {$label[color]}-label" pow="$label[pow]" title="$label[title]" data-toggle="tooltip" data-placement="bottom"></span>
+		                    <!--{/loop}-->
+		                    </span>
+
+		                </div>
+                <!--{/if}-->
+                <!--{/if}-->
+                <div id="zan_wrap_{$value[rid]}" class="zan-wrap txWrap">
+                	<!--{if $value[zans]}--><i class="dzz dzz-thumbup big_finger"></i><!--{/if}-->
+                	<!--{loop $value[zans] $zan}-->
+                    	<a href="user.php?uid=$zan[uid]" class="viaItem" data-uid="$zan[uid]">{eval echo avatar_block($zan[uid])}</a>
+                    <!--{/loop}-->
+
+                </div>
+				<!--{if $jilu['deletetime'] <= 0}-->
+                <div class="item-inter gray">
+                    <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" <!--{if $jilu[inarchive] || !$_G['uid']}--> title="{eval echo lang('praise')}"<!--{else}-->title="<!--{if $value[zans][$_G['uid']]}-->{eval echo lang('cancle_praise')}<!--{else}-->{eval echo lang('praise_one')}<!--{/if}-->" <!--{/if}--> class="inter-zan inter <!--{if $value[zans][$_G[uid]]}-->zaned<!--{/if}-->" <!--{if !$jilu[inarchive]}-->onclick="zan(this,'$value[rid]')" <!--{/if}--> <!--{if $jilu[inarchive] > 0}-->style="color: #bdbfbf;"<!--{/if}-->>
+                    	<i class="dzz dzz-thumbup" <!--{if $value[zans][$_G['uid']]}-->style="color:#fbbb01;"<!--{/if}-->></i>
+                        <span>{eval echo ($value[zan]?$value[zan]:lang('praise'));}</span>
+                    </a>
+                    <div class="line"></div>
+                    <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" onclick="jQuery('#cmt_input_$value[rid]').focus();" title="{eval echo lang('w_comment')}" id="inter_comment_{$value[rid]}" class="inter-comment inter" <!--{if $jilu[inarchive] > 0}-->style="color: #bdbfbf;"<!--{/if}-->>
+                        <i class="glyphicon glyphicon-comment"></i>
+                        <span>{eval echo ($value[comments]?$value[comments]:lang('w_comment'));}</span>
+                    </a>
+                </div>
+                <script>
+                    jQuery(function () {
+                        jQuery("[data-toggle='tooltip']").tooltip();
+                    })
+                </script>
+                <!--{/if}-->
+            </div>
+           <div id="cmt_box_{$value[rid]}" class="cmt-box <!--{if $value[zan]}-->has-zans<!--{/if}--> <!--{if $value[comments]}-->has-comments<!--{/if}--> clearfix">
+           		<!--<div class="gb_I"></div>-->
+               <div id="cmt_wrap_{$value[rid]}" class="cmt-wrap">
+                   <!--{loop $value[cmts] $cmt}-->
+                   <div class="cmt-item" id="cmt-item-{$cmt['cid']}">
+                       <div class="cmt-avatar viaWrap">
+                       		<a href="user.php?uid=$cmt[authorid]">{eval echo avatar_block($cmt[authorid]);}</a>
+                       	</div>
+                       <div class="cmt-body">
+                           <div class="cmt-msg con"><span class="name"><a href="user.php?uid=$cmt[authorid]">$cmt[author]</a></span>
+                               <span>:</span> $cmt[message]</div>
+                           <div class="cmt-info">
+                               <!--<span class="username"><a href="user.php?uid=$cmt[authorid]">$cmt[author]</a></span>-->
+                               <span class="dateline">{eval echo dgmdate($cmt[dateline],'u');}</span>
+                               <!--{if $_G['uid'] && $jilu[deletetime] <= 0 && !$jilu[inarchive]}-->
+                               <span class="cmt-hover a_btnWrap">
+                                    <!--{if $cmt['authorid']!=$_G['uid']}-->
+                                    <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('w_reply')}" class="cmt-reply-btn dzz dzz-reply" onclick="cmt_reply('$value[rid]','$cmt[authorid]','$cmt[author]','$cmt[cid]')"></a>
+                                    <!--{if $value[authorid] == $_G['uid'] || $perm > 2}-->
+                                    	<div class="line"></div> 
+                                    	<a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$cmt[cid]','$cmt[rid]')"></a>
+                                    <!--{/if}-->
+                                   <!--{/if}-->
+                                   <!--{if $cmt['authorid']==$_G['uid']}-->
+                                    <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$cmt[cid]','$cmt[rid]')"></a>
+                                   <!--{/if}-->
+                                    </span>
+                                   <script>
+                                       jQuery(function() {
+                                           jQuery("[data-toggle='tooltip']").tooltip();
+                                       })
+                                   </script>
+                               <!--{/if}-->
+
+                           </div>
+                       </div> 
+                   </div>
+                   <!--{if $cmt['reply']}-->
+	                   <!--{loop $cmt['reply'] $cep}-->
+		                   <div class="replyItem" pcid="$cmt[cid]">
+									<span class="viaWrap">
+										<a href="user.php?uid=$cep[authorid]">{eval echo avatar_block($cep[authorid])}</a>
+									</span>
+		                       <div style="display: inline-block;width: 92%;">
+		                           <div style="display: inline-block"> 
+		                               <span class="name"><a href="user.php?uid=$cep[authorid]">$cep[author]</a></span>
+		                               <span class="reply"> {eval echo lang('w_reply')} </span>
+		                               <span class="name"><a href="user.php?uid=$cep[pauthorid]">$cep[pauthor]</a></span>
+		                               <span>:</span>
+		                           </div>
+		                           <div class="conWrap">
+
+		                               <span class="con">$cep[message]</span>
+		                           </div>
+		                           <div class="reviewDate">
+		                               <span class="dateline">{eval echo dgmdate($cep[dateline],'u');}</span>
+		                               <!--{if $jilu[deletetime] <= 0 && !$jilu[inarchive]}-->
+		                               <span class="a_btnWrap a_btn1">
+										<span class="a_btn">
+										<!--{if $cep['authorid'] == $_G['uid']}-->
+											<a href="javascript:;" title="{eval echo lang('delete')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-delete" onclick="cmt_del(this,'$cep[cid]','$cep[rid]','reply')"></a>
+										<!--{else}-->
+											<a href="javascript:;" title="{eval echo lang('w_reply')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-reply" onclick="cmt_reply('$value[rid]','$cep[authorid]','$cep[author]','$cmt[cid]')"></a>
+											<!--{if $value[authorid] == $_G['uid'] || $perm > 2}-->
+												<div class="line"></div>
+		                                    	<a href="javascript:;" title="{eval echo lang('delete')}" data-toggle="tooltip" data-placement="bottom" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$cep[cid]','$cep[rid]','reply')"></a>
+		                                    <!--{/if}-->
+										<!--{/if}-->
+										</span>
+									</span>
+									<!--{/if}-->
+		                           </div>
+		                       </div>
+		                   </div>
+	                   <!--{/loop}-->
+	                   <!--{if count($cmt[reply]) > 5}-->
+	                   		<a class="cmt-loadmore" href="javascript:;" onclick="getMoreReply(this,$cmt[cid],5)">{eval echo lang('viewmore_reply')}</a>
+	                   <!--{/if}-->
+                   <!--{/if}-->
+                   <!--{/loop}-->
+                   <!--{if $value[comments] > 5}-->
+                   <a class="cmt-loadmore" href="javascript:;" onclick="getMoreCmt(this,$value[rid],5);return false;" >{eval echo lang('more_w_comment')}</i></a>
+                   <!--{/if}-->
+
+               </div>
+                 <div id="cmt_form_box_{$value[rid]}" class="cmt-form-box clearfix">
+                       
+                     <!--{if $_G[uid] && !$jilu[inarchive] && $jilu[deletetime] <= 0}-->
+                         <div  class="cmt-form"> 
+                             <form id="cmt_form_{$value[rid]}" name="form" class="form-horizontal" action="{MOD_URL}&op=ajax&do=cmt" method="post"  onsubmit="return validate_cmt_$value[rid](this);" style="margin:0">  
+                            <input type="hidden" name="formhash" value="{FORMHASH}" />
+                            <input type="hidden" name="cmtsubmit" value="true" />
+                            <input type="hidden" name="handlekey" value="cmt_{$value[rid]}" />
+                            <input type="hidden" name="rid" value="$value[rid]" /> 
+                            <div class="cmt-body">
+
+                                <div class="input-black input-static" style="margin-bottom: 0;">
+                                    <div class="input-animate" style="padding-right: 45px;">
+                                        <textarea id="cmt_input_{$value[rid]}" name="message" class="form-control saytext form-control1" placeholder="{eval echo lang('publish_your_comment')}" rows="1" ></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="cmt-opt-emotion"><a href="javascript:;" class="btn-emotion" style="width:24px;height:32px;display:inline-block" id="cmt_input_{$value[rid]}sml" onclick="showMenu({'ctrlid':this.id,'evt':'click','pos':'41!'});return false;"><i class="dzz dzz-emoticon smile" title="{eval echo lang('emotion')}" data-toggle="tooltip" data-placement="bottom"></i></a><script type="text/javascript" reload="1">smilies_show('cmt_input_{$value[rid]}sml_div', '{$_G[setting][smcols]}', 'cmt_input_{$value[rid]}');</script></div>
+                                <div class="cmt-opt-submit">
+                                  <a id="cmt_form_{$value[rid]}_btn" class="pull-right send-btn" data-loading-text="<img src='{MOD_PATH}/images/oval.svg' width='20' />"  onclick="ReplyCon('{$value[rid]}',this)">
+                                      <i class="reply-send dzz dzz-send" title="{eval echo lang('publish_comment')}" data-toggle="tooltip" data-placement="bottom"></i>
+                                  </a>
+                                </div>
+                            </div>
+                            </form>
+                         </div> 
+                         <script type="text/javascript" reload="1">
+                             jQuery(function () {
+                                 jQuery('.input-black').each(function(){
+                                     InputAnimate.init(jQuery(this));
+                                 })
+                                 jQuery(document).on('input change blur focus','.saytext',function () {
+                                     if(jQuery(this).val()!='') {
+                                         jQuery(this).parents('.cmt-body').children('div:last-child').find('.reply-send').css('color','#ffba00');
+                                     }else {
+                                         jQuery(this).parents('.cmt-body').children('div:last-child').find('.reply-send').css('color','#e6e6e6');
+                                     }
+                                 })
+                                 //评论按钮
+                                 jQuery(document).on('mouseover','.reply-send', function(){
+                                 	var input = jQuery(this).parents(".cmt-body").find("textarea");
+                                 	if(input.val() != ''){
+                                 		jQuery(this).css('color', '#dfa300');
+                                 	} else {
+                                 		jQuery(this).css('color', '#4e5563');
+                                 	}
+                                 })
+
+                                 jQuery(document).on('mouseout','.reply-send', function(){
+                                 	var input = jQuery(this).parents(".cmt-body").find("textarea");
+                                 	if(input.val() != ''){
+                                 		jQuery(this).css('color', 'rgb(255, 186, 0)');
+                                 	} else {
+                                 		jQuery(this).css('color', '#e6e6e6');
+                                 	}
+                                 })
+
+
+                             })
+                             jQuery('#cmt_input_{$value[rid]}').TextAreaExpander(34,99999);
+                              jQuery('#cmt_input_{$value[rid]}').on('keyup',function(e){
+                                 if(e.ctrlKey && e.keyCode==13){
+                                     document.getElementById('cmt_form_{$value[rid]}').onsubmit();
+                                     jQuery('#cmt_form_$value[rid]').find('.stateadd').remove();
+                                     jQuery('#cmt_form_$value[rid]').find('#cmt_input_$value[rid]').attr('placeholder','{eval echo lang("publish_your_comment")}');
+                                     return false;
+                                 }
+                             });
+                             jQuery(function(){
+                                var cachequeryMentions = [], itemsMentions;
+                                jQuery('#cmt_input_{$value[rid]}').atwho({
+                                   at: "@",
+                                    data: '{MOD_URL}&op=ajax&do=getAtList&jid=$value[jid]',
+                                    callbacks:{
+                                                remote_filter: function (query, render_view) {
+                                                    var thisVal = query,
+                                                    self = jQuery(this);
+                                                    if( !self.data('active') && thisVal.length >= 1 ){
+                                                        self.data('active', true);                            
+                                                        itemsMentions = cachequeryMentions[thisVal]
+                                                        if(typeof itemsMentions == "object"){
+                                                            render_view(itemsMentions);
+                                                        }else
+                                                        {                            
+                                                            if (self.xhr) {
+                                                                self.xhr.abort();
+                                                            }
+                                                            self.xhr = jQuery.getJSON('{MOD_URL}&op=ajax&do=getAtList&jid=$value[jid]',{
+                                                                term: thisVal
+                                                            }, function(data) {
+                                                                cachequeryMentions[thisVal] = data
+                                                                render_view(data);
+                                                            });
+                                                        }                            
+                                                        self.data('active', false);                            
+                                                    }                    
+                                                }
+                                    },
+                                     tpl: "<li data-value='@[${name}:${id}]' title='${title}'>${avatar}&nbsp;${name}</li>",
+                                     search_key: "searchkey",
+                                     start_with_space: false,
+                                     limit: 5,
+                                     max_len: 20,
+                                     display_timeout: 300
+                                });
+                              
+                            });
+                             function validate_cmt_{$value[rid]}(form){
+                                 if(document.getElementById('cmt_input_{$value[rid]}').value==''){
+                                     document.getElementById('cmt_input_{$value[rid]}').focus();
+                                     showmessage('{eval echo lang("publish_your_comment")}','danger',1000,1);
+                                     return false;
+                                 }
+                                 jQuery('#cmt_form_{$value[rid]}_btn').button('loading');
+                                 ajaxpost(form.id,'cmt_form_{$value[rid]}_btn','cmt_form_{$value[rid]}_btn');
+                             } 
+                            function succeedhandle_cmt_{$value[rid]}(url, message, values) {
+                                jQuery('#cmt_form_{$value[rid]}_btn').button('reset');
+                                jQuery('#cmt_input_{$value[rid]}').val('').css('height',34);
+                                
+                                if(values['cid']>0){
+                                    cmt_set_sum('$value[rid]',1);
+                                    jQuery.get('{MOD_URL}&op=ajax&do=getCmt&cid='+values['cid']+'&t='+new Date().getTime(),function(html){
+                                        if(jQuery('#cmt_wrap_$value[rid] .cmt-item').length>0){
+                                        	if(jQuery(html).hasClass('replyItem')) {
+                                        		var pcid = jQuery(html).attr('pcid');
+                                        		jQuery(html).hide().insertAfter('#cmt-item-'+pcid).slideDown();
+                                        	} else {
+                                        		jQuery(html).hide().insertBefore('#cmt_wrap_{$value[rid]} .cmt-item:first').slideDown();
+                                        	}
+                                        }else{
+                                            jQuery(html).hide().appendTo('#cmt_wrap_{$value[rid]}').slideDown();
+                                        }
+                                    });
+                                    
+                                }
+                            };
+                            function errorhandle_cmt_{$value[rid]}(message) {
+                                 jQuery('#cmt_form_{$value[rid]}_btn').button('reset');
+                                showmessage(message,'danger',3000,1);
+                                jQuery('#cmt_input_{$value[rid]}').focus();
+                            };
+                         </script>
+                         <!--{elseif $jilu[inarchive] || $jilu[deletetime] > 0}-->
+                         <!--{else}-->
+                         <!--{/if}-->
+                  </div>
+            </div>
+        </div> 
+     </div>
+     <!--{/loop}-->
+     <!--{if $nextStart}-->
+     <div class="m-loadm" id="loadmore"  onclick="loadmore('$theurl&nextStart=$nextStart');">
+         <div class="loader"><div class="loader-inner ball-beat"><div></div><div></div><div></div></div></div>
+    </div>
+     <!--{/if}--> 
+     <script type="text/javascript">
+	 jQuery('.js-popbox').each(function(){
+		 jQuery(this).popbox();
+	 });
+     jQuery(function () {
+     		jQuery("[data-toggle='tooltip']").tooltip();
+     		jQuery('#itemContainer').children(".list-item").find('.item-right img[data-original]').dzzthumb({allowdownload:1});
+	        imgResize();
+	        jQuery(document).on('click','.jqthumb',function () {
+	            jQuery(this).next().click();
+	        })
+	    })
+     function imgResize() {
+        var imgsGtoup = jQuery('#itemContainer').children(".list-item");
+        imgsGtoup.each(function(){
+        	if(jQuery(this).attr("type") == "image"){
+        		var img_list = jQuery(this).find(".image-item img");
+        		if(img_list.length%3==1) {
+	                jQuery(img_list[0]).css({
+	                    'width':'682px',
+	                    'margin':'0',
+	                    'height':'auto',
+	                    'display':'block'
+	                })
+	                jQuery(this).find(".image-item img:gt(0)").jqthumb({
+	                   width: 222,
+	                   height: 150,
+	               });
+	            }else if(img_list.length%3==2) {
+	                jQuery(this).find(".image-item img:lt(2)").jqthumb({
+	                    width:335,
+	                    height:220
+	                })
+	                if(jQuery(this).find(".image-item img:gt(1)").length > 0) {
+	                    jQuery(this).find(".image-item img:gt(1)").jqthumb({
+	                        width: 222,
+	                        height: 150,
+	                    });
+	                }
+
+	            }else if(img_list.length%3==0) {
+	                img_list.jqthumb({
+	                    width: 222,
+	                    height: 150,
+	                });
+	            }
+        	}
+        })
+    }
+	 </script>
+<!--{elseif $afterdate || $beforedate || $_GET['labels'] || $_GET['uids'] || $_GET['jids'] || $keyword}-->
+ 	<div class="empty_alert">
+        <div class="empty_alert_search">
+            <img src="{MOD_PATH}/images/search_empty.png">
+            <span>{eval echo lang('no_results_in_screen')}</span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //调整高度使居中
+        jQuery(function(){
+        	if(jQuery(".addNotes").length > 0){
+        		var top = (jQuery(".bs-main-container").height()-130) / 2 - jQuery(".addNotes").height();
+        	} else {
+        		var top = (jQuery(".bs-main-container").height()-130) / 2 - jQuery(".container").height();
+        	}
+            jQuery(".empty_alert").css({"display":"block","position":"relative","background":"#f2f2f2","top":top}).show();
+        })
+    </script>
+<!--{/if}-->
+   
+<!--{elseif $do=='getItem'}-->
+	<div class="list-item" id="item_{$value[rid]}" type="$value[type]" rid="{$value[rid]}" perm="$perm" uperm="{eval echo (($value['authorid']==$_G['uid'] || $perm>2) && $jilu[inarchive]<1)?1:0;}">
+        <div class="topImg-wrap">
+            <!--{if $value['pin_type']}-->
+            	<!--{if $value['pin_type'] == 1}-->
+            		<img src="{MOD_PATH}/images/topImg.gif" alt="">
+            	<!--{else}-->
+            		<img src="{MOD_PATH}/images/admin-topImg.png" alt="">
+            	<!--{/if}-->
+            <!--{/if}-->
+        </div>
+        <a data-href="{MOD_URL}&op=menu&do=itemmenu&rid=$value[rid]&jid=$value[jid]&ismy=$ismy" href="javascript:;"  class="bar-pin <!--{if $perm>=2 || ($value['authorid']==$_G['uid'] && $jilu[inarchive]<1)}-->js-popbox<!--{/if}-->" data-placement="right" data-auto-adapt="true">
+            <i class="dzz dzz-more moreChoose" title="{eval echo lang('more')}" data-toggle="tooltip" data-placement="bottom"></i>
+        </a>
+        <div class="item-right">
+        	<!--{if !$ismy}-->
+        	<div class="item-header clearfix">
+                <a href="user.php?uid=$value[authorid]" class="cmt-avatar viaWrap">
+                	{eval echo avatar_block($value[authorid]);}
+                </a>
+                <span class="name"><a href="user.php?uid=$value[authorid]">$value['author']</a></span>
+                <span>{eval echo dgmdate($value[dateline],'u');}</span>
+                <!--<span class="bar-pin js-popbox"><i class="glyphicon glyphicon-user"></i></span>-->
+             </div>
+             <!--{/if}-->
+             <!--{if $ismy}-->
+             	<div class="item-book item-header clearfix">
+	           		<span>{eval echo dgmdate($value[dateline ],'u');}</span> <span class="note-a"><!--{if $value[jilu]}--><a href="{MOD_URL}&id=$value[jid]" target="_dzz" class="note-a"><i class="dzz dzz-book" style="font-size: 18px;vertical-align: -2px;"></i> $value[jilu][title]</a><!--{/if}--></span>
+	            </div>
+             <!--{/if}-->
+        	<div class="item-body">$value[content]</div>
+            <!--{if $value['type']=='image'}-->
+            	<div class="imageContainer clearfix">
+                   <!--{loop $value['attachs'] $attach}-->
+                	<div class="image-item image-item-2">
+                      	<a href="javascript:;"><img src="$attach[img]" alt="$attach[title]" data-original="$attach[big_img]" data-download="$attach[down_url]"></a>
+                     </div>
+                 	<!--{/loop}-->
+                </div>
+              <!--{elseif $value['type']=='video'}-->
+            	<div class="videoContainer clearfix">
+               
+                	<!--{loop $value['attachs'] $attach}-->
+                    <div class="video-item" style="margin-bottom:10px;">
+                        <div class="clearfix">
+                            <video src="$attach[url]" controls="controls" style="max-width:100%;max-height:200px;">{eval echo lang('browser_not_support_this_video_format')}</video> 
+                         </div>
+                     </div>
+                 	<!--{/loop}--> 
+                
+              
+                </div>
+            <!--{elseif $value['type']=='list'}-->
+            <div class="todolistContainer clearfix"> 
+            	<ul class="list-unstyled">
+                {eval $i=0;}
+				 <!--{loop $value[todos] $todo}-->
+                 {eval $i++;}
+                  <li class="todolist-item"> 
+                    <div class="checkbox-custom checkbox-warning todolist-item-check"  onclick="todolist_toggle(this,'$todo[todoid]')" data-checked="$todo[checked]">
+						<input type="checkbox" <!--{if $perm < 2}-->disabled<!--{/if}--> <!--{if $todo[checked]}-->checked=''<!--{/if}--> >
+						<label></label>
+					</div>
+                    <div class="todolist-item-edit">
+                      <p class="list-p  <!--{if $value['style']==3 && $todo['checked']>0}-->line-through<!--{/if}-->">$todo[content]</p>
+                    </div>
+                  </li>
+                  <!--{/loop}--> 
+                </ul>
+            </div>   
+            <!--{elseif $value['type']=='link'}-->
+            <div class="linkContainer clearfix">
+               <!--{loop $value['attachs'] $attach}-->
+            	 <div class="file_fed clearfix">
+                    <div class="ico_ffed">
+                		<!--{if $attach['type']=='image'}-->
+                        <a href="javascript:;"><img src="$attach[img]" data-original="$attach[img]" alt="$attach[filename]" onload="image_resize(this,50)"> </a>
+                        <!--{elseif $attach['type']=='video'}-->
+                        <a href="javascript:;" data-url="$attach[url]" class="video-cover"><img src="$attach[img]" alt="$attach[filename]" onload="image_resize(this,50)"></a> 
+                        <!--{else}-->
+                    	<a href="$attach['url']" icon="$attach[img]" title="$attach[title]" target="_dzz"><img src="$attach[img]" alt="$attach[filename]" onload="image_resize(this,50)"> </a>
+                        <!--{/if}-->
+                    </div>
+                    <div class="name_ffed" title="$attach[title]">
+                    <!--{if $attach['type']=='image'}-->
+                    <div class="name-fed"><a href="javascript:;" onclick="jQuery(this).parents('.file_fed').find('.ico_ffed').find('img').click();">$attach[title] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--></a></div>
+                     <!--{elseif $attach['type']=='video'}-->
+                     <a href="javascript:;" data-url="$attach[url]" class="video-cover">$attach[title]</a> 
+                     <!--{else}-->
+                     <div class="name-fed"><a href="$attach['url']" icon="$attach[img]"  target="_dzz">$attach[title] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--></a> </div>
+                     <!--{/if}-->
+                    </div>
+                  </div>
+               <!--{/loop}-->
+             </div>
+            <!--{elseif $value['type']=='attach'}-->
+            <div class="attachContainer clearfix">
+               <!--{loop $value['attachs'] $attach}-->
+            	 <div class="file_fed clearfix file_fed1" id="qid_$attach[qid]" >
+                    <div class="ico_ffed">
+                    	<!--{if $attach[isimage]}-->
+                        <a href="javascript:;"><img src="$attach[ico_img]" alt="$attach[title]" data-original="$attach[big_img]" data-download="$attach[down_url]"></a>
+                        <!--{else}-->
+                    	<a href="$attach['url']" data-qid="$attach[qid]" data-ext="$attach[ext]" onclick="attach_preview('$attach[qid]',this);return false"><img src="$attach[img]" alt="$attach[filename]" onload="image_resize(this,50)"> </a>
+                        <!--{/if}-->
+                    </div>
+                    <div class="name_ffed" title="$attach[title]">
+                   
+                    	<div class="name-fed">
+                        <!--{if $attach[isimage]}-->
+                   			 <a href="javascript:;" onclick="jQuery(this).parents('.name_ffed').prev().find('img').click()">$attach[title] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--></a>
+                        <!--{else}--> 
+                   			<a href="$attach['url']" data-qid="$attach[qid]" data-ext="$attach[ext]" onclick="attach_preview('$attach[qid]',this);return false">$attach[title] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--></a>
+                   		<!--{/if}--> 
+                  
+                  		</div>
+ 
+                    </div>
+                    <div class="down_ffed hidden-xs">
+                             <!--{if ($_G['uid']==$value[authorid] || $perm>2) && $jilu[inarchive]<1}--><a href="javascript:;" title="{eval echo lang(delete)}" data-toggle="tooltip" data-placement="bottom" hidefocus="true" class="del_dffed skip_mmfed"  onclick="attach_delete('$attach[qid]')"><i class="dzz dzz-delete"></i></a> <!--{/if}-->
+                             <a href="javascript:;" title="{eval echo lang(download)}" data-toggle="tooltip" data-placement="bottom" hidefocus="true" class="btn_dffed skip_mmfed"  onclick="attach_down('$attach[qid]')"><i class="dzz dzz-download"></i><!--{if $attach[downloads]>0}--><span class="text-gray">($attach[downloads]{eval echo lang('degree')})</span><!--{/if}--></a>
+                    </div>
+                  </div>
+               <!--{/loop}-->
+             </div>
+            
+           <!--{/if}-->
+           <div class="item-loaction">
+           		<!--{if $value[location]}--><a href="javascript:;" class="location-open" locationx="$value[location_x]" locationy="$value[location_y]" title=" $value[location_title]"><i class="glyphicon glyphicon-map-marker"></i> $value[location]</a><!--{/if}-->
+            </div>
+            
+            <div class="item-footer clearfix">
+            	<!--{if !$ismy}-->
+					<!--{if $value[labels]}-->
+		            	<div class="item-tags item-tags1">
+		                    <span class="tagTit">{eval echo lang('label')}:</span>
+		                    <span id="tags_$value[rid]" class="tags-wrap clearfix">
+		                    <!--{loop $value[labels] $label}-->
+		                    	<span class="color-label {$label[color]}-label" pow="$label[pow]" title="$label[title]" data-toggle="tooltip" data-placement="bottom"></span>
+		                    <!--{/loop}-->
+		                    </span>
+
+		                </div>
+	                <!--{/if}-->
+                <!--{/if}-->
+                <div id="zan_wrap_{$value[rid]}" class="zan-wrap txWrap">
+                	<!--{if $value[zans]}--><i class="dzz dzz-thumbup big_finger"></i><!--{/if}-->
+                	<!--{loop $value[zans] $zan}-->
+                    <a href="user.php?uid=$zan[uid]" class="viaItem" data-uid="$zan[uid]">
+                    	{eval echo avatar_block($zan[uid])}
+                    </a>
+                    <!--{/loop}-->
+
+                </div>
+                <div class="item-inter gray">
+                    <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="<!--{if $value[zans][$_G['uid']]}-->{eval echo lang('cancle_praise')}<!--{else}-->{eval echo lang('praise_one')}<!--{/if}-->" class="inter-zan inter <!--{if $value[zans][$_G[uid]]}-->zaned<!--{/if}-->" onclick="zan(this,'$value[rid]')">
+                        <i class="dzz dzz-thumbup" <!--{if $value[zans][$_G['uid']]}-->style="color:#fbbb01;"<!--{/if}-->></i>
+                        <span>{eval echo ($value[zan]?$value[zan]:'赞');}</span>
+                    </a>
+                    <div class="line"></div>
+                    <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('w_comment')}" id="inter_comment_{$value[rid]}" class="inter-comment inter">
+                        <i class="glyphicon glyphicon-comment"></i>
+                        <span>{eval echo ($value[comments]?$value[comments]:lang('w_comment'));}</span>
+                    </a>
+                </div>
+            </div>
+            <script>
+                jQuery(function () {
+                    jQuery("[data-toggle='tooltip']").tooltip();
+                })
+            </script>
+           <div id="cmt_box_{$value[rid]}" class="cmt-box <!--{if $value[zan]}-->has-zans<!--{/if}--> <!--{if $value[comments]}-->has-comments<!--{/if}--> clearfix">
+           		<!--<div class="gb_I aaa"></div>-->
+               <div id="cmt_wrap_{$value[rid]}" class="cmt-wrap">
+                   <!--{loop $value[cmts] $cmt}-->
+                   <div class="cmt-item" id="cmt-item-{$cmt['cid']}">
+                       <div class="cmt-avatar viaWrap">
+                       		<a href="user.php?uid=$cmt[authorid]">{eval echo avatar_block($cmt[authorid]);}</a>
+                       	</div>
+                       <div class="cmt-body">
+                           <div class="cmt-msg con"><span class="name"><a href="user.php?uid=$cmt[authorid]">$cmt[author]</a></span>
+                               <span>:</span> $cmt[message]</div>
+                           <div class="cmt-info">
+                               <!--<span class="username"><a href="user.php?uid=$cmt[authorid]">$cmt[author]</a></span>-->
+                               <span class="dateline">{eval echo dgmdate($cmt[dateline],'u');}</span>
+                               <!--{if $_G['uid']}-->
+                               <span class="cmt-hover a_btnWrap">
+                                    <!--{if $cmt['authorid']!=$_G['uid']}-->
+                                    <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('w_reply')}" class="cmt-reply-btn dzz dzz-reply" onclick="cmt_reply('$value[rid]','$cmt[authorid]','$cmt[author]','$cmt[cid]')"></a>
+                                    <!--{if $value[authorid] == $_G['uid'] || $_G['adminid']}-->
+                                   		<div class="line"></div>
+                                    	<a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$cmt[cid]','$cmt[rid]')"></a>
+                                    <!--{/if}-->
+                                   <!--{/if}-->
+                                   <!--{if $cmt['authorid']==$_G['uid'] }-->
+                                    <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$cmt[cid]','$cmt[rid]')"></a>
+                                   <!--{/if}-->
+                               </span>
+                               <script>
+                                   jQuery(function() {
+                                       jQuery("[data-toggle='tooltip']").tooltip();
+                                   })
+                               </script>
+                               <!--{/if}-->
+                           </div>
+                       </div> 
+                   </div>
+                   <!--{if $cmt['reply']}-->
+	                   <!--{loop $cmt['reply'] $cep}-->
+		                   <div class="replyItem" pcid="$cmt[cid]">
+									<span class="viaWrap">
+										<a href="user.php?uid=$cep[authorid]">{eval echo avatar_block($cep[authorid]);}</a>
+									</span>
+		                       <div style="display: inline-block;width: 92%;">
+		                           <div style="display: inline-block">
+		                               <span class="name"><a href="user.php?uid=$cep[authorid]">$cep[author]</a></span>
+		                               <span class="reply"> {eval echo lang('w_reply')} </span>
+		                               <span class="name"><a href="user.php?uid=$cep[pauthorid]">$cep[pauthor]</a></span>
+		                               <span>:</span>
+		                           </div>
+		                           <div class="conWrap">
+
+		                               <span class="con">$cep[message]</span>
+		                           </div>
+		                           <div class="reviewDate">
+		                               <span class="dateline">{eval echo dgmdate($cep[dateline],'u');}</span>
+		                               <span class="a_btnWrap a_btn1">
+										<span class="a_btn">
+										<!--{if $cep['authorid'] == $_G['uid']}-->
+											<a href="javascript:;" class="dzz dzz-delete" title="{eval echo lang('delete')}" onclick="cmt_del(this,'$cep[cid]','$cep[rid]','reply')"></a>
+										<!--{else}-->
+											<a href="javascript:;" class="dzz dzz-reply" title="{eval echo lang('w_reply')}" onclick="cmt_reply('$value[rid]','$cep[authorid]','$cep[author]','$cmt[cid]')"></a>
+											<!--{if $value[authorid] == $_G['uid'] || $_G['adminid']}-->
+												<div class="line"></div>
+		                                    	<a href="javascript:;" title="{lang delete}" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$cep[cid]','$cep[rid]','reply')"></a>
+		                                    <!--{/if}-->
+										<!--{/if}-->
+										</span>
+									</span>
+		                           </div>
+		                       </div>
+		                   </div>
+	                   <!--{/loop}-->
+	                   <!--{if count($cmt[reply]) >= 5}-->
+	                   		<a class="cmt-loadmore" href="javascript:;" onclick="getMoreReply(this,$cmt[cid],5)">{eval echo lang('upload_more')}</a>
+	                   <!--{/if}-->
+                   <!--{/if}-->
+                   <!--{/loop}-->
+                   <!--{if $value[comments]>5}-->
+                   <a class="cmt-loadmore" href="javascript:;" onclick="getMoreCmt(this,$value[rid],5);return false;" >{eval echo lang('more_w_comment')}</a>
+                   <!--{/if}-->
+
+               </div>
+                 <div id="cmt_form_box_{$value[rid]}" class="cmt-form-box clearfix">
+                       
+                     <!--{if $_G[uid]}-->
+                     <div  class="cmt-form">
+                         <form id="cmt_form_{$value[rid]}" name="form" class="form-horizontal" action="{MOD_URL}&op=ajax&do=cmt" method="post"  onsubmit="return validate_cmt_$value[rid](this);" style="margin:0">
+                             <input type="hidden" name="formhash" value="{FORMHASH}" />
+                             <input type="hidden" name="cmtsubmit" value="true" />
+                             <input type="hidden" name="handlekey" value="cmt_{$value[rid]}" />
+                             <input type="hidden" name="rid" value="$value[rid]" />
+                             <div class="cmt-body sss">
+                                 <div class="input-black input-static" style="margin-bottom: 0;">
+                                     <div class="input-animate" style="padding-right: 45px;">
+                                         <textarea id="cmt_input_{$value[rid]}" name="message" class="form-control1 form-control saytext" placeholder="{eval echo lang('publish_your_comment')}" rows="1" ></textarea>
+                                     </div>
+                                 </div>
+                                 <div class="cmt-opt-emotion"><a href="javascript:;"  class="btn-emotion" style="width:24px;height:32px;display:inline-block" id="cmt_input_{$value[rid]}sml" onclick="showMenu({'ctrlid':this.id,'evt':'click','pos':'41!'});return false;"><i class="dzz dzz-emoticon smile" title="{eval echo lang('emotion')}" data-toggle="tooltip" data-placement="bottom"></i></a><script type="text/javascript" reload="1">smilies_show('cmt_input_{$value[rid]}sml_div', '{$_G[setting][smcols]}', 'cmt_input_{$value[rid]}');</script></div>
+                                 <div class="cmt-opt-submit">
+                                     <a id="cmt_form_{$value[rid]}_btn" class="pull-right send-btn" data-loading-text="<img src='{MOD_PATH}/images/oval.svg' width='20' />" onclick="ReplyCon('{$value[rid]}',this)">
+                                         <i class="reply-send dzz dzz-send" title="{eval echo lang('publish_comment')}" data-toggle="tooltip" data-placement="bottom"></i>
+                                     </a>
+                                 </div>
+                             </div>
+                         </form>
+                     </div>
+                     <script type="text/javascript" reload="1">
+                         jQuery(function () {
+                             jQuery('.input-black').each(function(){
+                                 InputAnimate.init(jQuery(this));
+                             })
+                         })
+                         jQuery('#cmt_input_{$value[rid]}').TextAreaExpander(34,99999);
+                         jQuery('#cmt_input_{$value[rid]}').on('keyup',function(e){
+                             if(e.ctrlKey && e.keyCode==13){
+                                 document.getElementById('cmt_form_{$value[rid]}').onsubmit();
+                                 jQuery('#cmt_form_$value[rid]').find('.stateadd').remove();
+                                 jQuery('#cmt_form_$value[rid]').find('#cmt_input_$value[rid]').attr('placeholder','{eval echo lang("publish_your_comment")}');
+                                 return false;
+                             }
+                         });
+                             jQuery(function(){
+
+                             	jQuery(document).on('input change blur focus','.saytext',function () {
+                                     if(jQuery(this).val()!='') {
+                                         jQuery(this).parents('.cmt-body').children('div:last-child').find('.reply-send').css('color','#ffba00');
+                                     }else {
+                                         jQuery(this).parents('.cmt-body').children('div:last-child').find('.reply-send').css('color','#e6e6e6');
+                                     }
+                                 })
+                             	//评论按钮
+                                 jQuery(document).on('mouseover','.reply-send', function(){
+                                 	var input = jQuery(this).parents(".cmt-body").find("textarea");
+                                 	if(input.val() != ''){
+                                 		jQuery(this).css('color', '#dfa300');
+                                 	} else {
+                                 		jQuery(this).css('color', '#4e5563');
+                                 	}
+                                 })
+
+                                 jQuery(document).on('mouseout','.reply-send', function(){
+                                 	var input = jQuery(this).parents(".cmt-body").find("textarea");
+                                 	if(input.val() != ''){
+                                 		jQuery(this).css('color', 'rgb(255, 186, 0)');
+                                 	} else {
+                                 		jQuery(this).css('color', '#e6e6e6');
+                                 	}
+                                 })
+
+                                var cachequeryMentions = [], itemsMentions;
+                                jQuery('#content_{$value[type]}').atwho({
+                                   at: "@",
+                                    //data: '{DZZSCRIPT}?mod=feed&op=ajax&do=getUserToJson',
+                                    data: '{MOD_URL}&op=ajax&do=getAtList&jid=$value[jid]',
+                                    callbacks:{
+                                                remote_filter: function (query, render_view) {
+                                                    var thisVal = query,
+                                                    self = jQuery(this);
+                                                    if( !self.data('active') && thisVal.length >= 1 ){
+                                                        self.data('active', true);                            
+                                                        itemsMentions = cachequeryMentions[thisVal]
+                                                        if(typeof itemsMentions == "object"){
+                                                            render_view(itemsMentions);
+                                                        }else
+                                                        {                            
+                                                            if (self.xhr) {
+                                                                self.xhr.abort();
+                                                            }
+                                                            self.xhr = jQuery.getJSON('{MOD_URL}&op=ajax&do=getAtList&jid=$value[jid]',{
+                                                                term: thisVal
+                                                            }, function(data) {
+                                                                cachequeryMentions[thisVal] = data
+                                                                render_view(data);
+                                                            });
+                                                        }                            
+                                                        self.data('active', false);                            
+                                                    }                    
+                                                }
+                                    },
+                                     tpl: "<li data-value='@[${name}:${id}]' title='${title}'>${avatar}&nbsp;${name}</li>",
+                                     search_key: "searchkey",
+                                     start_with_space: false,
+                                     limit: 5,
+                                     max_len: 20,
+                                     display_timeout: 300
+                                });
+                              
+                            });
+                             function validate_cmt_{$value[rid]}(form){
+                                 if(document.getElementById('cmt_input_{$value[rid]}').value==''){
+                                     document.getElementById('cmt_input_{$value[rid]}').focus();
+                                     showmessage('{eval echo lang("publish_your_comment")}','danger',1000,1);
+                                     return false;
+                                 }
+                                 jQuery('#cmt_form_{$value[rid]}_btn').button('loading');
+                                 ajaxpost(form.id,'cmt_form_{$value[rid]}_btn','cmt_form_{$value[rid]}_btn');
+                             } 
+                            function succeedhandle_cmt_{$value[rid]}(url, message, values) {
+                                jQuery('#cmt_form_{$value[rid]}_btn').button('reset');
+                                jQuery('#cmt_input_{$value[rid]}').val('').css('height',34);
+                                
+                                if(values['cid']>0){
+                                    cmt_set_sum('$value[rid]',1);
+                                    jQuery.get('{MOD_URL}&op=ajax&do=getCmt&cid='+values['cid']+'&t='+new Date().getTime(),function(html){
+                                        if(jQuery('#cmt_wrap_$value[rid] .cmt-item').length>0){
+                                        	if(jQuery(html).hasClass('replyItem')) {
+                                        		var pcid = jQuery(html).attr('pcid');
+                                        		jQuery(html).hide().insertAfter('#cmt-item-'+pcid).slideDown();
+                                        	} else {
+                                        		jQuery(html).hide().insertBefore('#cmt_wrap_{$value[rid]} .cmt-item:first').slideDown();
+                                        	}
+                                        }else{
+                                            jQuery(html).hide().appendTo('#cmt_wrap_{$value[rid]}').slideDown();
+                                        }
+                                    });
+                                    
+                                }
+                            };
+                            function errorhandle_cmt_{$value[rid]}(message) {
+                                 jQuery('#cmt_form_{$value[rid]}_btn').button('reset');
+                                showmessage(message,'danger',3000,1);
+                                jQuery('#cmt_input_{$value[rid]}').focus();
+                            };
+                         </script>
+                         <!--{else}-->
+                         <div class="alert alert-warning" style="margin-top:10px;padding:10px;">{eval echo lang('need_logined_comment')}，<a href="user.php?mod=logging">{eval echo lang('now_login')}</a></div>
+                         <!--{/if}-->
+                  </div>
+                    
+            </div>
+        </div>
+        <script type="text/javascript">
+        	jQuery(function() {
+        		jQuery("[data-toggle='tooltip']").tooltip();
+		 		jQuery('#item_$rid .js-popbox').popbox();
+        	})
+        	jQuery(function () {
+	     		jQuery('#itemContainer').children(".list-item").find('.item-right img[data-original]').dzzthumb({allowdownload:1});
+		        imgResize();
+		        jQuery(document).on('click','.jqthumb',function () {
+		            jQuery(this).next().click();
+		        })
+		    })
+	     function imgResize() {
+	        var imgsGtoup = jQuery('#itemContainer').children(".list-item");
+	        imgsGtoup.each(function(){
+	        	if(jQuery(this).attr("type") == "image"){
+	        		var img_list = jQuery(this).find(".image-item img");
+	        		if(img_list.length%3==1) {
+		                jQuery(img_list[0]).css({
+		                    'width':'682px',
+		                    'margin':'0',
+		                    'height':'auto',
+		                    'display':'block'
+		                })
+		                jQuery(this).find(".image-item img:gt(0)").jqthumb({
+		                   width: 222,
+		                   height: 150,
+		               });
+		            }else if(img_list.length%3==2) {
+		                jQuery(this).find(".image-item img:lt(2)").jqthumb({
+		                    width:335,
+		                    height:220
+		                })
+		                if(jQuery(this).find(".image-item img:gt(1)").length > 0) {
+		                    jQuery(this).find(".image-item img:gt(1)").jqthumb({
+		                        width: 222,
+		                        height: 150,
+		                    });
+		                }
+
+		            }else if(img_list.length%3==0) {
+		                img_list.jqthumb({
+		                    width: 222,
+		                    height: 150,
+		                });
+		            }
+	        	}
+	        })
+	    }
+		 </script>
+     </div>
+<!--{elseif $do=='getCmt'}-->
+	<!--{if $value[pcid]}-->
+		<div class="replyItem" pcid="$value[pcid]">
+				<span class="viaWrap">
+					<a href="user.php?uid={$value[authourid]}">{eval echo avatar_block($value[authourid])}</a>
+				</span>
+	       <div style="display: inline-block;width: 92%;">
+	           <div style="display: inline-block">
+	               <span class="name"><a href="user.php?uid=$value[authorid]">$value[author]</a></span>
+	               <span class="reply"> {eval echo lang('w_reply')} </span>
+	               <span class="name"><a href="user.php?uid=$value[pauthorid]">$value[pauthor]</a></span>
+	               <span>:</span>
+	           </div>
+	           <div class="conWrap">
+
+	               <span class="con">$value[message]</span>
+	           </div>
+	           <div class="reviewDate">
+	               <span class="dateline">{eval echo dgmdate($value[dateline],'u');}</span>
+	               <span class="a_btnWrap a_btn1">
+					<span class="a_btn">
+					<!--{if $value['authorid'] == $_G['uid']}-->
+						<a href="javascript:;" title="{eval echo lang('delete')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-delete" onclick="cmt_del(this,'$value[cid]','$value[rid]','reply')"></a>
+					<!--{else}-->
+						<a href="javascript:;" title="{eval echo lang('w_reply')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-reply" onclick="cmt_reply('$value[rid]','$value[authorid]','$value[author]','$value[pcid]')"></a>
+					<!--{/if}-->
+					</span>
+				</span>
+				<script>
+                    jQuery(function() {
+                        jQuery("[data-toggle='tooltip']").tooltip();
+                    })
+                </script>
+	           </div>
+	       </div>
+	   </div>
+	<!--{else}-->
+     <div class="cmt-item" id="cmt-item-$value[cid]">
+        <div class="cmt-avatar viaWrap">
+        	<a href="user.php?uid=$value[authorid]">{eval echo avatar_block($value[authorid]);}</a>
+        </div>
+        <div class="cmt-body">
+            <div class="cmt-msg con"><span class="username name"><a href="user.php?uid=$value[authorid]">$value[author]</a></span>
+                <span>:</span> $value[message]</div>
+            <div class="cmt-info">
+            	<!--<span class="username"><a href="user.php?uid=$value[authorid]">$value[author]</a></span>-->
+                <span class="dateline">{eval echo dgmdate($value[dateline],'u');}</span>
+                <span class="cmt-hover a_btnWrap">
+                <!--{if $value['authorid']!==$_G['uid']}-->
+                <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('reply')}" class="cmt-reply-btn dzz dzz-reply" onclick="cmt_reply(this,'$value[authorid]','$value[author]')"></a>
+                <!--{/if}-->
+                 <!--{if $value['authorid']==$_G['uid'] }-->
+                <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$value[cid]','$value[rid]')"></a>
+                <!--{/if}-->
+                </span>
+                <script>
+                    jQuery(function() {
+                        jQuery("[data-toggle='tooltip']").tooltip();
+                    })
+                </script>
+            </div>
+        </div>
+    </div>
+    <!--{/if}-->
+<!--{elseif $do=='cmt'}--> 
+     <div id="cmt_box_{$rid}" class="cmt-box clearfix">
+     		<div class="gb_H"></div>
+            <div class="gb_I"></div>
+      		<!--{if $_G[uid]}-->
+             <div  class="cmt-form"> 
+                 <form id="cmt_form_{$rid}" name="form" class="form-horizontal" action="{MOD_URL}&op=ajax&do=cmt" method="post"  onsubmit="return validate_cmt_{$rid}(this);" style="margin:0">  
+                <input type="hidden" name="formhash" value="{FORMHASH}" />
+                <input type="hidden" name="cmtsubmit" value="true" />
+                <input type="hidden" name="handlekey" value="cmt_{$rid}" />
+                <input type="hidden" name="rid" value="$rid" /> 
+                <div class="cmt-body ">
+                	<div class="cmt-opt-emotion"><a href="javascript:;"  class="btn-emotion" style="width:24px;height:32px;display:inline-block" id="cmt_input_{$rid}sml" onclick="showMenu({'ctrlid':this.id,'evt':'click','layer':2});return false;"><i class="dzz dzz-emoticon smile"></i></a><script type="text/javascript" reload="1">smilies_show('cmt_input_{$rid}sml_div', '{$_G[setting][smcols]}', 'cmt_input_{$rid}');</script></div>
+                    <textarea id="cmt_input_{$rid}" name="message" class="form-control" placeholder="{eval echo lang('enter_comment_here')}（Ctrl+Enter）" rows="1" ></textarea>
+                    <div class="cmt-opt-submit">
+                    	<button id="cmt_form_{$rid}_btn" class="btn btn-primary pull-right" style="padding:5px 10px;"  onclick="ReplyCon('{$value[rid]}')">{eval echo lang('release')}</button>
+                    </div>
+                </div>
+                </form>
+             </div>
+             <script type="text/javascript" reload="1">
+                 jQuery(function () {
+                     jQuery('.input-black').each(function(){
+                         InputAnimate.init(jQuery(this));
+                     })
+                 })
+                 jQuery('#cmt_input_{$value[rid]}').TextAreaExpander(34,99999);
+                 jQuery('#cmt_input_{$value[rid]}').on('keyup',function(e){
+                     if(e.ctrlKey && e.keyCode==13){
+                         document.getElementById('cmt_form_{$value[rid]}').onsubmit();
+                         jQuery('#cmt_form_$value[rid]').find('.stateadd').remove();
+                         jQuery('#cmt_form_$value[rid]').find('#cmt_input_$value[rid]').attr('placeholder','{eval echo lang("publish_your_comment")}');
+                         return false;
+                     }
+                 });
+				 jQuery(function(){
+					var cachequeryMentions = [], itemsMentions;
+					jQuery('#cmt_input_{$rid}').atwho({
+					   at: "@",
+						data: '{MOD_URL}&op=ajax&do=getAtList&jid=$value[jid]',
+						callbacks:{
+									remote_filter: function (query, render_view) {
+										var thisVal = query,
+										self = jQuery(this);
+										if( !self.data('active') && thisVal.length >= 1 ){
+											self.data('active', true);
+											itemsMentions = cachequeryMentions[thisVal]
+											if(typeof itemsMentions == "object"){
+												render_view(itemsMentions);
+											}else
+											{
+												if (self.xhr) {
+													self.xhr.abort();
+												}
+												self.xhr = jQuery.getJSON('{MOD_URL}&op=ajax&do=getAtList&jid=$value[jid]',{
+													term: thisVal
+												}, function(data) {
+													cachequeryMentions[thisVal] = data
+													render_view(data);
+												});
+											}
+											self.data('active', false);
+										}
+									}
+						},
+						 tpl: "<li data-value='@[${name}:${id}]' title='${title}'>${avatar}&nbsp;${name}</li>",
+						 search_key: "searchkey",
+						 start_with_space: false,
+						 limit: 5,
+						 max_len: 20,
+						 display_timeout: 300
+					});
+
+				});
+				 function validate_cmt_{$rid}(form){
+					 if(document.getElementById('cmt_input_{$rid}').value==''){
+						 document.getElementById('cmt_input_{$rid}').focus();
+						 showmessage('{eval echo lang("enter_comment_here")}','danger',1000,1);
+						 return false;
+					 }
+					 jQuery('#cmt_form_{$rid}_btn').button('loading');
+					 ajaxpost(form.id,'cmt_form_{$rid}_btn','cmt_form_{$rid}_btn');
+				 }
+				function succeedhandle_cmt_{$rid}(url, message, values) {
+					jQuery('#cmt_form_{$rid}_btn').button('reset');
+					jQuery('#cmt_input_{$rid}').val('').css('height',34);
+
+					if(values['cid']>0){
+						cmt_set_sum('$rid',1);
+						jQuery.get('{MOD_URL}&op=ajax&do=getCmt&cid='+values['cid']+'&t='+new Date().getTime(),function(html){
+							if(jQuery('#cmt_wrap_{$rid} .cmt-item').length>0){
+								jQuery(html).hide().insertBefore('#cmt_wrap_{$rid} .cmt-item:first').slideDown();
+							}else{
+								jQuery(html).hide().appendTo('#cmt_wrap_{$rid}').slideDown();
+							}
+						});
+
+					}
+				};
+				function errorhandle_cmt_{$rid}(message) {
+					 jQuery('#cmt_form_{$rid}_btn').button('reset');
+					showmessage(message,'danger',3000,1);
+					jQuery('#cmt_input_{$rid}').focus();
+				};
+			 </script>
+             <!--{else}-->
+             <div class="alert alert-warning" style="margin-top:10px;padding:10px;">{eval echo lang('need_logined_comment')}，<a href="user.php?mod=logging">{eval echo lang('now_login')}</a></div>
+             <!--{/if}-->
+     		<div id="cmt_wrap_{$rid}" class="cmt-wrap">
+               <!--{loop $list $value}-->
+                 <div class="cmt-item">
+                    <div class="cmt-avatar"><img src="avatar.php?uid=$value[authorid]&size=small&verhash={VERHASH}" /></div>
+                    <div class="cmt-body">
+                        <div class="cmt-msg">$value[message]</div>
+                        <div class="cmt-info">
+                        	<span class="username"><a href="user.php?uid=$value[authorid]">$value[author]</a></span>
+                            <span class="dateline">{eval echo dgmdate($value[dateline],'u');}</span>
+                            <!--{if $_G['uid']}-->
+                            <span class="cmt-hover a_btnWrap">
+                            <!--{if $value['authorid']!=$_G['uid']}-->
+                            <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang(reply)}" class="cmt-reply-btn dzz dzz-reply" onclick="cmt_reply('$rid','$value[authorid]','$value[author]')"></a>
+                            <!--{/if}-->
+                             <!--{if $value['authorid']==$_G['uid'] }-->
+                                <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang(reply)}" class="cmt-reply-btn dzz dzz-reply" onclick="cmt_reply(this,'$value[authorid]','$value[author]')"></a>
+                                <div class="line"></div>
+                            <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$value[cid]','$value[rid]')"></a>
+                            <!--{/if}-->
+                            </span> 
+                            <!--{/if}-->
+                        </div>
+                    </div>
+                 </div>
+               <!--{/loop}-->
+               <!--{if count($list)>=$perpage}-->
+               <a class="cmt-loadmore" href="javascript:;" onclick="cmt_loadmore(this,'$rid','$nexttime')">{eval echo lang('viewmore_reply')}</a>
+               <!--{/if}-->
+               
+            </div>
+         
+         </div>
+<!--{elseif $do=='cmt_more'}-->
+    <!--{loop $list $value}-->
+         <div class="cmt-item">
+            <div class="cmt-avatar"><img src="avatar.php?uid=$value[authorid]&size=small&verhash={VERHASH}" /></div>
+            <div class="cmt-body">
+                <div class="cmt-msg">$value[message]</div>
+                <div class="cmt-info">
+               		<span class="username"><a href="user.php?uid=$value[authorid]">$value[author]</a></span>
+                    <span class="dateline">{eval echo dgmdate($value[dateline],'u');}</span>
+                    <!--{if $_G['uid'] && $jilu[deletetime] <= 0 && !$jilu[inarchive]}-->
+                    <span class="cmt-hover a_btnWrap">
+                    <!--{if $value['authorid']!==$_G['uid']}-->
+                    <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang(reply)}" class="cmt-reply-btn dzz dzz-reply" onclick="cmt_reply('$rid','$value[authorid]','$value[author]')"></a>
+                    <!--{/if}-->
+                     <!--{if $value['authorid']==$_G['uid'] }-->
+                        <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang(reply)}" class="cmt-reply-btn dzz dzz-reply" onclick="cmt_reply(this,'$value[authorid]','$value[author]')"></a>
+                        <div class="line"></div>
+                        <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$value[cid]','$value[rid]')"></a>
+                    <!--{/if}-->
+                    </span>
+                    <!--{/if}-->
+                </div>
+            </div>
+         </div>
+       <!--{/loop}-->
+       <!--{if count($list)>=$perpage}-->
+       <a class="cmt-loadmore" href="javascript:;" onclick="cmt_loadmore(this,'$rid','$nexttime')">{eval echo lang('viewmore_reply')}</a>
+       <!--{/if}-->
+       
+<!--{elseif $do=='item_edit'}--> 
+   <form id="publishform_{$rid}" name="form" class="form-horizontal" action="{MOD_URL}&op=ajax&do=item_edit" method="post"  onsubmit="return validate_{$rid}(this);" style="margin:0">  
+    <input type="hidden" name="formhash" value="{FORMHASH}" />
+    <input type="hidden" name="editsubmit" value="true" />
+    <input type="hidden" name="handlekey" value="$_GET['handlekey']" />
+    <input type="hidden" name="rid" value="$data[rid]" /> 
+    <input type="hidden" name="jid" value="$data[jid]" />
+    <input type="hidden" name="type" value="$type" />
+    <input type="hidden" name="ismy" value="$ismy" />
+    <!--{if $type=='text'}--> 
+	<div class="modal-body">		
+        <textarea id="content_{$rid}" class="form-control form-control-bborder edit_content" style="border-width:0;resize: none;" placeholder="{eval echo lang('what_write')}" name="content"  rows="5">$data['content']</textarea>  
+	</div>
+	<!--{elseif $type=='image'}-->
+	<div class="modal-body">		
+        <textarea id="content_{$rid}" class="form-control form-control-bborder edit_content" style="border-width:0;resize: vertical;" placeholder="{eval echo lang('what_write')}" name="content"  rows="2">$data[content]</textarea>
+       <div id="imageContainer_{$rid}" class="imageContainer clearfix">
+       	  <!--{loop $data['attachs'] $attach}-->
+          <div class="image-item"><a href="javascript:;" class="delete dzz dzz-close" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}"></a>
+              <img class="img-thumb" src="$attach[ico_img]" onload="image_resize(this,50)">
+              <input type="hidden" name="attach[qid][]" value="$attach[qid]">
+               <input type="hidden" name="attach[mediaid][]" value="">
+              <input type="hidden" name="attach[aid][]" value="$attach[aid]">
+              <input type="hidden" name="attach[title][]" value="$attach[title]">
+              <input type="hidden" name="attach[ext][]" value="$attach[ext]">
+              <input type="hidden" name="attach[type][]" value="image">
+            </div>
+
+          <!--{/loop}-->
+       	  <div class="image-item add image-add" title="{lang click_add_photo}">
+              <img src="{MOD_PATH}/images/add-01.png" alt="">
+                <div class="uploadwrap">
+                	<input type="file" name="files[]" id="fileupload_{$rid}" multiple="multiple" accept="image/png,image/gif,image/jpeg"/>
+                </div>
+          </div>
+       </div>  
+	</div>
+	<script type="text/javascript" reload="1">
+	if(window.wxready){
+		jQuery('#fileupload_{$rid}').on('click',function(){
+			 wx.chooseImage({
+			  success: function (res) {
+				for(var i=0;i<res.localIds.length;i++){
+					var html='<div class="image-item" >';
+						html+='     <a href="javascript:;" class="delete dzz dzz-close"  title="{eval echo lang("delete")}"></a>';
+						html+='      <img class="img-thumb" src="'+res.localIds[i]+'" onload="image_resize(this,50)"><input type="hidden" name="localid[]" value="'+res.localIds[i]+'" />';
+						html+='      <div class="imgloading" onclick="runUpload()">';
+						html+='  		 <img src="{MOD_PATH}/images/loading.gif" >';
+						html+='       </div>';
+						html+='</div>';
+						var el=jQuery(html).insertBefore('#imageContainer_{$rid} .image-item.add');
+						el.find('.delete').off('click').on('click',function(){
+							jQuery(this).parent().remove();
+						});
+				}
+				runUpload();
+				
+			  }
+			});
+			return false;
+		});
+	}
+	function runUpload(){
+		var el=jQuery('#imageContainer_{$rid} .image-item input[name="localid[]"]').first();
+		if(el.length){
+			wx.uploadImage({
+				localId: el.val(), // 需要上传的图片的本地ID，由chooseImage接口获得
+				isShowProgressTips: 1,// 默认为1，显示进度提示
+				success: function (res) {
+					var serverId = res.serverId; // 返回图片的服务器端ID
+					jQuery('<input type="hidden" name="attach[aid][]" value="0"><input type="hidden" name="attach[title][]" value="wxalbum"><input type="hidden" name="attach[ext][]" value=""><input type="hidden" name="attach[type][]" value="image"><input type="hidden" name="attach[mediaid][]" value="'+serverId+'" />').insertBefore(el);	
+					el.next('.imgloading').remove();
+					el.remove();
+					runUpload();
+				},
+				fail: function(res){
+					el.remove();
+					runUpload();
+				}
+			});
+		}
+	};
+	jQuery(document).on('click','#imageContainer_{$rid} .image-item .delete',function(){
+					jQuery(this).parent().remove();
+	});
+	 if (Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor')>0)  jQuery('#fileupload_image').removeAttr("multiple");
+	jQuery('#fileupload_{$rid}').fileupload({
+        url: '{MOD_URL}&op=ajax&do=imageupload_image',
+        dataType: 'json',
+		autoUpload: true,
+		maxChunkSize:(parseInt('{$_G[setting][maxChunkSize]}') || 2000000), //2M
+		maxFileSize: parseInt('{$space[maxattachsize]}')>0?parseInt('{$space[maxattachsize]}'):null, // 5 MB
+		acceptFileTypes:new RegExp("(\.|\/)([jpeg|jpg|gif|png|bmp])$",'i'),
+		dropZone:jQuery('#publishform_{$rid}'),
+		pasteZone:jQuery('#publishform_{$rid}'),
+		sequentialUploads:true
+		
+	}).on('fileuploadadd', function (e, data) {
+			 data.context = jQuery('<div class="image-item"></div>').insertBefore('#imageContainer_{$rid} .image-item.add');
+			jQuery.each(data.files, function (index, file) {
+			    var img='dzz/images/default/thumb.png';
+				var html='';
+				    html+='     <a href="javascript:;" class="delete dzz dzz-close"  title="删除"></a>';
+					html+='      <img class="img-thumb" src="'+img+'">';
+					html+='      <div class="imgloading" >';
+					html+='  		 <img src="{MOD_PATH}/images/loading.gif" >';
+					html+='       </div>';
+				jQuery(html).appendTo(data.context);
+			});
+			 data.context.find('.delete').off('click').on('click',function(){
+				data.abort();
+				jQuery(this).parent().remove();
+			});
+	
+		}).on('fileuploadfail', function (e, data) {
+			if(data.textStatus && data.textStatus=='abort'){
+			}else{
+				 jQuery.each(data.result.files, function (index, file) {
+					if(file.error){
+						data.context.find('img.img-thumb').attr('src','{MOD_PATH}/images/alert.png').attr('title',file.error);
+					}
+				 });
+			}
+		}).on('fileuploaddone', function (e, data) {
+            jQuery.each(data.result.files, function (index, file) {
+				if(file.error){
+				data.context.find('img.img-thumb').attr('src','{MOD_PATH}/images/alert.png').attr('title',file.error);
+				}else{
+					jQuery('<input type="hidden" name="attach[aid][]" value="'+file.data.aid+'"><input type="hidden" name="attach[title][]" value="'+file.data.filename+'"><input type="hidden" name="attach[ext][]" value="'+file.data.filetype+'"><input type="hidden" name="attach[type][]" value="'+((file.data.isimage>0)?'image':'attach')+'">').appendTo(data.context);
+					data.context.find('img.img-thumb').replaceWith('<img class="img-thumb" src="'+file.data.img+'" title="'+file.data.filename+'" onload="image_resize(this,50)" />').end().find('.imgloading').remove();
+				}
+            });
+        });
+	
+	</script>
+     <!--{elseif $type=='video'}-->
+   
+     
+    <div class="modal-header clearfix" style="padding:5px;">
+        <a href="javascript:;"  class="btn-emotion" style="width:24px;height:24px;display:inline-block" id="content_{$rid}sml" onclick="showMenu({'ctrlid':this.id,'evt':'click','layer':2});return false;"></a><script type="text/javascript" reload="1">smilies_show('content_{$rid}sml_div', '{$_G[setting][smcols]}', 'content_{$rid}');</script>
+        
+        <button id="publishform_{$rid}_btn" type="button"  class="btn btn-width pull-right sureBtn" onclick="document.getElementById('publishform_{$rid}').onsubmit();">{eval echo lang('save_change')}</button>
+        <button type="button" class="btn btn-link pull-right mr15 cancelBtn"  data-dismiss="modal">{eval echo lang('delete')}</button>
+    </div>
+	<div class="modal-body">		
+        <textarea id="content_{$rid}" class="form-control form-control-bborder edit_content" style="border-width:0;resize: none;" placeholder="{eval echo lang('what_write')}" name="content"  rows="2">$data[content]</textarea>
+       <div id="attachContainer_{$rid}" class="attachContainer clearfix">
+       	<!--{loop $data['attachs'] $attach}-->
+          <div class="attach-item"><a href="javascript:;" class="delete dzz dzz-close" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}"></a>
+              <img class="img-thumb" src="$attach[img]" onload="image_resize(this,50)">
+              <input type="hidden" name="attach[qid][]" value="$attach[qid]">
+              <input type="hidden" name="attach[aid][]" value="$attach[aid]">
+              <input type="hidden" name="attach[title][]" value="$attach[title]">
+              <input type="hidden" name="attach[ext][]" value="$attach[ext]">
+              <input type="hidden" name="attach[type][]" value="attach">
+            </div>
+
+          <!--{/loop}-->
+       	  <div class="attach-item add file-add" title="{lang click_add_file}">
+              <img src="{MOD_PATH}/images/tup-01.png" alt="">
+              <!--<i class="dzz dzz-add f-add"></i>-->
+                <div class="uploadwrap">
+                	<input type="file" name="files[]" id="fileupload_{$rid}" multiple="multiple" accept="video/x-mpeg2" />
+                </div>
+          </div>
+       </div>  
+	</div>
+	<script type="text/javascript" reload="1">
+	jQuery(document).on('click','#attachContainer_{$rid} .attach-item .delete',function(){
+					jQuery(this).parent().remove();
+	});
+	 if (Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor')>0)  jQuery('#fileupload_image').removeAttr("multiple");
+	jQuery('#fileupload_{$rid}').fileupload({
+        url: '{MOD_URL}&op=ajax&do=mp4upload',
+        dataType: 'json',
+		autoUpload: true,
+		maxChunkSize:(parseInt('{$_G[setting][maxChunkSize]}') || 2000000), //2M
+		maxFileSize: parseInt('{$space[maxattachsize]}')>0?parseInt('{$space[maxattachsize]}'):null, // 5 MB
+		acceptFileTypes:new RegExp("(\.|\/)([mp4|ogg])$",'i'),
+		dropZone:jQuery('#publishform_{$rid}'),
+		pasteZone:jQuery('#publishform_{$rid}'),
+		sequentialUploads:true
+		
+	}).on('fileuploadadd', function (e, data) {
+				
+		
+			 data.context = jQuery('<div class="attach-item"></div>').insertBefore('#attachContainer_{$rid} .attach-item.add');
+			 
+			jQuery.each(data.files, function (index, file) {
+				if(!file.name) file.name='clipboardData.mp4';
+				var ext='mp4';
+				var img='dzz/images/extimg/'+ext+'.png';
+				
+				var img_error='dzz/images/default/imageloading.gif';
+				if(!file.name) file.name='clipboardData.png';
+				var html='';
+				    html+='     <a href="javascript:;" class="delete dzz dzz-close" title="{eval echo lang("delete")}"></a>';
+					html+='      <img class="img-thumb" src="'+img+'">';
+					html+='      <div class="imgloading">';
+					html+='  		 <img src="{MOD_PATH}/images/loading.gif" >';
+					html+='       </div>';
+				jQuery(html).appendTo(data.context);
+				
+			});
+		   data.context.find('.delete').off('click').on('click',function(){
+				data.abort();
+				jQuery(this).parent().remove();
+			});
+	
+		}).on('fileuploadfail', function (e, data) {
+			if(data.textStatus && data.textStatus=='abort'){
+			}else{
+				 jQuery.each(data.result.files, function (index, file) {
+					if(file.error){
+						data.context.find('imgloading img').attr('src','{MOD_PATH}/images/alert.png').attr('title',file.error);
+					}
+				 });
+			}
+		}).on('fileuploaddone', function (e, data) {
+            jQuery.each(data.result.files, function (index, file) {
+				if(file.error){
+					data.context.find('imgloading img').attr('src','{MOD_PATH}/images/alert.png').attr('title',file.error);
+				}else{
+					jQuery('<input type="hidden" name="attach[aid][]" value="'+file.data.aid+'"><input type="hidden" name="attach[title][]" value="'+file.data.filename+'"><input type="hidden" name="attach[ext][]" value="'+file.data.filetype+'"><input type="hidden" name="attach[type][]" value="'+('attach')+'">').appendTo(data.context);
+					data.context.find('img.img-thumb').replaceWith('<img class="img-thumb" src="'+file.data.img+'" title="'+file.data.filename+'" onload="image_resize(this,50)" >').end().find('.imgloading').remove();
+				}
+            });
+        });
+	
+	</script>
+    <!--{elseif $type=='attach'}-->
+	<div class="modal-body">		
+        <textarea id="content_{$rid}" class="form-control form-control-bborder edit_content" style="border-width:0;resize: none;" placeholder="{eval echo lang('what_write')}" name="content"  rows="2">$data[content]</textarea>
+       <div id="attachContainer_{$rid}" class="attachContainer clearfix">
+       	<!--{loop $data['attachs'] $attach}-->
+          <div class="attach-item"><a href="javascript:;" class="delete dzz dzz-close" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}"></a>
+              <img class="img-thumb" src="$attach[img]" onload="image_resize(this,50)">
+              <input type="hidden" name="attach[qid][]" value="$attach[qid]">
+              <input type="hidden" name="attach[aid][]" value="$attach[aid]">
+              <input type="hidden" name="attach[title][]" value="$attach[title]">
+              <input type="hidden" name="attach[ext][]" value="$attach[ext]">
+              <input type="hidden" name="attach[type][]" value="attach">
+            </div>
+
+          <!--{/loop}-->
+       	  <div class="attach-item add file-add" title="{lang click_add_file}">
+              <img src="{MOD_PATH}/images/tup-01.png" alt="">
+                <div class="uploadwrap">
+                	<input type="file" name="files[]" id="fileupload_{$rid}" multiple="multiple" />
+                </div>
+          </div>
+       </div>  
+	</div>
+	<script type="text/javascript" reload="1">
+	jQuery(document).on('click','#attachContainer_{$rid} .attach-item .delete',function(){
+		jQuery(this).parent().remove();
+	});
+	 if (Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor')>0)  jQuery('#fileupload_image').removeAttr("multiple");
+	 var attachextensions='{eval echo implode('|',$space[attachextensions]);}';
+	if(attachextensions=='') attachextensions="\.*$";
+	else attachextensions="(\.|\/)("+(attachextensions)+")$";
+	jQuery('#fileupload_{$rid}').fileupload({
+        url: '{MOD_URL}&op=ajax&do=fileupload',
+        dataType: 'json',
+		autoUpload: true,
+		maxChunkSize:(parseInt('{$_G[setting][maxChunkSize]}') || 2000000), //2M
+		maxFileSize: parseInt('{$space[maxattachsize]}')>0?parseInt('{$space[maxattachsize]}'):null, // 5 MB
+		acceptFileTypes:new RegExp(attachextensions,'i'),
+		dropZone:jQuery('#publishform_{$rid}'),
+		pasteZone:jQuery('#publishform_{$rid}'),
+		sequentialUploads:true
+		
+	}).on('fileuploadadd', function (e, data) {
+				
+		
+			 data.context = jQuery('<div class="attach-item"></div>').insertBefore('#attachContainer_{$rid} .attach-item.add');
+			 
+			jQuery.each(data.files, function (index, file) {
+				if(!file.name) file.name='clipboardData.png';
+				var ext=file.name.split('.').pop().toLowerCase();
+				if(jQuery.inArray(ext,['jpg','jpeg','gif','png','bmp'])>-1){
+					var img='dzz/images/default/thumb.png';
+				}else{
+					var img='dzz/images/extimg/'+ext+'.png';
+				}
+				var img_error='dzz/images/default/imageloading.gif';
+				if(!file.name) file.name='clipboardData.png';
+				var html='';
+				    html+='     <a href="javascript:;" class="delete dzz dzz-close" title="删除"></a>';
+					html+='      <img class="img-thumb" src="'+img+'">';
+					html+='      <div class="imgloading">';
+					html+='  		 <img src="{MOD_PATH}/images/loading.gif" >';
+					html+='       </div>';
+				jQuery(html).appendTo(data.context);
+				
+			});
+		   data.context.find('.delete').off('click').on('click',function(){
+				data.abort();
+				jQuery(this).parent().remove();
+			});
+	
+		}).on('fileuploadfail', function (e, data) {
+			if(data.textStatus && data.textStatus=='abort'){
+			}else{
+				 jQuery.each(data.result.files, function (index, file) {
+					if(file.error){
+						data.context.find('imgloading img').attr('src','{MOD_PATH}/images/alert.png').attr('title',file.error);
+					}
+				 });
+			}
+		}).on('fileuploaddone', function (e, data) {
+            jQuery.each(data.result.files, function (index, file) {
+				if(file.error){
+					data.context.find('imgloading img').attr('src','{MOD_PATH}/images/alert.png').attr('title',file.error);
+				}else{
+					jQuery('<input type="hidden" name="attach[aid][]" value="'+file.data.aid+'"><input type="hidden" name="attach[title][]" value="'+file.data.filename+'"><input type="hidden" name="attach[ext][]" value="'+file.data.filetype+'"><input type="hidden" name="attach[type][]" value="'+('attach')+'">').appendTo(data.context);
+					data.context.find('img.img-thumb').replaceWith('<img class="img-thumb" src="'+file.data.img+'" title="'+file.data.filename+'" onload="image_resize(this,50)" >').end().find('.imgloading').remove();
+				}
+            });
+        });
+	
+	</script>
+    <!--{elseif $type=='link'}-->
+        <div class="modal-body" id="body_link_{$rid}" >
+        <div class="contentContainer"> <textarea id="content_link" class="form-control edit_content" style="resize: none;border-width:0" placeholder="写点什么？" name="content" rows="2"></textarea></div>
+        	<div class="linkInputContainer mb20 sss">
+                <div class="input-group">
+                    <div class="input-black input-static" style="margin-bottom: 3px;margin-right: 10px;">
+                        <div class="input-animate" style="padding-right: 30px;">
+                            <input type="text" class="form-control link-input" name="link" placeholder="{eval echo lang('input_link_address')}" style="padding-left: 15px;">
+                            <i class="dzz dzz-close link-close" onclick="emptyLink()"></i>
+                        </div>
+                    </div>
+                    <!--<input type="text" name="link" class="form-control" placeholder="{eval echo lang('input_link_address')}" >-->
+                    <span class="input-group-btn" ><button type="button" class="btn sureBtn" style="margin-right: 0;background-color: #eee;color: #787878;">{eval echo lang('add')}</button></span>
+                </div>
+            </div>
+            <div class="linkContainer">
+            	<div id="linkContainer_{$rid}" class="clearfix">
+                <!--{loop $data['attachs'] $attach}-->
+                <div class="file_fed clearfix mb20"> 
+                    <a class="delete 1" onClick="jQuery(this).parent().remove()" title="{eval echo lang('delete')}" data-toggle="tooltip" data-placement="bottom"><i class="dzz dzz-delete" style="font-size:18px;vertical-align: -2px;margin-right: 1px"></i></a>
+                    <i class="dzz dzz-create edit" style="vertical-align: -2px;margin-right: 6px" title="{eval echo lang('edit')}" data-toggle="tooltip" data-placement="bottom"></i>
+                  <div class="ico_ffed"> <img src="$attach[img]" alt="" onload="image_resize(this,50)">
+                    <input type="hidden" name="attach[aid][]" value="$attach['aid']">
+                    <input type="hidden" name="attach[type][]" value="$attach[type]">
+                    <input type="hidden" name="attach[ext][]" value="$attach[ext]">
+                    <input type="hidden" name="attach[qid][]" value="$attach[qid]">
+                    <input type="hidden" name="attach[url][]" value="$attach[url]">
+                    <input type="hidden" name="attach[img][]" value="$attach[img]">
+                  </div>
+                  <div class="name_ffed" title="$attach[title]" style="display:block">
+                    <div class="name-fed">
+                      <textarea class="form-control" name="attach[title][]" style="height:50px;resize:none;border-width:0">$attach[title]</textarea>
+                    </div>
+                  </div>
+                </div>
+                <!--{/loop}-->
+                </div>
+            </div>
+           
+          
+        </div>
+        
+		<script type="text/javascript" reload="1">
+            function emptyLink() {
+                jQuery('.link-input').val('');
+            }
+            jQuery(function () {
+                jQuery('.link-input').on('input', function () {
+                    if (jQuery(this).val() != '') {
+                        jQuery('.link-close').css('display', 'block');
+                        jQuery('.input-group-btn .btn').css({'background': '#fdd860', 'color': '#98670b'});
+                    } else {
+                        jQuery('.link-close').css('display', 'none');
+                        jQuery('.input-group-btn .btn').css({'background': '#eee', 'color': '#787878'});
+                    }
+                })
+                jQuery('.input-black').each(function () {
+                    InputAnimate.init(jQuery(this));
+                })
+                jQuery(".file_fed").find(".edit").on('click', function(){
+                	var val = jQuery(this).parent().find("textarea").val();
+                	jQuery(this).parent().find("textarea").val('').focus().val(val);
+                })
+            })
+		jQuery('#publishform_{$rid} .linkInputContainer input').on('blur',function(){
+			getLinkInfo(this.value,this);
+		});
+		jQuery('#publishform_{$rid} .linkInputContainer input').on('keyup',function(e){
+			if(e.keyCode==13){
+				getLinkInfo(this.value,this);
+			}
+		});
+		  function getLinkInfo(url,obj){
+			  if(!url) return;
+			  if(url==jQuery(obj).data('ourl')) return ;
+			  jQuery(obj).data('ourl',url).prop('disabled','');
+			  
+			  jQuery.post('{MOD_URL}&op=ajax&do=getLinkInfo',{'link':url},function(json){
+				  jQuery(obj).prop('disabled',false);
+				  if(json.msg=='success'){
+					    var html='<div class="file_fed clearfix mb20">'
+								+'	<a class="delete" onclick="jQuery(this).parent().remove()"><i class="dzz dzz-delete" style="font-size:18px;vertical-align: -2px;margin-right: 1px"></i></a>'
+								+'	<i class="dzz dzz-create edit" style="vertical-align: -2px;margin-right: 6px"></i>'
+								+'	<div class="ico_ffed">'
+								
+								+'		<img src="'+json.img+'" alt="" onload="image_resize(this,50)">'
+								+'		<input type="hidden" name="attach[aid][]" value="'+json.aid+'">'
+								+'		<input type="hidden" name="attach[type][]" value="'+json.type+'">'
+								+'		<input type="hidden" name="attach[ext][]" value="'+json.ext+'">';
+						if(json.aid<1){
+						   html+='		<input type="hidden" name="attach[url][]" value="'+(json.url?json.url:'')+'">';
+						   html+='		<input type="hidden" name="attach[img][]" value="'+(json.img?json.img:'')+'">';
+						}
+						if(json.type=='video'){
+						   html+='		<a href="'+json.url+'" class="video-cover" target="_dzz"></a>';
+						}
+						   html+='	</div>'
+								+'	<div class="name_ffed" title="'+json.title+'" style="display:block">'
+								+'		<div class="name-fed"><textarea class="form-control" name="attach[title][]" style="height:50px;resize:none;border-width:0" >'+json.title+'</textarea> </div>'
+								+'   </div>'
+								+' </div>';
+					  jQuery(obj).val('');
+					  var mb= jQuery('#publishform_{$rid} ');
+					   mb.find('#linkContainer_{$rid}').append(html);
+					   mb.find('.linkContainer').slideDown();
+					   jQuery(".file_fed").find(".edit").on('click', function(){
+                        	var val = jQuery(this).parent().find("textarea").val();
+                        	jQuery(this).parent().find("textarea").val('').focus().val(val);
+                        })
+				  }else{
+					showmessage(json.error,'danger',3000,1);
+					
+				  }
+			  },'json');
+		  }
+		</script>
+     <!--{elseif $type=='list'}-->
+        <div class="modal-body" >
+        	 <div class="contentContainer"> <textarea id="content_{$rid}" class="form-control edit_content" style="resize: none;border-width:0;" placeholder="{eval echo lang('what_write')}" name="content"  rows="2">$data[content]</textarea></div>	
+        	
+            <div  class="listContainer " style="padding:10px 0">
+            	<div id="lists_{$rid}" class="lists">
+                  <ul class="sortable list-unstyled">
+                    {eval $i=0;}
+                    <!--{loop $data['todos'] $todo}-->
+                    {eval $i++;}
+                    <li class="todolist-item"> 
+                    	<input type="hidden" name="todo[todoid][]" value="$todo[todoid]" />
+                    	<input type="hidden" name="todo[checked][]" value="$todo[checked]">
+                        <div class="checkbox-custom checkbox-warning todolist-item-check <!--{if $todo[checked]}-->checked<!--{/if}-->" onclick="todolist_check(this)" data-checked="$todo[checked]">
+							<input type="checkbox" <!--{if $perm < 2}-->disabled<!--{/if}--> <!--{if $todo[checked]}-->checked=''<!--{/if}-->>
+							<label></label>
+						</div>
+                      <div class="todolist-item-edit editable <!--{if $todo[checked] == 1}-->line-through<!--{/if}-->">
+                        <p onclick="show_list_editor(this)" class="list-p">$todo[content]</p>
+                        <div class="edit hide">
+                          <div class="list-edit-control">
+                            <input type="text" class="form-control form-list" name="todo[content][]" value="$todo[content]" placeholder="{eval echo lang('input_todo_content')}">
+                          </div>
+                          <button type="button" onclick="list_item_save(this)" class="btn btn-success list-save">{eval echo lang('save')} </button>
+                          <a href="javascript:;" class="list-del" onClick="list_item_del(this)">
+                              <span style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: rgba(116, 116, 116, 1);text-align: center;line-height: 20px;">
+                                  <i style="color:#fff;font-size:16px;line-height: 20px" class="dzz dzz-close"></i>
+                              </span>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <!--{/loop}-->
+                  </ul>
+                </div>
+                <div class="new-list"> 
+                <input id="list_style_{$rid}" name="style" value="3" type="hidden" />
+                </div>
+            </div>
+        </div>
+        
+        
+        <script type="text/javascript" reload="1">
+        list_item_add();
+        jQuery(".form-list:last").focus();
+		jQuery(document).on('keyup','#lists_{$rid} .list-edit-control input',function(e){
+			switch(e.keyCode){
+			 case 13:
+				if(jQuery(this).closest('.todolist-item').next('.todolist-item').length){
+					jQuery(this).closest('.todolist-item').next('.todolist-item').find('.list-p').trigger('click');
+				}else{
+					list_item_add();
+					jQuery(".form-list:last").focus();
+				}
+				list_item_save(this);
+				return false;
+			 case 8:
+			 	if(this.value==''){
+					var prev=jQuery(this).closest('.todolist-item').prev('.todolist-item');
+					if(prev.length && this.value==''){ //delete
+						prev.find('.list-p').trigger('click');
+						list_item_save(this);
+						return false;
+					}
+				}
+				break;
+			 case 46:
+			 	if(this.value==''){
+					var next=jQuery(this).closest('.todolist-item').next('.todolist-item');
+					if(next.length && this.value==''){ //delete
+						next.find('.list-p').trigger('click');
+						list_item_save(this);
+						return false;
+					}
+				}
+				break;
+			}
+		});
+		 function show_list_editor(obj){
+		 	jQuery(obj).next().find("input").each(function(){
+		 		 list_item_save(this);
+		 	})
+			 jQuery(obj).addClass('hide');
+			 jQuery(obj).next().removeClass('hide').find('input').focus();
+			 
+		 }
+		function list_item_del(obj){
+			 jQuery(obj).closest('li.todolist-item').remove();
+			 list_item_add();
+		}
+		function list_item_save(obj){
+			var c=jQuery(obj).closest('.todolist-item-edit');
+			var input=c.find('input');
+			if(input.val()==''){
+				list_item_del(obj);
+			}else{
+				c.find('.list-p').removeClass('hide').text(input.val());
+				c.find('.edit').addClass('hide');
+			}
+			
+		}
+		function todolist_check(obj){
+			var obj = jQuery(obj);
+			if(obj.hasClass("checked")){
+				obj.removeClass("checked");
+				obj.find("input").prop("checked", false);
+				obj.next().removeClass("line-through");
+				obj.prev().val(0);
+			} else {
+				obj.addClass("checked");
+				obj.find("input").prop("checked", true);
+				obj.next().addClass("line-through");
+				obj.prev().val(1);
+			}
+		}
+		function list_item_add(){
+			// jQuery('#lists_{$rid} input[name="todo[content][]"]:visible').each(function(){
+			// 	 list_item_save(this);
+			//  });
+			var last=jQuery('#lists_{$rid} .todolist-item').last();
+			if(last.find('input[name="todo[content][]"]').val()==''){
+				// last.find('input').focus();
+				return;
+			}
+			var flag=jQuery('#list_style_{$rid}').val();
+			var html='<li class="todolist-item">'
+				+'		<input type="hidden" name="todo[checked][]" value="0">'
+                +'		<div class="checkbox-custom checkbox-warning todolist-item-check" onclick="todolist_check(this)" style="top:10px;"><input type="checkbox" name="inputCheckboxes"><label></label></div>'
+                +'      <div class="todolist-item-edit editable">'
+                +'       <p onClick="show_list_editor(this)" class="list-p hide"></p>'
+                +'       <div class="edit">'
+                +'          <div class="list-edit-control">'
+                +'            <input type="text" class="form-control form-list" name="todo[content][]" value="" placeholder="{lang input_todo_content}">'
+                +'           </div>'
+                +'          <button type="button" onClick="list_item_save(this)" class="btn btn-success list-save">{lang save} </button>'
+                +'         <a href="javascript:;" class="list-del" onClick="list_item_del(this)"><span style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: rgba(116, 116, 116, 1);text-align: center;line-height: 20px;"><i style="color:#fff;font-size:16px;line-height: 20px" class="dzz dzz-close"></i></span></a>'
+                +'        </div>'
+                +'      </div>'
+                +'    </li>';
+			jQuery(html).appendTo('#lists_{$rid} ul').find('input').on("input propertychange",function(){
+				if(jQuery(this).val() != ''){
+					list_item_add();
+				}
+			});
+		}
+		</script>
+    <!--{/if}-->
+       <!--{if $type=='text'}-->
+       	    <div class="modal-header clearfix" style="padding:15px 5px 15px 5px;">
+		        <a href="javascript:;" title="{eval echo lang('emotion')}" data-toggle="tooltip" data-placement="bottom" class="btn-emotion" style="width:24px;height:24px;display:inline-block" id="content_{$rid}sml" onclick="showMenu({'ctrlid':this.id,'evt':'click','layer':2});return false;"><i class="dzz dzz-emoticon smile"></i></a><script type="text/javascript" reload="1">smilies_show('content_{$rid}sml_div', '{$_G[setting][smcols]}', 'content_{$rid}');</script>
+		        <!--{if !empty($data['jid'])}-->
+	           		<!--{if count($at_users) > 0}-->
+						<a href="javascript:;" class="atwho btn-emotion"><i title="{eval echo lang('who_at')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-atsign smile"></i></a>
+					<!--{else}-->
+						<i title="{eval echo lang('no_member_at')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-atsign item-edit-no-member-at"></i>
+					<!--{/if}-->
+	           	<!--{/if}-->
+		        <button type="button" class="btn btn-link pull-right cancelBtn mr15"  data-dismiss="modal">{eval echo lang('cancel')}</button>
+		        <button type="button" id="publishform_{$rid}_btn" class="btn btn-width pull-right sureBtn" onclick="document.getElementById('publishform_{$rid}').onsubmit();">{eval echo lang('save_change')}</button>
+		    </div>
+       <!--{elseif $type=='image'}-->
+       <div class="modal-header clearfix" style="padding:15px 5px 15px 5px;">
+           <a href="javascript:;" title="{eval echo lang('emotion')}" data-toggle="tooltip" data-placement="bottom" class="btn-emotion" style="width:24px;height:24px;display:inline-block" id="content_{$rid}sml" onclick="showMenu({'ctrlid':this.id,'evt':'click','layer':2});return false;"><i class="dzz dzz-emoticon smile"></i></a><script type="text/javascript" reload="1">smilies_show('content_{$rid}sml_div', '{$_G[setting][smcols]}', 'content_{$rid}');</script>
+           <!--{if !empty($data['jid'])}-->
+           		<!--{if count($at_users) > 0}-->
+					<a href="javascript:;" class="atwho btn-emotion"><i title="{eval echo lang('who_at')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-atsign smile"></i></a>
+				<!--{else}-->
+					<i title="{eval echo lang('no_member_at')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-atsign item-edit-no-member-at"></i>
+				<!--{/if}-->
+           	<!--{/if}-->
+           <button type="button" class="btn btn-link pull-right mr15 cancelBtn"  data-dismiss="modal">{eval echo lang('cancel')}</button>
+           <button id="publishform_{$rid}_btn" type="button"  class="btn btn-width pull-right sureBtn" onclick="document.getElementById('publishform_{$rid}').onsubmit();">{eval echo lang('save_change')}</button>
+       </div>
+       <!--{elseif $type=='attach'}-->
+       <div class="modal-header clearfix" style="padding:15px 5px 15px 5px;">
+           <a href="javascript:;" title="{eval echo lang('emotion')}" data-toggle="tooltip" data-placement="bottom" class="btn-emotion" style="width:24px;height:24px;display:inline-block" id="content_{$rid}sml" onclick="showMenu({'ctrlid':this.id,'evt':'click','layer':2});return false;"><i class="dzz dzz-emoticon smile"></i></a><script type="text/javascript" reload="1">smilies_show('content_{$rid}sml_div', '{$_G[setting][smcols]}', 'content_{$rid}');</script>
+           <!--{if !empty($data['jid'])}-->
+           		<!--{if count($at_users) > 0}-->
+					<a href="javascript:;" class="atwho btn-emotion"><i title="{eval echo lang('who_at')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-atsign smile"></i></a>
+				<!--{else}-->
+					<i title="{eval echo lang('no_member_at')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-atsign item-edit-no-member-at"></i>
+				<!--{/if}-->
+           <!--{/if}-->
+           <button type="button" class="btn btn-link pull-right mr15 cancelBtn"  data-dismiss="modal">{eval echo lang('cancel')}</button>
+           <button id="publishform_{$rid}_btn" type="button"  class="btn btn-width pull-right sureBtn" onclick="document.getElementById('publishform_{$rid}').onsubmit();">{eval echo lang('save_change')}</button>
+       </div>
+       <!--{elseif $type=='link'}-->
+       <div class="modal-header clearfix" style="padding:15px 5px 15px 5px;">
+           <a href="javascript:;" title="{eval echo lang('emotion')}" data-toggle="tooltip" data-placement="bottom" class="btn-emotion" style="width:24px;height:24px;display:inline-block" id="content_{$rid}sml" onclick="showMenu({'ctrlid':this.id,'evt':'click','layer':2});return false;"><i class="dzz dzz-emoticon smile"></i></a><script type="text/javascript" reload="1">smilies_show('content_{$rid}sml_div', '{$_G[setting][smcols]}', 'content_{$rid}');</script>
+           <!--{if !empty($data['jid'])}-->
+           		<!--{if count($at_users) > 0}-->
+					<a href="javascript:;" class="atwho btn-emotion"><i title="{eval echo lang('who_at')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-atsign smile"></i></a>
+				<!--{else}-->
+					<i title="{eval echo lang('no_member_at')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-atsign item-edit-no-member-at"></i>
+				<!--{/if}-->
+           <!--{/if}-->
+           <input id="linkinit" type="hidden" name="linkinit" value="0">
+           <button type="button" class="btn btn-link pull-right mr15 cancelBtn"  data-dismiss="modal">{eval echo lang('cancel')}</button>
+           <button id="publishform_{$rid}_btn" type="button"  class="btn btn-width pull-right sureBtn" onclick="document.getElementById('linkinit').value='1';document.getElementById('publishform_{$rid}').onsubmit();">{eval echo lang('save_change')}</button>
+       </div>
+       <!--{elseif $type=='list'}-->
+       <div class="modal-header clearfix" style="padding:15px 5px 15px 5px;">
+           <a href="javascript:;" title="{eval echo lang('emotion')}" data-toggle="tooltip" data-placement="bottom" class="btn-emotion" style="width:24px;height:24px;display:inline-block" id="content_{$rid}sml" onclick="showMenu({'ctrlid':this.id,'evt':'click','layer':2});return false;"><i class="dzz dzz-emoticon smile"></i></a><script type="text/javascript" reload="1">smilies_show('content_{$rid}sml_div', '{$_G[setting][smcols]}', 'content_{$rid}');</script>
+           <!--{if !empty($data['jid'])}-->
+           		<!--{if count($at_users) > 0}-->
+					<a href="javascript:;" class="atwho btn-emotion"><i title="{eval echo lang('who_at')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-atsign smile"></i></a>
+				<!--{else}-->
+					<i title="{eval echo lang('no_member_at')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-atsign item-edit-no-member-at"></i>
+				<!--{/if}-->
+           <!--{/if}-->
+           <input id="listinit" type="hidden" name="linkinit" value="0">
+           <button type="button" class="btn btn-link pull-right mr15 cancelBtn"  data-dismiss="modal">{eval echo lang('cancel')}</button>
+           <button id="publishform_{$rid}_btn" type="button"  class="btn btn-width pull-right sureBtn" onclick="document.getElementById('listinit').value='1';document.getElementById('publishform_{$rid}').onsubmit();">{eval echo lang('save_change')}</button>
+       </div>
+       <!--{/if}-->
+     </form>
+	<script type="text/javascript" reload="1">
+		 <!--{if $data[jid]}-->
+		 atbox.init(jQuery('#publishform_{$rid} .atbox'),'{MOD_URL}&op=ajax&jid=$data[jid]');
+		  <!--{/if}-->
+		jQuery('#content_{$rid}').TextAreaExpander(50,99999);
+		jQuery('#content_{$rid}').trigger('keyup');
+		function validate_{$rid}(form){
+			if('$type'=='text' && form.content.value==''){
+				 showmessage('{eval echo lang("please_input_content")}','danger',1000,1);
+				 return false;
+			}
+			if('$type'=='link'){
+				if(form.linkinit.value<1){
+					return false;
+				}
+				if(form.content.value=='' && jQuery('#publishform_{$rid} .linkContainer .file_fed').length<1){
+					showmessage('{eval echo lang("not_input_link")}','danger',1000,1);
+					return false;
+				}
+			}else if('$type'=='list'){
+				if(form.listinit.value<1){
+					return false;
+				}
+				//showmessage('请输入网址','danger',1000,1);
+				if(form.content.value=='' && jQuery('#lists_{$rid} .todolist-item').length<1){
+					showmessage('{eval echo lang("not_input_todo")}','danger',1000,1);
+					return false;
+				}
+			}else if('$type'=='image'){
+				if(window.wxready){
+					if(form.content.value=='' && jQuery('#publishform_{$rid} .image-item').length<1){
+						showmessage('{eval echo lang("not_input_image")}','danger',1000,1);
+						return false;
+					}
+					if(jQuery('#publishform_{$rid} .image-item input[name="localid[]"]').length>0){
+						showmessage('{eval echo lang("image_not_finish_touch_continue")}','danger',1000,1);
+						return false;
+					}
+				}else{
+					if(form.content.value=='' && jQuery('#imageContainer_{$rid} .image-item input[name="attach[aid][]"').length<1){
+						showmessage('{eval echo lang("not_input_image")}','danger',1000,1);
+						return false;
+					}
+				}
+			}else if('$type'=='attach'){
+				
+				//showmessage('请输入网址','danger',1000,1);
+				if(form.content.value=='' && jQuery('#publishform_{$rid} .attach-item input[name="attach[aid][]"').length<1){
+					showmessage('{eval echo lang("not_input_attach")}','danger',1000,1);
+					return false;
+				}
+			
+			}
+			jQuery('publishform_{$rid}_btn').button('loading');
+			ajaxpost(form.id, 'publishform_{$rid}_btn','publishform_{$rid}_btn');
+			
+			return false;
+		}
+		function succeedhandle_$_GET['handlekey'](url, message, values) {
+			hideWindow('$_GET[handlekey]');
+			if(values['rid']>0){
+				jQuery.get('{MOD_URL}&op=ajax&do=getItem&rid='+values['rid']+'&ismy='+values['ismy']+'&t='+new Date().getTime(),function(html){
+					jQuery('#item_'+values['rid']).replaceWith(html);
+				});
+				
+			}
+		};
+		function errorhandle_$_GET['handlekey'](message) {
+			showmessage(message,'danger',3000,1);
+			jQuery('#fwin_{$_GET[handlekey]} input[name="content"]').focus();
+		};
+		jQuery('.atwho').on('mousedown',function(){
+	  		var textarea = jQuery(this).parents('form').find("textarea[name='content']");
+			if(textarea.val()==''){
+				textarea.val('@');
+			}else{
+				textarea.val(textarea.val()+'@');
+			}
+			textarea.caret('pos',textarea.val().length);
+			textarea.focus().atwho('run'); 
+			return false;
+		});
+	<!--{if !empty($data[jid])}-->
+	jQuery(function(){
+	    jQuery('#content_$rid').atwho({
+	       at: "@",
+			data: '{MOD_URL}&op=ajax&do=getAtList&jid=$data[jid]',
+			callbacks:{
+						remote_filter: function (query, render_view) {
+							var thisVal = query,
+							self = jQuery(this);
+							if( !self.data('active') && thisVal.length >= 1 ){
+								self.data('active', true);                            
+								itemsMentions = cachequeryMentions[thisVal]
+								if(typeof itemsMentions == "object"){
+									render_view(itemsMentions);
+								}else
+								{                            
+									if (self.xhr) {
+										self.xhr.abort();
+									}
+									self.xhr = jQuery.getJSON('{MOD_URL}&op=ajax&do=getAtList&jid=$data[jid]',{
+										term: thisVal
+									}, function(data) {
+										cachequeryMentions[thisVal] = data
+										render_view(data);
+									});
+								}                            
+								self.data('active', false);                            
+							}                    
+						}
+			},
+			 tpl: "<li data-value='@[${name}:${id}]' title='${title}'>${avatar}&nbsp;${name}</li>",
+			 search_key: "searchkey",
+			 start_with_space: false,
+			 limit: 5,
+			 max_len: 20,
+			 display_timeout: 300
+	    });
+	});
+	<!--{/if}-->
+	jQuery(function(){
+		jQuery("[data-toggle='tooltip']").tooltip();
+	})
+	</script> 
+<!--{elseif $do=='getReply'}-->
+	<!--{loop $replys $value}-->
+		<div class="replyItem" pcid="$value[pcid]">
+				<span class="viaWrap">
+					<a href="user.php?uid=$value[authorid]">{eval echo avatar_block($value[authorid])}</a>
+				</span>
+	       <div style="display: inline-block;width: 92%;">
+	           <div style="display: inline-block">
+	               <span class="name"><a href="user.php?uid=$value[authorid]">$value[author]</a></span>
+	               <span class="reply"> {eval echo lang('w_reply')} </span>
+	               <span class="name"><a href="user.php?uid=$value[pauthorid]">$value[pauthor]</a></span>
+	               <span>:</span>
+	           </div>
+	           <div class="conWrap">
+
+	               <span class="con">$value[message]</span>
+	           </div>
+	           <div class="reviewDate">
+	               <span class="dateline">{eval echo dgmdate($value[dateline],'u');}</span>
+	               <!--{if $jilu[deletetime] <= 0 && !$jilu[inarchive]}-->
+	               <span class="a_btnWrap a_btn1">
+					<span class="a_btn">
+					<!--{if $value['authorid'] == $_G['uid']}-->
+						<a href="javascript:;" title="{eval echo lang('delete')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-delete" onclick="cmt_del(this,'$value[cid]','$value[rid]','reply')"></a>
+					<!--{else}-->
+						<a href="javascript:;" title="{eval echo lang('w_reply')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-reply" onclick="cmt_reply('$value[rid]','$value[authorid]','$value[author]','$value[pcid]')"></a>
+						<!--{if $value[authorid] == $_G['uid'] || $_G['adminid']}-->
+							<div class="line"></div>
+	                    	<a href="javascript:;" title="{eval echo lang('delete')}" data-toggle="tooltip" data-placement="bottom" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$value[cid]','$value[rid]','reply')"></a>
+	                    <!--{/if}-->
+					<!--{/if}-->
+					</span>
+				</span>
+				<!--{/if}-->
+	           </div>
+	       </div>
+	   </div>
+	<!--{/loop}-->
+	<!--{if $next}--><a class="cmt-loadmore" href="javascript:;" onclick="getMoreReply(this,$value[pcid],$nextStart)">{eval echo lang('viewmore_reply')} <i class="dzz dzz-arrow-dropdown right-but"></i></a><!--{/if}-->
+	<script type="text/javascript">
+		jQuery(function(){
+   			jQuery("[data-toggle='tooltip']").tooltip();
+   		})
+	</script>
+<!--{elseif $do=='getMoreCmt'}-->
+	<!--{loop $cmts $cmt}-->
+       <div class="cmt-item" id="cmt-item-{$cmt['cid']}">
+           <div class="cmt-avatar viaWrap">
+           	<a href="user.php?uid=$cmt[authorid]">{eval echo avatar_block($cmt[authorid])}</a>
+           </div>
+           <div class="cmt-body">
+               <div class="cmt-msg con"><span class="name"><a href="user.php?uid=$cmt[authorid]">$cmt[author]</a></span>
+                   <span>:</span> $cmt[message]</div>
+               <div class="cmt-info">
+                   <span class="dateline">{eval echo dgmdate($cmt[dateline],'u');}</span>
+                   <!--{if $_G['uid'] && $jilu[deletetime] <= 0 && !$jilu[inarchive]}-->
+                   <span class="cmt-hover a_btnWrap">
+                        <!--{if $cmt['authorid']!=$_G['uid']}-->
+                        <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('w_reply')}" class="cmt-reply-btn dzz dzz-reply" onclick="cmt_reply('$rid','$cmt[authorid]','$cmt[author]','$cmt[cid]')"></a>
+                        <!--{if $value[authorid] == $_G['uid'] || $perm > 1 || $jilu['authorid'] == $_G['uid']}-->
+							<div class="line"></div>
+                        	<a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$cmt[cid]','$cmt[rid]')"></a>
+                        <!--{/if}-->
+                       <!--{/if}-->
+                       <!--{if $cmt['authorid']==$_G['uid'] }-->
+                        <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$cmt[cid]','$cmt[rid]')"></a>
+                       <!--{/if}-->
+                        </span>
+                   <!--{/if}-->
+               </div>
+           </div> 
+       </div>
+       <!--{if $cmt['reply']}-->
+           <!--{loop $cmt['reply'] $cep}-->
+               <div class="replyItem" pcid="$cmt[cid]">
+						<span class="viaWrap">
+							<a href="user.php?uid=$cep[authorid]">{eval echo avatar_block($cep[authorid])}
+						</span>
+                   <div style="display: inline-block;width: 92%;">
+                       <div style="display: inline-block">
+                           <span class="name"><a href="user.php?uid=$cep[authorid]">$cep[author]</a></span>
+                           <span class="reply"> {eval echo lang('w_reply')} </span>
+                           <span class="name"><a href="user.php?uid=$cep[pauthorid]">$cep[pauthor]</a></span>
+                           <span>:</span>
+                       </div>
+                       <div class="conWrap">
+
+                           <span class="con">$cep[message]</span>
+                       </div>
+                       <div class="reviewDate">
+                           <span class="dateline">{eval echo dgmdate($cep[dateline],'u');}</span>
+                           <!--{if $jilu[deletetime] <= 0 && !$jilu[inarchive]}-->
+                           <span class="a_btnWrap a_btn1">
+							<span class="a_btn">
+							<!--{if $cep['authorid'] == $_G['uid']}-->
+								<a href="javascript:;" title="{eval echo lang('delete')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-delete" onclick="cmt_del(this,'$cep[cid]','$cep[rid]','reply')"></a>
+							<!--{else}-->
+								<a href="javascript:;" title="{eval echo lang('w_reply')}" data-toggle="tooltip" data-placement="bottom" class="dzz dzz-reply" onclick="cmt_reply('$rid','$cep[authorid]','$cep[author]','$cmt[cid]')"></a>
+								<!--{if $value[authorid] == $_G['uid'] || $_G['adminid']}-->
+									<div class="line"></div>
+                                	<a href="javascript:;" title="{eval echo lang('delete')}" data-toggle="tooltip" data-placement="bottom" class="cmt-del-btn dzz dzz-delete" onclick="cmt_del(this,'$cep[cid]','$cep[rid]','reply')"></a>
+                                <!--{/if}-->
+							<!--{/if}-->
+							</span>	
+						</span>
+						<!--{/if}-->
+                       </div>
+                   </div>
+               </div>
+           <!--{/loop}-->
+           <!--{if count($cmt[reply]) >= 5}-->
+           		<a class="cmt-loadmore" href="javascript:;" onclick="getMoreReply(this,$cmt[cid],5)">{eval echo lang('viewmore_reply')} <i class="dzz dzz-arrow-dropdown right-but"></i></a>
+           <!--{/if}-->
+       <!--{/if}-->
+       <!--{/loop}-->
+       <!--{if $next}-->
+       <a class="cmt-loadmore" href="javascript:;" onclick="getMoreCmt(this,$rid,{$nextStart});return false;" >{eval echo lang('more_w_comment')}</a>
+       <!--{/if}-->
+       <script type="text/javascript">
+       		jQuery(function(){
+       			jQuery("[data-toggle='tooltip']").tooltip();
+       		})
+       </script>
+<!--{/if}-->
+
+<!--{if $_G['inajax']}-->
+<!--{template common/footer_ajax}-->
+<!--{/if}

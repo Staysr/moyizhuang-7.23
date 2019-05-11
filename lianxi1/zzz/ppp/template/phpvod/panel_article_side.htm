@@ -1,0 +1,16 @@
+<!--{php}-->
+if(PHPSELF == 'arthome')
+	$arthome = 'active';
+elseif(PHPSELF == 'artlist')
+	$get_classid = $classid;
+<!--{/php}-->
+<div class="list-group">
+	<a class="list-group-item $arthome" href="arthome.php">文档首页</a>
+	<!--{loop $_artclass $classid $classname}-->
+	<!--{eval $active = $classid == $get_classid ? 'active' : '';}-->
+	<a class="list-group-item $active" href="artlist.php?classid=$classid">$classname</a>
+	<!--{/loop}-->
+	<!--{if PHPSELF == 'article'}-->
+	<a class="list-group-item active" href="javascript:;">阅读文档</a>
+	<!--{/if}-->
+</div>

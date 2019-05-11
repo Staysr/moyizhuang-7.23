@@ -1,0 +1,533 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*公共库*/
+
+@keyframes tishik
+{
+	
+
+	0%{
+		transform: scale(0.6);
+	
+	}
+	10%{
+		transform: scale(0.6);	
+		transform: rotateY(45deg);
+	}
+	20%{
+		transform: scale(0.7)
+	}
+	50%{
+		transform: scale(1);
+	}
+	80%{
+		transform: scale(1);
+	}	
+	
+}
+/*提示框*/
+#zhezhao{
+	z-index: 0;
+	background-color: rgba(0,0,0,0.3);
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom:0;
+	right:0;
+	
+}
+#zhezhao2{
+	z-index: 1;
+	background-color: rgba(0,0,0,1);
+	position: absolute;
+	max-width: 500px;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+#tishik{
+	position: absolute;
+	left: 650px;
+	top:400px;
+	width: 200px;
+	background-color: #f5f5f5;
+	box-shadow: 1px 1px 10px rgba(0,0,0,.2);
+	border-radius: 5px;
+	animation: tishik 1s ease-in-out ;
+	animation-fill-mode: backwards;
+}
+.tsk-img{
+	width: 100%;
+	height: 80px;
+
+
+}
+.tsk-img img{
+	margin-top: 20px;
+	width: 50px;
+	height: 50px;
+
+}
+#tsk-p{
+	color: rgba(0,0,0,0.5);
+	margin: 0 auto;
+	font-size: 20px;
+	margin-bottom: 20px;
+	padding: 0 10px;
+
+}
+#tishik input{
+	cursor: pointer;
+	width: 80%;
+	height: 30px;
+	margin-top: 15px;
+	margin-bottom: 20px;
+	background-color: #2196F3;
+	border: 1px solid rgba(0,150,245,1.00);
+	border-radius: 15px;
+}
+
+
+
+/*大按钮*/
+.yiqi-biginput{
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+}
+
+/*弹出表单提交*/
+#yiqi-tijiaok{
+	background-color: #f5f5f5;
+	box-shadow: 2px 2px 20px #ccc;
+	position: fixed;
+	top: 15%;
+	left: 35%;
+	transition: all 1s;
+}
+.yiqi-tijiaok-head{
+	width: 100%;
+	height: 60px;
+	background-color:#fff;
+}
+.yiqi-tijiaok-head P{
+	line-height: 60px;
+	color: #636363;
+	font-size: 20px;
+	margin-left: 30px;
+}
+.yiqi-tijiaok-input{
+	width: 500px;
+	margin: 0 auto;
+}
+.yiqi-tijiaok-input input{
+	width: 90%;
+	height: 40px;
+	margin: 10px;
+	text-indent: 10px;
+	font-size: 14px;
+}
+.yiqi-tijiaok-tj{
+	width: 100%;
+	height: 60px;
+}
+.yiqi-tijiaok-btn{
+	width: 90px;
+	height: 40px;
+	color: #fff;
+	font-size: 15px;
+	margin:0 10px;
+	line-height: 40px;
+	border-radius: 3px;
+	cursor: pointer;
+	display: inline-block;
+}
+.yiqi-tijiaok-yes{
+	background-color: #0D8CDD;
+}
+.yiqi-tijiaok-no{
+	background-color: #AA0104;
+}
+.yiqi-tijiaok-input select{
+	width: 90%;
+	height: 45px;
+	margin: 12px 0;
+	text-indent: 10px;
+	font-size: 15px;
+}
+
+
+
+
+
+/*登录框*/
+.yiqi-login-head{
+	height:80px;
+	width: 100%;
+	border-bottom: 1px solid #D5D5D5;
+}
+.yiqi-login-head h3{
+	font-size: 20px;
+	line-height: 80px;
+	margin-left: 10px;
+	color:#2196F3;
+}
+@media screen and (max-width: 600px){
+	.yiqi-login-head{
+		height:60px;
+	}
+	.yiqi-login-head h3{
+		line-height: 60px;
+	}
+}
+.yiqi-login-content{
+
+}
+.yiqi-login-content-head{
+	width: 100%;
+	height: 130px;
+	
+}
+
+.yiqi-login-content-head img{
+	width: 100px;
+	height: 100px;
+	margin-top: 20px;
+}
+.yiqi-login-table{
+	width: 85%;
+	height: 350px;
+	margin: 0 auto;
+}
+.yiqi-login-table input{
+	transition: all .3s;
+	background-size: 25px 25px;/*小图标的大小*/
+	background-position: 10px;/*小图标在input的位置*/
+	background-repeat: no-repeat;/*背景小图标不重复*/
+	padding-left: 60px;/*设置input内边距*/
+	font-size: 20px;
+	background-color: none;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 20px;
+	display:block;
+	border:none;
+	border-bottom: 1px solid #D5D5D5;
+	border-radius: 0px;
+}
+.yiqi-login-table input:last-child{
+	margin-bottom: 5px;
+
+}
+.yiqi-login-table button{
+	transition: all .3s;
+	cursor: pointer;
+	display:block;
+	width: 100%;
+	height: 50px;
+	background-color: #2196F3;
+	border-radius: 2px;
+	border: 1px solid #498FFC;
+	margin-top: 50px;
+	font-size: 20px;
+	color: #FFFFFF;
+	box-shadow: 3px 3px 10px rgba(25,105,213,0.5);
+	margin-bottom: 15px;
+}
+.yiqi-login-table button:hover{
+	background-color: #0D7ED7;
+}
+.yiqi-login-user-icon{
+		background-image: url("../images/icon/user1.png");/*设置小图标*/
+}
+.yiqi-login-pass-icon{
+		background-image: url("../images/icon/pass4.png");/*设置小图标*/
+}
+.yiqi-login-passok-icon{
+		background-image: url("../images/icon/pass5.png");/*设置小图标*/
+}
+.yiqi-login-email-icon{
+		background-image: url("../images/icon/email2.png");/*设置小图标*/
+}
+
+.yiqi-login-table input:hover{
+	border-bottom: 1px solid #2196F3; 
+}
+.yiqi-login-table p{
+	color:#f44336;
+	font-size: 15px;
+	float: right;	
+}
+.yiqi-login-table span{
+	font-size: 15px;
+	color:#979797;
+	float: left;
+	cursor: pointer;
+}
+.yiqi-login-table span:last-child{
+	float: right;
+}
+.yiqi-login-buttom{
+	width: 100%;
+	height: 60px;
+	position: absolute;
+	bottom: 0;
+}
+.yiqi-login-buttom span{
+	font-size: 13px;
+	color: #787878;
+}
+.yiqi-login-hr{
+	width: 30%;
+	height: 1px;
+	background-color: #ACACAC;
+	display: inline-block;
+	margin-bottom: 3px;
+}
+.yiqi-login-buttom-icon{
+	display: block;
+}
+.yiqi-login-buttom-icon img{
+	cursor: progress;
+	width: 30px;
+	height: 30px;
+	margin: 5px 10px;
+}
+.yiqi-user-head{
+	position: absolute;
+	top:0;
+	width: 100%;
+	height: 240px;
+	background-color: #55B2FC;
+}
+.yiqi-user-head p{
+	font-size: 16px;
+	color:#FFFFFF;
+	margin-top: 25px;
+	cursor: pointer;
+}
+.yiqi-user-img{
+	margin: 0 auto;
+	width: 100px;
+	height: 100px;
+	margin-top: 50px;
+}
+.yiqi-user-img img{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	border:3px solid rgba(249,249,249,0.2);
+}
+.yiqi-user-content{
+	width: 100%;
+	background-color:#fff;
+	position: absolute;
+	top:240px;
+	border-bottom: 1px solid #C7C7C7;
+}
+.yiqi-user-content-h:nth-child(-n+7){
+	width: 90%;
+	height: 60px;
+	line-height: 60px;
+	display: block;
+	margin: 0 auto;
+	border-bottom: 1px solid #C7C7C7;
+	cursor:pointer;
+	background: url(images/icon/you.png) no-repeat;
+	background-position: right;
+	background-size: 20px;
+}
+.yiqi-user-content-h:nth-child(n+7){
+	width: 90%;
+	height: 60px;
+	line-height: 60px;
+	display: block;
+	margin: 0 auto;
+	border-bottom: 1px solid #C7C7C7;
+	cursor:pointer;
+	background: url(images/icon/you.png) no-repeat;
+	background-position: right;
+	background-size: 20px;
+}
+.yiqi-user-content-h:nth-child(n+7):last-child{
+	margin-bottom: 80px;
+}
+.yiqi-user-content-h:last-child{
+	border-bottom: none;
+}
+.yiqi-user-content-h:hover{
+	border-bottom: 1px solid #3494F9;
+}
+@media screen and (max-height: 620px){
+	.yiqi-user-content{
+		overflow-y: scroll;
+	}
+	.yiqi-user-content-h:nth-child(n+4):last-child{
+		margin-bottom: 80px;
+	}
+}
+.yiqi-user-content-h img{
+	width: 35px;
+	height: 35px;
+	vertical-align: middle;
+}
+.yiqi-user-content-h span{
+	margin-left: 5px;
+	font-size: 15px;
+	color:#151515;
+	font-weight: bold;
+}
+/*底部*/
+.yiqi-buttom{
+	position: fixed;
+	bottom: 0;
+	font-size: 13px;
+	width: 100%;
+	height: 60px;
+	background-color: #f5f5f5;
+	border-top: 1px solid #C3C3C3;
+	line-height: 50px;
+	color: #676767;
+}
+.yiqi-buttom-content{
+	cursor: pointer;
+	width: 30%;
+	display: inline-block;
+}
+.yiqi-buttom-content img{
+	margin-top: 10px;
+	width: 25px;
+	height: 25px;
+
+}
+.yiqi-buttom-content span{
+	margin-top: 5px;
+	display: block;
+	font-size: 13px;
+	line-height: 15px;
+}
+/*书架*/
+.yiqi-shujia-head{
+	height: 200px;
+	width: 100%;
+	background-image: -webkit-linear-gradient(290deg, #2b5876 0%, #4e4376 100%);
+	background-image: -o-linear-gradient(290deg, #2b5876 0%, #4e4376 100%);
+	background-image: linear-gradient(20deg, #2b5876 0%, #4e4376 100%);
+}
+.yiqi-shujia-title{
+	width: 100%;
+	height: 40px;
+	font-size: 20px;
+	color: #fff;
+	line-height: 40px;
+	font-weight: bold;
+}
+.yiqi-shujia-head-left{
+	width: 30%;
+	height: 170px;
+	float: left;
+}
+.yiqi-shujia-head-right{
+	float: right;
+	width: 70%;
+	height: 170px;
+
+}
+.yiqi-shujia-head-left img{
+	width: 70%;
+	height: 70%;
+	max-width: 150px;
+}
+.yiqi-shujia-head-right h1{
+	margin-top: 5px;
+	color: #FFFFFF;
+}
+.yiqi-shujia-head-right p{
+
+	margin-top: 5px;
+	color: #838383;
+}
+.yiqi-shujia-head-right p:nth-child(3){
+	margin-top: 20px;
+
+}
+.yiqi-shujia-head-right span{
+	line-height: 50px;
+	color: #C8C8C8;
+}
+.yiqi-shujia-head-right input{
+	background:none;
+	border: 1px solid #F7F7F7;
+	margin-left: 100px;
+	color: #F4F4F4;
+	padding: 5px;
+	border-radius: 5px;
+}
+.yiqi-shujia-head-right input:hover{
+	background-color: #499BFD;
+	border: 1px solid #89A9FF;
+}
+.yiqi-shujia-content{
+	width: 90%;
+	height: 300px;
+
+	margin: 0 auto;
+	
+}
+.yiqi-shujia-content-book{
+	width: 32%;
+	max-width: 150px;
+	height: 60%;
+	position: relative;
+
+	display: inline-block;
+}
+@media screen and (max-width: 333px){
+	.yiqi-shujia-content-book{
+		width: 31.5%;
+	}
+}
+.yiqi-shujia-content-img {
+	width: 90%;
+	margin-left: 6px;
+	height: 130px;
+	position: absolute;
+	top: 0;
+}
+.yiqi-shujia-content-img img{
+	width: 100%;
+	height: 100%;
+
+}
+.yiqi-shujia-content-img p{
+	font-size: 15px;
+	font-weight: bold;
+	color: #060606;
+	text-align: center;
+}
+.yiqi-shujia-content-img span{
+	margin-top: 5px;
+	float: right;
+	color: #8E8E8E;
+}
+.yiqi-huadong{
+	position: relative;
+	line-height: 50px;
+	font-size: 15px;
+	color: #6A6A6A;
+	width: 100%;
+	height: 50px;
+	background-color: #f5f5f5;
+}
+.yiqi-huadong-int{
+	cursor:move;
+	position: absolute;
+	left: 0;
+	width: 50px;
+	height: 100%;
+	background-color: #FFFFFF;
+	border: 1px solid #ACACAC;
+}

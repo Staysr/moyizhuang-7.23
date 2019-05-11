@@ -1,0 +1,24 @@
+/* pages/kefu/index.wxss */
+.container {
+  font-size: 16px;
+  padding: 0;
+}
+
+.section {
+display: flex;
+margin: 16rpx;
+padding: 16rpx;
+border-bottom: 1rpx solid #CFD8DC;
+}
+
+text {
+  width: 358rpx;
+  color:rgb(154, 154, 154);
+}
+.text1{
+  text-align: right;
+}
+
+button {
+  margin: 16rpx;
+}

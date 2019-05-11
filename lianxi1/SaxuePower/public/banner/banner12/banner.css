@@ -1,0 +1,55 @@
+/* demo slider*/
+#touchslider_page{ width:500px; margin:0 auto;}
+.touchslider-demo .touchslider-viewport {
+
+}
+.touchslider-demo .touchslider-item {
+	overflow: hidden;
+	text-align:center;
+	width:490px;
+}
+.touchslider-demo img{}
+.touchslider-demo .touchslider-nav {
+	text-align: center;
+	margin-top: 16px;
+}
+.touchslider-demo .touchslider-nav a {
+	cursor: pointer;
+	color: #000;
+}
+.touchslider-demo .touchslider-nav a:active {
+	background: #689db2;
+}
+
+.touchslider-nav {
+	font: bold 16px/16px Georgia;
+}
+.touchslider-demo .touchslider-prev {
+	position: relative;
+	height: 16px;
+	background: #fff;
+	width: 100px;
+	display: inline-block;
+}
+.touchslider-demo .touchslider-next {
+	position: relative;
+	width: 100px;
+	height: 16px;
+	background: #fff;
+	display: inline-block;
+}
+.touchslider-demo .touchslider-next-in {
+	position: absolute; /* fix safari render font */
+}
+.touchslider-demo .touchslider-prev-in {
+	position: absolute;
+}
+.touchslider-demo .touchslider-nav-item {
+	width: 16px;
+	height: 16px;
+	background: #fff;
+	display: inline-block;
+	}
+.touchslider-demo .touchslider-nav-item-current {
+	background: #cff0ff;
+}

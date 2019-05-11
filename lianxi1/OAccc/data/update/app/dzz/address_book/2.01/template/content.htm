@@ -1,0 +1,102 @@
+<!--信息显示开始-->
+<!--{if $orgids}-->
+
+<table class="table table-hover">
+	<!--{loop $orgids $key $val}-->
+	<!--{if $val['users']}-->
+	<thead>
+		<tr>
+			<th colspan="10" class="title">$val[path] <small class="text-muted" title="总人数">(共<span class="num">{eval echo count($val[users]);}</span>人)</small></th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+		<!--{loop $val[users] $k $v}-->
+		<tr class="tr_focus">
+			<td uid="$v[uid]" class="biao avatar avatar-sm" width="64" >{eval echo avatar_block($v['uid']);}</td>
+			<!--{if !empty($v[username])}-->
+			<td uid="$v[uid]" title="{lang name}" class=" biao" style="padding-left:10px;">$v[username]</td>
+			<!--{else}-->
+			<td uid="$v[uid]" title="{lang name}" class=" biao" style="padding-left:10px;">{lang not_available}</td>
+			<!--{/if}-->
+			
+			<!--{if !empty($v[email])}-->
+			<td uid="$v[uid]" title="{lang email}" class=" biao">$v[email]</td>
+			<!--{else}-->
+			<td uid="$v[uid]" title="{lang email}" class=" biao">{lang not_available}</td>
+			<!--{/if}-->
+			<!--{if !empty($v[weixinid])}-->
+			<td uid="$v[uid]" title="{lang weixin}" class="biao">$v[weixinid]</td>
+			<!--{else}-->
+			<td uid="$v[uid]" title="{lang weixin}" class="biao">{lang not_available}</td>
+			<!--{/if}-->
+			<!--{if !empty($v[phone])}-->
+			<td uid="$v[uid]" title="{lang phone}" class=" biao">$v[phone]</td>
+			<!--{else}-->
+			<td uid="$v[uid]" title="{lang phone}" class=" biao">{lang not_available}</td>
+			<!--{/if}-->
+		</tr>
+		<!--{/loop}-->
+	</tbody>
+	<!--{/if}-->
+	<!--{/loop}-->
+	</table>
+
+<script type="application/javascript">
+	$(function() {
+		$('.biao').click(function() {
+			var txt = $(this).attr('uid');
+			var uid=$('#da').data('uid');
+			if(uid==txt) {
+				da_toggle();
+				return false;
+			}
+			$('#da').data('uid',txt);
+			$('#da .news').html('<div class="loadding"></div>');
+			$.post("{MOD_URL}&op=ajax&do=user", { suggest: txt }, function(json) {
+				var result=json.profile;
+				$('#da .da-username').html(json.username);
+				$('#da .da-avatar').html(json.avatar);
+				var html='';
+				$('#da .da-setFrequent').html('');
+				if(jQuery.inArray(json.uid,json.frequent_uids)>-1){
+					html='<a href="{MOD_URL}&op=ajax&do=setFrequent&uid='+json.uid+'" class="setFrequent" >'+__lang.setFrequent_cancel+'</a>'
+					
+				}else{
+					html='<a href="{MOD_URL}&op=ajax&do=setFrequent&uid='+json.uid+'" class="setFrequent" >'+__lang.setFrequent+'</a>'
+				}
+				jQuery(html).off('click').on('click', function() {
+					var self=jQuery(this);
+					jQuery.post(this.href,function(json){
+						if(json.add==1){
+							self.html(__lang.setFrequent_cancel);
+						}else{
+							self.html(__lang.setFrequent);
+						}
+						var hash=location.hash;
+						if(hash.indexOf('frequent')!==-1) window.location.reload();
+					},'json');
+					return false;
+				}).appendTo('#da .da-setFrequent');
+				var tb = '';
+				for(var i in result) {
+					tb += '<div class="news1">';
+					tb += '<span class="p_name">' + result[i]['title'] + '</span>';
+					tb += '<span class="p_x">' + result[i]['value'] + '</span>';
+					tb += '</div>';
+				};
+				$('#da .news').html(tb);
+			}, 'json');
+			//点表格出现资料开始
+			da_toggle('show');
+			return false;
+		});
+	});
+</script>
+<!--{elseif $_GET['gid']=='frequent'}-->
+<h2 style="color:#999;font-size:20px;font-weight:normal;padding-top:30px;text-align:center">{lang frequent_tips}</h2>
+<!--{else}-->
+<h2 style="color:#999;font-size:20px;font-weight:normal;padding-top:30px;text-align:center">{lang relevant_user_found}</h2>
+<!--{/if}-->
+<!--信息显示结束-->

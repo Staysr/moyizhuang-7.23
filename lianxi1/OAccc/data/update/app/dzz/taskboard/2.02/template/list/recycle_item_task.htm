@@ -1,0 +1,27 @@
+
+
+    <div class="line-bottom">
+        <span>任务名称</span>
+        <span>删除时间</span>
+    </div>
+    <!--{loop $list $task}-->
+    <div class="task-item clearfix <!--{if $task['status']==2}-->line-through<!--{/if}-->" id="task_{$task[taskid]}" taskid="$task[taskid]">
+       <div class="task-item-main">
+            <a class="task-item-check" data-taskid="$task[taskid]"><!--{if $task['status']!=2}--><span class="dzz dzz-check-box-outline-blank"></span><!--{else}--><span class="dzz dzz-check-box"></span><!--{/if}--></a>
+            <a class="task-item-title" href="javascript:;">$task[name]</a>
+            <!--{if $task[showdate]}-->
+            <span class="time_span">$task[fdate]</span>
+            <!--{/if}-->
+       </div> 
+       
+    </div>
+<!--{/loop}--> 
+
+<div class="task-more" >
+     <!--{if $next}-->
+     <button id="btn-load-more" class="btn btn-simple" btn-loading-text="加载中..." style="padding:8px 25px" onclick="getMore('$page')">加载更多</button>
+     <!--{else}-->
+     <p style="margin-top:20px;color:#999;text-align:center;">没有更多内容了</p>
+     <!--{/if}-->
+</div>
+

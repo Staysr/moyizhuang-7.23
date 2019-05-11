@@ -1,0 +1,471 @@
+@media (max-width: 750px){
+  body{
+    background: rgb(245,245,245);
+  }
+  .header_logo img{
+    margin-top: -40px !important;
+  }
+  header{
+    position: relative;
+    z-index: 10000;
+  }
+
+  #container{
+    background-image: url(../img/banner-wap.png);
+    background-size: 100% 600px;
+    width: 100%;
+    height: 600px;
+  }
+  .index-container img{
+    width: 100%;
+    height: 400px;
+  }
+  .content{
+    display: none;
+  }
+  .box{
+
+    display: block;
+  }
+  .index-container{
+    max-height: 400px;
+  }
+  .banner-pagination{
+    display: none;
+  }
+  .box-about{
+    display: block;
+  }
+  .about_title{
+    font-size: 19px;
+    margin: 0 ;
+    font-weight: bold;
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid black;
+  }
+
+  .jujiao_time,.jiaoju_desc,.about_desc{
+    font-size: 15px;
+   overflow: hidden;
+   padding: 10px 0;
+  }
+  .about_desc{
+     height: 100px;
+    overflow: hidden;
+  }
+  .jiaoju_text{
+    font-size: 15px;
+    padding-left: 5%;
+   
+  }
+  .box-ju{
+    background: white;
+    
+    margin: 30px auto;
+
+  }
+  .box-ju p{
+    width: 90%;
+    margin: 0 auto;
+  }
+  .box-bon p{
+    width: 90%;
+    margin: 0 auto;
+  }
+  .box-bon{
+    margin-top: 30px;
+    background: white;
+    
+    margin: 30px auto;
+  }
+  .carbon-btn{
+    margin-top: 30px;
+    width: 130px;
+    height: 50px;
+    font-size: 14px;
+  }
+  .about_img img{
+    width: 100%;
+    height: 220px;
+  }
+  .box_title{
+    font-size: 19px;
+    margin-top: 30px;
+    font-weight: bold;
+  }
+  .box-about{
+    margin-top: 30px;
+  }
+  .about-con{
+    width: 100%;
+    overflow: hidden;
+  }
+  .carbon{
+    width: 90%;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .about_text{
+    width: 90%;
+    white-space: nowrap;
+    font-size: 17px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .wen-title{
+  width: 100%;
+  height: 100px;
+  margin-top: 0;
+  line-height: 50px;
+/*  line-height: 100px;*/
+  text-align: center;
+  background: rgb(245,245,245);
+  }
+  .wen-title h3{
+    font-weight: bold;
+  font-size: 19px;
+  color: rgb(73,73,73);
+  }
+  .wen-title p{
+    font-size: 15px;
+    color: rgb(128,128,128);
+  }
+  .img_container{
+    display: none;
+  }
+  .min-img-container{
+    display: block;
+    font-size: 32px;
+    color: white;
+    display: show();
+    width: 100%;
+    height: 485px;
+    text-indent: 20px;
+    
+  }
+  .min-img{
+    width: 50%;
+    height: 150px;
+  }
+  .min-img img{
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+  }
+  .min-img span{
+    font-size: 14px;
+  }
+  .min-img-esc{
+    width: 100%;
+    height: 150px;
+  }
+  .min-img-esc span{
+    font-size: 14px;
+  }
+  .min-img-esc img{
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+  }
+  .min-one{
+    background-image:url('../img/my.png');
+    background-size: 100% 100%;
+  }
+  .min-two{
+    background-image:url('../img/mr.png');
+    background-size: 100% 100%;
+  }
+  .min-three{
+    background-image:url('../img/mk.png');
+    background-size: 100% 100%;
+  }
+  .min-four{
+    background-image:url('../img/md.png');
+    background-size: 100% 100%;
+  }
+  .min-five{
+    background-image:url('../img/mq.png');
+    background-size: 100% 100%;
+  }
+  .min-banner{
+    height: 240px;
+    display: block;
+  }
+  .min-banner .swiper-slide img{
+    width: 100%;
+    height: 240px;
+  }
+  .min-pagination{
+    width: 200px;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+  .banner-controller{
+    display: none;
+  }
+  .slid{
+    display: none;
+  }
+  .bannner{
+    display: none;
+  }
+  .page-left{
+    width: 100px;
+    line-height: 240px;
+  }
+  .page-right{
+    width: 100px;
+    line-height: 240px;
+  }
+  .page-left img{
+    width: 40px;
+    height: 40px;
+  }
+  .page-right img{
+    width: 40px;
+    height: 40px;
+  }
+  .warp{
+    width: 90%;
+    margin: 0 auto;
+    
+  }
+  .warp-img{
+   height: auto;
+  }
+  .warp-img img{
+    width: 100%;
+   height: auto;
+  }
+  .warp h3{
+    font-size: 19px;
+    font-weight: bold;
+  }
+  .warp p{
+    font-size: 16px;
+  }
+  .warp-left {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .warp-right{
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+  }
+  .warp-left,
+  .warp-right img{
+    width: 100%;
+  }
+
+  .sour{
+    display: none;
+  }
+
+
+
+}
+@media (max-width: 900px) and (min-width: 750px){
+    #nav .nav-ul {
+      display: none !important;
+    }
+  .warp{
+    margin-top: 40px;
+  }
+  .warp .warp-img{
+    height: auto;
+  }
+  .content{
+    height: auto;
+  }
+  .bannner{
+    max-height: 250px;
+  }
+
+      .page-left{
+        display: none;
+      }
+      .page-right{
+        display: none;
+      }
+    .img_container{
+    font-size: 15px;
+    height: 400px;
+    }
+    .img_container img{
+      width: 40px;
+      height: 40px;
+    } 
+    .img-two{
+      height: 133.3px;
+    }
+    .img-four{
+      height: 133.3px;
+    }
+    .img-five{
+      height: 133.3px;
+    }
+    .about_title{
+    width: 95%;
+    }
+    .banner-text{
+    font-size: 10px;
+  }
+  .index-container{
+    height: 400px;
+  }
+  .index-container img{
+    height: auto;
+  }
+  .jiaoju_text{
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .jujiao{
+    margin-top: 20px;
+  }
+  .col-jujia{
+      display: none;
+    }
+  .img_container .img_left{
+    height: 100%;
+  }
+}
+@media (max-width: 1300px) and (min-width: 900px){
+  #nav .nav-ul {
+      display: none !important;
+    }
+  .img_container .img_left{
+    height: 100%;
+  }
+  .warp .warp-img{
+    height: auto;
+  }
+
+  .warp{
+    padding-top: 0;
+  }
+  .content{
+    height: auto;
+  }
+  .jujiao{
+    margin-top: 20px;
+  }
+  .jiaoju_text{
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+    .bannner{
+    max-height: 400px;
+  }
+  .bannner img{
+    max-height: 400px;
+  }
+
+  .index-container{
+    height: 500px;
+  }
+  .index-container img{
+    height: auto;
+  }
+  #container{
+    height: 600px;
+    
+    }
+  .col-jujia{
+      display: none;
+    }
+  .col-md-4{
+    width: 50%;
+  }
+  .about-con{
+    width: 100%;
+    height: 240px;
+  }
+  .carbon{
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .about_img img{
+    width: 100%;
+    height: 180px;
+  }
+  .about_title{
+    width: 95%;
+  }
+  .banner-text{
+    font-size: 14px;
+  }
+  .img_container{
+    font-size: 20px;
+    height: 500px;
+  }
+  .img-two{
+    height: 166.6px;
+  }
+  .img-four{
+    height: 166.6px;
+  }
+  .img-five{
+    height: 166.6px;
+  }
+  .page-left{
+    display: none;
+  }
+  .page-right{
+    display: none;
+  }
+  .foote{
+    overflow: hidden;
+  }
+  .foot-box{
+    margin: 0 auto;
+
+  }
+  .jiaoju_text{
+    font-size: 18px;
+  }
+  .jiaoju_desc{
+    font-size: 12px;
+  }
+  .about_text{
+    font-size: 18px;
+  }
+  .about_desc{
+    font-size: 12px;
+  }
+  
+  .img_left img{
+    width: 50px;
+    height: 50px;
+  }
+  .img_right img{
+    width: 50px;
+    height: 50px;
+  }
+
+}
+
+/*@media (max-width: 500px){
+  .header_logo img{
+    margin-top: -15px !important;
+  }
+  .min-img img{
+    width: 30px;
+    height: 30px;
+  }
+  .min-img{
+    font-size: 20px;
+  }
+  .min-foot{
+    height: 300px;
+  }
+}*/
+

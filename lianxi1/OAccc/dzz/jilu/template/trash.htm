@@ -1,0 +1,94 @@
+<!--{template common/header_simple_start}-->
+<link rel="stylesheet" href="static/css/checkbox.css" media="all">
+<link href="{MOD_PATH}/images/index.css" rel="stylesheet" media="all">
+<link rel="stylesheet" href="{MOD_PATH}/images/trash.css" media="all">
+<link href="static/atwho/css/jquery.atwho.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/js/datepicker/datepicker.css?{VERHASH}" rel="stylesheet" media="all">
+<link rel="stylesheet" type="text/css" href="static/dzzthumb/jquery.dzzthumb.css">
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/dzzthumb/jquery.dzzthumb.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/smilies.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/imgReady.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/jquery.textareaexplander.js?{VERHASH}"></script>
+<!--{if $ismobile}-->
+<script type="text/javascript" src="static/js/touch-0.2.14.min.js?{VERHASH}"></script>
+<!--{/if}-->
+<!--{if $ismobile && $SignPackage}-->
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!--{/if}-->
+<script type="text/javascript" src="{MOD_PATH}/scripts/main.js?{VERHASH}"></script>
+<script type="text/javascript" src="{MOD_PATH}/scripts/atbox.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.ui.widget.js?{VERHASH}"></script>
+<script src="{MOD_PATH}/scripts/jqthumb.js"></script>
+<style type="text/css">
+	@media (min-width: 768px) {
+		.upvote {
+		    left: 40px;
+		}
+	}
+</style>
+<!--{template common/header_simple_end}-->
+<script type="text/javascript">
+var baseurl='{MOD_URL}';
+var ajaxurl='{MOD_URL}&op=recycle';
+var modpath='{MOD_PATH}';
+var type = '{$_GET["type"]}';
+</script>
+<!--{template common/commer_header}-->
+<div class="bs-container clearfix">
+    <div class="bs-left-container  clearfix">
+        <!--{template left}-->
+    </div>
+    <div class="left-drager">
+    </div>
+    <div class="bs-main-container" id="itemContainer">
+    <!--{if $count + $itemCount > 0}-->
+        <!--{template trash_item}-->
+    <!--{/if}-->
+    </div>
+</div>
+<div class="popbox clearfix" style="display: none;">
+    <div class="popbox-pointer">
+        <div class="gb_I" style="display: block;"></div>
+        <div class="gb_H" style="display: block;"></div>
+    </div>
+    <div class="popbox-container">
+        <div class="loadding"></div>
+    </div>
+</div>
+<div class="trash-confirm" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('true_empty_recycle')}" style="display:none;">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>{eval echo lang('empty_recycle_alert')}</p>
+</div>
+<script>
+    jQuery('.left-drager').leftDrager_layout(function(){
+        jQuery(".empty_alert").css("display", "flex").show();
+    });
+    jQuery(function () {
+        jQuery('.js-popbox').each(function(){
+            jQuery(this).popbox();
+        });
+        gridview9_init(jQuery('.gridview9'));
+    })
+    <!--{if $ismobile}-->
+      var tap='touchend';
+    <!--{else}-->
+      var tap='click';
+    <!--{/if}-->
+    setSearchValue();
+    jQuery(".bs-main-container").scroll(function(e) {//滚动加载
+        var main_container = jQuery(".bs-main-container").height();
+        var container_h = jQuery(".itemContainer").height();
+        var scroll_top = jQuery(".bs-main-container").scrollTop();
+        if(scroll_top+main_container>=container_h-20){
+             jQuery('#loadmore').trigger(tap);
+        }
+    });
+</script>
+<!--{template common/footer_simple}-->
+<script src="static/atwho/js/jquery.caret.js?{VERHASH}"></script>
+<script src="static/atwho/js/jquery.atwho.js?{VERHASH}"></script>
+<!--<script type="text/javascript" src="{MOD_PATH}/scripts/jquery.popbox.js?{VERHASH}"></script>-->
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+
+

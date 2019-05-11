@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/dis_header}-->
+    <title>{lang discuss}</title>
+</head>
+<body>
+<div class="container">
+
+    <!--搜索-->
+    <div class="weui-search-bar" id="searchBar">
+        <form class="weui-search-bar__form" action="{MOD_URL}&op=search" method="get">
+            <input type="hidden" name="formhash" value="{FORMHASH}" >
+            <input type="hidden" name="searchsubmit" value="true">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search" name="srchtxt" class="weui-search-bar__input" id="searchInput" placeholder="{lang search}" required="" value="{$_GET[kw]}">
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText">
+                <i class="weui-icon-search"></i>
+                <span>{lang search}</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">{lang cancel}</a>
+    </div>
+    <div class="weui-panel weui-panel_access wrap">
+        <!--{template mobile/discuss_list}-->
+    </div>
+</div>
+<!--{template mobile/footer}-->
+</body>
+<script>
+    jQuery('.container').css('height',jQuery(document.body).height()-jQuery('.weui-tabbar').height());
+    jQuery('.searchImg-wrap').height(jQuery('.container').height()-55);
+    var loading = false;  //状态标记
+   jQuery(".container").infinite().on("infinite", function() {
+      if(loading) return;
+      loading = true;
+      if (jQuery(".weui-loadmore").length > 0) {
+        var url = jQuery(".weui-loadmore").data("url");
+        jQuery.ajax({
+            url: url,
+            type: 'get',
+            success: function(res) {
+                jQuery(".weui-loadmore").replaceWith(res);
+                loading = false;
+            }
+        })
+      } else {
+        jQuery(".container").destroyInfinite();
+      }
+    });
+</script>
+<!--{eval output();}-->
+</html>

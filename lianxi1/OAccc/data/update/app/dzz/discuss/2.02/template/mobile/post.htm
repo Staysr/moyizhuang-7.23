@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/dis_header}-->
+    <title>{lang reply}</title>
+    <link href="dzz/system/ueditor/third-party/dzzattach/dzzattach.css?{VERHASH}"  rel="stylesheet"  media="all">
+    <script src="dzz/system/ueditor/third-party/highcharts/highcharts.js" type="text/javascript" defer="defer"></script>
+    <script src="dzz/system/ueditor/dialogs/charts/chart.config.js" type="text/javascript" defer="defer"></script>
+    <script src="static/js/smilies.js?{VERHASH}" type="text/javascript"></script>
+    <script type="text/javascript" src="data/cache/smilies_var.js?"></script>
+</head>
+<body style="background-color: #efeff4;">
+<div class="detail-con">
+    <div class="weui-media-box weui-cell__bd cmt-item1 cmt-item2" style="border-bottom: none;">
+        <div class="item-top">
+            <div class="weui-media-box__hd author">
+                <div class="user-img">{eval echo avatar_block($post[authorid])}</div> 
+            </div>
+            <div class="de-right right1">
+                <div class="author-name">{$post[author]}</div>
+                <div class="author-date">{eval echo dgmdate($post[dateline],'u')}</div>
+            </div>
+        </div>
+        <div class="weui-media-box__bd con-wrapper" style="border-bottom: 1px solid #e5e5e5;padding-bottom: 12px;padding-left: 0;margin-left: 42px;">
+            <p class="content">{$post[message]}</p>
+        </div>
+        <div class="weui-media-box__bd con-wrapper">
+
+            <div class="comment-wrap" style="background-color: #fff;;padding: 0;margin-top: 0;">
+                <!--{if $post[comments]}-->
+            <!--{loop $post[comments] $val}-->
+                        <div class="comment-item comment-item1" id="cmt-item-{$val[cid]}">
+                            <div class="cmt-top">
+                                <a href="user.php?uid={$val[uid]}" class="board-a detail-a">{$val[author]}</a>
+                                <!--{if $discuss[perm] > 2 || $thread == $_G['uid'] || $v[uid] == $_G['uid']}-->
+                                <a href="javascript:;" class="cmt-del" onclick="delcmt('{$val[cid]}')"><i class="dzz dzz-delete"></i></a>
+                                <!--{/if}-->
+                                <div class="author-date" style="margin: 6px 0;">{eval echo dgmdate($val[time],'u')}</div>
+                            </div>
+                            <div class="cmt-info">
+                                {$val[content]}
+                            </div>
+                        </div>
+                        <!--{if !$val['pcid']}-->
+                        <!--{loop $val[replys] $v}-->
+                        <div class="reply-item reply-item1" id="rep-item-{$v[cid]}">
+                            <div class="cmt-top">
+                                <div class="name-wrap">
+                                    <span><a href="user.php?uid={$v[uid]}" class="board-a detail-a">{$v[author]}</a></span>
+                                    <span style="color: #999"> {lang reply} </span>
+                                    <span><a href="user.php?uid={$v[reuid]}" class="board-a detail-a">{$v[replyer]}</a></span>
+                                </div>
+                                <!--{if $discuss[perm] > 2 || $thread == $_G['uid'] || $v[uid] == $_G['uid']}-->
+                                <a href="javascript:;" class="cmt-del" onclick="delrep('{$v[cid]}')"><i class="dzz dzz-delete"></i></a>
+                                <!--{/if}-->
+                                <div class="author-date">{eval echo dgmdate($v[time],'u')}</div>
+                            </div>
+                            <div class="cmt-info">
+                                {$v[content]}
+                            </div>
+                        </div>
+                        <!--{/loop}-->
+                        <!--{/if}-->
+                    <!--{/if}-->
+                <!--{/if}-->
+            </div>
+        </div>
+        <!--{if $post[cmtcount] > 10}-->
+            <div class="weui-loadmore" data-url="{MOD_URL}&op=ajax&do=getmorecmt&fid={$post[fid]}&tid={$post[tid]}&pid={$post[pid]}$start=10">
+              <i class="weui-loading"></i>
+              <span class="weui-loadmore__tips">{lang loading}</span>
+            </div>
+        <!--{/if}-->
+    </div>
+</div>
+<div class="weui-cells input-wrap input-wrap1">
+    <div class="weui-cell" style="border-top: 1px solid #e5e5e5;">
+        <div class="weui-cell__bd dis-input">
+            <input class="weui-input com-input" name="rep" type="text" placeholder="{lang talk_about_your_opinion}">
+            <a href="javascript:;" data-pid="{$pid}" data-tid="{$tid}" class="send">{lang send}</a>
+        </div>
+    </div>
+    <!--<div class="weui-cell weui-smile">-->
+        <!--<a href="javascript:;" class="smile" id="cmt_input_$post[pid]sml" onclick="showMenu({'ctrlid':this.id,'evt':'click','pos':'41!'});return false;"><i class="dzz dzz-emoticon"></i></a>-->
+    <!--</div>-->
+</div>
+</body>
+<script type="text/javascript" src="static/jquery_weui/js/swiper.min.js"></script>
+<script src="dzz/system/ueditor/ueditor.parse.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/third-party/dzzattach/dzzattach.js?{VERHASH}" type="text/javascript"></script>
+<script>
+    jQuery(function () {
+        jQuery('.detail-con').height(jQuery('body').height()-50);
+        jQuery('.com-input').on('input change focus',function () {
+            console.log(this);
+            if(jQuery(this).val()!='') {
+                jQuery('.send').css('color','#3686FF');
+            }else {
+                jQuery('.send').css('color','#999');
+            }
+        })
+    })
+    function delrep(num) {
+        jQuery.ajax({
+            url: '{MOD_URL}&op=ajax&do=comment&position=deletecmt',
+            type:'post',
+            dataType:'json',
+            data:{'cid':num},
+            success: function(res){
+                if (res.code == 200) {
+                    jQuery("#rep-item-"+num).slideUp();
+                    jQuery.toptip(res.message, 'success');
+                } else {
+                    jQuery.toptip(res.message, 'error');
+                }
+            }
+        })
+    }
+    function delcmt(num) {
+        jQuery.ajax({
+            url: '{MOD_URL}&op=ajax&do=comment&position=deletecmt',
+            type:'post',
+            dataType:'json',
+            data:{'cid':num},
+            success: function(res){
+                if (res.code == 200) {
+                    jQuery("#cmt-item-"+num).slideUp();
+                    jQuery.toptip(res.message, 'success');
+                } else {
+                    jQuery.toptip(res.message, 'error');
+                }
+            }
+        })
+    }
+    function loadImages() {
+
+        var img_src=[];
+        jQuery('.detail-con').find('.dzz-image').each(function (i) {
+            img_src.push(jQuery(this).attr('src'));
+            jQuery(this).click(function () {
+                bp.config.initIndex = i;
+                bp.open(i);
+            })
+        })
+        bp=jQuery.photoBrowser({
+            items:img_src,
+        })
+    }
+    jQuery(function () {
+        uParse('.con-wrapper',{'rootPath':'dzz/system/ueditor'});;
+        loadImages();
+        jQuery('.send').click(function () {
+            if(jQuery(this).parents('.dis-input').find('input[name="rep"]').val()=='') {
+                jQuery.toptip('{lang please_input_cmt}');
+                return;
+            }else {
+                var pid=jQuery(this).data('pid');
+                var tid=jQuery(this).data('tid');
+                var content=jQuery(this).parents('.dis-input').find('input[name="rep"]').val();
+                var data={
+                    'tid':tid,
+                    'pid':pid,
+                    'content':content,
+                    'addcmt':true,
+                    'formhash':'{FORMHASH}'
+                }
+                jQuery.ajax({
+                    url: '{MOD_URL}&op=ajax&do=comment&position=addcmt',
+                    type: 'post',
+                    dataType: 'json',
+                    data: data,
+                    success:function (res) {
+                        if(res.code==200) {
+                            jQuery.toptip(res.message,'success');
+                            jQuery.ajax({
+                                url:'{MOD_URL}&op=ajax&do=comment&position=getcmt',
+                                type:'post',
+                                data:{'cid':res.cid},
+                                success:function (html) {
+                                    jQuery('.comment-wrap').prepend(html);
+                                    jQuery('input[name="rep"]').val('');
+                                }
+                            })
+                        }else {
+                            jQuery.toptip(res.message);
+                        }
+                    }
+                })
+            }
+        })
+    })
+
+    var loading = false;  //状态标记
+    jQuery(".container").infinite().on("infinite", function() {
+      if(loading) return;
+      loading = true;
+      if (jQuery(".weui-loadmore").length > 0) {
+        var url = jQuery(".weui-loadmore").data("url");
+        jQuery.ajax({
+            url: url,
+            type: 'get',
+            success: function(res) {
+                jQuery(".weui-loadmore").replaceWith(res);
+                loadImages();
+                loading = false;
+            }
+        })
+      } else {
+        jQuery(".container").destroyInfinite();
+      }
+    });
+
+</script> 
+<!--{eval output();}-->
+</html>

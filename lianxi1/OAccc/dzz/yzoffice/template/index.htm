@@ -1,0 +1,118 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<style>
+	html,
+	body {
+		overflow: hidden;
+		background: #FBFBFB;
+	}
+</style>
+<div class="load-content text-center" style="margin: 10% 0;">
+	<div class="app-icon">
+		<img src="{PATH_URL}/images/icon.png?{VERHASH}" />
+	</div>
+	<div class="app-name" style="padding:15px;">{APP_NAME}</div>
+	<div class="load-status" style="margin: 15px auto;width:200px">
+		<div class="progress-text" style="line-height: 40px; padding: 0; margin: 0 auto;">{lang data_transmission}</div>
+		<div class="progress" style="height: 30px;margin: 0 auto; position: relative; display: none;">
+			<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%; color: #000;">
+			    <p class="pull-left succ-all" style="width: 150px; height: 30px; line-height: 30px;"></p>
+				<p class="pull-right pre" style="width: 50px; height: 30px; line-height: 30px; top:0; right: 0; position: absolute;"></p>
+		 	</div>
+		</div>
+		
+	</div>
+</div>
+<div id="MyViewerDiv"></div>
+<script type="text/javascript">
+ var CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+ Math.uuid = function (len, radix) {
+    var chars = CHARS, uuid = [], i;
+    radix = radix || chars.length;
+
+    if (len) {
+      // Compact form
+      for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random()*radix];
+    } else {
+      // rfc4122, version 4 form
+      var r;
+
+      // rfc4122 requires these characters
+      uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+      uuid[14] = '4';
+
+      // Fill in random data.  At i==19 set the high bits of clock sequence as
+      // per rfc4122, sec. 4.1.5
+      for (i = 0; i < 36; i++) {
+        if (!uuid[i]) {
+          r = 0 | Math.random()*16;
+          uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
+        }
+      }
+    }
+
+    return uuid.join('');
+  };
+		function request(){
+			var repeatTimer;
+			var taskStatus = function(){
+				jQuery.ajax({
+					url:'{MOD_URL}&do=transfor&path={$dzzpath}&'+Math.uuid(),
+					dataType:'json',
+					success:function(data){
+						statusUpdate(data);
+					}
+				});
+			}
+			var statusUpdate = function(data){
+				if(!data) return;
+				if(!data.code){
+					var error = data.data;
+					clearInterval(repeatTimer);
+					jQuery('.progress-text').html(error);
+					jQuery(".progress-text").addClass("alert alert-danger");
+					jQuery('.progress').hide();
+					return;
+				}
+
+				if(!data.data) return;
+				if(data.data.success == 1){
+					clearInterval(repeatTimer);
+					var item = data.data.steps[data.data.steps.length-1];
+					jQuery('.progress-text').html("{eval echo lang('success_opening')}");
+					jQuery(".progress").hide();
+					loadSuccess(data);
+				}else{
+					jQuery('.progress').show();
+					var step = data.data.steps[data.data.currentStep];
+					var stepInfo = step.result;
+					if(step.name == 'upload'){
+						jQuery('.progress-text').html("{eval echo lang('data_transmission')}");
+						if(stepInfo === false){
+							clearInterval(repeatTimer);
+							jQuery('.progress-text').html("{eval echo lang('open_failed')}");
+						}
+						var sizeTotal = Math.round((stepInfo.sizeTotal/1024/1024)*100)/100;
+						var sizeSuccess = Math.round((stepInfo.sizeSuccess/1024/1024)*100)/100;
+						var speed = Math.round((stepInfo.speed/1024/1024)*100)/100+'M/s';
+						jQuery(".succ-all").html(sizeSuccess+"M/"+sizeTotal+"M（"+speed+"）");
+						jQuery(".pre").html(Math.round(stepInfo.sizeSuccess/stepInfo.sizeTotal*100)+"%");
+						jQuery(".progress-bar").css("width",Math.round(stepInfo.sizeSuccess/stepInfo.sizeTotal*100)+"%")
+					}else if(step.name == 'convertProcess'){
+						jQuery('.progress').hide();
+						jQuery('.progress-text').html("{eval echo lang('transmission_later')}");
+					}
+				}
+			}
+
+			clearInterval(repeatTimer);
+			taskStatus();
+			repeatTimer = setInterval(taskStatus,600);		
+		}
+		var loadSuccess = function(data){
+			window.location.reload();
+		}
+		jQuery(document).ready(function(){
+			request();
+		});
+</script>

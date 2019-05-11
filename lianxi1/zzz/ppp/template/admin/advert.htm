@@ -1,0 +1,226 @@
+<!--<?php
+include_once gettpl('top');
+if(empty($action)){
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">广告管理</td>
+	</tr>
+	<tr>
+		<td class="notice">提示: 编辑及删除广告</td>
+	</tr>
+</table>
+<br />
+
+<ul class="nav">
+	<li><a href="$basename" class="active">广告列表</a></li>
+	<li><a href="$basename&action=add">添加编辑广告</a></li>
+</ul>
+<br />
+
+<form method="post" action="$basename">
+	<input name="action" type="hidden" value="del">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="8">广告列表</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'selid');"></td>
+			<td width="5%">ID</td>
+			<td width="10%">发布人</td>
+			<td width="20%">广告位</td>
+			<td width="15%">开始时间</td>
+			<td width="15%">结束时间</td>
+			<td>广告描述</td>
+			<td width="5%">操作</td>
+		</tr>
+<!--
+EOT;
+foreach($advertdb as $key => $value){
+	if(in_array($value['ckey'],array('header','footer','nav')))
+	{
+		$rdb = explode(',',$value['config']['adarea']);
+		$adarea_str = '';
+		foreach($rdb as $v)
+		{
+			switch($v)
+			{
+				case -1: $adarea_str = empty($adarea_str) ? '全部页面' : $adarea_str.'|全部页面'; break;
+				case 0: $adarea_str = empty($adarea_str) ? '首页' : $adarea_str.'|首页'; break;
+				case 1: $adarea_str = empty($adarea_str) ? '栏目页' : $adarea_str.'|栏目页'; break;
+				case 2: $adarea_str = empty($adarea_str) ? '视频详细页' : $adarea_str.'|视频详细页'; break;
+				case 3: $adarea_str = empty($adarea_str) ? '播放页' : $adarea_str.'|播放页'; break;
+			}
+		}
+	}
+	
+	switch($value['ckey'])
+	{
+		case 'header':
+			$value['ckey'] = "头部横幅($adarea_str)";
+			break;
+		case 'footer':
+			$value['ckey'] = "底部横幅($adarea_str)";
+			break;
+		case 'nav':
+			$value['ckey'] = "导航通栏($adarea_str)";
+			break;
+		case 'index':
+			$value['ckey'] = "首页({$value[config][pos]})";
+			break;
+		case 'class':
+			$value['ckey'] = "栏目页({$value[config][pos]})";
+			break;
+		case 'read':
+			$value['ckey'] = "视频详细页({$value[config][pos]})";
+			break;
+		case 'play':
+			$value['ckey'] = "播放页({$value[config][pos]})";
+			break;
+		default:
+			$value['ckey'] = "自定义($value[ckey])";
+			break;
+	}
+	
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="selid[]" value="$value[id]"></td>
+			<td>$value[id]</td>
+			<td>$value[username]</td>
+			<td>$value[ckey]</td>
+			<td>{$value[config][stime]}</td>
+			<td>{$value[config][etime]}</td>
+			<td>$value[descrip]</td>
+			<td><a href="$basename&action=edit&id=$value[id]" title="编辑广告">编辑</a></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<br />
+	<center><input type="submit" value="删 除"></center>
+</form>
+<!--
+EOT;
+}elseif($action=='add' || $action=='edit'){
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">广告管理</td>
+	</tr>
+	<tr>
+		<td class="notice">提示: 当同一广告位添加多组广告时, 随机显示其中之一</td>
+	</tr>
+</table>
+<br />
+
+<ul class="nav">
+	<li><a href="$basename">广告列表</a></li>
+	<li><a href="$basename&action=add" class="active">添加编辑广告</a></li>
+</ul>
+<br />
+
+<form action="$basename" method="post">
+	<input type="hidden" value="$id" name="id">
+	<input type="hidden" value="2" name="step">
+	<input name="action" type="hidden" value="$action">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">添加/编辑广告</td>
+		</tr>
+		<tr>
+			<td width="40%">广告描述</td>
+			<td><input type="text" size="45" name="descrip" value="$descrip"></td>
+		</tr>
+		<tr>
+			<td>广告代码</td>
+			<td><textarea name="code" rows="6" cols="50">$config[code]</textarea></td>
+		</tr>
+		<tr>
+			<td>广告位</td>
+			<td>
+				<select id="ckey" name="ckey" onchange="showtype(this.options[this.selectedIndex].value)">
+					<option value="header" $ckey_header>头部横幅</option>
+					<option value="footer" $ckey_footer>底部横幅</option>
+					<option value="nav" $ckey_nav>导航通栏</option>
+					<option value="index" $ckey_index>首页</option>
+					<option value="class" $ckey_class>栏目页</option>
+					<option value="read" $ckey_read>视频详细页</option>
+					<option value="play" $ckey_play>播放页</option>
+					<option value="self" $ckey_self>自定义</option>
+				</select>
+			</td>
+		</tr>
+		<tbody id="c">
+			<tr>
+				<td>广告范围</td>
+				<td>
+					<label><input type="checkbox" name="adarea[]" value="-1" $adarea_all /> 全部页面</label>
+					<label><input type="checkbox" name="adarea[]" value="0" $adarea_0 /> 首页</label>
+					<label><input type="checkbox" name="adarea[]" value="1" $adarea_1 /> 栏目页</label>
+					<label><input type="checkbox" name="adarea[]" value="2" $adarea_2 /> 视频详细页</label>
+					<label><input type="checkbox" name="adarea[]" value="3" $adarea_3 /> 播放页</label>
+				</td>
+			</tr>
+		</tbody>
+		<tbody id="p">
+			<tr>
+				<td>具体位置</td>
+				<td><input type="text" name="pos" size="3" value="$config[pos]" /></td>
+			</tr>
+		</tbody>
+		<tbody id="s">
+			<tr>
+				<td>标签名称</td>
+				<td><input type="text" name="keyname" value="$keyname" /> (前台通过此标签名调用广告, 请用下划线开头, 如: _ad)</td>
+			</tr>
+		</tbody>
+		<tr>
+			<td width="40%">开始时间 - 结束时间</td>
+			<td>
+				<input type="text" class="datetimepicker" size="20" name="stime" value="$config[stime]"> -
+				<input type="text" class="datetimepicker" size="20" name="etime" value="$config[etime]">
+			</td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" name="add" value="提 交"></center>
+</form>
+
+<link rel="stylesheet" type="text/css" href="js/datetimepicker/jquery.datetimepicker.css" />
+<script type="text/javascript" src="js/datetimepicker/jquery.datetimepicker.js"></script>
+<script type="text/javascript">
+	$(".datetimepicker").datetimepicker({
+		lang: 'zh',
+		mask: true,
+		validateOnBlur: false,
+		format: 'Y-m-d H:i'
+	});
+</script>
+<script language="javascript">
+	function showtype(i) {
+		if (i == 'header' || i == 'footer' || i == 'nav') {
+			$("#c").show();
+			$("#p").hide();
+			$("#s").hide();
+		} else if (i == 'index' || i == 'category' || i == 'class' || i == 'read' || i == 'play') {
+			$("#c").hide();
+			$("#p").show();
+			$("#s").hide();
+		} else if (i == 'self') {
+			$("#c").hide();
+			$("#p").hide();
+			$("#s").show();
+		}
+	}
+	showtype($("#ckey").val());
+</script>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>
+-->

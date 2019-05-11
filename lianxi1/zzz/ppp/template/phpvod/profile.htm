@@ -1,0 +1,53 @@
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<ol class="breadcrumb f-mt5">
+		  <li><a href="$db_wwwurl">首页</a></li>
+		  <li class="active">个人中心</li>
+		</ol>
+	</div>
+</div>
+
+<!--{if $action!='show' || $userdb[uid]==$uid}-->
+	<!--{eval ${$action}='active';}-->
+	<div class="row">
+		<div class="col-xs-4 col-md-4">
+			<div class="list-group">
+				<a class="list-group-item $show" href="profile.php?action=show&id=$uid">个人资料</a>
+				<a class="list-group-item $modify" href="profile.php?action=modify">修改资料</a>
+				<a class="list-group-item $changepass" href="profile.php?action=changepass">密码安全</a>
+				<a class="list-group-item $permission" href="profile.php?action=permission">我的用户组</a>
+				<a class="list-group-item $buy" href="profile.php?action=buy">购买用户组</a>
+				<a class="list-group-item $myvideo" href="profile.php?action=myvideo">我的视频</a>
+				<a class="list-group-item $outextcredits" href="profile.php?action=outextcredits">积分兑换</a>
+				<a class="list-group-item $ads" href="profile.php?action=ads">推广宣传</a>
+			</div>
+		</div>
+		<div class="col-xs-16 col-md-16">
+			<div class="f-ml10">
+			<!--{if $action=='show'}-->
+				<!--{template 'panel_profile_show'}-->
+			<!--{elseif $action=='modify'}-->
+				<!--{template 'panel_profile_modify'}-->
+			<!--{elseif $action=='changepass'}-->
+				<!--{template 'panel_profile_changepass'}-->
+			<!--{elseif $action=='permission'}-->
+				<!--{template 'panel_profile_permission'}-->
+			<!--{elseif $action=='buy'}-->
+				<!--{template 'panel_profile_buy'}-->
+			<!--{elseif $action=='myvideo'}-->
+				<!--{template 'panel_profile_myvideo'}-->
+			<!--{elseif $action=='outextcredits'}-->
+				<!--{template 'panel_profile_outextcredits'}-->
+			<!--{elseif $action=='ads'}-->
+				<!--{template 'panel_profile_ads'}-->
+			<!--{/if}-->
+			</div>
+		</div>
+	</div>
+<!--{else}-->
+	<div class="row">
+		<div class="col-xs-20 col-md-20">
+			<!--{template 'panel_profile_show'}-->
+		</div>
+	</div>
+<!--{/if}-->

@@ -1,0 +1,291 @@
+<!--{template common/header_simple_start}-->
+<link href="{MOD_PATH}/images/user_select.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/discuss.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/input_field.js"></script>
+<script type="text/javascript" src="static/js/switchery.js"></script>
+
+<style>
+html,body{
+	overflow:hidden;
+}
+h4{
+	font-weight:bold;
+}
+.color_4{
+	color:#f0ad4e;
+	text-shadow:0px 1px 1px #CCC;
+}
+.color_3{
+	color:#333;
+}
+.user-item .delete{
+	display:none;
+}
+.user-item.hover .delete{
+	display:block;
+}
+.user-item .dropdown,.user-item .dropdown-menu{
+	font-size:12px;
+}
+.more{
+	font-size:80px;line-height:20px;font-family: georgia;
+	color:#BBBBBB;
+}
+.more:hover{
+	color:#428bca;
+}
+.bs-main-container{
+	overflow:auto;
+  margin-left: 0px;
+}
+.thumbnail .Topcarousel{
+  font-size: 45px;
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+}
+/*.user-item.hover .dropdown{
+	display:block;
+}*/
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<div class="bs-container clearfix">
+<div class="bs-main-container">
+  <div class="main-content clearfix" style="padding:15px 46px;">
+    <div class="user_group_container">
+      <!-- 管理员 -->
+      <h4 style="padding:0 10px;" class="user_group_title">{lang administrator}<small>(<i id="count_user_group">$adm_list_count</i>)</small></h4>
+      <ul id="user_group" class="user_group_u user_group_m list-unstyled clearfix" >
+        <!--{if $discuss[perm]>2}-->
+        <li  class=" pull-left" style="padding:10px;width:110px">
+          <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;overflow: hidden;">
+            <a href="javascript:;" onclick="addmember('adm')"><img style="margin:10px" src="dzz/discuss/images/addUser.png" width="66" height="66" /></a> </div>
+          <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span ><a href="{DZZSCRIPT}?mod=discuss&op=list&do=user&operation=selectuser&fid=$fid" style="color: #333;">{lang add_administrator}</a></span> </p>
+        </li>
+        <!--{/if}-->
+        <!--{loop $adm_userlist $value}-->
+          <li id="user_{$value[uid]}" perm="$value[perm]" class="user-item pull-left" style="padding:10px;width:110px;position:relative">
+            <a href="javascrip:;" class="delete" onclick="deleteUser('{$value[uid]}');return false" style="position:absolute;top:0px;right:0px;">
+            <span style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: rgba(116, 116, 116, 1);text-align: center;line-height: 20px;">
+              <i style="color:#fff;font-size:16px;line-height: 20px" class="dzz dzz-close"></i>
+            </span>
+            </a>
+            <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;overflow: hidden;"> {eval echo avatar_block($value['uid'])} </div>
+            <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span class="color_{$value[perm]}"> $value[username]</span> </p>
+            <!--{if $discuss[perm]>2}-->
+            <ul class="nav  list-unstyled">
+              <li class="dropdown text-center"> <a style="padding:5px;color: #676767;"  href="admin.php?mod=member&amp;orgid=0" data-toggle="dropdown" role="button" id="user-drop-{$value[uid]}" class="dropdown-toggle">$value[permtitle]<b class="caret"></b></a>
+                <ul aria-labelledby="user-drop-{$value[uid]}" role="menu" class="dropdown-menu" id="user-drop-{$value[uid]}-menu" style="min-width:90px;">
+                  <!--{loop $permtitle $key $value1}-->
+                  <li role="presentation"><a style="font-size: 14px;" href="javascript:;" role="menuitem" uid="$value[uid]" perm="$key" onclick="setPerm(this)">$value1</a></li>
+                  <!--{/loop}-->
+                </ul>
+              </li>
+            </ul>
+            <!--{/if}-->
+          </li>
+        <!--{/loop}-->
+        <!--{if $adm_userlist_next}-->
+        	<li  class="admlist-next pull-left" style="padding:10px;width:110px">
+              <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;overflow:hidden;text-align:center;"> <a class="more" href="javascript:;" onclick="getNext('{$limit}', 'adm');return false">...<p style="font-size:14px;line-height:35px">{lang loadmore}</p></a> </div>
+            </li>
+        <!--{/if}-->
+      </ul>
+      <!-- 普通成员 -->
+      <h4 style="padding:0 10px;" class="user_group_title">{lang member}<small>(<i id="count_user_group_m">$user_list_count</i>)</small></h4>
+      <ul id="user_group_m" class="user_group_u user_group_m list-unstyled clearfix" >
+        <!--{if $discuss[perm]>2}-->
+        <li  class=" pull-left" style="padding:10px;width:110px">
+          <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;overflow: hidden;">
+            <a href="javascript:;" onclick="addmember()"><img style="margin:10px" src="dzz/discuss/images/addUser.png" width="66" height="66" /></a>
+          </div>
+          <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"><span><a href="{DZZSCRIPT}?mod=discuss&op=list&do=user&operation=selectuser&fid=$fid" style="color: #333;">{lang add_member}</a></span></p>
+        </li>
+        <!--{/if}-->
+        <!--{loop $userlist $value}-->
+        <!--{if $value[perm] < 3}-->
+        <li id="user_{$value[uid]}" perm="$value[perm]" class="user-item pull-left" style="padding:10px;width:110px;position:relative">
+          <a href="javascrip:;" class="delete" onclick="deleteUser('{$value[uid]}');return false" style="position:absolute;top:0px;right:0px;">
+          <span style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: rgba(116, 116, 116, 1);text-align: center;line-height: 20px;">
+            <i style="color:#fff;font-size:16px;line-height: 20px" class="dzz dzz-close"></i>
+          </span>
+          </a>
+          <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;overflow: hidden;"> {eval echo avatar_block($value['uid'])} </div>
+          <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span class="color_{$value[perm]}"> $value[username]</span> </p>
+          <!--{if $discuss[perm]>2}-->
+          <ul class="nav list-unstyled">
+            <li class="dropdown text-center"> <a style="padding:5px;color: #676767;"  href="admin.php?mod=member&amp;orgid=0" data-toggle="dropdown" role="button" id="user-drop-{$value[uid]}" class="dropdown-toggle">$value[permtitle]<b class="caret"></b></a>
+              <ul aria-labelledby="user-drop-{$value[uid]}" role="menu" class="dropdown-menu" id="user-drop-{$value[uid]}-menu" style="min-width:90px;">
+                <!--{loop $permtitle $key $value1}-->
+                <li role="presentation"><a style="font-size: 14px;" href="javascript:;" role="menuitem" uid="$value[uid]" perm="$key" onclick="setPerm(this)">$value1</a></li>
+                <!--{/loop}-->
+              </ul>
+            </li>
+          </ul>
+          <!--{/if}-->
+        </li>
+        <!--{/if}-->
+        <!--{/loop}-->
+        <!--{if $user_list_next}-->
+          <li  class="userlist-next pull-left" style="padding:10px;width:110px">
+            <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;overflow:hidden;text-align:center;"> <a class="more" href="javascript:;" onclick="getNext('{$limit}', 'user');return false">...<p style="font-size:14px;line-height:35px">{lang loadmore}</p></a> </div>
+          </li>
+        <!--{/if}-->
+
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+jQuery('.left-drager').leftDrager_layout();
+var perm='{$discuss[perm]}';
+function getNext(start, type){ 
+	jQuery.get(DZZSCRIPT+'?mod=discuss&op=list&do=user&operation=getMore&fid={$fid}&type='+type,{'start':start},function(html){
+      if (type == 'user') {
+        jQuery('.userlist-next').replaceWith(html);
+      } else {
+        jQuery('.admlist-next').replaceWith(html);
+      }
+	});
+}
+function deleteUser(uid){
+	jQuery.getJSON(DZZSCRIPT+'?mod=discuss&op=list&do=user&operation=deleteUser&fid={$fid}',{'uid':uid},function(json){
+		if(json.error){
+			showmessage(json.error, 'danger', 1000, 1);
+		}else{
+			jQuery('#user_'+uid).remove();
+      jQuery('#count_user_group_m').html(jQuery('#user_group_m').find('.user-item').length);
+      jQuery('#count_user_group').html(jQuery('#user_group').find('.user-item').length);
+		}
+	});
+}
+function setPerm(obj){
+	var el=jQuery(obj);
+	var li =el.parent().parent().parent().parent().parent();
+	var uid=el.attr('uid');
+	var perm=parseInt(el.attr('perm'));
+
+	jQuery('#user-drop-'+uid).html(el.html()+'<b class="caret"></b>');
+  jQuery.ajax({
+    url: MOD_URL+'&op=list&do=user&operation=changeUserPerm&fid={$fid}',
+    type: 'post',
+    dataType: 'html',
+    data: {'uid':uid,perm:perm},
+    success:function(res){
+      if(jQuery(res).length < 1){
+        showmessage(res, 'danger', 1000, 1);
+      } else {
+        jQuery("#user_"+uid).remove();
+        if (perm == 3) {
+          jQuery("#user_group").find("li[perm=3]").remove();
+          jQuery("#user_group").append(res);
+        } else {
+          jQuery("#user_group_m").find("li[perm=2]").remove();
+          jQuery("#user_group_m").append(res);
+        }
+        jQuery('#count_user_group_m').html(jQuery('#user_group_m').find('.user-item').length);
+        jQuery('#count_user_group').html(jQuery('#user_group').find('.user-item').length);
+      }
+    }
+  })
+
+}
+
+function addmember(type) {
+    if (type == 'adm') {
+      var ids = [];
+      jQuery("#user_group").find('li:gt(0)').each(function(){
+        var id = jQuery(this).attr('id');
+        if (id) {
+          id = id.replace("user_", "");
+          ids.push(id);
+        }
+      });
+      if (ids) {
+        var idstr = ids.toString();
+      }
+      showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=chkadd_1&stype=2&multiple=1&ids='+idstr,'get',0);
+    } else {
+      var ids = [];
+      jQuery("#user_group_m").find('li:gt(0)').each(function(){
+        var id = jQuery(this).attr('id');
+        if (id) {
+          id = id.replace("user_", "");
+          ids.push(id);
+        }
+      });
+      if (ids) {
+        var idstr = ids.toString();
+      }
+      showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=chkadd_2&stype=2&multiple=1&ids='+idstr,'get','0')
+    }
+}
+
+function chkadd_1(ids, data) {//设置管理员
+      var sub_data = {
+                'formhash': '{FORMHASH}',
+                'selectsubmit': true,
+                'perm': 3,
+                'fid': '{$fid}',
+                'uids': ids,  
+      }
+      var url = "{MOD_URL}&op=list&do=user&operation=selectuser";
+      jQuery.post(url, sub_data, function (html) {
+        if (jQuery(html).find('li').length < 1) {
+          showmessage(html, 'error', 1000, 1);
+          return;
+        }
+        jQuery(ids).each(function(){
+          if(jQuery("#user_"+this).attr("perm") < 3){
+            jQuery("#user_"+this).remove();
+          }
+        })
+        jQuery("#user_group").find("li[perm=3]").remove();
+        jQuery("#user_group").append(html);
+        jQuery('#count_user_group_m').html(jQuery('#user_group_m').find('.user-item').length);
+        jQuery('#count_user_group').html(jQuery('#user_group').find('.user-item').length);
+      }, 'html')
+}
+
+function chkadd_2(ids, data) {//设置成员
+      var sub_data = {
+                'formhash': '{FORMHASH}',
+                'selectsubmit': true,
+                'perm': 2,
+                'fid': '{$fid}',
+                'uids': ids,  
+      }
+      var url = "{MOD_URL}&op=list&do=user&operation=selectuser";
+      jQuery.post(url, sub_data, function (html) {
+        // jQuery(ids).each(function(){
+        //   if(jQuery("#user_"+this).attr("perm") > 2){
+        //     jQuery("#user_"+this).remove();
+        //   }
+        // })
+        jQuery("#user_group_m").find("li[perm=2]").remove();
+        jQuery("#user_group_m").append(html);
+        jQuery('#count_user_group_m').html(jQuery('#user_group_m').find('.user-item').length);
+        jQuery('#count_user_group').html(jQuery('#user_group').find('.user-item').length);
+      }, 'html')
+}
+
+
+jQuery(document).ready(function(e) {
+
+   if(perm>2){
+  	jQuery(document).on('mouseenter','.user-item',function(){
+  		jQuery(this).addClass('hover');
+  	});
+  	jQuery(document).on('mouseleave','.user-item',function(){
+  		jQuery(this).removeClass('hover');
+  	});
+     }
+
+});
+
+</script>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--{template common/footer_simple}-->

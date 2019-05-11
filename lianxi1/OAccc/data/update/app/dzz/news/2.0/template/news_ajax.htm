@@ -1,0 +1,20 @@
+<!--{template common/header_ajax}-->
+<!--{if $_GET['do']=='getViewerByNewid'}-->
+	   <ul class="list-unstyled clearfix gray" style="padding-left:25px;">
+          <!--{loop $list $value}-->
+          <li class="user-item pull-left clearfix" style="padding:10px;width:230px;position:relative">
+            <div style="position:absolute;">
+			{eval echo avatar_block($value[uid]);}
+		</div>
+            <div class="user-item-right" style="padding-left:65px">
+                <p style="height:25px;margin:0;line-height:25px;overflow:hidden; white-space:nowrap">$value[username]</p>
+                <p style="height:25px;margin:0;line-height:25px;overflow:hidden; white-space:nowrap;">{eval echo dgmdate($value[dateline],'u');}</p>
+            </div>
+          </li>
+          <!--{/loop}-->
+        </ul>
+        <!--{if $multi}-->
+        $multi
+        <!--{/if}-->
+<!--{/if}-->
+<!--{template common/footer_ajax}-->

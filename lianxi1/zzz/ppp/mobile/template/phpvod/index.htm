@@ -1,0 +1,41 @@
+<section class="m-box">
+	<div class="title">
+		<h2>推荐影片</h2>
+	</div>
+	<div class="m-videolist">
+		<div class="row">
+			<!--{loop:video:$video best=1|limit=6|order=v.vid DESC}-->
+			<div class="col-xs-6 col-sm-4">
+				<div class="item">
+					<a href="play.php?vid={$video[vid]}&playgroup=1&index=0">
+						<span class="pic"><img src="$video[picurl]" /></span>
+						<div class="title">$video[subject]</div>
+					</a>
+				</div>
+			</div>
+			<!--{/loop:video}-->
+		</div>
+	</div>
+</section>
+
+<!--{loop:class:$c1 cid=0}-->
+<section class="m-box">
+	<div class="title">
+		<h2><a title="$c1[caption]" href="class.php?cid=$c1[cid]">$c1[caption]</a></h2>
+	</div>
+	<div class="m-videolist">
+		<div class="row">
+			<!--{loop:video:$video cid=$c1[cid]|showsub=1|limit=6|order=lastdate DESC,postdate DESC,v.vid DESC}-->	
+			<div class="col-xs-6 col-sm-4">
+				<div class="item">
+					<a href="play.php?vid={$video[vid]}&playgroup=1&index=0">
+						<span class="pic"><img src="$video[picurl]" /></span>
+						<div class="title">$video[subject]</div>
+					</a>
+				</div>
+			</div>
+			<!--{/loop:video}-->
+		</div>
+	</div>
+</section>
+<!--{/loop:class}-->

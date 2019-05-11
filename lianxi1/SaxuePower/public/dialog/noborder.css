@@ -1,0 +1,13 @@
+@charset "utf-8";
+ 
+/* common start */
+body { _margin:0; _height:100%; z-index:10000; /*IE6 BUG*/ }
+.aui_outer { text-align:left;}
+.aui_nw, .aui_n, .aui_ne, .aui_w, .aui_c, .aui_e, .aui_sw, .aui_s, .aui_se, .aui_header, .aui_tdIcon, .aui_main, .aui_footer { padding:0; border:none; }
+.aui_header, .aui_buttons button { display:none; }
+/* common end */
+
+.aui_inner { background:#FFF; }
+.aui_outer { border:none; }
+.aui_nw, .aui_n, .aui_ne, .aui_w, .aui_e, .aui_sw, .aui_s, .aui_se { display:none; }
+.aui_content { color:#666; }

@@ -1,0 +1,46 @@
+<!--<?php
+include_once gettpl("css");
+print <<<EOT
+-->
+</head>
+
+<body>
+	<table class="top f-w100 f-mb10">
+		<tr>
+			<td class="f-w25"><a target="main" href="$admin_file?adminjob=admin">首页</a></td>
+			<td class="f-w25"><a target="_top" href="?adminjob=quit">退出</a></td>
+			<td class="f-w25"><a href="javascript:;" onclick="return ClearAdminDeploy();">展开</a></td>
+			<td class="f-w25"><a href="javascript:;" onclick="return SetAdminDeploy();">收缩</a></td>
+		</tr>
+	</table>
+	<table class="left f-w173px f-m0a f-mb8">
+		<tr>
+			<th>
+				<a class="f-fr" href="javascript:;" onclick="return IndexDeploy('a0',1)"><img id="img_a0" src="$imgpath/admin/cate_$imgtype[a0].gif"></a>PHPVOD
+			</th>
+		</tr>
+		<tbody id="cate_a0" style="$styletype[a0]">
+			<tr>
+				<td class="info">用户名: $admin[username]</td>
+			</tr>
+			<tr>
+				<td class="info">系统组: $admin[grouptitle]</td>
+			</tr>
+		</tbody>
+	</table>
+	$leftinfo
+	<script type="text/javascript" src="$imgpath/admin/Deploy.js"></script>
+	<script type="text/javascript" src="$imgpath/admin/DeployInit.js"></script>
+
+	<script type="text/javascript">
+		$(".left tbody td a").on("click", function(){
+			$(".left tbody td a").each(function(i,n){
+				$(n).removeClass("active");
+			});
+			$(this).addClass("active");
+		});
+	</script>
+<!--
+EOT;
+include_once gettpl('adminbottom');
+?>-->

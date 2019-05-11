@@ -1,0 +1,479 @@
+<!--{template common/header_simple_start}-->
+<link rel="stylesheet" href="static/css/checkbox.css" media="all">
+<link href="{MOD_PATH}/images/index.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/atwho/css/jquery.atwho.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/js/datepicker/datepicker.css?{VERHASH}" rel="stylesheet" media="all">
+<link rel="stylesheet" type="text/css" href="static/dzzthumb/jquery.dzzthumb.css">
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/smilies.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/dzzthumb/jquery.dzzthumb.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/imgReady.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/jquery.textareaexplander.js?{VERHASH}"></script>
+<!--{if $ismobile}-->
+<script type="text/javascript" src="static/js/touch-0.2.14.min.js?{VERHASH}"></script>
+<!--{/if}-->
+<!--{if $ismobile && $SignPackage}-->
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!--{/if}-->
+<script type="text/javascript" src="{MOD_PATH}/scripts/main.js?{VERHASH}"></script>
+<script type="text/javascript" src="{MOD_PATH}/scripts/atbox.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script src="static/atwho/js/jquery.caret.js?{VERHASH}"></script>
+<script src="static/atwho/js/jquery.atwho.js?{VERHASH}"></script>
+<script src="{MOD_PATH}/scripts/jqthumb.js"></script>
+<style>
+body{
+	background:#ededef;
+}
+.header{
+	background:#FFF;
+	border:1px solid #e1e1e1;
+	margin-top:10px;
+	margin-bottom:10px;
+	border-radius:3px;
+	
+}
+#wrapper_div{
+	border-radius:3px 3px 0 0;
+}
+.header-banner{
+	position:relative;
+	padding:1em 0;
+	height:100px;
+}
+.header-banner.cover{
+	height:200px;
+}
+.filter{
+	padding:10px;
+	box-shadow:none;
+}
+@media (max-width: 768px){
+	.header{
+		margin-bottom:0;
+		margin-top:0;
+		border:0;
+		border-radius:0
+	}
+	#wrapper_div{
+		border-radius:0;
+	}
+}
+
+.siteinfo{
+	opacity: 0.9;
+	text-shadow: 1px 1px 1px #000;
+	color: #FFF;
+	text-align:center;
+	overflow:hidden;
+}
+.header-banner.cover .siteinfo{
+	display:none;
+}
+.siteinfo-title {
+	margin-right:20%;
+	font-size:2em;
+	font-weight: 700;
+}
+.myavatar{
+	position:absolute;
+	right:20px;
+	bottom:-40px;
+}
+.myavatar .username{
+	float:left;
+	opacity: 0.9;
+	text-shadow: 1px 1px 1px #000;
+	color: #FFF;
+	padding-right:20px;
+	font-size:1.4em;
+	font-weight:700;
+	margin-top:10px;
+}
+.myavatar img{
+	float:right;
+	max-width:90px;
+	max-height:90px;
+	padding:2px;
+	background:#FFF;
+	border:1px solid #e1e1e1;
+}
+.hide1{
+	display:none !important;
+}
+.addInp{
+	height: auto;
+}
+.clickInput{
+	height: auto;
+	z-index: 0;
+	position: static;
+}
+.myNotes{
+	display: none;
+}
+.myNoter .imgWrap{
+	margin-top: 4px;
+	border-radius: 2px;
+	box-sizing: border-box;
+	border-top: 1px solid #e8e8e8;
+}
+</style>
+<script type="text/javascript">
+var baseurl='{MOD_URL}';
+var ajaxurl='{MOD_URL}&op=ajax';
+var modpath='{MOD_PATH}';
+var method = 'item';
+</script>
+<script src="{MOD_PATH}/scripts/jquery_$.js"></script>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<div class="bs-container clearfix">
+	<div class="bs-left-container  clearfix">
+		<!--{template left}-->
+	</div>
+	<div class="left-drager">
+	</div>
+	<div class="bs-main-container">
+		<div class="wrapper-view container clearfix">
+    <div class="addNotes">
+	    <div class="myNotes">
+	        <div class="imgWrap imgWrap1">
+	            {eval echo avatar_block($_G[uid])}
+	        </div>
+	        <h4 class="avatarTit" style="width: 70%">{eval echo lang('w_my_jilu')}</h4>
+	    </div>
+	    
+	    <div class="addInp">
+	    	<div class="imgWrap imgWrap1 imgWrap2">
+	            {eval echo avatar_block($_G[uid])}
+	        </div>
+	        <div class="clickWord">
+	            <div class="word">{eval echo lang('add_item')}</div>
+	        </div>
+	    </div>
+
+	    <div class="clickInput clickInput1">
+	        <form id="publishform" name="form" class="form-horizontal publishform" action="{MOD_URL}&op=ajax&do=publish" method="post"  onsubmit="return false;" style="margin:0">
+	            <input type="hidden" name="formhash" value="{FORMHASH}" />
+	            <input type="hidden" name="publishsubmit" value="true" />
+	            <input type="hidden" name="handlekey" value="publish_text" />
+	            <input type="hidden" name="jid" value="$jid" />
+				<textarea name="content" class="form-control form-control-bborder" rows="" cols="2" id="notes" placeholder="{eval echo lang('add_item')}"></textarea>
+	        </form>
+	        <div class="butonGroups">
+	        	<div class="notesName-wrap"><div class="add_notes_to label" data-id=""></div></div>
+	            <div class="left_btn">
+	            	<i title="{eval echo lang('add_to')}" class="dzz dzz-note-add" data-toggle="tooltip" data-placement="bottom" onclick="showWindow('dzz_note_add_to', '{MOD_URL}&op=menu&do=itemmenu&step=1','get',0)"></i>
+					<i title="{eval echo lang('detailed_list')}" class="V dzz dzz-view-list" data-toggle="tooltip" data-placement="bottom" data-type="list"></i>
+					<i title="{eval echo lang('link')}" class="V dzz dzz-link" data-toggle="tooltip" data-placement="bottom" data-type="link"></i>
+					<i title="{eval echo lang('attach')}" class="V dzz dzz-file" data-toggle="tooltip" data-placement="bottom" data-type="attach"></i>
+					<i title="{eval echo lang('image')}" class="V dzz dzz-photo" data-toggle="tooltip" data-placement="bottom" data-type="image"></i>
+	            </div>
+	            <div class="right_btn">
+	                <button id="publishform_btn" class="btn sureBtn" onclick="submit_doadd();">{eval echo lang('affirm')}</button>
+	                <button class="btn cancelBtn cancelBtn_head">{eval echo lang('cancel')}</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div id="itemContainer" class="itemContainer">
+    	 <div class="w-load2" id="loadfirst">
+			 <div class="loader">
+				 <div class="loader-inner ball-beat">
+					 <div></div>
+					 <div></div>
+					 <div></div>
+				 </div>
+			 </div>
+		  </div>
+    </div>
+   
+    
+</div>
+	</div>
+</div>
+
+<div id="menu" class="modal fade pop-menu-madal ">
+  <div class="modal-dialog">
+    <div class="modal-content" >
+      <ul class="pop-menu list-unstyled" role="menu">
+      </ul>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div href="javascript:;" class="scroll_top"></div>
+<script type="text/javascript">
+//点击回到顶部
+var width = jQuery(".bs-main-container").width();
+jQuery(".scroll_top").css("right",width/2-(jQuery(".container").width()/2)-60);
+jQuery(window).resize(function(){
+	var width = jQuery(".bs-main-container").width();
+	jQuery(".scroll_top").css("right",width/2-(jQuery(".container").width()/2)-60);
+});
+jQuery(".bs-main-container").scroll(function(e) {
+	var height = jQuery(".bs-main-container").height();
+	if(jQuery(".bs-main-container").scrollTop() > height){
+		jQuery(".scroll_top").fadeIn()
+	} else {
+		jQuery(".scroll_top").fadeOut()
+	}
+})
+jQuery(document).on('click','.scroll_top',function(){
+    jQuery(".bs-main-container").animate({scrollTop:0},10);
+    return false;
+});
+jQuery(document).ready(function(e) {
+    jQuery('.js-popbox-item').click(function() {
+		showWindow('$jid',jQuery(this).data('href'),'get',0);
+	});
+    jQuery('.left-drager').leftDrager_layout();
+    jQuery(".clickWord").click(function() {
+        jQuery(this).parent().css("display","none");
+        jQuery(".clickInput").css("display",'block');
+        jQuery(".addNotes").css("margin-bottom","20px");
+        jQuery("#notes").focus();
+        jQuery(".myNotes").css("display","block");
+        jQuery('#notes').TextAreaExpander(50,99999);
+    });
+    jQuery(".cancelBtn_head").click(function() {
+        jQuery(this).parent().parent().parent().css("display","none");
+        jQuery(".addInp").css("display","block");
+        jQuery(".addNotes").css("margin-bottom","0");
+        jQuery("#notes").val("");
+        jQuery(".myNotes").css("display","none");
+    });
+});
+function submit_doadd(){
+    if(jQuery('#notes').val()=='') {
+        showmessage('{lang please_enter_content}','danger',1000,1);
+        return;
+	}else if(jQuery('#content_list').val()=='' && jQuery('#lists .todolist-item').length==1) {
+        showmessage('{lang please_enter_content}','danger',1000,1);
+        return;
+	}else if(jQuery('#content_link').val()=='' && jQuery('#linkContainer').html()=='') {
+        showmessage('{lang please_enter_content_or_link}','danger',1000,1);
+        return;
+	}else if(jQuery('#content_attach').val()=='' && jQuery('#attachContainer_attach .attach-item').length==1) {
+        showmessage('{lang please_enter_content_or_file}','danger',1000,1);
+        return;
+	}else if(jQuery('#content_image').val()=='' && jQuery('#imageContainer_image .image-item').length==1) {
+        showmessage('{lang please_enter_content_or_photo}','danger',1000,1);
+        return;
+	}
+    var html = '<form id="publishform" name="form" class="form-horizontal publishform" action="{MOD_URL}&op=ajax&do=publish" method="post"  onsubmit="return false;" style="margin:0">'
+    		+ '<input type="hidden" name="formhash" value="{FORMHASH}" />'
+    		+ '<input type="hidden" name="publishsubmit" value="true" />'
+    		+ '<input type="hidden" name="handlekey" value="publish_text" />'
+    		+ '<input type="hidden" name="jid" value="$jid" />'
+    		+ '<textarea name="content" rows="" cols="" id="notes" placeholder="{eval echo lang('add_item')}"></textarea>'
+    		+ '</form>';
+    var inpuhtml = '<input type="hidden" name="ismy" value="1" />';
+    jQuery("form").prepend(inpuhtml);
+    var id = jQuery(".add_notes_to").attr("data-id");
+    jQuery("input[name='jid']").val(id);
+    ajaxpost('publishform', 'publishform_btn','publishform_btn');
+    jQuery('.butonGroups .left_btn .V').css('color','#4e5563');
+    jQuery(".addInp").css("display","block");
+    jQuery(".addNotes").css("margin-bottom","0");
+    jQuery(".clickInput").css("display","none");
+    jQuery(".butonGroups").prevAll().remove();
+	jQuery(".clickInput").prepend(html);
+    // document.getElementById('notes').value='';
+    jQuery(".myNotes").css("display","none");
+    
+}
+function succeedhandle_publish_text(url, message, values) {
+    hideWindow('$_GET[handlekey]');
+    jQuery(".empty_alert").remove();
+    var jid=values['jid'];
+    if(values['rid']>0){
+        jQuery.get('{MOD_URL}&op=ajax&do=getItem&rid='+values['rid']+'&ismy='+values['ismy'],function(html){
+            jQuery('#publishform_btn').html('{eval echo lang("affirm")}');
+            var tel=jQuery('#itemContainer>.list-item:first');
+            if(tel.length){
+                jQuery(html).hide().insertBefore(tel).slideDown();
+            }else{
+                jQuery(html).hide().appendTo('#itemContainer').slideDown();
+            }
+        });
+    }
+};
+<!--{if $ismobile}-->
+	var tap='touchend';
+<!--{else}-->
+	var tap='click';
+<!--{/if}-->
+<!--{if $ismobile && $SignPackage}-->
+wx.config({
+    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    appId: '$SignPackage[appId]', // 必填，企业号的唯一标识，此处填写企业号corpid
+    timestamp: parseInt('$SignPackage[timestamp]'), // 必填，生成签名的时间戳
+    nonceStr: '$SignPackage[nonceStr]', // 必填，生成签名的随机串
+    signature: '$SignPackage[signature]',// 必填，签名，见附录1
+    jsApiList: ['chooseImage','previewImage','uploadImage','getLocation','openLocation','showMenuItems','hideMenuItems','closeWindow','getNetworkType','scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+});
+wx.ready(function(){
+	window.wxready=1;
+});
+jQuery(document).on(tap,'.location-open',function(){
+	var el=jQuery(this);
+	if(window.wxready){
+		wx.openLocation({
+			latitude: parseFloat(el.attr('locationy')), // 纬度，浮点数，范围为90 ~ -90
+			longitude:  parseFloat(el.attr('locationx')), // 经度，浮点数，范围为180 ~ -180。
+			name: el.text(), // 位置名
+			address: el.attr('title'), // 地址详情说明
+			scale: 15, // 地图缩放级别,整形值,范围从1~28。默认为最大
+			infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
+		});
+	}
+	return false;
+});
+<!--{/if}-->
+
+jQuery(".bs-main-container").scroll(function(e) {//滚动加载
+	if(jQuery(".popbox-container").children(".loadding").length <= 0){
+		jQuery(".popbox").hide();
+	}
+	var main_container = jQuery(".bs-main-container").height();
+	var container_h = jQuery(".container").height();
+	var scroll_top = jQuery(".bs-main-container").scrollTop();
+    if(scroll_top+main_container>=container_h-20){
+		 jQuery('#loadmore').trigger(tap);
+	}
+});
+
+jQuery(document).on('focus','textarea',function(){
+	jQuery('#publish_stick').addClass('hide');
+	jQuery(this).on('blur',function(e){
+		jQuery('#publish_stick').removeClass('hide');
+		return true;
+	});
+	return true;
+});
+jQuery(document).ready(function(e) {
+	jQuery(document).on(tap,'.video-cover',function(e){//视频预览
+		var el=jQuery(this).closest('.file_fed');
+		var url=jQuery(this).data('url');
+		var html=AC_FL_RunContent('width', '100%', 'height', '100%', 'allowNetworking', 'internal', 'allowScriptAccess', 'never', 'src', url, 'quality', 'high', 'bgcolor', '#ffffff', 'wmode', 'transparent', 'allowfullscreen', 'true');
+		
+		if(el.find('.ico_ffed:hidden').length){
+			el.find('.video-box-close').trigger(tap);
+		}else{
+			el.find('.ico_ffed').slideUp();
+			var height=el.width()*0.6;
+			jQuery('<div class="video-box text-center" style="height:'+height+'px;">'+html+'<a href="javascript:;" class="video-box-close"><i class="glyphicon glyphicon-menu-up"></i> 收起</a></div>').hide().insertAfter(el.find('.name_ffed')).slideDown();
+		}
+		return false;
+	});
+	jQuery(document).on(tap,'.video-box-close',function(e){//视频预览
+		jQuery(this).parent().slideUp(function(){jQuery(this).remove()});
+		jQuery(this).closest('.file_fed').find('.ico_ffed').slideDown();
+		return false;
+	});
+	<!--{if $ismobile}-->
+	jQuery('#publish_stick button.gw').on('touchstart.stick',function(){
+		var el=jQuery('#publish_stick');
+		if(el.hasClass('hover')){
+			el.removeClass('hover');
+			jQuery(document).off('touchstart.stick');
+		}else{
+			el.addClass('hover');
+			jQuery(document).off('touchstart.stick').on('touchstart.stick',function(e){
+				if(!jQuery(e.target).closest('#publish_stick').length){
+					el.removeClass('hover');
+				}
+			});
+		}
+	});
+	<!--{else}-->
+	jQuery('#publish_stick').on('mouseenter',function(){
+		jQuery(this).addClass('hover');
+	});
+	jQuery('#publish_stick').on('mouseleave',function(){
+		jQuery(this).removeClass('hover');
+	});
+	<!--{/if}-->
+	
+	jQuery('.V').on(tap,function(){
+		var type=jQuery(this).data('type');
+		if(type=='qrcode'){
+			if(window.wxready){
+				wx.scanQRCode({
+					desc: 'scanQRCode desc',
+					needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+					scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+					success: function (res) {
+						var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+						if(res.resultStr){
+							jQuery.post('{MOD_URL}&op=ajax&do=publish&json=1',{jid:'{$jid}',type:'text',content:res.resultStr,publishsubmit:'true',formhash:'{FORMHASH}'},function(json){
+								if(json.msg=='success'){
+									showmessage('{lang scavenging_content_is_saved_successfully}','success',3000,1);
+									jQuery.get('{MOD_URL}&op=ajax&do=getItem&rid='+json.rid,function(html){
+									
+										var tel=jQuery('#itemContainer>.list-item:first');
+										if(tel.length){
+											jQuery(html).hide().insertBefore(tel).slideDown();
+										}else{
+											jQuery(html).hide().appendTo('#itemContainer').slideDown();
+										}
+										
+									});
+								}else if(json.error){
+									showmessage(json.error,'danger',3000,1);
+								}
+							},'json');
+						}
+					}
+				});
+			}
+			return false
+		}else{
+			publish_menu(type,'{MOD_URL}&op=ajax&do=publish&jid={$jid}&type='+type);
+			jQuery('#publish_stick').removeClass('hover');
+			return false;
+		}
+	});
+	
+	jQuery('.js-popbox').each(function(){
+		jQuery(this).popbox();
+        jQuery("[data-toggle='tooltip']").tooltip();
+
+	});
+	<!--{if $ismobile && 0}-->
+	jQuery(document).on('touchstart','.list-item,.cmt-item,.image-item,.attach-item',function(){
+		jQuery(this).addClass('hover');
+	});
+	jQuery(document).on('touchend','.list-item,.cmt-item,.image-item,.attach-item',function(){
+		jQuery(this).removeClass('hover');
+	});
+	<!--{else}-->
+	jQuery(document).on('mouseover','.list-item,.cmt-item,.image-item,.attach-item',function(){
+		jQuery(this).addClass('hover');
+	});
+	jQuery(document).on('mouseout','.list-item,.cmt-item,.image-item,.attach-item',function(){
+		jQuery(this).removeClass('hover');
+	});
+	<!--{/if}-->
+	if(isHash()){
+		setSearchValue();
+	} else {
+		loadfirst('{MOD_URL}&op=ajax&do=loadmore&method=item');
+	}
+	
+});
+</script> 
+<!--{template common/footer_simple}--> 
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script> 
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.ui.widget.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.iframe-transport.js?{VERHASH}"></script>
+<!-- The basic File Upload plugin -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-process.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-validate.js?{VERHASH}"></script>
+
+<script type="text/javascript" src="static/js/jquery.ui.core.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.datepicker.min.js?{VERHASH}"></script>
+

@@ -1,0 +1,792 @@
+<!--{template common/header_simple_start}-->
+<link href="static/atwho/css/jquery.atwho.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/system/ueditor/themes/default/css/ueditor.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/system/ueditor/themes/default/css/ueditor_add.css?{VERHASH}" rel="stylesheet" media="all">
+<link rel="stylesheet" href="static/css/checkbox.css">
+<link rel="stylesheet" href="static/js/datepicker/datepicker.css">
+
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/discuss.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/system/ueditor/third-party/dzzattach/dzzattach.css?{VERHASH}"  rel="stylesheet"  media="all">
+
+<script src="static/atwho/js/jquery.caret.js?{VERHASH}"></script>
+<script src="static/atwho/js/jquery.atwho.js?{VERHASH}"></script>
+
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="dzz/discuss/scripts/discuss.js?{VERHASH}"></script>
+<script src="static/js/smilies.js?{VERHASH}" type="text/javascript"></script>
+<script type="text/javascript" src="data/cache/smilies_var.js?"></script>
+
+<script src="dzz/system/ueditor/third-party/highcharts/highcharts.js" type="text/javascript" defer="defer"></script>
+<script src="dzz/system/ueditor/dialogs/charts/chart.config.js" type="text/javascript" defer="defer"></script>
+<script src="/dzz/system/ueditor/third-party/zeroclipboard/ZeroClipboard.js" type="text/javascript" defer="defer" editor="baidu"></script>
+<script src="static/js/jquery.textareaexplander.js?{VERHASH}" type="text/javascript"></script>
+<script src="static/js/input_field.js?{VERHASH}" type="text/javascript"></script>
+
+<script type="text/javascript" >
+//    function reloadHeight() {
+//        jQuery('.detail-left').each(function () {
+//            jQuery(this).height(jQuery(this).next().height());
+//        });
+//    }
+var needsave=0;
+try{
+    var api=_api.init();
+    var appid=api.wname.appid;
+    api.setFileExt([]);
+}catch(e){}
+</script>
+<style>
+html,body{
+	overflow:hidden;
+}
+body{
+    background-color: rgba(241, 241, 241, 1);
+}
+
+.bs-left-container{
+	width:0;
+}
+.bs-main-container{
+	margin-left:0;
+	overflow:auto;
+}
+.discuss-container{
+	min-width:300px;
+}
+.navbar-inverse {
+    background-color: rgba(255, 90, 58, 1);
+}
+
+</style>
+<!--{template common/header_simple_end}-->
+
+<!--{template common/commer_header}-->
+<div class="bs-container viewthread clearfix">
+
+  <div class="bs-main-container">
+    <div class="main-content clearfix" >
+        <div class="disinfo-top">
+            <div class="infotop">
+                <a class="stick" style="margin-right: 5px;<!--{if !$thread[displayorder] || $thread[startstick] > TIMESTAMP}-->display: none;<!--{/if}-->"><i class="dzz dzz-top"></i>
+                    <!--{if $thread[displayorder] == 1}-->
+                        {lang class}
+                    <!--{elseif $thread[displayorder] == 2}-->
+                        {lang plate}
+                    <!--{else}-->
+                        {lang global}
+                    <!--{/if}-->
+                </a>
+                <a class="cream" style="margin-right: 5px;<!--{if !$thread[digest] || $thread[startdigest] > TIMESTAMP}-->display: none;<!--{/if}-->">{lang essence}<small>$thread[digest]</small></a>
+                <!--{if $thread[hot]>0}-->
+                <a href="javascript:;" style="vertical-align: middle;">
+                    <!--{if $thread[hot]==1}-->
+                    <span class="hot">{lang fire}</span>
+                    <!--{elseif $thread[hot]==2}-->
+                    <span class="hot">{lang fire}+</span>
+                    <!--{elseif $thread[hot]==3}-->
+                    <span class="hot">{lang fire}++</span>
+                    <!--{/if}-->
+                </a>
+                <!--{/if}-->
+                <span class="infotitle" <!--{if $thread[starthighlight] < TIMESTAMP}-->$thread['highlight']<!--{/if}--> data-fid="$thread[fid]" data-tid="$thread[tid]">$thread[subject]</span>
+
+                <a href="{DZZSCRIPT}?mod=discuss&op=printthread&fid=$thread[fid]&tid=$thread[tid]" title="{lang print}" target="_blank"><i class="dzz dzz-copy" style="font-size: 18px;vertical-align: middle;color: rgba(156, 156, 156, 1);"></i></a>
+            </div>
+            <div class="infobot">
+                <a href="{MOD_URL}&op=list&fid={$discuss[fid]}&extra=$extra&forward=$forward" class="board-a">#{$discuss[name]}</a><span class="pipe">|</span>
+                <!--{if $discuss[perm] > 2}-->
+                <!--{if !$thread[inarchive] && !$discuss[inarchive]}-->
+                <!--{if $thread[displayorder]}-->
+                    <a href="javascript:;" class="btn_stick" onclick="cancelOperate('{lang true_cancel_settop}','stick')">{lang cancel_settop}</a>
+                <!--{else}-->
+                    <a href="javascript:;" class="btn_stick" onclick="showWindow('settop','{MOD_URL}&op=ajax&do=showwindow&position=settop&fid={$fid}&tid={$tid}&type=viewthread','get',0)">{lang settop}</a>
+                <!--{/if}-->
+                <!--{if $thread[highlight]}-->
+                    <a href="javascript:;" class="highlight" onclick="cancelOperate('{lang true_cancel_highlight_status}','highlight')">{lang cancel_highlight}</a>
+                <!--{else}-->
+                    <a href="javascript:;" class="highlight" onclick="showWindow('highlight','{MOD_URL}&op=ajax&do=showwindow&position=highlight&fid={$fid}&tid={$tid}&type=viewthread','get',0)">{lang highlight}</a>
+                <!--{/if}-->
+                <!--{if $thread[digest]}-->
+                    <a href="javascript:;" class="btn_digest" onclick="cancelOperate('{lang true_cancel_dist_status}','digest')" style="margin-right: 4px;">{lang cancel_dist}</a>
+                <!--{else}-->
+                    <a href="javascript:;" class="btn_digest" onclick="showWindow('elite','{MOD_URL}&op=ajax&do=showwindow&position=elite&fid={$fid}&tid={$tid}&type=viewthread','get',0)" style="margin-right: 4px;">{lang digest}</a>
+                <!--{/if}-->
+                <span class="pipe">|</span>
+                <script type="text/javascript">
+                    function cancelOperate(info,opt) {
+                        var a=opt;
+                        showDialog(info,'confirm','',function () {
+                            var info=a;
+                            var data={
+                                'formhash':'{FORMHASH}',
+                                'modsubmit':true,
+                                'fid':'{$fid}',
+                                'moderate[]':'{$tid}',
+                                'operations[]':'removeopt',
+                                'opt':info
+                            }
+
+                            jQuery.ajax({
+                                url:'{MOD_URL}&op=topicadmin&action=moderate&optgroup=1',
+                                dataType:'json',
+                                type:'post',
+                                data:data,
+                                success:function (res) {
+                                    if(res.code==200) {
+                                        if (opt == 'highlight') {
+                                            jQuery(".infotop .infotitle").removeAttr("style");
+                                            jQuery(".highlight").attr("onclick", "showWindow('highlight','{MOD_URL}&op=ajax&do=showwindow&position=highlight&fid={$fid}&tid={$tid}&type=viewthread','get',0)").text("{lang highlight}");
+                                        } else if (opt == 'stick') {
+                                            jQuery(".stick").hide();
+                                            jQuery(".btn_stick").attr("onclick", "showWindow('settop','{MOD_URL}&op=ajax&do=showwindow&position=settop&fid={$fid}&tid={$tid}&type=viewthread','get',0)").text("{lang settop}");
+                                        } else if (opt == 'digest') {
+                                            jQuery(".cream").hide();
+                                            jQuery(".btn_digest").attr("onclick", "showWindow('elite','{MOD_URL}&op=ajax&do=showwindow&position=elite&fid={$fid}&tid={$tid}&type=viewthread','get',0)").text("{lang digest}");
+                                        }
+                                        showmessage(res.message,'success',1000,1);
+                                    }else {
+                                        showmessage(res.message,'danger',1000,1);
+                                    }
+                                },
+                                error:function (res) {
+                                    showmessage(res.message,'danger',1000,1);
+                                }
+                            })
+                        })
+                    }
+                </script>
+                <!--{/if}-->
+                <!--{/if}-->
+
+                <!--{if $_GET['ordertype']==1}-->
+                    <a href="{MOD_URL}&op=viewthread&fid=$_GET[fid]&tid=$_GET[tid]&extra=$extra&forward=$forward">
+                        {lang flashback} <i class="dzz dzz-sortz" style="font-size: 18px;vertical-align: -3px"></i>
+                    </a>
+                <!--{else}-->
+                    <a href="{MOD_URL}&op=viewthread&fid=$_GET[fid]&tid=$_GET[tid]&ordertype=1&extra=$extra&forward=$forward">
+
+                        {lang positive_sequence} <i class="dzz dzz-sorta" style="font-size: 18px;vertical-align: -3px"></i>
+                    </a>
+                <!--{/if}-->
+            </div>
+            <!--{if $discuss[fpostperm] && !$discuss[inarchive] && !$thread[inarchive]}-->
+            <div class="infoBtn">
+                <a href="{DZZSCRIPT}?mod=discuss&op=list&fid=$fid&do=newthread&extra=$extra&forward=$forward" class="btn btn-primary">{lang send_new_thread}</a>
+            </div>
+            <!--{/if}-->
+        </div>
+        <div id="detail-container">
+            <div id="scrolltop">
+                <!--{if !$discuss[inarchive] && !$thread[inarchive] && $discuss[perm] > 0}-->
+                <span><a href="{DZZSCRIPT}?mod=discuss&op=list&do=newthread&ac=reply&fid=$fid&tid=$thread[tid]&extra=$extra&forward=$forward" class="replyfast" title="{lang fast_reply}"><i class="dzz dzz-sensitive"></i></a></span>
+                <!--{/if}-->
+                <span hidefocus="true"><a title="{lang return_top}" onclick="jQuery('.bs-main-container').scrollTop(0)" class="scrolltopa"><i class="dzz dzz-expand-less"></i></a></span>
+            </div>
+            <div class="detail-wrap">
+                <!--{loop $postarr $value}-->
+                        <div class="detail-item" id="post_$value[pid]" data-pid="$value[pid]">
+                            <!--{if $value['first']}--><div class="floor-img"><img src="{MOD_PATH}/images/floor.png" alt=""></div><!--{/if}-->
+                            <div class="detail-left">
+                                <!--{if !$value['anonymous']}-->
+                                <a class="avatar avatar-lg avatar-a" href="user.php?uid=$value[authorid]" title="$thread[author]">{eval echo avatar_block($value['authorid'])}</a>
+                                <p class="text-center detail-p"><a href="user.php?uid=$value[authorid]" title="$thread[author]">$value[author]</a></p>
+                                <div class="detail-data">
+                                    <div class="data-item">
+                                        <div class="data-num">$value[member][threads]</div>
+                                        <div class="data-info">{lang thread}</div>
+                                    </div>
+                                    <div class="data-item" style="margin: 0 10px;">
+                                        <div class="data-num">$value[member][posts]</div>
+                                        <div class="data-info">{lang post}</div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="data-num">$value[member][hots]</div>
+                                        <div class="data-info">{lang activity}</div>
+                                    </div>
+                                </div>
+                                <!--{else}-->
+                                <a class="avatar avatar-lg avatar-a" title="{lang anonymous}"><span class="Topcarousel" style="background:#a966ef" title="admin">{lang anony}</span></a>
+                                <p class="text-center detail-p"><a title="$thread[author]">$value[author]</a></p>
+                                <!--{/if}-->
+                            </div>
+                            <div class="detail-right">
+                                <!--{if $value['first']}-->
+                                    <div class="right-top clearfix">
+                                        <span class="infotitle">$thread[subject]</span>
+                                        <div id="fj" class="pull-right" style="font-size: 12px;">
+                                            <label class="pull-left right-label">{lang straight_floor}：</label>
+                                            <input type="text" class="pull-left px p_fre z" size="2" data-href="" onkeyup="jQuery(this).data('href', '{MOD_URL}&op=redirect&fid=$value[fid]&ptid=$value[tid]&ordertype=$ordertype&extra=$extra&forward=$forward&postno='+this.value)" onkeydown="if(event.keyCode==13) {window.location=jQuery(this).data('href');return false;}" title="{lang jump_to_the_specified_floor}" />
+                                        </div>
+                                    </div>
+                                <!--{else}-->
+                                    <!--{if !empty($discuss['setting']['postnocustom'][$value[number]])}-->
+                                        <a class="floor-num">$discuss['setting']['postnocustom'][$value[number]]</a>
+                                    <!--{else}-->
+                                        <a class="floor-num"><em>{$value[number]}</em>{$discuss['setting']['postno']}</a>
+                                    <!--{/if}-->
+                                <!--{/if}-->
+                                <div class="right-bot cleargix">
+                                    <div class="time">{lang published_in}：{eval echo dgmdate($value[dateline],'u');}</div><span class="pipe" style="font-size: 14px;">|</span>
+                                    <!--{if $_GET['authorid']}-->
+                                        <a class="only" href="{DZZSCRIPT}?mod=discuss&op=viewthread&fid=$value[fid]&tid=$value[tid]&page=$page&extra=$extra&forward=$forward" rel="nofollow">{lang show_all_floor}</a>
+                                    <!--{else}-->
+                                        <a class="only" href="{DZZSCRIPT}?mod=discuss&op=viewthread&fid=$value[fid]&tid=$value[tid]&page=$page&authorid=$value[authorid]&extra=$extra&forward=$forward" rel="nofollow">{lang just_look_the_author}</a>
+                                    <!--{/if}-->
+                                    <!--{if $value['first']}-->
+                                    <span class="pipe">|</span>
+                                    <a class="favorite" href="{MOD_URL}&op=ajax&do=favorite&idtype=thread&id=$value[tid]&formhash={FORMHASH}" id="k_favorite" onclick="favorite(this);return false;">
+                                        <!--{if $thread[isfav]}-->
+                                        <i class="color-i dzz dzz-star" style="font-size: 18px;vertical-align: -3px;"></i>&nbsp;{lang cancel_favorite}
+                                        <!--{else}-->
+                                        <i class="color-i dzz dzz-star" style="font-size: 18px;vertical-align: -3px;"></i>&nbsp;{lang favorite}
+                                        <!--{/if}-->
+                                    </a>
+                                    <div class="pre-info">
+                                        <span class="preview"><i class="dzz dzz-visibility"></i>  $thread['views']</span>
+                                        <span class="reply"><i class="dzz dzz-sensitive"></i> $thread['replies']</span>
+                                    </div>
+                                    <!--{/if}-->
+                                </div>
+                                <div class="detail-con">$value[message]</div>
+                                <div class="detail-btngroup clearfix" style="border: none;padding-bottom: 0;">
+                                    <!--{if $value[first]}-->
+                                        <!--{if !$thread[inarchive] && !$discuss[inarchive] && ($discuss[perm] > 2 || ($_G[uid] == $thread[authorid] && $discuss[perm] > 0))}-->
+                                            <div class="btngroup pull-right">
+                                                <a class="fastre" href="{DZZSCRIPT}?mod=discuss&op=list&do=newthread&ac=reply&fid=$value[fid]&tid=$value[tid]&rpid=$value[pid]&extra=$extra&forward=$forward" ><i class="dzz dzz-settings-industry"></i> {lang reply}</a>
+                                                <!--{if $discuss[perm] > 2 || $thread[authorid] == $_G['uid']}-->
+                                                    <span class="pipe">|</span>
+                                                    <a class="editp" href="{DZZSCRIPT}?mod=discuss&op=list&do=newthread&fid=$value[fid]&tid=$value[tid]&pid=$value[pid]&ac=edit&extra=$extra&forward=$forward">{lang edit}</a>
+                                                <!--{/if}-->
+                                            </div>
+                                        <!--{/if}-->
+                                    <!--{else}-->
+                                        <!--{if $_G[uid] && !$thread[inarchive] && !$discuss[inarchive] && $discuss[perm] > 0}-->
+                                            <div class="btngroup pull-right">
+                                                <!--{if !$value['first'] && ($thread[authorid]==$_G[uid] || $discuss['perm']>2 || $value[authorid] == $_G[uid])}-->
+                                                    <a class="fastre" data-href="{MOD_URL}&op=list&do=deletepost&fid=$value[fid]&tid=$value[tid]&pid=$value[pid]&extra=$extra&forward=$forward" href="javascript:;" onclick="deleteBoard(this.getAttribute('data-href'))">{lang delete}</a><span class="pipe">|</span><!--{/if}-->
+                                                <!--{if $discuss[perm] > 2 || $value['authorid'] == $_G['uid'] || $thread[authorid]==$_G[uid]}-->
+                                                    <a class="editp" href="{DZZSCRIPT}?mod=discuss&op=list&do=newthread&fid=$value[fid]&tid=$value[tid]&pid=$value[pid]&ac=edit&extra=$extra&forward=$forward">{lang edit}</a><span class="pipe">|</span>
+                                                <!--{/if}-->
+                                                <a class="fastre" href="javascript:;" onclick="setComment(this)" > {lang commnet}</a>
+                                                <!--{if $discuss[freplyperm] || $thread[authorid] == $_G[uid]}-->
+                                                <span class="pipe">|</span>
+                                                <a class="fastre" href="{MOD_URL}&op=list&do=newthread&ac=reply&fid=$value[fid]&tid=$value[tid]&rpid=$value[pid]&extra=$extra&forward=$forward">{lang reply}</a>
+                                                <!--{/if}-->
+                                            </div>
+                                        <!--{/if}-->
+                                    <script>
+                                        function setComment(el) {
+                                            jQuery(el).parents('.detail-item').find('.input-body').toggle();
+//                                            reloadHeight();
+                                            jQuery(el).parents('.detail-item').find('.saytext').attr('data-pcid','').focus();
+                                            jQuery(el).parents('.detail-item').find('.saytext').attr('placeholder','发表你的评论');
+                                            jQuery(el).parents('.detail-item').find('.send-btn').attr('data-state','false');
+
+                                        }
+                                    </script>
+                                    <!--{/if}-->
+                                </div>
+                                <!--{if !$value['first']}-->
+                                <div id="cmt_wrap_$value[pid]" class="cmt-wrap">
+                                    <!--{loop $value[comments] $val}-->
+                                        <div class="cmt-item" id="cmt_item_{$val[cid]}">
+                                            <div class="cmt-body">
+                                                <div class="cmt-msg con"><span class="name"><a>{$val[author]}</a></span>
+                                                    <span>:</span> {$val[content]}
+                                                </div>
+                                                <div class="cmt-info">
+                                                    <!--<span class="username"><a href="user.php?uid=1">admin</a></span>-->
+                                                    <span class="dateline">{eval echo dgmdate($val[time],'u');}</span>
+                                                    <span class="cmt-hover a_btnWrap">
+                                                        <!--{if $val[uid] != $_G[uid] && $_G['uid']}-->
+                                                            <a href="javascript:;" data-toggle="tooltip"  data-cid="{$val[cid]}" data-placement="bottom" title="" class="aa cmt-reply-btn dzz dzz-reply" data-original-title="{lang reply}" onclick="changeState(this,'{$val[author]}')"></a>
+                                                            <div class="line"></div>
+                                                        <!--{/if}-->
+                                                        <!--{if $discuss[perm] > 2 || $thread == $_G['uid'] || $val[uid] == $_G['uid']}-->
+                                                            <a href="javascript:;" onclick="deleteCmt('{$val[cid]}')" data-toggle="tooltip" data-placement="bottom" title="" class="cmt-del-btn dzz dzz-delete" data-original-title="{lang delete}"></a>
+                                                        <!--{/if}-->
+                                                    </span>
+                                                    <script>
+                                                        jQuery(function() {
+                                                            jQuery("[data-toggle='tooltip']").tooltip();
+                                                        })
+                                                    </script>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--{if !$val['pcid']}-->
+                                            <!--{loop $val[replys] $v}-->
+                                            <div class="reply-item" id="cmt_item_{$v[cid]}" data-pcid='$v[pcid]'>
+                                                <div class="cmt-body">
+                                                    <div class="cmt-msg con"><span class="name"><a>{$v[author]}</a><span class="reply"> {lang reply} </span><a>{$v[replyer]}</a></span><span>:</span>
+                                                        {$v[content]}
+                                                    </div>
+                                                    <div class="cmt-info">
+                                                        <span class="dateline">{eval echo dgmdate($v[time],'u');}</span>
+                                                        <span class="cmt-hover a_btnWrap">
+                                                            <!--{if $v[uid] != $_G[uid] && $_G['uid']}-->
+                                                                <a href="javascript:;" data-toggle="tooltip"  data-pcid="{$val[cid]}" data-placement="bottom" class="ss cmt-reply-btn dzz dzz-reply" data-original-title="{lang reply}" onclick="changeState(this,'{$v[author]}')"></a>
+                                                                <div class="line"></div>
+                                                            <!--{/if}-->
+                                                            <!--{if $discuss[perm] > 2 || $thread == $_G['uid'] || $v[uid] == $_G['uid']}-->
+                                                                <a href="javascript:;" onclick="deleteCmt('{$v[cid]}')" data-toggle="tooltip" data-placement="bottom" title="" class="cmt-del-btn dzz dzz-delete" data-original-title="{lang delete}"></a>
+                                                            <!--{/if}-->
+                                                        </span>
+                                                        <script>
+                                                            jQuery(function() {
+                                                                jQuery("[data-toggle='tooltip']").tooltip();
+                                                            })
+                                                        </script>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--{/loop}-->
+                                        <!--{/if}-->
+                                    <!--{if $val[replycount] > 5}-->
+                                        <a class="cmt-loadmore1 reply-loadmore-$val[cid]" href="javascript:;" onclick="moreReply('{$val[cid]}')">{lang more_reply}</a>
+                                    <!--{/if}-->
+                                    <!--{/loop}-->
+
+                                    <!--{if $value[cmtcount] > 5}-->
+                                        <a class="cmt-loadmore1 cmt-loadmore-{$value[pid]}" href="javascript:;" onclick="moreCmt('{$value[pid]}')">{lang more_comment}</a>
+                                    <!--{/if}-->
+                                </div>
+                                <!--{if $_G['uid'] && !$thread[inarchive] && !$discuss[inarchive]}-->
+                                <div class="input-body">
+
+                                    <div class="input-black input-static" style="margin-bottom: 0;">
+                                        <div class="input-animate" style="padding-right: 45px;">
+                                            <textarea id="cmt_input_$value[pid]" onkeyup="keySend(event,this)" name="message" class="form-control saytext form-control1" placeholder="{lang please_input_cmt}" rows="1" style="height: 30px;"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="cmt-opt-emotion"><a href="javascript:;" class="btn-emotion" style="width:24px;height:32px;display:inline-block" id="cmt_input_$value[pid]sml" onclick="showMenu({'ctrlid':this.id,'evt':'click','pos':'41!'});return false;"><i class="dzz dzz-emoticon smile" title="" data-toggle="tooltip" data-placement="bottom" data-original-title="{lang emoji}"></i></a><script type="text/javascript" reload="1">smilies_show('cmt_input_$value[pid]sml_div', '8', 'cmt_input_$value[pid]');</script></div>
+                                    <div class="cmt-opt-submit">
+                                        <a id="cmt_form_$value[pid]_btn"  data-toggle="tooltip" data-placement="bottom" title="{lang send_comment}" data-pid="$value[pid]" data-state=false data-tid="$tid" class="pull-right send-btn" data-loading-text="<img src='dzz/discuss/images/oval.svg' width='20' >" onclick="ReplyCon(this)">
+                                            <i class="reply-send dzz dzz-send"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--{/if}-->
+                                <script reload="1">
+                                    jQuery(function () {
+                                        initAtwho("#cmt_input_{$value[pid]}");
+                                        jQuery('#cmt_input_$value[pid]').TextAreaExpander(34,99999);
+                                        jQuery('#cmt_input_$value[pid]').on('input',function () {
+//                                            reloadHeight();
+                                        })
+
+                                        jQuery(document).on('input change blur focus','.saytext',function () {
+                                            if(jQuery(this).val()!='') {
+                                                jQuery(this).parents('.input-body').children('div:last-child').find('.reply-send').css('color','rgba(255, 90, 58, 1)');
+                                            }else {
+                                                jQuery(this).parents('.input-body').children('div:last-child').find('.reply-send').css('color','#e6e6e6');
+                                            }
+                                        })
+
+                                        //评论按钮
+                                        jQuery(document).on('mouseover','.reply-send', function(){
+                                            var input = jQuery(this).parents(".input-body").find("textarea");
+                                            if(input.val() != ''){
+                                                jQuery(this).css('color', 'rgba(255, 90, 58, 1)');
+                                            } else {
+                                                jQuery(this).css('color', '#4e5563');
+                                            }
+                                        })
+                                        jQuery(document).on('mouseout','.reply-send', function(){
+                                            var input = jQuery(this).parents(".input-body").find("textarea");
+                                            if(input.val() != ''){
+                                                jQuery(this).css('color', 'rgba(255, 90, 58, 1)');
+                                            } else {
+                                                jQuery(this).css('color', '#e6e6e6');
+                                            }
+                                        })
+                                    })
+                                    function keySend(e,el) {
+                                        if(e.ctrlKey&&e.keyCode==13) {
+                                            jQuery(el).parents('.input-body').find('.send-btn').click();
+                                        }
+                                    }
+                                    function ReplyCon(a) {
+//                                        console.log(jQuery(a).parents('.input-body'));
+                                        if(jQuery(a).parents('.input-body').find('.saytext').val()=='') {
+                                            showmessage('{lang please_input_cmt}','danger',1000,1);
+                                            return;
+                                        }else {
+                                            var tid=jQuery(a).data('tid'),
+                                                pid=jQuery(a).data('pid'),
+                                                content=jQuery(a).parents('.input-body').find('.saytext').val();
+                                            var data='';
+                                            if(jQuery(a).attr('data-state')=='false') {
+                                                data={
+                                                    'tid':tid,
+                                                    'pid':pid,
+                                                    'content':content,
+                                                    'addcmt':true,
+                                                    'formhash':'{FORMHASH}'
+                                                }
+                                                jQuery.ajax({
+                                                    url:'{MOD_URL}&op=ajax&do=comment&position=addcmt',
+                                                    type:'post',
+                                                    dataType:'json',
+                                                    data:data,
+                                                    success:function (res) {
+//                                                        console.log(res);
+                                                        if(res.code==200) {
+
+                                                            showmessage(res.message, 'success', 1000, 1);
+                                                            jQuery.ajax({
+                                                                url:'{MOD_URL}&op=ajax&do=comment&position=getcmt',
+                                                                type:'post',
+                                                                data:{'cid':res.cid},
+                                                                success:function (res) {
+                                                                    jQuery('#cmt_wrap_'+pid).prepend(res);
+//                                                                    reloadHeight();
+                                                                    jQuery(a).parents('.input-body').find('.saytext').val('');
+                                                                }
+                                                            })
+                                                        } else {
+                                                            showmessage(res.message, 'danger', 1000, 1);
+                                                        }
+                                                        jQuery(a).button('reset');
+                                                    }
+                                                })
+                                            }else if(jQuery(a).attr('data-state')=='true') {
+                                                var pcid=jQuery(a).parents('.input-body').find('.saytext').attr('data-pcid');
+                                                data={
+                                                    'tid':tid,
+                                                    'pid':pid,
+                                                    'pcid':pcid,
+                                                    'content':content,
+                                                    'addcmt':true,
+                                                    'formhash':'{FORMHASH}'
+                                                }
+                                                jQuery.ajax({
+                                                    url:'{MOD_URL}&op=ajax&do=comment&position=addcmt',
+                                                    type:'post',
+                                                    dataType:'json',
+                                                    data:data,
+                                                    success:function (res) {
+                                                        if(res.code==200) {
+                                                            showmessage(res.message, 'success', 1000, 1);
+                                                            jQuery.ajax({
+                                                                url:'{MOD_URL}&op=ajax&do=comment&position=getcmt',
+                                                                type:'post',
+                                                                data:{'cid':res.cid},
+                                                                success:function (res) {
+                                                                    jQuery('#cmt_item_'+pcid).after(res);
+//                                                                    reloadHeight();
+                                                                    jQuery(a).parents('.input-body').find('.saytext').val('');
+                                                                    jQuery(a).parents('.input-body').find('.saytext').attr('placeholder','{lang please_input_cmt}');
+                                                                    jQuery(a).attr('data-state',false);
+                                                                }
+                                                            })
+                                                        } else {
+                                                           showmessage(res.message, 'danger', 1000, 1); 
+                                                        }
+                                                        jQuery(a).button('reset');
+                                                    }
+                                                })
+                                            }
+
+                                            jQuery(a).button('loading');
+                                        }
+                                    }
+                                    function changeState(el,name) {
+                                        if (jQuery(el).data('pcid')) {
+                                            var cid = jQuery(el).data('pcid');
+                                        } else {
+                                            var cid = jQuery(el).data('cid');
+                                        }
+                                        jQuery(el).parents('.detail-item').find('.input-body').show();
+                                        jQuery(el).parents('.detail-item').find('.input-body .saytext').attr('data-pcid',cid);
+                                        jQuery(el).parents('.detail-item').find('.input-body .saytext').attr('placeholder','{lang reply}'+name).focus();
+                                        jQuery(el).parents('.detail-item').find('.cmt-opt-submit .send-btn').attr('data-state',true);
+                                    }
+
+                                    function deleteCmt(cid){
+                                        jQuery.ajax({
+                                            url: '{MOD_URL}&op=ajax&do=comment&position=deletecmt',
+                                            type:'post',
+                                            dataType:'json',
+                                            data:{'cid':cid},
+                                            success: function(res){
+                                                if (res.code == 200) {
+                                                    jQuery("#cmt_item_"+cid).remove();
+                                                    jQuery(".reply-item[data-pcid='"+cid+"']").remove();
+                                                    showmessage(res.message, 'success', 1000, 1);
+                                                } else {
+                                                    showmessage(res.message, 'danger', 1000, 1);
+                                                }
+                                            }
+                                        })
+                                    }
+                                </script>
+                                <!--{/if}-->
+                            </div>
+                        </div>
+            <!--{/loop}-->
+            <!--{if $multi}-->
+              <div class="page-wrap">
+                  {$multi}
+              </div>
+            <!--{/if}-->
+            </div>
+        </div>
+        <!--{if ($discuss[freplyperm] || $thread[authorid] == $_G[uid]) && !$discuss[inarchive] && !$thread[inarchive]}-->
+        <div id="f_pst" class="pl">
+            <table class="table-post" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td class="pls"><div class="avatar avtm">{eval echo avatar_block($_G[uid])}</div></td>
+                    <td class="plc" style="padding:20px 25px 20px 0;">
+                        <form method="post" autocomplete="off" id="ueditorform" action="{BASESCRIPT}?mod=discuss&op=list&do=newthread&extra=$extra&forward=$forward" onsubmit="validate(this);return false" >
+                            <input type="hidden" name="edit" value="true" />
+                            <input type="hidden" name="fid" value="$fid" />
+                            <input type="hidden" name="pid" value="0" />
+                            <input type="hidden" id="tid" name="tid" value="$tid" />
+                            <input id="first" type="hidden" name="first" value="0" />
+                            <input type="hidden" name="handlekey" value="ueditorform" />
+                            <input type="hidden" name="message" id="message" value="" />
+                            <input type="hidden" name="formhash" value="{FORMHASH}" />
+                            <input type="hidden"  name="ac" value="fastreply" />
+                            <!--{if $discuss['anonymous']==2}-->
+                            <input id="anonymous" name="anonymous" type="hidden" value="2" />
+                            <!--{else}-->
+                            <input id="anonymous" name="anonymous" type="hidden" value="0" />
+                            <!--{/if}-->
+                        </form>
+                        <script type="text/plain" id="editor" style="height:80px;margin:5px auto"> </script>
+                        <p style="margin:12px 0 0"><button type="button" id="ueditorform_btn" class="btn btn-primary" data-loading-text="{lang save_ing}" onclick="document.getElementById('ueditorform').onsubmit();" >{lang reply}</button>
+                            <!--{if $discuss['anonymous']==1}-->
+                            &nbsp;&nbsp;<label class="checkbox-inline"><input id="anonymous_1"  type="checkbox" value="1" checked="checked" />{lang anonymous_post}</label>
+                            <!--{elseif $discuss['anonymous']==2}-->
+                            &nbsp;&nbsp;<span class="text-danger">{lang coercion_anonymity_desc}</span>
+                        <!--{/if}-->
+                        &nbsp;&nbsp;<small id="error_msg"  style="color:red;padding:0 10px"></small></p>
+                            <script type="text/javascript">
+                            jQuery(document).ready(function(e) {
+                                var ue = UE.getEditor('editor', {
+                                    UEDITOR_HOME_URL:SITEURL+'dzz/system/ueditor/',
+                                    toolbars: [
+                                    ['emotion','bold', 'italic', 'underline', 'strikethrough', '|',
+                                        'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify',
+                                        'insertorderedlist', 'insertunorderedlist','|','simpleupload'
+                                    ]
+                                ],
+                                    serverUrl:SITEURL+DZZSCRIPT + "?mod=attach&op=controller",
+                                    zIndex : 190,
+                                    iframeCssUrl:'{MOD_PATH}/images/iframe1.css',
+                                    initialFrameWidth:'100%', //初始化编辑器宽度,默认500
+                                    initialFrameHeight:160,  //初始化高度
+                                    topOffset:jQuery('.bs-main-container').offset().top+1,
+                                    scrollContainer:'.bs-main-container'
+                                });
+                                //增加ctrl+enter提交表单
+                                // ue.addshortcutkey("autosubmit", "ctrl+13");
+                                ue.ready(function(editor){
+                                    
+                                    var cachequeryMentions = [], itemsMentions;
+                                    jQuery(this.document.body).atwho('setIframe', document.getElementById('ueditor_0')).atwho({
+                                        at: "@",
+                                        //data: '{DZZSCRIPT}?mod=feed&op=ajax&do=getUserToJson',
+                                        data: '{MOD_URL}&op=ajax&do=getAtList&fid=$fid',
+                                        callbacks:{
+                                                    remote_filter: function (query, render_view) {
+                                                        var thisVal = query,
+                                                        self = jQuery(this);
+                                                        if( !self.data('active') && thisVal.length >= 2 ){
+                                                            self.data('active', true);                            
+                                                            itemsMentions = cachequeryMentions[thisVal]
+                                                            if(typeof itemsMentions == "object"){
+                                                                render_view(itemsMentions);
+                                                            }else
+                                                            {                            
+                                                                if (self.xhr) {
+                                                                    self.xhr.abort();
+                                                                }
+                                                                self.xhr = jQuery.getJSON('{MOD_URL}&op=ajax&do=getAtList&fid=$fid',{
+                                                                    term: thisVal
+                                                                }, function(data) {
+                                                                    cachequeryMentions[thisVal] = data
+                                                                    render_view(data);
+                                                                });
+                                                            }                            
+                                                            self.data('active', false);                            
+                                                        }                    
+                                                    }
+                                        },
+                                         tpl: "<li data-value='@[${name}:${id}]' title='${title}'>${avatar}&nbsp;${name}</li>",
+                                         insert_tpl: "<a class='at-item' href='user.php?uid=${uid}' data-id='${id}'>@${name}</a>",
+                                         search_key: "searchkey",
+                                         start_with_space: true,
+                                         limit: 5,
+                                         max_len: 20,
+                                         display_timeout: 300
+                                    });
+                                 });
+
+                            });function validate(form){
+                            needsave=0;
+                            window.onbeforeunload=null;
+                            var message=UE.getEditor('editor').getContent();
+                            if(message.length<10){//发贴内容最少需要10个字符
+                                UE.getEditor('editor').focus();
+                                showError('{lang post_content_too_little}');
+                                return false;
+                            }else{
+                                document.getElementById('message').value = message;
+                            }
+                            if(jQuery('#anonymous_1').prop('checked')){
+                                jQuery('#anonymous').val(1);
+                            }
+//                            jQuery('#ueditorform_btn').button('loading');
+                            ajaxpost(form.id,'ueditorform_btn','ueditorform_btn',null,null,function(){
+//                                window.setTimeout(function(){jQuery('#ueditorform_btn').button('reset');},3000);
+                            });
+                        }
+                        var errorShowTimer=null;
+                        function showError(msg){
+                            if(errorShowTimer) window.clearTimeout(errorShowTimer);
+                            jQuery('#error_msg').html(msg);
+                            window.setTimeout(function(){
+                                jQuery('#error_msg').html('');
+                            },3000);
+                        }
+                        function deleteBoard(url) {
+                            showDialog('{lang sure_delete_post_not_be_recover}','confirm','',function () {
+                                window.location.href=url;
+                            })
+                        }
+                        function succeedhandle_ueditorform(url, message, values) {
+                            var data= eval('(' + decodeURIComponent(values['data']) + ')');
+                            location.href=DZZSCRIPT+'?mod=discuss&op=redirect&goto=lastpost&fid='+data.fid+'&tid='+data.tid+'&extra='+encodeURIComponent(data.extra)+'&forward='+encodeURIComponent(data.forward)+'#lastpost';
+                        };
+                        </script>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--{/if}-->
+       </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+jQuery('.left-drager').leftDrager_layout();
+
+jQuery(document).ready(function(e) {
+  //更新浏览数
+//    reloadHeight();
+    jQuery('.bs-main-container').scroll(function(){showTopLink();});
+    uParse('.detail-con',{'rootPath':'dzz/system/ueditor'}); dzzattach.init('.detail-con');
+    jQuery('.detail-con a').each(function(){ //所有链接，如果没有显式的定义target，增加target="_blank";
+       jQuery(this).attr('target','_blank')
+   });
+  if(jQuery('#nextpage:visible').length){
+	  jQuery('.bs-main-container').scroll(function(e) {
+			var clientHeight = jQuery('.bs-main-container').height();
+			var scrollHeight = jQuery('.main-content').height();
+			if(jQuery('.bs-main-container').scrollTop()+clientHeight>scrollHeight-20) jQuery('#nextpage td').trigger('click');
+	  });
+  }
+
+
+});
+
+</script>
+<script type="text/javascript" reload="1">
+
+function errorhandle_mods(msg) {
+		showError(msg);
+}
+
+
+function moreReply(a, start = 5) {
+    jQuery.ajax({
+        url:'{MOD_URL}&op=ajax&do=comment&position=getreplys&fid={$_GET[fid]}&tid={$_GET[tid]}',
+        data:{'cid':a, 'start':start},
+        type:'post',
+        success:function (res) {
+            jQuery('.reply-loadmore-'+a).replaceWith(res);
+        }
+    })
+}
+
+function moreCmt(pid, start = 5) {
+   jQuery.ajax({
+        url:'{MOD_URL}&op=ajax&do=comment&position=getmorecmt&fid={$_GET[fid]}&tid={$_GET[tid]}',
+        data:{'pid':pid, 'start':start},
+        type:'post',
+        success:function (res) {
+            jQuery('.cmt-loadmore-'+pid).replaceWith(res);
+        }
+    }) 
+}
+
+
+function initAtwho(id){//评论的@初始化
+    var cachequeryMentions = [], itemsMentions;
+    jQuery(id).atwho({
+       at: "@",
+        data: '{MOD_URL}&op=ajax&do=getAtList&fid=$fid',
+        callbacks:{
+                    remote_filter: function (query, render_view) {
+                        console.log(query);
+                        var thisVal = query,
+                        self = jQuery(this);
+                        if( !self.data('active') && thisVal.length >= 1 ){
+                            self.data('active', true);                            
+                            itemsMentions = cachequeryMentions[thisVal]
+                            if(typeof itemsMentions == "object"){
+                                render_view(itemsMentions);
+                            }else
+                            {                            
+                                if (self.xhr) {
+                                    self.xhr.abort();
+                                }
+                                self.xhr = jQuery.getJSON('{MOD_URL}&op=ajax&do=getAtList&fid=$fid',{
+                                    term: thisVal
+                                }, function(data) {
+                                    cachequeryMentions[thisVal] = data
+                                    render_view(data);
+                                });
+                            }                            
+                            self.data('active', false);                            
+                        }                    
+                    }
+        },
+         tpl: "<li data-value='@[${name}:${id}]' title='${title}'>${avatar}&nbsp;${name}</li>",
+         search_key: "searchkey",
+         start_with_space: false,
+         limit: 5,
+         max_len: 20,
+         display_timeout: 300
+    });
+}
+
+</script>
+<!--{if $_G['uid']>0 && ($discuss[freplyperm] || $thread[authorid] == $_G[uid])}-->
+<script src="dzz/system/ueditor/ueditor.config.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/ueditor.all.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/lang/$_G['language']/$_G['language'].js?{VERHASH}"></script>
+<script src="data/cache/smilies_var.js?{VERHASH}"></script>
+<!--{/if}-->
+<script src="dzz/system/ueditor/ueditor.parse.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/third-party/dzzattach/dzzattach.js?{VERHASH}" type="text/javascript"></script>
+
+<script  type="text/javascript" src="static/js/jquery.ui.touch.js?{VERHASH}"></script>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.datepicker.min.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.datepicker-zh-CN.js"></script>
+
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->  

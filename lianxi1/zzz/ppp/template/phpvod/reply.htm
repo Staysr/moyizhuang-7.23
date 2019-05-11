@@ -1,0 +1,22 @@
+<!--{loop $replydb $key $value}-->
+<div class="m-reply">
+	<div class="icon"><img src="$value[icon]" /></div>
+	<div class="txt">
+		<div class="reply_title">
+			<!--{if $value[authorid]!=0}-->
+			<span class="f-fr"><a href="message.php?action=write&touid=$value[authorid]" target="_blank">发送短消息</a></span>
+			<span class="author"><a href="profile.php?action=show&id=$value[authorid]" target='_blank'>$value[author]</a></span>
+			<!--{else}-->
+			<span class="author">$value[author]</span>
+			<!--{/if}-->
+			<span class="date">$value[postdate]</span>
+		</div>
+		<div class="reply_content">$value[content]</div>
+		<div class="reply_signature">$value[signature]</div>
+	</div>
+</div>
+<!--{/loop}-->
+
+<!--{if !empty($pages)}-->
+<div class="u-pages"><!--{page $pages, 'page_rp'}--></div>
+<!--{/if}-->

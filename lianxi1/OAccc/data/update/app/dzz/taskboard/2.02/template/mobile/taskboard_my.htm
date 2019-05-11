@@ -1,0 +1,126 @@
+<!--{template mobile/mobile_header}-->
+	</head>
+	<body class="weui-cell-body">
+		<!--搜索框开始-->
+		<header class="weui-search-bar" id="searchBar">
+		    <form class="weui-search-bar__form" action="{DZZSCRIPT}">
+				<input type="hidden" name="mod" value="{MOD_NAME}">
+				<input type="hidden" name="op" value="$_GET['op']">
+				<input type="hidden" name="do" value="$_GET['do']">
+		         <div class="weui-search-bar__box">
+	
+					<input type="search" name="keyword" class="weui-search-bar__input" value="$keyword" id="searchInput" placeholder="任务板名称">
+					<a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel"><i class="weui-icon-clear"></i></a>
+				</div>
+				<label class="weui-search-bar__label" id="searchText">
+					<span>{eval echo $keyword?$keyword:'任务板名称';}</span>
+					<i class="weui-icon-search"></i>
+				</label>
+		    </form>
+		</header>
+		<!--搜索框结束-->
+		<!--标星开始-->
+		<section class="weui-cells window-module-star">
+			<h4 class="weui-cell-h4"><span class="dzz dzz-grade"></span> 标星的</h4>
+			<!--{loop $stared $value}-->
+			<a class="weui-cell weui-cell_access" href="{MOD_URL}&op=list&tbid=$value[tbid]">
+		        <div class="weui-cell__hd"><span class="dzz dzz-clock weui-cell__img color-block-$value[aid] <!--{if $value[aid]}-->color-white<!--{/if}-->"></span></div>
+		        <div class="weui-cell__bd">
+		            <h4>$value[name]</h4>
+		        </div>
+		        <div class="weui-cell__star"><span class="dzz dzz-grade"></span></div>
+		    </a>
+		    <!--{/loop}-->
+		</section>
+		<!--标星结束-->
+		<!--我的开始-->
+		<section class="weui-cells window-module-my">
+			<h4 class="weui-cell-h4"><span class="dzz dzz-person"></span> 我的</h4>
+			<!--{loop $my $value}-->
+			<a class="weui-cell weui-cell_access" href="{MOD_URL}&op=list&tbid=$value[tbid]" id="board_star_$value[tbid]">
+		        <div class="weui-cell__hd"><span class="dzz dzz-clock weui-cell__img color-block-$value[aid]"></span></div>
+		        <div class="weui-cell__bd">
+		            <h4>$value[name]</h4>
+		        </div>
+		        <div class="weui-cell__ft"></div>
+		    </a>
+		    <!--{/loop}-->
+		</section>
+		<!--我的结束-->
+		<!--群组名称开始-->
+		<!--{loop $orglist $org}-->
+		
+		<section class="weui-cells window-module-org">
+			<h4 class="weui-cell-h4">
+			 <!--{if $org['logo']}-->
+            <span class="icon-lg window-module-title-icon icon-organization mod-custom-image background-cover" style="background-image:url($org[logourl])" alt="logo"></span>
+        	<!--{else}-->
+            <span class="dzz dzz-group"></span>
+        	<!--{/if}-->
+			
+			<a href="{MOD_URL}&op=org&orgid=$org[orgid]">$org[name]</a></h4>
+			<!--{loop $org['list'] $value}-->
+			<a class="weui-cell weui-cell_access" href="{MOD_URL}&op=list&tbid=$value[tbid]" id="board_star_$value[tbid]">
+		        <div class="weui-cell__hd"><span class="dzz dzz-clock weui-cell__img color-block-$value[aid]"></span></div>
+		        <div class="weui-cell__bd">
+		            <h4>$value[name]</h4>
+		        </div>
+		        <div class="weui-cell__ft"></div>
+		    </a>
+		    <!--{/loop}-->
+		  
+		</section>
+	 
+		  <!--{/loop}-->
+		<!--群组名称结束-->
+		<footer  class="weui-tabbar">
+                <a href="{MOD_URL}&op=ajax&do=create" class="weui-tabbar__item weui-new-task">
+                    <span class="dzz dzz-create-new-folder"></span>
+                    <p class="weui-tabbar__label">新建</p>
+                </a>
+                <a href="{MOD_URL}&op=ajax&do=search" class="weui-tabbar__item">
+                    <span class="dzz dzz-search"></span>
+                    <p class="weui-tabbar__label">搜索</p>
+                </a>
+                <a href="{MOD_URL}&op=mytask" class="weui-tabbar__item">
+                    <span class="dzz dzz-member"></span>
+                    <p class="weui-tabbar__label">我的</p>
+                </a>
+		</footer>
+	</body>
+	<script type="text/javascript">
+		$(document).off('touchstart.all_search').on('touchstart.all_search', '#searchBar', function () {
+	        var href ='{MOD_URL}&op=ajax&do=search';
+	        //window.location.href = href;
+    	})
+		//input框为空
+		$(document).off('keyup.search').on('keyup.search', '#searchInput', function (e) {
+            setTimeout(function () {
+                getcancel();
+            }, 500);
+        })
+		//点击取消
+		$(document).on('touchstart','#searchCancel',function(){
+			$('#searchInput').val('');
+			$('#searchText').find('span').text('任务板名称');
+			$('#searchBar').find('form').submit();
+		})
+		
+		function getcancel(){
+            var val = $('#searchInput').val(),
+                emptypreg = /^\s*$/;
+            val = val.replace(/[\ud800-\udbff][\udc00-\udfff]/gi,'',val);
+            $('#searchInput').val(val);
+            if (emptypreg.test(val)) {
+                $('#searchText').find('span').text('任务板名称');
+				$('#searchBar').find('form').submit();
+            } 
+            
+
+
+		}
+        $(document).on('touchstart','.weui-new-task',function(){
+            $('.weui-cell-name').find('.weui-input').val(sessionStorage.removeItem('team_name'));
+        })
+	</script>
+</html>

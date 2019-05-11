@@ -1,0 +1,89 @@
+<!-- index.wpy -->
+<style lang="less">
+@no: 90%;
+Page {
+  height: 100%;
+}
+.button {
+  position: absolute;
+  width: 100%;
+  bottom: 0rpx;
+  padding: 0 0 20rpx 0;
+}
+.status {
+  font-size: 35rpx;
+  .success {
+    color: green;
+  }
+  .fail {
+    color: red;
+  }
+}
+.main {
+  .message {
+    position: absolute;
+    padding: 400rpx 40rpx 40rpx 40rpx;
+    height: 100%;
+  }
+  .message.fail {
+    top: 200rpx;
+  }
+}
+</style>
+<template>
+  <!-- 状态栏开始 -->
+  <view class="status">
+    <wxc-cc>
+      <text>退还结果：</text><text class="currentStatus success">成功</text><text class="currentStatus fail">失败</text>
+    </wxc-cc>
+  </view>
+  <!-- 状态栏结束 -->
+  <!-- 主体部分开始 -->
+  <view class="main">
+    <view class="message success">
+        押金（<text class="num">300</text>元）和余额（<text class="num">58</text>元）已退还至您的零钱
+    </view>
+
+    <view class="message fail">
+        暂不满足退还条件
+    </view>
+    <view class="button">
+      <wxc-cc>
+        <wxc-button size="large" type="primary" value="确定"></wxc-button>
+      </wxc-cc>
+    </view>
+  </view>
+  <!-- 主体部分结束 -->
+
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'test',
+      usingComponents: {
+        'wxc-button': '../../packages/@minui/wxc-button/dist/index',
+        'wxc-cc': '../../packages/@minui/wxc-cc/dist/index'
+      }
+    }
+    components = {}
+
+    mixins = []
+
+    data = {
+
+    }
+
+    computed = {}
+
+    methods = {
+
+    }
+
+    events = {}
+
+    onLoad() {}
+  }
+</script>

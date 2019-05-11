@@ -1,0 +1,6 @@
+1.导入xryy.sql
+2.修改 includes\config.php  数据库信息和网址都改成你的
+
+
+后台 域名+/index.php?a=admin
+账号 admin 密码 www.enboo.cn

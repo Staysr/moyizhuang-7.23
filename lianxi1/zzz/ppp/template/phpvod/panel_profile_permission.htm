@@ -1,0 +1,29 @@
+<table class="table">
+	<thead>
+		<tr><td colspan="3" class="f-fs18"><strong>我的用户组</strong></td></tr>
+		<tr>
+			<td width="*"><strong>用户组</strong></td>
+			<td width="30%"><strong>过期时间</strong></td>
+			<td width="15%"><strong>操作</strong></td>
+		</tr>
+	</thead>
+	<tbody>
+	<!--{loop $groups $gid $expiry}-->
+	<tr>
+		<td>$ltitle[$gid]</td>
+		<td><!--{if $expiry > 0}--><!--{echo get_date($expiry, 'Y-m-d H:i:s')}--><!--{else}-->永不过期<!--{/if}--></td>
+		<td>
+			<!--{if $gid == $groupid}-->
+				当前用户组
+			<!--{else}-->
+				<!--{if $expiry > 0 && $expiry < $timestamp}-->
+					已过期
+				<!--{else}-->
+					<input type="button" class="u-btn" value="切 换" onclick="window.location.href='profile.php?action=permission&step=2&gid={$gid}'" />
+				<!--{/if}-->
+			<!--{/if}-->
+		</td>
+	</tr>
+	<!--{/loop}-->
+	</tbody>
+</table>

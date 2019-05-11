@@ -1,0 +1,80 @@
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<ol class="breadcrumb f-mt5">
+			<li><a href="$db_wwwurl">首页</a></li>
+			<li class="active">找回密码</li>
+		</ol>
+	</div>
+</div>
+
+<!--{if $action=='sendpwd'}-->
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<form action="sendpwd.php" method="post" name="sendpwd">
+		<input type="hidden" value="sendpwd" name="action" />
+		<input type="hidden" value="2" name="step" />
+
+		<table class="table">
+			<thead>
+				<tr><td colspan="2" class="f-fs18"><strong>找回密码</strong></td></tr>
+			</thead>
+			<tbody>
+				<!--{if $db_gdcheck & 16}-->
+				<tr>
+					<td>验证码</td>
+					<td>
+						<div><input type="text" id="gdcode" name="gdcode" size="6" class="u-text" /></div>
+						<div class="f-mt2"><img src="ck.php?nowtime=$timestamp" align="absmiddle" style="cursor:pointer;" id="ckcode" onclick="this.src='ck.php?nowtime='+new Date().getTime();" alt="看不清楚，换一张" title="看不清楚，换一张" /></div>
+					</td>
+				</tr>
+				<!--{/if}-->
+				<tr>
+					<td class="f-w40">用户名</td>
+					<td><input type="text" name="username" class="u-text" /></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="text" name="email" class="u-text" /></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr><td colspan="2" class="f-tac"><input type="submit" value="提 交" class="u-btn f-mt10" /></td></tr>
+			</tfoot>			
+		</table>
+		</form>
+	</div>
+</div>
+
+<!--{elseif $action=='getback'}-->
+
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<form action="sendpwd.php" method="post" name="sendpwd">
+		<input type="hidden" name="action" value="getback" />
+		<input type="hidden" name="job" value="2" />
+		<input type="hidden" name="uid" value="$uid" />
+		<input type="hidden" name="submit" value="$submit" />
+
+		<table class="table">
+			<thead>
+				<tr><td colspan="2" class="f-fs18"><strong>设置新密码</strong></td></tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="f-w40">新密码</td>
+					<td><input type="password" name="new_pwd" class="u-text" /></td>
+				</tr>
+				<tr>
+					<td>重复新密码</td>
+					<td><input type="password" name="rep_pwd" class="u-text" /></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr><td colspan="2" class="f-tac"><input type="submit" value="提 交" class="u-btn f-mt10" /></td></tr>
+			</tfoot>
+		</table>
+		</form>
+	</div>
+</div>
+
+<!--{/if}-->

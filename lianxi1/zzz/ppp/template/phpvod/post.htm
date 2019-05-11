@@ -1,0 +1,193 @@
+<link rel="stylesheet" type="text/css" href="js/validform/style.css" />
+<script type="text/javascript" src="js/validform/validform_min.js"></script>
+<script type="text/javascript" src="$imgpath/$stylepath/post.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#postform").Validform({
+		showAllError: true,
+		tiptype:3
+	});
+});
+function playgroup_add(){
+	var caption = '视频地址<span class="u-need">*</span><br />每行输入一个视频地址<br />格式：<span style="color: green">视频地址</span>,<span style="color: red">标题</span><br />说明：视频地址与标题之间用","分开，标题部分为可选项，可省略。';
+	var html = '<select name="video[pid][]">$video[player][0]</select><br /><textarea name="video[urls][]" style="word-wrap: normal; overflow-x: auto; margin: 5px 0px; width: 650px; height: 200px;" datatype="*" nullmsg="视频地址不能为空！"></textarea><br /><input type="button" class="u-btn" onclick="playgroup_del(this);" value="删除" /><span class="Validform_checktip"></span>';
+	$("#post_url").append("<tr><td>"+caption+"</td><td>"+html+"</td></tr>");
+}
+function playgroup_del(obj){
+	$(obj).parent().parent().remove();
+}
+</script>
+
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<ol class="breadcrumb f-mt5">
+			<li><a href="$db_wwwurl">首页</a></li>
+			<li class="active"><!--{if $action=='new'}-->发布视频<!--{else}-->编辑视频<!--{/if}--></li>
+		</ol>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		
+		<form method="post" name="from" id="postform" action="post.php" enctype="multipart/form-data">
+		<input type="hidden" name="action" value="$action" />
+		<input type="hidden" value="2" name="step" />
+		<!--{if $action=='modify'}-->
+		<input type="hidden" value="$video[vid]" name="vid" />
+		<!--{/if}-->
+
+		<table class="table">
+		<thead>
+			<tr><td colspan="2" class="f-fs18"><strong><!--{if $action=='new'}-->发布视频<!--{else}-->编辑视频<!--{/if}--></strong></td></tr>
+		</thead>
+		
+		<tbody>
+			<!--{if $db_gdcheck & 4}-->
+			<tr>
+				<td>认证码<span class="u-need">*</span></td>
+				<td>
+					<div><input type="text" id="gdcode" name="video[gdcode]" size="6" class="u-text" datatype="*" ajaxurl="ajax.php?action=check_gdcode" nullmsg="请输入验证码！" errormsg="验证码错误！" /></div>
+					<div class="f-mt2"><img src="ck.php?nowtime=$timestamp" align="absmiddle" style="cursor:pointer;" id="ckcode" onclick="this.src='ck.php?nowtime='+new Date().getTime();" alt="看不清楚，换一张" title="看不清楚，换一张" /></div>
+				</td>
+			</tr>
+			<!--{/if}-->
+			
+			<tr>
+				<td class="f-w40">视频类型<span class="u-need">*</span></td>
+				<td>
+					<select name="video[type]">
+						<option value="0" {$type_0}>普通视频</option>
+						<option value="1" {$type_1}>收费视频</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="f-w40">所属类别<span class="u-need">*</span></td>
+				<td>
+					<select name="video[cid]" id="cid">
+						$_class_opt
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>国家/地区<span class="u-need">*</span></td>
+				<td>
+					<select name="video[nid]" id="nid">
+						$_nation_opt
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>标题<span class="u-need">*</span></td>
+				<td>
+					<input type="text" name="video[subject]" id="subject" size="30" class="u-text" value="$video[subject]" datatype="*" ajaxurl="ajax.php?action=check_video_subject&type={$action}&vid={$video[vid]}" nullmsg="视频标题不能为空！" />
+				</td>
+			</tr>
+			
+			<tr>
+				<td>标签[<a href="#" onclick="this.blur();alert('其他用户可以通过标签方便的找到这个节目');return false;">说明</a>]</td>
+				<td>
+					<input type="text" name="video[tag]" value="$video[tag]" class="u-text" /> (多个标签、演员或导演请用空格或","隔开)
+				</td>
+			</tr>
+			
+			<tr>
+				<td>领衔主演</td>
+				<td><input type="text" name="video[playactor]" value="$video[playactor]" class="u-text" /></td>
+			</tr>
+			
+			<tr>
+				<td>导演</td>
+				<td><input type="text" name="video[director]" value="$video[director]" class="u-text" /></td>
+			</tr>
+			
+			<!--{if $db_yearstart!='' && $db_yearend!=''}-->
+			<tr>
+				<td>发行年份</td>
+				<td>
+					<select name="video[year]">
+						<option value="">未知</option>
+					<!--{eval for($i=$db_yearstart;$i<=$db_yearend;$i++) {}-->
+						<option value="$i"{$year[$i]}>$i</option>
+					<!--{eval }}-->
+					</select>
+				</td>
+			</tr>
+			<!--{/if}-->
+			
+			<tr>
+				<td>影片状态</td>
+				<td>
+					<select name="video[serialise]">
+						<option value="0"{$serialise_0}>完结</option>
+						<option value="1"{$serialise_1}>连载</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>备注</td>
+				<td><input type="text" name="video[memo]" value="$video[memo]" class="u-text" /></td>
+			</tr>
+			
+			<tr>
+				<td>内容简介</td>
+				<td><!--{echo create_kindeditor('synopsis','video[synopsis]','600px','200px', $video[synopsis])}--></td>
+			</tr>
+			
+			<tr>
+				<td>海报 <br />允许上传格式: $db_picfiletype <br />允许上传大小: <!--{echo ceil($db_picmaxsize / 1024)}-->KB</td>
+				<td>
+					<!--{if $action=='modify'}-->
+						<div class="f-mb5"><img src="$img" style="width: 95px; height: 127px;" /></div>
+					<!--{/if}-->
+					<!--{if $db_uploadvodpic}-->
+					<div style="margin-bottom: 3px;">图片上传 <input name="video[image]" type="file" size="30" class="u-text" onchange="image_change(this)"/></div>
+					<!--{/if}-->
+					<div>图片地址 <input name="video[imgurl]" type="text" size="30" class="u-text" />
+					<input name="video[downimg]" type="checkbox" value="1" />下载图片 [地址必须是以 http://开头的路径]</div>
+				</td>
+			</tr>
+			
+			<!--{if $gp_allowsell=='1'}-->
+			<tr>
+				<td>出售视频</td>
+				<td>会员支付 <input class="u-text" maxLength="6" size="6" value="$sale_value" name="video[sale]">
+				<select name="video[saletype]">$sale_opt</select> 才能播放视频
+				</td>
+			</tr>
+			<!--{/if}-->
+		</tbody>
+		
+		<tbody id="post_url">
+			<tr><td colspan="2">播放组控制: <input type="button" class="u-btn" onclick="playgroup_add();return false;" value="添加播放组" /></td></tr>
+			<!--{loop $video['urls'] $key $value}-->
+			<tr>
+				<td>视频地址<span class="u-need">*</span><br />
+					每行输入一个视频地址<br />
+					格式：<span style="color: green">视频地址</span>,<span style="color: red">标题</span><br />
+					说明：视频地址与标题之间用","分开，标题部分为可选项，可省略。
+				</td>
+				<td>
+					<select name="video[pid][]">$video[player][$key]</select><br />
+					<textarea name="video[urls][]" style="margin: 5px 0px; width: 650px; height: 200px;" wrap="off" datatype="*" nullmsg="视频地址不能为空！" sucmsg="通过">$value</textarea>
+					<br />
+					<input type="button" class="u-btn" onclick="playgroup_del(this);" value="删除" />
+					<span class="Validform_checktip"></span>
+				</td>
+			</tr>
+			<!--{/loop}-->
+		</tbody>
+		
+		<tfoot>
+			<tr><td colspan="2" class="f-tac"><input id="submit_button" type="submit" value="提 交" class="u-btn f-mt10" /></td></tr>
+		</tfoot>
+		
+		</table>
+		</form>
+	</div>
+</div>

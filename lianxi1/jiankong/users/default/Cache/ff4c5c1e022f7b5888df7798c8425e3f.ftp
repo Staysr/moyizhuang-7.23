@@ -1,0 +1,9 @@
+-rw-r--r-- 1 ftp ftp           7935 Sep 07  2018 BelongsTo.php
+-rw-r--r-- 1 ftp ftp          18500 Sep 07  2018 BelongsToMany.php
+-rw-r--r-- 1 ftp ftp           9676 Sep 07  2018 HasMany.php
+-rw-r--r-- 1 ftp ftp           4801 Sep 07  2018 HasManyThrough.php
+-rw-r--r-- 1 ftp ftp           7545 Sep 07  2018 HasOne.php
+-rw-r--r-- 1 ftp ftp           8930 Sep 07  2018 MorphMany.php
+-rw-r--r-- 1 ftp ftp           7307 Sep 07  2018 MorphOne.php
+-rw-r--r-- 1 ftp ftp           8716 Sep 07  2018 MorphTo.php
+-rw-r--r-- 1 ftp ftp           9945 Sep 07  2018 OneToOne.php

@@ -1,0 +1,279 @@
+<!-- index.wpy -->
+<style>
+  page {
+    background-color: #f8f8f8;
+    height: 100%;
+  }
+  .list {
+    position: relative;
+    padding: 20rpx;
+  }
+  .list .number {
+    padding: 0 0 10rpx 0;
+    font-size: 30rpx;
+    color: orange;
+  }
+  .list .time {
+    padding: 0 0 0 0rpx;
+    font-size: 28rpx;
+  }
+  .list .bottom {
+    font-size: 28rpx;
+    padding: 10rpx 0 0rpx 0;
+  }
+  .list .bottom:after {
+    content: '.';
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+  .list .bottom .duration {
+    float: right;
+    
+  }
+  .list .bottom .fee {
+    float: right;
+    margin-left: 30rpx;
+  }
+  .duration .line {
+    clear: both;
+  }
+  .line {
+    text-decoration: underline;
+  }
+  .now {
+    padding: 20rpx;
+  }
+  .now .header {
+    font-size: 25rpx;
+  }
+  .now .header.status .title {
+    color: green;
+  }
+  .now .header.status .title {
+    color: green;
+  }
+  .now .header.status {
+    float: left;
+  }
+  .now .header.time {
+    float: right;
+  }
+  .now .header .content {
+
+  }
+  .now .message {
+    text-align: right;
+    padding: 0 0 0 50rpx;
+    clear: both;
+  }
+  .history_title {
+    font-size: 27rpx;
+    line-height: 27rpx;
+    padding: 20rpx 0 0 0;
+  }
+  .label {
+    position: absolute;
+    right: 3rpx;
+  }
+</style>
+<template>
+  <view class="wrap">
+    <!-- 进行中订单开始 -->
+    <wxc-panel wx:if="{{onGoingOrder}}">
+      <view class="now">
+        <!-- 标题 -->
+        <view class="header status">
+          <text class="title">进行中：</text>
+          <text class="content">{{onGoingOrder.order_sn}}</text>
+        </view>
+        <!-- 开始时间 -->
+        <view class="header time">
+          <text class="title">开始时间：</text>
+          <text class="content">{{start_timeFormat}}</text>
+        </view>
+        <!-- 订单详情 -->
+        <view class="message">
+          <wxc-input type="order_sn" title="计时" value="{{last}}"></wxc-input>
+          <wxc-input type="price" title="计费" value="{{consumed}}元"></wxc-input>
+          <wxc-input type="user" title="剩余时长" value="{{rest}}"></wxc-input>
+        </view>
+      </view>
+    </wxc-panel>
+    <!-- 进行中订单结束 -->
+    <!-- 订单列表开始 -->
+    <!-- 标题开始 -->
+    <wxc-cc>
+      <view class="history_title">
+        历史订单
+      </view>
+    </wxc-cc>
+    <!-- 标题结束 -->
+    <block wx:for="{{orderList}}" wx:key="order" wx:for-item="order">
+      <wxc-panel>
+        <view class="list">
+          <view class="number">
+            <wxc-label wx:if="{{order.order_status === 0}}" class="label" type="corner">已完成</wxc-label>
+            <wxc-label wx:if="{{order.order_status === 1}}" class="label" type="corner">待确认</wxc-label>
+            <wxc-label wx:if="{{order.order_status === 2}}" class="label" type="corner">使用中</wxc-label>
+            <wxc-label wx:if="{{order.order_status === 3}}" class="label" type="corner">待关闭</wxc-label>
+            <text>{{order.order_sn}}号设备</text>
+          </view>
+          <view class="time">
+            <text>起止时间：</text><text>{{order.start_time_f}}~{{order.end_time_f}}</text>
+          </view>
+          <view class="bottom">
+            <view class="fee">
+              <text>费用：</text><text class="line">{{order.actual_price}}元</text>
+            </view>
+            <view class="duration">
+              <text>用时：</text><text class="line">{{order.last}}</text>
+            </view>
+          </view>
+        </view>
+      </wxc-panel>
+    </block>
+    <!-- 订单列表结束 -->
+  </view>
+  <!-- 个人资料结束 -->
+  <wxc-loadmore is-end="{{true}}" text="没有更多内容" icon="{{true}}"></wxc-loadmore>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import { storage2data, request } from '../utils/util'
+  import { urls } from '../config/config'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '我的订单',
+      usingComponents: {
+        'wxc-panel': '../../packages/@minui/wxc-panel/dist/index',
+        'wxc-input': '../../packages/@minui/wxc-input/dist/index',
+        'wxc-cc': '../../packages/@minui/wxc-cc/dist/index',
+        'wxc-loadmore': '../../packages/@minui/wxc-loadmore/dist/index',
+        'wxc-label': '../../packages/@minui/wxc-label/dist/index',
+        'wxc-icon': '../../packages/@minui/wxc-icon/dist/index'
+      }
+    }
+    components = {}
+
+    mixins = []
+
+    data = {
+      onGoingOrder: null,
+      orderList: [],
+      last: '',
+      rest: '',
+      unit_price: '',
+      unit: '',
+      consumed: 0,
+      start_timeFormat: ''
+    }
+
+    computed = {}
+
+    methods = {
+
+    }
+
+    events = {}
+
+    onLoad() {}
+
+    async onShow() {
+      const _this = this
+      storage2data(_this)
+
+      const getTime = timeStamp => new Date.prototype.LeftTimer(timeStamp).string
+
+      clearInterval(this.timer)
+
+      const { data: { data } } = await request(urls.OrderList + '?_sort=id desc', {}, 'GET')
+      console.log('所有订单', data)
+
+      this.orderList = data;
+      const now = Date.now()
+
+      // 处理所有订单时间、费用
+      this.orderList.forEach(order => {
+        order.start_time_f =  new Date(order.start_time * 1000).Format('MM月dd日 hh时mm分')
+        order.end_time_f =  new Date(order.end_time * 1000).Format('MM月dd日 hh时mm分')
+        // 持续时间
+        const startTime = order.start_time * 1000
+        const end_time = order.end_time * 1000
+
+        let lastTimeStamp = end_time - startTime
+
+        order.last = new Date.prototype.LeftTimer(lastTimeStamp).string
+      })
+
+      // 查看最新订单是否进行中
+      const firstDataItem = data[0]
+
+      if (firstDataItem && firstDataItem['end_time'] === 0) {
+        console.log('订单进行中')
+        this.onGoingOrder = data.shift()
+        this.orderList = data
+        this.start_timeFormat = new Date(this.onGoingOrder.start_time * 1000).Format('yy-MM-dd hh:mm')
+      }
+
+      // 订单基本信息
+      this.unit_price = firstDataItem.unit_price
+      this.unit = firstDataItem.unit
+
+      // 持续时间
+      const startTime = firstDataItem.start_time * 1000
+
+      let lastTimeStamp = now - startTime
+
+      this.last = getTime(lastTimeStamp)
+
+      // 剩余时长
+      const { balance, deposit } = this.userInfo
+      const { unit_price, unit } = firstDataItem
+
+      console.log('unit_price', unit_price)
+      console.log('unit', unit)
+
+      let allTime = 0
+      let consumed = 0
+      const totalMoney = parseFloat((balance + deposit).toFixed(2))
+      if (unit === '元每小时') {
+        allTime = (totalMoney / unit_price) * 3600 * 1000
+        consumed = parseFloat(((lastTimeStamp * unit_price) / (1000 * 3600)).toFixed(2))
+      } else if (unit === '元每天') {
+        allTime = (totalMoney / unit_price) * 24 * 3600 * 1000
+        consumed = parseFloat(((lastTimeStamp * unit_price) / (1000 * 3600 * 24)).toFixed(2))
+      }
+
+      let restTime = allTime - lastTimeStamp
+
+      this.rest = getTime(restTime)
+      this.consumed = consumed
+
+      this.timer = setInterval(() => {
+        lastTimeStamp += 1000
+        restTime -= 1000
+        _this.last = getTime(lastTimeStamp)
+        _this.rest = getTime(restTime)
+        _this.$apply()
+      }, 1000)
+
+      //计算消费
+      if (unit === '元每小时') {
+        lastTimeStamp / (1000 * 3600)
+      } else if (unit === '元每天') {
+        lastTimeStamp / (1000 * 3600 * 24)
+      }
+      lastTimeStamp
+
+      this.$apply()
+    }
+  }
+</script>
+
+
+<!-- 天津市河西区大沽南路与奉化道交口东北侧晶采大厦2-1008 -->

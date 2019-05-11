@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/dis_header}-->
+    <title>{lang search_result}</title>
+</head>
+<body>
+    <div class="ser_container">
+        <!--搜索-->
+        <div class="weui-search-bar" id="searchBar">
+            <form class="weui-search-bar__form" action="{MOD_URL}&op=search" method="post">
+                <input type="hidden" name="formhash" value="{FORMHASH}" >
+                <input type="hidden" name="searchsubmit" value="true">
+                <div class="weui-search-bar__box">
+                    <i class="weui-icon-search"></i>
+                    <input type="search" name="srchtxt" class="weui-search-bar__input" id="searchInput" placeholder="{lang search}" required="" value="{$_GET[kw]}">
+                    <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                </div>
+                <label class="weui-search-bar__label" id="searchText">
+                    <i class="weui-icon-search"></i>
+                    <span>{lang search}</span>
+                </label>
+            </form>
+            <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">{lang cancel}</a>
+        </div>
+        <div class="weui-panel weui-panel_access">
+
+          <!--{template mobile/thread_list}-->
+
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="static/jquery_weui/js/jquery-weui.min.js"></script>
+<script type="text/javascript">
+    jQuery('.searchImg-wrap').height(jQuery('body').height()-55);
+    jQuery('#searchBar').addClass('weui-search-bar_focusing');
+    var loading = false;  //状态标记
+   jQuery(document.body).infinite().on("infinite", function() {
+      if(loading) return;
+      loading = true;
+      if (jQuery(".weui-loadmore").length > 0) {
+        var url = jQuery(".weui-loadmore").data("url");
+        jQuery.ajax({
+            url: url,
+            type: 'get',
+            success: function(res) {
+                jQuery(".weui-loadmore").replaceWith(res);
+                loading = false;
+            }
+        })
+      } else {
+        jQuery(document.body).destroyInfinite();
+      }
+    });
+</script>
+<!--{eval output();}-->
+</html>

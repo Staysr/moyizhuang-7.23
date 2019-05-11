@@ -1,0 +1,14 @@
+-rw-r--r-- 1 ftp ftp           1450 Apr 12  2016 AccountAttributes.php
+-rw-r--r-- 1 ftp ftp           2245 Apr 13  2017 BatchSmsAttributes.php
+-rw-r--r-- 1 ftp ftp           2260 Oct 20  2015 DeleteMessageErrorItem.php
+-rw-r--r-- 1 ftp ftp           2863 Apr 15  2016 MailAttributes.php
+-rw-r--r-- 1 ftp ftp           4985 Feb 22  2016 Message.php
+-rw-r--r-- 1 ftp ftp           1172 Jan 16  2017 MessageAttributes.php
+-rw-r--r-- 1 ftp ftp           9325 Jun 06  2017 QueueAttributes.php
+-rw-r--r-- 1 ftp ftp            661 Feb 22  2016 SendMessageRequestItem.php
+-rw-r--r-- 1 ftp ftp           3296 Oct 20  2015 SendMessageResponseItem.php
+-rw-r--r-- 1 ftp ftp           2285 Apr 13  2017 SmsAttributes.php
+-rw-r--r-- 1 ftp ftp           5536 Jan 16  2017 SubscriptionAttributes.php
+-rw-r--r-- 1 ftp ftp           5188 Mar 21  2016 TopicAttributes.php
+-rw-r--r-- 1 ftp ftp           1063 Jan 05  2016 UpdateSubscriptionAttributes.php
+-rw-r--r-- 1 ftp ftp            718 Jan 16  2017 WebSocketAttributes.php

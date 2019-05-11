@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<hack>
+	<name>资源库</name>
+	<directory>repos</directory>
+	<hidden>1</hidden>
+	<spos>0</spos>
+	<listener></listener>
+	<version>1.0</version>
+</hack>

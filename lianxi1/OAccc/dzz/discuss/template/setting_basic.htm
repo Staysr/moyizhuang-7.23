@@ -1,0 +1,226 @@
+<link rel="stylesheet" href="static/css/checkbox.css">
+<link href="{MOD_PATH}/images/user_select.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.textareaexplander.js"></script>
+<style>
+.user-item .delete{
+	display:none;
+}
+.user-item.hover .delete{
+	display:block;
+}
+.more{
+	font-size:80px;line-height:20px;font-family: georgia;
+	color:#BBBBBB;
+}
+.more:hover{
+	color:#428bca;
+}
+
+</style>
+<div class="setting-basic-container" style="padding:35px 15px;max-width: 950px;">
+  <form id="discussform" name="discussform" class="form-horizontal-left form-horizontal" action="{BASESCRIPT}?mod=discuss&op=setting&do=basic" method="post" >
+    <input type="hidden" name="settingsubmit" value="true" />
+    <input type="hidden" name="formhash" value="{FORMHASH}" />
+    <dl class="settings-item">
+    	<dt>{lang each_user_set_max_discuss}：</dt>
+        <dd class="clearfix">
+        	<input type="text" class="form-control input-sm" name="settingnew[maxboard]" value="$setting[maxboard]" />
+            <span class="help-inline">{lang empty_unlimited}</span>
+        </dd>
+    </dl>
+    <dl class="settings-item" style="border-bottom: 1px solid #e8e8e8;padding-bottom: 30px;">
+    	<dt>{lang index_cache_time}：</dt>
+        <dd class="clearfix">
+        	<input type="text" class="form-control input-sm" name="settingnew[indexcache]" value="$setting[indexcache]" />
+            <span class="help-inline">{lang blank_not_cached_need_server_open_cache}</span>
+        </dd>
+    </dl>
+    <dl class="settings-item">
+    	<dt>{lang allow_create_discuss_user}：</dt>
+        <dd class="clearfix">
+            <div class="radio-custom radio-primary">
+                <input type="radio" name="settingnew[allownewboard]" value="0"<!--{if !$setting['allownewboard']}-->checked<!--{/if}--> onclick="jQuery('#allownewboard_users').hide()">
+                <label class="setting-label-null"></label>
+                <span class="setting-label">{lang full_station_user}</span>
+            </div>
+        </dd>
+         <dd class="clearfix">
+             <div class="radio-custom radio-primary">
+                 <input type="radio"  name="settingnew[allownewboard]" value="1"<!--{if $setting['allownewboard']>0}-->checked<!--{/if}--> onclick="jQuery('#allownewboard_users').show()">
+                 <label class="setting-label-null"></label>
+                 <span class="setting-label">{lang specified_user}</span>
+             </div>
+         </dd>
+        <dd class="clearfix" style="margin-left: 0;display: block;">
+            <dl class="mt20" style="margin-left: 0;<!--{if $setting[allownewboard]==0}-->display:none;<!--{/if}-->" id="allownewboard_users">
+              <dt>{lang allow_create_member}：<small>（<b id="sum">{eval echo count($moderators);}</b>）</small>:</dt>
+              <dd class="clearfix">
+                <ul id="discuss_moderator" class="list-unstyled clearfix" >
+                  <li  class=" pull-left" style="padding:10px;width:110px">
+                    <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;overflow: hidden"> <a href="javascript:;" onclick="showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=chkadd_2&stype=2&multiple=1&ids={eval echo rawurlencode(implode(',',array_keys($moderators)));}','get','0')"><img style="margin:10px" src="dzz/discuss/images/addUser.png" width="66" height="66" /></a> </div>
+                    <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"><span style="color: #333;">{lang add_member}</span></p>
+                  </li>
+                  
+                  <!--{template setting_basic_userlist}-->
+                </ul>
+              </dd>
+            </dl>
+   		</dd>
+    </dl>
+    <dl class="settings-item">
+    	<dt>{lang opt_the_update_of_views}：</dt>
+        <dd class="clearfix">
+        	<!--<label class="radio radio-inline"><input type="radio"  name="settingnew[optimizeviews]" value="1" &lt;!&ndash;{if $setting[optimizeviews]==1}&ndash;&gt;checked&lt;!&ndash;{/if}&ndash;&gt;>是</label>-->
+            <!--<label class="radio-inline "><input type="radio" name="settingnew[optimizeviews]" value="0" &lt;!&ndash;{if $setting[optimizeviews]==0}&ndash;&gt;checked&lt;!&ndash;{/if}&ndash;&gt;>否</label>-->
+            <div class="radio-custom radio-primary">
+                <input type="radio"  name="settingnew[optimizeviews]" value="1" <!--{if $setting[optimizeviews]==1}-->checked<!--{/if}-->>
+                <label class="setting-label-null"></label>
+                <span class="setting-label">{lang yes}</span>
+            </div>
+        </dd>
+        <dd>
+            <div class="radio-custom radio-primary">
+                <input type="radio" name="settingnew[optimizeviews]" value="0" <!--{if $setting[optimizeviews]==0}-->checked<!--{/if}-->>
+                <label class="setting-label-null"></label>
+                <span class="setting-label">{lang no}</span>
+            </div>
+        </dd>
+        <span class="help-inline" style="float: none;">{lang opt_the_update_of_views_desc}</span>
+    </dl>
+    <dl class="settings-item">
+    	<dt>{lang open_to_prevent_refresh}：</dt>
+        <dd class="clearfix">
+            <div class="radio-custom radio-primary">
+                <input type="radio"  name="settingnew[preventrefresh]" value="1" <!--{if $setting[preventrefresh]==1}-->checked<!--{/if}-->>
+                <label class="setting-label-null"></label>
+                <span class="setting-label">{lang yes}</span>
+            </div>
+        	<!--<label class="radio radio-inline"><input type="radio"  name="settingnew[preventrefresh]" value="1" &lt;!&ndash;{if $setting[preventrefresh]==1}&ndash;&gt;checked&lt;!&ndash;{/if}&ndash;&gt;>是</label>-->
+            <!--<label class="radio-inline "><input type="radio" name="settingnew[preventrefresh]" value="0" &lt;!&ndash;{if $setting[preventrefresh]==0}&ndash;&gt;checked&lt;!&ndash;{/if}&ndash;&gt;>否</label>-->
+        </dd>
+        <dd>
+            <div class="radio-custom radio-primary">
+                <input type="radio" name="settingnew[preventrefresh]" value="0" <!--{if $setting[preventrefresh]==0}-->checked<!--{/if}-->>
+                <label class="setting-label-null"></label>
+                <span class="setting-label">{lang no}</span>
+            </div>
+        </dd>
+        <span class="help-inline" style="float: none;">{lang open_to_prevent_refresh_desc}</span>
+    </dl>
+   
+    <dl class="settings-item">
+    	<dt>{lang moderator_permissions}：</dt>
+        <dd class="clearfix">
+            <!--<label class="checkbox-inline "><input type="checkbox" name="settingnew[topperm][]" value="1"&lt;!&ndash;{if in_array(1,$setting[topperm])}&ndash;&gt;checked&lt;!&ndash;{/if}&ndash;&gt;>置顶1（版内置顶）</label>-->
+            <div class="checkbox-custom checkbox-primary">
+                <input type="checkbox" name="settingnew[topperm][]" value="1"<!--{if in_array(1,$setting[topperm])}-->checked<!--{/if}-->>
+                <label class="setting-label-null"></label>
+                <span class="setting-label">{lang settop_one}</span>
+            </div>
+        </dd>
+        <dd class="clearfix ml20">
+            <!--<label class="checkbox-inline"><input type="checkbox"  name="settingnew[topperm][]" value="2"&lt;!&ndash;{if in_array(2,$setting[topperm])}&ndash;&gt;checked&lt;!&ndash;{/if}&ndash;&gt;>置顶2（分类置顶）</label>-->
+            <div class="checkbox-custom checkbox-primary">
+                <input type="checkbox"  name="settingnew[topperm][]" value="2"<!--{if in_array(2,$setting[topperm])}-->checked<!--{/if}-->>
+                <label class="setting-label-null"></label>
+                <span class="setting-label">{lang settop_two}</span>
+            </div>
+        </dd>
+        <dd class="clearfix ml20">
+            <!--<label class="checkbox-inline"><input type="checkbox"  name="settingnew[topperm][]" value="3"&lt;!&ndash;{if in_array(3,$setting[topperm])}&ndash;&gt;checked&lt;!&ndash;{/if}&ndash;&gt;>置顶3（全局置顶）</label>-->
+            <div class="checkbox-custom checkbox-primary">
+                <input type="checkbox"  name="settingnew[topperm][]" value="3"<!--{if in_array(3,$setting[topperm])}-->checked<!--{/if}-->>
+                <label class="setting-label-null"></label>
+                <span class="setting-label">{lang settop_three}</span>
+            </div>
+        </dd>
+    </dl>
+    <dl class="settings-item" style="padding-bottom: 30px;border-bottom: 1px solid #e8e8e8;">
+    	<dt>{lang popular_theme_display_level}：</dt>
+        <dd class="clearfix">
+        	<input type="text" name="settingnew[hotlevels]"  class="form-control" value="$setting['hotlevels']">
+           </dd>
+           <dd class="clearfix"><span class="help-inline" style="float: none;">{lang icon_display}：</span>
+               <span class="hot">{lang fire}</span>
+               <span class="hot">{lang fire}+</span>
+               <span class="hot">{lang fire}++</span>
+            	<!--<img src="dzz/discuss/images/common/hot_1.gif"><img src="dzz/discuss/images/common/hot_2.gif"><img src="dzz/discuss/images/common/hot_3.gif">-->
+           </dd>
+           <dd class="clearfix" style="display: block;">
+            {lang help_block}
+            
+        </dd>
+    </dl>
+    <dl class="settings-item clearfix">
+    	<dt>{lang manage_operation_reason}：</dt>
+        <dd class="clearfix textarea-wrap rules-wrap">
+        	<!--{loop $setting[modreasons] $value}-->
+            <input class="form-control" name="settingnew[modreasons][]" tpye="text" value="{$value}" style="margin-right: 10px;">
+            <!--{/loop}-->
+            <a class="btn setting-addBtn" onclick="addRule()"><i class="dzz dzz-add"></i></a>
+        </dd>
+        <span class="help-inline">{lang this_set_will_be_display_when_manage}</span>
+    </dl>
+    <dl class="settings-item">
+    	<dt>{lang post_order_unit}：</dt>
+        <dd class="clearfix">
+        	<input type="text" name="settingnew[postno]"  class="form-control" value="$setting['postno']">
+        </dd>
+        <span class="help-inline" style="float: none;">{lang post_order_unit_desc}</span>
+    </dl>
+     <dl class="settings-item clearfix">
+    	<dt>{lang post_order_name}：</dt>
+        <dd class="clearfix textarea-wrap">
+        	<textarea type="textarea" name="settingnew[postnocustom]" rows="4"  class="form-control">$setting['postnocustom']</textarea>
+        </dd>
+         <span class="help-inline">{lang post_order_name_desc}</span>
+     </dl>
+    <dl class="settings-item clearfix">
+    	<dt>{lang general_edition_rules}：</dt>
+        <dd class="clearfix textarea-wrap">
+        	<textarea type="textarea" name="settingnew[rules]" rows="6" style="width:300px;" class="form-control">$setting['rules']</textarea>
+        </dd>
+        <span class="help-inline">{lang general_edition_rules_desc}</span>
+    </dl>
+    <input class="btn btn-primary btn-primary1"  name="settingsubmit_btn" value="{lang save_change}" type="submit" >
+  </form>
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function(e) {
+    jQuery('.textarea-wrap').find('textarea').TextAreaExpander(34,9999);
+  jQuery(document).on('mouseover','.user-item',function(){
+		jQuery(this).addClass('hover');
+	});
+	jQuery(document).on('mouseout','.user-item',function(){
+		jQuery(this).removeClass('hover');
+	});
+});
+function deleteUser(uid){
+	jQuery.getJSON(DZZSCRIPT+'?mod=discuss&op=setting&do=basic&operation=deleteModerator',{'uid':uid},function(json){
+		if(json.error){
+			alert(json.error);
+		}else{
+			jQuery('#user_'+uid).remove();
+			jQuery('#sum').html(parseInt(jQuery('#sum').html())-1);
+		}
+	});
+}
+function addRule() {
+    var html='<input class="form-control" name="settingnew[modreasons][]" type="text" style="margin-right: 10px;">';
+    jQuery('.setting-addBtn').before(html);
+}
+function chkadd_2(ids, data) {//设置成员
+    var sub_data = {
+        'formhash': '{FORMHASH}',
+        'selectsubmit': true,
+        'uids': ids,
+    }
+    var url = "{MOD_URL}&&op=setting&do=basic&operation=selectuser";
+    jQuery.post(url, sub_data, function (html) {
+        jQuery("#discuss_moderator").find("li:gt(0)").remove();
+        jQuery("#discuss_moderator").append(html);
+        jQuery("#sum").text(jQuery("#discuss_moderator").find("li:gt(0)").length);
+    }, 'html')
+}
+</script>

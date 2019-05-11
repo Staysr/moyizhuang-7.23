@@ -1,0 +1,426 @@
+<!-- index.wpy -->
+<style>
+  wxc-flex {
+    display: flex;
+  }
+  .yellow {
+    color: rgb(245, 219, 0);
+  }
+  .blue {
+    color: rgb(0, 197, 242);
+  }
+  .green {
+    color: rgb(0, 211, 5);
+  }
+  .orange {
+    color: rgb(254, 177, 21);
+  }
+  .link {
+    color: #459ae9;
+    text-decoration: underline;
+  }
+  .header {
+    background-color: #FFF79A;
+    background-image: url('https://rent-1256171234.cos.ap-beijing.myqcloud.com/static/bannar.jpg');
+    background-size: 100% 100%;
+    height: 250rpx;
+  }
+  .header>.item {
+    font-size: 20rpx;
+    text-align: center;
+    height: 100%;
+  }
+  .header>.left {
+    width: 30%;
+    flex-grow: 0;
+    padding: 50rpx;
+  }
+  .header>.center {
+    width: 40%;
+    flex-grow: 1;
+    font-size: 30rpx;
+    padding:70rpx 0rpx 70rpx 140rpx;
+  }
+  .header>.right {
+    width: 30%;
+    flex-grow: 2;
+    padding: 70rpx;
+  }
+  .header>.item>wxc-cc>wxc-flex {
+    height: 50%;
+  }
+  .avatar {
+
+  }
+  .avatar_box {
+    width: 80rpx;
+    height: 80rpx;
+  }
+  .nickname {
+    padding: 30rpx 0 0 0;
+    font-size: 35rpx;
+  }
+  .desc-highlight {
+    font-size: 24rpx;
+    height: 38rpx;
+    padding: 0 22rpx;
+    border: 1px solid #f5342f;
+    border-radius: 20rpx;
+    color: #f5342f;
+    line-height: 38rpx;
+  }
+  .main .status {
+    font-size: 25rpx;
+    padding: 15rpx 0 30rpx 0;
+    color: green;
+  }
+  .main .duration {
+    font-size: 40rpx;
+    padding: 5rpx 0 25rpx 0;
+  }
+  .end {
+    margin: 40rpx 20rpx 40rpx 20rpx;
+    border-radius: 200rpx;
+    width: 80%;
+    overflow: hidden;
+  }
+  .end wxc-button button {
+    width: 100%;
+  }
+  .content_mes {
+    padding: 30rpx;
+    color: #aaa;
+    font-size: 30rpx;
+    text-align: center;
+  }
+  .status {
+    padding: 15rpx;
+    text-align: center;
+  }
+  .no_title {
+    text-align: center;
+    color: #666;
+    font-size: 23rpx;
+  }
+</style>
+<template>
+  <!-- 头部开始 -->
+  <wxc-flex class="header">
+    <view class="item left">
+      <!-- 头像 -->
+      <wxc-cc class="avatar">
+        <view class="avatar_box">
+          <wxc-avatar mode="aspectFill" src="{{userInfo.avatar}}" />
+        </view>
+      </wxc-cc>
+      <wxc-cc>
+        <view class="nickname">
+          {{userInfo.nickname}}
+        </view>
+      </wxc-cc>
+    </view>
+    <view class="item center">
+      <wxc-cc>
+        <wxc-flex class="item deposit">
+            <view class="title">押金：</view><view class="value">{{userInfo.deposit}}</view>
+        </wxc-flex>
+      </wxc-cc>
+      <wxc-cc>
+        <wxc-flex class="item balance">
+            <view class="title">余额：</view><view class="value">{{userInfo.balance}}</view>
+        </wxc-flex>
+      </wxc-cc>
+    </view>
+    <view class="item right">
+      <wxc-cc>
+        <wxc-flex class="item deposit">
+          <wxc-button size="small" type="beauty" value="充值" bind:click="recharge"></wxc-button>
+        </wxc-flex>
+      </wxc-cc>
+      <wxc-cc>
+        <wxc-flex class="item balance">
+          <wxc-button size="small" type="beauty" value="退款" bind:click="refund"></wxc-button>
+        </wxc-flex>
+      </wxc-cc>
+    </view>
+  </wxc-flex>
+  <!-- 头部结束 -->
+  <!-- 店铺开始 -->
+  <v-shop :syncShop.sync="shop" />
+  <!-- 店铺结束 -->
+  <!-- 历史订单开始 -->
+  <wxc-list
+    class="orders"
+    title="订单中心"
+    src="https://s10.mogucdn.com/mlcdn/c45406/170603_7ida8bdc21j18b91aa2ii3lk38b9i_38x38.png"
+    bind:click="orders"
+  >
+    <view wx:if="{{status === 1}}" class="desc-highlight">{{setting.root.weapp[0].pages[0].service[0]['order-button-text-1'][0]}}</view>
+    <view wx:if="{{status === 2}}" class="desc-highlight">{{setting.root.weapp[0].pages[0].service[0]['order-button-text-2'][0]}}</view>
+    <view wx:if="{{status === 3}}" class="desc-highlight">{{setting.root.weapp[0].pages[0].service[0]['order-button-text-3'][0]}}</view>    
+  </wxc-list>
+  <!-- 历史订单结束 -->
+  <!-- 主体部分开始 -->
+  <view class="main">
+    <view wx:if="{{status === 0}}" class="status blue">{{setting.root.weapp[0].pages[0].service[0]['status-0'][0]}}</view>
+    <view wx:if="{{status === 1}}" class="status yellow">{{setting.root.weapp[0].pages[0].service[0]['status-1'][0]}}<text class="link" bindtap="refresh">刷新</text></view>
+    <view wx:if="{{status === 2}}" class="status green">{{setting.root.weapp[0].pages[0].service[0]['status-2'][0]}}</view>
+    <view wx:if="{{status === 3}}" class="status orange">{{setting.root.weapp[0].pages[0].service[0]['status-3'][0]}}</view>
+    <!-- 未使用状态开始 -->
+    <view wx:if="{{status === 0}}" class="normal">
+      <image class="no_data" mode="widthFix" src="{{bks.FOLLOW.image}}" />
+      <view class="no_title">{{setting.root.weapp[0].pages[0].service[0]['status-0-bottom'][0]}}</view>
+    </view>
+    <!-- 未使用状态结束 -->
+    <!-- 等待工作人员确认开始 -->
+    <view wx:if="{{status === 1}}" >
+      <!-- 订单详情 -->
+      <wxc-cc>
+        <view class="message">
+          <wxc-input disabled="{{true}}" type="goods_sn" title="{{setting.root.weapp[0].common[0].goods_sn[0]}}" value="{{goods_sn}}"></wxc-input>
+          <wxc-input disabled="{{true}}" type="shop" title="{{setting.root.weapp[0].common[0].shop[0]}}" value="{{shop_name}}"></wxc-input>
+          <wxc-input disabled="{{true}}" type="user" title="{{setting.root.weapp[0].common[0].user[0]}}" value="{{userInfo.user_real_name}}"></wxc-input>
+          <wxc-input disabled="{{true}}" type="price" title="{{setting.root.weapp[0].common[0].price[0]}}" value="{{unit_price}}{{unit}}"></wxc-input>
+        </view>
+      </wxc-cc>
+    </view>
+    <!-- 等待工作人员确认结束  -->
+    <!-- 正在用车状态开始 -->
+    <view wx:if="{{status === 2}}">
+      <!-- 用时 -->
+      <view class="duration">
+        <wxc-cc>
+          已使用：{{last}}
+        </wxc-cc>
+      </view>
+      <!-- 订单详情 -->
+      <wxc-cc>
+        <view class="message">
+          <wxc-input disabled="{{true}}" type="goods_sn" title="{{setting.root.weapp[0].common[0].goods_sn[0]}}" value="{{goods_sn}}"></wxc-input>
+          <wxc-input disabled="{{true}}" type="shop" title="{{setting.root.weapp[0].common[0].shop[0]}}" value="{{shop_name}}"></wxc-input>
+          <wxc-input disabled="{{true}}" type="user" title="{{setting.root.weapp[0].common[0].user[0]}}" value="{{userInfo.user_real_name}}"></wxc-input>
+          <wxc-input disabled="{{true}}" type="price" title="{{setting.root.weapp[0].common[0].price[0]}}" value="{{unit_price}}{{unit}}"></wxc-input>
+          <wxc-input disabled="{{true}}" type="rest" title="{{setting.root.weapp[0].common[0].rest[0]}}" value="{{rest}}"></wxc-input>
+        </view>
+      </wxc-cc>
+      <!-- 结束使用 -->
+      <view class="rest">
+        <wxc-cc>
+          <view class="end">
+            <wxc-button size="large" type="primary" @tap="end">结束使用</wxc-button>
+          </view>
+        </wxc-cc>
+      </view>
+    </view>
+    <!-- 正在用车状态结束 -->
+    <!-- 申请还车开始 -->
+    <view wx:if="{{status === 3}}" class="normal">
+      <view class="content_mes">
+        {{setting.root.weapp[0].pages[0].service[0]['apply-return-notice'][0]}}
+        <text class="link" bindtap="refresh">刷新</text>
+      </view>
+    </view>
+    <!-- 申请还车结束 -->
+  </view>
+  <!-- 主体部分结束 -->
+
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import { storage2data, request } from '../utils/util'
+  import { urls } from '../config/config'
+  import Vscan from '../components/scan'
+  import Vshop from '../components/shop'
+  var backgrounds = require('../utils/abnor.js');
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'test',
+      usingComponents: {
+        'wxc-button': '../../packages/@minui/wxc-button/dist/index',
+        'wxc-panel': '../../packages/@minui/wxc-panel/dist/index',
+        'wxc-input': '../../packages/@minui/wxc-input/dist/index',
+        'wxc-avatar': '../../packages/@minui/wxc-avatar/dist/index',
+        'wxc-list': '../../packages/@minui/wxc-list/dist/index',
+        'wxc-cc': '../../packages/@minui/wxc-cc/dist/index'
+      }
+    }
+    components = {
+      'v-scan': Vscan,
+      'v-shop': Vshop
+    }
+
+    mixins = []
+
+    data = {
+      status: null, // 1为使用中
+      last: '',
+      rest: '',
+      nickname: '',
+      avatar: '',
+      goods_sn: '',
+      shop_name: '',
+      unit_price: '',
+      unit: '',
+      shop: {},
+      timer: null,
+      order_id: '',
+      userInfo: null,
+      setting: null,
+      bks: null
+    }
+
+    computed = {}
+
+    methods = {
+      async refresh(e) {
+        this.onShow()
+      },
+      async end(e) {
+        const MDres = await wx.showModalP({
+          title: '提示',
+          content: '确认结束使用吗？'
+        })
+        const { confirm } = MDres
+        console.log(MDres)
+
+        if (confirm) {
+          const result = await request(urls.OrderEnd, { order_id: this.order_id }, 'GET')
+          console.log('请求结果', result)
+          await this.onShow()
+        }
+      },
+      orders() {
+        wx.navigateToP({ url: '/pages/order' })
+      },
+      async recharge() {
+        const res = await request(urls.Recharge, { total_fee: 50000 }, "POST")
+        //发起支付
+        if (res.errno === 0) {
+          let payParam = res.data;
+          wx.requestPayment({
+            'timeStamp': payParam.timeStamp,
+            'nonceStr': payParam.nonceStr,
+            'package': payParam.package,
+            'signType': payParam.signType,
+            'paySign': payParam.paySign,
+            'success': function (res) {
+              console.log("success to requestPayment and res is: ", res);
+              wx.showModal({ 
+                title: '提示', 
+                content: '支付成功', 
+                showCancel: false, 
+                success: function(res) {
+                  let userInfo = wx.getStorageSync('userInfo');
+                  userInfo.is_distributor = 1
+                  wx.setStorageSync('userInfo', userInfo)
+                  if (res.confirm) {
+                    wx.switchTab({
+                      url: '/pages/ucenter/index/index'
+                    })
+                  }
+                }
+              })
+            },
+            'fail': function (res) {
+              console.log("fail to requestPayment and res is: ", res);
+            }
+          })
+        }
+      },
+      async refund() {
+        const showRes = await wx.showModalP({ title: '提示', content: '您确认要退款吗，押金和余额共231元将同时打款至您的微信零钱' })
+        if (showRes.confirm === true) {
+          wx.navigateToP({ url: '/pages/refund_result' })
+        } else if (showRes.cancel === true) {
+          console.log('取消')
+        }
+      },
+      onConfirm () {
+        console.log('点击了确认按钮')
+      },
+      onCancel () {
+        console.log('点击了取消按钮')
+      }
+    }
+
+    events = {}
+
+    async onLoad() {
+
+    }
+
+    getShop() {
+      const currentRegion = wx.getStorageSync('currentRegion')
+      const cityShops = wx.getStorageSync('cityShops')
+      const currentShops = wx.getStorageSync('currentShops')
+      const currentShop = wx.getStorageSync('currentShop')
+
+      return {
+        currentRegion,
+        cityShops,
+        currentShops,
+        currentShop
+      }
+    }
+
+    async onShow() {
+      this.bks = backgrounds
+      const _this = this
+      storage2data(this)
+      const getTime = timeStamp => new Date.prototype.LeftTimer(timeStamp).string
+
+      clearInterval(this.timer)
+
+      const shop = this.getShop()
+      this.shop = shop
+
+      const { data } = await request(urls.OrderFirst, {}, 'GET')
+      console.log('第一个订单', data)
+
+      // 订单基本信息
+      this.order_id = data.id
+      this.goods_sn = data.goods_goods_sn
+      this.shop_name = data.goods_shop_name
+      this.unit_price = data.unit_price
+      this.unit = data.unit
+      this.status = data.order_status
+
+      // 持续时间
+      const startTime = data.start_time * 1000
+      const now = Date.now()
+
+      let lastTimeStamp = now - startTime
+
+      this.last = getTime(lastTimeStamp)
+
+      // 剩余时长
+      const { balance, deposit } = this.userInfo
+      const { unit_price, unit } = data
+
+      console.log('unit_price', unit_price)
+      console.log('unit', unit)
+
+      let restTime = 0
+      const totalMoney = parseFloat((balance + deposit).toFixed(2))
+      if (unit === '元每小时') {
+        restTime = (totalMoney / unit_price) * 3600 * 1000
+      } else if (unit === '元每天') {
+        restTime = (totalMoney / unit_price) * 3600 * 1000
+      }
+
+      this.rest = getTime(restTime)
+
+      this.timer = setInterval(() => {
+        lastTimeStamp += 1000
+        restTime -= 1000
+        _this.last = getTime(lastTimeStamp)
+        _this.rest = getTime(restTime)
+        _this.$apply()
+      }, 1000)
+
+      this.$apply()
+    }
+  }
+</script>

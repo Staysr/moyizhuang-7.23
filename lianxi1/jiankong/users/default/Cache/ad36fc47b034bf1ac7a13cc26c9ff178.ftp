@@ -1,0 +1,3 @@
+-rw-r--r-- 1 ftp ftp            725 Jul 18  2017 CredentialTest.php
+-rw-r--r-- 1 ftp ftp            440 Jul 18  2017 ShaHmac1SignerTest.php
+-rw-r--r-- 1 ftp ftp            479 Jul 18  2017 ShaHmac256SignerTest.php

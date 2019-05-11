@@ -1,0 +1,20 @@
+<!--pages/jifen/index.wxml-->
+<!-- <text>pages/jifen/index.wxml</text> -->
+<view class='content'>
+
+ <view class='liti'>
+ <text class='jifen'>我的积分:</text>
+ <view calss="jifen1">
+ <text>{{motto}}积分</text>
+ </view>
+ </view>
+  <view class="section" bindtap=''>
+    <text class='text2'>积分明细</text>
+    <text style="text-align: right;color:rgb(154,154,154)">></text>
+  </view>
+
+  <view class="section" bindtap=''>
+    <text class='text2'>积分对换</text>
+    <text style="text-align: right;color:rgb(154,154,154)" >></text>
+  </view>
+</view>

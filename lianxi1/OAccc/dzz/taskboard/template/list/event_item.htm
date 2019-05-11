@@ -1,0 +1,45 @@
+<!--{loop $list $key $value}-->
+{eval $weeks=array('Sunday'=>'周日','Saturday'=>'周六','Friday'=>'周五','Thursday'=>'周四','Wednesday'=>'周三','Tuesday'=>'周二','Monday'=>'周一');}
+{eval $date=getdate($value[dateline]);$week=$weeks[$date[weekday]];$data}
+
+<li class="activity-item activity-item-day">
+  <div class="activity-day <!--{if !$value[showday]}-->hide<!--{/if}--> " >
+  	 <span>{$date[mon]}/{$date[mday]}<br> </span> 
+  	<!--{if dgmdate(TIMESTAMP,'Y')!=$date['year']}-->
+  	 <span class="year">$date[year]</span>
+  	<!--{else}-->
+    <span class="weekday">$week</span> 
+    <!--{/if}-->
+  </div>
+  <div class="activity-icon"> <i class="ai-{$value[show][color]} $value[show][icon]"></i> </div>
+  <div class="activity-meta"> <span class="date" title="{eval echo dgmdate($value[dateline]);}">{eval echo dgmdate($value[dateline],'H:i');}</span> </div>
+  <a class="activity-avatar avatar avatar-30" title="$value[username]" uid="$value[uid]" href="javascript:;">  {eval echo avatar_block($value['uid']);}</a>
+  <div class="activity-itemwarp"> 
+  	<span class="activity">
+    	<span class="verb">$value[body]</span> 
+    </span>
+  </div>
+</li>
+
+<!--{/loop}-->
+<!--{if !$hidemore}-->
+<!--{if $next}-->
+<li id="btn-load-more-{$taskid}" class="activity-item"> 
+	<div class="activity-itemwarp" style="margin-left:100px">
+        <div class="loading-more-panel"> 
+            <div class="part-loading"> </div> 
+            <button class="btn btn-simple" data-loading-text="加载中..." onclick="getEventMore_{$taskid}('$page','$uid')"> 加载更多... </button> 
+         </div>
+    </div>
+</li>
+<!--{else}-->
+<li id="btn-load-more-{$taskid}" class="activity-item">
+	<div class="activity-itemwarp" style="margin-left:100px;">
+        <div class="loading-more-panel"> 
+            <div class="part-loading"> </div> 
+            <button class="btn btn-simple" > 没有更多内容了 </button> 
+         </div>
+    </div>
+</li>
+<!--{/if}-->
+<!--{/if}-->

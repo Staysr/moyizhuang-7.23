@@ -1,0 +1,16 @@
+<!--{loop $list $value}-->
+  <div node-type="item" class="item clearfix"> 
+    <!-- 第一列 -->
+    <div class="col c1 name" style="width: 50%;" data-name="$value[name]"> 
+          <span node-type="chk" class="chk"> <span class="chk-ico"></span></span> 
+          <div node-type="name" class="name" title="$value[name]" >
+            <!--{if $value[img]}--><img class="icon" src="$value[img]" /><!--{/if}-->
+            <span class="name-text-wrapper"> <span node-type="name-text"  data-type="$value[type]" data-path="$value[folder]" data-dpath="$value[dpath]" class="name-text enabled">$value[name]</span> </span> 
+          </div>
+     </div>
+    <!-- 其他列 -->
+    <div class="col size" style="width: 15%" data-size="$value[size]">$value[fsize]</div>
+    <div class="col type" style="width: 15%" data-type="$value[type]">$value[ftype]</div>
+    <div class="col dateline" style="width: 20%" data-dateline="$value[mtime]">{eval echo dgmdate($value[mtime]);}</div>
+  </div>
+<!--{/loop}-->

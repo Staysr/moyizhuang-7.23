@@ -1,0 +1,33 @@
+	.txl-music{
+		position:fixed;
+		width:100%;
+		height:110px;
+		left:-100%;
+		margin-left:50px;
+		bottom:10%;
+		z-index:5;
+	}
+	
+	.txl-music .music{
+		position:absolute;
+		display:none;
+		width:60%;
+		height:110px;
+		background-color:rgba(0,0,0,0.5);
+		z-index:6;
+		right:0;
+		margin-right:50px;
+	}
+	
+	.txl-music .icon{
+		position:absolute;
+		width:50px;
+		height:110px;
+		right:0;
+		background-color:rgba(0,0,0,0.5);
+		z-index:7;
+		color:#FFFFFF;
+		font-size:50px;
+		text-align:center;
+		line-height:100px;
+	}

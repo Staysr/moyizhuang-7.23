@@ -1,0 +1,55 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/discuss.css?{VERHASH}" rel="stylesheet" media="all">
+<link rel="stylesheet" href="static/css/checkbox.css">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<style>
+html,body{
+	overflow:hidden;
+}
+.bs-main-container{
+	overflow:auto;
+}
+@media (max-width: 768px){
+	.bs-main-container{
+		margin-left:0;
+	}
+	.bs-left-container{
+		display:none;
+	}
+}
+</style>
+<!--{template common/header_simple_end}-->
+
+<!--{template common/commer_header}-->
+<div class="bs-container clearfix">
+  <div class="bs-left-container affix-top clearfix">
+    	<!--{template setting_left}--> 
+  </div>
+  <!--<div class="left-drager">-->
+     <!--<div class="left-drager-op"><div class="left-drager-sub"></div></div>-->
+  <!--</div>-->
+  <div class="left-drager"></div>
+  <div class="bs-main-container">
+    <div class="main-content clearfix">
+    <!--{if $do=='basic'}-->
+    	<!--{template setting_basic}--> 
+    <!--{elseif $do=='manage'}-->
+    	<!--{template setting_manage}--> 
+     <!--{elseif $do=='wxapp'}-->
+    	<!--{if $operation=='menu'}-->
+          <!--{template common/wx_menu}--> 
+         <!--{else}-->
+         <!--{template common/wx_appinfo}--> 
+         <!--{/if}-->
+    <!--{/if}-->
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    jQuery('.left-drager').leftDrager_layout();
+</script>
+
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->  

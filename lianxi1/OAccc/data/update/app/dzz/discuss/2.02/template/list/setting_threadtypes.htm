@@ -1,0 +1,147 @@
+<style>
+.main-header2 .nav>li>a{
+	padding:5px 10px;
+}
+.table td img {
+	max-width: none;
+	max-height: none;
+	padding-right: 0;
+}
+.control-label{
+	font-weight:normal;
+}
+</style>
+<div class="clearfix">
+
+        
+     <div class="clearfix setting-threadtypes">
+     	
+            <h4 class="basic-title">{lang thread_class}</h4>
+            <div class="form-group">
+                <label class="control-label" >{lang open_thread_class}：</label>
+                <div class="control-div">
+                    <div class="radio-wrap">
+                        <div class="radio-custom radio-primary setting-radio">
+                            <input type="radio"  name="threadtypes[available]" value="1"<!--{if $threadtypes[available]}-->checked<!--{/if}-->>
+                            <label class="cho-label">{lang yes}</label>
+                        </div>
+                        <div class="radio-custom radio-primary setting-radio">
+                            <input type="radio" name="threadtypes[available]" value="0"<!--{if !$threadtypes[available]}-->checked<!--{/if}-->>
+                            <label class="cho-label">{lang no}</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="addtype">
+                <div class="checkbox-custom checkbox-primary checkbox-wrap" onclick="select_all()">
+                    <input type="checkbox" name="chkall" id="chkall">
+                    <label><span>{lang select_all}</span></label>
+                </div>
+                <span class="cho-span" style="margin-right: 20px;display: none;">{lang seleted}<span id="selected_num">0</span>{lang trash_num_x}</span>
+                <a class="btn deleteBtn" onclick="typedelete()" style="display: inline-block"><i class="dzz dzz-delete"></i> {lang delete}</a>
+            </div>
+             <table class="table addtable" id="thread_class_t">
+                 <tbody>
+                 <!--{loop $list $key $value}-->
+                 <tr>
+                     <td width="40" align="center">
+                         <div class="checkbox-custom checkbox-primary checkbox-wrap">
+                             <input type="checkbox" name="inputCheckboxes" value="{$value[typeid]}" onclick="select_one()">
+                             <label></label>
+                         </div>
+                     </td>
+                     <td><input type="text" class="form-control" name="displayorder[{$value[typeid]}]" value="$value[displayorder]" /></td>
+                     <td><input type="text" class="form-control" name="cname[{$value[typeid]}]" value="$value[name]" /></td>
+                     <td >
+                         <li style="list-style: none;">
+                             <span class="setting-info">{lang enable}</span>
+                             <input type="checkbox" name="enable[{$value[typeid]}]" id="check_start{$value[typeid]}" class="chk_1" value="1" <!--{if $value[enable]}-->checked="checked"<!--{/if}--> />
+                             <label for="check_start{$value[typeid]}"></label>
+                         </li>
+                     </td>
+                     <td >
+                         <li style="list-style: none;">
+                             <span class="setting-info">{lang management_group_special_purpose}</span>
+                             <input type="checkbox" name="moderators[{$value[typeid]}]" id="check_use{$value[typeid]}" class="chk_1" value="1" <!--{if $value[moderators]}-->checked="checked"<!--{/if}--> />
+                            <label for="check_use{$value[typeid]}"></label>
+                         </li>
+                     </td>
+                 </tr>
+                 <!--{/loop}-->
+                 </tbody>
+             </table>
+            <div class="btn-wrap" style="margin-top: 30px">
+                <a class="btn btn-primary-outline" onclick="addItem();">{lang add_class}</a>
+            </div>
+         <script type="text/javascript">
+//             jQuery(document).on('change','')
+             var t=0;
+             function addItem(){
+
+                 var html='';
+                 html+=' <tr>';
+                 html+='<td width="40" align="center"><div class="checkbox-custom checkbox-primary checkbox-wrap">\n' +
+                     '<input type="checkbox" name="inputCheckboxes"><label></label></div></td>';
+                 html+='<td><input type="text" class="form-control" style="width:140px;" name="newdisplayorder['+t+']" value="0" placeholder="{lang fill_in_the_display_order}" /></td>';
+                 html+='<td><input type="text" class="form-control" style="width:140px;" name="newname['+t+']" value="" placeholder="{lang fill_in_the_classified_name}"/></td>';
+                 html+='<td><li style="list-style: none;"><span class="setting-info">{lang enable}</span><input type="checkbox" name="newenable['+t+']" value="1" class="chk_1" id="check_start'+t+'"/><label for="check_start'+t+'"></label></li></td>';
+                 html+='<td ><li style="list-style: none;"><span class="setting-info">{lang management_group_special_purpose}</span><input type="checkbox" name="newmoderators['+t+']" value="1" class="chk_1" id="check_use'+t+'"/><label for="check_use'+t+'"></label></li></td>';
+                 html+='</tr>';
+                 jQuery('tbody').append(html);
+                 t+=1;
+             }
+
+             function typedelete(){
+                var items = jQuery('input[name="inputCheckboxes"]:checked');
+                var typeid = [];
+                items.each(function(){
+                    typeid.push(jQuery(this).val())
+                })
+                data = {'fid':'{$fid}', 'typeid':typeid};
+                jQuery.post('{MOD_URL}&op=list&do=setting&position=delete', data, function(json){
+                    if (json.code == 200) {
+                        jQuery('input[name="inputCheckboxes"]:checked').parents("tr").remove();
+                        showmessage(json.message, 'success', 1000, 1);
+                    } else {
+                        showmessage(json.message, 'error', 3000, 1);
+                    }
+                }, 'json')
+             }
+
+             function select_all(){
+                if (jQuery("#chkall").prop("checked")) {
+                    jQuery('input[name="inputCheckboxes"]').prop("checked", true);
+                    jQuery('.cho-span').show();
+                } else {
+                    jQuery('input[name="inputCheckboxes"]').prop("checked", false);
+                    jQuery('.cho-span').hide();
+                }
+                jQuery("#selected_num").text(jQuery('input[name="inputCheckboxes"]:checked').length);
+             }
+
+             function select_one(){
+                var selected = jQuery('input[name="inputCheckboxes"]:checked').length;
+                if(selected>0) {
+                    jQuery('.cho-span').show();
+                }else {
+                    jQuery('.cho-span').hide();
+                }
+                jQuery("#selected_num").text(selected);
+                if (selected == jQuery('input[name="inputCheckboxes"]').length) {
+                    jQuery("#chkall").prop("checked", true);
+
+                } else {
+                    jQuery("#chkall").prop("checked", false);
+                }
+             }
+
+         </script>
+         <script type="text/javascript" src="admin/scripts/admin.js"></script>
+	</div>
+
+</div> 
+
+
+
+

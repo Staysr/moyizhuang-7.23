@@ -1,0 +1,12 @@
+-rw-r--r-- 1 ftp ftp             55 Jun 15  2015 .gitignore
+-rw-r--r-- 1 ftp ftp           1169 Jun 15  2015 .scrutinizer.yml
+-rw-r--r-- 1 ftp ftp            546 Jun 15  2015 .travis.install.sh
+-rw-r--r-- 1 ftp ftp            897 Jun 15  2015 .travis.yml
+-rw-r--r-- 1 ftp ftp           1340 Jun 15  2015 composer.json
+-rw-r--r-- 1 ftp ftp           1083 Jun 15  2015 CONTRIBUTING.md
+-rw-r--r-- 1 ftp ftp           1060 Jun 15  2015 LICENSE
+-rw-r--r-- 1 ftp ftp           1085 Jun 15  2015 phpmd.xml.dist
+-rw-r--r-- 1 ftp ftp            635 Jun 15  2015 phpunit.xml.dist
+-rw-r--r-- 1 ftp ftp           1911 Jun 15  2015 README.md
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 src
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 tests

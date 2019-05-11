@@ -1,0 +1,82 @@
+<!--<?php
+include_once gettpl('top');
+if(empty($action)){
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">
+			添加 国家/地区
+		</td>
+	</tr>
+	<tr>
+		<td class="notice">
+			<form action="$basename" method="post">
+				<input type="hidden" name="action" value="add">
+				新国家/地区名称: 
+				<input type="text" name="subject" />
+				<input type="submit" value="提 交">
+			</form>
+		</td>
+	</tr>
+</table>
+<br />
+
+<form method="post" action="$basename">
+<input name="action" type="hidden" value="edit">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="4">
+				管理国家/地区
+			</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%">
+				ID
+			</td>
+			<td width="10%">
+				顺序
+			</td>
+			<td>
+				国家/地区
+			</td>
+			<td width="5%">
+				删除
+			</td>
+		</tr>
+<!--
+EOT;
+foreach($nationdb as $key=> $value){
+$key=$value[id];
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td>
+				$key
+			</td>
+			<td>
+				<input type="text" name="vieworder[$key]" value="$value[vieworder]" size="5">
+			</td>
+			<td>
+				<input type="text" name="subject[$key]" size="30" value="$value[subject]">
+			</td>
+			<td>
+				<a href="$basename&action=del&id=$value[id]">删除</a>
+			</td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	
+	<br />
+	<center>
+		<input type="submit" value="提 交">
+	</center>
+</form>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>
+-->

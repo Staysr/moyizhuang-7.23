@@ -1,0 +1,33 @@
+<!--{if empty($cmtlist)}-->
+    <div class="searchImg-wrap">
+        <div class="info-container">
+            <img src="{MOD_PATH}/images/search_empty.png" alt="">
+            <p>{lang no_comment}</p>
+        </div>
+
+    </div>
+<!--{/if}-->
+<!--{loop $cmtlist $value}-->
+    <div class="weui-media-box weui-media-box_appmsg weui-cell__bd cmt-item" id="comment-item-{$value[cid]}">
+        <div class="weui-media-box__hd user-imgWrap">
+            <div class="user-img user-img2">{eval echo avatar_block($value[uid])}</div>
+        </div>
+        <div class="weui-media-box__bd">
+            <div class="weui-panel__hd info-top info-top1"><a href="user.php?uid={$value[uid]}"><span class="board-a">{$value[author]}</span></a>{lang comment_my_post}：</div>
+            <p class="weui-media-box__desc info">{$value[content]}</p>
+            <ul class="weui-media-box__info" style="margin-top: 10px;padding-bottom: 0;">
+                <li class="weui-media-box__info__meta info-botItem">{eval echo dgmdate($value[time],'u')}</li>
+                <li class="weui-media-box__info__meta info-botItem item1">
+                    <a style="margin-right: 10px" href="{MOD_URL}&op=mobile&do=postcmt&pid={$value[pid]}&tid={$value[tid]}"><i class="dzz dzz-comment" style="font-size: 16px"></i></a>
+                    <a href="javascript:;" ontouchend="deleteOne({$value[cid]})"><i class="dzz dzz-delete"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+<!--{/loop}-->
+<!--{if $nextpage}-->
+    <div class="weui-loadmore" data-url="{$theurl}&ajax=1&page={$nextpage}">
+      <i class="weui-loading"></i>
+      <span class="weui-loadmore__tips">{lang loading}</span>
+    </div>
+<!--{/if}-->

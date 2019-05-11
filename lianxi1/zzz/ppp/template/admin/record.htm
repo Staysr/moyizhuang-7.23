@@ -1,0 +1,37 @@
+<!--<?php
+include_once gettpl('top');
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">提示信息</td>
+	</tr>
+	<tr>
+		<td class="notice">系统必须保留前100条后台管理日志</td>
+	</tr>
+</table>
+<br />
+
+<table class="tableborder f-w98 f-m0a" style='word-break:break-all;'>
+	<tr>
+		<td class="header" colspan="9"><b>管理日志</b></td>
+	</tr>
+	<tr class="field f-tac">
+		<td width="10%">用户名</td>
+		<td width="10%">错误密码</td>
+		<td width="30%">操作日志</td>
+		<td width="10%">IP</td>
+		<td width="15%">操作时间</td>
+		<td width="30%">其他</td>
+	</tr>
+	$adlogfor
+</table>
+<div class="pages">$pages</div>
+<center>
+	<input type="button" onclick="location.href='$basename&action=del'" value="删除多余管理日志" />
+</center>
+<!--
+EOT;
+include_once gettpl('adminbottom');
+?>
+-->

@@ -1,0 +1,176 @@
+html body {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(248, 248, 248, 1);
+}
+.trashwrapper {
+    width: 740px;
+    margin: auto;
+}
+.trashNum {
+    width: 100%;
+    padding-top: 15px;
+
+}
+.numwrapper {
+    float: left;
+    font-size: 14px;
+    color: rgba(34, 34, 34, 1);
+
+}
+.tab {
+    display: inline-block;
+    float: right;
+}
+.tabBox {
+    display: inline-block;
+}
+.trashBtn {
+    font-size: 12px;
+    color: rgba(34, 34, 34, 1);
+    margin-right: 22px;
+}
+.trashBtn:hover {
+    color: rgba(34, 34, 34, 1);
+    text-decoration: none;
+    cursor: pointer;
+}
+.chooseBtn {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: rgba(34, 34, 34, 1);
+}
+.menu_ul {
+    width: 160px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border: 1px solid rgba(216, 216, 216, 1);
+    border-radius: 2px;
+    box-shadow: 0px 4px 13px 0px rgba(62, 62, 62, 0.28);
+}
+.chooseItem {
+    height: 40px;
+}
+.menu_ul>.chooseItem>a {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.trashHeader {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 2px;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.15);
+    margin-top: 18px;
+}
+.authorInfo {
+    padding: 20px 0;
+    border-bottom: 1px solid  rgba(230, 232, 235, 1);
+    margin: 0 28px;
+}
+.info1 {
+    display: inline-block;
+    margin-right: 30px;
+}
+.info1 label {
+    font-size: 13px;
+    color: rgba(153, 153, 153, 1);
+    font-weight: 500;
+}
+.info1 a {
+    font-size: 13px;
+    color: rgba(103, 114, 229, 1);
+    margin-left: 6px;
+}
+.info1 a:hover {
+    text-decoration: none;
+}
+.date {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 13px;
+    color: rgba(102, 102, 102, 1);
+}
+.trasheve {
+    width: 100%;
+    padding: 16px 28px;
+    position: relative;
+}
+.updatetime1 {
+    position: absolute;
+    right: 40px;
+    width: 20% !important;
+    top: 26px;
+    font-size: 14px;
+    color: rgba(139, 139, 139, 1);
+}
+.title2 {
+    font-size: 14px;
+    color: rgba(51, 51, 51, 1);
+    width: 280px;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.title2:hover {
+    cursor: pointer;
+    color: #da552f;
+}
+.description1 {
+    font-size: 12px;
+    color: rgba(102, 102, 102, 1);
+    margin-top: -8px;
+}
+.notesHead1 {
+    font-size: 14px;
+    color: rgba(51, 51, 51, 1);
+    padding-bottom: 0;
+    padding-top: 0px;
+    background: transparent;
+}
+.notesTab1 {
+    margin: 10px 2px 0 2px;
+    display: none;
+    color: #4e5563;
+    opacity: 0.65;
+}
+.notesTab2 {
+    margin-top: -15px;
+}
+.notesTab1:hover {
+    opacity:1;
+}
+.trashHeader:hover{
+    -webkit-box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgba(0,0,0,0.30);
+    box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgba(0,0,0,0.30);
+}
+.trashHeader:hover .notesTab1 {
+    display: inline-block;
+}
+.notesItem:hover .notesTab1 {
+    display: inline-block;
+}
+.notesImg img {
+    max-width: 100%;
+}
+.notesCon1 {
+    padding-top: 16PX;
+    padding-bottom: 36px;
+    background: transparent;
+}
+.notesItem2 {
+    background: #fff;
+}
+.notesItem2:hover{
+    -webkit-box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgba(0,0,0,0.30);
+    box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgba(0,0,0,0.30);
+}
+.upvote2 {
+    left: 40px;
+}
+.noteswrap {
+    padding-bottom: 20px;
+}

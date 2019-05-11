@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+.upimgs{
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	-ms-border-radius:3px;
+	-o-border-radius:3px;
+	border-radius:3px;
+	background-color: #06c;
+	color: #fff;
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	 width: 72px;
+	 transition: background-color 0.2s linear 0s;
+	 border:none;cursor:pointer;
+	 margin:0 0 20px;}
+	.upimgs:hover{background-color: #0056ac;text-decoration: none; color:#fff}
+	.ul_pics dd{float:left; width:160px;height:160px;border:1px solid #ddd;padding:2px;text-align: center;margin:0 5px 0 0;}
+	.ul_pics dd .img{width: 160px;height: 160px; display: table-cell;vertical-align: middle; }
+	.ul_pics dd img{max-width: 160px;max-height: 160px;vertical-align: middle; }
+

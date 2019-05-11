@@ -1,0 +1,17 @@
+#
+# robots.txt for PHPVOD
+# Version 3.x
+#
+
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /data/
+Disallow: /hack/
+Disallow: /install/
+Disallow: /js/
+Disallow: /lang/
+Disallow: /listener/
+Disallow: /require/
+Disallow: /template/
+Disallow: /video/

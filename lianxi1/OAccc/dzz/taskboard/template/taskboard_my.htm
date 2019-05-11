@@ -1,0 +1,99 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/css/checkbox.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/taskboard.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/task.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/imgReady.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<style type="text/css">
+	.navbar-inverse{
+		background: #17ae4b;
+	}
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<div class="bs-container" style="padding：0px;">
+    <!-- 左边部分 -->
+    <!--{template taskboard_left}-->
+    <!-- 右边部分 -->
+     <!-- 右边部分 -->
+    <div class="bs-main-container clearfix">       	
+        <div class="main-content" id="middleconMenu">         	        
+           
+            	<!--{template taskboard_my_view}-->
+           
+        </div>
+    </div>
+  
+</div>
+<script type="text/javascript">
+
+jQuery('.left-drager').leftDrager_layout();
+jQuery(document).ready(function(e) {
+	jQuery('.ui-sortable').sortable({
+		stop: function( event, ui ) {
+			var tbids=[];
+			jQuery('#board_list_stared li').each(function(){
+				tbids.push(jQuery(this).data('tbid'));
+			});
+			jQuery.post('{MOD_URL}&op=ajax&do=setStar',{"tbids":tbids});
+		}
+	});
+	jQuery(document).on('click','.tubiao-view',function(){
+		if(jQuery('.member-boards-list').hasClass('hide')){
+			jQuery('.member-boards-top .list-flex2').text(__lang.jurisdiction);
+			jQuery('.member-boards-view').addClass('hide');
+			jQuery('.member-boards-list').removeClass('hide');				
+		}else{
+			jQuery('.member-boards-top .list-flex2').text('');
+			jQuery('.member-boards-view').removeClass('hide');
+			jQuery('.member-boards-list').addClass('hide');				
+		}
+	})
+	
+	
+	jQuery(document).on('click','.js-star-board',function(){
+		var el=jQuery(this);
+		var tbid=el.data('tbid');
+		var view=jQuery('li[data-tbid="'+tbid+'"]');
+		var list = el.closest('li');
+		if(el.hasClass('is-starred')){
+			el.removeClass('is-starred');
+			view.find('.js-star-board').removeClass('is-starred');
+			jQuery('#board_list_stared li[data-tbid="'+tbid+'"]').remove();
+			
+		}else{
+			el.addClass('is-starred');
+			view.find('.js-star-board').addClass('is-starred');
+			view.clone().appendTo('#board_list_stared');
+			jQuery('.js-popbox').each(function(){
+				jQuery(this).popbox();
+			});
+		}
+		var cids=[];
+		jQuery('#board_list_stared li').each(function(){
+			cids.push(jQuery(this).data('tbid'));
+		});
+		console.log(cids);
+		if(cids.length){		
+			jQuery('.window-module-star').removeClass('hide');
+		}else{
+			jQuery('.window-module-star').addClass('hide');
+		}
+		jQuery.post('{MOD_URL}&op=ajax&do=setStar',{"tbids":cids});
+		return false;
+	});
+	
+});
+
+
+jQuery('.js-popbox').each(function(){
+	jQuery(this).popbox();
+});
+
+</script>
+
+<script  type="text/javascript" src="static/jquery/jquery-ui.js?{VERHASH}"></script>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->  

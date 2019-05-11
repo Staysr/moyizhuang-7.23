@@ -1,0 +1,27 @@
+<!--<?php
+print <<<EOT
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$db_wwwname} - powered by phpvod.com</title>
+<meta http-equiv="Content-Type" content="text/html; charset=$db_charset">
+</head>
+<frameset rows="*" cols="200,*" framespacing="0" frameborder="1" border="false" id="frame" scrolling="yes">
+	<frame name="left" scrolling="auto" marginwidth="0" marginheight="0" src="$admin_file?adminjob=left">
+	<frame name="main" scrolling="auto" marginwidth="0" marginheight="0" src="$admin_file?adminjob=admin">
+</frameset>
+<noframes>
+	<body leftmargin="2" topmargin="0" marginwidth="0" marginheight="0">
+	<p>Please Use IE 5.0</p>
+	</body>
+</noframes>
+</html>
+<!--
+EOT;
+$output = ob_get_contents();
+$output = str_replace(array('<!--<!--<!---->','<!--<!---->','<!---->'),'',$output);
+ob_end_clean();
+$db_obstart == 1 && function_exists('ob_gzhandler') ? ob_start('ob_gzhandler') : ob_start();
+echo $output;
+?>-->

@@ -1,0 +1,7 @@
+-rw-r--r-- 1 ftp ftp            637 Mar 03  2017 ClassCreatorExceptionSpec.php
+-rw-r--r-- 1 ftp ftp            573 Mar 03  2017 ClassMirrorExceptionSpec.php
+-rw-r--r-- 1 ftp ftp            595 Mar 03  2017 ClassNotFoundExceptionSpec.php
+-rw-r--r-- 1 ftp ftp            326 Mar 03  2017 DoubleExceptionSpec.php
+-rw-r--r-- 1 ftp ftp            552 Mar 03  2017 InterfaceNotFoundExceptionSpec.php
+-rw-r--r-- 1 ftp ftp            600 Mar 03  2017 MethodNotExtendableExceptionSpec.php
+-rw-r--r-- 1 ftp ftp            898 Mar 03  2017 MethodNotFoundExceptionSpec.php

@@ -1,0 +1,356 @@
+<!--<?php
+print <<<EOT
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>PHPVOD $version 安装向导</title>
+	<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="{$installurl}/default.css" />
+</head>
+
+<body>
+	<div class="container">
+		<div class="header">PHPVOD $version Installation - 安装向导</div>
+<!--
+EOT;
+if(!$step){
+print <<<EOT
+-->
+		<div class="step_title">PHPVOD 用户许可协议</div>
+		<div class="license_content">$land_licence</div>
+		<div class="f-tac f-mt15">
+			<form method="post" action='$basename'>
+				<input type="hidden" name="step" value="1">
+				<input type="submit" name="submit" value="我完全同意">
+			</form>
+		</div>
+<!--
+EOT;
+}elseif($step==1){
+print <<<EOT
+-->
+		<div class="step_title">环境检测</div>		
+		<table class="tableborder f-w98 f-m0a f-tac">
+			<tr>
+				<td class="f-w40">PHP版本 <span class="f-red">*</span></td>
+<!--
+EOT;
+if($php_version == $for_php_version){
+print <<<EOT
+-->
+				<td><span class="f-green">符合要求</span></td>
+<!--
+EOT;
+}else{
+print <<<EOT
+-->
+				<td><span class="f-red">此副本只支持PHP{$for_php_version}, 当前版本为PHP{$php_version}</span></td>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+			</tr>
+			<tr>
+				<td>mysql <span class="f-red">*</span></td>
+				<td>$mysql_result</td>
+			</tr>
+			<tr>
+				<td>Zend Guard Loader <span class="f-red">*</span></td>
+				<td>$zend_result</td>
+			</tr>
+			<tr>
+				<td>curl <span class="f-red">*</span></td>
+				<td>$curl_result</td>
+			</tr>			
+			<tr>
+				<td>gd</td>
+				<td>$gd_result</td>
+			</tr>
+			<tr>
+				<td>allow_url_fopen</td>
+				<td>$allow_url_fopen_result</td>
+			</tr>
+			<tr>
+				<td>zip</td>
+				<td>$zip_result</td>
+			</tr>			
+		</table>
+		<br />
+		<div class="step_title">缓存组件</div>		
+		<table class="tableborder f-w98 f-m0a f-tac">
+			<tr>
+				<td class="f-w40">memcached</td>
+				<td>$memcached_result</td>
+			</tr>
+			<tr>
+				<td>apc</td>
+				<td>$apc_result</td>
+			</tr>	
+			<tr>
+				<td>redis</td>
+				<td>$redis_result</td>
+			</tr>		
+		</table>		
+<!--
+EOT;
+if($php_version != $for_php_version || !$zend || !$mysql || !$curl){
+print <<<EOT
+-->
+		<div class="f-tac f-mt15"><input onclick='history.go(-1)' type="button" value='环境不符合要求，点击返回'></div>	
+<!--
+EOT;
+}else{
+	if(!$gd || !$allow_url_fopen || !$zip)
+		$js = 'onsubmit="return confirm(\'警告：某些PHP扩展环境不支持，PHPVOD中的部分功能和插件无法正常使用，是否继续？\');"';
+	else
+		$js = '';
+print <<<EOT
+-->
+		<div class="f-tac f-mt15">
+			<form method="post" action='$basename' {$js}>
+				<input type="hidden" name="step" value="2">
+				<input type="submit" name="submit" value="下一步">&nbsp;
+			</form>
+		</div>
+<!--
+EOT;
+}}elseif($step==2){
+print <<<EOT
+-->
+		<div class="step_title">检查必要目录和文件是否可写</div>
+		<table class="tableborder f-w98 f-m0a f-tac">
+<!--
+EOT;
+foreach($check_list as $key => $dirname){
+	if(empty($dirname)){
+print <<<EOT
+-->
+			<tr>
+				<td class="f-w40">网站根目录</td>
+				<td>$check_result[$key]</td>
+			</tr>
+<!--
+EOT;
+	}else{
+print <<<EOT
+-->
+			<tr>
+				<td class="f-w40">{$dirname}</td>
+				<td>$check_result[$key]</td>
+			</tr>
+<!--
+EOT;
+	}
+}
+print <<<EOT
+-->
+		</table>
+<!--
+EOT;
+if(!$check){
+print <<<EOT
+-->
+		<div class="f-tac f-mt15"><input onclick='history.go(-1)' type="button" value='部分目录没有写权限，点击返回'></div>	
+<!--
+EOT;
+}else{
+print <<<EOT
+-->
+		<div class="f-tac f-mt15">
+			<form method="post" action='$basename'>
+				<input type="hidden" name="step" value="3">
+				<input type="submit" name="submit" value="下一步">&nbsp;
+			</form>
+		</div>
+<!--
+EOT;
+}
+}elseif($step==3){
+print <<<EOT
+-->
+		<form method="post" action='$basename' onsubmit="return installcheck(this);">
+			<input type="hidden" name="step" value="4">
+			<div class="step_title">MySQL数据库配置</div>
+			<table class="tableborder f-w98 f-m0a">
+				<tr>
+					<td class="f-w40">数据库地址</td>
+					<td><input type="text" name="server" value="localhost"> 一般默认是localhost</td>
+				</tr>
+				<tr>
+					<td>数据库用户名</td>
+					<td><input type="text" name="sqluser" value=''> 用户名和密码请向服务器提供商索取</td>
+				</tr>
+				<tr>
+					<td>数据库密码</td>
+					<td><input type="text" name="sqlpassword" value=''></td>
+				</tr>
+				<tr>
+					<td>数据库名</td>
+					<td><input type="text" name="sqlname" value="phpvod"> 请填入您一个新的数据库名</td>
+				</tr>
+				<tr>
+					<td>表前缀</td>
+					<td><input type="text" name="tablepre" value="pv_"> 非必要请保持默认</td>
+				</tr>
+				<tr>
+					<td>数据库类型</td>
+					<td>
+						<label><input type="radio" name="datatype" value="mysql" {$mysql_status} {$mysql_checked} /> mysql</label>
+						<label><input type="radio" name="datatype" value="mysqli" {$mysqli_status} {$mysqli_checked} /> mysqli</label>
+					</td>
+				</tr>
+			</table>
+			
+			<div class="step_title f-mt20">创始人资料</div>
+			<table class="tableborder f-w98 f-m0a">
+				<tr>
+					<td class="f-w40">用户名</td>
+					<td><input type="text" name="username"></td>
+				</tr>
+				<tr>
+					<td>密码</td>
+					<td><input type="text" name="password"></td>
+				</tr>
+				<tr>
+					<td>邮箱</td>
+					<td><input type="text" name="email"></td>
+				</tr>
+				<tr>
+					<td>网址url</td>
+					<td><input type="text" name="wwwurl" value="$wwwurl"></td>
+				</tr>
+			</table>
+
+			<div class="f-tac f-mt15"><input type="submit" value="下一步"></div>
+		</form>
+		<script type="text/javascript">
+			function installcheck(formct) {
+				if (formct.server.value == '' || formct.sqluser.value == '' || formct.sqlname.value == '' || formct.tablepre.value == '' ||
+					formct.username.value == '' || formct.password.value == '' || formct.email.value == '' || formct.wwwurl.value == '') {
+					alert('资料不完整，请填写！');
+					return false;
+				}
+				if (formct.password.value.length < 6) {
+					alert('管理员密码太少，安全起见，请用6位以上');
+					return false;
+				}
+			}
+		</script>
+<!--
+EOT;
+}elseif($step==4){
+print <<<EOT
+-->
+		<form method="post" action='$basename'>
+			<input type="hidden" value="5" name="step">
+			<input type="hidden" name="username" value="$_POST[username]">
+			<input type="hidden" name="password" value="$_POST[password]">
+			<input type="hidden" name="email" value="$_POST[email]">
+			<input type="hidden" name="url" value="$_POST[wwwurl]">
+<!--
+EOT;
+if($database_exists){
+print <<<EOT
+-->
+			<div class="step_title">数据库已存在</div>
+			<div class="f-tac">
+				数据库<span class="f-red">"{$dbname}"</span>中已经安装过PHPVOD，<span class="f-red">"继续安装"</span>将清除原来的数据，使用其它数据库请<span class="f-red">"返回上一步"</span> 重新设置
+			</div>
+			<div class="f-tac f-mt15">
+				<input type="submit" value='继续安装' onclick="return window.confirm('数据库中已经安装过PHPVOD，继续安装将清除原来的数据，是否继续？');">
+				<input onclick='history.go(-1)' type="button" value="返回上一步">
+			</div>
+<!--
+EOT;
+}else{
+print <<<EOT
+-->
+			<div class="step_title">准备就绪</div>
+			<div class="f-tac f-mt15">
+				<input type="submit" value="开始安装 PHPVOD">
+				<input onclick='history.go(-1)' type="button" value="返回上一步">
+			</div>
+<!--
+EOT;
+}print <<<EOT
+-->
+		</form>
+<!--
+EOT;
+}elseif($step==5){
+print <<<EOT
+-->
+		<div class="step_title">数据库{$dbname}创建成功</div>
+		<table class="tableborder f-w98 f-m0a">
+<!--
+EOT;
+foreach($table_list as $table){
+print <<<EOT
+-->			
+			<tr><td class="f-w40">$table</td><td><span class="f-green">成功</span></td></tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+		</table>
+		<div class="f-tac f-mt15">
+			<form method="post" action='$basename'>
+				<input type="hidden" value="6" name="step">
+				<input type="submit" value='完成安装'>
+			</form>
+		</div>
+<!--
+EOT;
+}elseif($step==6){
+print <<<EOT
+-->
+		<div class="step_title">恭喜，PHPVOD 安装成功！</div>
+		<div class="f-tac f-mt15">
+			<input type="button" onclick="window.location.href='{$db_wwwurl}/index.php'" value="前台首页">
+			<input type="button" onclick="window.location.href='{$db_wwwurl}/admin.php'" value="后台登录">
+		</div>
+<!--
+EOT;
+}elseif($step=='mysql_connect_failed'){
+print <<<EOT
+-->
+		<div class="step_title">数据库连接失败</div>
+		<div class="f-tac f-lh2">
+			数据库连接失败，请检查配置信息是否填写正确。 <br /><br />
+			<input onclick='history.go(-1)' type="button" value='返回重新填写'>
+		</div>
+<!--
+EOT;
+}elseif($step=='mysql_no_database'){
+print <<<EOT
+-->
+		<div class="step_title">数据库不存在</div>
+		<div class="f-tac f-lh2">
+			数据库不存在,且您无权限建立,请联系服务器管理员! <br /><br />
+			<input onclick='history.go(-1)' type="button" value='返回重新填写'>
+		</div>
+<!--
+EOT;
+}elseif($step=='lock_exists'){
+print <<<EOT
+-->
+		<div class="step_title">PHPVOD 已经安装</div>
+		<div class="f-tac f-lh2">
+			如需要重新安装，请删除 install.lock 后重试！<br /><br />
+		</div>				
+<!--
+EOT;
+}
+print <<<EOT
+-->
+		<div class="footer">Copyright 2009-2099 版权所有 <a href=http://www.phpvod.com/ target=_blank><b>phpvod</b><b style=color:#FF9900>.com</b></a></div>
+	</div>
+</body>
+
+</html>
+<!--
+EOT;
+?>-->

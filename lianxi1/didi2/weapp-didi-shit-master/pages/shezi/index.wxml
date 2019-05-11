@@ -1,0 +1,16 @@
+<!--pages/shezi/index.wxml-->
+<!-- <text>pages/shezi/index.wxml</text> -->
+<!--info.wxml-->
+<view class="container">
+
+  <view class="section" bindtap='passion'>
+    <text>修改密码</text>
+    <text class='text1'>></text>
+  </view>
+
+  <view class="section" bindtap='women'>
+    <text>关于我们</text>
+    <text class='text1' >></text>
+  </view>
+</view>
+

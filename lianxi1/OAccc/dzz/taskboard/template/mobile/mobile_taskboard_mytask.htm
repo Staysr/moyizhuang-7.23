@@ -1,0 +1,86 @@
+<!--{template mobile/mobile_header}-->
+	<link rel="stylesheet" href="{MOD_PATH}/images/event.css?{VERHASH}">
+<link rel="stylesheet" type="text/css" href="dzz/comment/images/comment.css?{VERHASH}">
+	<link href="dzz/system/ueditor/themes/default/css/ueditor.css?{VERHASH}" rel="stylesheet" media="all">
+	<link href="dzz/system/ueditor/themes/default/css/ueditor_add.css?{VERHASH}" rel="stylesheet" media="all">
+	<script src="dzz/system/ueditor/ueditor.config.js?{VERHASH}"></script>
+	<script src="dzz/system/ueditor/ueditor.all.js?{VERHASH}"></script>
+	<script src="dzz/system/ueditor/lang/$_G['language']/$_G['language'].js?{VERHASH}"></script>
+	<script src="data/cache/smilies_var.js?{VERHASH}"></script>
+	<script type="text/javascript" src="{MOD_PATH}/scripts/mobile/task.js?{VERHASH}"></script>
+		<style>
+			body{
+				height:100%;
+			}
+			.weui-tab_info{
+				background-color: transparent;
+			}
+			.weui-tab_info .task-item{
+				border:0;
+				margin:10px 0;
+				padding:5px;
+			}
+			#btn-load-more.weui-btn:after{
+				border:0;
+			}
+		</style>
+	<!--{template common/header_simple_end}-->
+		<div class="weui-tab">
+		  <div class="weui-navbar" style="z-index:9">
+		    <a class="weui-navbar__item tab-item weui_bar__item_on" href="{MOD_URL}&op=mytask">
+		           <span>待完成</span> 	
+		           <!--{if empty($type)}--><span class="line"></span><!--{/if}-->	           
+		    </a>
+		    <a class="weui-navbar__item tab-item" href="{MOD_URL}&op=mytask&type=1">
+		    	<span class="finish">已过期</span>
+		    	<!--{if $type==1}--><span class="line"></span><!--{/if}-->
+		    </a> 
+		    <a class="weui-navbar__item tab-item" href="{MOD_URL}&op=mytask&type=2">
+		    	<span class="finish">已完成</span>
+		    	<!--{if $type==2}--><span class="line"></span><!--{/if}-->
+		    </a>
+		  </div>
+		  <div class="weui-tab__bd weui-cells_checkbox weui-tab_info">
+		  		<!--{template mobile/taskboard_mytask_item}-->
+		  </div>
+		</div>
+	<script type="text/javascript">
+		var cpurl='{MOD_URL}&op=cp';
+		var board={};
+		
+		jQuery(document).on('tap','.task-item',function(e){
+		 e.stopPropagation();			
+			jQuery('.popbox .close').trigger('click');
+			var taskid=jQuery(this).attr('taskid');
+			showTaskPanel(taskid);
+			return false;
+		});
+		jQuery(document).on('tap','.task-item .task-item-check',function(e){
+			jQuery('.popbox .close').trigger('click');
+			if(jQuery(this).find('input').prop('disabled')) return false;
+			var taskid=jQuery(this).attr('taskid');
+			var tbid=jQuery(this).attr('tbid');
+			task_complete(taskid,this,tbid);
+			return false;
+		});
+	
+		
+		function getMore(url,page){
+			jQuery.get(url+'&do=getMore',{'page':page},function(html){
+				jQuery('#btn-load-more').parent().replaceWith(html);
+			});
+		}
+		
+	</script>
+	 <script type="text/javascript" src="static/popbox/jquery.popbox.js?{VERHASH}"></script>
+	<script src="dzz/comment/scripts/comment.js?{VERHASH}" type="text/javascript"></script>
+<script type="text/javascript"  src="static/js/smilies.js?{VERHASH}"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.ui.widget.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.iframe-transport.js?{VERHASH}"></script>
+<!-- The basic File Upload plugin -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-process.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-validate.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/ueditor.parse.js?{VERHASH}" type="text/javascript"></script>
+<!--{template common/footer_simple}-->

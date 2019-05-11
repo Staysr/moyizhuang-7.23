@@ -1,0 +1,21 @@
+[ 2018-12-06T14:07:19+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003423s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000935s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000991s ]
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0122s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0121s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0120s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0068s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0076s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0075s ]
+ERR: 非法操作:index
+
+[ 2018-12-06T14:07:20+08:00 ] 127.0.0.1 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000456s ]
+

@@ -1,0 +1,287 @@
+<!--{template mobile/mobile_header}-->
+
+<link rel="stylesheet" href="{MOD_PATH}/images/event.css?{VERHASH}">
+<link rel="stylesheet" type="text/css" href="dzz/comment/images/comment.css?{VERHASH}">
+<!--{if $taskboard['disable']<1}-->
+	<link href="dzz/system/ueditor/themes/default/css/ueditor.css?{VERHASH}" rel="stylesheet" media="all">
+	<link href="dzz/system/ueditor/themes/default/css/ueditor_add.css?{VERHASH}" rel="stylesheet" media="all">
+	<script src="dzz/system/ueditor/ueditor.config.js?{VERHASH}"></script>
+	<script src="dzz/system/ueditor/ueditor.all.js?{VERHASH}"></script>
+	<script src="dzz/system/ueditor/lang/$_G['language']/$_G['language'].js?{VERHASH}"></script>
+	<script src="data/cache/smilies_var.js?{VERHASH}"></script>
+	<!--{/if}-->	
+	<script type="text/javascript" src="{MOD_PATH}/scripts/mobile/task.js?{VERHASH}"></script>
+	<style>
+    html, body {
+      position: relative;
+      height: 100%;
+    }
+		
+        input::-webkit-input-placeholder{
+            color:RGBA(255,255,255,.5);
+        }
+        input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+            color:RGBA(255,255,255,.5);;
+        }
+        input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+            color:RGBA(255,255,255,.5);;
+        }
+        input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+            color:RGBA(255,255,255,.5);;
+        }
+   
+	</style>
+	<script type="text/javascript">
+	var tbid='{$tbid}';
+	var board=$json_board;
+	var layout=board.layout;	
+	</script>
+</head>
+<!--{template common/header_simple_end}-->
+
+	<div class="weui-body">
+	<header class="weui-position-header">
+		<div class="resNav-item resNav-left">	 		
+			<!--{template mobile/header_left}-->	 			
+		</div>
+		<div class="resNav-item resNav-right">
+			<!--{template mobile/header_right}-->
+		</div>
+	</header>
+		<div id="weui-right-panel" class="weui-right-panel hide">
+		 	<div class="weui-right-map">
+		 		<div class="setting_basic">
+		 			<ul class="setting_basic_left">
+		 				<li><a href="javascript:">
+		 					<i title="点击加星这个任务板。" class="dzz dzz-star-border  board-title-options-star-icon js-star-board <!--{if in_array($tbid,$stared)}-->is-starred<!--{/if}-->"  data-tbid="$value[tbid]"></i>
+		 				</a></li>
+		 				<li><a href="javascript:" class="<!--{if $taskboard['perm']>2}-->js-popbox<!--{/if}--> setting_basic_power" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=boardmenu&tbid=$tbid&step=2" data-placement="bottom" data-auto-adapt="true"><!--{if $taskboard[viewperm]==0}-->隐私<!--{elseif $taskboard[viewperm]==1}-->团队可见<!--{elseif $taskboard[viewperm]==2}-->公开<!--{/if}--></a></li>
+		 			</ul>
+		 			<!--{if $taskboard['perm']>2}-->
+		 			<ul class="setting_basic_right">
+		 				<li class="weui-plance-item"><a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=boardmenu&tbid=$tbid" data-placement="bottom" data-auto-adapt="true"><span class="dzz dzz-more"></span></a></li>
+		 				<li><a href="{MOD_URL}&op=list&do=setting&tbid=$tbid"><span class="dzz dzz-settings"></span></a></li>
+		 				
+		 			</ul>
+		 			<!--{/if}-->
+		 		</div>
+		 		<div class="right_member">
+		 			<div class="right_member_title"><span class="dzz dzz-member"></span>成员</div>
+		 			<ul class="member-list-ul">
+				 			<!--{loop $taskboard[users]  $value}-->
+							<li class="member-list-item" uid="$value[uid]"><a class="<!--{if $taskboard['perm']>2}-->js-popbox<!--{/if}--> member-avatar"  data-href="{MOD_URL}&op=menu&do=board_user_perm&tbid=$taskboard[tbid]&uid=$value[uid]" data-placement="bottom" data-auto-adapt="true" title="$value[username]" uid="$value[uid]" href="javascript:;" >{eval echo avatar_block($value['uid']);}
+							<!--{if $value['perm']>1 }-->
+							<span class="member-rank"><img title="{eval echo lang('rank_'.$value[perm]);}" src="static/image/common/rank{eval echo $value[perm]-1}.png"></span>
+							<!--{/if}-->
+							</a></li>
+							<!--{/loop}-->
+					</ul>
+					<!--{if $taskboard['perm']>2}-->
+					<a href="{MOD_URL}&op=ajax&do=member" class="weui-btn  weui-btn_plain-primary weui-add-member ">添加成员</a>
+					<!--{/if}-->
+		 		</div>
+		 		<div class="weui-right-active">
+		 			<div class="right-active-fiexdTop"><span class="dzz dzz-settings-forms"></span>活动</div>
+		 			<div class="weui-active-right event">
+		 				
+		 			</div>
+		 		</div>
+		 	
+		 	</div>
+		 	<div class="background-right"></div>
+	 	</div>
+	 <div id="taskboard_container" class="taskboard-container layout-{$taskboard[layout]}">	 			
+	    <div id="catlist_container"  class="catlist-container clearfix">
+	    	<!--{loop $catlist  $value}-->
+            <div id="catlist_{$value[catid]}" class="catlist" catid="$value[catid]">
+                <div class="catlist-header clearfix">
+                    <span class="catlist-header-span">$value[catname]</span>
+                    <!--{if $taskboard['disable']<1}-->
+                    <a href="javascript:;" class="catlist-header-menu action-icon js-popbox" data-href="{MOD_URL}&op=menu&do=catmenu&catid=$value[catid]" data-catid="$value[catid]" data-placement="bottom" data-auto-adapt="true"><i class="dzz dzz-more"></i></a><!--{/if}-->
+                </div>
+
+                <div class="tasklist-container u-fancy-scrollbar" id="tasklist_$value[catid]">
+                    <div  class="task-container" catid="$value[catid]">
+                        <!--{loop $value['tasks'] $task}-->
+                            <!--{template mobile/task_item}-->
+                        <!--{/loop}--> 
+                        <div class="task-append nodrager" style="height:0"></div>
+                        <!--{if $taskboard['disable']<1}-->
+                        <div class="task-poster hide nodrager" catid="$value[catid]">
+                            <div class="task-poster-body task-poster-body-focus clearfix">
+                                <div class="task-item-labels"></div>
+                                <textarea class="form-control" name="taskname" catid="$value[catid]"></textarea>
+                                <div class="task-poster-body-footer">
+                                    <div class="task-item-badges"></div>
+                                    <div class="task-item-members"></div>
+                                </div>
+                            </div>
+                            <div class="task-poster-footer">
+                            	<button data-click="cancel" class="weui-task-btn weui-task-cancel">取消</button> 
+                                <button data-click="submit" class="weui-task-btn weui-task-submit">添加</button>                                 
+                            </div>
+                        </div>
+                       <!--{/if}-->
+                    </div>
+                </div>
+                <!--{if $taskboard['disable']<1}-->
+                <div class="catlist-footer nodrager"> 
+                    <a href="javascript:;" class="task-add" catid="$value[catid]">新建任务</a>
+                </div>
+                <!--{/if}-->
+                      
+        
+            </div>
+            <!--{/loop}-->
+            <!--{if $taskboard['disable']<1}-->
+            <div class="catlist-new nodrager"> 
+                <a href="javascript:;" class="cat-add">新建列表</a>
+                <div class="form-catlist-add hide"> 
+                    <div class="form_div"> 
+                        <input name="catname"  placeholder="列表名" dt-enter="submit" type="text" class="list-name-input" required="" autofocus>
+                        <button data-click="cancel" class="weui-task-btn weui-task-cancel">取消</button> 
+                        <button data-click="submit" class="weui-task-btn weui-task-submit">添加</button>
+                    </div> 
+                </div>
+            </div>
+            <!--{/if}-->
+	    </div>
+	   
+	 </div>
+	</div>
+	<div id="_blank"  unselectable="on" onselectstart="return event.srcElement.type== 'text';" style="display:none; background: url(dzz/images/b.gif); z-index:10000;width:100%;height:100%;margin:0;padding:0; right: 0px; bottom: 0px;position: absolute; top:0px; left: 0px;"></div>
+
+<script type="text/javascript" reload="1">   
+	
+	
+	var ajaxurl='{MOD_URL}&op=list&tbid=$tbid';
+	var cpurl='{MOD_URL}&op=cp&tbid=$tbid';
+	var scrolling=true;
+	 $(document).off('touchend.adduser').on('touchend.adduser','.weui-add-member',function(){
+        var action = 'index.php?mod=system&op=selorguser&stype=2&multiple=1&ids={eval echo implode(',',array_keys($taskboard[users]))}',
+            callback_url = ajaxurl+'&do=ajax&operation=board_members&output=json';
+        if ($('#submitForm').length < 1) {
+            var form = $('<form id="submitForm"></form>');
+            $(document.body).append(form);
+        } else {
+            form = $('#submitForm');
+        }
+        if ($('#callbackdata').length < 1) {
+            var callbackdata = $('<input type="hidden" name="callback_url" id="callbackdata" />');
+            form.append(callbackdata);
+        } else {
+            var callbackdata = $('#callbackdata');
+        }
+        callbackdata.val(callback_url);
+        form.attr('action', action);
+        form.attr('method', 'post');
+        form.submit();
+        return false;
+    });
+jQuery(document).ready(function(e) {
+	layout_catlist();
+	jQuery('body').addClass('layout-{$taskboard[layout]}');
+	
+	jQuery(document).on('click','.task-item',function(e){
+		e.stopPropagation();
+		jQuery('.popbox .close').trigger('click');
+		var taskid=jQuery(this).attr('taskid');
+		showTaskPanel(taskid);
+	});
+	
+	jQuery(document).on('click','.task-item .task-item-check',function(e){
+		e.stopPropagation();
+		jQuery('.popbox .close').trigger('click');
+		if(jQuery(this).find('input').prop('disabled')) return false;
+		var taskid=jQuery(this).attr('taskid');
+		task_complete(taskid,this);
+		
+	});
+	jQuery(document).on('click','.open-taskpanel',function(){
+		jQuery('.popbox .close').trigger('click');
+		var taskid=jQuery(this).attr('taskid');
+		showTaskPanel(taskid);
+		return false;
+	});
+	
+	
+	
+	
+	<!--{if $taskboard['layout']>0}-->
+	jQuery(document).on('click','.catlist-hide-icon',function(){
+		var el=jQuery(this).parent().parent();
+		el.toggleClass('catlistHide');
+		if(el.hasClass('catlistHide')){
+			jQuery(this).find('.glyphicon').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+		}else{
+			jQuery(this).find('.glyphicon').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+		}
+		return false;
+	});
+	
+	<!--{/if}-->
+	jQuery('.js-popbox').each(function(){
+			jQuery(this).popbox();
+		});
+	<!--{if $taskboard['disable']<1}-->
+		
+		init_catlist_add();
+		init_task_poster();
+		<!--{if $taskboard['layout']>0}-->
+		inlit_dzzdragsort('task',1);
+		inlit_dzzdragsort('catlist',1);
+		<!--{else}-->
+		inlit_dzzdragsort('task',0);
+		inlit_dzzdragsort('catlist',0);
+		<!--{/if}-->
+	 
+	<!--{/if}-->
+	
+	<!--{if $opentaskid>0}-->
+	jQuery('#task_{$opentaskid}').trigger('tap');
+	<!--{/if}-->
+
+	
+});
+
+<!--{if $taskboard['layout']<1}-->
+<!--{/if}-->
+ jQuery(document).on('touchend','.js-star-board',function(){
+		var el=jQuery(this);
+		var tbid=el.data('tbid');
+		var action = 'add'
+		if(el.hasClass('is-starred')){
+			el.removeClass('is-starred');
+	        action='del'
+		}else{
+			action='add'
+			el.addClass('is-starred');
+		}
+		
+		jQuery.post('{MOD_URL}&op=ajax&do=addStar',{"tbid":tbid,'action':action});
+		return false;
+	});
+	$('.weui-right-map').scroll(function(){
+		var top = $('.weui-right-active').offset().top;
+		if(top<100){
+			$('.right-active-fiexdTop').css({'position':'fixed','top':'1.8rem','z-index':'2','overflow':'auto','width':'300px'});
+					
+		}else{
+			$('.right-active-fiexdTop').css({'position':'relative','top':'0rem','z-index':'2','overflow':'auto','width':'100%'});
+			
+		}
+	})	
+ </script>
+ <script type="text/javascript" src="{MOD_PATH}/scripts/jquery.dzzdragersort_mobile.js?{VERHASH}"></script>
+ <script type="text/javascript" src="static/popbox/jquery.popbox.js?{VERHASH}"></script>
+<!--{if $taskboard['disable']<1}-->
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.ui.widget.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.iframe-transport.js?{VERHASH}"></script>
+<!-- The basic File Upload plugin -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-process.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-validate.js?{VERHASH}"></script>
+<!--{/if}-->
+<script src="dzz/system/ueditor/ueditor.parse.js?{VERHASH}" type="text/javascript"></script>
+<!--{template common/footer_simple}

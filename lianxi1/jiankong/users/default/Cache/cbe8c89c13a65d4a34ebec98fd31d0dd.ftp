@@ -1,0 +1,11 @@
+-rw-r--r-- 1 ftp ftp           5081 Sep 07  2018 AdapterFactory.php
+-rw-r--r-- 1 ftp ftp          12835 Sep 07  2018 AdapterInterface.php
+-rw-r--r-- 1 ftp ftp          10777 Sep 07  2018 AdapterWrapper.php
+-rw-r--r-- 1 ftp ftp          37939 Sep 07  2018 MysqlAdapter.php
+-rw-r--r-- 1 ftp ftp          14982 Sep 07  2018 PdoAdapter.php
+-rw-r--r-- 1 ftp ftp          38175 Sep 07  2018 PostgresAdapter.php
+-rw-r--r-- 1 ftp ftp           8666 Sep 07  2018 ProxyAdapter.php
+-rw-r--r-- 1 ftp ftp          35348 Sep 07  2018 SQLiteAdapter.php
+-rw-r--r-- 1 ftp ftp          37927 Sep 07  2018 SqlServerAdapter.php
+-rw-r--r-- 1 ftp ftp           7783 Sep 07  2018 TablePrefixAdapter.php
+-rw-r--r-- 1 ftp ftp           1935 Sep 07  2018 WrapperInterface.php

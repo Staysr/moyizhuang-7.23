@@ -1,0 +1,5 @@
+-rw-r--r-- 1 ftp ftp            216 Sep 07  2018 .htaccess
+-rw-r--r-- 1 ftp ftp           1150 Sep 07  2018 favicon.ico
+-rw-r--r-- 1 ftp ftp             24 Sep 07  2018 robots.txt
+-rw-r--r-- 1 ftp ftp            840 Sep 07  2018 router.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 static

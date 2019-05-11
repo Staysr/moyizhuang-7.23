@@ -1,0 +1,103 @@
+<!--{template common/header_simple_start}-->
+<link rel="stylesheet" href="static/js/datepicker/datepicker.css?{VERHASH}">
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/taskboard.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/task.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<style type="text/css">
+	.navbar-inverse{
+		background: #17ae4b;
+	}
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<div class="bs-container clearfix">
+    <!--{template taskboard_left}--> 
+    
+    <div class="bs-main-container" style="min-height:300px;">
+   
+        <div class="main-content clearfix" style="padding:15px">
+           	 <ul id="board_list_0" class="board-list list-unstyled clearfix"> 
+
+				<!--{loop $list $value}-->
+				<li data-tbid="$value[tbid]" class="starred" id="board_star_$value[tbid]">
+					<a class="board-title js-open-board highlight-icon color-block-$value[aid]" href="{MOD_URL}&op=list&tbid=$value[tbid]" title="$value[name]">
+					    <span class="board-title-fade"></span>
+					    <span class="board-title-details" title="$value[name]">
+					   		<span title="$value[name]"  class="board-title-details-name">$value[name]</span>
+					   		<span title="$value[desc]" class="board-title-details-desc">$value[desc]</span>
+					    </span>
+					   <!--  <span class="board-title-bottom clearfix">
+						    <span title="归档操作人"  class="pull-left">$value[username]</span>
+						    <span class="pull-right" title="归档时间">{eval echo dgmdate($value[statustime],'Y-m-d');}</span>
+						    <div class="clearfix"></div>
+					    </span> -->
+					   
+					    <span class="board-title-options">
+							<span title="激活此任务板" class="icon-sm dzz dzz-rotate  board-title-options-star-icon js-active"  data-tbid="$value[tbid]" ></span>
+						</span>
+						
+					</a>
+				</li>
+				<!--{/loop}-->
+			</ul>
+       <!--{if $multi}-->
+			<div class="text-center" style="margin:30px 0">$multi</div>
+       <!--{/if}-->
+       
+       
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+  jQuery('.left-drager').leftDrager_layout(); 
+
+	jQuery('.js-active').on('click',function(){
+		var el=jQuery(this);
+		var tbid=el.data('tbid');
+		showDialog('确定要激活此任务版？','confirm','',function(){
+			jQuery.getJSON('{MOD_URL}&op=archive&do=active&tbid='+tbid,function(json){
+				if(json.error){
+					showmessage(json.error,'danger',3000,1);
+				}else{
+					el.closest('li').remove();
+				}
+			});
+		},1);
+		return false
+	});
+	jQuery(document).ready(function(){
+		$("#starttime").datepicker({ //添加日期选择功能
+				numberOfMonths: 1, //显示几个月
+				showButtonPanel: false, //是否显示按钮面板
+				dateFormat: 'yy-mm-dd', //日期格式
+				clearText: "{lang clear}", //清除日期的按钮名称
+				closeText: "{lang close}", //关闭选择框的按钮名称
+				yearSuffix: '{lang year}', //年的后缀
+				showMonthAfterYear: true, //是否把月放在年的后面
+				constrainInput: true,
+				maxDate: new Date(),
+				setDate: 'date',
+				zIndex:'50'
+		});
+		$("#endtime").datepicker({ //添加日期选择功能
+				numberOfMonths: 1, //显示几个月
+				showButtonPanel: false, //是否显示按钮面板
+				dateFormat: 'yy-mm-dd', //日期格式
+				clearText: "{lang clear}", //清除日期的按钮名称
+				closeText: "{lang close}", //关闭选择框的按钮名称
+				yearSuffix: '{lang year}', //年的后缀
+				showMonthAfterYear: true, //是否把月放在年的后面
+				constrainInput: true,
+				maxDate: new Date(),
+				setDate: 'date',
+				zIndex:'50'
+		});
+	});
+</script>
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.datepicker.min.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.datepicker-zh-CN.js"></script> 
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->  

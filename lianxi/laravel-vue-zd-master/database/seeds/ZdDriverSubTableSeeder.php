@@ -1,0 +1,388 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class ZdDriverSubTableSeeder extends Seeder
+{
+
+    /**
+     * Auto generated seed file
+     *
+     * @return void
+     */
+    public function run()
+    {
+        
+
+        \DB::table('zd_driver_sub')->delete();
+        
+        \DB::table('zd_driver_sub')->insert(array (
+            0 => 
+            array (
+                'id' => 44,
+                'driver_id' => 5401,
+                'offer_count' => 3,
+                'checked_count' => 3,
+                'complete_count' => 2,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 3,
+                'create_time' => '2018-07-23 14:40:12',
+                'modify_time' => '2018-07-26 11:25:58',
+            ),
+            1 => 
+            array (
+                'id' => 45,
+                'driver_id' => 5405,
+                'offer_count' => 6,
+                'checked_count' => 3,
+                'complete_count' => 3,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 6,
+                'create_time' => '2018-07-23 14:57:27',
+                'modify_time' => '2018-09-27 17:09:23',
+            ),
+            2 => 
+            array (
+                'id' => 46,
+                'driver_id' => 5531,
+                'offer_count' => 3,
+                'checked_count' => 3,
+                'complete_count' => 4,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 3,
+                'create_time' => '2018-07-23 15:09:46',
+                'modify_time' => '2018-07-27 17:17:15',
+            ),
+            3 => 
+            array (
+                'id' => 47,
+                'driver_id' => 5511,
+                'offer_count' => 3,
+                'checked_count' => 2,
+                'complete_count' => 1,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 3,
+                'create_time' => '2018-07-23 15:57:27',
+                'modify_time' => '2018-07-25 10:48:04',
+            ),
+            4 => 
+            array (
+                'id' => 48,
+                'driver_id' => 5367,
+                'offer_count' => 2,
+                'checked_count' => 2,
+                'complete_count' => 1,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 3,
+                'create_time' => '2018-07-23 16:18:50',
+                'modify_time' => '2018-07-26 16:05:29',
+            ),
+            5 => 
+            array (
+                'id' => 49,
+                'driver_id' => 5526,
+                'offer_count' => 2,
+                'checked_count' => 1,
+                'complete_count' => 2,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 2,
+                'create_time' => '2018-07-23 16:48:28',
+                'modify_time' => '2018-07-27 10:00:21',
+            ),
+            6 => 
+            array (
+                'id' => 50,
+                'driver_id' => 5503,
+                'offer_count' => 9,
+                'checked_count' => 2,
+                'complete_count' => 5,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 10,
+                'create_time' => '2018-07-23 17:29:23',
+                'modify_time' => '2018-08-04 11:21:41',
+            ),
+            7 => 
+            array (
+                'id' => 51,
+                'driver_id' => 5404,
+                'offer_count' => 0,
+                'checked_count' => 0,
+                'complete_count' => 5,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 0,
+                'create_time' => '2018-07-23 18:06:59',
+                'modify_time' => '2018-09-27 17:03:04',
+            ),
+            8 => 
+            array (
+                'id' => 52,
+                'driver_id' => 5488,
+                'offer_count' => 3,
+                'checked_count' => 3,
+                'complete_count' => 3,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 3,
+                'create_time' => '2018-07-23 18:09:27',
+                'modify_time' => '2018-09-27 16:48:25',
+            ),
+            9 => 
+            array (
+                'id' => 53,
+                'driver_id' => 5519,
+                'offer_count' => 2,
+                'checked_count' => 0,
+                'complete_count' => 5,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 2,
+                'create_time' => '2018-07-24 10:56:23',
+                'modify_time' => '2018-09-14 17:00:15',
+            ),
+            10 => 
+            array (
+                'id' => 54,
+                'driver_id' => 5423,
+                'offer_count' => 3,
+                'checked_count' => 2,
+                'complete_count' => 0,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 3,
+                'create_time' => '2018-07-24 11:37:51',
+                'modify_time' => '2018-09-17 19:02:45',
+            ),
+            11 => 
+            array (
+                'id' => 55,
+                'driver_id' => 5403,
+                'offer_count' => 2,
+                'checked_count' => 2,
+                'complete_count' => 0,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 2,
+                'create_time' => '2018-07-24 13:44:17',
+                'modify_time' => '2018-07-26 10:46:37',
+            ),
+            12 => 
+            array (
+                'id' => 56,
+                'driver_id' => 5371,
+                'offer_count' => 6,
+                'checked_count' => 5,
+                'complete_count' => 0,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 6,
+                'create_time' => '2018-07-24 14:24:57',
+                'modify_time' => '2018-07-26 16:10:44',
+            ),
+            13 => 
+            array (
+                'id' => 57,
+                'driver_id' => 5479,
+                'offer_count' => 1,
+                'checked_count' => 1,
+                'complete_count' => 0,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 1,
+                'create_time' => '2018-07-25 09:31:00',
+                'modify_time' => '2018-07-25 09:31:00',
+            ),
+            14 => 
+            array (
+                'id' => 58,
+                'driver_id' => 5370,
+                'offer_count' => 3,
+                'checked_count' => 1,
+                'complete_count' => 1,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 3,
+                'create_time' => '2018-07-25 09:59:47',
+                'modify_time' => '2018-09-17 15:25:42',
+            ),
+            15 => 
+            array (
+                'id' => 59,
+                'driver_id' => 5391,
+                'offer_count' => 2,
+                'checked_count' => 2,
+                'complete_count' => 0,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 2,
+                'create_time' => '2018-07-25 15:40:23',
+                'modify_time' => '2018-07-26 09:19:15',
+            ),
+            16 => 
+            array (
+                'id' => 60,
+                'driver_id' => 5424,
+                'offer_count' => 1,
+                'checked_count' => 1,
+                'complete_count' => 0,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 1,
+                'create_time' => '2018-07-26 09:19:45',
+                'modify_time' => '2018-07-26 09:19:46',
+            ),
+            17 => 
+            array (
+                'id' => 61,
+                'driver_id' => 5390,
+                'offer_count' => 1,
+                'checked_count' => 1,
+                'complete_count' => 5,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 1,
+                'create_time' => '2018-07-26 15:14:42',
+                'modify_time' => '2018-09-27 17:09:01',
+            ),
+            18 => 
+            array (
+                'id' => 62,
+                'driver_id' => 5514,
+                'offer_count' => 1,
+                'checked_count' => 1,
+                'complete_count' => 0,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 1,
+                'create_time' => '2018-07-26 15:55:45',
+                'modify_time' => '2018-07-26 15:55:45',
+            ),
+            19 => 
+            array (
+                'id' => 63,
+                'driver_id' => 5415,
+                'offer_count' => 2,
+                'checked_count' => 2,
+                'complete_count' => 2,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 2,
+                'create_time' => '2018-07-26 16:52:13',
+                'modify_time' => '2018-07-27 16:12:32',
+            ),
+            20 => 
+            array (
+                'id' => 64,
+                'driver_id' => 5471,
+                'offer_count' => 0,
+                'checked_count' => 0,
+                'complete_count' => 2,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 0,
+                'create_time' => '2018-07-26 18:29:52',
+                'modify_time' => '2018-09-27 17:08:51',
+            ),
+            21 => 
+            array (
+                'id' => 68,
+                'driver_id' => 5365,
+                'offer_count' => 3,
+                'checked_count' => 2,
+                'complete_count' => 1,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 3,
+                'create_time' => '2018-07-28 09:48:43',
+                'modify_time' => '2018-07-28 10:33:26',
+            ),
+            22 => 
+            array (
+                'id' => 69,
+                'driver_id' => 5394,
+                'offer_count' => 1,
+                'checked_count' => 1,
+                'complete_count' => 0,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 2,
+                'create_time' => '2018-09-04 17:37:18',
+                'modify_time' => '2018-09-04 17:40:05',
+            ),
+            23 => 
+            array (
+                'id' => 70,
+                'driver_id' => 5534,
+                'offer_count' => 2,
+                'checked_count' => 1,
+                'complete_count' => 0,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 2,
+                'create_time' => '2018-09-04 17:43:06',
+                'modify_time' => '2018-09-14 11:40:58',
+            ),
+            24 => 
+            array (
+                'id' => 71,
+                'driver_id' => 5499,
+                'offer_count' => 0,
+                'checked_count' => 0,
+                'complete_count' => 1,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 0,
+                'create_time' => '2018-09-05 09:43:49',
+                'modify_time' => '2018-09-13 12:09:24',
+            ),
+            25 => 
+            array (
+                'id' => 72,
+                'driver_id' => 5422,
+                'offer_count' => 1,
+                'checked_count' => 1,
+                'complete_count' => 3,
+                'complaint_count' => 0,
+                'b_assess_count' => 0,
+                'b_score_sum' => 0,
+                'work_count' => 1,
+                'create_time' => '2018-09-14 15:10:49',
+                'modify_time' => '2018-09-17 15:25:07',
+            ),
+        ));
+        
+        
+    }
+}

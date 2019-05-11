@@ -1,0 +1,35 @@
+<div class="bs-left-container affix-top clearfix">
+    <div class="leconMenu">
+        <ul class="nav-stacked">
+            <!--{if $_GET[op]!='setting'}-->
+            <!--{if $_G['uid']}-->
+            <li class="<!--{if empty($_GET[op]) || $_GET[op]=='my'}-->active<!--{/if}-->"> 
+                <a href="{MOD_URL}"><span class="dzz dzz-dashboard"></span>我的任务板</a>
+            </li>
+            <li class="<!--{if $_GET[op]=='mytask'}-->active<!--{/if}-->"> 
+                <a href="{MOD_URL}&op=mytask"><span class="dzz dzz-assignment"></span>我的任务</a>
+            </li>
+          
+            <li class="<!--{if $_GET[op]=='archive'}-->active<!--{/if}-->"> 
+                <a href="{MOD_URL}&op=archive"><span class="dzz dzz-archive"></span>归档的</a>
+            </li>
+             <li class="<!--{if $_GET[op]=='recycle'}-->active<!--{/if}-->"> 
+                <a href="{MOD_URL}&op=recycle"><span class="dzz dzz-delete"></span>回收站</a>
+            </li>
+           <!--{/if}-->
+            <!--{/if}-->
+        </ul>
+        <!--{if $_G['adminid']==1}-->
+        <ul class="nav-stacked" style="border-top:1px solid #e1e1e1;margin-top:10px;padding-top:10px;">
+            <li <!--{if $do=="basic"}-->class="active"<!--{/if}-->>
+                <a href="{BASESCRIPT}?mod={MOD_NAME}&op=setting&do=basic"><span class="dzz dzz-settings"></span>设置</a>
+            </li>
+            <!--{/if}-->    
+        </ul>
+    </div>
+</div>
+
+<!-- 左边拖动部分 -->
+<div class="left-drager">
+    <div class="left-drager-op"><div class="left-drager-sub"></div></div>
+</div>

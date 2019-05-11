@@ -1,0 +1,91 @@
+<view class="content">
+    <!-- <view class = "logo">
+    <image mode='aspectFit' src='../../images/driver.png' style='widthFix:65rpx;height:65rpx;' class='car'></image>
+       <span style="display:block;color:rgb(247,193,57)">司机</span>
+
+       <view class='item ft-30 h90 flex flex-vc bd-bt-f4f pd-lt20 pd-rt20'>
+     <!-- <radio-group class="item-right radio-group" bindchange="changeSex">
+          <label class="radio" wx:for="{{items}}">
+               <radio value="{{siji.name}}" checked="{{siji.checked}}"/>
+          </label>
+     </radio-group> -->
+    <!-- </view>
+    </view> -->
+
+    <!-- <view class = "logo1" bindtap = "huiyuan">
+    <image mode='aspectFit' src='../../images/user.png' style='widthFix:65rpx;height:65rpx' class='car'></image>
+      <span style="display:block;">会员</span>
+      <view class='item ft-30 h90 flex flex-vc bd-bt-f4f pd-lt20 pd-rt20'>
+     <!-- <radio-group class="item-right radio-group" bindchange="changeSex">
+          <label class="radio" wx:for="{{items}}">
+               <radio value="{{siji.name}}" checked="{{siji.checked}}"/>
+          </label>
+     </radio-group> -->
+    <!-- </view>
+    </view> -->
+    <view style='clear:both'></view>
+
+    <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class="input-area">
+<!-- <image mode="aspectFit" class='phone'>手机号:</image> -->
+   <span class="phone">手机号:</span> 
+   <input id="username" name="phone" maxlength='11' type="text" placeholder="请输入手机号" bindchange="getPhoneNum" style='padding-left: 10%;width:100%rpx' class='phone1'/>
+<view class='l1'></view>
+ </view>
+    <view class="smsCode">
+    <span class="phone">验证码:</span> 
+ <!-- <image mode="aspectFit" class='phone' src="">验证码:</image> -->
+ 
+ <input id="smsCode" name="smsCode" maxlength='6' type="text" placeholder="验证码"   style='padding-left: 10%;width:100%rpx;' class='phone1'/>
+            <button bindtap = "getSmsCode" disabled="{{smsCodeDisabled}}" style="background-color:{{getSmsCodeBtnColor}}"   class="getSmsCodeBtn">{{getSmsCodeBtnTxt}}</button>
+          </view>
+          <view class="input-area">
+      <!-- <image mode="aspectFit" class="phone" src="">
+       新密码
+    </image> -->
+    <span class="phone">新密码:</span> 
+      <input id="password" name="password" maxlength='20' type="password" placeholder="密码" style='padding-left: 10%;'/>
+  <view class='l1'></view>
+      </view>
+
+
+
+
+  <view class="input-area">
+      <!-- <image mode="aspectFit" class="phone" src="">
+       新密码
+    </image> -->
+    <span class="phone">确认密码:</span> 
+      <input id="password" name="password" maxlength='20' type="password" placeholder="密码" style='padding-left: 10%;'/>
+  <view class='l1'></view>
+      </view>
+
+
+
+        <view class="btn-area">
+          
+                <!-- <radio-group class="radio-group" bindchange="radioChange">
+  
+                    <radio value="" checked=""/><text class='xueyi' bindtap="radio">我已阅读并同意<text class='hedao'>    ⟪河道运输用户服务协议⟫</text></text>
+
+            </radio-group> -->
+
+        <!-- <radio-group class="radio-group" bindchange="radioChange">
+                <radio bindtap = "bindtap1" wx:for-items="{{items}}" wx:key="name" value="{{item.name}}" checked = "{{item.checked}}">
+                   <text class='xueyi'>我已阅读并同意</text><text class='hedao' bindtap="radio">{{item.value}}</text>
+                </radio>
+            </radio-group>
+            <button  disabled="{{registDisabled}}" style="background-color:{{registBtnBgBgColor}}"   formType="submit"  loading="{{btnLoading}}"> {{registBtnTxt}} </button>
+            <view  bindtap = "forgotpassword" class="txt-area">
+                 <text><text class="forgot-password">忘记密码？</text></text>
+                 <navigator redirect url="../login/index"><text class="register">登录账号</text></navigator>
+            </view>-->
+        </view> 
+        <button class='quxiao'>取消</button>
+        <button class='submit'>提交</button>
+    </form>
+
+
+    <!--<progress class="myprogress" percent="{{percent }}" color="{{color}}" active/>-->
+    
+</view>

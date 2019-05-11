@@ -1,0 +1,21 @@
+<div class="task_right_header clearfix" style="position: relative">
+	<!--{if $taskboard[perm]>1}-->
+	<button type="button" class="groupbutton js-window clearfix" onclick="showWindow('bordermenbers','index.php?mod=system&op=selorguser&do=border_users&stype=2&multiple=1&callback=callback_board_members&token=$taskboard[tbid]&ids={eval echo implode(',',array_keys($taskboard[users]));}','get',0)"><span class="dzz dzz-add-circle"></span></button>
+	<!--{/if}-->
+	<span class="task_right_title pull-left">成员</span>
+</div>
+
+<ul class="list-unstyled member-list-ul">
+	<!--{loop $taskboard[users]  $value}-->
+	<li class="member-list-item" uid="$value[uid]"><a class="js-popbox member-avatar" data-href="{MOD_URL}&op=menu&do=board_user_perm&tbid=$taskboard[tbid]&uid=$value[uid]" data-placement="left" data-auto-adapt="true" title="$value[username]" uid="$value[uid]" href="javascript:;" >{eval echo avatar_block($value['uid']);}
+	<!--{if $value['perm']>1 }-->
+		<span class="member-rank"><img title="{eval echo lang('rank_'.$value[perm]);}" src="static/image/common/rank{$value[perm]}.png"></span>
+	<!--{/if}-->
+	</a></li>
+	<!--{/loop}-->
+</ul>
+<script type="text/javascript">
+	jQuery('#rightMenu .member-list-item .js-popbox').each(function(){
+		jQuery(this).popbox();
+	})
+</script>

@@ -1,0 +1,60 @@
+<!--<?php
+include_once gettpl("css");
+print <<<EOT
+-->
+</head>
+
+<body>
+	<form action="$request_uri" method="post">
+		<div class="login">
+			<div class="title">
+				<a class="darkred" href="javascript:;" onclick="set_admincp_style('$imgpath/admin/darkred.css');" ></a>	
+				<a class="default" href="javascript:;" onclick="set_admincp_style('$imgpath/admin/default.css');" ></a>	
+				PHPVOD 管理中心
+			</div>			
+			<div class="content">
+				<input type="hidden" name="login_f" value="1">
+				<table class="table">
+					<tr>
+						<td class="cap">管理员ID</td>
+						<td class="ipt">
+							<input type="text" name="admin_name" style="width: 150px;">
+						</td>
+					</tr>
+					<tr>
+						<td class="cap">管理员密码</td>
+						<td class="ipt">
+							<input type="password" name="admin_password" style="width: 150px;">
+						</td>
+					</tr>
+<!--
+EOT;
+if($db_gdcheck & 32){
+print <<<EOT
+-->
+					<tr>
+						<td class="cap">验证码</td>
+						<td class="ipt">
+							<input name="login_num" type="text" style="width: 100px;">
+							<div style="margin-top: 2px;">
+								<img src="ck.php?admin=1&nowtime=$timestamp" align="absmiddle" style="cursor:pointer;" id="ckcode" onclick="this.src='ck.php?admin=1&nowtime='+new Date().getTime();" alt="看不清楚，换一张" />
+							</div>
+						</td>
+					</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+				</table>
+			</div>
+			<div class="btn"><input type="submit" name="submit" value="提 交"></div>
+		</div>
+	</form>
+</body>
+
+</html>
+<!--
+EOT;
+include_once gettpl('adminbottom');
+?>
+-->

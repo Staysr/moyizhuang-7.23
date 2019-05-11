@@ -1,0 +1,128 @@
+<!--{if $_GET[op] == 'list'}-->
+	<!--{if $_GET[do]}-->
+        <!--{if $_GET[tid]}-->
+            <ul class="nav navbar-nav navbar-nav-left view-navbar-nav-left">
+                <li>
+                    <a href="<!--{eval echo dreferer()}-->" style="padding: 8px;">
+                        <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="<!--{eval echo dreferer()}-->" class="navbar-nav-left-appname">
+                        <!--{if $_GET[do] == 'user'}-->{lang member_manage}
+                        <!--{else}-->{lang return}
+                        <!--{/if}-->
+                    </a>
+                </li>
+            </ul>
+        <!--{else}-->
+            <!--{if !$_GET[fid]}-->
+                <ul class="nav navbar-nav navbar-nav-left view-navbar-nav-left">
+                    <li>
+                        <a href="{MOD_URL}" style="padding: 8px;">
+                            <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{MOD_URL}" class="navbar-nav-left-appname">
+                            <!--{if $_GET[do] == 'user'}-->{lang member_manage}
+                            <!--{else}-->{lang return}
+                            <!--{/if}-->
+                        </a>
+                    </li>
+                </ul>
+            <!--{else}-->
+                <!--{if $_GET[do] == 'setting'}-->
+                    <ul class="nav navbar-nav navbar-nav-left view-navbar-nav-left">
+                        <li>
+                            <a href="<!--{if $forward}-->{DZZSCRIPT}?{eval echo rawurldecode($forward)}<!--{else}-->{MOD_URL}<!--{/if}-->" style="padding: 8px;">
+                                <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<!--{if $forward}-->{DZZSCRIPT}?{eval echo rawurldecode($forward)}<!--{else}-->{MOD_URL}<!--{/if}-->" class="navbar-nav-left-appname">
+                                {lang settings}
+                            </a>
+                        </li>
+                    </ul>
+                <!--{else}-->
+                    <ul class="nav navbar-nav navbar-nav-left view-navbar-nav-left">
+                        <li>
+                            <a href="<!--{eval echo dreferer()}-->" style="padding: 8px;">
+                                <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<!--{eval echo dreferer()}-->" class="navbar-nav-left-appname">
+                                <!--{if $_GET[do] == 'user'}-->{lang member_manage}
+                                <!--{elseif $_GET[do] == 'newthread'}-->{lang return}
+                                <!--{/if}-->
+                            </a>
+                        </li>
+                    </ul>
+                <!--{/if}-->
+            <!--{/if}-->
+        <!--{/if}-->
+	<!--{else}-->
+	<ul class="nav navbar-nav navbar-nav-left view-navbar-nav-left">
+        <li>
+            <a href="<!--{if $_GET[forward]}-->{DZZSCRIPT}?{$_GET[forward]}<!--{else}-->{MOD_URL}<!--{/if}-->" style="padding: 8px;">
+                <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+            </a>
+        </li>
+        <li>
+            <a href="<!--{if $_GET[forward]}-->{DZZSCRIPT}?{$_GET[forward]}<!--{else}-->{MOD_URL}<!--{/if}-->" class="navbar-nav-left-appname">{lang return}</a>
+        </li>
+    </ul>
+    <!--{/if}-->
+<!--{elseif $_GET[op] == 'viewthread'}-->
+	<ul class="nav navbar-nav navbar-nav-left view-navbar-nav-left">
+        <li>
+            <a href="<!--{if $forward}-->{DZZSCRIPT}?<!--{eval echo rawurldecode($forward)}--><!--{else}-->{MOD_URL}<!--{/if}-->" style="padding: 8px;">
+                <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+            </a>
+        </li>
+        <li>
+            <a href="<!--{if $forward}-->{DZZSCRIPT}?<!--{eval echo rawurldecode($forward)}--><!--{else}-->{MOD_URL}<!--{/if}-->" class="navbar-nav-left-appname">
+            	{lang return}
+        	</a>
+        </li>
+    </ul>
+<!--{elseif $_GET[op] == 'setting'}-->
+	<ul class="nav navbar-nav navbar-nav-left view-navbar-nav-left">
+        <li>
+            <a href="<!--{if $_GET[forward]}-->{DZZSCRIPT}?{$_GET[forward]}<!--{else}-->{MOD_URL}<!--{/if}-->" style="padding: 8px;">
+                <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+            </a>
+        </li>
+        <li>
+            <a href="<!--{if $_GET[forward]}-->{DZZSCRIPT}?{$_GET[forward]}<!--{else}-->{MOD_URL}<!--{/if}-->" class="navbar-nav-left-appname">
+            	{lang settings}
+        	</a>
+        </li>
+    </ul>
+<!--{elseif $_GET[op] == 'search'}-->
+    <ul class="nav navbar-nav navbar-nav-left view-navbar-nav-left">
+        <li>
+            <a href="{MOD_URL}" style="padding: 8px;">
+                <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+            </a>
+        </li>
+        <li>
+            <a href="{MOD_URL}" class="navbar-nav-left-appname">
+                {lang index}
+            </a>
+        </li>
+    </ul>
+<!--{else}-->
+	<ul class="nav navbar-nav navbar-nav-left" style="min-width:168px">
+	    <li>
+	        <a class="leftTopmenu" onclick="_header.leftTopmenu(this)" style="padding:8px;cursor: pointer;">
+	            <div class="gb_fc"><span class="dzz dzz-menu" style="width:24px;height:24px;display:block;"></span></div>
+	        </a>
+	    </li>
+	    <li>
+	        <a href="{MOD_URL}">{eval echo lang(appname)}</a>
+	    </li>
+	</ul>
+<!--{/if}-->

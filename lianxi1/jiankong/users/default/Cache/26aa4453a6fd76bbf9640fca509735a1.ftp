@@ -1,0 +1,12 @@
+-rw-r--r-- 1 ftp ftp             49 Mar 03  2017 .gitignore
+-rw-r--r-- 1 ftp ftp            818 Mar 03  2017 .travis.yml
+-rw-r--r-- 1 ftp ftp           6714 Mar 03  2017 CHANGES.md
+-rw-r--r-- 1 ftp ftp           1337 Mar 03  2017 composer.json
+-rw-r--r-- 1 ftp ftp            689 Mar 03  2017 CONTRIBUTING.md
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 fixtures
+-rw-r--r-- 1 ftp ftp           1149 Mar 03  2017 LICENSE
+-rw-r--r-- 1 ftp ftp            619 Mar 03  2017 phpunit.xml.dist
+-rw-r--r-- 1 ftp ftp          14593 Mar 03  2017 README.md
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 spec
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 src
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 tests

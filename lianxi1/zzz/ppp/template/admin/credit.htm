@@ -1,0 +1,169 @@
+<!--<?php
+include_once gettpl('top');
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">提示信息</td>
+	</tr>
+	<tr>
+		<td class="notice">
+			1、自定义积分将加入系统评分，积分排行榜<br />
+			2、用户可以根据特定需要增加自定义积分
+		</td>
+	</tr>
+</table><br />
+<!--
+EOT;
+if(empty($action)){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename" class="active">自定义积分管理</a></li>
+	<li><a href="$basename&action=newcredit">添加/编辑自定义积分</a></li>
+	<li><a href="$basename&action=usercredit">会员自定义积分管理</a></li>
+</ul>
+<br />
+
+<form action="$basename" method="post" onsubmit="return confirm('确定要删除自定义积分吗?删除自定义积分将同时删除会员该项积分数据!');">
+	<input type="hidden" name="action" value="delete">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="5">自定义积分列表</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'delcid');"></td>
+			<td width="5%">ID</td>
+			<td>名称</td>
+			<td>说明</td>
+			<td width="5%">编辑</td>
+		</tr>
+<!--
+EOT;
+while($creditdb=$db->fetch_array($credit)){
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="delcid[]" value="$creditdb[cid]"></td>
+			<td>$creditdb[cid]</td>
+			<td>$creditdb[name]</td>
+			<td>$creditdb[description]</td>
+			<td><a href="$basename&action=edit&cid=$creditdb[cid]">编辑</a></td>
+		</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+	</table><br />
+	<center>
+		<input type="submit" value="删 除">
+	</center>
+</form>
+<!--
+EOT;
+} elseif($action=='edit' || $action=='newcredit'){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename">自定义积分管理</a></li>
+	<li><a href="$basename&action=newcredit" class="active">添加/编辑自定义积分</a></li>
+	<li><a href="$basename&action=usercredit">会员自定义积分管理</a></li>
+</ul>
+<br />
+
+<form action="$basename" method="post">
+	<input type="hidden" name="action" value="$action">
+	<input type="hidden" name="cid" value="$cid">
+	<input type="hidden" name="step" value="2">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">自定义积分</td>
+		</tr>
+		<tr>
+			<td width="30%">名称</td>
+			<td><input type="text" name="name" size="40" value="$creditdb[name]"></td>
+		</tr>
+		<tr>
+			<td>说明</td>
+			<td><input type="text" name="description" size="40" value="$creditdb[description]"></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<!--
+EOT;
+} elseif($action=='usercredit'){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename">自定义积分管理</a></li>
+	<li><a href="$basename&action=newcredit">添加/编辑自定义积分</a></li>
+	<li><a href="$basename&action=usercredit" class="active">会员自定义积分管理</a></li>
+</ul>
+<br />
+<!--
+EOT;
+if(!$step){
+print <<<EOT
+-->
+<form action="$basename&action=usercredit" method="post">
+	<input type="hidden" name="step" value="1">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">自定义积分管理</td>
+		</tr>
+		<tr>
+			<td width="30%">用户名</td>
+			<td><input type="text" name="username" size="40"></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<!--
+EOT;
+}elseif($step=='1'){
+print <<<EOT
+-->
+<form action="$basename&action=usercredit" method="post">
+	<input type="hidden" name="step" value="2">
+	<input type="hidden" name="uid" value="$rt[uid]">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">自定义积分管理</td>
+		</tr>
+		<tr>
+			<td width="30%">用户名</td>
+			<td>$rt[username]</td>
+		</tr>
+<!--
+EOT;
+foreach($credit as $key => $value){
+if($_creditdb[$key]){
+print <<<EOT
+-->
+		<tr>
+			<td>$value[0]</td>
+			<td><input type="text" name="creditdb[$key]" value="$value[1]"></td>
+		</tr>
+<!--
+EOT;
+}}print <<<EOT
+-->
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+<!--
+EOT;
+}
+include_once gettpl('adminbottom');
+?>
+-->

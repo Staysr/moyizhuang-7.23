@@ -1,0 +1,89 @@
+<!--{if empty($list)}-->
+    <div class="searchImg-wrap">
+        <img src="{MOD_PATH}/images/search_empty.png" alt="">
+        <p>{lang no_discuss}</p>
+    </div>
+<!--{/if}-->
+<!--{if $my_forum_showtype == 'list'}-->
+<div id="discuss_container" class="disWrap clearfix" style="padding-bottom: 0;<!--{if $my_forum_showtype == 'list'}-->margin-top:0px;<!--{/if}-->">
+    <!--{loop $list $value}-->
+    <div class="dis-item item">
+        <div class="dis-item-con">
+            <div class="dis-icon"><div class="dis-img" <!--{if $value['iconcolor']}-->style="background-color: $value['iconcolor']"<!--{/if}-->>$value[name]</div></div>
+            <a class="dis-info" href="{MOD_URL}&op=list&fid=$value[fid]&extra=$extra&forward=$forward">
+                <div class="dis-top">
+                    $value[name]
+                </div>
+                <div class="dis-bot clearfix">
+                    <span style="margin-right: 20px;">{lang thread}：$value[threads]</span><span>{lang post}：$value[posts]</span>
+                    <!--{if $value['lastposttime']}--><span style="float: right;">{lang last_send}：{eval echo dgmdate($value[lastposttime],'u');}</span><!--{/if}-->
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--{/loop}-->
+</div>
+<!--{else}-->
+<div id="dis-container" class="disWrap clearfix">
+    <!--{loop $list $value}-->
+    <a class="dis-item-mesh item" href="{MOD_URL}&op=list&fid=$value[fid]&extra=$extra&forward=$forward">
+        <div class="mesh-con">
+            <div class="dis-icon mesh-icon"><div class="dis-img" <!--{if $value['iconcolor']}-->style="background-color: $value['iconcolor']"<!--{/if}-->>$value[name]</div></div>
+            <div class="dis-info mesh-info">
+                <div class="dis-top mesh-top">
+                    $value[name]
+                </div>
+                <span style="margin-right: 20px;">{lang thread}：$value[threads]</span><span>{lang post}：$value[posts]</span>
+                <!--{if $value['lastposttime']}--><div class="last-time">{lang last_send}：{eval echo dgmdate($value[lastposttime],'u');}</div><!--{/if}-->
+            </div>
+        </div>
+    </a>
+    <!--{/loop}-->
+</div>
+<!--{/if}-->
+<!--{if $multi}-->
+    <div class="page-wrap">
+        {$multi}
+    </div>
+<!--{/if}-->
+<!--{if !$ismobile}-->
+  <script type="text/javascript">
+  
+   jQuery(document).ready(function(e) {
+//		jQuery('#discuss_container').kpdragsort(null,function(){discuss_save();});
+//		 jQuery('.discuss-item a').on('click',function(){
+//			 if(window.kp_only) return false;
+//			 return true;
+//		 });
+	});
+
+function removeFav(obj){
+	var el=jQuery(obj);
+	var perm=el.data('perm');
+	var favid=el.data('favid');
+	if(perm>1){
+		return;
+	}
+	if(favid>0){
+		jQuery.getJSON(DZZSCRIPT+'?mod=discuss&op=ajax&do=deletefavorite',{'favid':favid},function(json){
+			if(json.error){
+				alert(json.error);
+			}else{
+				el.parent().parent().remove();
+				discuss_save();
+			}
+		});
+	}
+}
+function discuss_save(){
+
+	var fids=[];
+	jQuery('.discuss-item').each(function(){
+		var fid=parseInt(jQuery(this).data('fid'));
+		if(fid>0) fids.push(fid);
+	});
+	jQuery.post(DZZSCRIPT+'?mod=discuss&op=my&do=mySort',{fids:fids.join(',')});
+}
+</script>
+
+<script type="text/javascript" src="static/js/jquery.kpdragsort.js?{VERHASH}"></script><!--{/if}-->

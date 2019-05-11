@@ -1,0 +1,7 @@
+-rw-r--r-- 1 ftp ftp           6910 Aug 06  2016 MessageInterface.php
+-rw-r--r-- 1 ftp ftp           4814 Aug 06  2016 RequestInterface.php
+-rw-r--r-- 1 ftp ftp           2591 Aug 06  2016 ResponseInterface.php
+-rw-r--r-- 1 ftp ftp          10098 Aug 06  2016 ServerRequestInterface.php
+-rw-r--r-- 1 ftp ftp           4746 Aug 06  2016 StreamInterface.php
+-rw-r--r-- 1 ftp ftp           4689 Aug 06  2016 UploadedFileInterface.php
+-rw-r--r-- 1 ftp ftp          12607 Aug 06  2016 UriInterface.php

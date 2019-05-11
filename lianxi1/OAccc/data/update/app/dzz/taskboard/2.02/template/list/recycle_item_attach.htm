@@ -1,0 +1,61 @@
+<div class="attach-recycle-item attachment clearfix" id="attach_{$value[id]}" style="margin:0">
+    <!-- <a class="file-picfile" title="$value['filename']" href="$value[url]" target="_blank"> 
+        <img alt="$value[filename]" src="$value[img]">
+    </a> -->
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <th>名称</th>
+                <th>大小</th>
+                <th>来源</th>
+                <th>删除人</th>
+                <th style="text-align:right">删除时间</th>
+            </thead>
+            <tbody>
+                <!--{loop $list $value}-->
+                <tr id="attach_{$value[id]}">
+                    <td style="max-width:300px;">
+                        <a href="{MOD_URL}&op=list&tbid=$value[tbid]" class="task_table_title">
+                            <img alt="$value[filename]" src="$value[img]">
+                            $value[filename]
+                        </a>
+                    </td>
+                    <td class="list-info">$value[ffilesize]</td>
+                    <td class="list-info">$value[task][name]</td>
+                    <td class="list-info">$value[deleteusername]</td>
+                    <td class="list-info list-info-hover" width="300px;">
+                        <span style="text-align:right">{eval echo dgmdate($value[deletetime]);}</span>
+                        <div class="task-item-menu">
+                            <!--{if $taskboard['perm']>1 || $_G['adminid']==1}-->
+                            <a taskid="$value[taskid]" href="javascript:;" title="恢复" style="line-height:20px;" onclick="task_attach_restore('$value[id]')"><i class="dzz dzz-restore" style="top:1px;"></i>恢复</a> 
+                            <!--{/if}-->   
+                            <!--{if $taskboard['perm']>2 || $_G['adminid']==1}-->
+                            <a href="javascript:;" title="彻底删除" onClick="task_attach_delete_permanent(''$value[id]'')" style="line-height:20px;"><i class="dzz dzz-delete" style="top:1px;"></i>彻底删除</a>
+                            <!--{/if}--> 
+                        </div>
+                    </td>   
+                </tr>
+                <!--{/loop}-->
+            </tbody>
+        </table>
+    </div>
+</div>
+ 
+
+<div class="task-more" >
+     <!--{if $next}-->
+     <button id="btn-load-more" class="btn btn-simple" btn-loading-text="加载中..." style="padding:8px 25px" onclick="getMore('$page')">加载更多</button>
+     <!--{else}-->
+     <p style="margin-top:20px;color:#999;text-align:center;">没有更多内容了</p>
+     <!--{/if}-->
+</div>
+<script type="text/javascript">
+jQuery('tr').mouseenter(function(){
+    jQuery(this).find('span').hide();
+    jQuery(this).find('.task-item-menu').show();
+})
+jQuery('tr').mouseleave(function(){
+    jQuery(this).find('span').show();
+    jQuery(this).find('.task-item-menu').hide();
+})
+</script>

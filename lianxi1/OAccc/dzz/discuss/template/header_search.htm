@@ -1,0 +1,295 @@
+<!--{if $_GET[op] != setting && $_GET[do] != setting && $_GET[do] != 'user' && $_GET[do] != 'newthread'}-->
+<link rel="stylesheet" href="static/css/checkbox.css" media="all">
+<link rel="stylesheet" href="{MOD_PATH}/images/headersearch.css">
+<script type="text/javascript" src="static/js/input_field.js"></script>
+<link rel="stylesheet" href="static/js/datepicker/datepicker.css">
+<div class="resSearch" style="z-index: 5;">
+    <div class="form-group">
+        <div class="input-search input-search-dark input-search-word">
+            <form action="{MOD_URL}&op=search" method="post" id="form_search">
+            <input type="hidden" name="formhash" value="{FORMHASH}" >
+            <input type="hidden" name="searchsubmit" value="true">
+
+            <i class="input-search-icon dzz dzz-search" aria-hidden="true" onclick="startSearch()"></i>
+            <input type="text" class="form-control search  form-search" name="srchtxt" value="{$_GET[kw]}" placeholder="{lang search}" id="searchval" onclick="moreSearchOpt()">
+            <span aria-hidden="true" id="emptysearchcondition" class="header-closebutton hide">×</span>
+            <button type="button" class="input-search-drop dzz dzz-arrow-dropdown input-search-width" onclick="moreSearchOpt(1)"></button>
+            <div class="dropdown-width" id="dropdown-width" style="background-color: #fff;z-index: 555;">
+                <div class="dropdown-cap">
+                    <div class="elite-num" style="margin-bottom: 10px;">
+                        <div class="item-title" style="display: inline-block;margin-right: 10px;">{lang thread_range}：</div>
+                        <div class="radio-custom radio-danger elite-radio">
+                            <input type="radio" name="srchfilter" value="all" <!--{if $srchfilter != 'top' && $srchfilter != 'digest'}-->checked<!--{/if}--> >
+                            <label></label>
+                            <span>{lang all}</span>
+                        </div>
+
+                        <div class="radio-custom radio-danger elite-radio">
+                            <input type="radio" name="srchfilter" value="top" <!--{if $srchfilter == 'top'}-->checked<!--{/if}-->>
+                            <label></label>
+                            <span>{lang settop}</span>
+                        </div>
+
+                        <div class="radio-custom radio-danger elite-radio">
+                            <input type="radio" name="srchfilter" value="digest" <!--{if $srchfilter == 'digest'}-->checked<!--{/if}-->>
+                            <label></label>
+                            <span>{lang digest}</span>
+                        </div>
+                    </div>
+                    <div class="explain" style="margin-bottom: 15px;">
+                        <div class="item-title" style="display: inline-block;margin-right: 10px;vertical-align: -3px;">{lang search_range}：</div>
+                        <div class="btn-group explain-info explain-info1">
+                            <button type="button" class="btn drop-btn1 explain-btn discuss_list_btn" data-toggle="dropdown" data-info="none">
+                                {lang please_chose}
+                            </button>
+                            <span class="dzz dzz-expand-more ul-i"></span>
+                            <input type="hidden" name="srchfid" value="<!--{if $srchfid}-->$srchfid<!--{else}-->all<!--{/if}-->">
+                            <ul class="dropdown-menu explain-menu discuss_list" role="menu" style="max-height: 400px;overflow: auto">
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="explain" style="margin-bottom: 15px;">
+                        <div class="item-title" style="display: inline-block;margin-right: 25px;vertical-align: -3px">{lang create_author}：</div>
+                        <div class="btn-group explain-info explain-info1">
+                            <div class="input-black" style="margin-bottom: 0px;">
+                                <div class="input-animate title-input clearfix" style="margin-bottom: 0;">
+                                    <input id="user" name="srchuname" class="form-control" style="width:100%" placeholder="{lang please_enter_name_of_creator}" autocomplete="off" value="{$srchuname}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-type clearfix" data-type="date" style="padding-top: 0">
+                        <div class="item-title" style="display: inline-block;margin-right: 10px;position: absolute;left: 0;top: 11px;">{lang time_range}：</div>
+                        <div class="search-body btn-group explain-info explain-info1">
+                            <button type="button" class="btn drop-btn1 explain-btn searchdate_btn" data-toggle="dropdown" data-info="none">
+                                {lang please_chose}
+                            </button>
+                            <span class="dzz dzz-expand-more ul-i"></span>
+                            <input type="hidden" name="srchfrom" value="{$srchfrom}"/>
+                            <ul class="dropdown-menu searchdate" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="javascript:;" data-val="">{lang anytime}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" data-val="today">{lang today}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" data-val="ytoday">{lang ytoday}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" data-val="7_days_ago">{lang 7_days_ago}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;"  data-val="30_days_ago">{lang 30_days_ago}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" data-val="90_days_ago">{lang 90_days_ago}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" data-val="assign_time">{lang assign_time}</a>
+                                </li>
+                            </ul>
+                            <div class="typexname typexdate" <!--{if $srchfrom != 'assign_time'}-->style="display: none;"<!--{/if}--> >
+                                <p class="data-time">{lang date_range}：</p>
+                                <input type="text" id="selectStart" readonly="readonly" placeholder="{lang starttime}"  name="starttime" value="{$starttime}">
+                                <input type="text" id="selectEnd" readonly="readonly"  placeholder="{lang endtime}" name="endtime" value="{$endtime}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border: none;">
+                    <button type="button" class="btn btn-primary sureBtn" style="margin-right: 10px;"onclick="startSearch()">{lang search}</button>
+                    <button type="button" class="btn cancelBtn resetting" onclick="extreset()">{lang reset}</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--{if $_GET['op'] == 'viewthread'}-->
+    <!--{if $discuss[perm] >= 3 && !$discuss[inarchive] && !$discuss[isdelete]}-->
+        <ul class="nav navbar-nav navbar1">
+            <li class="dropdowns">
+                <a data-href="{MOD_URL}&op=ajax&do=viewthreadmore&tid={$_GET[tid]}  " href="javascript:;" class="js-popbox header-more" data-placement="bottom" data-auto-adapt="true"><i class="dzz dzz-more" title="{lang more}" data-toggle="tooltip" data-placement="bottom" style="font-size: 24px"></i></a>
+            </li>
+            <li class="dropdowns">
+                <a href="javascript:;" class="js-popbox header-share" data-href="{MOD_URL}&op=ajax&do=share&type=thread&fid={$_GET['fid']}&tid={$_GET[tid]}" data-placement="bottom" data-auto-adapt="true"><i class="dzz dzz-share" title="{lang share}" data-toggle="tooltip" data-placement="bottom" style="font-size: 22px"></i></a>
+            </li>
+        </ul>
+    <!--{elseif $discuss[perm] || !$discuss[perm]}-->
+        <ul class="nav navbar-nav navbar1">
+            <li class="dropdowns">
+                <a href="javascript:;" class="js-popbox header-share" data-href="{MOD_URL}&op=ajax&do=share&type=thread&fid={$_GET['fid']}&tid={$_GET[tid]}" data-placement="bottom" data-auto-adapt="true"><i class="dzz dzz-share" title="{lang share}" data-toggle="tooltip" data-placement="bottom" style="font-size: 22px"></i></a>
+            </li>
+        </ul>
+    <!--{/if}-->
+<!--{elseif $_GET['op'] == 'my' && !$_GET[do]}-->
+    <ul class="nav navbar-nav navbar1">
+        <li class="dropdowns">
+            <a href="{MOD_URL}&op=my&showtype=<!--{eval echo $my_forum_showtype == 'list' ? 'module' : 'list'}-->"><i class="dzz <!--{if $my_forum_showtype == 'list'}-->dzz-view-module<!--{else}-->dzz-view-list<!--{/if}-->" title="<!--{if $my_forum_showtype == 'list'}-->网格<!--{else}-->列表<!--{/if}-->" data-toggle="tooltip" data-placement="bottom" style="font-size: 24px"></i></a>
+        </li>
+    </ul>
+<!--{elseif $_GET['op'] == 'list' && $do != 'setting' && $do != 'newthread'}-->
+    <!--{if $discuss[perm] >= 3}-->
+    <ul class="nav navbar-nav navbar1" <!--{if $discuss[inarchive]}-->style='display:none;'<!--{/if}--> >
+        <li class="dropdowns">
+            <a href="{MOD_URL}&op=list&do=setting&fid={$fid}&extra=$extra&forward=$forward"><i class="dzz dzz-settings" title="{lang set}" data-toggle="tooltip" data-placement="bottom" style="font-size: 24px"></i></a>
+        </li>
+        <li class="dropdowns">
+            <a href="javascript:;" class="js-popbox header-share" data-href="{MOD_URL}&op=ajax&do=share&type=discuss&fid={$_GET['fid']}" data-placement="bottom" data-auto-adapt="true"><i class="dzz dzz-share" title="{lang share}" data-toggle="tooltip" data-placement="bottom" style="font-size: 22px"></i></a>
+        </li>
+        <li class="dropdowns">
+            <a href="{MOD_URL}&op=list&do=user&fid={$fid}&extra=$extra&forward=$forward" class="user"><i class="dzz dzz-person-add" title="{lang member_manage}" data-toggle="tooltip" data-placement="bottom" style="font-size: 24px"></i></a>
+        </li>
+    </ul>
+    <!--{elseif $discuss[perm] || !$discuss[perm]}-->
+    <ul class="nav navbar-nav navbar1">
+        <li class="dropdowns">
+            <a href="javascript:;" class="js-popbox header-share" data-href="{MOD_URL}&op=ajax&do=share&type=discuss&fid={$_GET['fid']}" data-placement="bottom" data-auto-adapt="true"><i class="dzz dzz-share" title="{lang share}" data-toggle="tooltip" data-placement="bottom" style="font-size: 22px"></i></a>
+        </li>
+    </ul>
+    <!--{/if}-->
+<!--{/if}-->
+<script type="text/javascript">
+    jQuery(function() {
+        jQuery(document).click(function(){
+            dropdown_off();
+        })
+        jQuery('.js-popbox').popbox();
+        jQuery("[data-toggle='tooltip']").tooltip();
+
+            jQuery("#selectStart,#selectEnd").datepicker({ //添加日期选择功能
+                numberOfMonths: 1, //显示几个月
+                showButtonPanel: false, //是否显示按钮面板
+                dateFormat: 'yy-mm-dd', //日期格式
+                clearText: __lang.clear, //清除日期的按钮名称
+                closeText: __lang.close, //关闭选择框的按钮名称
+                yearSuffix: __lang.year, //年的后缀
+                showMonthAfterYear: true, //是否把月放在年的后面
+                constrainInput: true,
+                maxDate: new Date(),
+                setDate: 'date',
+            
+            });
+             jQuery('#selectStart').change(function () {
+                var start = jQuery('#selectStart').val();
+                var end = jQuery('#selectEnd').val();
+                if (jQuery('#selectStart').val() != '' &&jQuery('#selectEnd').val() != '') {
+                    var starttime = new Date(start);
+                    var endtime = new Date(end);
+                    if (endtime.getTime() < starttime.getTime()) {
+                        showmessage('开始时间不能大于结束时间','danger',1000,1);
+                        return;
+                    }
+                }
+            })
+            jQuery('#selectEnd').change(function () {
+                var start = jQuery('#selectStart').val();
+                var end = jQuery('#selectEnd').val();
+                if (starttime != '' && endtime != '') {
+                    var starttime = new Date(start);
+                    var endtime = new Date(end);
+                    if (endtime.getTime() < starttime.getTime()) {
+                        showmessage('开始时间不能大于结束时间','danger',1000,1);
+                        return;
+                    }
+                }
+            });
+
+        // jQuery("#searchval").click(moreSearchOpt());
+        jQuery('#searchval').on('keyup',function (event) {//回车搜索
+            if (event.which !="") { e = event.which; }
+            else if (event.charCode != "") { e = event.charCode; }
+            else if (event.keyCode != "") { e = event.keyCode; }
+
+            if(e==13){
+                startSearch();
+            }
+        });
+
+        // jQuery('.input-search-width').click(moreSearchOpt());
+
+        jQuery(document).on('click', '.discuss_list_li', function(){//搜索范围
+            jQuery(".discuss_list_btn").text(jQuery(this).text());
+            jQuery("input[name='srchfid']").val(jQuery(this).data("fid"));
+        })
+
+        jQuery(document).on('click', '.searchdate li', function(){//时间范围
+            jQuery(".searchdate_btn").text(jQuery(this).text());
+            var val = jQuery(this).find("a").data("val");
+            jQuery("input[name='srchfrom']").val(val);
+            if (val == 'assign_time') {
+                jQuery(".typexname.typexdate").show();
+            } else {
+                jQuery(".typexname.typexdate").hide();
+            }
+        })
+
+    })
+
+function moreSearchOpt(sw){
+    if (sw && !jQuery("#dropdown-width").is(":hidden")) {
+        jQuery(".input-search-width").removeClass("dzz-arrow-dropup");
+        jQuery(".input-search-width").addClass("dzz-arrow-dropdown");
+        jQuery('.input-search').removeClass('focus');
+        jQuery('.dropdown-width').hide();
+    } else {
+        jQuery(".input-search-width").removeClass("dzz-arrow-dropdown");
+        jQuery(".input-search-width").addClass("dzz-arrow-dropup");
+        jQuery("#dropdown-width").show();
+    }
+    var text = jQuery(".searchdate li a[data-val='{$srchfrom}']").text();
+    jQuery(".searchdate_btn").text(text);
+    if (!jQuery(".discuss_list").data("ajaxed")) {
+         jQuery.ajax({
+            url: "{MOD_URL}&op=ajax&do=getdislist",
+            type: 'get',
+            dataType: 'json',
+            success: function(res) {
+                var html = '';
+                var val = jQuery("input[name='srchfid']").val();
+                jQuery.each(res[0], function(n, v) {
+                    html += '<li class="explain-li discuss_list_li" data-fid="'+v["fid"]+'"><a>'+v["title"]+'</a></li>';
+                    if (val == v['fid']) {
+                        jQuery(".discuss_list_btn").text(v["title"]);
+                    }
+                })
+                jQuery(".discuss_list").data("ajaxed", 1).append(html);
+            }
+        })
+    }
+}
+
+function startSearch() {
+    jQuery("#form_search").submit();
+}
+function extreset(){
+    jQuery("#searchval").val('');
+    jQuery("input[name='srchfilter']").prop('checked', false);
+    jQuery("input[name='srchfilter']:eq(0)").prop('checked', true);
+    jQuery("input[name='srchfid']").val('all');
+    jQuery(".discuss_list_btn").text("请选择");
+    jQuery("input[name='srchuname']").val('');
+    jQuery("input[name='srchfrom']").val('');
+    jQuery(".searchdate_btn").text("{lang anytime}");
+}
+jQuery('#searchval').focus(function (e) {//头部搜索框变颜色
+    jQuery(this).closest('.input-search').addClass('focus');
+	if(this.value!='') jQuery('#emptysearchcondition').show();
+});
+
+jQuery('#emptysearchcondition').on('click',function(){
+	jQuery('#searchval').val('');
+	jQuery('#searchval').closest('form').submit();
+	jQuery('#emptysearchcondition').hide();
+	return false;
+});
+</script>
+<script type="text/javascript" src="{MOD_PATH}/scripts/header-search.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.datepicker.min.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.datepicker-zh-CN.js"></script>
+<!--{/if}-->

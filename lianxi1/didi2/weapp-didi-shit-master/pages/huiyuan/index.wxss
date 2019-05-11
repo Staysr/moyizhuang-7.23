@@ -1,0 +1,141 @@
+/* pages/huiyuan/index.wxss */
+.smsCode{
+display: flex;
+justify-content:space-between;
+border-bottom: 1px solid #ddd;
+padding-right: 10%
+}
+
+.smsCode .getSmsCodeBtn{
+  font-size: 30rpx; 
+  color:#fff;
+  width:216rpx;
+  box-sizing: border-box; 
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top: 10rpx;
+  margin-right: 0
+  }
+
+.content{text-align: center}
+.open{
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin-top: 98rpx;
+  display: block;
+  overflow: hidden;
+  margin-left: 300rpx;
+}
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.input-area{
+    background-color: #fff;
+    text-align: left;
+    border-bottom:1px solid #ddd
+}
+.logo{
+  width: 45%;
+  text-align: right;
+  float:left;
+  margin-bottom:150rpx; 
+
+}
+.logo1{
+  width: 45%;
+  text-align: left;
+  float:right;
+  margin-bottom:150rpx; 
+}
+.car{
+  width: 77rpx;
+}
+.phone{
+       width: 45rpx;
+       height: 45rpx;
+       margin-left: 12rpx;
+       float: left;
+       margin-top:30rpx; 
+}
+.l1{
+    clear: both;
+}
+input{
+    width:377rpx;
+    float:left;   
+}
+/* .password{
+      width: 45rpx;
+       height: 45rpx;
+       margin-left: 12rpx;
+} */
+.input-area input{
+  height:100rpx;
+ line-height: 100rpx;
+}
+.smsCode input{
+  height:100rpx;
+ line-height: 100rpx;
+ text-align: left;
+}
+.btn-area{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 29rpx;
+
+}
+.btn-area button{
+    /*background-color: #ff9900;*/
+    margin-top: 40rpx;
+    color: #fff
+}
+.txt-area{
+    margin-top: 30rpx;
+    display: flex;
+    justify-content:space-between;
+    font-size: 30rpx
+}
+.forgot-password{
+  color: #888;
+  font-size: 15px;
+
+}
+.identifying-code{
+  color: #888;
+  font-size: 15px;
+}
+.register{
+  color:#ff9900;
+}
+.forgot-password:active,.register:active{
+  opacity: 0.7;
+}
+
+.hedao{
+  color: rgb(247,193,57);
+  font-size: 29rpx;
+}
+.xueyi{
+  font-size: 29rpx;
+}
+ 
+radio .wx-radio-input{
+    border-radius: 50%; 
+    width: 28rpx;
+    height: 28rpx;
+}
+radio .wx-radio-input.wx-radio-input-checked::before{
+    border-radius: 50%;
+    width: 44rpx; 
+    height: 44rpx; 
+    line-height: 44rpx;
+    text-align: center;
+    font-size: 26rpx; /* 对勾大小 26rpx */
+    color:#fff; /* 对勾颜色 */
+    background: rgb(247,193,57);
+    border-color: rgb(247,193,57);
+} 

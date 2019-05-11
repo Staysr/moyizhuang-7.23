@@ -1,0 +1,131 @@
+<!--{if $_GET['inajax']}-->
+<!--{template common/header_ajax}-->
+<!--{/if}-->
+
+<div style="background: #fff">
+    <div class="found_header" >
+        <button type="button" class="close close1" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">创建任务版</h4>
+    </div>
+</div>
+
+
+<form id="taskboardform" name="taskboardform" class="form-horizontal-left form-horizontal" action="{MOD_URL}&op=ajax&do=create" method="post" onsubmit="return validate(this);" >
+    <input type="hidden" name="createsubmit" value="true" />
+    <input type="hidden" name="tbid" value="$tbid" />
+    <input type="hidden" name="orgid" value="$orgid" />
+    <input type="hidden" name="refer" value="$refer" />
+    <input type="hidden" name="formhash" value="{FORMHASH}" />
+
+
+    <div class="modal-body text-center">
+        
+        <div class="form-group">
+            <label class="control-label" for="name">任务板名称：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="name"  name="name" autocomplete="off" value="$taskboard[name]"  maxlength="80">
+            </div>
+        </div>
+
+        <div class="form-group taskboard-coverContainer">
+            <label class="control-label">任务板背景：</label>
+            <input type="hidden"  id="aid"  name="aid" autocomplete="off" value="$taskboard[aid]">
+            <div class="controls col-sm-8">
+                <!-- <div id="cover_aid" class="cover pull-left"><img src="dzz/taskboard/images/cover/$taskboard[aid].png" style="max-width:150px;" /></div> -->
+                <ul class="color-block-container list-unstyled clearfix" style="width:90%;">
+                    <li><button type="button" class="btn color-block color-block-1" data-aid="1" onclick="switch_cover(this,1);return false;"><span class="dzz dzz-done"></span></button></li>
+                    {eval for($i=2;$i<12;$i++){}
+                    <li><button type="button"  class="btn color-block color-block-$i" data-aid="$i" onclick="switch_cover(this,'$i');return false;"><span class="dzz dzz-done" style="visibility:hidden;"></span></button></li>
+                    {eval }}
+                    
+                </ul>
+            </div>
+        </div>                      
+        <div class="form-group clearfix">
+            <label class="control-label" for="name" style="line-height:35px;">权限设置：</label>
+            <div class="clearfix" style="padding-left:120px;">
+			<!--{if empty($org) || $org['perm']>2 ||  ($org && (intval($org['mperm_c']) & 1))}-->
+				<div class="radio-custom pull-left radio-primary ml20">
+					<input type="radio" name="viewperm" value="0" <!--{if $perm==0}-->checked<!--{/if}-->>
+					<label>隐私</label>
+				</div>
+				<!--{/if}-->
+			<!--{if $org['perm']>1 || ($org[perm]>2 && (intval($org['mperm_c']) & 2))}-->
+				<div class="radio-custom pull-left radio-primary ml20">
+					<input type="radio" name="viewperm" value="1" <!--{if $perm==1}-->checked<!--{/if}-->>
+					<label>小组内可见</label>
+				</div>
+			<!--{/if}-->	
+			 <!--{if empty($org) || $org['perm']>2 || ($org[perm]>1 && (intval($org['mperm_c']) & 4))}-->
+				<div class="radio-custom pull-left radio-primary ml20">
+					<input type="radio" name="viewperm" value="2" <!--{if $perm==2}-->checked<!--{/if}-->>
+					<label>公开</label>
+				</div>
+			<!--{/if}-->
+			</div>
+      		
+        </div>
+          <div class="form-group">
+            <label class="control-label" for="name" style="line-height:35px;">任务列表：</label>
+            <div class="clearfix" style="padding-left:120px;">
+				<div class="radio-custom pull-left radio-primary ml20">
+					<input type="radio" name="layout" value="0" checked>
+					<label>看板</label>
+				</div>
+				<div class="radio-custom pull-left radio-primary ml20">
+					<input type="radio" name="layout" value="1" >
+					<label>列表</label>
+				</div>
+				
+			</div>
+        </div> 
+
+        <div class="clearfix mb20" style="margin-bottom: 0;text-align:right">
+            <button type="submit" class="btn sureBtn">创建</button>
+            <button type="button" class="btn btn-can cancelBtn" data-dismiss="modal">取消</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+jQuery('.left-drager').leftDrager_layout(); 
+function validate(form){
+	if(form.name.value==''){
+		form.name.focus();
+		return false;
+		
+	}
+	jQuery.post(form.action,jQuery(form).serialize(),function(json){
+		// console.log(json);
+		if(json.tbid>0){
+			var html='';
+			html+='<li data-tbid="'+json.tbid+'"  id="board_star_'+json.tbid+'">';
+			// html+='<span class="item-guide perm_'+json.viewperm+'"> </span>';
+            html+='<a class="board-title js-open-board highlight-icon color-block-'+json.aid+'" href="{MOD_URL}&op=list&tbid='+json.tbid+'" target="_blank" title="'+json.name+'">';
+            html+='   <span class="board-title-fade"></span>';
+            html+='   <span class="board-title-details" title="'+json.name+'"><span title="'+json.name+'"  class="board-title-details-name">'+json.name+'</span></span>';
+            html+='  <span class="board-title-options">';
+			html+='   	<span title="点击加星这个任务板。它将会显示在我的列表上方。" class="icon-sm dzz dzz-star-border  board-title-options-star-icon js-star-board"  data-tbid="'+json.tbid+'"></span>';
+            html+='  </span>';
+            html+='</a>';
+            html+='</li>';
+		   jQuery(html).insertAfter(jQuery('#board_list_'+json.orgid+' li').first());
+		}else{
+			showmessage('创建失败','danger',3000,1);
+		}
+		hideWindow('$_GET[handlekey]');
+	},'json');
+	return false;
+}
+
+function switch_cover(obj,aid){
+	// jQuery('#cover_aid').find('img').get(0).src=SITEURL+'dzz/taskboard/images/cover/'+aid+'.png';
+    jQuery(obj).find('span').css('visibility','visible');
+    jQuery('.color-block').not(jQuery(obj)).find('span').css('visibility','hidden');
+	jQuery('#aid').val(aid);
+}
+
+</script>
+
+<!--{if $_G['inajax']}-->
+<!--{template common/footer_ajax}-->
+<!--{/if}

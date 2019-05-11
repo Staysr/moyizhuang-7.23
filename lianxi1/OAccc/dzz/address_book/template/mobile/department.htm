@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/addr_header}-->
+    <title>部门</title>
+</head>
+<div class="container">
+    <div class="weui-search-bar" id="searchBar">
+        <form class="weui-search-bar__form" action="{MOD_URL}&op=list" onsubmit="formatVal()">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search" class="weui-search-bar__input" name="gid" id="searchInput" placeholder="搜索" required="">
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText">
+                <i class="weui-icon-search"></i>
+                <span>搜索</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    </div>
+    <div class="user-wrap">
+        <!--{template mobile/addr_list}-->
+    </div>
+</div>
+<!--{template mobile/footer}-->
+</body>
+<script>
+    <!--{if $gid}--> 
+        $.ajax({
+            url:'{MOD_URL}&op=list&gid=$gid',
+            type:'post',
+            success:function (res) {
+                $('.user-wrap').append(res);
+            }
+        })
+    <!--{/if}-->
+    function formatVal(){
+        $("#searchInput").val('search-'+jQuery("#searchInput").val());
+    }
+</script>
+<!--{eval output();}-->
+</html>

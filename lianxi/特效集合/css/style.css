@@ -1,0 +1,312 @@
+
+*{
+    margin:0;
+    padding: 0;
+}
+body{
+    background: #eee;
+}
+li{
+    list-style: none;
+
+}
+a{
+    color: #e60;
+    text-decoration: none;
+}
+html,body,.tab,.box{
+    width: 100%;
+    height: 100%;
+}
+
+/*nav start*/
+.nav{
+    height: auto;
+    margin: 0px auto;
+}
+.nav .top{
+    width: 1000px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.nav .top li{
+    width: 150px;
+    height: 80px;
+    line-height: 80px;
+    /*background: pink;*/
+    float: left;
+    text-align: center;
+    font-size: 26px;
+    position: relative;
+}
+.top li span{
+    width: 0;
+    height: 100%;
+    display: block;
+    background-color: rgba(0,0,0,0);
+    border-bottom: 4px solid #e60;
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    transition: all 0.5s;
+}
+.top li:hover span{
+    background-color: rgba(0,0,0,0.1);
+    width: 100%;
+    left: 0;
+}
+/*banner start*/
+.banner{
+    width: 1000px;
+    margin: 10px auto 30px;
+}
+.photo{
+    width: 100%;
+    overflow: hidden;
+}
+.item{
+    width: 25%;
+    height: 147px;
+    /*background: skyblue;*/
+    float: left;
+    margin-bottom: 6px;
+}
+.item:nth-child(1){
+    width: 50%;
+    height: 300px;
+    margin-bottom: 0;
+    background: pink;
+}
+.cons{
+    display: block;
+    width: auto;
+    height: 100%;
+    margin-left: 6px;
+    /*background: tan;*/
+    overflow: hidden;
+}
+.item:nth-child(1) .cons{
+    margin-left: 0;
+}
+.item:nth-child(n+4) .cons{
+    margin-bottom: 0;
+}
+.item img{
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s;
+}
+.item:hover img{
+    margin-top: -10px;
+    margin-left: -10px;
+    width: 110%;
+    height: 110%;
+}
+
+/*幻灯片*/
+.slide{
+    width: 1000px;
+    height: 200px;
+    margin: 0 auto;
+    background: #000;
+}
+.slideImg{
+    width: 900px;
+    height: 200px;
+    /*border: 1px solid #ccc;*/
+    box-shadow: 0 0 3px red;
+    margin: 0px auto;
+    overflow: hidden;
+}
+.slideImg ul{
+    width: 9999px;
+    position: relative;
+}
+.slideImg ul li {
+    width: 300px;
+    height: 200px;
+    float: left;
+}
+.slideImg img{
+    width: 100%;
+    height: 100%;
+}
+
+/*content*/
+.content{
+    width: 1000px;
+    margin:0 auto;
+    overflow: hidden;
+}
+.content .left{
+    width: 300px;
+    margin: 0 auto;
+    /*background: pink;*/
+    height: auto;
+    background: linear-gradient(#fff,#ccc);
+    float: left;
+}
+.content .left h2{
+    width: 100%;
+    line-height: 100px;
+    height: 100px;
+    text-align: center;
+    color: deepskyblue;
+}
+.content .left ul{
+    /*height: 100%;*/
+    height: auto;
+    margin: 0 auto;
+    width: 230px;
+    /*background: pink;*/
+}
+.left ul li{
+
+    padding: 10px 20px;
+    text-align: left;
+    border-bottom: 1px dashed #999;
+}
+.left ul li:hover a{
+    color: red;
+}
+/* content tab*/
+
+.content .right{
+    width: 680px;
+    margin-left: 20px;
+    float: left;
+}
+.content .tab{
+    width: 100%;
+    height: 1000px;
+
+}
+.tab .top{
+    width: 100%;
+    height: 50px;
+    border-bottom: 5px solid red;
+}
+.tab .top ul{
+    overflow: hidden;
+}
+.tab .top ul li{
+    float: left;
+    padding: 0 30px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    /*background: skyblue;*/
+    /*transition: background 1s;*/
+    /*color: blue;*/
+}
+
+.tab .top ul .active span{
+    width: 100%;
+    height: 100%;
+    display: block;
+    /*transform: rotate(57deg) ;*/
+}
+.tab .active{
+    width: auto;
+    height: 100%;
+    background: red;
+    color: #fff;
+    /*transform: rotate(-57deg) ;*/
+}
+.tab .con{
+    width:100%;
+}
+
+.tab .show{
+    width: 100%;
+    height: auto;
+    display: block;
+
+}
+.title{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding: 20px 0;
+    overflow: hidden;
+}
+.title span{
+    float: left;
+    color: red;
+}
+.title h3{
+    float: left;
+    margin-left: 50px;;
+}
+.bottom{
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 40px;
+}
+.bottom a{
+    display: block;
+    width: 250px;
+    height: 150px;
+    float: left;
+}
+.bottom a img{
+    width: 100%;
+    height: 100%;
+}
+.bottom dl{
+    width: 510px;
+    height: 150px;
+    /*background: pink;*/
+    float: left;
+    margin-left: 30px;
+    overflow: hidden;
+}
+.bottom dl dt{
+    width: 100%;
+    /*background: skyblue;*/
+    float: left;
+    height: 60px;
+    line-height: 30px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /*white-space: nowrap;//超出一行后显示。。。*/
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.bottom dl dd{
+    float: left;
+    margin-top: 30px;
+    font-size: 13px;
+}
+.bottom dl dd:nth-of-type(1){
+    padding-right: 30px;
+}
+.btn {
+    width: 160px;
+    height: 40px;
+    background: skyblue;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+
+.foot{
+    text-align: center;
+    height: 80px;
+    line-height: 80px;
+    background: #ccc;
+}
+
+
+
+
+
+
+
+
+

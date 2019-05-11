@@ -1,0 +1,80 @@
+/* CSS Document */
+body{
+	margin:0px;
+	background-image:url(../images/bg.gif);
+	background-repeat:repeat-x;
+	background-position:top;
+}
+body,td,th{
+	font-size:12px;
+	color:#666666;
+}
+/*div{
+	border: 1px #000000 solid;
+
+}*/
+#header{
+	margin:0px auto;
+	text-align:center;
+	position:relative;
+	top: 140px;
+	background-image:url(../images/header.gif);
+	background-repeat:no-repeat;
+	background-position:center;
+	width: 284px;
+	height:86px;
+}
+#inputdiv{
+	position: relative;
+	top: 140px;
+	background-image:url(../images/inputbox.gif);
+	background-position: center;
+	background-repeat:no-repeat;
+	width:351px;
+	height:97px;
+	text-align:left;
+	margin:0px auto;
+	text-align:center;
+}
+#bottomdiv{
+	position: relative;
+	top: 150px;
+	width:351px;
+	margin:0px auto;
+	text-align:center;
+}
+#namediv{
+	position:absolute;
+	top:18px;
+	left:68px;
+	width:182px;
+}
+#user{
+	border:1px #7094a2 solid;
+	width: 182px;
+	height:18px;
+}
+#malediv{
+	position:absolute;
+	top:55px;
+	left:70px;
+}
+#femalediv{
+	position:absolute;
+	top:55px;
+	left:135px;
+}
+#btndiv{
+	position:absolute;
+	top: 18px;
+	left: 268px;
+	width: 53px;
+}
+#lgbtn{
+	background-image:url(../images/logbtn.gif);
+	background-position:center;
+	background-repeat:no-repeat;
+	width:53px;
+	height:53px;
+	border: 1px #FFFFFF solid;
+}

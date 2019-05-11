@@ -1,0 +1,96 @@
+<!--{eval include_once gettpl("hack_top");}-->
+
+<ul class="nav">
+	<li><a href="$basename">资源库列表</a></li>
+	<li><a href="$basename&action=setup" class="active">采集设置</a></li>
+	<li><a href="$basename&action=record">自动采集记录</a></li>
+</ul>
+<br />
+
+<form method="post" action="$basename&action=setup">
+<input type="hidden" name="step" value="2" />
+<table class="tableborder f-w98 f-m0a">
+<tr><td colspan="2" class="header">采集设置</td></tr>
+<tr>
+	<td>更新影片除更新播放地址外, 还需更新</td>
+	<td>
+		<label><input type="checkbox" name="collect[col_update_subject]" value="1" <!--{if $col_update_subject==1}-->checked="checked"<!--{/if}--> /> 标题</label>&nbsp;
+		<label><input type="checkbox" name="collect[col_update_pic]" value="1" <!--{if $col_update_pic==1}-->checked="checked"<!--{/if}--> /> 海报</label>&nbsp;
+		<label><input type="checkbox" name="collect[col_update_playactor]" value="1" <!--{if $col_update_playactor==1}-->checked="checked"<!--{/if}--> /> 演员</label>&nbsp;
+		<label><input type="checkbox" name="collect[col_update_director]" value="1" <!--{if $col_update_director==1}-->checked="checked"<!--{/if}--> /> 导演</label>&nbsp;
+		<label><input type="checkbox" name="collect[col_update_year]" value="1" <!--{if $col_update_year==1}-->checked="checked"<!--{/if}--> /> 年代	</label>&nbsp;	
+		<label><input type="checkbox" name="collect[col_update_memo]" value="1" <!--{if $col_update_memo==1}-->checked="checked"<!--{/if}--> /> 备注</label>&nbsp;
+		<label><input type="checkbox" name="collect[col_update_content]" value="1" <!--{if $col_update_content==1}-->checked="checked"<!--{/if}--> /> 内容简介</label>
+	</td>
+</tr>
+<tr>
+	<td>当系统中存在相同影片时</td>
+	<td>
+		<label><input type="radio" name="collect[col_samename]" value="4" $col_samename_4 /> 正常入库</label>&nbsp;
+		<label><input type="radio" name="collect[col_samename]" value="1" $col_samename_1 /> 添加播放来源</label>&nbsp;
+		<label><input type="radio" name="collect[col_samename]" value="2" $col_samename_2 /> 覆盖源地址</label>&nbsp;
+		<label><input type="radio" name="collect[col_samename]" value="3" $col_samename_3 /> 忽略</label>&nbsp;
+	</td>
+</tr>
+<tr>
+	<td>判断是否为相同影片，除标题相同外，还需</td>
+	<td>
+		<label><input type="checkbox" name="collect[col_compare_cid]" value="1" <!--{if $col_compare_cid==1}-->checked="checked"<!--{/if}--> /> 栏目相同</label>&nbsp;
+		<label><input type="checkbox" name="collect[col_compare_nid]" value="1" <!--{if $col_compare_nid==1}-->checked="checked"<!--{/if}--> /> 地区相同</label>&nbsp;
+		<label><input type="checkbox" name="collect[col_compare_director]" value="1" <!--{if $col_compare_director==1}-->checked="checked"<!--{/if}--> /> 导演相同</label>&nbsp;
+		<label><input type="checkbox" name="collect[col_compare_playactor]" value="1" <!--{if $col_compare_playactor==1}-->checked="checked"<!--{/if}--> /> 一个或多个演员相同</label>&nbsp;
+		<label><input type="checkbox" name="collect[col_compare_year]" value="1" <!--{if $col_compare_year==1}-->checked="checked"<!--{/if}--> /> 年代相同</label>&nbsp;
+		<label><input type="checkbox" name="collect[col_compare_memo]" value="1" <!--{if $col_compare_memo==1}-->checked="checked"<!--{/if}--> /> 备注相同</label>&nbsp;
+	</td>
+</tr>
+<tr>
+	<td>影片入库随机用户名<br />多个用户名之间用逗号(,)隔开</td>
+	<td>
+		<input type="text" name="collect[col_random_username]" value="$col_random_username" style="width: 300px;"/>
+	</td>
+</tr>
+<tr>
+	<td>影片入库随机发布时间<br />开始时间 - 结束时间</td>
+	<td>
+		<input type="text" name="collect[col_random_postdate_start]" value="$col_random_postdate_start" class="datetimepicker" />
+		-
+		<input type="text" name="collect[col_random_postdate_end]" value="$col_random_postdate_end" class="datetimepicker" />
+	</td>
+</tr>
+<tr>
+	<td>影片入库随机点击数<br />最小值 - 最大值</td>
+	<td>
+		<input type="text" name="collect[col_random_hits_min]" value="$col_random_hits_min" />
+		-
+		<input type="text" name="collect[col_random_hits_max]" value="$col_random_hits_max" />
+	</td>
+</tr>
+<tr>
+	<td>采集完成后自动开始图片下载</td>
+	<td>
+		<label><input type="radio" name="collect[col_downpic_auto]" value="1" $col_downpic_auto_1 /> 开启</label>&nbsp;
+		<label><input type="radio" name="collect[col_downpic_auto]" value="0" $col_downpic_auto_0 /> 关闭</label>&nbsp;
+	</td>
+</tr>
+<tr>
+	<td>图片下载步长<br />即每个执行周期下载的图片数</td>
+	<td><input type="text" name="collect[col_downpic_step]" value="$col_downpic_step"/></td>
+</tr>
+
+</table>
+<br />
+<center><input type="submit" value="提 交" /></center>
+</form>
+
+<link rel="stylesheet" type="text/css" href="js/datetimepicker/jquery.datetimepicker.css" />
+<script type="text/javascript" src="js/datetimepicker/jquery.datetimepicker.js"></script>
+<script type="text/javascript">
+$(".datetimepicker").datetimepicker({
+	lang: 'zh',
+	mask: true,
+	validateOnBlur: false,
+	format: 'Y-m-d H:i'
+});
+</script>
+
+<!--{eval include_once gettpl("hack_bottom");}-->

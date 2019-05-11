@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/dis_header}-->
+    <title>{lang send_new_thread}</title>
+</head>
+<body style="position: relative;background-color: #f8f8f8;">
+<div class="cteate-wrap">
+    <div class="weui-cells create-input">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" maxlength="40" name="title" placeholder="{lang give_title_to_the_post}">
+            </div>
+        </div>
+    </div>
+    <div class="textarea-wrap">
+        <div class="weui-cells weui-cells_form" style="margin-top: 0">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="{lang talk_something}" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-con" style="padding: 15px;padding-bottom: 16px;">
+        <ul class="weui_uploader_files img-con1">
+            <div class="weui-uploader__input-box">
+                <input id="uploaderInput" class="weui-uploader__input upload-input" type="file" accept="image/*" multiple="">
+            </div>
+        </ul>
+
+        <!--<a href="javascript:;" class="btn-a1 img-btn">-->
+        <!--<input id="uploaderInput" class="weui-uploader__input upload-input" type="file" accept="image/*" multiple="">-->
+        <!--<i class="dzz dzz-photo-actual"></i>-->
+        <!--</a>-->
+    </div>
+    <div class="select-wrap">
+        <div class="weui-cell weui-cell_select">
+            <div class="weui-cell__bd">
+                <select class="weui-select" name="select1">
+                    <option selected="" value="0">{lang please_chose_discuss}</option>
+                    <!--{loop $diss $value}-->
+                        <option value="{$value[fid]}" <!--{if $value[fid] == $fid}-->selected<!--{/if}--> >{$value[name]}</option>
+                    <!--{/if}-->
+                </select>
+            </div>
+        </div>
+        <!--{if $threadtypes}-->
+        <div class="weui-cell weui-cell_select" id="type">
+            <div class="weui-cell__bd">
+                <select class="weui-select" name="select2">
+                    <!--{loop $threadtypes $value}-->
+                        <option value="{$value[typeid]}">{$value[name]}</option>
+                    <!--{/loop}-->
+                </select>
+            </div>
+        </div>
+        <!--{/if}-->
+
+    </div>
+
+    <div class="switch-wrap1" style="border: none">
+
+        <!--<div class="weui-cell weui-cell_switch switch-item">-->
+            <!--<div class="weui-cell__bd">是否匿名</div>-->
+            <!--<div class="weui-cell__ft">-->
+                <!--<input class="weui-switch" type="checkbox">-->
+            <!--</div>-->
+        <!--</div>-->
+
+    </div>
+</div>
+<div class="btn-wrap">
+    <a href="javascript:;" class="btn weui-btn weui-btn_default weui-btn_disabled">{lang create}</a>
+</div>
+</body>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.ui.widget.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.iframe-transport.js?{VERHASH}"></script>
+<!-- The basic File Upload plugin -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-process.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-validate.js?{VERHASH}"></script>
+<script>
+  jQuery(function () {
+      var attach=[];
+        jQuery('#uploaderInput').fileupload({
+          url: '{MOD_URL}&op=ajax&do=uploadimg',
+          dataType: 'json',
+          autoUpload: true,
+          maxFileSize: 20000000, // 20MB
+          maxChunkSize: 2000000, //2M
+          acceptFileTypes: new RegExp("\.([jpe?g|gif|png])$",'i'),
+          sequentialUploads: true,
+          add: function(e,data){
+              console.log()
+              data.content = jQuery(this).parents('ul');
+              jQuery.each(data.files, function(index, file) {
+
+                  data.list = jQuery('<li class="weui-uploader__file img-item1 weui-uploader__file_status"  style="background:rgba(0,0,0,0.7)"><div class="weui-uploader__file-content">0%</div></li>');
+                  data.list.prependTo(data.content);
+              });
+              data.process().done(function() {
+                  data.submit();
+              });
+          },
+          progress : function(e, data) {
+              var index = 0;
+              var progress = parseInt(data.loaded / data.total * 100, 10);
+              data.list.find('.weui-uploader__file-content').text(progress+'%')
+          },
+          done: function(e, data) {
+              jQuery.each(data.result.files, function(index, file) {
+                  if(file.error) {
+                      showmessage(file.error, 'danger', 3000, 1);
+                  } else {
+                      attach.push({
+                                "aid":file.data.aid,
+                                "name":file.data.filename,
+                                "ext":file.data.filetype,
+                                "size":file.data.filesize
+                            })
+                      var html='<li class="weui-uploader__file img-item1"><a href="javascript:;" class="img-delete"><i class="dzz dzz-close"></i></a><img class="img_upload_view" src="'+file.data.img+'" data-aid="'+file.data.aid+'"></li>'
+                      data.list.replaceWith(html);
+
+                  }
+              });
+          }
+      });
+        jQuery('.color-item').click(function () {
+            if(!jQuery(this).find('.create-i').hasClass('icon-show')) {
+                jQuery('.color-item').find('.create-i').removeClass('icon-show');
+                jQuery(this).find('.create-i').addClass('icon-show');
+            }
+        })
+        var anonymous=0;
+        jQuery('select[name="select1"]').change(function () {
+            var el=jQuery(this).val();
+            jQuery.ajax({
+                url:'{MOD_URL}&op=list&do=ajax&position=getdiscuss&fid='+el,
+                dataType:'json',
+                type:'post',
+                success:function (res) {
+                    var html='<div class="weui-cell weui-cell_select" id="type">'+
+                        '<div class="weui-cell__bd">'+
+                        '<select class="weui-select" name="select2">';
+                    for(var i=0;i<res.threadtypes.length;i++) {
+                        html+='<option value="'+res.threadtypes[i].typeid+'">'+res.threadtypes[i].name+'</option>'
+                    }
+                    html+='</select></div></div>';
+                    jQuery('.select-wrap').children('.weui-cell').remove('#type');
+                    if(res.threadtypes.length>0) {
+                        jQuery('.select-wrap').append(html);
+                    }
+                    jQuery('.switch-wrap1').children().remove();
+                    anonymous=0;
+                    if(res.anonymous==1) {
+                        var el='<div class="weui-cell weui-cell_switch switch-item">' +
+                                    '<div class="weui-cell__bd">{lang whether_or_not_anonymous}</div>' +
+                                    '<div class="weui-cell__ft">' +
+                                        '<input class="weui-switch" type="checkbox" name="anonymous">' +
+                                    '</div>' +
+                                '</div>';
+                        jQuery('.switch-wrap1').append(el);
+                    }else if(res.anonymous==2) {
+                        anonymous=2;
+                        var el_1='<p class="info-p">{lang mandatory_anonymous_post}</p>';
+                        jQuery('.switch-wrap1').append(el_1);
+                    }
+                }
+            })
+        })
+        jQuery('input[name="title"]').on('input change focus',function () {
+            if(jQuery(this).val()!='' && jQuery('.weui-textarea').val()!='' && jQuery('select[name="select1"] option:selected').val() !=0) {
+                jQuery('.btn-wrap .btn').removeClass('weui-btn_disabled');
+                jQuery('.btn-wrap .btn').removeClass('weui-btn_default');
+                jQuery('.btn-wrap .btn').addClass('weui-btn_primary');
+            }else {
+                jQuery('.btn-wrap .btn').removeClass('weui-btn_primary');
+                jQuery('.btn-wrap .btn').addClass('weui-btn_default');
+                jQuery('.btn-wrap .btn').addClass('weui-btn_disabled');
+            }
+        })
+        jQuery('.weui-textarea').on('input change focus',function () {
+            if(jQuery(this).val()!='' && jQuery('input[name="title"]').val()!='' && jQuery('select[name="select1"] option:selected').val() !=0) {
+                jQuery('.btn-wrap .btn').removeClass('weui-btn_disabled');
+                jQuery('.btn-wrap .btn').removeClass('weui-btn_default');
+                jQuery('.btn-wrap .btn').addClass('weui-btn_primary');
+            }else {
+                jQuery('.btn-wrap .btn').removeClass('weui-btn_primary');
+                jQuery('.btn-wrap .btn').addClass('weui-btn_default');
+                jQuery('.btn-wrap .btn').addClass('weui-btn_disabled');
+            }
+        })
+      jQuery(document).on('change','select[name="select1"]',function () {
+          if(jQuery('.weui-textarea').val()!='' && jQuery('input[name="title"]').val()!='' && jQuery('select[name="select1"] option:selected').val() !=0) {
+              jQuery('.btn-wrap .btn').removeClass('weui-btn_disabled');
+              jQuery('.btn-wrap .btn').removeClass('weui-btn_default');
+              jQuery('.btn-wrap .btn').addClass('weui-btn_primary');
+          }else {
+              jQuery('.btn-wrap .btn').removeClass('weui-btn_primary');
+              jQuery('.btn-wrap .btn').addClass('weui-btn_default');
+              jQuery('.btn-wrap .btn').addClass('weui-btn_disabled');
+          }
+      })
+        jQuery(document).on('click','.img-delete',function () {
+            var aid1=jQuery(this).next('.img_upload_view').attr('data-aid');
+            for(var i in attach) {
+                if(attach[i].aid==aid1) {
+                    delete attach[i];
+                }
+            }
+            jQuery(this).parents('.img-item1').remove();
+        })
+        jQuery('.btn-wrap .btn').click(function () {
+            if(jQuery('input[name="anonymous"]').prop('checked')) {
+                anonymous=1;
+            }
+            var fid = jQuery('select[name="select1"] option:selected').val();
+            if(fid=='0') {
+                jQuery.toptip('{lang please_chose_discuss}');
+                return;
+            }
+            var typeid = jQuery('select[name="select2"] option:selected').val();
+            var subject=jQuery('input[name="title"]').val();
+            var message=jQuery('.weui-textarea').val();
+            var data={
+                'newthreadsub' : true,
+                'formhash':'{FORMHASH}',
+                'fid':fid,
+                'typeid':typeid,
+                'subject':subject,
+                'message':message,
+                'anonymous':anonymous,
+                'attachs':attach
+            }
+            jQuery.ajax({
+                url:'{MOD_URL}&op=mobile&do=newthread',
+                type:'post',
+                dataType:'json',
+                data:data,
+                success:function (res) {
+                    if (res.code == 200){
+                        $.toptip(res.message, 'success');
+                        setTimeout(function(){
+                            window.location.href = res.url;
+                        }, 1000)
+                    } else {
+                        $.toptip(res.message, 'error');
+                    }
+                }
+            })
+        })
+    });
+
+
+</script>
+<!--{eval output();}-->
+</html>

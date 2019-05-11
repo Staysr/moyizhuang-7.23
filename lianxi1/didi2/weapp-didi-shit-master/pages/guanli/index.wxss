@@ -1,0 +1,51 @@
+/* pages/guanli/index.wxss */
+.text-center{
+  margin-left:24rpx;
+}
+.guanli{
+  background-color: #fff;
+    text-align: left;
+    border-bottom:1px solid #ddd;
+   padding-top: 10rpx;
+   padding-bottom: 10rpx;
+   padding-right: 30rpx;
+}
+input{
+  text-align:right;
+  margin-left: 194rpx;
+}
+.zhengjian{
+ margin-top: 12rpx;
+}
+.upload_add{
+  width: 290rpx;
+  height: 183rpx;
+ margin-top:28rpx;
+ margin-left:184rpx;
+}
+.shenfenzheng{
+  margin-left:215rpx;
+  font-size: 40rpx;
+  color: rgb(125,125,125);
+}
+.btns{
+  width:90%;
+  margin:50rpx auto;
+}
+.btns button{
+  background: linear-gradient(to right, #f39d2d , #ffca33);
+  border:none!important;
+  outline:none;
+  border-radius:50rpx;
+  color:#ffffff;
+}
+.educt_hasupload_pic{
+  width: 12rpx;
+  height: 23rpx;
+}
+
+input{
+  width: 49%;
+  display: inline-block;
+
+}

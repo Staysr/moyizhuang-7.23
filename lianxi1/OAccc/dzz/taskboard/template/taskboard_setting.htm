@@ -1,0 +1,47 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/css/checkbox.css" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/taskboard.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/task.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="admin/scripts/admin.js?{VERHASH}"></script>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<style type="text/css">
+.navbar-inverse{
+    background-color: #4664d2;
+    border-color: #f17327;
+}
+.btn-primary {
+    color: #FFFFFF;
+    background-color: #4c89fb;
+    border-color: transparent;
+}
+.btn-primary:hover {
+    color: #FFFFFF;
+    background-color: #689cfe;
+    border-color: transparent;
+}
+td.taskboard-td-info>.taskboard-item-info{
+	padding-left:0;
+}
+</style>
+<div class="bs-container clearfix">
+  <div class="bs-main-container">
+    <!--{template setting_left}-->
+    <div class="main-content clearfix" style="padding:15px">
+    <!--{if $do=='basic'}-->
+    	<!--{template setting_basic}--> 
+    <!--{elseif $do=='manage'}-->
+    	<!--{template setting_manage}--> 
+    <!--{/if}-->
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    jQuery('.left-drager').leftDrager_layout(); 
+</script>
+
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->  

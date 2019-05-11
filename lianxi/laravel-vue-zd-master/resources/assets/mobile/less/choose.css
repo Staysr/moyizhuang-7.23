@@ -1,0 +1,131 @@
+.choose {
+  background-color: white;
+  display: flex;
+  margin-top: 10px;
+  position: relative;
+  border-bottom: 1px solid #EFEFEF;
+}
+.choose .item {
+  flex: 1;
+  line-height: 88px;
+  height: 88px;
+  color: #333;
+  -webkit-tap-highlight-color: transparent;
+}
+.choose .item .title {
+  font-size: 32px;
+  text-align: center;
+}
+.choose .item .result {
+  display: none;
+}
+.choose .item-select .title {
+  color: #07ca61 !important;
+  position: relative;
+}
+.choose .item-select .title::after {
+  width: 114px;
+  height: 5px;
+  background: #07CA61;
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 28%;
+}
+.choose .result {
+  display: none;
+  top: 88px;
+  left: 0;
+  right: 0;
+  padding: 0 30px;
+  box-sizing: border-box;
+  position: absolute;
+  background-color: white;
+}
+.choose .result .item {
+  position: relative;
+  width: 100%;
+  padding-left: 68px;
+  line-height: 87px;
+  font-size: 30px;
+  color: #666;
+  box-sizing: border-box;
+  border-bottom: 1px solid #EFEFEF;
+}
+.choose .result .item .icon {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 31px;
+  left: 10px;
+}
+.choose .result .item .orange {
+  background: #F87702;
+}
+.choose .result .item .violet {
+  background: #C300D5;
+}
+.choose .result .item .green {
+  background: #0ACA61;
+}
+.choose .result .item-select::after {
+  content: "";
+  height: 30px;
+  width: 3px;
+  background: #07CA61;
+  display: inline-block;
+  transform: rotate(45deg);
+  position: absolute;
+  right: 24px;
+  top: 32%;
+}
+.choose .result .item-select::before {
+  content: "";
+  height: 16px;
+  width: 3px;
+  background: #07CA61;
+  display: inline-block;
+  transform: rotate(-45deg);
+  position: absolute;
+  right: 40px;
+  top: 45%;
+}
+.choose .item-show {
+  display: block;
+  z-index: 1;
+}
+.choose .title .icon {
+  position: relative;
+}
+.choose .title .icon::after {
+  content: '';
+  border-top: 13px solid #999;
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+  border-bottom: 13px solid transparents;
+  position: absolute;
+  top: 40%;
+  right: -35px;
+}
+.choose .item-select .title .icon::after {
+  content: '';
+  border-top: 13px solid transparent;
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+  border-bottom: 13px solid #07CA61;
+  position: absolute;
+  top: 10%;
+  right: -35px;
+}
+.choose .no_order {
+  box-sizing: border-box;
+}
+.choose .no_order::before {
+  width: 25px;
+  height: 25px;
+  content: '';
+  background: #BEBEBE;
+  display: inline-block;
+  margin-top: 32px;
+  margin-right: 10px;
+}

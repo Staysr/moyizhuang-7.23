@@ -1,0 +1,2063 @@
+
+<!--{if $do=='labelmenu'}-->
+<div class="popbox-header">
+   <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+    <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+    <h3>定义标签</h3>
+</div>
+<div class="popbox-body">
+    <div id="labelsetting_return" class="text-success"></div>
+    <form class="form-horizontal labels" id="labelsetting" role="form" method="post" action="{DZZSCRIPT}?mod=taskboard&op=menu&do=labelmenu" onsubmit="ajaxpost('labelsetting','labelsetting_return','labelsetting_return')">
+        <input type="hidden" name="handlekey" value="labelsetting" />
+        <input type="hidden" name="labelsetting" value="true" />
+        <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+        <input type="hidden" name="tbid" value="$tbid" />
+        <div class="popbox-body">
+        <!--{loop $labelarr $value}-->
+            <input type="text" autofocus  class="js-label-title form-control {$value[color]}-label" id="$value[color]" name="labelname[{$value[pow]}]" value="$value[title]" style="color:#FFF" placeholder="未定义标签" />
+        <!--{/loop}-->
+        </div>
+        <div class="popbox-footer">
+            <button type="submit"  class="btn btn-success mr15" data-loading-text="保存中...">确定</button>
+            <button  class="btn btn-simple js-popbox-prev">取消</button>
+        </div>   
+    </form>
+</div>
+<script type="text/javascript" reload="1">
+ function succeedhandle_labelsetting(url, message, values) {
+	jQuery('.popbox .popbox-header .js-popbox-prev').trigger('click');
+  };
+
+</script>
+<!--{elseif $do=='taskheader'}-->
+<div class="popbox-body">
+    <ul class="popbox-menu list-unstyled">
+        <li class="<!--{if $do=='recycle'}-->active"><!--{/if}-->"><a href="{MOD_URL}&op=list&do=recycle&tbid=$tbid" title="回收站">回收站</a></li>
+       
+        <li class="<!--{if $do=='stats'}-->active<!--{/if}-->"><a href="{MOD_URL}&op=list&do=stats&tbid=$tbid" title="统计">统计</a></li>
+    </ul>
+</div>  
+
+
+<!--{elseif $do=='taskedit'}-->
+<div class="popbox-body">
+    <ul class="popbox-menu list-unstyled">
+        <li class="<!--{if $do=='recycle'}-->active"><!--{/if}-->"><a href="{MOD_URL}&op=list&do=recycle&tbid=$tbid" title="回收站">回收站</a></li>
+        <li class="<!--{if $do=='stats'}-->active<!--{/if}-->"><a href="{MOD_URL}&op=list&do=stats&tbid=$tbid" title="统计">统计</a></li>
+    </ul>
+</div>  
+
+
+
+
+<!--{elseif $do=='taskmenu'}-->
+ <!--{if !$step}-->
+<div class="popbox-header">
+    <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+    <h3>任务选项</h3>
+</div>
+<div class="popbox-body">
+    <ul class="popbox-menu list-unstyled">
+      <li><a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=2" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-label"></i> 设置标签</a></li>
+      <li><a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=1" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-person"></i> 分配任务</a></li>
+      <li  class=""><a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=3" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-visibility"></i>添加关注</a></li>
+      <li class="divider"></li>
+      <li><a class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=4" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-alarm"></i> 设置截止日期</a></li>
+      <li><a class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=10" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-clock"></i> 设置工时</a></li>
+      <li><a class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=11" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-money"></i> 设置预算</a></li>
+      <li class="divider"></li>
+      <li class=""><a class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=5" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-attachment"></i> 添加附件</a></li>
+      <li><a class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=6" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-more"></i> 更多操作</a> </li>
+    </ul>
+</div>
+<!--{elseif $step==1}-->
+    <div class="popbox-header"> 
+       <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+        <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3 class="">分配任务</h3>
+        </div>
+        <div class="popbox-bodywrapper">
+            <div class="popbox-body">
+                <!-- <input type="text" autofocus name="search_user_input" ng-model="search_user_input" placeholder="搜索成员" class="form-control help-block"><br>-->
+                <ul class="popbox-menu list-unstyled">
+                    <!--{loop $taskboard[users] $value}-->
+                    <li class="member-item">
+                  	    <a href="javascript:;" tabindex="-1" onclick="task_toggle_assign_user('$task[taskid]','$value[uid]','$value[username]',this)">
+                    	   <!--{if in_array($value[uid],$task[assign_uids])}--><span class="dzz dzz-done"></span><!--{else}--><span class="dzz"></span><!--{/if}-->
+                            <span class="avatar avatar-30" title="$value[username]" uid="$value[uid]" href="javascript:;"> 
+                            	{eval echo avatar_block($value['uid']);}
+                                <span class="avatar-name">$value[username]</span><!--<span class="avatar-atname">($value[username])</span>-->
+                            </span>
+                        </a>
+               	    </li>
+              	    <!--{/loop}-->
+
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript" reload="1">
+			//jQuery('.popbox-bodywrapper').mCustomScrollbar();
+			
+		</script>
+    <!--{elseif $step==2}-->
+    <div class="popbox-header clearfix">
+        <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+        <span class="dzz dzz-close close"></span>
+        <h3 >标签</h3>
+    </div>
+    <div class="popbox-body">
+
+
+
+        <form class="form-horizontal labels" id="labelsetting" role="form" method="post" action="{DZZSCRIPT}?mod=taskboard&op=menu&do=labelmenu" onsubmit="ajaxpost('labelsetting','labelsetting_return','labelsetting_return')">
+            <input type="hidden" name="handlekey" value="labelsetting" />
+            <input type="hidden" name="labelsetting" value="true" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+            <input type="hidden" name="tbid" value="$tbid" />
+
+            <ul class="popbox-menu list-unstyled">
+                
+                <!--{loop $alllabels $value}-->
+                <li class="label-item label_choice_li $value[color]-label">
+                    <a href="javascript:;" class="$value[color]-label" class="label_choice" title="$value[title]" data-color="$value[color]" data-pow="$value[pow]" onclick="task_toggle_label('$task[taskid]','$value[pow]',this)"> 
+                        <span class="task-label task-label-{$value[pow]} text-center">
+                        <!--{if isset($task[labels][$value[pow]])}--><span class="dzz dzz-done"></span><!--{else}--><span class="dzz"></span><!--{/if}--></span> 
+                        <span class="label-name">$value[title]</span>
+                    </a> 
+                </li>
+                <!--{/loop}-->
+                <!--{if !$alllabels}-->
+                <li ng-show="labels==0" class="ng-hide">
+                  <div class="empty-menu">还未定义标签</div>
+                </li>
+                <!--{/if}-->
+                <li class="divider"></li>
+                <li><a class="js-popbox tasklabel-add btn-block" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=labelmenu&tbid=$task[tbid]"><span class="dzz dzz-add"></span>定义标签</a></li>
+            </ul>
+
+
+            <!-- <li class="divider"></li> -->
+            <!-- <li><a class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=labelmenu&tbid=$task[tbid]"><i class="glyphicon glyphicon-tags"></i>定义标签</a></li>
+        <a href="javascript:;" class="tasklabel-add"><span class="dzz dzz-add"></span>新建标签</a> -->
+    </div>
+
+<script type="text/javascript">
+    jQuery('.label_choice_li .dzz-create').click(function(){
+        jQuery(this).prev('a').hide();
+        jQuery(this).hide();
+        jQuery(this).next('input').show();
+        // jQuery(this).next('input').next('.dzz-delete').show();
+        // jQuery(this).closest('ul').find('li:last-child').show();
+    })
+    // jQuery('.tasklabel-add').click(function(){
+    //     var html='';
+    //     html+='<li class="label-item label_choice_li">';
+    //     html+='<input type="text" autofocus  class="js-label-title form-control" id="$value[color]" name="labelname[{$value[pow]}]" value="$value[title]" placeholder="未定义标签">';
+    //     html+='<span class="dzz dzz-delete" style="display:none;"></span>';
+    //     html+='</li>';
+
+    //     jQuery(this).closest('.popbox-body').find('.divider').before(html);
+    //     jQuery(this).closest('.popbox-body').find('ul li:last-child').show();
+    // })
+</script>
+
+
+
+
+
+
+
+    <!--{elseif $step==3}-->
+    	<div class="popbox-header"> 
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+          <h3 class="">添加关注</h3>
+        </div>
+        <div class="popbox-bodywrapper">
+        <div class="popbox-body">
+           <!-- <input type="text" autofocus name="search_user_input" ng-model="search_user_input" placeholder="搜索成员" class="form-control help-block">
+            <br>-->
+            <ul class="popbox-menu list-unstyled">
+              <!--{loop $taskboard[users] $value}-->
+              <li class="member-item "> 
+              	<a href="javascript:;" tabindex="-1" onclick="task_toggle_follow_user('$task[taskid]','$value[uid]','$value[username]',this)"> 
+                	<!--{if in_array($value[uid],$task[follow_uids])}--><span class="dzz dzz-done"></span><!--{else}--><span class="dzz"></span><!--{/if}-->
+                    <span class="avatar avatar-30"  title="$value[username]" uid="$value[uid]" href="javascript:;"> 
+                    	 {eval echo avatar_block($value['uid']);}
+                        <span class="avatar-name">$value[username]</span><!--<span class="avatar-atname">($value[username])</span>-->
+                    </span> 
+                </a>
+           	  </li>
+          	 <!--{/loop}-->
+            </ul>
+        </div>
+        </div>
+        <div class="popbox-footer top-divider">
+           <!--{if count($taskboard[users])==count($task['follow_uids'])}-->
+        	<a href="javascript:;"  class="action-item " onClick="task_toggle_user_all(this,0)"><span class="">所有成员已关注</span> 
+            <!--{else}-->
+           	 <a href="javascript:;" class="action-item " onClick="task_toggle_user_all(this,1)"><span class="">添加全部成员</span> 
+            <!--{/if}-->
+            (<span class="count">{eval echo count($task['follow_uids']);}/{eval echo count($taskboard['users']);}</span>)</a> 
+        </div>
+        <script type="text/javascript" reload="1">
+			/*jQuery('.popbox-bodywrapper').mCustomScrollbar({advanced:{
+				autoScrollOnFocus:false,
+			}});*/
+		</script>
+	<!--{elseif $step==4}-->
+    	<div class="popbox-header">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>设置截止日期</h3>
+      </div>
+      <div class="popbox-body">
+      <input type="hidden" id="datepicker_input" value="$task[fendtime]" />
+      <div class="inlinedatepicker dzzdate"></div>
+      
+      	<script type="text/javascript" >jQuery('.dzzdate').datepicker({"onSelect":function(text,inst){
+			jQuery('#datepicker_input').val(text);
+		}});
+		jQuery('.dzzdate').datepicker("setDate",jQuery('#datepicker_input').val());
+     	</script>
+       
+      </div>
+      <div class="popbox-footer">
+       <button onclick="task_endtime('$taskid', jQuery('#datepicker_input').val());jQuery(this).parent().parent().find('.close').trigger('click');" data-loading-text="保存中..." class="btn btn-success mr15">保存 </button>
+       <button onclick="task_endtime('$taskid', '0');jQuery(this).parent().parent().find('.close').trigger('click');" class="btn btn-simple cancel">取消截止时间</button>
+      </div>
+     <!--{elseif $step==10}-->
+      <div class="popbox-header">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>设置工时</h3>
+      </div>
+      <div class="popbox-body">
+      	<div class="input-group" style="width:240px;">
+          <input type="text" class="form-control" id="worktime" value="$task[worktime]" onkeyup="if(event.keyCode==13){task_worktime('$taskid',this.value);jQuery('.popbox .close').trigger('click');}" />
+          <span class="input-group-addon">小时</span>
+        </div>
+      	
+      </div>
+      <div class="popbox-footer">
+       <button onclick="task_worktime('$taskid', jQuery('#worktime').val());" data-loading-text="保存中..." class="btn btn-success mr15 cancel">保存 </button>
+       <button onclick="task_worktime('$taskid', '0');" class="btn btn-simple cancel">取消工时</button>
+      </div>
+      <script type="text/javascript">
+	  	jQuery('#worktime').focus();
+	  </script>
+      <!--{elseif $step==11}-->
+      <div class="popbox-header">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>设置预算</h3>
+      </div>
+      <div class="popbox-body">
+      	<div class="input-group" style="width:240px;">
+          <input type="text" class="form-control" id="money" value="$task[money]" onkeyup="if(event.keyCode==13){task_money('$taskid',this.value);jQuery('.popbox .close').trigger('click');}" />
+          <span class="input-group-addon">￥</span>
+        </div>
+      	
+      </div>
+      <div class="popbox-footer">
+       <button onclick="task_money('$taskid', jQuery('#money').val());" data-loading-text="保存中..." class="btn btn-success mr15 cancel">保存 </button>
+       <button onclick="task_money('$taskid', '0');" class="btn btn-simple cancel">取消预算</button>
+      </div>
+      <script type="text/javascript">
+	  	jQuery('#money').focus();
+	  </script>
+    <!--{elseif $step==5}-->
+    	<div class="popbox-header">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>添加附件</h3> 
+        </div>
+       <div class="popbox-body">
+       	<ul class="popbox-menu list-unstyled">
+        	<li> <a href="javascript:;"  class="fileinput-button"> <i class="glyphicon glyphicon-hdd cancel"></i> 本地上传 
+            <input  multiple="" type="file"  name="files[]" title="添加文件" data-taskid="$task['taskid']"></a></li> 
+            </ul>
+       </div>
+       <script type="text/javascript">
+			jQuery('.popbox-body .fileinput-button input[type=file]').fileupload({
+				url: cpurl+'&do=upload&tbid=$tbid',
+				dataType: 'json',
+				autoUpload: true,
+				maxChunkSize:2000000, //2M
+				dropZone:jQuery('#task_panel_{$task[taskid]}'),
+				pasteZone:jQuery('#task_panel_{$task[taskid]}'),
+				add:function(e,data){
+				 data.context = jQuery('<div class="attach-item"></div>').appendTo('#task_panel_{$task[taskid]} .content-module-attachs .attachment');
+				jQuery.each(data.files, function (index, file) {
+					if(!file.name) file.name='clipboardData.png';
+					
+					var html='';
+						html+='<div class="file_fed  clearfix">';
+						html+='	<div class="ico_ffed"><img src="dzz/images/default/upload_failure.png" alt="" style="height:64px;"> </div>';
+						html+='	<p class="name_ffed">'+file.name+'<span class="kb_nffed">('+file.size+')</span> </p>';
+						html+='	 <div class="progress progress-striped active" style="width:200px;margin:0">';
+						html+='		<div class="progress-bar progress-bar-success" style="width:0%"> </div>';
+						html+='	 </div>';
+						html+='	<p class="down_ffed"> ';
+						html+='		<a href="javascript:void(0);" title="" hidefocus="true" class="del_dffed skip_mmfed">删除</a>';
+						html+='	</p>';
+						html+=' </div>';
+					jQuery(html).appendTo(data.context);
+					jQuery(data.context).find('.del_dffed').on('click',function(){
+						try{data.abort();}catch(e){}
+						jQuery(this).parent().parent().parent().remove();
+						return false;
+					});
+					jQuery('#task_panel_{$task[taskid]} .content-module-attachs').removeClass('hide');
+				});
+				
+				data.process().done(function () {
+					data.submit();
+				});
+				
+			},
+			progress: function (e,data){
+				 var index = 0;//data.index,
+				// file = data.files[index],
+				var  node = data.context;
+				
+				  var progress = parseInt(data.loaded / data.total * 100, 10);
+					node.find('.progress-bar').css(
+						'width',
+						progress + '%'
+					);
+			},
+			done: function (e, data) {
+				jQuery.each(data.result.files, function (index, file) {
+					if(file.error){
+						jQuery(data.context).find('.progress').replaceWith('<span class="text-danger">'+file.error+'</span>');
+					}else{
+						jQuery(data.context).find('.progress').remove();
+						
+						file.data.taskid='{$taskid}';
+						jQuery.getJSON(cpurl+'&tbid=$tbid&do=taskattachsave',file.data,function(json){
+                            if(json.msg=='success'){
+                                var html='';
+                                html+='<div class="attach-item" attachid="'+json.id+'">';
+                                if(json.type=='image'){
+                                    
+                                    html+=' <div class="pic_fed clearfix">';
+                                    html+='    <div class="img_pfed"> <a class="min_ipfed" hidefocus="true" href="javascript:;" ><img src="'+json.img+'" data-original="'+json.img+'&original=1" alt="'+json.filename+'" class=""></a> </div>';
+                                    html+=' </div>';
+                                    html+='<div class="file_fed imgfile_fed clearfix"> '+json.filename+'<span class="kb_nffed">('+json.filesize+')</span>';
+                                    html+=' <p class="down_ffed"> ';
+                                    
+                                    html+='   <a href="javascript:;" hidefocus="true" class="btn_dffed skip_mmfed"  onclick="task_attach_down(\''+json.id+'\')">下载</a>';
+                                     html+='   <a href="javascript:void(0);" title="" hidefocus="true" class="save_dffed skip_mmfed" onclick="task_attachs_update_coverimage(\'$taskid\',\''+json.dpath+'\',\''+json.id+'\')">';
+									if(json.imageaid>0){
+									   html+='取消封面';
+									 }else{
+										html+='设为封面';
+									}
+									html+='</a>';
+                                    html+='   <a href="javascript:void(0);" title="" hidefocus="true" class="del_dffed skip_mmfed"  onclick="task_attach_del(\''+json.id+'\',\''+json.taskid+'\')">删除</a>';
+                                    html+=' </p>';
+                                    html+=' </div>';
+                                    
+                                }else{
+                                    html+='<div class="file_fed file_fed_attach  clearfix">';
+                                    html+=' <div class="ico_ffed"><img src="'+json.img+'" alt=""> </div>';
+                                    html+=' <p class="name_ffed">'+json.filename+'<span class="kb_nffed">('+json.filesize+')</span> </p>';
+                                    
+                                    html+=' <p class="down_ffed"> ';
+                                    html+='   <a href="javascript:void(0);" hidefocus="true" class="preview_dffed skip_mmfed" onclick="task_attach_preview(\''+json.id+'\')">预览</a>';
+                                    html+='   <a href="javascript:;" hidefocus="true" class="btn_dffed skip_mmfed"  onclick="task_attach_down(\''+json.id+'\')">下载</a>';
+									
+                                   
+									 
+                                    html+='   <a href="javascript:void(0);" title="" hidefocus="true" class="del_dffed skip_mmfed"  onclick="task_attach_del(\''+json.id+'\',\''+json.taskid+'\')">删除</a>';
+                                    html+=' </p>';
+                                    html+=' </div>';
+                                }
+                                html+=' </div>';
+                                if(json.imageaid){
+									jQuery('#fwin_view_'+json.taskid+' .attach-item a.save_dffed').html('设为封面');
+									var catid=jQuery('#task_'+json.taskid).closest('.catlist').attr('catid');
+									if(jQuery('#task_'+json.taskid+' .task-item-coverimage').length){
+										jQuery('#task_'+json.taskid+' .task-item-coverimage').html('<img src="'+DZZSCRIPT+'?mod=io&op=thumbnail&path='+json.dpath+'&width=240&height=280" onload="layout_catlist(jQuery(\'#catlist_'+catid+'\'))" /> <div class="long_image_shadow"></div>');
+										layout_catlist(jQuery('#catlist_'+catid));
+									}
+									if(jQuery('#fwin_view_'+json.taskid+' .task-item-coverimage').length){
+										jQuery('#fwin_view_'+json.taskid+' .task-item-coverimage').html('<img src="'+DZZSCRIPT+'?mod=io&op=thumbnail&path='+json.dpath+'&width=800&height=160" />');
+									}
+								}
+                                jQuery(data.context).replaceWith(html);
+                               jQuery('#task_panel_{$task[taskid]} img[data-original]').dzzthumb();
+                                //更新各处附件数量
+                                
+                                task_attachs_update('{$taskid}');
+                            }else{
+                                jQuery(data.context).remove();
+                            }
+							jQuery('.popbox .close').trigger('click');
+						});
+					}
+				});
+			}
+			}); 
+		</script>
+    <!--{elseif $step==6}-->
+      <div class="popbox-header">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>更多操作</h3>
+      </div>
+      <div class="popbox-body">
+        <ul class="popbox-menu list-unstyled">
+            <li>
+				<a class="cancel" data-taskid="$task[taskid]" onclick="task_archive('$taskid')"><span class="dzz dzz-archive2"></span> 归档</a>
+            </li>
+            <li>
+                <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=7" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><span class="dzz dzz-change"></span> 移动</a>
+            </li>
+            <li>
+                <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=8" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><span class="dzz dzz-copy"></span> 拷贝</a>
+            </li>
+            <li>
+                <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=9" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><span class="dzz dzz-remove-circle"></span> 删除</a>
+            </li> 
+            <!--{if $_G['adminid']==1}-->
+            
+			 <li class="divider"></li>
+            <li>
+                <a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=16" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><span class="dzz dzz-change"></span> 移动到其他板</a>
+            </li>
+            <!--{/if}-->
+        </ul>
+     </div>
+    <!--{elseif $step==7}-->
+    <div class="popbox-header">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>移动任务到</h3>
+      </div>
+     <div class="popbox-bodywrapper">
+      <div class="popbox-body">
+        <!--{if $catlist}-->
+        <ul class="popbox-menu list-unstyled">
+       
+        <!--{loop $catlist $value}-->
+           <li> <a href="javascript:;" onclick="task_move_to('$value[catid]','$task[taskid]');jQuery(this).closest('.popbox').find('.close').trigger('click');"> <!--{if $value[catid]==$task[catid]}--><i class="color_gray glyphicon glyphicon-ok"></i><!--{else}--><i class="color_gray glyphicon"></i><!--{/if}--> <span >$value[catname]</span> </a> </li>
+        <!--{/loop}-->
+        </ul>
+        <!--{else}-->
+        	<p>此任务板没有找到列表</p> 
+        <!--{/if}-->
+     </div>
+     </div>
+    	 <script type="text/javascript" reload="1">
+			/*jQuery('.popbox-bodywrapper').mCustomScrollbar({advanced:{
+			autoScrollOnFocus:false,
+		}});*/
+		</script>
+     <!--{elseif $step==16}-->
+    <div class="popbox-header">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>移动任务到</h3>
+      </div>
+     <div class="popbox-bodywrapper">
+      <div class="popbox-body">
+         <!--{if $boardlist}-->
+        <ul class="popbox-menu list-unstyled">
+        <!--{loop $boardlist $value}-->
+           <li> <a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&tbid=$value[tbid]&taskid=$task[taskid]&step=17" data-taskid="$task[taskid]"> <span >$value[name]</span> </a> </li>
+        <!--{/loop}-->
+        </ul>
+         <!--{else}-->
+        	<p>没有找到可以移入的任务板</p> 
+        <!--{/if}-->
+     </div>
+     </div>
+    	 <script type="text/javascript" reload="1">
+			/*jQuery('.popbox-bodywrapper').mCustomScrollbar({advanced:{
+			autoScrollOnFocus:false,
+		}});*/
+		</script>
+     <!--{elseif $step==17}-->
+    <div class="popbox-header">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>移动任务到</h3>
+      </div>
+     <div class="popbox-bodywrapper">
+      <div class="popbox-body">
+        <!--{if $catlist}-->
+        <ul class="popbox-menu list-unstyled">
+        <!--{loop $catlist $value}-->
+           <li> <a href="javascript:;" onclick="task_move_to('$value[catid]','$task[taskid]');jQuery(this).closest('.popbox').find('.close').trigger('click');"> <!--{if $value[catid]==$task[catid]}--><i class="color_gray glyphicon glyphicon-ok"></i><!--{else}--><i class="color_gray glyphicon"></i><!--{/if}--> <span >$value[catname]</span> </a> </li>
+        <!--{/loop}-->
+        </ul>
+        <!--{else}-->
+        	<p>此任务板没有找到列表</p> 
+        <!--{/if}-->
+     </div>
+     </div>
+    	 <script type="text/javascript" reload="1">
+			/*jQuery('.popbox-bodywrapper').mCustomScrollbar({advanced:{
+			autoScrollOnFocus:false,
+		}});*/
+		</script>
+    <!--{elseif $step==8}-->
+     <div class="popbox-header">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>拷贝任务</h3>
+      </div>
+      <div id="copy_task_return" class="text-danger"></div>
+      </form><form id="copy_task_form_{$taskid}" name="copy_task_form"  style="margin:0"  role="form" method="post" action="{DZZSCRIPT}?mod=taskboard&op=menu&do=taskmenu" onsubmit="return validate(this)">
+        <input type="hidden" name="handlekey" value="copy_task" />
+        <input type="hidden" name="copysubmit" value="true" />
+        <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+        <input type="hidden" name="taskid" value="$taskid" />
+        <input type="hidden" name="step" value="$step" />
+          <div class="popbox-body" style="width:300px;">
+            <div class="form-group">
+              <div>
+                <textarea name="taskname" class=" form-control" placeholder="输入任务内容" required>$task[name]</textarea>
+              </div>
+            </div>
+             <!--{if $task['labels_num'] || $task['attachs'] || $task['subs']  || $task['assign_num'] || $task['follow_num'] ||$task['worktime'] || $task['worktime_u'] ||$task['money'] || $task['money_u']}-->
+            <div class="">保留...<br></div>
+            <!--{if $task['labels_num']}-->
+            <div class="checkbox ml20">
+              <label>
+                <input type="checkbox" name="options[label]" value="1" checked>
+                标签 ($task[labels_num]) 
+              </label>
+            </div>
+            <!--{/if}-->
+            <!--{if $task['assign_num']}-->
+            <div class="checkbox ml20">
+              <label>
+                <input type="checkbox" name="options[assign]" value="1" checked>
+                成员 ($task[assign_num]) 
+              </label>
+            </div>
+            <!--{/if}-->
+            <!--{if $task['follow_num']}-->
+            <div class="checkbox ml20">
+              <label >
+                <input type="checkbox" name="options[follow]" value="1" checked>
+                关注 ($task[follow_num]) 
+              </label>
+            </div>
+            <!--{/if}-->
+            <!--{if $task['subs']}-->
+            <div class="checkbox ml20">
+              <label >
+                <input type="checkbox" name="options[sub]" value="1" checked>
+                检查项 ($task[subs]) 
+              </label>
+            </div>
+            <!--{/if}-->
+            <!--{if $task['worktime'] || $task['worktime_u']}-->
+            <div class="checkbox ml20">
+              <label >
+                <input type="checkbox" name="options[worktime]" value="1" checked>
+                工时项 ($task[worktime_u] / $task[worktime]) 
+              </label>
+            </div>
+            <!--{/if}-->
+            <!--{if $task['money'] || $task['money_u']}-->
+            <div class="checkbox ml20">
+              <label >
+                <input type="checkbox" name="options[money]" value="1" checked>
+                预算项 ($task[money_u] / $task[money]) 
+              </label>
+            </div>
+            <!--{/if}-->
+             <!--{if $task['attachs']}-->
+            <div class="checkbox ml20">
+              <label >
+                <input type="checkbox" name="options[attach]" value="1" checked>
+                附件 ($task[attachs]) 
+              </label>
+            </div>
+            <!--{/if}-->
+            <!--{if $task['replys']}-->
+            <div class="checkbox ml20">
+              <label >
+                <input type="checkbox" name="options[reply]" value="1" checked>
+                评论 ($task[replys]) 
+              </label>
+            </div>
+            <!--{/if}-->
+             
+         </div> 
+         <!--{/if}-->
+         <div class="popbox-footer">
+         <button type="submit"  class="btn btn-success mr15">保存 </button>
+         <button  class="btn btn-simple cancel">取消</button>
+          </div>
+       </form>
+	   <script type="text/javascript" reload="1">
+	     function validate(form){
+			 if(form.taskname==''){
+				 form.taskname.focus();
+			 }else{
+				 jQuery('#copy_task_form_{$taskid} button.btn-success').button('loading');
+				 ajaxpost(form.id,'copy_task_return','copy_task_return');
+			 }
+			 return false;
+		 }
+		 function succeedhandle_copy_task(url, message, values) {
+			var data= eval('(' + decodeURIComponent(values['data']) + ')');
+			 console.log(data);
+			appendTask(data,'{$task[taskid]}');
+			jQuery('.popbox .close').trigger('click');
+		  };
+		  function errorhandle_copy_task(url, message, values) {
+			  window.setTimeout(function(){
+				  jQuery('#copy_task_form_{$taskid} button.btn-success').button('reset');
+				  jQuery('#copy_task_return').html();
+			  });
+		   }
+		</script>
+    <!--{elseif $step==9}-->
+    	<div class="popbox-header">  
+           <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+            <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a> 
+            <h3>删除</h3> 
+         </div> 
+         <div class="popbox-body"> 
+         	<span>任务删除后会放在回收站，可以在回收站选择<br>恢复或者彻底删除。</span> </div>
+         <div class="popbox-footer"> <button onclick="task_del('$taskid');" class="btn btn-danger">确定删除</button> </div> 
+     <!--{elseif $step==13}--> <!--激活任务到-->
+    	  <div class="popbox-header">
+             <!--{if $a=='restore'}--><button class="back glyphicon glyphicon-chevron-left js-popbox-prev" ></button> <!--{/if}-->
+              <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+            <h3><!--{if $a=='active'}--> 激活任务到<!--{else}--> 恢复任务到<!--{/if}--></h3>
+         </div>
+         <div class="popbox-bodywrapper">
+          <div class="popbox-body">
+            <ul class="popbox-menu list-unstyled">
+            <!--{loop $catlist $value}-->
+              <li> <a href="javascript:;" class="cancel" <!--{if $a=='active'}-->onclick="task_active_to('$task[taskid]','$value[catid]');"<!--{else}-->onclick="task_restore_to('$task[taskid]','$value[catid]');"<!--{/if}-->><span >$value[catname]</span> </a> </li>
+            <!--{/loop}-->
+            </ul>
+         </div>
+        </div>
+         <script type="text/javascript" reload="1">
+            try{
+				/*jQuery('.popbox-bodywrapper').mCustomScrollbar({
+					advanced:{
+						autoScrollOnFocus:false,
+					}
+				});*/
+			}catch(e){}
+        </script> 
+        <!--{elseif $step==14}--> <!--恢复菜单-->
+    	  <div class="popbox-header">
+             <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+              <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+            <h3>操作选项</h3>
+         </div>
+          <div class="popbox-body">
+            <ul class="popbox-menu list-unstyled">
+              <!--{if $taskboard['perm']>1 ||$_G['adminid']==1}--><li> <a href="javascript:;" class="js-popbox"  data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=13&a=restore" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><i class="glyphicon glyphicon-repeat"></i> 恢复</a></li><!--{/if}-->
+              <!--{if $taskboard['perm']>2 ||$_G['adminid']==1}--><li> <a href="javascript:;" class="cancel" onclick="task_delete_permanent('$task[taskid]');"> <i class="glyphicon glyphicon-trash"></i> 彻底删除 </a> </li><!--{/if}-->
+            </ul>
+         </div>
+     <!--{elseif $step==15}--> <!--删除分配用户-->  
+     	<div class="popbox-avatar">
+          <div class="avatar-body">
+            <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+            <a class="avatar avatar-56" member="member" size="56" title="&user[username]" uid="$user[uid]" href="javascript:;">  {eval echo avatar_block($value['uid']);} </a>
+            <div class="avatar-right">
+              <h4 class="avatar-heading">$user[username]</h4>
+            </div>
+          </div>
+          <div class="avatar-footer">
+            <button onclick="task_remove_assign_user('$taskid','$user[uid]','$user[username]','$_GET[ac]')" data-loading-text="移除中..."  class="btn btn-danger cancel">从任务移除</button>
+          </div>
+        </div>
+       
+    <!--{/if}--> 
+ 
+<!--{elseif $do=='catmenu'}-->
+	<!--{if !$step}--> <!--主菜单-->
+      <div class="popbox-header">
+         <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>列表选项</h3>
+      </div>
+      <div class="popbox-body">
+        <ul class="popbox-menu list-unstyled">
+            <li>
+                <a href="javascript:;" class="cancel" onclick="jQuery('#catlist_{$cat[catid]} .task-add').trigger('click');">新建任务</a>
+            </li>
+            <li>
+                <a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$cat[catid]&step=2" data-catid="$cat[catid]" data-placement="right" data-auto-adapt="true">批量操作任务</a>
+            </li>
+            <li>
+                <a href="javascript:;" class="cancel"  data-catid="$cat[catid]" onclick="cat_complete_archive('$cat[catid]')">归档完成任务</a>
+            </li>
+            <li>
+                <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$cat[catid]&step=4"  data-catid="$cat[catid]">重命名</a>
+            </li>
+            <li>
+                <a href="javascript:;" onclick="cat_follow_toggle('$cat[catid]',this)">关注<span class="text-muted small-tip"> <i class="dzz <!--{if $cat[followed]}-->dzz-done<!--{/if}-->"></i> </span></a> 
+            </li>
+            <li class="divider"></li>
+            <li>
+            <a class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$cat[catid]&step=6"  data-catid="$cat[catid]" data-placement="bottom" data-auto-adapt="true"><i class="glyphicon glyphicon-forward"></i> 更多操作</a> </li>
+        </ul>
+     </div>
+	<!--{elseif $step==1}--> <!--新建任务-->
+		
+	<!--{elseif $step==2}--> <!--批量操作任务-->
+	<div class="popbox-header">
+       <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+        <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>批量操作任务</h3>
+    </div>
+    <div class="popbox-body">
+        <ul class="popbox-menu list-unstyled"> 
+            <li>
+                <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$cat[catid]&step=10" data-catid="$cat[catid]">移动任务</a>
+            </li> 
+            <li class="divider"></li>
+            <li>
+                <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$cat[catid]&step=11" data-catid="$cat[catid]">分配任务</a>
+            </li>
+            <li>
+                <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$cat[catid]&step=12" data-catid="$cat[catid]">设置标签</a>
+            </li>
+            <li>
+                <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$cat[catid]&step=13" data-catid="$cat[catid]">设置截止日期</a>
+            </li>
+            <li>
+                <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$cat[catid]&step=14" data-catid="$cat[catid]">设置工时</a>
+            </li>
+            <li>
+                <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$cat[catid]&step=15" data-catid="$cat[catid]">设置预算</a>
+            </li>
+        </ul>
+    </div>
+	<!--{elseif $step==3}--> <!--归档完成任务-->
+		
+	<!--{elseif $step==4}--> <!--重命名-->
+		<div class="popbox-header">
+           <button class="back dzz dzz-chevron-left js-popbox-prev"></button> 
+            <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a> 
+            <h3>重命名列表</h3> 
+         </div> 
+         <div class="popbox-body"> 
+         	<input class="form-control" type="text" id="catname_pop_{$cat[catid]}"  name="catname" value="$cat[catname]" onkeyup="if(event.keyCode==13){cat_rename('$cat[catid]');}" />
+         </div>
+         <div class="popbox-footer"> 
+         	<button onclick="cat_rename('$cat[catid]');" data-loading-text="保存中..." class="btn btn-success mr15">确定</button> 
+            <button class="btn btn-simple cancel">取消</button> 
+         </div> 
+         <script type="text/javascript" reload="1">
+		 jQuery('#catname_pop_{$cat[catid]}').focus();
+		 </script>
+	<!--{elseif $step==5}--> <!--关注-->
+    
+		
+	<!--{elseif $step==6}--> <!--更多操作-->
+    	<div class="popbox-header">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>更多操作</h3>
+      </div>
+      <div class="popbox-body">
+        <ul class="popbox-menu list-unstyled">
+        <li><a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$cat[catid]&step=7" data-catid="$cat[catid]"><i class="glyphicon glyphicon-tags"></i> 拷贝</a></li>
+        <li><a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$cat[catid]&step=8" data-catid="$cat[catid]" ><i class="glyphicon glyphicon-folder-close"></i> 归档</a></li>
+        <li  class=""><a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=catmenu&catid=$cat[catid]&step=9" data-catid="$cat[catid]"><i class="glyphicon glyphicon-remove"></i> 删除</a></li>
+      	</ul>
+      </div>    
+	<!--{elseif $step==7}--> <!--拷贝-->
+    	<div class="popbox-header"> 
+           <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+            <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a> 
+            <h3>拷贝列表</h3> 
+         </div> 
+         <div class="popbox-body"> 
+         	<input class="form-control" type="text" id="catname_pop_{$cat[catid]}" name="catname" value="$cat[catname]" onkeyup="if(event.keyCode==13){cat_copy('$cat[catid]');}" />
+         </div>
+         <div class="popbox-footer"> 
+         	<button onclick="cat_copy('$cat[catid]');" data-loading-text="保存中..." class="btn btn-success mr15">确定</button> 
+            <button class="btn btn-simple cancel">取消</button> 
+         </div> 
+	<!--{elseif $step==8}--> <!--归档-->
+    	<div class="popbox-header"> 
+           <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+            <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a> 
+            <h3>归档列表</h3> 
+         </div> 
+         <div class="popbox-body"> 
+         	<span>列表归档后任务不能再被修改，<br>可以在归档项中重新打开</span>
+         </div>
+         <div class="popbox-footer"> <button onclick="cat_archive('$cat[catid]')" class="btn btn-success cancel">确定归档</button> </div> 
+	<!--{elseif $step==9}--> <!--删除-->
+    	<div class="popbox-header"> 
+           <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+            <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a> 
+            <h3>删除</h3> 
+         </div> 
+         <div class="popbox-body"> 
+         	<span>任务列表删除后会放在回收站，可以在回收站选择<br>恢复或者彻底删除。</span> 
+         </div>
+         <div class="popbox-footer"> <button onclick="cat_del('$cat[catid]');" class="btn btn-danger cancel">确定删除</button> </div> 
+    <!--{elseif $step==10}--> <!--批量移动任务-->
+    <div class="popbox-header">
+       <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+        <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>批量移动任务到</h3>
+    </div>
+    <div class="popbox-bodywrapper">
+        <div class="popbox-body">
+            <ul class="popbox-menu list-unstyled">
+            <!--{loop $catlist $value}-->
+                <!--{if $value[catid]!=$catid}-->
+                <li>
+                    <a href="javascript:;" class="cancel" onclick="cat_task_move_to('$value[catid]','$cat[catid]');"><span>$value[catname]</span> </a> 
+                </li>
+                <!--{/if}-->
+            <!--{/loop}-->
+            </ul>
+        </div>
+    </div>
+	<script type="text/javascript" reload="1">
+		/*jQuery('.popbox-bodywrapper').mCustomScrollbar({advanced:{
+		autoScrollOnFocus:false,
+	}});*/
+	</script>
+    <!--{elseif $step==11}--> <!--批量分配任务-->
+    	 <div class="popbox-header"> 
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+          <h3 class="">批量分配任务</h3>
+        </div>
+        <div class="popbox-bodywrapper">
+        <div class="popbox-body">
+           <!-- <input type="text" autofocus name="search_user_input" ng-model="search_user_input" placeholder="搜索成员" class="form-control help-block"><br>-->
+            <ul class="popbox-menu list-unstyled">
+              <!--{loop $taskboard[users] $value}-->
+              <li class="member-item"> 
+              	<a href="javascript:;" tabindex="-1" onclick="cat_task_assign('$cat[catid]','$value[uid]','$value[username]',this)"> 
+                	<!--{if $assign_all[{$value[uid]}]==count($taskids)}--><i class="dzz dzz-done"></i><!--{else}--><i class="dzz"></i><!--{/if}-->
+                    <span class="avatar avatar-30"  title="$value[username]" uid="$value[uid]" href="javascript:;"> 
+                    	 {eval echo avatar_block($value['uid']);}
+                        <span class="avatar-name">$value[username]</span><!--<span class="avatar-atname">($value[username])</span>-->
+                    </span> 
+                </a>
+           	  </li>
+          	 <!--{/loop}-->
+            </ul>
+          </div>
+         </div>
+       <script type="text/javascript" reload="1">
+			//jQuery('.popbox-bodywrapper').mCustomScrollbar();
+		</script>
+    <!--{elseif $step==12}--> <!--批量设置标签-->
+    	<div class="popbox-header clearfix">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+          <h3>批量设置标签</h3>
+        </div>
+        <div class="popbox-body">
+          <ul class="popbox-menu list-unstyled">
+          	<!--{loop $alllabels $value}-->
+            <li class="label-item" > <a href="javascript:;" title="$value[title]" data-color="$value[color]" data-pow="$value[pow]" onclick="cat_task_label('$cat[catid]','$value[pow]',this)"> 
+            	<span class="task-label {$value[color]}-label task-label-{$value[pow]} text-center" style="position: absolute;left:0;">
+               	<i class="dzz"></i></span> 
+                <span class="label-name ">$value[title]</span> </a> 
+             </li>
+           <!--{/loop}-->
+            
+           <!--{if !$alllabels}-->
+            <li ng-show="labels==0" class="ng-hide">
+              <div class="empty-menu">还未定义标签</div>
+            </li>
+            <!--{/if}-->
+            <li class="divider"></li>
+            <li><a class="js-popbox" data-href="{MOD_URL}&op=menu&do=labelmenu&tbid=$cat['tbid']"><i class="glyphicon glyphicon-tags"></i> 定义标签</a></li>
+          </ul>
+        </div>
+    <!--{elseif $step==13}--> <!--批量设置截止时间-->
+    	  <div class="popbox-header">
+             <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+              <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+            <h3>批量设置截止日期</h3>
+          </div>
+          <div class="popbox-body">
+          <input type="hidden" id="datepicker_input" value="0" />
+          <div class="inlinedatepicker dzzdate"></div>
+          
+            <script type="text/javascript" >jQuery('.dzzdate').datepicker({"onSelect":function(text,inst){
+                jQuery('#datepicker_input').val(text);
+            }});
+			var date=new Date().format('yyyy-MM-dd');
+			jQuery('#datepicker_input').val(date);
+            jQuery('.dzzdate').datepicker("setDate",date);
+            </script>
+           
+          </div>
+          <div class="popbox-footer">
+           <button  onclick="cat_task_endtime('$cat[catid]', jQuery('#datepicker_input').val());" data-loading-text="保存中..." class="btn btn-success mr15 cancel">保存 </button>
+          <button onclick="cat_task_endtime('$cat[catid]', '0');" class="btn btn-simple cancel">批量取消截止时间</button>
+          </div>
+     <!--{elseif $step==14}-->
+      <div class="popbox-header">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>批量设置工时</h3>
+      </div>
+      <div class="popbox-body">
+      	<div class="input-group" style="width:240px;">
+          <input type="text" class="form-control" id="worktime" value="0" onkeyup="if(event.keyCode==13){if(this.value>0){cat_task_worktime('$cat[catid]',this.value);jQuery('.popbox .close').trigger('click');}else{this.focus()}}" />
+          <span class="input-group-addon">小时</span>
+        </div>
+      	
+      </div>
+      <div class="popbox-footer">
+       <button onclick="if(jQuery('#worktime').val()>0){cat_task_worktime('$cat[catid]', jQuery('#worktime').val());jQuery('.popbox .close').trigger('click');}else{jQuery('#worktime').focus();}" data-loading-text="保存中..." class="btn btn-success mr15">保存 </button>
+       <button onclick="cat_task_worktime('$cat[catid]', '0');" class="btn btn-simple cancel">批量取消工时</button>
+      </div>
+      <script type="text/javascript">
+	  	jQuery('#worktime').focus();
+	  </script>
+      <!--{elseif $step==15}-->
+      <div class="popbox-header">
+         <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>批量设置预算</h3>
+      </div>
+      <div class="popbox-body">
+      	<div class="input-group" style="width:240px;">
+          <input type="text" class="form-control" id="money" value="0" onkeyup="if(event.keyCode==13){if(this.value>0){cat_task_money('$cat[catid]',this.value);jQuery('.popbox .close').trigger('click');}else{this.focus()}}" />
+          <span class="input-group-addon">￥</span>
+        </div>
+      </div>
+      <div class="popbox-footer">
+       <button onclick="if(jQuery('#money').val()>0){cat_task_money('$cat[catid]', jQuery('#money').val());jQuery('.popbox .close').trigger('click');}else{jQuery('#money').focus();}" data-loading-text="保存中..." class="btn btn-success mr15">保存 </button>
+       <button onclick="cat_task_money('$cat[catid]', '0');" class="btn btn-simple cancel">批量取消预算</button>
+      </div>
+      <script type="text/javascript">
+	  	jQuery('#money').focus();
+	  </script>
+      
+        <!--{elseif $step==16}--> <!--恢复菜单-->
+    	  <div class="popbox-header">
+             <button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+              <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+            <h3>操作选项</h3>
+         </div>
+          <div class="popbox-body">
+            <ul class="popbox-menu list-unstyled">
+              <li> <a href="javascript:;" class="cancel" onclick="cat_restore('$cat[catid]');"><i class="glyphicon glyphicon-repeat"></i> 恢复</a></li>
+              <!--{if $taskboard['perm']>2 ||$_G['adminid']==1}--><li> <a href="javascript:;" class="cancel" onclick="cat_delete_permanent('$cat[catid]');"> <i class="glyphicon glyphicon-trash"></i> 彻底删除 </a> </li><!--{/if}-->
+            </ul>
+         </div>
+         
+	<!--{/if}--> 	
+<!--{elseif $do=='boardmenu'}-->
+	<!--{if !$step}-->
+ 	<div class="popbox-header">
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>更多选项</h3>
+    </div>
+    <div class="popbox-body">
+        <ul class="popbox-menu list-unstyled">
+            <li><a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=labelmenu&tbid=$tbid">定义标签</a></li>
+            <li class="divider"></li>
+            <li><a href="javascript:;" class="cancel" onclick="board_complete_archive()">归档所有完成任务</a></li>
+            <li> <a  href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=boardmenu&tbid=$tbid&step=1">自动归档完成的任务<span class="text-muted small-tip"><!--{if $taskboard[autoarchive]}-->开启<!--{else}-->关闭<!--{/if}--> </span></a></li>
+            <!--<li><a href="javascript:;" class="js-popbox cancel" data-taskid="$task[taskid]" title="创建桌面快捷方式" onclick="board_share_to_desktop('$tbid')">创建桌面快捷方式</a></li>-->
+            
+            <!--{if $taskboard['perm']>2}-->
+            <!--{if $taskboard['status']==0}-->
+            <li><a href="{MOD_URL}&op=list&do=setting&operation=archive&tbid=$tbid"  title="归档任务版">归档任务版</a></li>
+            <li><a href="{MOD_URL}&op=list&do=setting&operation=delete&tbid=$tbid" class="text-danger" title="移入回收站">删除任务版</a></li>
+            <!--{elseif $taskboard['status']==1}-->
+             <li><a href="{MOD_URL}&op=list&do=setting&operation=restore&tbid=$tbid"  title="恢复任务版">恢复任务版</a></li>
+            <!--{elseif $taskboard['status']==2}-->
+             <li><a href="{MOD_URL}&op=list&do=setting&operation=active&tbid=$tbid"  title="激活任务版">激活任务版</a></li>
+            <!--{/if}-->
+            <!--{/if}-->
+            
+      	</ul>
+    </div>
+    <!--{elseif $step==1}-->
+    <div class="popbox-header">
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>自动归档设置</h3>
+      </div>
+      <div class="popbox-body">
+      	<ul class="popbox-menu list-unstyled"> 
+            <li>
+                <a onclick="board_autoarchive_toggle(1)" class="js-popbox-prev"><i class="color_gray glyphicon <!--{if $taskboard[autoarchive]}-->glyphicon-ok<!--{/if}-->"></i><strong>开启</strong><br><span class="text-muted" style="padding-left:0;color:#999">任务完成后，自动进行归档</span></a>
+            </li> 
+            <li class="divider"></li> 
+            <li>
+                <a onclick="board_autoarchive_toggle(0)" class="js-popbox-prev"> <i class="color_gray glyphicon <!--{if !$taskboard[autoarchive]}-->glyphicon-ok<!--{/if}-->"></i><strong>关闭</strong><br><span class="text-muted" style="padding-left:0px;color:#999">任务完成后，不自动归档</span></a>
+            </li>
+       	</ul>
+      </div> 
+     <!--{elseif $step==2}-->
+
+     <!--{/if}-->
+ <!--{elseif $do=='filtermenu'}--> 
+ <div id="filtermenu"> 
+ 	<!-- <div class="popbox-header">
+          <a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+        <h3>更多选项</h3>
+      </div>-->
+      <div class="popbox-bodywrapper">
+      <div class="popbox-body task-filter">
+         
+         
+          <!--{if $alllabels}-->
+          <dl class="js-task-labelfilter">
+            <dt>按标签筛选</dt>
+            <dd>
+              <ul class="label-list list-unstyled task-filter-checkable list-col-2 clearfix">
+               <!--{loop $alllabels $value}-->
+                <li class="label-item"> <a href="javascript:;" class="js-toggle-label-filter" title="$value[title]" data-color="$value[color]" pow="$value[pow]" onclick="board_filter_label('$value[pow]',this)"> 
+                    <span class="task-label {$value[color]}-label task-label-{$value[pow]} text-center">
+                    <i class="dzz"></i></span> 
+                    <span class="label-name">$value[title]</span> </a> 
+                 </li>
+               <!--{/loop}-->
+              </ul>
+            </dd>
+          </dl>
+          <!--{/if}-->
+         
+          <dl class="js-task-memberfilter">
+            <dt>按成员筛选</dt>
+            <dd>
+              <ul class="member-list list-unstyled clearfix task-filter-checkable list-col-2">
+                  <!--{loop $taskboard[users] $value}-->
+                  <li class="member-item"> 
+                    <a href="javascript:;" tabindex="-1" onclick="board_filter_user('$value[uid]',this)" uid="$value[uid]"> 
+                            <span class="avatar avatar-30"  title="$value[username]" uid="$value[uid]" href="javascript:;"> 
+                             {eval echo avatar_block($value['uid']);}
+                            <span class="avatar-name">$value[username]</span>
+                        </span> 
+                    </a>
+                  </li>
+                 <!--{/loop}-->
+              </ul>
+            </dd>
+          </dl>
+          <dl class="js-task-datefilter">
+            <dt>按截止日期筛选</dt>
+            <dd>
+              <ul class="datefilter-list list-unstyled clearfix task-filter-checkable list-col-3">
+                <li> <a class="selected" onclick="board_filter_date('today',this)" datetype="today">今天</a> </li>
+                <li> <a onclick="board_filter_date('tomorrow',this)" datetype="tomorrow">明天</a> </li>
+                <li> <a onclick="board_filter_date('week',this)" datetype="week">本周</a> </li>
+                <li> <a onclick="board_filter_date('nextweek',this)" datetype="nextweek">下周</a> </li>
+                <li> <a onclick="board_filter_date('month',this)" datetype="month">本月</a> </li>
+                <li> <a onclick="board_filter_date('due',this)" datetype="due">已过期</a> </li>
+              </ul>
+            </dd>
+          </dl>
+       </div>
+       </div>
+   <script type="text/javascript" reload="1">
+			//jQuery('.popbox-bodywrapper').mCustomScrollbar();
+			filter_init();
+		</script>
+   </div>
+   
+ <!--{elseif $do=='addorg'}-->
+<div class="popbox-header text-center">
+	<a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+	<h3>{lang new_team}</h3>
+</div>
+
+	<div class="popbox-body" style="width:300px;padding:15px">
+		<p id="return_addorg" class="text-danger "></p>
+		<!--{if $newperm[new]}-->
+		<form class="form " id="addorg_form" role="form" method="post" action="{MOD_URL}&op=menu&do=addorg" onsubmit="return addorg_submit(this);">
+		<input type="hidden" name="handlekey" value="addorg" />
+		<input type="hidden" name="addorgsubmit" value="true" />
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+		<div class="form-group">
+			<label>{lang menu_filemanagedisp_0}</label>
+			<input type="text" name="name" class="form-control" placeholder="{lang group_name}">
+		</div>
+		<div class="form-group">
+			<label>{lang synopsis}</label>
+			<textarea class="form-control" name="desc" rows="3"></textarea>
+		</div>
+		<div class="form-group">
+			<button id="addorgsubmit_btn" type="submit" class="btn btn-success" style="width:120px;" data-loading-text="{lang save_in_the}">{lang create}</button>
+		</div>
+		
+		</form>
+		<!--{else}-->
+		<div class="form-group">
+			<label class="text-center text-danger">{lang no_privilege}</label>
+			<div class="help-block">
+				$errmsg
+			</div>
+		</div>
+	<!--{/if}-->
+		<div class="help-block ">
+			<b>{lang group}</b>{lang for_better_collaboration_and_management}
+		</div>
+	</div>
+
+
+<script type="text/javascript" reload="1">
+	jQuery(window).scrollTop(jQuery('.popbox').offset()['top']);
+
+	function addorg_submit(form) {
+		if(form.name.value == '') {
+			form.name.focus();
+			return false;
+		}
+		jQuery('#addorgsubmit_btn').button('loading');
+		ajaxpost('addorg_form', 'return_addorg', 'return_addorg');
+		return false;
+	}
+
+	function succeedhandle_addorg(url, message, values) {
+		jQuery('.popbox .popbox-header .close').trigger('click');
+		var html = '<div class="window-module window-module-org">' +
+			'<div class="window-module-title window-module-title-no-divider">' +
+			'		<span class="dzz dzz-group"></span>' +
+			'		<span class="article_title">' + values['name'] + '<a class="u-inline-block quiet dark-hover js-view-org-profile" href="{MOD_URL}&op=org&orgid=' + values['orgid'] + '" style="margin-left:20px;"><i class="icon-sm icon-information dzz dzz-notification-info"></i> '+__lang.team_details+'</a></span>' +
+			'		<span class="js-ad"></span>' +
+			'	</div>' +
+			'	<ul id="board_list_' + values['orgid'] + '" class="board-list clearfix list-unstyled js-board-list">' +
+			'		<li  class="js-add-board"><a class="board-title board-add" onclick="showWindow(\'create\',\''+MOD_URL+'&op=ajax&do=create&orgid='+values['orgid']+'\',\'get\',0)" title="创建新任务板" href="javascript:;"><span>创建新任务板</span></a></li>' +
+			'	</ul>' +
+			' </div>';
+		
+		var el = jQuery(html).insertBefore('.window-module-add');
+		
+	};
+</script>
+<!--{elseif $do=='settings'}-->
+<!--{if $_GET['action']=='basic'}-->
+<style>
+	.colors a {
+		float: left;
+		margin: 5px;
+		border: 1px solid #e1e1e1;
+		border-radius: 3px;
+		padding: 15px;
+	}
+
+	.colors a:hover {
+		border-color: #da552f;
+	}
+
+	.colors a.active {
+		border-color: #da552f;
+	}
+</style>
+<div class="popbox-header">
+	<!--{if $_GET['list']}--><button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+	<!--{/if}-->
+	<a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+	<h3>{lang base_setting}</h3>
+</div>
+<div class="popbox-body" style="width:300px;">
+	<div style="margin-bottom:10px;">
+		<input id="title_1" class="form-control input-lg focus" autocomplete="off" name="title" value="$org[name]" placeholder="{lang group_name}" onchange="setSave('name',this.value,'$orgid')" />
+	</div>
+	<div style="margin-bottom:20px;">
+		<textarea id="desc_1" class="form-control" onchange="setSave('desc',this.value,'$orgid')" rows="3" name="desc" placeholder="{lang group_profile}">$org[desc]</textarea>
+	</div>
+
+	<div id="cover_container_logo" class="clearfix" style="margin-bottom:20px;">
+		<label>{lang logo_image}</label>
+		<input id="logo_1" name="logo" type="hidden" value="$org[logo]" onchange="setSave('logo',this.value,'$orgid')" />
+		<div id="logo_preview_1" style="position:relative;margin-bottom:10px;">
+			<!--{if $org[logo]}--><img class="thumbnail" style="margin-bottom:0;max-width:128px;max-height:128px;" src="{DZZSCRIPT}?mod=io&op=thumbnail&width=250&height=100&path={eval echo dzzencode('attach::'.$org[logo]);}" />
+			<a href="javascript:;" style="position:absolute;left:0;top:0;" class="ibtn glyphicon glyphicon-remove" title="{lang remove_logo_image}" onclick="remove_backround_url_logo()"></a>
+			<!--{/if}-->
+		</div>
+		<div id="logo_upload_1" class="addPhotoBar" style="position:relative;padding:10px;border:1px dashed #e1e1e1;overflow:hidden">
+			<div class="uploadwrap"><input id="fileupload_logo" type="file" name="files[]" multiple accept="image/png,image/gif,image/jpeg"></div>
+			<div class="addbtn">
+				<i class="dzz dzz-file-upload"></i>{lang upload_pictures_size}
+			</div>
+		</div>
+	</div>
+	<div id="cover_container" class="clearfix" style="">
+		<label>{lang banner_image}</label>
+		<input id="cover_1" name="cover" type="hidden" value="$org[cover]" onchange="setSave('cover',this.value,'$orgid')" />
+		<div id="cover_preview_1" style="position:relative;margin-bottom:10px;">
+			<!--{if $org[cover]}--><img class="thumbnail" style="margin-bottom:0;max-width:250px;max-height:200px;" src="{DZZSCRIPT}?mod=io&op=thumbnail&width=250&height=200&path={eval echo dzzencode('attach::'.$org[cover]);}" />
+			<a href="javascript:;" style="position:absolute;left:0;top:0;" class="ibtn glyphicon glyphicon-remove" title="{lang remove_logo_image}" onclick="remove_backround_url_1()"></a>
+			<!--{/if}-->
+		</div>
+		<div id="cover_upload_1" class="addPhotoBar" style="position :relative;padding:10px;border:1px dashed #e1e1e1;overflow:hidden">
+			<div class="uploadwrap"><input id="fileupload_1" type="file" name="files[]" multiple accept="image/png,image/gif,image/jpeg"></div>
+			<div class="addbtn">
+				<i class="dzz dzz-file-upload"></i>{lang upload_pictures_size_big}
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<script type="text/javascript" reload="1">
+	jQuery('#title_1,#desc_1').on('keyup', function(e) {
+		if(this.id == 'title_1' && this.value == '') {
+			showmessage(__lang.the_group_name_cannot_be_empty, 'danger', 3000, 1);
+		} else {
+			jQuery('#org_' + this.id.replace(/_1/i, '')).text(this.value);
+		}
+	});
+
+	function remove_backround_url_logo(obj) {
+		jQuery('#logo_preview_1').empty();
+		jQuery('#logo_1').val('').trigger('onchange');
+		jQuery('#org_header .org-logo-wrapper').hide();
+
+		return false;
+	}
+
+	function remove_backround_url_1(obj) {
+		jQuery('#cover_preview_1').empty();
+		jQuery('#cover_1').val('').trigger('onchange');
+		jQuery('#org_header').removeClass('cover').css('background-image', 'none');
+
+		return false;
+	}
+
+	jQuery('#fileupload_logo').fileupload({
+		url: '{MOD_URL}&op=ajax&do=imageupload',
+		dataType: 'json',
+		autoUpload: true,
+		maxFileSize: null, // 2 MB
+		maxChunkSize: 2000000, //2M
+		acceptFileTypes: new RegExp("(\.|\/)([jpeg|jpg|gif|png|bmp])$", 'i'),
+		dropZone: jQuery('#org_header .org-logo-wrapper,#cover_container_logo'),
+		dropZone: jQuery('#org_header .org-logo-wrapper,#cover_container_logo'),
+		sequentialUploads: true,
+
+	}).on('fileuploaddone', function(e, data) {
+		jQuery.each(data.result.files, function(index, file) {
+			jQuery('#logo_preview_1').html('<img class="thumbnail" style="margin-bottom:0;max-width:128px;max-height:128px;" src="' + file.data.img + '" /><a href="javascript:;" style="position:absolute;left:0;top:0;" class="ibtn glyphicon glyphicon-remove" title="'+__lang.remove_logo_image+'" onclick="remove_backround_url_1()"></a>');
+			jQuery('#logo_1').val(file.data.aid).trigger('onchange');
+			jQuery('#org_header .org-logo-wrapper').show().css('background-image', "url(" + (file.data.img) + ")");
+			//setImage(document.getElementById('imgbg'),jQuery('#header').outerWidth(true),jQuery('#header').outerHeight(true));
+		});
+	});
+	jQuery('#fileupload_1').fileupload({
+		url: '{MOD_URL}&op=ajax&do=imageupload',
+		dataType: 'json',
+		autoUpload: true,
+		maxFileSize: null, // 2 MB
+		maxChunkSize: 2000000, //2M
+		acceptFileTypes: new RegExp("(\.|\/)([jpeg|jpg|gif|png|bmp])$", 'i'),
+		dropZone: jQuery('#org_header,#cover_container'),
+		dropZone: jQuery('#org_header,#cover_container'),
+		sequentialUploads: true,
+
+	}).on('fileuploaddone', function(e, data) {
+		jQuery.each(data.result.files, function(index, file) {
+			jQuery('#cover_preview_1').html('<img class="thumbnail" style="margin-bottom:0;max-width:250px;max-height:200px;" src="' + file.data.img + '" /><a href="javascript:;" style="position:absolute;left:0;top:0;" class="ibtn glyphicon glyphicon-remove" title="'+__lang.remove_banner_image+'" onclick="remove_backround_url_1()"></a>');
+			jQuery('#cover_1').val(file.data.aid).trigger('onchange');
+			jQuery('#org_header').show().css('background-image', "url(" + (file.data.img+'&original=1') + ")");
+			jQuery('#org_header').addClass('cover');
+			//setImage(document.getElementById('imgbg'),jQuery('#header').outerWidth(true),jQuery('#header').outerHeight(true));
+		});
+	});
+</script>
+<!--{/if}-->
+<!--{elseif $do=='org_member_role'}-->
+
+<div class="popbox-header text-center">
+	<button class="close dzz dzz-close" ></button>
+	<h3 id="return_org_u_role">{lang change_the_permissions}</h3>
+</div>
+
+<form id="form_org_u_role" class="form" role="form" method="post" action="{MOD_URL}&op=menu&do=org_member_role" onsubmit="return org_u_role_submit(this);">
+	<input type="hidden" name="handlekey" value="org_u_role" />
+	<input type="hidden" name="org_u_rolesubmit" value="true" />
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="uid" value="$uid" />
+	<input type="hidden" name="orgid" value="$orgid" />
+	<input type="hidden" id="org_user_perm" name="perm" value="$org[perm]" />
+	<div id="popbox_org_u_role" class="popbox-body" style="max-width:270px;padding:10px">
+		<ul class="popbox-list u-bottom list-unstyled">
+			<!--{loop $permtitle $key $title}-->
+			<li>
+				<!--{if $_G['uid']==$uid && $org['perm']>2 && $key<3 && $org['adminsum']>1}-->
+				<a class="js-popbox" data-href="{MOD_URL}&op=menu&do=org_member_role_confirm&orgid=$orgid&uid=$value[uid]&perm=$key" href="javascript:;">
+				<!--{else}-->
+				</a><a class="js-select <!--{if $org['perm']==$key || ($org['perm']>2 && $org['adminsum']<2)}--> disabled<!--{/if}-->" href="#" perm="$key">
+				<!--{/if}-->
+					$title
+					<span class="select icon-sm glyphicon <!--{if $org['perm']==$key}--> glyphicon-ok disabled<!--{/if}-->"></span>
+					<span class="sub-name">
+                	<!--{if $key==3}-->{lang can_view_create_edit_group}
+                	<!--{elseif $key==2}-->{lang can_view_create_edit_cannot_modify_group_settings}
+                    <!--{elseif $key==1}-->{lang you_can_only_view_the_collection_group}
+                    <!--{/if}-->
+                	</span>
+				</a>
+			</li>
+			<!--{/loop}-->
+			<!--{if $org['perm']>2 && $org['adminsum']<2}-->
+			<li class="divider"></li>
+			<li>
+				<span class="quiet u-bottom help-block "><i class="glyphicon glyphicon-exclamation-sign text-warning"></i> {lang cannot_modify_this_user_permission}</span>
+			</li>
+			<!--{/if}-->
+		</ul>
+	</div>
+</form>
+<script type="text/javascript">
+	jQuery('#popbox_org_u_role .js-select').on('click', function() {
+		if(jQuery(this).hasClass('disabled')) return false;
+		jQuery('#org_user_perm').val(jQuery(this).attr('perm'));
+		org_u_role_submit();
+	});
+
+	function org_u_role_submit(form) {
+		ajaxpost('form_org_u_role', 'return_org_u_role', 'return_org_u_role');
+	}
+
+	function succeedhandle_org_u_role(url, message, values) {
+		jQuery('.popbox .popbox-header .close').trigger('click');
+		var item = jQuery('.member-list-item-detail[data-uid="' + values['uid'] + '"]');
+		item.attr('data-perm', values['perm']).find('.member-type').attr('title', values['permtitle']);
+		item.find('.js-change-role').html(values['permtitle'] + ' <span class="caret"></span>');
+		if(values['perm'] > 2) {
+			item.find('.member-type').addClass('admin');
+		} else {
+			item.find('.member-type').removeClass('admin');
+		}
+		try {
+			check_admin();
+		} catch(e) {}
+	};
+</script>
+<!--{elseif $do=='org_member_role_confirm'}-->
+
+<div class="popbox-header text-center">
+	<button class="close dzz dzz-close"></button>
+	<h3 id="return_org_role_lost_confirm">{lang remove_administrative_permissions}</h3>
+</div>
+
+<form id="form_org_role_lost_confirm" class="form" role="form" method="post" action="{MOD_URL}&op=menu&do=org_member_role_confirm" onsubmit="return org_role_lost_confirm_submit(this);">
+	<input type="hidden" name="handlekey" value="org_role_lost_confirm" />
+	<input type="hidden" name="org_role_lost_confirmsubmit" value="true" />
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="uid" value="$uid" />
+	<input type="hidden" name="orgid" value="$orgid" />
+	<input type="hidden" name="perm" value="$tperm" />
+	<div class="popbox-body" style="max-width:250px;padding:10px">
+		<p class="help-block">{lang lose_all_administrative_privileges_group}</p>
+		<button class="btn btn-danger btn-block" type="submit">{lang sure_lose_all_administrative_privileges}</button>
+	</div>
+</form>
+<script type="text/javascript">
+	function org_role_lost_confirm_submit(form) {
+		ajaxpost('form_org_role_lost_confirm', 'return_org_role_lost_confirm', 'return_org_role_lost_confirm');
+		return false;
+	}
+
+	function succeedhandle_org_role_lost_confirm(url, message, values) {
+		jQuery('.popbox .popbox-header .close').trigger('click');
+		jQuery('#members_1').load('{MOD_URL}&op=org&do=members&orgid=$orgid&t=' + new Date().getTime());
+	};
+</script>
+<!--{elseif $do=='org_member_remove'}-->
+
+<div class="popbox-header text-center">
+	<button class="close dzz dzz-close" ></button>
+	<h3 id="return_org_member_remove">{lang remove_rembers}</h3>
+</div>
+
+<form id="form_org_member_remove" class="form" role="form" method="post" action="{MOD_URL}&op=menu&do=org_member_remove" onsubmit="return org_member_remove_submit(this);">
+	<input type="hidden" name="handlekey" value="org_role_lost_confirm" />
+	<input type="hidden" name="org_member_removesubmit" value="true" />
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="uid" value="$uid" />
+	<input type="hidden" name="orgid" value="$orgid" />
+	<div class="popbox-body" style="max-width:250px;padding:10px">
+		<p class="help-block">{lang you_remove_the_user_from_the_group}</p>
+		<button class="btn btn-danger btn-block" type="submit"><!--{if $uid==$_G['uid']}-->{lang leaving}<!--{else}-->{lang remove_users}<!--{/if}--></button>
+	</div>
+</form>
+<script type="text/javascript">
+	function org_member_remove_submit(form) {
+		ajaxpost('form_org_member_remove', 'return_org_member_remove', 'return_org_member_remove');
+		return false;
+	}
+
+	function succeedhandle_org_role_lost_confirm(url, message, values) {
+		jQuery('.popbox .popbox-header .close').trigger('click');
+		if(values['uid'] == '$_G[uid]') {
+			window.location.href = "{MOD_URL}";
+		} else {
+			jQuery('#members_1').load('{MOD_URL}&op=org&do=members&orgid=$orgid&t=' + new Date().getTime());
+		}
+	};
+</script>
+<!--{elseif $do=='org_member_add'}-->
+
+<div class="popbox-header text-center">
+	<button class="close dzz dzz-close" ></button>
+	<h3>{lang add_user}</h3>
+</div>
+<div id="popbox_org_member_add" class="popbox-body" style="width:300px;padding:10px">
+	<div class="search-with-spinner">
+		<input class="form-control js-search-input js-autofocus" type="text" style="margin-bottom: 0;" placeholder="">
+		<div class="spinner small js-loading" style=" display: none; "><img src="{MOD_PATH}/images/spinner.gif" /></div>
+	</div>
+	<div class="manage-member-section js-helper help-block">
+		<p class="u-bottom quiet" style="padding: 6px;">{lang enter_user_name_or_mailbox_keyword_search}</p>
+	</div>
+	<div class="manage-member-section js-error zhide">
+		<h4>Error</h4>
+		<p class="text-danger">The user or email could not be invited due to an organization restriction.</p>
+	</div>
+	<!--<div class="manage-member-section zhide js-uninvited-search-results">
+		<p class="quiet"><strong class="js-email-tip"></strong>? 没有找到此邮箱的用户！<br />您可以发送邀请,系统将添加此用户为未激活状态，当用户接受邀请，并且完成注册后将自动获得此团队的权限</p>
+		<p class="text-danger zhide js-name-error"></p>
+		<form class="js-email-data" onsubmit="return js_send_email_submit(this)">
+			<input type="hidden" name="orgid" value="$orgid" />
+			<label>用户名</label>
+			<p><input class="form-control js-autofocus js-full-name" name="username" type="text" value=""></p>
+			<input class="js-email" name="email" type="hidden" value="">
+			<button class="btn btn-primary btn-width js-send-email-invite" type="submit" data-loading-text="发送中，请稍候...">发送邀请</button>
+		</form>
+	</div>-->
+	<div class="manage-member-section zhide js-search-results">
+		<h4>{lang choice_add}</h4>
+		<ul class="popbox-member-list options js-list list-unstyled"></ul>
+	</div>
+	<div class="manage-member-section js-no-results zhide">
+		<p class="quiet text-center" style="padding: 16px 4px;">{lang no_relevant_results}</p>
+	</div>
+</div>
+
+<script type="text/javascript">
+	jQuery('#popbox_org_member_add .js-autofocus').focus();
+	jQuery(document).on('mouseover', '.js-member-item', function() {
+		jQuery(this).addClass('selected');
+	});
+	jQuery(document).on('mouseout', '.js-member-item', function() {
+		jQuery(this).removeClass('selected');
+	});
+	var search_timer = 0;
+	jQuery(document).on('keyup', '.js-search-input', function() {
+		var term = this.value;
+		if(term == '') {
+			if(search_timer) window.clearTimeout(search_timer);
+			manage_member_section_show(['js-helper']);
+		} else {
+			if(search_timer) window.clearTimeout(search_timer);
+			search_timer = window.setTimeout(function() {
+				member_add_search(term);
+			}, 500);
+		}
+
+	});
+	jQuery(document).on('click', '.js-member-item:not(.disabled) .js-select-member', function() {
+		var uid = jQuery(this).attr('uid');
+		jQuery.post('{MOD_URL}&op=ajax&do=org_member_add', {
+			"orgid": '$orgid',
+			"uid": uid
+		}, function(json) {
+			if(json.msg == 'success') {
+				jQuery('#popbox_org_member_add .js-search-input').val('').focus();
+				manage_member_section_show(['js-helper']);
+				jQuery('#members_1').load('{MOD_URL}&op=org&do=members&orgid=$orgid&t=' + new Date().getTime());
+			} else {
+				showmessage(json.error, 'danger', 3000, 1);
+			}
+		}, 'json');
+		return false;
+	});
+
+	function member_add_search(term) {
+		jQuery('#popbox_org_member_add .js-loading').show();
+		jQuery.post('{MOD_URL}&op=ajax&do=search_user_list', {
+			"orgid": '$orgid',
+			'term': term
+		}, function(json) {
+			if(json.num > 0) {
+				var html = '';
+				for(var i = 0; i < json.list.length; i++) {
+					html += ' <li class="item js-member-item ' + (json.list[i].joined ? 'disabled' : (json.list[i].lastactivity < 1 ? 'inactive' : '')) + '">';
+					html += '		<a  class="name js-select-member ' + ((json.list[i].joined || json.list[i].lastactivity < 1) ? 'multi-line' : '') + '" href="#" uid="' + json.list[i].uid + '" title="' + json.list[i].username + '">';
+					
+					
+
+					html += json.list[i].avatar_block  + json.list[i].username;
+
+
+
+
+
+					if(json.list[i].joined) {
+						html += '			<div class="extra-text quiet">'+__lang.added+'</div>';
+					}
+					html += '	    </a>';
+					html += '	</li>';
+				}
+				jQuery('#popbox_org_member_add .js-list').html(html);
+				manage_member_section_show(['js-search-results']);
+			//} else if(json.isemail) {
+				//var form = jQuery('#popbox_org_member_add .js-email-data');
+				//jQuery('#popbox_org_member_add .js-email-tip').html(json.term);
+				//form.find('.js-full-name').val(json.username);
+				//form.find('.js-email').val(json.term);
+				//manage_member_section_show(['js-uninvited-search-results']);
+			} else {
+				manage_member_section_show(['js-no-results']);
+			}
+			jQuery('#popbox_org_member_add .js-loading').hide();
+		}, 'json');
+	}
+
+	function manage_member_section_show(classarr) {
+		jQuery('#popbox_org_member_add .manage-member-section').each(function() {
+			var have = 0;
+			for(var i = 0; i < classarr.length; i++) {
+				if(jQuery(this).hasClass(classarr[i])) {
+					have = 1;
+					break;
+				}
+			}
+			if(have) {
+				jQuery(this).removeClass('zhide');
+			} else {
+				jQuery(this).addClass('zhide');
+			}
+		});
+	}
+
+	function js_send_email_submit(form) {
+
+		jQuery(form).find('.js-send-email-invite').button('loading');
+		jQuery.post('{MOD_URL}&op=ajax&do=member_invite', jQuery(form).serialize(), function(json) {
+
+			if(json.msg == 'success') {
+				jQuery('#members_1').load('{MOD_URL}&op=org&do=members&orgid=$orgid&t=' + new Date().getTime());
+				jQuery('.popbox .popbox-header .close').trigger('click');
+			} else if(json.error) {
+
+				jQuery(form).find('.js-send-email-invite').button('reset');
+				jQuery('#popbox_org_member_add .js-name-error').html(json.error).show();
+			}
+		}, 'json');
+		return false;
+	}
+
+	function succeedhandle_org_role_lost_confirm(url, message, values) {
+		jQuery('.popbox .popbox-header .close').trigger('click');
+		if(values['uid'] == '$_G[uid]') {
+			window.location.href = "{MOD_URL}";
+		} else {
+			jQuery('#members_1').load('{MOD_URL}&op=org&do=members&orgid=$orgid&t=' + new Date().getTime());
+		}
+	};
+</script>
+<!--{elseif $do=='member_add'}-->
+
+<div class="popbox-header text-center">
+	<button class="close dzz dzz-close" ></button>
+	<h3>{lang add_user}</h3>
+</div>
+<div id="popbox_member_add" class="popbox-body" style="width:300px;padding:10px">
+	<!--{if !$org[inviteperm]}-->
+	<div class="search-with-spinner">
+		<input class="form-control js-search-input js-autofocus" type="text" style="margin-bottom: 0;" placeholder="">
+		<div class="spinner small js-loading" style=" display: none; "><img src="{MOD_PATH}/images/spinner.gif" /></div>
+	</div>
+	<div class="manage-member-section js-helper help-block">
+		<p class="u-bottom quiet" style="padding: 6px;">{lang enter_user_name_or_mailbox_keyword_search}</p>
+	</div>
+
+	<div class="manage-member-section js-error zhide">
+		<h4>Error</h4>
+		<p class="text-danger">The user or email could not be invited due to an organization restriction.</p>
+	</div>
+	
+	<!--{/if}-->
+	<!--{if $orgmembers}-->
+	<div class="manage-member-section  js-org-members" style="margin-top:0">
+
+		<ul class="popbox-member-list options js-list list-unstyled">
+			<!--{loop $orgmembers $value}-->
+			<li class="item js-member-item">
+				<a class="name js-select-member " href="#" uid="$value[uid]" title="$value[username]">
+					
+                        {eval echo avatar_block($value['uid'],null,'iconFirstWord');} $value[username]
+				</a>
+			</li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+
+	<!--{/if}-->
+	<div class="manage-member-section zhide js-search-results">
+		<h4>{lang choice_add}</h4>
+		<ul class="popbox-member-list options js-list list-unstyled"></ul>
+	</div>
+	<div class="manage-member-section js-no-results zhide">
+		<p class="quiet text-center" style="padding: 16px 4px;">No results</p>
+	</div>
+</div>
+
+<script type="text/javascript">
+	jQuery('#popbox_member_add .js-autofocus').focus();
+	jQuery(document).on('mouseover', '.js-member-item', function() {
+		jQuery(this).addClass('selected');
+	});
+	jQuery(document).on('mouseout', '.js-member-item', function() {
+		jQuery(this).removeClass('selected');
+	});
+	var search_timer = 0;
+	jQuery(document).on('keyup', '.js-search-input', function() {
+		var term = this.value;
+		if(term == '') {
+			if(search_timer) window.clearTimeout(search_timer);
+			manage_member_section_show(['js-helper', 'js-org-members']);
+		} else {
+			if(search_timer) window.clearTimeout(search_timer);
+			search_timer = window.setTimeout(function() {
+				member_add_search(term);
+			}, 500);
+		}
+
+	});
+	jQuery(document).on('click', '.js-member-item:not(.disabled) .js-select-member', function() {
+		var el = jQuery(this);
+		var uid = el.attr('uid');
+		jQuery.post('{MOD_URL}&op=ajax&do=member_add', {
+			"cid": '$cid',
+			"uid": uid
+		}, function(json) {
+			if(json.msg == 'success') {
+				jQuery('#popbox_member_add .js-search-input').val('').focus();
+				manage_member_section_show(['js-helper', 'js-org-members']);
+				el.parent().remove();
+				jQuery('#topic_container').load('{MOD_URL}&op=list&do=user&cid=$cid&t=' + new Date().getTime());
+			} else {
+				showmessage(json.error, 'danger', 3000, 1);
+			}
+		}, 'json');
+		return false;
+	});
+
+	function member_add_search(term) {
+		jQuery('#popbox_member_add .js-loading').show();
+		jQuery.post('{MOD_URL}&op=ajax&do=search_user_list', {
+			'term': term,
+			"cid": '$cid'
+		}, function(json) {
+			if(json.num > 0) {
+				var html = '';
+				for(var i = 0; i < json.list.length; i++) {
+					html += ' <li class="item js-member-item ' + (json.list[i].joined ? 'disabled' : (json.list[i].lastactivity < 1 ? 'inactive' : '')) + '">';
+					html += '		<a  class="name js-select-member ' + ((json.list[i].joined || json.list[i].lastactivity < 1) ? 'multi-line' : '') + '" href="#" uid="' + json.list[i].uid + '" title="' + json.list[i].username + '">';
+					
+					
+
+					html += json.list[i].avatar_block + json.list[i].username;
+										
+					
+					if(json.list[i].joined) {
+						html += '			<div class="extra-text quiet">'+__lang.added+'</div>';
+					}
+					html += '	    </a>';
+					html += '	</li>';
+				}
+				jQuery('#popbox_member_add .js-search-results .js-list').html(html);
+				manage_member_section_show(['js-search-results']);
+			/*} else if(json.isemail) {
+				var form = jQuery('#popbox_member_add .js-email-data');
+				jQuery('#popbox_member_add .js-email-tip').html(json.term);
+				form.find('.js-full-name').val(json.username);
+				form.find('.js-email').val(json.term);
+				manage_member_section_show(['js-uninvited-search-results']);*/
+			} else {
+				manage_member_section_show(['js-no-results']);
+			}
+			jQuery('#popbox_member_add .js-loading').hide();
+		}, 'json');
+	}
+
+	function manage_member_section_show(classarr) {
+		jQuery('#popbox_member_add .manage-member-section').each(function() {
+			var have = 0;
+			for(var i = 0; i < classarr.length; i++) {
+				if(jQuery(this).hasClass(classarr[i])) {
+					have = 1;
+					break;
+				}
+			}
+			if(have) {
+				jQuery(this).removeClass('zhide');
+			} else {
+				jQuery(this).addClass('zhide');
+			}
+		});
+	}
+
+	function js_send_email_submit(form) {
+
+		jQuery(form).find('.js-send-email-invite').button('loading');
+		jQuery.post('{MOD_URL}&op=ajax&do=member_invite', jQuery(form).serialize(), function(json) {
+
+			if(json.msg == 'success') {
+				jQuery('#topic_container').load('{MOD_URL}&op=list&do=user&cid=$cid&t=' + new Date().getTime());
+				jQuery('.popbox .popbox-header .close').trigger('click');
+			} else if(json.error) {
+
+				jQuery(form).find('.js-send-email-invite').button('reset');
+				jQuery('#popbox_member_add .js-name-error').html(json.error).show();
+			}
+		}, 'json');
+		return false;
+	}
+
+	function succeedhandle_role_lost_confirm(url, message, values) {
+		jQuery('.popbox .popbox-header .close').trigger('click');
+		jQuery('#topic_container').load('{MOD_URL}&op=list&do=user&cid=$cid&t=' + new Date().getTime());
+
+	};
+</script>
+<!--{elseif $do=='member_role'}-->
+
+<div class="popbox-header text-center">
+	<button class="close dzz dzz-close" ></button>
+	<h3 id="return_u_role">{lang change_the_permissions}</h3>
+</div>
+
+<form id="form_u_role" class="form" role="form" method="post" action="{MOD_URL}&op=menu&do=member_role" onsubmit="return u_role_submit(this);">
+	<input type="hidden" name="handlekey" value="u_role" />
+	<input type="hidden" name="u_rolesubmit" value="true" />
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="uid" value="$uid" />
+	<input type="hidden" name="cid" value="$cid" />
+	<input type="hidden" id="user_perm" name="perm" value="$perm" />
+	<div id="popbox_u_role" class="popbox-body" style="max-width:270px;padding:10px">
+		<ul class="popbox-list u-bottom list-unstyled">
+			<!--{loop $permtitle $key $title}-->
+			<li>
+				<!--{if $_G['uid']==$uid && $perm>2 && $key<3 && $adminsum>1}-->
+				<a class="js-popbox" data-href="{MOD_URL}&op=menu&do=member_role_confirm&cid=$cid&uid=$value[uid]&perm=$key" href="javascript:;">
+					<!--{else}-->
+					</a><a class="js-select <!--{if $perm==$key || ($perm>2 && $adminsum<2)}--> disabled<!--{/if}-->" href="#" perm="$key">
+						<!--{/if}-->
+						$title
+						<span class="select icon-sm glyphicon <!--{if $perm==$key}--> glyphicon-ok disabled<!--{/if}-->"></span>
+						<span class="sub-name">
+                    	<!--{if $key==3}-->{lang can_view_create_edit}
+                    	<!--{elseif $key==2}-->{lang can_view_create_edit_cannot_modify_board_settings}
+                        <!--{elseif $key==1}-->{lang you_can_only_view_the_collection}
+                        <!--{/if}-->
+                    </span>
+					</a>
+			</li>
+			<!--{/loop}-->
+			<!--{if $perm>2 && $adminsum<2}-->
+			<li class="divider"></li>
+			<li>
+				<span class="quiet u-bottom help-block "><i class="glyphicon glyphicon-exclamation-sign text-warning"></i> {lang cannot_modify_this_user_permission}</span>
+			</li>
+			<!--{/if}-->
+		</ul>
+	</div>
+</form>
+<script type="text/javascript">
+	jQuery('#popbox_u_role .js-select').on('click', function() {
+		if(jQuery(this).hasClass('disabled')) return false;
+		jQuery('#user_perm').val(jQuery(this).attr('perm'));
+		u_role_submit();
+	});
+
+	function u_role_submit(form) {
+		ajaxpost('form_u_role', 'return_u_role', 'return_u_role');
+	}
+
+	function succeedhandle_u_role(url, message, values) {
+		jQuery('.popbox .popbox-header .close').trigger('click');
+		var item = jQuery('.member-list-item-detail[data-uid="' + values['uid'] + '"]');
+		item.attr('data-perm', values['perm']).find('.member-type').attr('title', values['permtitle']);
+		item.find('.js-change-role').html(values['permtitle'] + ' <span class="caret"></span>');
+		if(values['perm'] > 2) {
+			item.find('.member-type').addClass('admin');
+		} else {
+			item.find('.member-type').removeClass('admin');
+		}
+		try {
+			check_admin();
+		} catch(e) {}
+	};
+</script>
+<!--{elseif $do=='member_role_confirm'}-->
+
+<div class="popbox-header text-center">
+	
+	<button class="close dzz dzz-close" ></button>
+	<h3 id="return_role_lost_confirm">{lang remove_administrative_permissions}</h3>
+</div>
+
+<form id="form_role_lost_confirm" class="form" role="form" method="post" action="{MOD_URL}&op=menu&do=member_role_confirm" onsubmit="return role_lost_confirm_submit(this);">
+	<input type="hidden" name="handlekey" value="role_lost_confirm" />
+	<input type="hidden" name="role_lost_confirmsubmit" value="true" />
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="uid" value="$uid" />
+	<input type="hidden" name="cid" value="$cid" />
+	<input type="hidden" name="perm" value="$tperm" />
+	<div class="popbox-body" style="max-width:250px;padding:10px">
+		<p class="help-block">{lang lose_all_administrative_privileges}</p>
+		<button class="btn btn-danger btn-block" type="submit">{lang sure_lose_all_administrative_privileges}</button>
+	</div>
+</form>
+<script type="text/javascript">
+	function role_lost_confirm_submit(form) {
+		ajaxpost('form_role_lost_confirm', 'return_role_lost_confirm', 'return_role_lost_confirm');
+		return false;
+	}
+
+	function succeedhandle_role_lost_confirm(url, message, values) {
+		jQuery('.popbox .popbox-header .close').trigger('click');
+		jQuery('#topic_container').load('{MOD_URL}&op=list&do=user&cid=$cid&t=' + new Date().getTime());
+	};
+</script>
+<!--{elseif $do=='member_remove'}-->
+
+<div class="popbox-header text-center">
+
+	<button class="close dzz dzz-close" ></button>
+	<h3 id="return_member_remove">{lang remove_rembers}</h3>
+</div>
+
+<form id="form_member_remove" class="form" role="form" method="post" action="{MOD_URL}&op=menu&do=member_remove" onsubmit="return member_remove_submit(this);">
+	<input type="hidden" name="handlekey" value="role_lost_confirm" />
+	<input type="hidden" name="member_removesubmit" value="true" />
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="uid" value="$uid" />
+	<input type="hidden" name="cid" value="$cid" />
+	<div class="popbox-body" style="max-width:250px;padding:10px">
+		<p class="help-block">{lang system_sends_message_notification_to_the_user}</p>
+		<button class="btn btn-danger btn-block" type="submit"><!--{if $uid==$_G['uid']}-->{lang leaving}<!--{else}-->{lang remove_users}<!--{/if}--></button>
+	</div>
+</form>
+<script type="text/javascript">
+	function member_remove_submit(form) {
+		ajaxpost('form_member_remove', 'return_member_remove', 'return_member_remove');
+		return false;
+	}
+
+	function succeedhandle_role_lost_confirm(url, message, values) {
+		jQuery('.popbox .popbox-header .close').trigger('click');
+		if(values['uid'] == '$_G[uid]') {
+			window.location.href = "{MOD_URL}";
+		} else {
+			jQuery('#topic_container').load('{MOD_URL}&op=list&do=user&cid=$cid&t=' + new Date().getTime());
+		}
+	};
+</script>
+
+<!--{elseif $do=='org_share'}-->
+<div class="popbox-header">
+	<a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+	<h3>{lang share}</h3>
+</div>
+<div class="popbox-body" style="padding:15px 18px;min-width:120px;">
+	<!--{if $org['privacy']}-->
+	<div class="alert alert-warning list-unstyled" style="padding:5px 10px;margin:-10px -10px 15px -10px;min-width:180px;">
+		<p><span class="icon-sm icon-private fa fa-lock"></span> {lang the_private_group}</p>
+		<p class="sub-name">{lang only_team_members_and_members_of_this_board_can_view}</p>
+		<p class="danger">{lang pay_attention_to_share_objects}</p>
+	</div>
+	<!--{/if}-->
+	<ul class="popbox-menu u-bottom list-unstyled">
+		<li>
+			<a class="js-select  js-popbox" href="javascript:;" data-href="{MOD_URL}&op=menu&do=org_shareurl&orgid=$orgid" title="{lang share_addresses_and_codes}">
+				<i class="fa fa-link"></i> &nbsp;{lang address}
+			</a>
+		</li>
+		<li>
+			<a class="js-select js-popbox" href="javascript:;" data-href="{MOD_URL}&op=menu&do=org_sharetowechat&orgid=$orgid" title="{lang share_to_WeChat}">
+				<i class="fa fa-weixin"></i> &nbsp;{lang WeChat}
+			</a>
+		</li>
+		<li>
+			<a class="js-select" href="http://connect.qq.com/widget/shareqq/index.html?url={eval echo urlencode($shareurl);}&showcount=0&desc={eval echo rawurlencode($org[name]);}&title={eval echo rawurlencode($org[name]);}&site={eval echo rawurlencode($_G[sitename])}" onclick="jQuery('.openpop').popbox('close');" target="_blank" title="{lang share_to_QQ}">
+				<i class="fa fa-qq"></i> &nbsp;{lang QQ_friends}
+			</a>
+		</li>
+		<li>
+			<a class="js-select" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={eval echo urlencode($shareurl);}&showcount=0&desc={eval echo rawurlencode($org[name]);}&title={eval echo rawurlencode($org[name]);}&site={eval echo rawurlencode($_G[sitename])}" onclick="jQuery('.openpop').popbox('close');" target="_blank" title="{lang share_to_QQ}">
+				<i class="fa fa-qq"></i> &nbsp;{lang Qzone}
+			</a>
+		</li>
+		<li>
+			<a class="js-select sharetoweibo" href="http://service.weibo.com/share/share.php?title={eval echo rawurlencode($org[name]);}&url={eval echo urlencode($shareurl);}&source=bookmark&appkey=1153621900&pic=&ralateUid=" onclick="jQuery('.openpop').popbox('close');" target="_blank" title="{lang share_to_sina}">
+				<i class="fa fa-weibo"></i> &nbsp;{lang sina_microblog}
+			</a>
+		</li>
+	</ul>
+</div>
+<!--{elseif $do=='org_shareurl'}-->
+<div class="popbox-header">
+	<button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+	<button class="close"><span class="dzz dzz-close"></span></button>
+	<h3 class="">{lang share_addresses_and_codes}</h3>
+</div>
+<div class="popbox-body" style="min-width:220px;">
+	<!--{if $qrcode}-->
+	<p class="text-center"><img class="img-thumbnail" src="$qrcode"></p>
+	<!--{/if}-->
+	<input type="text" class="form-control" style="cursor:default;background:#FFF" spellingcheck="false" readonly name="shareurl" value='$shareurl' onclick="this.select()">
+
+</div>
+<!--{elseif $do=='org_sharetowechat'}-->
+<div class="popbox-header">
+	<button class="back dzz dzz-chevron-left js-popbox-prev"></button>
+	<a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+	<h3 class="">{lang share_the_WeChat_friends_circle}</h3>
+</div>
+<div class="popbox-body" style="min-width:220px;">
+	<p class="text-center"><img src="$qrcode"></p>
+	<p class="help-block">{lang codes_share_the_WeChat_friends_circle}</p>
+</div>
+<!--{elseif $do=='org_delete'}-->
+
+<div class="popbox-header text-center">
+	
+	<button class="close dzz dzz-close"></button>
+	<h3 id="return_org_delete">{lang deletion_team_sure}</h3>
+</div>
+
+<form id="form_org_delete" class="form" role="form" method="post" action="{MOD_URL}&op=menu&do=org_delete" onsubmit="return org_delete_submit(this);">
+	<input type="hidden" name="handlekey" value="org_delete" />
+	<input type="hidden" name="org_deletesubmit" value="true" />
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+	<input type="hidden" name="orgid" value="$orgid" />
+	<div class="popbox-body" style="max-width:250px;padding:10px">
+		<p class="help-block">{lang the_taskboard_in_the_group_will_not_be_deleted}</p>
+
+	</div>
+	<div class="popbox-footer text-right">
+		<button id="form_org_delete_btn" class="btn btn-danger btn-width mr15" data-loading-text="{lang deleting}" type="submit">{lang completely_delete}</button>
+		<button class="btn btn-simple  btn-width cancel" type="button">{lang cancel}</button>
+	</div>
+</form>
+<script type="text/javascript">
+	function org_delete_submit(form) {
+		jQuery('#form_org_delete_btn').button('loading');
+		ajaxpost('form_org_delete', 'return_org_delete', 'return_org_delete');
+		return false;
+	}
+
+	function succeedhandle_org_delete(url, message, values) {
+		jQuery('.popbox .popbox-header .close').trigger('click');
+		window.location.href = "{MOD_URL}";
+	};
+</script>
+<!--{elseif $do=='board_user_perm'}-->
+	
+<div class="popbox-header clearfix">
+	<a href="javascript:;" class="close"><span class="dzz dzz-close"></span></a>
+	<h3 class="popbox-header-perm-title clearfix">
+		<span class="avatar">
+			{eval echo avatar_block($user['uid']);}
+		<!--{if $perm>1 }-->
+			<span class="member-rank"><img src="static/image/common/rank{eval echo $perm-1}.png"></span>
+		<!--{else}-->
+			<span class="member-rank"><img src="dzz/images/b.gif"></span>
+		<!--{/if}-->
+		</span>
+		<span class="username">$user[username]</span>
+	</h3>
+</div>
+
+<ul class="popbox-menu u-bottom list-unstyled">
+	<li class="popbox_li permedit <!--{if $perm == 1}-->active<!--{/if}-->"   data-perm="1">
+	   
+		<a  href="javascript:;">
+
+			<span class="dzz dzz-done active"></span>
+			<span>{lang rank_1}</span>
+
+		</a>
+	</li>
+	<li class="popbox_li permedit <!--{if $perm == 2}-->active<!--{/if}-->"  data-perm="2">
+		<a  href="javascript:;">
+			<span class="dzz dzz-done"></span>
+			<span>{lang rank_2}</span>
+		</a>
+	</li>
+	<li class="popbox_li permedit <!--{if $perm == 3}-->active<!--{/if}-->" data-perm="3">
+		<a href="javascript:;">
+			<span class="dzz dzz-done"></span>
+			<span>{lang rank_3}</span>
+
+		</a>
+	</li>
+	<!--{if $mperm>2 && ($perm<3 || ($perm>2 && $admin_sum>1))}-->
+	<li class="popbox_li removeuser">
+		<a href="javascript:;">{lang 移除此用户}</a>
+	 </li>
+	 <!--{/if}-->
+</ul>
+
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		var tbid = '{$tbid}';
+		var uid='{$uid}';
+		var perm=parseInt('{$perm}');
+		jQuery('.popbox .popbox_li.permedit>a').off('click.permedit').on('click.permedit',function(){
+			var el=jQuery(this).parent();
+			var nperm=el.data('perm');
+			if(nperm==perm) return false;
+			jQuery.post(correcturl(ajaxurl+'&do=user&operation=changeUserPerm'),{"tbid":'$tbid','uid':'$uid',"perm":nperm},function(json){
+				if(json.msg=='success'){
+					perm=nperm;
+					el.addClass('active').siblings('.permedit').removeClass('active');
+					var rank=(nperm-1);
+					if(rank<1){
+						el.closest('.popbox').find('.popbox-header-perm-title .member-rank>img').attr('src','dzz/images/b.gif');
+						jQuery('#rightMenu .member-list-item[uid='+uid+'] .member-rank>img').attr('src','dzz/images/b.gif');
+					}else{
+						el.closest('.popbox').find('.popbox-header-perm-title .member-rank>img').attr('src','static/image/common/rank'+rank+'.png');
+						jQuery('#rightMenu .member-list-item[uid='+uid+'] .member-rank>img').attr('src','static/image/common/rank'+rank+'.png');	
+					}
+					
+				}else if(json.error){
+					showmessage(json.error,'danger',3000,1);
+				}
+			},'json');
+			return false;
+
+		});
+		jQuery('.popbox .popbox_li.removeuser>a').off('click.removeuser').on('click.removeuser',function(){
+			
+			var el=jQuery(this).parent();
+			showDialog('确定要从任务版中移除此用户吗？','confirm','',function(){
+				jQuery.post(correcturl(ajaxurl+'&do=user&operation=deleteUser'),{"tbid":'$tbid','uid':'$uid'},function(json){
+					if(json.msg=='success'){
+						el.closest('.popbox').find('.close').trigger('click');
+						jQuery('#board_members').load(correcturl(ajaxurl+'&do=ajax&operation=board_members_list&tbid=$tbid'));
+					}else if(json.error){
+						showmessage(json.error,'danger',3000,1);
+					}
+				},'json');
+			});
+			return false;
+		});
+	});
+</script>
+<!--{/if}--> 
+

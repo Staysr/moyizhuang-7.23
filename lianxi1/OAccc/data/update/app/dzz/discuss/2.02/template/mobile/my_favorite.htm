@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/dis_header}-->
+    <title>{lang my_favorite}</title>
+</head>
+<body style="background-color: rgba(245, 245, 245, 1);">
+<div class="fav_container">
+    <div class="weui-navbar" style="z-index: 1;background-color: #fff;">
+        <a class="weui-navbar__item <!--{if $type != 'discuss'}-->weui_bar__item_on<!--{/if}--> tab-item" href="{MOD_URL}&op=my&do=myfav">
+            <span class="word">{lang post}</span>
+            <!--{if $type != 'discuss'}--><span class="line"></span><!--{/if}-->
+        </a>
+        <a class="weui-navbar__item <!--{if $type == 'discuss'}-->weui_bar__item_on<!--{/if}--> tab-item" href="{MOD_URL}&op=my&do=myfav&type=discuss">
+            <span class="word">{lang discuss}</span>
+            <!--{if $type == 'discuss'}--><span class="line"></span><!--{/if}-->
+        </a>
+    </div>
+    <div class="info-con">
+        <!--{template mobile/my_favorite_list}-->
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="static/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="static/jquery_weui/js/jquery-weui.min.js"></script>
+<script>
+    jQuery('.searchImg-wrap').height(jQuery('body').height()-55);
+    var loading = false;  //状态标记
+    jQuery(document.body).infinite().on("infinite", function() {
+        if(loading) return;
+        loading = true;
+        if (jQuery(".weui-loadmore").length > 0) {
+            var url = jQuery(".weui-loadmore").data("url");
+            jQuery.ajax({
+                url: url,
+                type: 'get',
+                success: function(res) {
+                    jQuery(".weui-loadmore").replaceWith(res);
+                    loading = false;
+                }
+            })
+        } else {
+            jQuery(document.body).destroyInfinite();
+        }
+    });
+</script>
+<!--{eval output();}-->
+</html>

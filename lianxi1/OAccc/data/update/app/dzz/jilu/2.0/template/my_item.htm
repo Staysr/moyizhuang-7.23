@@ -1,0 +1,86 @@
+<!--{if $list}-->
+    <!--{loop $list $value}-->
+    <li class="post post2 <!--{if $value['pin_type'] == 2}-->admin-top<!--{/if}-->" id="jilu_{$value['jid']}" data-time="{$value[updatetime]}" data-url="{MOD_URL}&id=$value[jid]" uperm="$value[perm]" jid="$value[jid]">
+        <a class="post-url title"  href="{MOD_URL}&id=$value[jid]" style="display: inline-block;width: 90%;overflow: hidden;text-overflow: ellipsis;">
+        <div class="upvote" >
+            <!--{if ($value['updatetime'] > $value['lastvisit']) && !empty($value['updatetime']) && isset($value['lastvisit'])}--><div class="info-red"></div><!--{/if}-->
+            <div class="gridview9">
+            <table style="table-layout:fixed;width:100%;height:100%">
+            <tr><td align="center" valign="middle">
+             <!--{loop $value['cover_uids'] $uid}-->
+             {eval echo avatar_block($uid)}
+             <!--{/loop}-->
+            </td></tr></table>
+            </div>
+      </div>
+      <div class="post-content">
+        <div class="url clearfix">
+                <p class="title">$value[title]</p>
+        </div>
+
+        <div class="post-tagline description">
+            <!--{if $value['lastactive']}-->
+                <span class="lastactive" style="margin-left:0">$value[lastactive][username]：
+                <!--{if $value[lastactive][content]}-->$value[lastactive][content]
+                <!--{else}-->
+                    [{eval echo $publish_type[$value[lastactive][type]];}]
+                <!--{/if}-->
+                </span>
+            <!--{else}-->
+                <span class="desc" style="margin:0">$value['desc']</span>
+                <!--<span >$value[author]</span>
+                <span class="ctime">$value['fdateline']</span>-->
+            <!--{/if}-->   
+        </div> 
+      </div>
+        </a>
+        <div class="time-btn">
+            <span class="updatetime">{eval echo dgmdate($value[updatetime],'u');}</span>
+            <!--{if $value['pin_type']}-->
+                <!--{if $value['pin_type'] == 2}-->
+                    <div class="admin-toped" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('admin_top')}" title="{eval echo lang('admin-toped')}">{eval echo lang("toped")}</div>
+                <!--{else}-->
+                    <div class="onready_top">{eval echo lang("toped")}</div>
+                <!--{/if}-->
+            <!--{else}-->
+                <div class="click_top">{eval echo lang('top')}</div>
+            <!--{/if}-->
+        </div>
+    </li>
+    <!--{/loop}-->
+    <!--{if $nextStart}-->
+     <div class="m-loadm" id="loadmore"  onclick="loadmore('$theurl&nextStart=$nextStart');">
+         <div class="loader"><div class="loader-inner ball-beat"><div></div><div></div><div></div></div></div>
+     </div>
+    <!--{/if}-->
+<!--{elseif $_GET['do'] == 'loadmore'}-->
+    <!--{if $_GET['uids'] || $_GET['after'] || $_GET['before'] || $_GET['mytype']}-->
+    <div class="empty_alert">
+        <div class="empty_alert_search">
+            <img src="{MOD_PATH}/images/search_empty.png">
+            <span>{eval echo lang('no_results_in_screen')}</span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //调整高度使居中
+        jQuery(function(){
+            var top = (jQuery(".bs-main-container").height()-80-jQuery(".empty_alert_search").height()) / 2 - jQuery(".main-content").height();
+            jQuery(".empty_alert").css({"display":"block","position":"relative","background":"#f2f2f2","top":top}).show();
+            jQuery(".empty_alert").parent().css({"box-shadow":'none',"background":"#f2f2f2"});
+        })
+    </script>
+    <!--{/if}-->
+<!--{/if}-->
+<script>
+    jQuery(function () {
+        jQuery("[data-toggle='tooltip']").tooltip();
+        gridview9_init(jQuery('.gridview9'));
+        jQuery('.description .desc').each(function () {
+            if(jQuery(this).text()=='') {
+                jQuery(this).parent().prev().css('top','14px');
+            }else {
+                jQuery(this).parent().prev().css('top','0px');
+            }
+        });
+    })
+</script>

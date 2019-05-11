@@ -1,0 +1,524 @@
+<!--{if $_GET['inajax']}-->
+<!--{template common/header_ajax}-->
+<!--{/if}-->
+<style type="text/css">
+.popbox {
+	z-index: 12229;
+}
+</style>
+
+<button type="button" class="close close1" data-dismiss="modal" style="position: absolute;right:0;top:0;width:40px;height:40px;line-height: 40px;z-index:1"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<div class="view_top">
+  <div class="task-item-coverimage"> 
+    <!--{if $task['imageaid']>0}--> 
+    <img src="{DZZSCRIPT}?mod=io&op=thumbnail&path=$task[dpath]&width=800&height=160" /> 
+    <!--{/if}--> 
+  </div>
+</div>
+<div class="task-panel modal-body" id="task_panel_{$task[taskid]}" taskid="$task[taskid]"> <span class="delete_title <!--{if $task['deletetime']<1}-->hide<!--{/if}-->">任务已经于 {eval echo dgmdate($task[deletetime]);} 删除了</span> <span class="delete_title <!--{if $task['archivetime']<1}-->hide<!--{/if}-->">任务已经于 {eval echo dgmdate($task[archivetime]);} 归档了</span>
+  <div class="part-loading mt60" style="display: none;"></div>
+  <!-- 左侧 -->
+  <div class="task-panel-body" style="position:relative;padding:0px;">
+    <div class="task-panel-wrapper clearfix">
+      <div class="task-panel-header task-operation-container hidden-xs"> 
+       
+        <!--{if $task['deletetime']>0 || $task['archivetime']>0}--> 
+         
+        <span class="task-panel-header-span">操作</span>
+        <ul class="task-panel-header-ul">
+          <!--{if $task['archivetime']>0}-->
+          <li> <a href="javascript:;" title="激活" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=13&a=active" data-taskid="$task[taskid]" data-placement="bottom" data-auto-adapt="true"> <span class="dzz dzz-rotate"></span> &nbsp;激活 </a> </li>
+          <!--{elseif $task['deletetime']>0}-->
+          <li> <a href="javascript:;" title="恢复" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=13&a=restore" data-taskid="$task[taskid]" data-placement="bottom" data-auto-adapt="true"> <span class="dzz dzz-rotate"></span> &nbsp;恢复 </a> </li>
+         <!--{if $taskboard['perm']>2}-->
+           <li> <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=9" data-closest="li" data-taskid="$task[taskid]" data-placement="bottom"  data-auto-adapt="true"><span class="dzz dzz-notifications"></span>&nbsp;彻底删除</a> </li>
+          <!--{/if}-->
+           <!--{/if}-->
+        </ul>
+        
+        <!--{elseif $task['disable']<1}--> 
+        <span class="task-panel-header-span">添加</span>
+        <ul class="task-panel-header-ul">
+          <li> <a href="javascript:;"  class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=4" data-taskid="$task[taskid]" data-placement="bottom"  title="截止日期"> <span class="dzz dzz-alarm"></span> &nbsp;日期 </a> </li>
+          <li> <a  href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=10" data-taskid="$task[taskid]" data-placement="bottom" > <span class="dzz dzz-clock"></span> &nbsp;设置工时 </a> </li>
+          <li><a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=11" data-taskid="$task[taskid]" data-placement="bottom" ><span class="dzz dzz-money"></span>&nbsp;设置预算</a></li>
+          <li> <a href="javascript:;" onclick="task_show_todo('$task[taskid]')" title="添加检查项"><span class="dzz dzz-view-list"></span>&nbsp;检查项</a></li>
+          <!--<li class="" data-placement="bottom" > <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="添加附件" style="position:relative"><span class="dzz dzz-notifications"></span>&nbsp;附件</a>
+            <ul class="dropdown-menu">
+              <li><a href="javascript:;" class="fileinput-button"><i class="glyphicon glyphicon-hdd"></i>&nbsp;本地上传
+                <input type="file" name="files[]" title="添加附件" multiple>
+                </a></li>
+              <li><a href="javascript:;" onclick="upload_from_desktop('$task[taskid]');return false;"><i class="glyphicon glyphicon-file"></i>&nbsp;从桌面文件选择</a></li>
+            </ul>
+          </li>-->
+        </ul>
+        <span class="task-panel-header-span">操作</span>
+        <ul class="task-panel-header-ul">
+          <li> <a href="javascript:;" onclick="task_archive('$task[taskid]')" title="归档"><span class="dzz dzz-archive2"></span>&nbsp;归档</a> </li>
+          <li> <a href="javascript:;" onclick="task_show_taskinfo_editor('$task[taskid]')" title="编辑" class=""><span class="dzz dzz-edit"></span>&nbsp;编辑</a> </li>
+          <li> <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=7" data-closest="li" data-taskid="$task[taskid]" data-placement="bottom" data-auto-adapt="true"><span class="dzz dzz-change"></span>&nbsp;移动</a> </li>
+          <li> <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=8" data-closest="li" data-taskid="$task[taskid]" data-placement="bottom" data-auto-adapt="true"><span class="dzz dzz-copy"></span>&nbsp;拷贝</a> </li>
+          <li> <a href="javascript:;" class="js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=9" data-closest="li" data-taskid="$task[taskid]" data-placement="bottom"  data-auto-adapt="true"><span class="dzz dzz-remove-circle"></span>&nbsp;删除</a> </li>
+        </ul>
+        <!--{/if}--> 
+      </div>
+      <div class="content-panel">
+        <div class="content-module content-module-taskinfo editable-module">
+          <div class="taskinfo clearfix">
+            <div class="task-title <!--{if $task['status']==2}-->line-through<!--{/if}-->">
+              <div class="content_module_top"> <a class="task-item-check" data-taskid="$task[taskid]"> <span class="checkbox-custom checkbox-success">
+				<input type="checkbox"  <!--{if $task[disable]>0}-->disabled<!--{/if}-->  value="2" <!--{if $task['status']==2}-->checked<!--{/if}-->  onchange="task_complete('$task[taskid]',this)"><label></label></span></a> <h3 <!--{if $task['disable']<1}-->onclick="task_show_taskinfo_editor('$task[taskid]')"<!--{/if}--> style="cursor:pointer;">$task[name]<em class="">$task[catname]</em>
+                </h3>
+              </div>
+            </div>
+            <div class="task-item-badges"> 
+              <!--{if $task['endtime']}--> 
+              <!--{if $task[expire]==1}--> 
+              <span class="task-badge task-badge-time badge-expire-due" title="任务已经截止"><i class="dzz dzz-notifications"></i><em>$task[fendtime]</em></span> 
+              <!--{elseif $task[expire]==2}--> 
+              <span class="task-badge task-badge-time badge-expire-soon" title="任务即将截止"><i class="dzz dzz-notifications"></i><em>$task[fendtime]</em></span> 
+              <!--{else}--> 
+              <span class="task-badge task-badge-time" title="截止时间：{eval echo dgmdate($task[endtime],'Y-m-d');}"><i class="dzz dzz-notifications"></i><em>$task[fendtime]</em></span> 
+              <!--{/if}--> 
+              <!--{/if}--> 
+              <!--{if $task['subs']}--> 
+              <span class="task-badge  task-badge-sub <!--{if $task[subs]==$task['subs_c']}-->badge-todo-done <!--{/if}-->" title="检查项：{$task[subs_c]}/{$task[subs]}"><i class="dzz dzz-assignment_turned"></i><em>{$task[subs_c]}/{$task[subs]}</em></span> 
+              <!--{/if}--> 
+              <!--{if $task['replys']}--> 
+              <span class="task-badge task-badge-comment" title="任务有 $task['replys'] 个评论"><i class="dzz dzz-comment"></i><em>$task['replys'] 个</em></span> 
+              <!--{/if}--> 
+              <!--{if $task['attachs']}--> 
+              <span class="task-badge task-badge-attach" title="任务有 $task['attachs'] 个附件"><i class="dzz dzz-attachment"></i><em>$task['attachs'] 个</em></span> 
+              <!--{/if}--> 
+              <!--{if $task['money']}--> 
+              <span class="task-badge task-badge-money " title="预算{$task['money']}"><i class="dzz dzz-money"></i><em>{$task['money']}</em></span> 
+              <!--{/if}--> 
+              <!--{if $task['worktime']>0 }--> 
+              <span class="task-badge task-badge-worktime " title="工时：{$task['worktime']}小时"><i class="dzz dzz-clock"></i><em>{$task['worktime']}</em></span> 
+              <!--{/if}--> 
+            </div>
+            
+        
+            <div class="task-desc">
+              <div class="task-desc-text" >$task[description]</div>
+            </div>
+            <!--{if $task[disable]<1}-->
+             <div class="task-desc-add"> <a href="javascript:;" onclick="task_show_taskinfo_editor('$task[taskid]')">编辑任务描述</a> </div>
+             <!--{/if}-->
+          </div>
+          <!--{if $task['disable']<1}-->
+          <div class="edit-section hide" >
+            <form id="ueditorform_{$task[taskid]}" name="ueditorform" class="form-horizontal" action="{BASESCRIPT}?mod={MOD_NAME}&op=cp&do=taskedit" method="post" style="margin:0" onsubmit="validate_{$task[taskid]}(this);return false" >
+                    <input type="hidden" name="edit" value="true" />
+                    <input type="hidden" name="taskid" value="$task[taskid]" />
+                    <input type="hidden" name="tbid" value="$task[tbid]" />
+                    <input type="hidden" name="handlekey" value="ueditorform_$task[taskid]" />
+                    <input type="hidden" name="message"  value="" />
+                    <input type="hidden" name="formhash" value="{FORMHASH}" />
+                   <p style="margin-bottom:15px;"> <input type="text" autofocus name="taskname" class="form-control" value="$task[name]" placeholder="任务名称" required></p>
+                  </form>
+            <div class="form-group">
+              <textarea  id="editor_{$task[taskid]}" style="height:100px;margin:0 auto;border:1px solid #e1e1e1">$task['description']</textarea>
+            </div>
+            <div class="form-group" style="margin-top:10px;">
+              <button id="editsubmit_btn_{$task[taskid]}" data-loading-text="保存中..."  class="btn btn-success mr15" onclick="document.getElementById('ueditorform_{$task[taskid]}').onsubmit();">保存</button>
+              <button onclick="task_cancel_taskinfo_editor($task[taskid])" class="mr15 btn btn-default" >取消</button>
+              <span id="ueditorform_return_{$task[taskid]}" class="text-danger"></span> </div>
+          </div>
+          <!--{/if}--> 
+        </div>
+        <div class="content-module content-module-subs <!--{if !$task[subarr]}-->hide<!--{/if}-->" >
+          <div class="content_module_top"> <span class="dzz dzz-view-list"></span>
+            <h3>检查项</h3>
+          </div>
+          <div class="progress-warp progress-todos"> <span >{eval echo $task[subs]?ceil($task[subs_c]/$task[subs]*100):0;}%</span>
+            <div class="progress">
+              <div class="progress-bar"  style="width: {eval echo ceil($task[subs_c]/$task[subs]*100);}%;"></div>
+            </div>
+          </div>
+          <div class="task-todos">
+            <ul class="sortable list-unstyled" >
+              <!--{loop $task['subarr'] $value}-->
+              <li class="todo-item" subid="$value[subid]" taskid="$value[taskid]"> <a class="todo-item-check"<!--{if $task['disable']<1}--> onclick="task_complete_todo('$value[subid]', '$value[taskid]',this)"<!--{/if}--> > <!--{if $value['completed']}--><span class="dzz dzz-assignment_turned"></span><!--{else}--><span class="dzz dzz-max"></span><!--{/if}--> </a>
+                <div class="todo-item-edit editable"> <p <!--{if $task['disable']<1}-->onclick="task_show_todo_editor('$value[subid]','$task[taskid]', this)" <!--{/if}--> class=""> $value[subname]
+                  </p>
+                  <!--{if $task['disable']<1}-->
+                  <div class="edit hide">
+                    <div class="todo-edit-control">
+                      <input type="text" class="form-control" value="$value[subname]" onkeyup="if(event.keyCode==13){task_save_todo('$value[subid]','$task[taskid]')}" >
+                    </div>
+                    <button onclick="task_save_todo('$value[subid]','$task[taskid]')" data-loading-text="保存"  class="btn btn-success todo-save">保存 </button>
+                    <button class="btn btn-link todo-del" onclick="task_del_todo('$value[subid]','$task[taskid]')"> 删除</span></button>
+                  </div>
+                  <!--{/if}--> 
+                </div>
+              </li>
+              <!--{/loop}-->
+            </ul>
+          </div>
+          <!--{if $task['disable']<1}-->
+          <div class="new-todo"> <a href="javascript:;" onclick="task_show_add_todo_editor('$task[taskid]',this)"  class=""> 添加检查项 </a>
+            <div class="new-todo-control hide">
+              <div>
+                <input type="text" class="new-todo-text form-control" onkeyup="if(event.keyCode==13){task_add_todo('$task[taskid]');}" placeholder="输入检查项内容" >
+              </div>
+              <button class="btn btn-success" data-loading-text="添加" onclick="task_add_todo('$task[taskid]')">添加 </button>
+              <button class="btn btn-link todo-del "  onclick="task_cancel_add_todo_editor('$task[taskid]')"> 取消 </button>
+            </div>
+          </div>
+          <!--{/if}--> 
+        </div>
+        <div class="content-module clearfix <!--{if !$task[labels] && $task['disable']}-->hide<!--{/if}-->" >
+          <div class="content_module_top"> <span class="dzz dzz-label"></span>
+            <h3>标签</h3>
+          </div>
+          <div class="task-labels">
+            <ul class="list-unstyled list-float task_labels_ul">
+              <!--{loop $task[labels] $value}-->
+              <li class="task-label {$value[color]}-label" pow="$value[pow]">$value[title]</li>
+              <!--{/loop}--> 
+              
+              <!--{if $task['disable']<1}-->
+              <button class="js-popbox task_labels_btn clearfix" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=2" data-taskid="$task[taskid]" data-placement="right" data-auto-adapt="true"><span class="dzz dzz-add"></span></button>
+              <!--{/if}-->
+              
+              <div class="clearfix"></div>
+            </ul>
+          </div>
+        </div>
+        <div class="content-module clearfix <!--{if !$task[user_assign] && $task['disable']}-->hide<!--{/if}-->">
+          <div class="content_module_top"> <span class="dzz dzz-group"></span>
+            <h3>分配</h3>
+          </div>
+          <div class="task-members Member">
+            <ul class="list-unstyled list-float task_labels_ul">
+              <!--{loop $task[user_assign]  $value}-->
+              <li class=""><a class="avatar avatar-40 js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&uid=$value[uid]&taskid=$task[taskid]&step=15&ac=2" data-placement="top" data-auto-adapt="true" title="$value[username]" uid="$value[uid]" href="javascript:;">{eval echo avatar_block($value['uid']);}</a></li>
+              <!--{/loop}--> 
+              
+              <!--{if $task['disable']<1}-->
+              <button class="js-popbox task_labels_btn clearfix" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=1" data-taskid="$task[taskid]" data-placement="left" data-auto-adapt="true"><span class="dzz dzz-add"></span></button>
+              <!--{/if}-->
+              <div class="clearfix"></div>
+            </ul>
+          </div>
+        </div>
+        <div class="content-module clearfix <!--{if !$task[user_follow] && $task['disable']}-->hide<!--{/if}-->">
+          <div class="content_module_top"> <span class="dzz dzz-visibility"></span>
+            <h3>关注</h3>
+          </div>
+          <div class="task-members follow">
+            <ul class="list-unstyled list-float">
+              <!--{loop $task[user_follow]  $value}-->
+              <li class=""><a class="avatar avatar-40 js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&uid=$value[uid]&taskid=$task[taskid]&step=15&ac=1" data-placement="top" data-auto-adapt="true" title="$value[username]" uid="$value[uid]" href="javascript:;">{eval echo avatar_block($value['uid']);}</a></li>
+              <!--{/loop}--> 
+              
+              <!--{if $task['disable']<1}-->
+              <button class="js-popbox task_labels_btn clearfix" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&taskid=$task[taskid]&step=3" data-taskid="$task[taskid]" data-placement="left" data-auto-adapt="true"><span class="dzz dzz-add"></span></button>
+              <!--{/if}-->
+              
+              <div class="clearfix"></div>
+            </ul>
+          </div>
+        </div>
+        <div class="content-module content-module-attachs clearfix ">
+          <div class="content_module_top"> <span class="dzz dzz-attachment"></span>
+            <h3>附件</h3>
+          </div>
+          <div class="attachment" style="padding-left:25px;"> 
+            <!--{loop $task[attacharr] $attach}-->
+            
+            <div class="attach-item" attachid="$attach[id]"> 
+              <!--{if $attach[type]=='image'}-->
+              <div class="pic_fed clearfix">
+                <div class="img_pfed"> <a class="min_ipfed" hidefocus="true" href="javascript:;" ="$attach[url]" target="_blank"><img src="$attach[img]" alt="$attach[filename]"  data-original="$attach[url]" class="dzzthumb" ></a> </div>
+              </div>
+              <div class="file_fed imgfile_fed clearfix"> $attach[filename]<span class="kb_nffed">($attach[filesize])</span>
+                <p class="down_ffed"> <a href="javascript:;" title="" hidefocus="true" class="btn_dffed skip_mmfed"  onclick="task_attach_down('$attach[id]')">下载<!--{if $attach[downloads]>0}-->($attach[downloads]次)<!--{/if}--></a> 
+                  <!--{if $task['disable']<1}-->
+                 <a href="javascript:void(0);" title="" hidefocus="true" class="save_dffed skip_mmfed"  onclick="task_attachs_update_coverimage('{$task[taskid]}','$attach[dpath]','$attach[id]')"><!--{if $task[imageaid]==$attach[id]}-->取消封面<!--{else}-->设为封面<!--{/if}--></a> <!--{/if}-->  
+                  <!--{if $task['disable']<1}--> <a href="javascript:void(0);" title="" hidefocus="true" class="del_dffed skip_mmfed"  onclick="task_attach_del('$attach[id]','$attach[taskid]')">删除</a> <!--{/if}--> 
+                  </p>
+              </div>
+              <!--{elseif $attach['type']=='video'}-->
+              <div class="file_fed file_fed_{$attach[type]} clearfix">
+                <div class="ico_ffed " style="margin-right:20px"><a href="javascript:;" onclick="task_attach_preview('$attach[id]')"><img src="$attach[img]" alt="$attach[title]" class="videoclass50_50" ></a></div>
+                <p class="name_ffed">$attach[filename]</p>
+                <p class="down_ffed"> <a href="javascript:void(0);" title="" hidefocus="true" class="preview_dffed skip_mmfed" onclick="task_attach_preview('$attach[id]')">预览</a> 
+                  <!--{if $task['disable']<1}--> <a href="javascript:void(0);" title="" hidefocus="true" class="del_dffed skip_mmfed"  onclick="task_attach_del('$attach[id]','$attach[taskid]')">删除</a><!--{/if}--> 
+                </p>
+              </div>
+              <!--{elseif $attach['type']=='dzzdoc' || $attach['type']=='link'}-->
+              <div class="file_fed file_fed_{$attach[type]} clearfix">
+                <div class="ico_ffed " ><a href="javascript:;" onclick="task_attach_preview('$attach[id]')"><img src="$attach[img]" alt="$attach[title]" style="height:64px;" ></a></div>
+                <p class="name_ffed">$attach[filename]</p>
+                <p class="down_ffed"> <a href="javascript:void(0);" title="" hidefocus="true" class="preview_dffed skip_mmfed" onclick="task_attach_preview('$attach[id]')">预览</a> 
+                  <!--{if $task['disable']<1}--><a href="javascript:void(0);" title="" hidefocus="true" class="del_dffed skip_mmfed"  onclick="task_attach_del('$attach[id]','$attach[taskid]')">删除</a><!--{/if}--> 
+                </p>
+              </div>
+              <!--{else}-->
+              <div class="file_fed file_fed_{$attach[type]} clearfix">
+                <div class="ico_ffed"><img src="$attach[img]" alt="$attach[filename]" style="height:64px;"> </div>
+                <p class="name_ffed">$attach[filename] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--> </p>
+                <p class="down_ffed"> <a href="javascript:void(0);" title="" hidefocus="true" class="preview_dffed skip_mmfed" onclick="task_attach_preview('$attach[id]')">预览</a> <a href="javascript:;" title="" hidefocus="true" class="btn_dffed skip_mmfed"  onclick="task_attach_down('$attach[id]')">下载<!--{if $attach[downloads]>0}--><span class="text-gray">($attach[downloads]次)</span><!--{/if}--></a> 
+               
+                  <!--{if $task['disable']<1}--><a href="javascript:void(0);" title="" hidefocus="true" class="del_dffed skip_mmfed"  onclick="task_attach_del('$attach[id]','$attach[taskid]')">删除</a><!--{/if}--> 
+                </p>
+              </div>
+              <!--{/if}--> 
+              
+            </div>
+            
+            <!--{/loop}--> 
+             
+          </div><!--{if $task['disable']<1}-->
+            <a href="javascript:;" style="padding-left:25px;" class="fileinput-button pull-left"><i class="dzz dzz-upload"></i>&nbsp;添加附件
+                <input type="file" name="files[]" title="添加附件" multiple>
+                </a>
+             <!--{/if}-->
+        </div>
+      </div>
+    </div>
+    <div class="tabbable">
+      <div class="navbarBox">
+        <ul class="navbarUL">
+          <li class="active tab-comment"> <a href="javascript:;" class="" onclick="tab_pane_switch('comment')">评论</a> </li>
+          <li class="tab-event"> <a href="javascript:;" class="" onclick="tab_pane_switch('event')">活动</a> </li>
+        </ul>
+      </div>
+      <div id="tab_comments_{$task[taskid]}" class="tab-content tab-comments" style="padding:0"> <a name="comment_container"></a>
+        <div id="comment_container_{$task[taskid]}" class="document-comment clearfix"> 
+          <script type="text/javascript" reload="1"> ajaxget('{DZZSCRIPT}?mod=comment&op=ajax&do=getcomment&idtype=task&id=$task[taskid]&allowattach=3&allowat=1&allowsmiley=1','comment_container_{$task[taskid]}','comment_container_{$task[taskid]}')</script> 
+        </div>
+        <a name="comment_reply_form"></a>
+        <div id="comment_reply_form_{$task[taskid]}" class="comment-reply-form clearfix">
+          <div class="itemfeed" >
+            <div class="left_ifed"> {eval echo avatar_block($_G[uid]);} </div>
+            <div  class="cmt_fed right-ifed" id="task_reply_{$task[taskid]}"> 
+              <script type="text/javascript">ajaxget('{DZZSCRIPT}?mod=comment&op=ajax&do=getPublishForm&id=$task[taskid]&idtype=task&module=taskboard&allowattach=3&allowat=1&allowsmiley=1&targetid=comment_container_{$task[taskid]}','task_reply_{$task[taskid]}','task_reply_{$task[taskid]}')</script> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tab_events_{$task[taskid]}" class="tab-pane tab-events" >
+        <div class="activity-list m15">
+          <ul id="tab_events_list_{$task[taskid]}" class="activities list-unstyled">
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="taskpanel_blank"  unselectable="on" onselectstart="return event.srcElement.type== 'text';" style="display:none; background: url(dzz/images/b.gif); z-index:10000;width:100%;height:100%;margin:0;padding:0; right: 0px; bottom: 0px;position: absolute; top:0px; left: 0px;"></div>
+<script type="text/javascript" >
+var ajaxurl='{MOD_URL}&op=list&tbid=$tbid';
+var cpurl='{MOD_URL}&op=cp&tbid=$tbid';
+jQuery('.navbarUL li').click(function(){
+    jQuery(this).addClass('active').siblings().removeClass('active');
+})
+
+jQuery('.js-popbox').each(function(){
+        jQuery(this).popbox();
+});
+    <!--{if $task['disable']<1}-->
+		jQuery('#task_panel_{$task[taskid]} .sortable').dragsort({
+			'scrollContainer':jQuery('#task_panel_{$task[taskid]} .task-panel-body'), //滚动层
+			'contentContainer':jQuery('#task_panel_{$task[taskid]} .task-panel-wrapper') //内容层
+		},callback_tasksubmove);
+
+        jQuery('#task_panel_{$task[taskid]} .task-labels .icon-action.glyphicon-remove').click(function(){
+            var el=jQuery(this);
+            task_remove_label(el.data('taskid'),el.data('pow'),this);
+            return false;
+        });
+    
+     var ue_{$task[taskid]} = UE.getEditor('editor_{$task[taskid]}', {
+            UEDITOR_HOME_URL:SITEURL+'dzz/system/ueditor/',
+            toolbars: UEDITOR_CONFIG.mode.mini,
+            allowDivTransToP: false,
+            serverUrl:SITEURL+DZZSCRIPT + "?mod=attach&op=controller",
+            focus: true,
+            zIndex : 19000,
+            formid:'ueditorform_{$task[taskid]}',
+            iframeCssUrl:'dzz/system/ueditor/themes/iframe1.css',
+            initialFrameWidth:'100%', //初始化编辑器宽度,默认500
+            initialFrameHeight:100 , //初始化编辑器高度,默认500
+            topOffset:jQuery('.bs-main-container').offset().top
+        });
+	jQuery('#task_panel_{$task[taskid]} .fileinput-button input[type=file]').fileupload({
+            url: cpurl+'&do=upload',
+            dataType: 'json',
+            autoUpload: true,
+            maxChunkSize:2000000, //2M
+            dropZone:jQuery('#task_panel_{$task[taskid]}'),
+            pasteZone:jQuery('#task_panel_{$task[taskid]}'),
+            add:function(e,data){
+                 data.context = jQuery('<div class="attach-item"></div>').appendTo('#task_panel_{$task[taskid]} .content-module-attachs .attachment');
+                jQuery.each(data.files, function (index, file) {
+                    if(!file.name) file.name='clipboardData.png';
+                    
+                    var html='';
+                        html+='<div class="file_fed  clearfix">';
+                        html+=' <div class="ico_ffed"><img src="dzz/images/default/upload_failure.png" alt="" style="height:64px;"> </div>';
+                        html+=' <p class="name_ffed">'+file.name+'<span class="kb_nffed">('+file.size+')</span> </p>';
+                        html+='  <div class="progress progress-striped active" style="width:200px;margin:0">';
+                        html+='     <div class="progress-bar progress-bar-success" style="width:0%"> </div>';
+                        html+='  </div>';
+                        html+=' <p class="down_ffed"> ';
+                        html+='     <a href="javascript:void(0);" title="" hidefocus="true" class="del_dffed skip_mmfed">删除</a>';
+                        html+=' </p>';
+                        html+=' </div>';
+                    jQuery(html).appendTo(data.context);
+                    jQuery(data.context).find('.del_dffed').on('click',function(){
+                        try{data.abort();}catch(e){}
+                        jQuery(this).parent().parent().parent().remove();
+                        return false;
+                    });
+                    jQuery('#task_panel_{$task[taskid]} .content-module-attachs').removeClass('hide');
+                });
+                
+                data.process().done(function () {
+                    data.submit();
+                });
+                
+            },
+            progress: function (e,data){
+                 var index = 0;//data.index,
+                // file = data.files[index],
+                var  node = data.context;
+                
+                  var progress = parseInt(data.loaded / data.total * 100, 10);
+                    node.find('.progress-bar').css(
+                        'width',
+                        progress + '%'
+                    );
+            },
+            done: function (e, data) {
+                jQuery.each(data.result.files, function (index, file) {
+                    if(file.error){
+                        jQuery(data.context).find('.progress').replaceWith('<span class="text-danger">'+file.error+'</span>');
+                    }else{
+                        jQuery(data.context).find('.progress').remove();
+                        
+                        file.data.taskid='{$taskid}';
+                        jQuery.getJSON(cpurl+'&do=taskattachsave',file.data,function(json){
+                            if(json.msg=='success'){
+                                var html='';
+                                html+='<div class="attach-item" attachid="'+json.id+'">';
+                                if(json.type=='image'){
+                                    
+                                    html+=' <div class="pic_fed clearfix">';
+                                    html+='    <div class="img_pfed"> <a class="min_ipfed" hidefocus="true" href="javascript:;" ><img src="'+json.img+'" data-original="'+json.img+'&original=1" alt="'+json.filename+'" class=""></a> </div>';
+                                    html+=' </div>';
+                                    html+='<div class="file_fed imgfile_fed clearfix"> '+json.filename+'<span class="kb_nffed">('+json.filesize+')</span>';
+                                    html+=' <p class="down_ffed"> ';
+                                    
+                                    html+='   <a href="javascript:;" hidefocus="true" class="btn_dffed skip_mmfed"  onclick="task_attach_down(\''+json.id+'\')">下载</a>';
+                                     html+='   <a href="javascript:void(0);" title="" hidefocus="true" class="save_dffed skip_mmfed" onclick="task_attachs_update_coverimage(\'$taskid\',\''+json.dpath+'\',\''+json.id+'\')">';
+									if(json.imageaid>0){
+									   html+='取消封面';
+									 }else{
+										html+='设为封面';
+									}
+									html+='</a>';
+                                    html+='   <a href="javascript:void(0);" title="" hidefocus="true" class="del_dffed skip_mmfed"  onclick="task_attach_del(\''+json.id+'\',\''+json.taskid+'\')">删除</a>';
+                                    html+=' </p>';
+                                    html+=' </div>';
+                                    
+                                }else{
+                                    html+='<div class="file_fed file_fed_attach  clearfix">';
+                                    html+=' <div class="ico_ffed"><img src="'+json.img+'" alt=""> </div>';
+                                    html+=' <p class="name_ffed">'+json.filename+'<span class="kb_nffed">('+json.filesize+')</span> </p>';
+                                    
+                                    html+=' <p class="down_ffed"> ';
+                                    html+='   <a href="javascript:void(0);" hidefocus="true" class="preview_dffed skip_mmfed" onclick="task_attach_preview(\''+json.id+'\')">预览</a>';
+                                    html+='   <a href="javascript:;" hidefocus="true" class="btn_dffed skip_mmfed"  onclick="task_attach_down(\''+json.id+'\')">下载</a>';
+									
+                                   
+									 
+                                    html+='   <a href="javascript:void(0);" title="" hidefocus="true" class="del_dffed skip_mmfed"  onclick="task_attach_del(\''+json.id+'\',\''+json.taskid+'\')">删除</a>';
+                                    html+=' </p>';
+                                    html+=' </div>';
+                                }
+                                html+=' </div>';
+                                if(json.imageaid){
+									jQuery('#fwin_view_'+json.taskid+' .attach-item a.save_dffed').html('设为封面');
+									var catid=jQuery('#task_'+json.taskid).closest('.catlist').attr('catid');
+									if(jQuery('#task_'+json.taskid+' .task-item-coverimage').length){
+										jQuery('#task_'+json.taskid+' .task-item-coverimage').html('<img src="'+DZZSCRIPT+'?mod=io&op=thumbnail&path='+json.dpath+'&width=240&height=280" onload="layout_catlist(jQuery(\'#catlist_'+catid+'\'))" /> <div class="long_image_shadow"></div>');
+										layout_catlist(jQuery('#catlist_'+catid));
+									}
+									if(jQuery('#fwin_view_'+json.taskid+' .task-item-coverimage').length){
+										jQuery('#fwin_view_'+json.taskid+' .task-item-coverimage').html('<img src="'+DZZSCRIPT+'?mod=io&op=thumbnail&path='+json.dpath+'&width=800&height=160" />');
+									}
+								}
+                                jQuery(data.context).replaceWith(html);
+                               jQuery('#task_panel_{$task[taskid]} img[data-original]').dzzthumb();
+                                //更新各处附件数量
+                                
+                                task_attachs_update('{$taskid}');
+                            }else{
+                                jQuery(data.context).remove();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+        
+<!--{/if}-->
+
+jQuery(document).ready(function(e) {
+	jQuery('#task_panel_{$task[taskid]} img[data-original]').dzzthumb();
+  	uParse('.task-desc-text',{'rootPath':'dzz/system/ueditor'});
+    dzzattach.init('.task-desc-text');
+});
+
+function tab_pane_switch(type){
+    jQuery('.tasks_tab_module li').removeClass('active');
+    if(type=='event'){
+        jQuery('.tasks_tab_module li.tab-event').addClass('active');
+        jQuery('#tab_comments_{$task[taskid]}').hide();
+        jQuery('#tab_events_{$task[taskid]}').show();
+        jQuery.get(DZZSCRIPT+'?mod={MOD_NAME}&op=list&do=ajax&operation=getevent&taskid={$task[taskid]}&tbid={$tbid}',{'page':1},function(html){
+            jQuery('#tab_events_list_{$task[taskid]}').html(html); 
+        });
+    }else{
+        jQuery('.tasks_tab_module li.tab-comment').addClass('active');
+        jQuery('#tab_comments_{$task[taskid]}').show();
+        jQuery('#tab_events_{$task[taskid]}').hide();
+        ajaxget('{DZZSCRIPT}?mod=comment&op=ajax&do=getcomment&module=taskboard&idtype=task&id=$task[taskid]&allowattach=3&allowat=1&allowsmiley=1','comment_container_{$task[taskid]}','comment_container_{$task[taskid]}');
+    }
+}
+function getEventMore_{$task[taskid]}(page,uid){
+    jQuery('#btn-load-more-{$task[taskid]} button').button('loading');
+    jQuery.get(DZZSCRIPT+'?mod={MOD_NAME}&op=list&do=ajax&operation=getevent&taskid={$task[taskid]}&tbid={$tbid}',{'page':parseInt(page)+1,'uid':uid},function(html){
+        jQuery('#btn-load-more-{$task[taskid]}').replaceWith(html);
+    });
+};
+    
+function validate_{$task[taskid]}(form){
+    form.message.value=ue_{$task[taskid]}.getContent();
+    jQuery(form).find('#editsubmit_btn_{$task[taskid]}').button('loading');
+    ajaxpost(form.id,'ueditorform_return_{$task[taskid]}','ueditorform_return_{$task[taskid]}',null,null,function(){
+		 jQuery(form).find('#editsubmit_btn_{$task[taskid]}').button('reset');
+        task_cancel_taskinfo_editor('$task[taskid]');
+    });
+}
+function succeedhandle_ueditorform_{$task[taskid]}(url, message, values) {
+    var data= eval('(' + decodeURIComponent(values['data']) + ')');
+    var el=jQuery('#task_panel_'+data.taskid+' .content-module-taskinfo');
+    el.find('.task-title h3').html(data.name);
+    el.find('.task-desc-text').html(data.description);
+
+    jQuery('#task_'+data.taskid+' .task-item-title').html(data.name);
+   
+    task_cancel_taskinfo_editor(data.taskid);
+    jQuery('#ueditorform_return_$task[taskid]').empty();
+    uParse('.task-desc-text',{'rootPath':'dzz/system/ueditor'});
+    dzzattach.init('.task-desc-text');
+};
+</script>
+<!--{if $_G['inajax']}--> 
+<!--{template common/footer_ajax}--> 
+<!--{/if}-->

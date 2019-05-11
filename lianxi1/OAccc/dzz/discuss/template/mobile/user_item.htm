@@ -1,0 +1,18 @@
+<!--{if $type == 'adm'}-->
+    <!--{loop $list $value}-->
+        <div class="user-item">
+            <div class="user-image">{eval echo avatar_block($value['uid'])}</div>
+            <p class="user-name">$value[username]</p>
+        </div>
+    <!--{/if}-->
+<!--{else}-->
+    <!--{loop $list $value}-->
+        <div class="user-item">
+            <div class="user-image">{eval echo avatar_block($value['uid'])}</div>
+            <p class="user-name">$value[username]</p>
+        </div>
+    <!--{/loop}-->
+<!--{/if}-->
+<!--{if $next}-->
+    <div class="user-item {$type}list-next"><a class="loadmore" href="javascript:;" onclick="loadmore('{$nextstart}', '{$type}')">{lang loadmore}</a></div>
+<!--{/if}-->

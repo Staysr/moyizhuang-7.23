@@ -1,0 +1,82 @@
+*{
+    margin:0;
+	padding:0;
+}
+body {
+	padding-right: 0px;
+	padding-left: 0px;
+	font-size: 14px;
+	padding-bottom: 0px;
+	margin: 0px;
+	color: #000000;
+	padding-top: 0px;
+	font-family:'Microsoft Yahei', Tahoma, Arial!important; font-family:'Microsoft Yahei', '宋体', Tahoma, Arial;
+	text-align: center;
+	background-color:#F7FBFC;
+}
+li,td,th,input,select,textarea,p,div,caption,a{font-size:13px;}
+form {padding-right: 0px; padding-left: 0px; padding-bottom: 0px; margin: 0px; padding-top: 0px}
+table {text-align: left}
+a {color: #333; background-color: transparent; text-decoration: none; outline:none;}
+a:active {star:expression(this.onFocus=this.blur());} 
+hr {
+	border-right: #E2E2E2 1px solid; 
+	border-top: #E2E2E2 1px solid; 
+	border-left: #E2E2E2 1px    solid;
+	border-bottom: #E2E2E2 1px solid;
+	height: 1px
+}
+ul {
+	clear: both; 
+	padding-right: 0px; 
+	padding-left: 0px; 
+	padding-bottom: 0px; 
+	margin: 0px; 
+	padding-top: 0px; 
+	list-style-type: none;
+	text-align: left
+}
+li {list-style-type: none;}
+#leftmenu {
+	width: 100%; 
+	height: 100%;
+}
+.block {
+    width:90%;
+	float:right;
+	margin:5px auto 0;
+}
+.content_w{}
+.blocktitle {
+    width:100%; 
+	line-height:26px;
+	height:26px;
+	font-size:15px;
+	color:#275D96;
+	font-weight:bold;
+	text-align:left;
+	border-bottom:1px solid #D9E4EA;
+}
+.blocktitle span{
+	background: url("../images/left_menu.png") left -70px no-repeat;
+	float:right;
+	width:14px;
+	height:26px;
+	display:block;
+}
+.blocktitle span.on {BACKGROUND-POSITION: -33px -70px}
+.blocktitle a{color: #ffffff;}
+.blockcontent {width:100%;margin:0 auto;}
+.menulist{padding:10px 0;}
+.menulist li{display: inline;}
+.menulist a{
+	display:block;
+	text-align:left;
+	margin:0 auto;
+	padding:3px 0px 4px 15px;
+	line-height: normal;
+} 
+.menulist a:hover{background: url("../images/left_menu.png") no-repeat right -38px;}
+.menulist a.on{background: url("../images/left_menu.png") no-repeat left 3px;height:29px;line-height:29px; padding-left:20px;color:#1f3a87;font-weight:bold;}
+.hd {display: none}
+.in {cursor: pointer}

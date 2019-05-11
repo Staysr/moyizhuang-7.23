@@ -1,0 +1,44 @@
+
+
+	{eval $today=strtotime(dgmdate(TIMESTAMP,'Y-m-d'))}
+	{eval $timearr=array();}
+	
+
+<!--{loop $list $key $value}-->
+
+	<div class="weui-cell-active">
+		<div class="weui-cell__hd">{eval echo avatar_block($value[uid]);}</div>
+		<div class="weui-cell__rd">
+		  <div>$value[body]</div>
+		  <div class="weui-active-right-time">
+			<span class="active-day">{eval echo dgmdate($value[dateline],'Y年m月d日');}</span>
+			<span class="active-time">{eval echo dgmdate($value[dateline],'H:i');}</span>
+		  </div>
+		</div>
+	 </div>
+	<!--{/loop}--> 
+	
+	<!--{if $next}-->
+	<div id="btn-load-more-right" class="activity-item">
+		<div class="loading-more-panel" style="text-align: center">
+		  <div class="part-loading"> </div>
+		  <a class="weui-btn weui-btn_default" style="margin: 0.5rem;" onclick="getEventMore_right('$page')"> 加载更多... </a>
+	  </div>
+	</div>
+	<!--{else}-->
+	<div id="btn-load-more-right" class="activity-item">
+		<div class="loading-more-panel" style="text-align: center">
+		  <div class="part-loading"> </div>
+		  <a class="weui-btn weui-btn_default"  style="margin: 0.5rem;"> 没有更多内容了 </a>
+	  </div>
+	</div>
+	<!--{/if}--> 
+<script type="text/javascript">
+function getEventMore_right(page){
+	jQuery('#btn-load-more-right a').attr('onclick','');
+	jQuery.get(DZZSCRIPT+'?mod=taskboard&op=list&do=event&operation=getEventByDate&tbid={$tbid}',{'page':parseInt(page)+1},function(html){
+		jQuery('#btn-load-more-right').replaceWith(html);
+	});
+}
+
+</script> 

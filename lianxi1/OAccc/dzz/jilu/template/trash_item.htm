@@ -1,0 +1,268 @@
+<!--{if $count+$itemCount > 0}-->
+        <!--{if !$_GET['page']}-->
+        <div class="trashwrapper">
+            <div class="trashNum clearfix">
+                <div class="numwrapper">{eval echo lang('total')} <span class="num" style="float: none;"> {eval echo $count + $itemCount} </span> {eval echo lang('item')}</div>
+                <div class="tab">
+                    <a class="trashBtn" onclick="deleteAll()"><i class="dzz dzz-delete-forever" style="font-size: 18px;vertical-align: -3px;margin-right:6px;color: rgba(126, 126, 143, 1);"></i>{eval echo lang('clear_recycle')}</a>
+                    <div class="dropdown tabBox">
+                        <button class="chooseBtn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!--{if $type == 'jilu'}-->{eval echo lang('jilu')}<!--{elseif $type == 'jiluItem'}-->{eval echo lang('main_jilu')}<!--{else}-->{eval echo lang('all')}<!--{/if}-->
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu menu_ul" aria-labelledby="dropdownMenu2">
+                            <li class="chooseItem"><a href="{MOD_URL}&op=recycle">{eval echo lang('all')}</a></li>
+                            <li class="chooseItem"><a href="{MOD_URL}&op=recycle&type=jiluItem">{eval echo lang('main_jilu')}</a></li>
+                            <li class="chooseItem"><a href="{MOD_URL}&op=recycle&type=jilu">{eval echo lang('jilu')}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--{/if}-->
+        <div class="itemContainer" style="max-width: 740px;width: 100%;margin: auto">
+
+            <div class="noteswrap">
+        <!--{loop $jilus $jilu}-->
+        <div class="trashHeader" id="jilu_{$jilu[jid]}" jid="{$jilu[jid]}">
+            <div class="authorInfo">
+                <div class="info1"><label for="">{eval echo lang('creater')}:</label><a href="user.php?uid={$jilu['authorid']}">{$jilu[author]}</a></div>
+                <div class="info1"><label for="">{eval echo lang('deleter')}:</label><a href="user.php?uid={$jilu['deleteuid']}">{$jilu[deleteauthor]}</a></div>
+                <div class="info1"><label for="">{eval echo lang('delete_time')}:</label><span class="date">{eval echo date('Y-m-d H:i',$jilu[deletetime])}</span></div>
+                <div class="notesTab notesTab1 notesTab2" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}"  onclick="delete_jilu('$jilu[jid]')"  data-placement="left" data-auto-adapt="true">
+                    <i class="dzz dzz-delete" style="font-size: 20px"></i>
+                </div>
+                <div class="notesTab notesTab1 notesTab2 restore" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('recovery')}"  onclick="jilu_restore('{$jilu[jid]}')"  data-placement="left" data-auto-adapt="true">
+                    <i class="dzz dzz-restore" style="font-size: 20px;"></i>
+                </div>
+            </div>
+            <div class="trasheve clearfix">
+                <a href="{MOD_URL}&id={$jilu[jid]}">
+                    <div class="upvote upvote1">
+                        <div class="gridview9">
+                            <table style="table-layout:fixed;width:100%;height:100%">
+                                <tbody>
+                                <tr><td align="center" valign="middle">
+                                 <!--{loop $jilu['cover_uids'] $uid}-->
+                                    {eval echo avatar_block($uid)}
+                                 <!--{/loop}-->
+                                </td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                    <div class="url clearfix">
+                        <p class="post-url title title2">{$jilu[title]}</p>
+                        <span class="updatetime updatetime1" style="top:8px;right: 12px;"><span title="{eval echo date('Y-m-d H:i:s', $jilu[updatetime])}">{eval echo dgmdate($jilu[updatetime],'u');}</span></span>
+                    </div>
+                    <div class="post-tagline description description1">
+                                <!--{if $jilu['lastactive']}-->
+                                    <span class="lastactive" style="margin-left:0">$jilu[lastactive][username]：
+                                    <!--{if $jilu[lastactive][content]}-->$jilu[lastactive][content]
+                                    <!--{else}-->
+                                        [{eval echo $publish_type[$jilu[lastactive][type]];}]
+                                    <!--{/if}-->
+                                    </span>
+                                <!--{else}-->
+                                    <span class="desc" style="margin:0">$jilu['desc']</span>
+                                    <!--<span >$jilu[author]</span>
+                                    <span class="ctime">$jilu['fdateline']</span>-->
+                                <!--{/if}-->
+
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+        <!--{/loop}-->
+        <!--{loop $items $value}-->
+        <div class="notesItem notesItem2" id="item_{$value[rid]}" rid="{$value[rid]}" type="$value[type]">
+            <div class="notesHead notesHead1">
+                <!--{if $value['jid']}-->
+                <div class="notesName">
+                    <i class="dzz dzz-book" style="margin-right: 8px;font-size: 18px;vertical-align: 3px"></i>
+                    <span class="group">{$value['title']}</span>
+                </div>
+                <!--{/if}-->
+                <div class="notesTab notesTab1" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('delete')}"  onclick="user_delete('$value[rid]')"  data-placement="left" data-auto-adapt="true">
+                    <i class="dzz dzz-delete" style="font-size: 20px"></i>
+                </div>
+                <div class="notesTab notesTab1 restore" data-toggle="tooltip" data-placement="bottom" title="{eval echo lang('recovery')}"  onclick="item_restore('$value[rid]')"  data-placement="left" data-auto-adapt="true">
+                    <i class="dzz dzz-restore" style="font-size: 20px;"></i>
+                </div>
+            </div>
+            <div class="authorInfo">
+                <div class="info1"><label for="">{eval echo lang('creater')}:</label><a href="user.php?uid={$value['authorid']}">{$value[author]}</a></div>
+                <div class="info1"><label for="">{eval echo lang('deleter')}:</label><a href="user.php?uid={$value['deleteuid']}">{$value[deleteauthor]}</a></div>
+                <div class="info1"><label for="">{eval echo lang('delete_time')}:</label><span class="date">{eval echo date('Y-m-d H:i',$value[deletetime])}</span></div>
+            </div>
+            <div class="notesCon notesCon1">
+                <div class="notesWord">
+                    {$value[content]}
+                </div>
+                <!--{if $value['type']=='image'}-->
+                    <div class="imageContainer clearfix ss">
+                       <!--{loop $value['attachs'] $attach}-->
+                        <div class="image-item image-item-2">
+                            <a href="javascript:;"><img src="$attach[img]" alt="$attach[title]" data-original="$attach[big_img]" data-download="$attach[down_url]" style="display: none;" ></a>
+                         </div>
+                        <!--{/loop}-->
+                    </div>
+                  <!--{elseif $value['type']=='video'}-->
+                    <div class="videoContainer clearfix">
+                        <!--{loop $value['attachs'] $attach}-->
+                        <div class="video-item" style="margin-bottom:10px;">
+                            <div class="clearfix">
+                                <video src="$attach[url]" controls="controls" style="max-width:100%;max-height:200px;">{eval echo lang('browser_not_support_this_video_format')}</video>
+                             </div>
+                         </div>
+                        <!--{/loop}-->
+
+
+                    </div>
+                <!--{elseif $value['type']=='list'}-->
+                <div class="todolistContainer clearfix">
+                    <ul class="list-unstyled">
+                    {eval $i=0;}
+                     <!--{loop $value[todos] $todo}-->
+                     {eval $i++;}
+                      <li class="todolist-item">
+                        <div class="checkbox-custom checkbox-warning todolist-item-check" onclick="todolist_toggle(this,'$todo[todoid]')" data-checked="$todo[checked]">
+                            <input type="checkbox" <!--{if $perm < 2}-->disabled<!--{/if}--> <!--{if $todo[checked]}-->checked=''<!--{/if}--> >
+                            <label></label>
+                        </div>
+                        <div class="todolist-item-edit">
+                          <p class="list-p  <!--{if $value['style']==3 && $todo['checked']>0}-->line-through<!--{/if}-->">$todo[content]</p>
+                        </div>
+                      </li>
+                      <!--{/loop}-->
+                    </ul>
+                </div>
+                <!--{elseif $value['type']=='link'}-->
+                <div class="linkContainer clearfix">
+                   <!--{loop $value['attachs'] $attach}-->
+                     <div class="file_fed clearfix">
+                        <div class="ico_ffed">
+                            <!--{if $attach['type']=='image'}-->
+                            <a href="$attach[url]"><img src="$attach[img]" data-original="$attach[big_img]" data-download="$attach[down_url]" alt="$attach[filename]" onload="image_resize(this,50)"> </a>
+                            <!--{elseif $attach['type']=='video'}-->
+                            <a href="javascript:;" data-url="$attach[url]" class="video-cover"><img src="$attach[img]" alt="$attach[filename]" onload="image_resize(this,50)"></a>
+                            <!--{else}-->
+                            <a href="$attach['url']" icon="$attach[img]" title="$attach[title]" target="_dzz"><img src="$attach[img]" alt="$attach[filename]" onload="image_resize(this,50)"> </a>
+                            <!--{/if}-->
+                        </div>
+                        <div class="name_ffed" title="$attach[title]">
+                        <!--{if $attach['type']=='image'}-->
+                        <div class="name-fed"><a href="$attach[url]" onclick="jQuery(this).parents('.file_fed').find('.ico_ffed').find('img').click();">$attach[title] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--></a></div>
+                         <!--{elseif $attach['type']=='video'}-->
+                         <a href="javascript:;" data-url="$attach[url]" class="video-cover">$attach[title]</a>
+                         <!--{else}-->
+                         <div class="name-fed"><a href="$attach['url']" icon="$attach[img]"  target="_dzz">$attach[title] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--></a> </div>
+                         <!--{/if}-->
+                        </div>
+                      </div>
+                   <!--{/loop}-->
+                 </div>
+                <!--{elseif $value['type']=='attach'}-->
+                <div class="attachContainer clearfix">
+                   <!--{loop $value['attachs'] $attach}-->
+                     <div class="file_fed clearfix" id="qid_$attach[qid]" >
+                        <div class="ico_ffed">
+                            <!--{if $attach[isimage]}-->
+                            <a href="$attach[url]"><img src="$attach[img]" data-original="$attach[big_img]" data-download="$attach[down_url]" alt="$attach[title]"  onload="image_resize(this)"></a>
+                            <!--{else}-->
+                            <a href="$attach['url']" data-qid="$attach[qid]" data-ext="$attach[ext]" onclick="attach_preview('$attach[qid]',this);return false"><img src="$attach[img]" alt="$attach[filename]" onload="image_resize(this,50)"> </a>
+                            <!--{/if}-->
+                        </div>
+                        <div class="name_ffed" title="$attach[title]">
+
+                            <div class="name-fed">
+                            <!--{if $attach[isimage]}-->
+                                 <a href="javascript:;" onclick="jQuery(this).parents('.name_ffed').prev().find('img').click()">$attach[title] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--></a>
+                            <!--{else}-->
+                                <a href="$attach['url']" data-qid="$attach[qid]" data-ext="$attach[ext]" onclick="attach_preview('$attach[qid]',this);return false">$attach[title] <!--{if $attach['filesize']}--><span class="kb_nffed">($attach[filesize])</span><!--{/if}--></a>
+                            <!--{/if}-->
+
+                            </div>
+                        </div>
+                        <div class="down_ffed hidden-xs">
+                                <!--{if ($_G['uid']==$value[authorid] || $perm>2) && $jilu[inarchive]<1}--><a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="删除" hidefocus="true" class="del_dffed skip_mmfed"  onclick="attach_delete('$attach[qid]')"><i class="dzz dzz-delete"></i></a> <!--{/if}-->
+                                <a href="javascript:;" data-toggle="tooltip" data-placement="bottom" title="{lang download}" hidefocus="true" class="btn_dffed skip_mmfed"  onclick="attach_down('$attach[qid]')"><i class="dzz dzz-download"></i><!--{if $attach[downloads]>0}--><span class="text-gray">($attach[downloads]{eval echo lang('degree')})</span><!--{/if}--></a>
+                        </div>
+                      </div>
+                   <!--{/loop}-->
+                 </div>
+
+               <!--{/if}-->
+            </div>
+        </div>
+        <!--{/loop}-->
+        <!--{if $next}-->
+         <div class="m-loadm" id="loadmore"  onclick="loadmore('$theurl');">
+             <div class="loader"><div class="loader-inner ball-beat"><div></div><div></div><div></div></div></div>
+        </div>
+         <!--{/if}-->
+<script type="text/javascript">
+    jQuery(function () {
+                jQuery('.noteswrap').children(".notesItem").find('img[data-original]').dzzthumb({allowdownload:1});
+                imgResize();
+                jQuery(document).on('click','.jqthumb',function () {
+                    jQuery(this).next().click();
+                })
+            })
+     function imgResize() {
+        var imgsGtoup = jQuery('.noteswrap').children(".notesItem");
+        imgsGtoup.each(function(){
+            if(jQuery(this).attr("type") == "image"){
+                var img_list = jQuery(this).find(".image-item img");
+                if(img_list.length%3==1) {
+                    jQuery(img_list[0]).css({
+                        'width':'682px',
+                        'margin':'0',
+                        'height':'auto',
+                        'display':'block'
+                    })
+                    jQuery(this).find(".image-item img:gt(0)").jqthumb({
+                       width: 222,
+                       height: 150,
+                   });
+                }else if(img_list.length%3==2) {
+                    jQuery(this).find(".image-item img:lt(2)").jqthumb({
+                        width:335,
+                        height:220
+                    })
+                    if(jQuery(this).find(".image-item img:gt(1)").length > 0) {
+                        jQuery(this).find(".image-item img:gt(1)").jqthumb({
+                            width: 222,
+                            height: 150,
+                        });
+                    }
+
+                }else if(img_list.length%3==0) {
+                    img_list.jqthumb({
+                        width: 222,
+                        height: 150,
+                    });
+                }
+            }
+        })
+    }
+    jQuery(document).ready(function(){
+        gridview9_init(jQuery('.gridview9'));
+        jQuery("[data-toggle='tooltip']").tooltip();
+    })
+</script>
+        </div>
+    </div>
+<!--{else}-->
+    <div class="empty_alert">
+        <div class="empty_alert_content">
+            <img src="{MOD_PATH}/images/recycle_empty.png">
+            <span><!--{if $_GET['uids'] || $_GET['after'] || $_GET['before'] || $_GET['jids']}-->{eval echo lang('no_results_in_screen')}<!--{else}--><!--{if $type == 'jilu'}-->{eval echo lang('no_record_in_recycle')}<!--{elseif $type=='jiluItem'}-->{eval echo lang('no_item_in_recycle')}<!--{else}-->{eval echo lang('nothing_in_recycle')}<!--{/if}--><!--{/if}--></span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        jQuery(".empty_alert").css("display", "flex").show();
+    </script>
+<!--{/if}-->

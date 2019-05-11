@@ -1,0 +1,76 @@
+<div class="clearfix setting-extend">
+            <h4 class="basic-title">{lang extend_set}</h4>
+            <div class="form-group">
+                <label class="control-label" >{lang share_rights}：</label>
+                <div class="control-div">
+                    <div class="radio-wrap" style="margin-top: 6px;margin-left: 15px">
+                        <div class="switch-wrap" style="float: none;vertical-align: middle">
+                            <input type="checkbox" name="allowshare" id="share" class="chk_1" <!--{if $discuss[allowshare]==1}-->checked<!--{/if}-->>
+                            <label for="share"></label>
+                        </div>
+                    </div>
+                    <span class="help-inline">{lang share_rights_desc}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" >{lang publishing_theme_permissions}：</label>
+                <div class="control-div">
+                    <div class="radio-wrap">
+                        <!-- <div class="radio-custom radio-primary setting-radio"> -->
+                            <!-- <input type="radio" name="postperm" value="0" <!--{if $discuss[postperm]<1}-->checked<!--{/if}-->> -->
+                            <!-- <label>全部</label> -->
+                        <!-- </div> -->
+                        <div class="radio-custom radio-primary setting-radio">
+                            <input type="radio" name="postperm" value="1" <!--{if $discuss[postperm]==1}-->checked<!--{/if}-->>
+                            <label>{lang member}</label>
+                        </div>
+                        <div class="radio-custom radio-primary setting-radio">
+                            <input type="radio" name="postperm" value="2" <!--{if $discuss[postperm]==2}-->checked<!--{/if}-->>
+                            <label>{lang administrator}</label>
+                        </div>
+                    </div>
+                    <span class="help-inline">{lang publishing_theme_permissions_desc}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" >{lang reply_permissions}：</label>
+                <div class="control-div">
+                    <div class="radio-wrap">
+                        <!-- <div class="radio-custom radio-primary setting-radio"> -->
+                            <!-- <input type="radio" name="replyperm" value="0" <!--{if $discuss[replyperm]<1}-->checked<!--{/if}-->> -->
+                            <!-- <label>全部</label> -->
+                        <!-- </div> -->
+                        <div class="radio-custom radio-primary setting-radio">
+                            <input type="radio" name="replyperm" value="1" <!--{if $discuss[replyperm]==1}-->checked<!--{/if}-->>
+                            <label>{lang member}</label>
+                        </div>
+                        <div class="radio-custom radio-primary setting-radio">
+                            <input type="radio" name="replyperm" value="2" <!--{if $discuss[replyperm]==2}-->checked<!--{/if}-->>
+                            <label>{lang administrator}</label>
+                        </div>
+                    </div>
+                    <span class="help-inline">{lang reply_permissions_desc}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" >{lang anonymous_post}：</label>
+                <div class="control-div">
+                    <div class="radio-wrap">
+                        <div class="radio-custom radio-primary setting-radio">
+                            <input type="radio" name="anonymous" value="0" <!--{if $discuss[anonymous]<1}-->checked<!--{/if}-->>
+                            <label>{lang not_allow}</label>
+                        </div>
+                        <div class="radio-custom radio-primary setting-radio">
+                            <input type="radio" name="anonymous" value="1" <!--{if $discuss[anonymous]==1}-->checked<!--{/if}-->>
+                            <label>{lang user_selectable}</label>
+                        </div>
+                        <div class="radio-custom radio-primary setting-radio">
+                            <input type="radio" name="anonymous" value="2" <!--{if $discuss[anonymous]==2}-->checked<!--{/if}-->>
+                            <label>{lang mandatory_anonymous}</label>
+                        </div>
+                    </div>
+                    <span class="help-inline">{lang mandatory_anonymous_desc}</span>
+                </div>
+            </div>
+                
+</div>

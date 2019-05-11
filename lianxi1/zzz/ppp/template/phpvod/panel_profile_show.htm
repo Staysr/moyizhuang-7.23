@@ -1,0 +1,47 @@
+<table class="table table-hover">
+	<thead>
+		<tr><td colspan="2" class="f-fs18"><strong>个人资料</strong></td></tr>
+	</thead>
+	<tbody>
+		<tr><td class="f-w40">ID</td><td>$userdb[uid]</td></tr>
+		<tr><td>用户名</td><td>$userdb[username]</td></tr>
+		<tr>
+			<td>系统头衔</td>
+			<td>
+			<!--{if $userdb['groupid']=='-1'}-->正式会员<!--{else}-->$userdb[grouptitle]<!--{/if}-->
+			<!--{if $userdb['groupid']=='4' && $uid==$userdb['uid']}-->&nbsp;&nbsp;「<a href="javascript:;" onclick='$.ajax({type:"POST",url:"ajax.php",data:"action=resend_email&yzuid={$userdb[uid]}", success:function(msg){alert(msg);}});'>重发验证邮件</a>」<!--{/if}-->
+			</td>
+		</tr>
+		<tr><td>会员头衔</td><td>$userdb[membertitle]</td></tr>
+		<tr><td>自定义头衔</td><td>$userdb[honor]</td></tr>
+		<tr><td>最后登录IP</td><td>$userdb[ip]</td></tr>
+		<tr><td>综合积分</td><td>$userdb[credit]</td></tr>
+		<tr><td>视频数</td><td>$userdb[postnum]</td></tr>
+		<tr><td>威望</td><td>$userdb[rvrc]</td></tr>
+		<tr><td>金钱</td><td>$userdb[money]</td></tr>
+		<!--{loop $creditdb $key $value}-->
+		<!--{if $_creditdb[$key]}-->
+		<tr><td>$value[0]</td><td>$value[1]</td></tr>
+		<!--{/if}-->
+		<!--{/loop}-->
+
+		<tr><td>头像</td><td><img src="$userdb[icon]" width="120" height="120" /></td></tr>
+		<tr>
+			<td>邮箱</td>
+			<td>
+				<!--{if $userdb[publicmail] == '1'}-->
+				<a href="mailto:$userdb[email]">$userdb[email]</a>
+				<!--{else}-->
+				邮箱未公开
+				<!--{/if}-->
+			</td></tr>
+		<tr><td>腾讯QQ</td><td>$userdb[oicq]</td></tr>
+		<tr><td>Msn</td><td>$userdb[msn]</td></tr>
+		<tr><td>性别</td><td><!--{echo !$userdb['gender'] ? '保密' : ($userdb['gender'] == '1' ? '先生' : '女士')}--></td></tr>
+		<tr><td>生日</td><td>$userdb[bday]</td></tr>
+		<tr><td>个人主页</td><td><a href="$userdb[site]" target="_blank">$userdb[site]</a></td></tr>
+		<tr><td>签名</td><td>$userdb[signature]</td></tr>
+		<tr><td>注册时间</td><td>$userdb[regdate]</td></tr>
+		<tr><td>最后登录</td><td>$userdb[lastlogin]</td></tr>
+	</tbody>
+</table>

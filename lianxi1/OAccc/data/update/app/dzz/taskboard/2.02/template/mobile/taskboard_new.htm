@@ -1,0 +1,119 @@
+<!--{template mobile/mobile_header}-->
+<!--{template common/header_simple_end}-->
+
+		<form class="weui-cells_form" id="taskboardform" name="taskboardform" action="{MOD_URL}&op=ajax&do=create" method="post" onsubmit="return validate(this);">
+			    <input type="hidden" name="createsubmit" value="true" />
+			    <input type="hidden" name="tbid" value="$tbid" />
+			    <input type="hidden" name="orgid" value="$orgid" />
+			    <input type="hidden" name="refer" value="$refer" />
+			     <input type="hidden" name="aid" value="$taskboard[aid]" />
+			    <input type="hidden" name="formhash" value="{FORMHASH}" />
+			<!--新建头部开始-->
+			<header class="weui-taskboard-new weui-flex">
+				<div class="placeholder weui-taskboard-cancel">
+					<a href="javascript:;" class="weui-taskboard-new-cancel">取消</a></div>
+				<div class="weui-flex__item">新建任务板</div>
+				<button class="weui-taskboard-new-keep" type="submit">新建</button>
+				</header>
+			<!--新建头部结束-->
+			<section class="weui-cells weui-cell-name">
+				<div class="weui-cell">
+				    <div class="weui-cell__hd"><label class="weui-label">名称</label></div>
+				    <div class="weui-cell__bd">
+				      <input class="weui-input" type="text"  placeholder="请输入名称" value="$taskboard[name]" id="name" name="name">
+				    </div>
+				</div>
+				
+			</section>
+			<section class="weui-cells weui-cell-task weui-setting-body">
+				<a class="weui-cell weui-cell_access" href="<!--{if $_GET[from]!='org'}-->{MOD_URL}&op=ajax&do=team&orgid=$orgid<!--{else}-->javascript:;<!--{/if}-->">
+				    <div class="weui-cell__bd">
+				      <p>团队</p>
+				    </div>
+				    <div class="weui-cell-flex weui-cell-team-name">{eval echo $org?$org[name]:'无'}</div>
+				    <!--{if $_GET[from]!='org'}--><div class="weui-cell__ft"><!--{/if}-->			    	
+				    </div>
+				</a>
+
+			  	<div class="weui-cell weui-cell_select">
+				  <div class="weui-cell__bd">
+				 	<p>可见性</p>
+				  </div>
+				  <div class="weui-cell-flex">
+				  <select class="weui-select" name="viewperm">
+				<!--{if empty($org) || $org['perm']>2 ||  ($org && (intval($org['mperm_c']) & 1))}-->
+				  	<option  value="0" <!--{if $perm==0}--> selected="selected"<!--{/if}-->>隐私</option>
+				<!--{/if}-->
+				<!--{if $org['perm']>1 || ($org[perm]>2 && (intval($org['mperm_c']) & 2))}-->
+					<option value="1" <!--{if $perm==1}--> selected="selected"<!--{/if}-->>小组内可见</option>
+				<!--{/if}-->	
+				<!--{if empty($org) || $org['perm']>2 || ($org[perm]>1 && (intval($org['mperm_c']) & 4))}-->
+					  <option  value="2" <!--{if $perm==2}--> selected="selected"<!--{/if}-->>公开</option>
+				<!--{/if}-->
+				  </select>
+				</div>
+			  </div>
+			    <div class="weui-cell taskboard-coverContainer">
+			        <label class="weui-label">背景</label>
+			        <input type="hidden" id="aid" name="setting[aid]" autocomplete="off" value="$taskboard[aid]">
+			        <div class="controls col-sm-8">
+			            <ul class="color-block-container list-unstyled clearfix" style="margin-bottom:0">
+			                {eval for($i=1;$i<12;$i++){}
+			                <li><button type="button"  class="btn color-block color-block-$i" data-aid="$i" onclick="switch_cover(this,'$i');return false;"><span class="dzz dzz-done" style="visibility:<!--{if $taskboard[aid]==$i}-->visible<!--{else}-->hidden<!--{/if}-->;"></span></button></li>
+			                {eval }}
+			            </ul>
+			        </div>
+			    </div> 
+			</section>
+		</form>
+
+	<script type="text/javascript" src="{MOD_PATH}/scripts/mobile/task.js"></script>
+	<script type="text/javascript" reload="1">
+		//jQuery('.weui-cell-power').text(window.sessionStorage.getItem('cell-power'));
+		//名称保存到本地
+		$('.weui-cell-name .weui-input').change(function(){
+            var text=$('.weui-input').val();
+            sessionStorage.setItem('team_name',text);
+            $('.weui-input').val(sessionStorage.getItem('team_name'));
+		})
+		$('.weui-cell-name').find('.weui-input').val(sessionStorage.getItem('team_name'));
+
+		function validate(form){
+
+			var emptypreg=/^\s*$/,val=form.name.value;
+				if(emptypreg.test(val)){
+					$.alert("名称不能为空");
+					form.name.focus();
+					return false;
+				}
+
+			$.post(form.action,jQuery(form).serialize(),function(json){
+				if(json.tbid>0){
+					if('$_GET[from]'=='org'){
+						window.location.href='{MOD_URL}&op=org&orgid=$orgid';
+					}else{
+						window.location.href='{MOD_URL}';
+					}
+				}else{
+					$.alert(json.error);
+				}
+			},'json');
+			return false;
+		}
+        //新建取消
+        $(document).on('touchstart','.weui-taskboard-new-cancel',function(){
+           if('$_GET[from]'=='org'){
+					window.location.href='{MOD_URL}&op=org&orgid=$orgid';
+				}else{
+					window.location.href='{MOD_URL}';
+				}
+        })
+		function switch_cover(obj,aid){
+			// jQuery('#cover_aid').find('img').get(0).src=SITEURL+'dzz/taskboard/images/cover/'+aid+'.png';
+		    jQuery(obj).find('span').css('visibility','visible');
+		    jQuery('.color-block').not(jQuery(obj)).find('span').css('visibility','hidden');
+			jQuery('#aid').val(aid);
+		}
+	
+	</script>
+<!--{template common/footer_simple}-->

@@ -1,0 +1,99 @@
+<style>
+	.active1 {
+		background: #fcf1dd;
+		border-top: 1px solid #fcf1dd;
+		border-bottom: 1px solid #fcf1dd;
+	}
+	.panel-default>.panel-heading1 {
+		background-color: #fff;
+		padding: 0 ;
+	}
+	.panel-default {
+		border: none;
+		box-shadow: none;
+	}
+	.panel-body>li {
+		list-style: none;
+	}
+	.panel-default>.panel-heading1>a,.panel-body>li>a{
+		padding: 0 25px;
+		display: block;
+		height: 46px;
+		line-height: 46px;
+		font-size: 14px;
+		border-radius: 0;
+		color: rgba(117,117,117,.9);
+		padding-left: 45px;
+	}
+	.panel-default>.panel-heading1>a:hover {
+		background: #fcf1dd;
+		color: #f9a33c;
+		border: none;
+	}
+	.panel-body1 {
+		border: none !important;
+		padding: 0;
+	}
+	.panel-body>li>a {
+		color: rgba(117,117,117,.7);
+		font-size:12px;
+	}
+	.panel-body>li>a:hover {
+		background-color: #e3e9f1;
+	}
+	.bs-left-container .nav-stacked>li {
+		min-width: 150px;
+	}
+	.panel-active {
+		background-color: #e3e9f1;
+	}
+	.nav-stacked i {
+		font-size: 22px;
+		margin-right: 14px;
+		vertical-align: -3px;
+		color: #4e5563;
+	}
+	.nav-stacked .active1 i {
+		color: rgba(255, 90, 58, 1);
+	}
+	.bs-left-container .nav-stacked>li>a {
+		color: rgb(51, 51, 51);
+	}
+	.bs-left-container .nav-stacked>.active1>a {
+		background: rgba(255, 239, 236, 1);
+		color:  rgba(255, 90, 58, 1);
+		font-weight: 600;
+	}
+	.bs-left-container .nav-stacked>.active1>a:hover{
+		background: rgba(255, 239, 236, 1);
+		color: rgba(255, 90, 58, 1);
+	}
+</style>
+<ul class="nav-stacked">
+	<li <!--{if !$_GET['op']}-->class="active1"<!--{/if}-->>
+	<a href="{MOD_URL}"><i class="dzz dzz-account"></i>{lang index}</a>
+	</li>
+	<li <!--{if $_GET['op'] == 'my' && !$_GET['do']}-->class="active1"<!--{/if}-->>
+	<a href="{MOD_URL}&op=my"><i class="dzz dzz-forum" style="font-size: 20px;"></i>{lang discuss}</a>
+	</li>
+
+	<li <!--{if $_GET['op']=='my' && ($_GET[do] == 'mycomments' || $_GET[do] == 'receivedcmt' || $_GET[do] == 'mythread')}-->class="active1"<!--{/if}-->>
+	<a href="{MOD_URL}&op=my&do=mythread"><i class="dzz dzz-file"></i>{lang my_post}</a>
+	</li>
+	<li <!--{if $_GET['op']=='my' && $_GET[do] == 'myfav'}-->class="active1"<!--{/if}-->>
+	<a href="{MOD_URL}&op=my&do=myfav"><i class="dzz dzz-grade"></i>{lang my_favorite}</a>
+	</li>
+	<li <!--{if $_GET['op']=='archive'}-->class="active1"<!--{/if}-->>
+	<a href="{MOD_URL}&op=archive"><i class="dzz dzz dzz-archive2"></i>{lang archive}</a>
+	</li>
+	<li class="line3"></li>
+	<li <!--{if $_GET['op']=='recyclebin'}-->class="active1"<!--{/if}-->>
+		<a href="{MOD_URL}&op=recyclebin"><i class="dzz dzz-delete"></i>{lang recyclebin}</a>
+	</li>
+	<!--{if $_G['adminid']}-->
+	<li <!--{if $_GET['op']=='setting'}-->class="active1"<!--{/if}-->>
+		<a href="{MOD_URL}&op=setting"><i class="dzz dzz-settings"></i>{eval echo lang('set')}</a>
+	</li>
+	<!--{/if}-->
+
+</ul>

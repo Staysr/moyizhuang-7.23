@@ -1,0 +1,33 @@
+
+			<!--{template mobile/mobile_header}-->
+			<title>新建任务板-团队选择</title>
+	</head>
+	<body>
+		<section class="weui-cells weui-cells-new-team weui-cells_radio">
+			 <a class="weui-cell weui-check__label weui-team-check_label" href="{MOD_URL}&op=ajax&do=create&orgid=0">
+			    <div class="weui-cell__bd">
+			      <p>不选择团队</p>
+			    </div>
+			    <div class="weui-cell__ft">
+			      <input type="radio" class="weui-check" name="radio1" value="0" checked="checked">
+			      <!--{if empty($orgid)}-->
+			      <span class="weui-icon-checked"></span>
+			      <!--{/if}-->
+			    </div>
+			  </a>
+			  <!--{loop $orgs $org}-->
+			  <a class="weui-cell weui-check__label weui-team-check_label" href="{MOD_URL}&op=ajax&do=create&orgid=$org[orgid]">			
+			    <div class="weui-cell__bd">
+			      <p>$org[name]</p>
+			    </div>
+			    <div class="weui-cell__ft">
+			      <input type="radio" name="radio1" class="weui-check" value="$org[orgid]">
+			     <!--{if $orgid==$org['orgid']}-->
+			      <span class="weui-icon-checked"></span>
+			      <!--{/if}-->
+			    </div>
+			  </a>
+			  <!--{/loop}-->
+		</section>
+	</body>
+</html>

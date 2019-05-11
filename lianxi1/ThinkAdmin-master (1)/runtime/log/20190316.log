@@ -1,0 +1,20 @@
+---------------------------------------------------------------
+[ 2019-03-16T16:36:06+08:00 ] ::1 GET localhost/lianxi1/ThinkAdmin-master%20(1)/
+[运行时间：0.185469s] [吞吐率：5.39req/s] [内存消耗：3,591.88kb] [文件加载：62]
+[ info ] [ LANG ] /Applications/MAMP/htdocs/18031/lianxi1/ThinkAdmin-master (1)/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://localhost/lianxi1/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'admin_username=admin; Hm_lvt_f8d0a8c400404989e195270b0bbf060a=1551251971; JRCg_2132_saltkey=P2Eeuwkh; JRCg_2132_lastvisit=1551249269; PHPSESSID=7729a898a1271364883550155966b231; mysid=aa2d360252aa540fb11ac48c3403f07c; user_token=6b07MDAwMDAwMDAwMDJjOTU0YTEwZjNlN2FmNmYyCTNlNDQ2MmEyYmU3MWUxZGY2ZDAyZjYzOGZkYmQ4NmM5; msvodx_admin_language=zh-cn; HISTORY={video:[{"name":"\\u7834·\\u5C40","link":"http://localhost/ziyuan/yingstv/play.php?play=/m/f6bkYxH4QnL4SR.html","pic":"/m-992/uploads/allimg/201706/a0a13289528feabb.jpg"},{"name":"\\u6D77\\u738B","link":"http://localhost/ziyuan/yingstv/play.php?play=/m/faPnZBH5QXf7UR.html","pic":"/m-992/uploads/allimg/201706/a0a13289528feabb.jpg"}]}; _aihecong_chat_visibility=false',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql

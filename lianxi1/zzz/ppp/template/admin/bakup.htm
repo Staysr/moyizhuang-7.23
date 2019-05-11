@@ -1,0 +1,126 @@
+<!--<?php
+include_once gettpl('top');
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">提示信息</td>
+	</tr>
+	<tr>
+		<td class="notice">1、PHPVOD使用专项识别备份文件，请不要恢复PHPVOD默认备份文件之外的文件<br />2、数据越多 备份/恢复 时间越长，请耐心等待</td>
+	</tr>
+</table>
+<br />
+<!--
+EOT;
+if($admintype=='bakout'){
+print <<<EOT
+-->
+<form action="$basename&" method="post">
+	<input type="hidden" name="admintype" value="bakout" />
+	<input type="hidden" name="submit" value="1" />
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="3">备份数据库</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'tabledb');"></td>
+			<td width="5%">ID</td>
+			<td>数据库表</td>
+		</tr>
+<!--
+EOT;
+$id=0;
+foreach($tabledb as $key=>$table){
+$id++;
+print <<<EOT
+-->
+		<tr>
+			<td class="f-tac"><input type="checkbox" name="tabledb[]" value="$table"></td>
+			<td class="f-tac">$id</td>
+			<td class="f-tal">$table</td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+		<tr>
+			<td colspan="3">分卷备份</td>
+		</tr>
+		<tr>
+			<td colspan="3"><input type="text" name="sizelimit" value="2048" size="5">KB (每个分卷文件长度,设置为0则不分卷)</td>
+		</tr>
+	</table>
+	<br />
+	<center>
+		<input type="submit" value="提 交">
+	</center>
+</form>
+<!--
+EOT;
+}elseif($admintype=='bakin'){
+if(!$step){print <<<EOT
+-->
+<form method="post" action="$basename">
+	<input name="admintype" type="hidden" value="delbak">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td colspan="7" class="header">恢复数据库</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'delfile');"></td>
+			<td width="3%">ID</td>
+			<td width="35%">文件名</td>
+			<td width="15%">版本</td>
+			<td>备份时间</td>
+			<td width="5%">卷号</td>
+			<td>导入</td>
+		</tr>
+<!--
+EOT;
+foreach($filedb as $id=>$bakfile){
+$id++;
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input name="delfile[]" type="checkbox" value="$bakfile[name]"></td>
+			<td>$id</td>
+			<td><a href="data/$bakfile[name]" target="_blank">$bakfile[name]</a></td>
+			<td>$bakfile[version]</td>
+			<td>$bakfile[time]</td>
+			<td>$bakfile[num]</td>
+			<td><a href="$basename&admintype=bakin&step=1&pre=$bakfile[pre]">导入</a></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<br />
+	<center>
+		<input type="submit" name="delete" value="删 除" onclick="return confirm('此功能不可恢复,您确认要删除选中的备份文件！');">
+	</center>
+</form>
+<!--
+EOT;
+}elseif($step=='1'){
+print <<<EOT
+-->
+<form action="$basename&admintype=bakin&step=2&pre=$pre" method="post">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">提示信息</td>
+		</tr>
+		<tr>
+			<td class="notice">备份恢复功能将覆盖原来的数据,您确认要导入备份数据！</td>
+			<td valign="top" class="f-tac"><br /><input type="submit" value="确认导入备份"></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="button" value="返回上一步" onclick="javascript:history.go(-1);"></center>
+</form>
+<!--
+EOT;
+}}include_once gettpl('adminbottom');
+?>
+-->

@@ -1,0 +1,80 @@
+<!--<?php
+include_once gettpl('top');
+if(empty($action)){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename" class="active">监听器列表</a></li>
+	<li><a href="$basename&action=add">添加/编辑监听器</a></li>
+</ul>
+<br />
+
+<form method="post" action="$basename">
+	<input name="action" type="hidden" value="del">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="5">监听器列表</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'selid');"></td>
+			<td width="10%">ID</td>
+			<td>监听器</td>
+			<td width="18%">执行顺序</td>
+			<td width="8%">操作</td>
+		</tr>
+<!--
+EOT;
+foreach($listenerdb as $key => $value){
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="selid[]" value="$value[id]"></td>
+			<td>$value[id]</td>
+			<td>$value[file]</td>
+			<td>$value[callorder]</td>
+			<td><a href="$basename&action=edit&id=$value[id]" title="编辑监听器">编辑</a></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<br />
+	<center><input type="submit" value="删 除"></center>
+</form>
+<!--
+EOT;
+}elseif($action=='add' || $action=='edit'){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename">监听器列表</a></li>
+	<li><a href="$basename&action=add" class="active">添加/编辑监听器</a></li>
+</ul>
+<br />
+
+<form action="$basename" method="post">
+	<input type="hidden" value="$id" name="id">
+	<input type="hidden" value="2" name="step">
+	<input name="action" type="hidden" value="$action">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">添加/编辑监听器</td>
+		</tr>
+		<tr>
+			<td width=40%>监听器文件路径</td>
+			<td><input type="text" size="45" name="file" value="$file"></td>
+		</tr>
+		<tr>
+			<td>执行顺序(只能为数字，数字越大则优先执行)</td>
+			<td><input type="text" size="4" name="callorder" value="$callorder"></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" name="add" value="提 交"></center>
+</form>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>
+-->

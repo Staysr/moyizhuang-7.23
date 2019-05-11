@@ -1,0 +1,217 @@
+<!--{if $_GET['op'] != 'setting' && $_GET['op'] != 'user'}-->
+<link rel="stylesheet" href="static/css/checkbox.css" media="all">
+<link rel="stylesheet" href="dzz/explorer/css/headersearch.css">
+<link href="{MOD_PATH}/images/popbox.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/datepicker.css?{VERHASH}" rel="stylesheet" media="all">
+<link rel="stylesheet" href="static/select2/select2.css">
+<script src="static/select2/select2.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="static/js/input_field.js"></script>
+<div class="resSearch" style="z-index: 5;">
+    <div class="form-group">
+        <div class="input-search input-search-dark input-search-word">
+            <i class="input-search-icon dzz dzz-search" aria-hidden="true"></i>
+            <input type="text" class="form-control search  form-search" name="filetype" value="" placeholder="{lang search}" id="searchval">
+            <span aria-hidden="true" id="emptysearchcondition" class="header-closebutton hide">×</span>
+            <button type="button" class="input-search-drop dzz dzz-arrow-dropdown input-search-width"></button>
+            <div class="dropdown-width" id="dropdown-width" style="background-color: #fff;z-index: 555;">
+                <div class="dropdown-cap">
+
+                    <div class="dropdown-type clearfix" data-type="date">
+                        <p class="typeword col-sm-2 col-md-2">{eval echo lang('by_date')}：</p>
+                        <div class="col-md-10 col-sm-10 search-body">
+                            <button type="button" class="typebutton" data-toggle="dropdown"><span class="anytime">{lang anytime}</span><i class="glyphicon glyphicon-triangle-bottom"></i></button>
+                            <input type="hidden" name="moresearch_daterange" value=""/>
+                            <ul class="dropdown-menu searchdate" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="javascript:;" data-val="all">{lang anytime}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" data-val="1">{lang today}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" data-val="-1">{lang ytoday}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" data-val="-7">{lang 7_days_ago}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;"  data-val="-30">{lang 30_days_ago}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" data-val="-90">{lang 90_days_ago}</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" data-val="datetime">{lang assign_time}</a>
+                                </li>
+                            </ul>
+                            <div class="typexname typexdate" style="display: none;">
+                                <p class="data-time">{lang date_range}：</p>
+                                <input type="text" id="selectStart" readonly="readonly" placeholder="{lang starttime}"  name="startdate">
+                                <input type="text" id="selectEnd" readonly="readonly"  placeholder="{lang endtime}" name="enddate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--{if !empty($_GET['jid'])}-->
+                    <div class="dropdown-type label-dropdown clearfix" data-type="type" <!--{if !$_GET[alllabels]}-->style="display:none;"<!--{/if}-->>
+                        <p class="typeword col-sm-2 col-md-2" style="margin-bottom: 0;">{eval echo lang('by_lable')}：</p>
+                        <div class="col-md-10 col-sm-10 search-body">
+                            <ul class="label-list list-unstyled jilu_filter-checkable list-col-2 clearfix label-ul">
+                                <!--{loop $_GET[alllabels] $value}-->
+                                <li class="label-item" title="$value[title]" style="margin-bottom: 14px;padding-right: 10px;">
+                                    <a data-val="tags" href="javascript:;" class="js-toggle-label-filter" title="$value[title]" style="display:inline-block;width:100%;color: rgba(51, 51, 51, 1);font-size: 14px" data-color="$value[color]" pow="$value[pow]">
+                                             <div class="checkbox-custom checkbox-warning" style="margin-bottom:0;margin-top:0;width: 100%;text-overflow: ellipsis;overflow: hidden;white-space: nowrap">
+                                                <input type="checkbox" name="label" value="$value[pow]" style="pointer-events: none;">
+                                                <label style="font-size: 14px;padding-left: 10px;"><span style="width: 12px;height: 12px;border-radius: 50%;display: inline-block;margin-right: 5px;" class="{$value[color]}-label"></span>$value[title]</label>
+                                            </div>
+                                    </a>
+                                </li>
+                                <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+                    <!--{/if}-->
+
+                    <!--{if in_array($_GET['op'], array('recycle', 'archive')) || (empty($_GET['op']) && empty($_GET['jid']))}-->
+                    <div class="dropdown-type clearfix" data-type="owner">
+                        <p class="typeword col-sm-2 col-md-2" style="line-height: 48px;margin-bottom: 0;">{eval echo lang('by_member')}：</p>
+                        <div class="col-md-10 col-sm-10 search-body">
+                            <dd>
+                                <input type="text" id="input-member" multiple="multiple" class="js-example-basic-multiple js-states searchInp searchInp1" style="height: 40px"/>
+                            </dd>
+                        </div>
+                    </div>
+                    <!--{/if}-->
+
+                    <!--{if $_GET['op'] == 'recycle'}-->
+                    <div class="dropdown-type clearfix" data-type="noteName">
+                        <p class="typeword col-sm-2 col-md-2" style="line-height: 48px;margin-bottom: 0;">{eval echo lang('by_jilu')}：</p>
+                        <div class="col-md-10 col-sm-10 search-body">
+                            <dd style="display: inline-block;width: 100%;vertical-align: top;position: relative;margin-left: 0">
+                                <input type="text" id="input-notes" class="js-example-basic-multiple js-states searchInp searchInp2" style="height: 40px"/>
+                            </dd>
+                        </div>
+                    </div>
+                    <!--{/if}-->
+
+                    <!--{if $_GET['op'] == 'item' && $jilus}-->
+                    <div class="dropdown-type clearfix jilu-dropdown" data-type="notes">
+                        <p class="typeword col-sm-2 col-md-2" style="line-height: 48px;margin-bottom: 0;">{eval echo lang('by_jilu')}：</p>
+                        <div class="col-md-10 col-sm-10 search-body">
+                            <ul class="datefilter-list list-unstyled clearfix jilu_filter-checkable list-col-3 note-ul">
+                                <!--{loop $jilus $value}-->
+                                <li class="datafilter_li clearfix note-item" title="$value[title]" data-val="note">
+                                     <span class="note_name" style="width: 100%;display: inline-block">
+                                         <div class="checkbox-custom checkbox-warning" style="height: 18px;position: absolute;margin: 0;width: 100%;text-overflow: ellipsis;overflow: hidden;white-space: nowrap">
+                                            <input type="checkbox" name="note-name" value="$value[jid]" style="pointer-events: none;">
+                                            <label style="font-size: 14px;">$value[title]</label>
+                                        </div>
+                                     </span>
+
+                                </li>
+                                <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+                    <!--{/if}-->
+                    
+                    <!--{if empty($_GET['op']) && empty($_GET['jid']) || $_GET['op'] == 'archive'}-->
+                    <div class="dropdown-type clearfix mytype_dropdown" data-type="type">
+                        <p class="typeword col-sm-2 col-md-2" style="line-height: 48px;margin-bottom: 0;">{eval echo lang('filtrate')}：</p>
+                        <div class="col-md-10 col-sm-10 search-body">
+                            <ul class="clearfix  list-col-3 choose-li" style="padding-left: 0px !important;">
+                                <li class="datafilter_li search-li" data-val="note">
+                                    <a data-way="myfllow" style="color: #fff;cursor:pointer;width: 100%;display: inline-block;">
+                                         <span class="note_name">
+                                             <div class="checkbox-custom checkbox-warning" style="position: absolute;top: 1px;margin: 0;width: 100%;">
+                                                <input type="checkbox" value="myfllow" name="choose" style="pointer-events: none;">
+                                                <label style="font-size: 14px;">{eval echo lang('my_follow')}</label>
+                                            </div>
+                                         </span>
+                                    </a>
+                                </li>
+                                <li class="datafilter_li search-li" data-val="note">
+                                    <a data-way="mycooper" style="color: #fff;cursor:pointer;width: 100%;display: inline-block;">
+                                         <span class="note_name">
+                                             <div class="checkbox-custom checkbox-warning" style="position: absolute;top: 1px;margin: 0;width: 100%;">
+                                                <input type="checkbox" value="mycooper" name="choose" style="pointer-events: none;">
+                                                <label style="font-size: 14px;">{eval echo lang('my_cooper')}</label>
+                                            </div>
+                                         </span>
+                                    </a>
+                                </li>
+                                <li class="datafilter_li search-li" data-val="note">
+                                    <a data-way="mycreate" style="color: #fff;cursor:pointer;width: 100%;display: inline-block;">
+                                         <span class="note_name">
+                                            <div class="checkbox-custom checkbox-warning" style="position: absolute;top: 1px;margin: 0;width: 100%;">
+                                                <input type="checkbox" value="mycreate" name="choose" style="pointer-events: none;">
+                                                <label style="font-size: 14px;">{eval echo lang('my_create')}</label>
+                                            </div>
+                                         </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--{/if}-->
+
+                    <!--{if !empty($_GET['jid'])}-->
+                    <div class="dropdown-type clearfix member-dropdown" data-type="member">
+                        <p class="typeword col-sm-2 col-md-2" style="line-height: 30px;margin-bottom: 0;">{eval echo lang('by_member')}：</p>
+                        <div class="col-md-10 col-sm-10 search-body">
+                            <ul class="member-list list-unstyled clearfix jilu_filter-checkable list-col-2 member-ul">
+                                <!--{loop $users $value}-->
+                                <li class="member-item" data-val="member">
+                                    <a href="javascript:;" tabindex="-1" class="avatar avatar-30" title="$value[username]" uid="$value[uid]">
+                                        <span class="avatar-face" style="position: relative;">
+                                            {eval echo avatar_block($value[uid])}
+                                            <div class="checkbox-custom checkbox-warning userCheckbox">
+                                                <input type="checkbox" name="user" value="$value[uid]">
+                                                <label style="font-size: 14px;"></label>
+                                            </div>
+                                        </span>
+                                        <span class="avatar-name avaName">$value[username]</span>
+
+                                    </a>
+                                </li>
+                                <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+                    <!--{/if}-->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn sureBtn" id="conditionSearchFile">{lang search}</button>
+                        <button type="button" class="btn cancelBtn resetting">{lang reset}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--{if !empty($_GET['jid']) && $_GET['jilu']['deletetime'] <= 0 && $_GET['jilu']['inarchive'] < 1 && $_GET['perm'] > 2}-->
+<ul class="nav navbar-nav navbar1" style="z-index: 3;">
+    <li class="dropdowns">
+        <a data-href="{MOD_URL}&op=menu&do=menu&jid=$_GET[jid]" href="javascript:;" class="js-popbox" data-placement="bottom" data-auto-adapt="true"><i class="dzz dzz-more" title="{lang more}" data-toggle="tooltip" data-placement="bottom" style="font-size: 24px"></i></a>
+    </li>
+    <li class="dropdowns">
+        <a href="javascript:;" class="js-popbox" data-href="{MOD_URL}&op=menu&do=menu&step=3&jid=$_GET[jid]" data-placement="bottom" data-auto-adapt="true"><i class="dzz dzz-share" title="{lang share}" data-toggle="tooltip" data-placement="bottom" style="font-size: 22px"></i></a>
+    </li>
+    <li class="dropdowns">
+        <a href="{MOD_URL}&op=user&jid=$_GET[jid]"><i class="dzz dzz-person-add" title="{lang member_manage}" data-toggle="tooltip" data-placement="bottom" style="font-size: 24px"></i></a>
+    </li>
+</ul>
+<!--{elseif !empty($_GET['jid']) && $_GET['jilu']['privacy'] < 1}-->
+<ul class="nav navbar-nav navbar1" style="z-index: 3;">
+    <li class="dropdowns">
+        <a href="javascript:;" class="js-popbox" data-href="{MOD_URL}&op=menu&do=menu&step=3&jid=$_GET[jid]" data-placement="bottom" data-auto-adapt="true"><i class="dzz dzz-share" title="{lang share}" data-toggle="tooltip" data-placement="bottom" style="font-size: 22px"></i></a>
+    </li>
+</ul>
+<!--{/if}-->
+<script type="text/javascript" src="static/select2/select2.min.js"></script>
+<script type="text/javascript" src="{MOD_PATH}/scripts/header-search.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.datepicker.min.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.datepicker-zh-CN.js"></script>
+<!--{/if}-->

@@ -1,0 +1,14 @@
+<!--pages/kefu/index.wxml-->
+<!-- <text>pages/kefu/index.wxml</text> -->
+<view class="container">
+
+  <view class="section">
+    <text>客服热线</text>
+    <text class='text1'>4006-807-869 ></text>
+  </view>
+
+  <view class="section">
+    <text>投诉电话</text>
+    <text class='text1'>0311-85441413 ></text>
+  </view>
+</view>

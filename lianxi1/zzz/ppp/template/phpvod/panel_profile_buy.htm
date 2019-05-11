@@ -1,0 +1,63 @@
+<!--{if $step == '2'}-->
+<form action="profile.php" method="post">
+<input type="hidden" name="action" value="buy" />
+<input type="hidden" name="step" value="3" />
+<input type="hidden" name="gid" value="$gid" />
+<table class="table">
+	<thead>
+		<tr><td colspan="2" class="f-fs18"><strong>购买用户组</strong></td></tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td class="f-w40">用户组</td>
+		<td><span class="f-stylecolor">$specgroup[grouptitle]</span></td>
+	</tr>
+	<tr>
+		<td>日价格</td>
+		<td>$specgroup[sellprice] $specgroup[selltype_caption] / 天</td>
+	</tr>
+	<tr>
+		<td>购买天数</td>
+		<td><input type="text" name="selldays" class="u-text" value="$specgroup[selllimit]" /></td>
+	</tr>
+	<tr>
+		<td>请输入密码</td>
+		<td><input type="password" name="password" value="" class="u-text" /></td>
+	</tr>
+	<tr>
+		<td>购买后将用户组设为</td>
+		<td>
+			<label class="f-fwn"><input type="radio" name="setdefault" value="1" checked="checked" /> 当前用户组</label> &nbsp;&nbsp;
+			<label class="f-fwn"><input type="radio" name="setdefault" value="0" /> 附加用户组</label>
+		</td>
+	</tr>
+	</tbody>
+	<tfoot>
+		<td colspan="2" class="f-tac"><input type="submit" class="u-btn f-mt10" value="提 交" /></td>
+	</tfoot>
+</table>
+</form>
+<!--{else}-->
+<table class="table">
+	<thead>
+		<tr><td colspan="2" class="f-fs18"><strong>购买用户组</strong></td></tr>
+		<tr>
+			<td width="*"><strong>用户组</strong></td>
+			<td width="20%"><strong>日价格</strong></td>
+			<td width="20%"><strong>最短购买天数</strong></td>
+			<td width="10%"><strong>操作</strong></td>
+		</tr>
+	</thead>
+	<!--{loop $special_list $specgroup}-->
+	<tr>
+		<td>
+			<p>$specgroup[grouptitle]</p>
+			<!--{if !empty($specgroup[sellinfo])}--><p class="f-gray">$specgroup[sellinfo]</p><!--{/if}-->
+		</td>
+		<td>$specgroup[sellprice] $specgroup[selltype_caption] / 天</td>
+		<td>$specgroup[selllimit] 天</td>
+		<td><input type="button" class="u-btn" value="购 买" onclick="window.location.href='profile.php?action=buy&step=2&gid=$specgroup[gid]'" /></td>
+	</tr>
+	<!--{/loop}-->
+</table>
+<!--{/if}-->

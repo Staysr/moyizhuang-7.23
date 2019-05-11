@@ -1,0 +1,5 @@
+.saxue_banner3{ position:relative; font-size:0px;}
+.saxue_banner3 .bx-pager{ position:absolute;bottom:10px;right:10px;z-index:999;}
+.saxue_banner3 .bx-pager .pager-link{float:left;width:15px;height:15px; line-height:15px; text-align:center;margin:0 0 0 10px; background:#FC0; color:#930;}
+.saxue_banner3 .bx-pager .pager-link:hover{ text-decoration:none;}
+.saxue_banner3 .bx-pager .pager-active{ background:#0C3; color:#fff;}

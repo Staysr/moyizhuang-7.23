@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteRule ^vod(.*)$ play.php\?play=$1
+RewriteRule ^bplay/(.*)$ bplay.php\?play=$1
+RewriteRule ^vlist/c(.*)$ vlist.php\?cid=$1
+RewriteRule ^wap/vod(.*)$ wap/play.php\?play=$1
+RewriteRule ^wap/bplay/(.*)$ wap/bplay.php\?play=$1
+RewriteRule ^list-(.*)$ list.php\?type=$1
+RewriteRule ^wap/vod(.*)$ wap/play.php?play=$1

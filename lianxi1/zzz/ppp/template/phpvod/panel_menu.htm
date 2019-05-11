@@ -1,0 +1,75 @@
+<link rel="stylesheet" type="text/css" href="$imgpath/$stylepath/ddlevelsfiles/ddlevelsmenu-base.css" />
+<link rel="stylesheet" type="text/css" href="$imgpath/$stylepath/ddlevelsfiles/ddlevelsmenu-topbar.css" />
+<script type="text/javascript" src="$imgpath/$stylepath/ddlevelsfiles/ddlevelsmenu.js"></script>
+<?php
+	$mainarray = array();
+	$subarray = array();
+	include PHPVOD_ROOT . 'data/cache/class.php';
+
+	function class2array($class) //栏目转换为数组格式
+	{
+		global $groupid;
+		$sub = array();
+		foreach($class as $c)
+		{
+			if(!empty($c['fathers']))
+			{
+				if(($c['type'] != 'hidden' || strpos($c['allowvisit'], ",$groupid,") !== false))
+				{
+					$s = str_replace(',', '][', $c['fathers']);
+					$s = '[' . $s . ']' . '[' . $c['cid'] . ']';
+					$e = '$sub' . $s . ' = NULL;';
+					eval($e);
+				}
+			}
+		}
+		return $sub;
+	}
+
+	function loopclass($arr,$class) //递归
+	{
+		foreach($arr as $k => $v)
+		{
+			echo '<li><a href="class.php?cid='. $class[$k]['cid'] .'">' . $class[$k]['caption'] . '</a>';
+			if(is_array($v))
+			{
+				echo '<ul>';
+				loopclass($v,$class);
+				echo '</ul>';
+			}
+			echo '</li>';
+		}
+	}
+?>
+	<div id="ddtopmenubar" class="mattblackmenu">
+		<ul>
+			<li><a href="$db_bfn">首页</a></li>
+			<!--{loop:class:$c cid=0}-->
+				<li><a href="category.php?cid=$c[cid]" rel="submenu{$c[cid]}">$c[caption]</a></li>
+				<!--{eval $mainarray[]=$c['cid'];}-->
+			<!--{/loop:class}-->
+	
+			<!--{loop $hackdb[2] $h}-->
+				<li><a href="hack.php?hackname=$h[directory]">$h[name]</a></li>
+			<!--{/loop}-->
+			
+			<li class="f-fr"><span class="siteinfo">视频数：$siteinfo[totalvideo]<span class="u-split">/</span>会员数：$siteinfo[totalmember]<span class="u-split">/</span>新会员：$siteinfo[newmember]</span></li>		
+		</ul>
+	</div>
+	
+
+<script type="text/javascript">
+	ddlevelsmenu.arrowpointers.downarrow = ["$imgpath/$stylepath/ddlevelsfiles/arrow-down.gif", 11,8];
+	ddlevelsmenu.arrowpointers.rightarrow = ["$imgpath/$stylepath/ddlevelsfiles/arrow-right.gif", 8,11];
+	ddlevelsmenu.arrowpointers.showarrow = {toplevel: true, sublevel: true};
+	ddlevelsmenu.setup("ddtopmenubar", "topbar");
+</script>
+
+<!--{eval $subarray=class2array($_class);}-->
+
+<!--{loop $subarray $k $v}-->
+	<!--{eval if(!in_array($k, $mainarray)) continue;}-->
+	<ul id="submenu{$k}" class="ddsubmenustyle">
+	<!--{eval loopclass($v,$_class);}-->
+	</ul>
+<!--{/loop}-->

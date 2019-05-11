@@ -1,0 +1,39 @@
+<!--{loop $list $key $value}-->
+{eval $weeks=array('Sunday'=>'周日','Saturday'=>'周六','Friday'=>'周五','Thursday'=>'周四','Wednesday'=>'周三','Tuesday'=>'周二','Monday'=>'周一');}
+{eval $date=getdate($value[dateline]);$week=$weeks[$date[weekday]];$data}
+
+<div class="activity_right">
+	<span class="time">{eval echo dgmdate($value[dateline],'u');}</span>
+	<div class="activity_right_cont">
+		<span class="actor_img">s</span>
+		<div style="float:left">
+			<span class="actor">{eval echo avatar_block($value[uid]);}</span>
+			<span class="verb">$value[body]</span>
+		</div>
+
+	</div>
+
+</div>
+
+<!--{/loop}-->
+<!--{if !$hidemore}-->
+<!--{if $next}-->
+<li id="btn-load-more" class="activity-item"> 
+	<div class="activity-itemwarp" style="margin-left:150px">
+        <div class="loading-more-panel"> 
+            <div class="part-loading"> </div> 
+            <button class="btn btn-simple" data-loading-text="加载中..." onclick="getEventMore('$page','$uid')"> 加载更多... </button> 
+         </div>
+    </div>
+</li>
+<!--{else}-->
+<li id="btn-load-more" class="activity-item">
+	<div class="activity-itemwarp" style="margin-left:150px;">
+        <div class="loading-more-panel"> 
+            <div class="part-loading"> </div> 
+            <button class="btn btn-simple" > 没有更多内容了 </button> 
+         </div>
+    </div>
+</li>
+<!--{/if}-->
+<!--{/if}-->

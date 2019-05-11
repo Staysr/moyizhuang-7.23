@@ -1,0 +1,27 @@
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<ol class="breadcrumb f-mt5">
+		  <li><a href="$db_wwwurl">首页</a></li>
+		  <!--{loop $navpath $navitem}-->
+		  <li><a href="$navitem[url]">$navitem[caption]</a></li>
+		  <!--{/loop}-->
+		  <li class="active">$video[subject]</li>
+		</ol>
+	</div>
+</div>
+
+<!--{eval $adcode = ad('nav');}-->
+<!--{if $adcode!=''}--><div class="u-adnav f-mt10">$adcode</div><!--{/if}-->
+
+
+<div class="row">
+
+	<div class="col-xs-15 col-md-15">
+		<!--{template 'panel_read_main'}-->
+	</div>
+
+	<div class="col-xs-5 col-md-5">
+		<!--{template 'panel_read_side'}-->
+	</div>
+
+</div>

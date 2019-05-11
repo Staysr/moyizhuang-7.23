@@ -1,0 +1,111 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/styles/showwindow/style.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/discuss.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/input_field.js"></script>
+<script type="text/javascript">var needsave=0; try{var api=_api.init();var appid=api.wname.appid;api.setFileExt([]);}catch(e){}</script>
+<style>
+html,body{
+	overflow:hidden;
+}
+body{
+	background:rgba(241, 241, 241, 1);
+}
+.bs-left-container{
+	width:200px;
+}
+.bs-main-container{
+	margin-left:0px;
+	overflow:auto;
+}
+.slst p span {
+	color: #3A8000;
+}
+.slst p span a, .slst p span a:visited {
+	color: #666;
+}
+.slst a {
+	color: #00C;
+	text-decoration: underline;
+	font-weight: 400;
+}
+.slst a:visited {
+	color: purple;
+}
+.navbar-inverse {
+    background-color: rgba(255, 90, 58, 1);
+}
+
+.btn{
+	border-radius:0;
+}
+.title-top .thread_title{
+  font-size: 16px;
+  color: #333;
+}
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<div class="bs-container clearfix">
+  <div class="bs-main-container">
+    <div class="main-content clearfix" >
+        <div class="search-spacer">
+            <h5 style="margin:0;font-size: 16px"><!--{if $keyword}-->{lang result}：{lang find}“<span class="text-or">$keyword</span>”{lang related_content}<span class="text-or">$index['num']</span>{lang ge}
+                <!--{else}-->
+                {lang result}：{lang find_thread}<span class="text-red" style="color: #ff5a3a;font-size: 16px">$index['num']</span>个
+                <!--{/if}-->
+            </h5>
+        </div>
+      <div class="discuss-container search-content">
+          <div class="search-item-wrap">
+            <!--{if empty($threadlist)}-->
+                <div class="searchImg-wrap">
+                    <img src="{MOD_PATH}/images/search_empty.png" alt="">
+                    <p>{lang search_no_result}</p>
+                </div>
+            <!--{/if}-->
+              <!--{loop $threadlist $value}-->
+              <div class="card-item">
+                  <div class="card">
+                      <div class="title-wrap">
+                          <div class="title-top">
+                              <a class="thread_title" href="{DZZSCRIPT}?mod=discuss&op=viewthread&fid=$value[fid]&tid=$value[tid]" <!--{if $value[starthighlight] < TIMESTAMP}-->  $value[highlight] <!--{/if}-->>$value[subject]</a>
+                            <a class="stick" <!--{if !$value[displayorder] || $value[startstick] > TIMESTAMP}-->style="display:none;"<!--{/if}-->><i class="dzz dzz-top"></i>
+                              <!--{if $value[displayorder] == 1}-->
+                                {lang class}
+                              <!--{elseif $value[displayorder] == 2}-->
+                                {lang plate}
+                              <!--{elseif $value[displayorder] == 3}-->
+                                {lang global}
+                              <!--{/if}-->
+                            </a>
+                            <a class="cream" <!--{if !$value[digest] || $value[startdigest] > TIMESTAMP}-->style="display:none;"<!--{/if}-->>{lang essence}<small>$value[digest]</small></a>
+                          </div>
+                          <div class="title-bot cleargfix">
+                              <a href="user.php?uid=$value[authorid]" class="card-user">$value[author]</a>
+                              <span class="card-user">$value[dateline]</span>
+                              <a href="{MOD_URL}&op=list&fid={$value[fid]}" class="board-a">#{$value['forumname']}</a>
+                              <div class="pre-info">
+                                  <span class="preview"><i class="dzz dzz-visibility"></i>  $value[views]</span>
+                                  <span class="reply"><i class="dzz dzz-sensitive"></i> $value[replies]</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!--{/loop}-->
+          </div>
+	<!--{if !empty($multipage)}--><div class="page-wrap">$multipage</div><!--{/if}-->
+</div>
+  </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	jQuery('.left-drager').leftDrager_layout();
+</script>
+<script  type="text/javascript" src="static/js/jquery.ui.touch.js?{VERHASH}"></script>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->  

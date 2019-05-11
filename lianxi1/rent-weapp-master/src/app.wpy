@@ -1,0 +1,274 @@
+<style>
+image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+view {
+  box-sizing: border-box;
+}
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.01);
+  border: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+.none {
+  position: absolute;
+  width: 0rpx;
+  height: 0rpx;
+  z-index: -999999;
+  overflow: hidden;
+  background: rgba(0,0,0,0)
+  border: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+.zone {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0)
+  border: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+import { setStore } from 'wepy-redux'
+import configStore from './store'
+import userService from './service/user'
+import { request, xml2jsP } from './utils/util'
+import { urls } from './config/config'
+
+const store = configStore()
+setStore(store)
+
+export default class extends wepy.app {
+  config = {
+    'pages': [
+      'pages/index',
+      'pages/check',
+      'pages/service',
+      'pages/shop',
+      'pages/order',
+      'pages/refund_result',
+      'pages/ucenter/index',
+      'pages/ucenter/detail',
+      'pages/ucenter/idcard'
+    ],
+    'window': {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: 'WeChat',
+      navigationBarTextStyle: 'black'
+    },
+    'tabBar': {
+      'backgroundColor': '#fafafa',
+      'borderStyle': 'white',
+      'selectedColor': '#b4282d',
+      'color': '#666',
+      'list': [
+        {
+          'pagePath': 'pages/index',
+          'text': '首页',
+          'iconPath': './static/image/home.png',
+          'selectedIconPath': './static/image/home.png'
+        },
+        {
+          'pagePath': 'pages/service',
+          'text': '服务',
+          'iconPath': './static/image/service.png',
+          'selectedIconPath': './static/image/service.png'
+        },
+        {
+          'pagePath': 'pages/ucenter/index',
+          'text': '我的',
+          'iconPath': './static/image/ucenter.png',
+          'selectedIconPath': './static/image/ucenter.png'
+        }
+      ]
+    },
+    // 需要修改为Promise形式的wxAPI
+    'promisify': [
+      'scanCode',
+      'switchTab',
+      'navigateTo',
+      'showModal',
+      'uploadFile',
+      'chooseImage',
+      'getLocation'
+    ]
+  }
+
+  globalData = {
+    userInfo: null
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+  }
+
+  async onLaunch() {
+    // 函数Promise化
+    this.config['promisify'].forEach(item => {
+      wx[item + 'P'] = this.wxPromisify(wx[item])
+    })
+    
+    Object.assign(Date.prototype, { Format: this.Format })
+    Object.assign(Date.prototype, { LeftTimer: this.LeftTimer })
+
+    // 如果没有本地存储用户信息，说明不能通过登录功能获取setting，需要在此手动拉取
+    let userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      const result = await request(urls.SettingGet, {}, 'GET')
+      const setting = await xml2jsP(result.data)
+      wx.setStorageSync('setting', setting)
+    }
+
+    // 访问计数
+    const times = wx.getStorageSync('times')
+    let times_now;
+    if (!times) {
+      times_now = 1
+    } else {
+      times_now = times + 1
+    }
+    wx.setStorageSync('times', times_now)
+    
+    // 登录
+    const loginResult = await userService.login()
+    console.log('this', this)
+    this.$pages['/pages/index'].onShow()
+    console.log('loginResult', loginResult)
+  }
+
+  // 日期格式化
+  Format = function(fmt) {
+    const o = {
+      'M+': this.getMonth() + 1,
+      'd+': this.getDate(),
+      'h+': this.getHours(),
+      'm+': this.getMinutes(),
+      's+': this.getSeconds(),
+      'q+': Math.floor((this.getMonth() + 3) / 3),
+      'S': this.getMilliseconds()
+    }
+    if (/(y+)/.test(fmt)) {
+      fmt = fmt.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length))
+    }
+    for (var k in o) {
+      if (new RegExp('(' + k + ')').test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+      }
+    }
+    return fmt
+  }
+
+  // 用时
+  LeftTimer = function(timestamp) {
+    if (!timestamp || typeof timestamp !== 'number' || timestamp < 0) {
+      this.string = '0分钟'
+      return false
+    }
+    this.time = {}
+    // 将0-9的数字前面加上0，例1变为01
+    this.checkTime = function(i) {
+      if (i < 10) {
+        i = '0' + i
+      } else {
+        i = '' + i
+      }
+      return i
+    }
+    // 检测是否为 '00'
+    this.isEmpty = function(x) {
+      if (x === '00') {
+        return true
+      }
+    }
+    // 如“00小时00分钟10秒”这种格式,将转换为“10秒”
+    this.checkZero = function() {
+      const _this = this
+      let haveFirstNotEmptyValue = false
+
+      Object.keys(_this.time).forEach(key => {
+        if (_this.isEmpty(_this.time[key])) {
+          _this[key + '_str'] = ''
+          if (haveFirstNotEmptyValue) {
+            _this[key + '_str'] = _this[key + '_str']
+          }
+        } else {
+          _this[key + '_str'] = _this[key + '_str']
+          haveFirstNotEmptyValue = true
+        }
+      })
+    }
+
+    const _this = this
+
+    this.time.days = parseInt(timestamp / 1000 / 60 / 60 / 24, 10) // 计算剩余的天数
+    this.time.hours = parseInt(timestamp / 1000 / 60 / 60 % 24, 10) // 计算剩余的小时
+    this.time.minutes = parseInt(timestamp / 1000 / 60 % 60, 10) // 计算剩余的分钟
+    this.time.seconds = parseInt(timestamp / 1000 % 60, 10) // 计算剩余的秒数
+
+    Object.keys(_this.time).forEach(key => {
+      _this.time[key] = _this.checkTime(_this.time[key])
+    })
+
+    this['days_str'] = this.time['days'] + '天'
+    this['hours_str'] = this.time['hours'] + '小时'
+    this['minutes_str'] = this.time['minutes'] + '分钟'
+    this['seconds_str'] = this.time['seconds'] + '秒'
+
+    this.checkZero()
+    this.string = `${this['days_str']}${this['hours_str']}${this['minutes_str']}${this['seconds_str']}`
+  }
+
+  wxPromisify(fn) {
+    return function (obj = {}) {
+      return new Promise((resolve, reject) => {
+        obj.success = function (res) {
+          console.log('Promise success 返回参数：', res)
+          resolve(res)
+        }
+        obj.fail = function (res) {
+          console.warn('Promise fail 返回参数：', res)
+          reject(res)
+        }
+        fn(obj) // 执行函数，obj为传入函数的参数
+      })
+    }
+  }
+
+  getUserInfo(cb) {
+    const that = this
+    if (this.globalData.userInfo) {
+      return this.globalData.userInfo
+    }
+    wepy.getUserInfo({
+      success (res) {
+        that.globalData.userInfo = res.userInfo
+        cb && cb(res.userInfo)
+      }
+    })
+  }
+}
+</script>

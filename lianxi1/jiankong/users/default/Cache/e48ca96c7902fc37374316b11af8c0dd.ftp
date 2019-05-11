@@ -1,0 +1,11 @@
+-rw-r--r-- 1 ftp ftp            812 Sep 07  2018 autoload.php
+-rw-r--r-- 1 ftp ftp           1974 Sep 07  2018 CropTest.php
+-rw-r--r-- 1 ftp ftp           1287 Sep 07  2018 FlipTest.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 images
+-rw-r--r-- 1 ftp ftp           2075 Sep 07  2018 InfoTest.php
+-rw-r--r-- 1 ftp ftp           1287 Sep 07  2018 RotateTest.php
+-rw-r--r-- 1 ftp ftp           1000 Sep 07  2018 TestCase.php
+-rw-r--r-- 1 ftp ftp           1701 Sep 07  2018 TextTest.php
+-rw-r--r-- 1 ftp ftp           7440 Sep 07  2018 ThumbTest.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 tmp
+-rw-r--r-- 1 ftp ftp           1672 Sep 07  2018 WaterTest.php

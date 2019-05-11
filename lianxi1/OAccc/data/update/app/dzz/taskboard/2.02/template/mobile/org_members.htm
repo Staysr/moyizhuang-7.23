@@ -1,0 +1,165 @@
+
+		<!--{template mobile/mobile_header}-->
+		<script type="text/javascript" src="static/popbox/jquery.popbox.js?{VERHASH}"></script>	
+		<script type="text/javascript" src="{MOD_PATH}/scripts/mobile/task.js?{VERHASH}"></script>
+		<style>
+		.popbox {
+   			 max-width: 200px;
+		</style>
+	</head>
+<body>
+<div class="members-wrap container">
+    <div class="window-module  clearfix" style="margin-bottom:10px;">
+    	<!--搜索框开始-->
+		<header class="weui-search-bar" id="searchBar">
+		    <form class="weui-search-bar__form" action="" onSubmit="return false">
+		         <div class="weui-search-bar__box">	
+					<input type="search" name="keyword" class="weui-search-bar__input js-search"   placeholder="{lang search_username}">
+					<a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel"><i class="weui-icon-clear"></i></a>
+				</div>
+				<label class="weui-search-bar__label" id="searchText">
+					<span>搜索用户名</span>
+					<i class="weui-icon-search"></i>
+				</label>
+		    </form>
+		</header>
+		<!--搜索框结束-->     
+    </div>
+    <div class="window-module u-bottom js-member-list" style="margin-bottom: 3rem">
+    
+    <!--{loop $list $value}-->
+      <div class="weui-cells " data-perm="$value[perm]" data-uid="$value[uid]">
+      <div class="weui-cell weui-cell_swiped">
+      	<div class="weui-cell__bd">
+      		<div class="weui-cell">
+        <div class="weui-cell__hd member">
+        	<div>{eval echo avatar_block($value[uid]);}</div>			
+            <!--{if $value[perm]>2}-->
+            <span class="member-type admin" title="{lang manager}"></span>
+            <!--{elseif $value[perm]>1}-->
+            <span class="member-type" title="{lang member}"></span>
+            <!--{else}-->
+            <span class="member-type" title="{lang observer}"></span> 
+            <!--{/if}-->
+        </div>
+      	
+        <div class="details weui-cell__bd">
+          <p class="name-line"><span class="full-name">$value[username]</span></p>
+        </div>
+        <div class="options weui-cell__ft">
+        
+        	<!--{if $perm>2}--> 
+                <a href="javascript:;" class="option btn btn-default-outline js-change-role js-popbox" data-href="{MOD_URL}&op=menu&do=org_member_role&orgid=$orgid&uid=$value[uid]" title="{lang change_permissions}" data-placement="left"  data-auto-adapt="true" href="javascript:;">{eval echo $permtitle[$value[perm]]} <span class="dzz dzz-arrow-dropdown"></span></a>                
+            <!--{else}-->
+            	<p class="option status quiet">{eval echo $permtitle[$value[perm]]}</p>
+                
+           <!--{/if}-->
+
+            
+            
+        </div>
+		</div>
+		</div>
+		<div class="weui-cell__ft">
+			
+        	<!--{if $perm>2 || $value['uid']==$_G['uid']}-->               
+                <a class="option button-link remove-button js-remove-or-deactivate  js-popbox weui-task-btn weui-task-cancel" data-auto-adapt="true" data-href="{MOD_URL}&op=menu&do=org_member_remove&orgid=$orgid&uid=$value[uid]" title="{lang remove}" data-placement="left"  data-auto-adapt="true"  href="javascript:;"> <!--{if $value['uid']==$_G['uid']}-->{lang status_away}<!--{else}-->{lang remove}<!--{/if}--></a>
+           <!--{/if}-->
+      
+		</div>
+	    
+      </div>
+      </div>
+      <!--{/loop}-->
+      	<!--{if $perm>2}-->
+       <div class="js-member-button">
+			<a href="javascript:;" class="weui-btn  weui-btn_plain-primary weui-add-member ">添加成员</a>
+		 </div>
+		<!--{/if}-->
+    </div>
+</div>
+<footer class="weui-tabbar">
+	 <a href="{MOD_URL}&op=org&orgid=$org[orgid]" class="weui-tabbar__item">
+        <span class="dzz dzz-content-paste"></span>
+        <p class="weui-tabbar__label">任务板</p>
+		</a>
+		<a href="{MOD_URL}&op=org&do=members&orgid=$orgid" class="weui-tabbar__item">
+		    <span class="dzz dzz-member"></span>
+		    <p class="weui-tabbar__label">成员</p>
+		</a>
+		<a href="{MOD_URL}&op=org&do=settings&orgid=$orgid" class="weui-tabbar__item">
+		    <span class="dzz dzz-settings"></span>
+		    <p class="weui-tabbar__label">设置</p>
+		</a>		
+</footer>  
+
+</body>
+
+<script type="text/javascript">
+
+jQuery(document).ready(function(e) {
+	 $(document).off('touchend.adduser').on('touchend.adduser','.weui-add-member',function(){
+        var action = 'index.php?mod=system&op=selorguser&stype=2&multiple=1',
+            callback_url = '{MOD_URL}&op=ajax&do=org_member_set&orgid=$orgid&output=json';
+        if ($('#submitForm').length < 1) {
+            var form = $('<form id="submitForm"></form>');
+            $(document.body).append(form);
+        } else {
+            form = $('#submitForm');
+        }
+		 var ids='{eval echo implode(',',array_keys($list))}';
+		 
+        if ($('#callbackdata').length < 1) {
+            var callbackdata = $('<input type="hidden" name="callback_url" id="callbackdata" />');
+            form.append(callbackdata);
+        } else {
+            var callbackdata = $('#callbackdata');
+        }
+		 callbackdata.val(callback_url);
+		 if ($('#sel_ids').length < 1) {
+            var sel_ids = $('<input type="hidden" name="ids" id="sel_ids" />');
+            form.append(sel_ids);
+        } else {
+            var sel_ids = $('#sel_ids');
+        }
+        sel_ids.val(ids);
+        form.attr('action', action);
+        form.attr('method', 'post');
+        form.submit();
+        return false;
+    })
+	//只有一个管理员时,不允许移除或离开
+	$('.weui-cell_swiped').swipeout('open')
+	check_admin();
+	
+	jQuery('input.js-search').on('keyup',function(){
+		console.log(this.value);
+		var val=this.value;
+		if(val==''){
+			jQuery('.weui-cells ').removeClass('hide');
+		}
+		jQuery('.weui-cells').each(function(index){
+			var uname=jQuery(this).find('.full-name').text();
+			if(uname.match(new RegExp(val))){
+				jQuery(this).removeClass('hide');
+			}else{
+				jQuery(this).addClass('hide');
+			}
+		})
+	});
+	
+	jQuery('.js-popbox').each(function(){
+		if(jQuery(this).hasClass('disabled')) return;
+		jQuery(this).popbox();
+	});
+});
+function check_admin(){ //只有一个管理员时,不允许移除或离开
+	var adminitem=jQuery('.member-list-item-detail[data-perm="3"]');
+	if(adminitem.length<2){
+		adminitem.find('.js-remove-or-deactivate').addClass('disabled');
+	}else{
+		adminitem.find('.js-remove-or-deactivate').removeClass('disabled');
+	}
+}
+</script> 
+</html>

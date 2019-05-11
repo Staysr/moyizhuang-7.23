@@ -1,0 +1,24 @@
+
+<!--{if $orgids}-->
+    <!--{loop $users $k $v}-->
+        <!--成员-->
+        <a href="{MOD_URL}&op=ajax&do=user&suggest={$v[uid]}" class="weui-media-box weui-media-box_appmsg user-item">
+            <div class="weui-media-box__hd user-img">
+                {eval echo avatar_block($v['uid']);}
+            </div>
+            <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title">$v[username]</h4>
+            </div>
+        </a>
+    <!--{/loop}-->
+<!--{else}-->
+    <!--{loop $data $val}-->
+        <!--部门-->
+        <a class="weui-cell weui-cell_access department-item" href="{MOD_URL}&op=grouptree&do=get_children&id={$val[id]}">
+            <div class="weui-cell__bd weui-cell_primary">
+                {$val[text]}
+            </div>
+            <span class="weui-cell__ft"></span>
+        </a>
+    <!--{/loop}-->
+<!--{/if}-->

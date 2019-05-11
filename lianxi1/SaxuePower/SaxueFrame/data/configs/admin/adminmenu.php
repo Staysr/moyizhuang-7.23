@@ -1,0 +1,27 @@
+<?php
+$saxueAdminmenu['system']['systemset'][] = array( 'caption' => '系统定义', 'command' => SAXUE_ADMIN_URL . '/configs.php?gname=system&define=1', 'node' => 'configs' );
+$saxueAdminmenu['system']['systemset'][] = array( 'caption' => '系统参数设置', 'command' => SAXUE_ADMIN_URL . '/configs.php?gname=system', 'node' => 'configs' );
+$saxueAdminmenu['system']['systemset'][] = array( 'caption' => '后台管理员', 'command' => SAXUE_ADMIN_URL . '/admins.php', 'node' => 'admins' );
+$saxueAdminmenu['system']['systemset'][] = array( 'caption' => '角色权限组', 'command' => SAXUE_ADMIN_URL . '/roles.php', 'node' => 'roles' );
+$saxueAdminmenu['system']['systemset'][] = array( 'caption' => '多语言配置', 'command' => SAXUE_ADMIN_URL . '/language.php', 'node' => 'language' );
+$saxueAdminmenu['system']['cache'][] = array( 'caption' => '清理区块缓存', 'command' => SAXUE_ADMIN_URL . '/cleancache.php?target=block', 'node' => 'cleancache' );
+$saxueAdminmenu['system']['cache'][] = array( 'caption' => '清理网页缓存', 'command' => SAXUE_ADMIN_URL . '/cleancache.php?target=html', 'node' => 'cleancache' );
+$saxueAdminmenu['system']['cache'][] = array( 'caption' => '清理编译缓存', 'command' => SAXUE_ADMIN_URL . '/cleancache.php?target=compiled', 'node' => 'cleancache' );
+$saxueAdminmenu['system']['database'][] = array( 'caption' => '数据库备份', 'command' => SAXUE_ADMIN_URL . '/dbmanage.php?option=export', 'node' => 'dbmanage' );
+$saxueAdminmenu['system']['database'][] = array( 'caption' => '数据库恢复', 'command' => SAXUE_ADMIN_URL . '/dbmanage.php?option=import', 'node' => 'dbmanage' );
+$saxueAdminmenu['system']['database'][] = array( 'caption' => '数据库优化', 'command' => SAXUE_ADMIN_URL . '/dboptimize.php?option=optimize', 'node' => 'dboptimize' );
+$saxueAdminmenu['system']['database'][] = array( 'caption' => '数据库修复', 'command' => SAXUE_ADMIN_URL . '/dboptimize.php?option=repair', 'node' => 'dboptimize' );
+$saxueAdminmenu['system']['database'][] = array( 'caption' => '数据库升级', 'command' => SAXUE_ADMIN_URL . '/dbquery.php', 'node' => 'dbquery' );
+$saxueAdminmenu['contmanage']['contman'][] = array( 'caption' => '栏目内容管理', 'command' => SAXUE_ADMIN_URL . '/content.php', 'node' => 'content' );
+$saxueAdminmenu['contmanage']['contman'][] = array( 'caption' => '内容搜索管理', 'command' => SAXUE_ADMIN_URL . '/search.php', 'node' => 'search' );
+$saxueAdminmenu['contmanage']['contman'][] = array( 'caption' => '附件管理', 'command' => SAXUE_ADMIN_URL . '/attachs.php', 'node' => 'attachs' );
+$saxueAdminmenu['contmanage']['contman'][] = array( 'caption' => '批量更新URL', 'command' => SAXUE_ADMIN_URL . '/urlupdate.php', 'node' => 'urlupdate' );
+$saxueAdminmenu['contmanage']['contset'][] = array( 'caption' => '栏目管理', 'command' => SAXUE_ADMIN_URL . '/column.php', 'node' => 'column' );
+$saxueAdminmenu['contmanage']['contset'][] = array( 'caption' => '内容模块', 'command' => SAXUE_ADMIN_URL . '/module.php', 'node' => 'module' );
+$saxueAdminmenu['contmanage']['contset'][] = array( 'caption' => '模块URL规则', 'command' => SAXUE_ADMIN_URL . '/urlrule.php', 'node' => 'urlrule' );
+$saxueAdminmenu['contmanage']['contset'][] = array( 'caption' => '参数设置', 'command' => SAXUE_ADMIN_URL . '/configs.php?gname=content', 'node' => 'configs' );
+$saxueAdminmenu['extend']['plugins'][] = array( 'caption' => '应用中心', 'command' => SAXUE_ADMIN_URL . '/cloudaddons.php', 'node' => 'cloudaddons' );
+$saxueAdminmenu['extend']['plugins'][] = array( 'caption' => '我的应用', 'command' => SAXUE_ADMIN_URL . '/plugin.php', 'node' => 'plugin' );
+$saxueAdminmenu['extend']['others'][] = array( 'caption' => '自定义区块', 'command' => SAXUE_ADMIN_URL . '/blocks.php', 'node' => 'blocks' );
+$saxueAdminmenu['extend']['others'][] = array( 'caption' => '自定义语言包', 'command' => SAXUE_ADMIN_URL . '/lang.php', 'node' => 'lang' );
+$saxueAdminmenu['extend']['others'][] = array( 'caption' => '网站Banner设置', 'command' => SAXUE_ADMIN_URL . '/banner.php', 'node' => 'banner' );

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--{template mobile/mobile_header}-->
+		<title>任务板</title>
+	</head>
+	<body class="weui-cell-body">
+		<!--标星开始-->
+		<section class="weui-cells window-module-star">
+			<h4 class="weui-cell-h4">标星的</h4>
+			<!--{loop $stared $value}-->
+			<a class="weui-cell weui-cell_access" href="{MOD_URL}&op=list&tbid=$value[tbid]">
+		        <div class="weui-cell__hd"><span class="dzz dzz-clock weui-cell__img color-block-$value[aid] <!--{if $value[aid]}-->color-white<!--{/if}-->"></span></div>
+		        <div class="weui-cell__bd">
+		            <h4>$value[name]</h4>
+		        </div>
+		        <div class="weui-cell__star"><span class="dzz dzz-grade"></span></div>
+		    </a>
+		    <!--{/loop}-->
+		</section>
+		<!--标星结束-->
+		<!--我的开始-->
+		<section class="weui-cells window-module-my">
+			<h4 class="weui-cell-h4">我的</h4>
+			<!--{loop $my $value}-->
+			<a class="weui-cell weui-cell_access" href="{MOD_URL}&op=list&tbid=$value[tbid]" id="board_star_$value[tbid]">
+		        <div class="weui-cell__hd"><span class="dzz dzz-clock weui-cell__img color-block-$value[aid]"></span></div>
+		        <div class="weui-cell__bd">
+		            <h4>$value[name]</h4>
+		        </div>
+		        <div class="weui-cell__ft"></div>
+		    </a>
+		    <!--{/loop}-->
+		</section>
+		<!--我的结束-->
+		<!--群组名称开始-->		
+		<section class="weui-cells window-module-org">
+			<h4 class="weui-cell-h4">群组名称</h4>
+			<!--{loop $orglist $org}-->
+			<a class="weui-cell weui-cell_access" href="{MOD_URL}&op=org&orgid=$org[orgid]">
+		        <div class="weui-cell__hd"><span class="dzz dzz-clock weui-cell__img color-block-2"></span></div>
+		        <div class="weui-cell__bd">
+		            <h4>$org[name]</h4>
+		        </div>
+		        <div class="weui-cell__ft"></div>
+		   </a>
+		    <!--{/loop}-->
+		</section>
+		
+		<!--群组名称结束-->
+		<footer  class="weui-tabbar">
+                <a href="{MOD_URL}&op=ajax&do=create&orgid" class="weui-tabbar__item">
+                    <span class="dzz dzz-create-new-folder"></span>
+                    <p class="weui-tabbar__label">新建</p>
+                </a>
+                <a href="mobile_taskboard_search.htm" class="weui-tabbar__item">
+                    <span class="dzz dzz-search"></span>
+                    <p class="weui-tabbar__label">搜索</p>
+                </a>
+                <a href="{MOD_URL}&op=ajax&do=Mymission" class="weui-tabbar__item">
+                    <span class="dzz dzz-member"></span>
+                    <p class="weui-tabbar__label">我的</p>
+                </a>
+		</footer>
+	</body>
+	<script type="text/javascript" src="static/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="static/jquery_weui/js/jquery-weui.min.js"></script>
+</html>

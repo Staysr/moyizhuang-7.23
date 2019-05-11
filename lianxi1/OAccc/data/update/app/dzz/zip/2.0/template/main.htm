@@ -1,0 +1,585 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/zip/images/style.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+
+<script src="dzz/zip/scripts/main.js?{VERHASH}"></script>
+<script type="text/javascript" >  
+var needsave=0;
+var dfolder='$dfolder';
+var pfolder=['$dfolder'];
+var dpath='$dpath';
+try{
+	var api=_api.init();
+	var appid=api.wname.appid;
+	var win=api.win; 
+	api.setFileExt(['image','document','attach','folder']);
+	needsave=api.win.needsave;
+}catch(e){};
+var iswin=1;
+if(win ==='' || typeof( win ) === 'undefined'){  
+		iswin=0;
+}
+
+var openexts = {
+	"All": ["All Documents(*.*)", ["HTM", "HTML", "SHTM", "SHTML", "HTA", "HTC", "XHTML", "STM", "SSI", "JS", "JSON", "AS", "ASC", "ASR", "XML", "XSL", "XSD", "DTD", "XSLT", "RSS", "RDF", "LBI", "DWT", "ASP", "ASA", "ASPX", "ASCX", "ASMX", "CONFIG", "CS", "CSS", "CFM", "CFML", "CFC", "TLD", "TXT", "PHP", "PHP3", "PHP4", "PHP5", "PHP-DIST", "PHTML", "JSP", "WML", "TPL", "LASSO", "JSF", "VB", "VBS", "VTM", "VTML", "INC", "SQL", "JAVA", "EDML", "MASTER", "INFO", "INSTALL", "THEME", "CONFIG", "MODULE", "PROFILE", "ENGINE"], "selected"],
+	"html": ["HTML Documents(*.HTML,*.HTM,*.HTA,*.HTC,*.XHTML)", ["HTML", "HTM", "HTA", "HTC", "XHTML"], ""],
+	"txt": ["Text Files(*.TXT)", ["TXT"], ""],
+	"css": ["Style Sheets(*.CSS)", ["CSS"], ""],
+	"js": ["JavaScript Documents(*.JS,*.JSON)", ["JS", "JSON"], ""],
+	"jsp": ["Java Server Pages(*.JSP,*.JST)", ["JSP", "JST"], ""],
+	"java": ["Java Files(*.JAVA)", ["JAVA"], ""],
+	"asp": ["Active Server Pages(*.ASP,*.ASA)", ["ASP", "ASA"], ""],
+	"aspx": ["Active Server Plus Pages(*.ASPX,*.ASCX,*.ASMX)", ["ASPX", "ASCX", "ASMX"], ""],
+	"php": ["PHP Files(*.PHP,*.PHP3,*.PHP4,*.PHP5)", ["PHP", "PHP3", "PHP4", "PHP5"], ""],
+	"sql": ["SQL Files(*.SQL)", ["SQL"], ""], "vbs": ["VBScript Files(*.VBS)", ["VBS"], ""],
+};
+var saveexts = {
+	"All": ["All Documents(*.*)", ["HTM", "HTML", "SHTM", "SHTML", "HTA", "HTC", "XHTML", "STM", "SSI", "JS", "JSON", "AS", "ASC", "ASR", "XML", "XSL", "XSD", "DTD", "XSLT", "RSS", "RDF", "LBI", "DWT", "ASP", "ASA", "ASPX", "ASCX", "ASMX", "CONFIG", "CS", "CSS", "CFM", "CFML", "CFC", "TLD", "TXT", "PHP", "PHP3", "PHP4", "PHP5", "PHP-DIST", "PHTML", "JSP", "WML", "TPL", "LASSO", "JSF", "VB", "VBS", "VTM", "VTML", "INC", "SQL", "JAVA", "EDML", "MASTER", "INFO", "INSTALL", "THEME", "CONFIG", "MODULE", "PROFILE", "ENGINE"], ""],
+	"html": ["HTML Documents(*.HTML,*.HTM,*.HTA,*.HTC,*.XHTML)", ["HTML", "HTM", "HTA", "HTC", "XHTML"], ""],
+	"txt": ["Text Files(*.TXT)", ["TXT"], "selected"],
+	"css": ["Style Sheets(*.CSS)", ["CSS"], ""],
+	"js": ["JavaScript Documents(*.JS,*.JSON)", ["JS", "JSON"], ""],
+	"jsp": ["Java Server Pages(*.JSP,*.JST)", ["JSP", "JST"], ""],
+	"java": ["Java Files(*.JAVA)", ["JAVA"], ""],
+	"asp": ["Active Server Pages(*.ASP,*.ASA)", ["ASP", "ASA"], ""],
+	"aspx": ["Active Server Plus Pages(*.ASPX,*.ASCX,*.ASMX)", ["ASPX", "ASCX", "ASMX"], ""],
+	"php": ["PHP Files(*.PHP,*.PHP3,*.PHP4,*.PHP5)", ["PHP", "PHP3", "PHP4", "PHP5"], ""],
+	"sql": ["SQL Files(*.SQL)", ["SQL"], ""], "vbs": ["VBScript Files(*.VBS)", ["VBS"], ""],
+};
+</script>
+<style>
+a.disabled {
+	color: #999;
+}
+a.disabled:hover {
+}
+.comment-wrapper {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 20%;
+	padding-left: 5px;
+	height: 100%;
+	overflow: auto;
+	display: none;
+}
+.comment-wrapper .drager {
+	position: absolute;
+	width: 5px;
+	left: 0;
+	top: 0;
+	height: 100%;
+	border-left: 1px solid #e1e1e1;
+	cursor: e-resize;
+}
+.comment-open .module-list-view {
+	margin-right: 20%;
+}
+.comment-open .comment-wrapper {
+	display: block;
+}
+</style>
+<!--{template common/header_simple_end}-->
+<nav>
+  <div class="zip-default zip-toolbarbox" onselectstart="return false" style="-moz-user-select:none;">
+    <div class="zip-default zip-toolbarboxinner">
+      <div class="zip-box zip-button zip-parent disabled" data-action="parent" data-pfolder="$pfolder" title="向上">
+        <div class="zip-box zip-icon "></div>
+      </div>
+      <div class="zip-box zip-separator"></div>
+      <div class="zip-box zip-button zip-open" data-action="open" title="打开文件">
+        <div class="zip-box zip-icon "></div>
+      </div>
+      <div class="zip-box zip-button zip-save disabled" data-action="save" title="保存文件">
+        <div class="zip-box zip-icon "></div>
+      </div>
+      <div class="zip-box zip-button zip-extract disabled" data-action="extract" title="解压到">
+        <div class="zip-box zip-icon "></div>
+      </div>
+      <div class="zip-box zip-separator"></div>
+      <div class="zip-box zip-button zip-add" data-action="add" title="添加文件">
+        <div class="zip-box zip-icon"></div>
+      </div>
+      <div class="zip-box zip-button zip-delete disabled" data-action="delete" title="删除文件">
+        <div class="zip-box zip-icon"></div>
+      </div>
+      <div class="zip-box zip-separator"></div>
+      <div class="zip-box zip-button zip-info" data-action="info" title="注释">
+        <div class="zip-box zip-icon "></div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="bs-container clearfix" style="padding:0">
+  <div class="main-content clearfix">
+    <div node-type="module" class="module-list-view">
+      <div node-type="wrapper" class="list-view-home">
+        <div node-type="title" class="title" style="padding-right: 16px;">
+          <div class="item clearfix"> 
+            <!-- 第一列 -->
+            <div node-type="title-col" data-key="name" class="col c1" style="width: 50%"> <span node-type="chk-all" class="chk"> <span class="chk-ico"></span> </span>
+              <div class="name"> <span>名称</span> <span node-type="order-status" class="asc" style="visibility: visible;"></span> </div>
+            </div>
+            <!-- 其他列 -->
+            <div node-type="title-col" data-key="size" class="col" style="width:15%;"> 大小 <span node-type="order-status" class="asc desc" style="visibility: hidden;"></span> </div>
+            <div node-type="title-col" data-key="type" class="col" style="width: 15%;"> 类型 <span node-type="order-status" class="asc desc" style="visibility: hidden;"></span> </div>
+            <div node-type="title-col" data-key="dateline" class="col" style="width: 20%; border-right: none;"> 修改时间 <span node-type="order-status" class="asc desc" style="visibility: hidden;"></span> </div>
+          </div>
+        </div>
+        <div node-type="module" class="module-share-empty text-center clearfix <!--{if $list}-->hide<!--{/if}-->">
+          <div class="no-result-div" style="padding-top:40px;">
+            <p class="no-result-pic"><em class="shr"></em></p>
+            <p class="no-result-title">支持拖动桌面文件加入！</p>
+          </div>
+        </div>
+        <div node-type="list" class="list list-file clearfix" >
+          <div class="list-wrapper clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <div class="comment-wrapper">
+      <div class="drager"></div>
+      <textarea id="comment" class="form-control" style="border-width:0;width:100%;height:100%">$comment</textarea>
+    </div>
+  </div>
+</div>
+<div id="pageLoading" class="page-loadding" style=" display: none;">
+  <table width="100%" height="100%">
+    <tbody>
+      <tr>
+        <td valign="middle" align="center"><div class="page-loadding-back">
+            <div class="loading-img">
+              <div class="loading_process"></div>
+            </div>
+            <div class="loading-text"></div>
+          </div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<script type="text/javascript">
+
+
+var resizer=0;
+jQuery(window).on('resize',function(){
+	if(resizer) window.clearTimeout(resizer);
+	resizer=window.setTimeout(setheight,50);
+});
+
+jQuery(document).ready(function(e) {
+	setheight();
+    if(dfolder){
+		jQuery('.list-wrapper').load('{DZZSCRIPT}?mod=zip&op=ajax&do=getfolderinfo&folder='+dfolder,function(){
+			refresh_header();
+		});
+	}else if(dpath){
+		showProgress('获取压缩文件，请稍候...','loading',0);
+		jQuery.post('{DZZSCRIPT}?mod=zip&op=ajax&do=prepare&path='+dpath,function(json){
+			if(json.error){
+				showProgress(json.error,'danger',3000);
+			}else if(json.msg=='success'){
+				showProgress('开始解压缩文件，请稍候...','loading',0);
+				jQuery.ajax({
+				  type: 'POST',
+				  dataType: 'json',
+				  url: '{DZZSCRIPT}?mod=zip&op=ajax&do=getfolder',
+				  data: {'zip':json.zip},
+				  success: function(json){
+					if(json.error){
+						showProgress(json.error,'danger',0);
+					}else{
+						showProgress('解压成功...','success',0);
+						if( iswin ) api.win.comment=json.comment;
+						window.setTimeout(function(){
+							window.location.href='{DZZSCRIPT}?mod=zip&folder='+json.folder+'&path='+dpath;
+						},100);
+					}
+				  },
+				  error:function(){
+					  showProgress('解压失败,请检查：最大支持2G文件；php.ini中设置 memory_linit:2048M;max_execution_time:1800以上','danger',0);
+				  }
+				});
+			}
+		},'json');
+		
+	}else{
+		jQuery.getJSON('{DZZSCRIPT}?mod=zip&op=ajax&do=getfolder',function(json){
+			if( iswin ) api.win.comment=json.comment;
+			window.location.href='{DZZSCRIPT}?mod=zip&folder='+json.folder;
+		});
+	}
+	if(needsave) jQuery('.zip-save').removeClass('disabled');
+	if( iswin ) {
+		if(api.win.comment) jQuery('#comment').val(api.win.comment);
+	}
+	dragging();
+});
+
+ window.acceptdata=function(data){//接收桌面文件和目录
+   if(data.params.multiple){
+	  var datas=data.icodata; 
+   }else{
+	   var datas=[data.icodata];
+   }
+	if(datas.length) addFromDesktop(datas,dfolder);
+}
+jQuery('.zip-info').on('click',function(){
+	jQuery(this).toggleClass('hover');
+	jQuery('.main-content').toggleClass('comment-open');
+	return false;
+});
+jQuery('.zip-parent').on('click',function(){
+	if(jQuery(this).hasClass('disabled')) return false;
+	pfolder.pop();
+	getFolderInfo(pfolder[pfolder.length-1]);
+	return false;
+});
+jQuery('.zip-add').on('click',function(){
+	if(iswin){
+			parent.OpenFile('open','选择文件',{attach:['所有文件(*.*)',['ATTACH','IMAGE','DOCUMENT','DZZDOC'],'']},{bz:'all',multiple:true},function(data){
+					if(data.params.multiple){
+							var datas=data.icodata; 
+					}else{
+						 var datas=[data.icodata];
+					}
+					for(var i in datas){
+							if(datas[i].path){
+									addFromDesktop(datas,dfolder);
+							}
+					}
+					showProgress('添加完成!','success',100);
+			});
+	}else{
+			var nowopenexts = JSON.stringify( openexts );
+			nowopenexts = nowopenexts.replace(/\"/g,'&quot;');
+			nowopenexts = nowopenexts.replace(/\(/g,'|');
+			nowopenexts = nowopenexts.replace(/\)/g,'$'); 
+			nowopenexts = encodeURIComponent(nowopenexts);
+			var userhref = '{DZZSCRIPT}?mod=system&op=filewindow&mulitype=1&exts='+nowopenexts+'&callback=opencallbackselectfile';
+			showWindow('openfile', userhref, 'get', '0');
+	}
+	return false; 
+});
+
+function opencallbackselectfile(data){ 
+		var j=0;
+		var datas=[];
+    for (var i in data) {
+			datas[j]=data[i];
+			j++;
+    }
+		addFromDesktop(datas,dfolder);
+}
+
+jQuery('.zip-delete').on('click',function(){
+	if(jQuery(this).hasClass('disabled')) return false;
+	var list=[];
+	jQuery('.list .item.item-active').each(function(){
+		list.push(jQuery(this).find('.name-text').data('path'));
+	});
+	if(list.length){
+		showProgress('正在删除，请稍候...','loading',0);
+		jQuery.post('{MOD_URL}&op=ajax&do=delete',{'list':list},function(json){
+			
+			if(json.error){
+				showProgress(json.error,'loading',1000);
+			}else{
+				showProgress('删除成功!','success',100);
+				try{
+					needsave=1;
+					if( iswin ) api.win.needsave=needsave;
+					jQuery('.zip-save').removeClass('disabled');
+				}catch(e){}
+				getFolderInfo(dfolder);
+			}
+		},'json');
+	}else{
+		showmessage('请选择文件！','danger',3000,1);
+	}
+	return false;
+});
+jQuery('.zip-open').on('click',function(){
+	if(iswin){
+			parent.OpenFile('open','打开',{image:['压缩文件(*.zip)',['ZIP'],'']},{bz:'all',multiple:false},function(data){
+					opencallbackselectzipsinglefile(data); 
+			});
+	}else{
+			var zipopenexts = {"zip": ["Zip Files(*.zip)", ["zip"], "selected"]}; 
+			var nowopenexts = JSON.stringify( zipopenexts );
+			nowopenexts = nowopenexts.replace(/\"/g,'&quot;');
+			nowopenexts = nowopenexts.replace(/\(/g,'|');
+			nowopenexts = nowopenexts.replace(/\)/g,'$'); 
+			nowopenexts = encodeURIComponent(nowopenexts);
+			var userhref = '{DZZSCRIPT}?mod=system&op=filewindow&mulitype=0&exts='+nowopenexts+'&callback=opencallbackselectzipfile';
+			showWindow('openfile', userhref, 'get', '0');
+	}
+});
+
+function opencallbackselectzipfile(data){ 
+		var j=0;
+		var datas=[];
+    for (var i in data) {
+			datas[j]=data[i];
+			j++;
+    }
+		console.log(  datas[0]  );
+		opencallbackselectzipsinglefile( datas[0] );
+}
+
+function opencallbackselectzipsinglefile( data ){ 
+		if(data){
+			showProgress('获取压缩文件...','loading',0);
+			jQuery.getJSON('{MOD_URL}&op=ajax&do=prepare&path='+data.dpath,function(json){
+				if(json.error){
+					showProgress(json.error,'danger',3000);
+				}else if(json.msg=='success'){
+					showProgress('正在解压缩文件...','loading',0);
+					jQuery.post('{MOD_URL}&op=ajax&do=getfolder',{'zip':json.zip},function(json){
+						if(json.error){
+							showProgress(json.error,'danger',3000);
+						}else{
+							showProgress('解压成功...','success',0);
+							window.setTimeout(function(){
+								window.location.href='{MOD_URL}&folder='+json.folder+'&path='+dpath;
+							},100);
+						}
+					},'json');
+				}
+			});
+		}else{
+				showProgress('打开失败！','danger',2000);
+		}
+}
+
+jQuery('.zip-extract').on('click',function(){
+	if(jQuery(this).hasClass('disabled')) return false;
+	//var el=jQuery(this);
+	if( iswin ){
+		parent.SelectPosition(function(position){
+			opencallbackunzipfolder(position); 
+		},{bz:'all'});
+	}else{
+		var zipopenexts = {"zip": ["Zip Files(*.zip)", ["zip"], "selected"]}; 
+			var nowopenexts = JSON.stringify( zipopenexts );
+			nowopenexts = nowopenexts.replace(/\"/g,'&quot;');
+			nowopenexts = nowopenexts.replace(/\(/g,'|');
+			nowopenexts = nowopenexts.replace(/\)/g,'$'); 
+			nowopenexts = encodeURIComponent(nowopenexts); 
+			var userhref = '{DZZSCRIPT}?mod=system&op=selposition&handlekey=seldir&allowcreate=1&callback=opencallbackunzipfolder';
+			showWindow('seldir', userhref, 'get', '0');
+	}  
+});
+
+function opencallbackunzipfolder( position ){
+	var list=[];
+	jQuery('.list .item.item-active').each(function(){
+		list.push(jQuery(this).find('.name-text').data('path'));
+	});
+	jQuery.post('{MOD_URL}&op=ajax&do=extractTo',{"position":position,'list':list,'folder':dfolder},function(json){
+		for(var i=0;i<json.length;i++){
+			if(json[i].folderarr) parent._ico.createFolder(json[i]);
+			else if(json[i].icoarr) parent._ico.createIco(json[i].icoarr);
+		}
+		showProgress('解压完成！','success',1000,1);
+	},'json');
+}
+
+jQuery('.zip-save').on('click',function(){
+	var el=jQuery(this);
+	if(el.hasClass('disabled')) return false;
+	var path=dpath;
+	var folder=dfolder; 
+	if(!path){
+		if( iswin ){ 
+				parent.OpenFile('save','保存到',{image:['压缩文件(*.zip)',['ZIP'],'']},{bz:'all',multiple:false},function(data){
+					var datas=[];
+					if(data.params.multiple){
+						datas=data.icodata
+					}else{
+						datas=[data.icodata];
+					}
+					if(data.icodata){
+						showProgress('正在保存，请稍候...','loading',0,1);
+						jQuery.post('{MOD_URL}&op=ajax&do=save&action=save',{"path":data.icodata.dpath,'folder':folder},function(json){
+							if(json.msg=='success'){
+								try{
+									needsave=0;
+									if( iswin ) api.win.needsave=needsave;
+									jQuery('.zip-save').addClass('disabled');
+								}catch(e){}
+								showProgress('保存成功!','success',1000,1);
+								try{
+									if( iswin ) api.setTitle(data.icodata.name);
+								}catch(e){}
+								window.setTimeout(function(){window.location.href='{DZZSCRIPT}?mod=zip&path='+data.icodata.dpath;},2000);
+							}else if(json.error){
+								showProgress(json.error,'danger',1000,1);
+							}if(json.error){
+								showProgress('保存失败!','danger',1000,1);
+							}
+						},'json');
+					}else{
+						showProgress('正在保存，请稍候...','loading',0,1);
+						jQuery.post('{MOD_URL}&op=ajax&do=save&action=saveto',{"path":data.position,'filename':data.name,'folder':folder,'comment':jQuery('#comment').val()},function(json){
+							if(json.dpath){
+								try{
+									if( iswin ){
+										api.setTitle(json.name);
+										parent._ico.createIco(json);
+									}
+								}catch(e){}
+								showProgress('保存成功!','success',1000,1);
+								try{needsave=0;
+									if( iswin ) api.win.needsave=needsave;
+									jQuery('.zip-save').addClass('disabled');
+								}catch(e){}
+								window.setTimeout(function(){window.location.href='{DZZSCRIPT}?mod=zip&path='+json.dpath;},2000);
+							}else if(json.error){
+								showProgress(json.error,'danger',3000,1);
+							}else{
+								showProgress('保存失败!','danger',3000,1);
+							}
+							
+						},'json');
+					}
+				});
+		}
+	}else{
+		showProgress('正在保存，请稍候...','loading',0,1);
+		jQuery.post('{MOD_URL}&op=ajax&do=save&action=save',{"path":path,'folder':folder,'comment':jQuery('#comment').val()},function(json){
+			if(json.msg=='success'){
+					try{needsave=0;
+					if( iswin ) api.win.needsave=needsave;
+					jQuery('.zip-save').addClass('disabled');}catch(e){}
+					showProgress('保存成功!','success',1000,1);
+				}else{
+					showProgress('保存失败!','success',1000,1);
+				}
+		},'json');
+	}
+	return false;
+});
+
+
+jQuery(document).on('mouseenter','div[node-type=item]',function(){
+	jQuery(this).addClass('item-hover');
+});
+ jQuery(document).on('mouseleave','div[node-type=item]',function(){
+	jQuery(this).removeClass('item-hover');
+});
+jQuery('#comment').on('input propertychange',function(){
+	try{needsave=1;
+	if( iswin )api.win.needsave=needsave;
+	jQuery('.zip-save').removeClass('disabled');}catch(e){};
+});
+ jQuery(document).on('click','span[node-type=name-text]',function(){
+	 var type=jQuery(this).data('type');
+	 if(type=='folder'){
+		 pfolder.push(jQuery(this).data('path'));
+		 getFolderInfo(jQuery(this).data('path'));
+		// window.location.href='{DZZSCRIPT}?mod=zip&folder='+jQuery(this).data('path')+'&path=$_GET[path]';
+		// return false;
+	 }else{
+		var  url='share.php?s='+jQuery(this).data('dpath')+'&a=view';
+		 if(top._config){
+			top.OpenWindow('url',url,jQuery(this).html(),null,{"img":jQuery(this).closest('.name').find('img.icon').attr('src'),"name":jQuery(this).html()});
+		}else{
+			window.open(url,jQuery(this).html());
+		}
+	 }
+	return  false;
+});
+jQuery(document).on('click','.chk[node-type=chk-all]',function(){
+	if(jQuery(this).hasClass('chked')){
+		//jQuery(this).removeClass('chked');
+		jQuery('.item').each(function(){
+			jQuery(this).removeClass('item-active').find('span[node-type=chk]').removeClass('chked');
+		});
+	}else{
+		//jQuery(this).addClass('chked');
+		jQuery('.item').each(function(){
+			jQuery(this).addClass('item-active').find('span[node-type=chk]').addClass('chked');
+		});
+	}
+	refresh_header();
+	return false;
+});
+jQuery(document).on('click','.item .chk',function(){
+	jQuery(this).toggleClass('chked');
+	jQuery(this).closest('.item').toggleClass('item-active');
+	refresh_header();
+	return false;
+});
+	
+jQuery(document).on('click','div[node-type=item]',function(e){
+	e=e?e:event;
+	var el=jQuery(this);
+	var actives=jQuery('.item-active').length;
+	if(e.ctrlKey){
+		
+	}else{
+		jQuery('.item-active').not(this).each(function(){
+			jQuery(this).removeClass('item-active').find('span[node-type=chk]').removeClass('chked')
+		});
+	}
+	if(el.hasClass('item-active') && (actives==1 || e.ctrlKey)){
+		el.removeClass('item-active').find('span[node-type=chk]').removeClass('chked');
+	}else{
+		el.addClass('item-active').find('span[node-type=chk]').addClass('chked');
+		if(parseInt(el.data('status'))>-1) el.find('.copy-bar').show();
+	}
+	refresh_header();
+});
+
+ jQuery(document).on('click','.title .item .col[node-type=title-col]',function(){
+	 var el=jQuery(this);
+	 el.find('.asc').css('visibility','visible').toggleClass('desc');
+	 el.siblings().find('.asc').css('visibility','hidden');
+	 item_sort(el.data('key'), el.find('.asc').hasClass('desc')?'desc':'asc');
+ });
+	
+	 
+	 /*jQuery(document).on('mouseleave','.qrcode,.qrcode-zoom',function(){
+		  jQuery(this).removeClass('qrcode-zoom');
+	 });*/
+	// jQuery('[data-toggle="popover"]').popover();
+	 //setLoadedNum();
+window.onbeforeunload=function(){
+	if(needsave>0) return '当前内容没有保存，确定要离开吗？';
+	
+}
+function dragging(){
+	var el=jQuery('.drager');
+	var clientWidth = Math.max(document.documentElement.clientWidth, document.body.clientWidth);
+	el.off('mousedown').on('mousedown',function(e){
+		 e.preventDefault(); 
+		 
+		 var x=e.clientX;
+		 console.log(x);
+		 var width=el.width();
+		 jQuery(document).mousemove(function(e){
+			  e.preventDefault();
+			  var xx=e.clientX;
+			  if(xx<300) xx=300;
+			  if(xx+width>clientWidth) xx=clientWidth-width;
+			  var percent=Math.round(100*(clientWidth-xx)/clientWidth)+'%';
+			  jQuery('.comment-wrapper').css('width',percent);
+			  jQuery('.module-list-view').css('margin-right',percent);
+			  
+		 });
+		 jQuery(document).mouseup(function(e) {
+			 jQuery(document).off('mouseup').off('mousemove');
+			 var xx=e.clientX;
+			 if(xx<300) xx=300;
+			 if(xx+width>clientWidth) xx=clientWidth-width;
+			 var percent=Math.round(100*(clientWidth-xx)/clientWidth)+'%';
+			 jQuery('.comment-wrapper').css('width',percent);
+			 jQuery('module-list-view').css('margin-right',percent);
+		 });
+	});
+}
+
+</script> 
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script> 
+<!--{template common/footer_simple}-->

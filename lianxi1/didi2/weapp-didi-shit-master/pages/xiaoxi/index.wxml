@@ -1,0 +1,27 @@
+<!--pages/xiaoxi/index.wxml-->
+<!-- <text>pages/xiaoxi/index.wxml</text> -->
+<view >
+<view class='day_add'>
+ <span class="day_test">{{day}}</span>
+</view>
+<view class="gear">
+<span class="gear_add">{{gear}}</span>
+</view>
+
+<view class='day_add'>
+ <span class="day_test">{{day}}</span>
+</view>
+<view class="gear_xinxi" bindtap='dingdan'>
+<span class="gear_add">{{dingdan}}</span>
+<span class="gear_add">{{qidian}}</span>
+<span class="gear_add">{{zhongdian}}</span>
+</view>
+
+<view class='day_add'>
+ <span class="day_test">{{day}}</span>
+</view>
+<view class="gear">
+<span class="gear_add">{{banben}}</span>
+</view>
+
+</view>

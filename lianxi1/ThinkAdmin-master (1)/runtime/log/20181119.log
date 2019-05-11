@@ -1,0 +1,81 @@
+---------------------------------------------------------------
+[ 2018-11-19T17:36:45+08:00 ] ::1 GET localhost/lianxi1/ThinkAdmin-master%20(1)/
+[运行时间：0.321653s] [吞吐率：3.11req/s] [内存消耗：2,466.56kb] [文件加载：62]
+[ info ] [ LANG ] /Applications/MAMP/htdocs/18031/lianxi1/ThinkAdmin-master (1)/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://localhost/lianxi1/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'Hm_lvt_1b228034eab3f86498adfd4e9d337209=1541319152; HISTORY={video:[{"name":"\\u4E0B\\u4E00\\u7AD9\\uFF0C\\u522B\\u79BB","link":"http://localhost/lianxi/MKCMS/play.php?play=/tv/PLZucX7lRzXrMn.html","pic":"/m-992/uploads/allimg/201706/a0a13289528feabb.jpg"}]}; UM_distinctid=166e1f1f531d0-0f3306c9c7ac8e-1e3a6655-13c680-166e1f1f5331dd; CNZZDATA1271245319=2088919936-1541389022-http%253A%252F%252Flocalhost%252F%7C1541389022; CNZZDATA1258845289=825241221-1541402315-%7C1541402315; PHPSESSID=7eed046b26d3d2eb7e9f2164dd00dfe1; pgv_pvi=9819379712; pgv_si=s1969995776',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2018-11-19T17:36:50+08:00 ] ::1 GET localhost/lianxi1/ThinkAdmin-master%20(1)/
+[运行时间：0.072639s] [吞吐率：13.77req/s] [内存消耗：2,466.55kb] [文件加载：62]
+[ info ] [ LANG ] /Applications/MAMP/htdocs/18031/lianxi1/ThinkAdmin-master (1)/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://localhost/lianxi1/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'Hm_lvt_1b228034eab3f86498adfd4e9d337209=1541319152; HISTORY={video:[{"name":"\\u4E0B\\u4E00\\u7AD9\\uFF0C\\u522B\\u79BB","link":"http://localhost/lianxi/MKCMS/play.php?play=/tv/PLZucX7lRzXrMn.html","pic":"/m-992/uploads/allimg/201706/a0a13289528feabb.jpg"}]}; UM_distinctid=166e1f1f531d0-0f3306c9c7ac8e-1e3a6655-13c680-166e1f1f5331dd; CNZZDATA1271245319=2088919936-1541389022-http%253A%252F%252Flocalhost%252F%7C1541389022; CNZZDATA1258845289=825241221-1541402315-%7C1541402315; PHPSESSID=7eed046b26d3d2eb7e9f2164dd00dfe1; pgv_pvi=9819379712; pgv_si=s1969995776',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2018-11-19T17:37:11+08:00 ] ::1 GET localhost/lianxi1/ThinkAdmin-master%20(1)/
+[运行时间：0.068537s] [吞吐率：14.59req/s] [内存消耗：2,466.55kb] [文件加载：62]
+[ info ] [ LANG ] /Applications/MAMP/htdocs/18031/lianxi1/ThinkAdmin-master (1)/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://localhost/lianxi1/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'Hm_lvt_1b228034eab3f86498adfd4e9d337209=1541319152; HISTORY={video:[{"name":"\\u4E0B\\u4E00\\u7AD9\\uFF0C\\u522B\\u79BB","link":"http://localhost/lianxi/MKCMS/play.php?play=/tv/PLZucX7lRzXrMn.html","pic":"/m-992/uploads/allimg/201706/a0a13289528feabb.jpg"}]}; UM_distinctid=166e1f1f531d0-0f3306c9c7ac8e-1e3a6655-13c680-166e1f1f5331dd; CNZZDATA1271245319=2088919936-1541389022-http%253A%252F%252Flocalhost%252F%7C1541389022; CNZZDATA1258845289=825241221-1541402315-%7C1541402315; PHPSESSID=7eed046b26d3d2eb7e9f2164dd00dfe1; pgv_pvi=9819379712; pgv_si=s1969995776',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+---------------------------------------------------------------
+[ 2018-11-19T17:41:23+08:00 ] ::1 GET localhost/lianxi1/ThinkAdmin-master%20(1)/
+[运行时间：0.219516s] [吞吐率：4.56req/s] [内存消耗：2,466.55kb] [文件加载：62]
+[ info ] [ LANG ] /Applications/MAMP/htdocs/18031/lianxi1/ThinkAdmin-master (1)/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://localhost/lianxi1/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'Hm_lvt_1b228034eab3f86498adfd4e9d337209=1541319152; HISTORY={video:[{"name":"\\u4E0B\\u4E00\\u7AD9\\uFF0C\\u522B\\u79BB","link":"http://localhost/lianxi/MKCMS/play.php?play=/tv/PLZucX7lRzXrMn.html","pic":"/m-992/uploads/allimg/201706/a0a13289528feabb.jpg"}]}; UM_distinctid=166e1f1f531d0-0f3306c9c7ac8e-1e3a6655-13c680-166e1f1f5331dd; CNZZDATA1271245319=2088919936-1541389022-http%253A%252F%252Flocalhost%252F%7C1541389022; CNZZDATA1258845289=825241221-1541402315-%7C1541402315; PHPSESSID=7eed046b26d3d2eb7e9f2164dd00dfe1; pgv_pvi=9819379712; pgv_si=s1969995776',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql

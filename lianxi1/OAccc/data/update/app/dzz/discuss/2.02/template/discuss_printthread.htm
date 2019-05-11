@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>$thread[subject] - $discuss['name'] - Powered by DzzOffice</title>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" />
+<style type="text/css">
+body {
+	margin: 10px 80px;
+}
+body, table {
+font-size: {FONTSIZE};
+font-family: {FONT};
+}
+h1 {
+	font-size: 24px;
+	margin-bottom: 20px;
+	color: #999;
+}
+</style>
+</head>
+<body>
+<h1>$discuss['name']</h1>
+<b>{lang title}: </b>$thread[subject] <b><a href="###" onClick="this.style.visibility='hidden';window.print();this.style.visibility='visible'">[{lang print_this_page}]</a></b></span><br />
+<script type="text/javascript">var zoomstatus = 0;var aimgcount = new Array();</script> 
+<!--{loop $postlist $post}-->
+<hr noshade size="2" width="100%" color="#808080">
+<b>{lang author}: </b><!--{if $post['author'] && !$post['anonymous']}-->$post[author]<!--{else}-->{lang anonymous}<!--{/if}-->&nbsp; &nbsp; <b>{lang time}: </b>$post[dateline] <br />
+
+<!--{if $post['subject']}--><b>{lang title}: </b>$post[subject]<br />
+<!--{/if}--> 
+$post[message] 
+
+<!--{/loop}--> 
+
+<br />
+<br />
+<br />
+<br />
+<hr noshade size="2" width="100%" color="{BORDERCOLOR}">
+<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center" style="font-size: {SMFONTSIZE}; font-family: {SMFONT}">
+  <tr>
+    <td>{lang source}： $discuss[name] - $_G['setting'][bbname]($_G[siteurl])</td>
+    <td align="right"> Powered by DzzOffice</td>
+  </tr>
+</table>
+</body>
+</html>

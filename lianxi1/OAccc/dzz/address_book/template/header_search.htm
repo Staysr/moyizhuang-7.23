@@ -1,0 +1,41 @@
+<div class="input-search">
+ <form name="search" action="{DZZSCRIPT}" method="get" class="search_top" onsubmit="return search_submit(this);">
+    <input type="hidden" name="mod" value="{MOD_NAME}" />
+    <i class="input-search-icon glyphicon glyphicon-search" aria-hidden="true" onclick="this.parentNode.submit()"></i>
+    
+    <input id="searchval" class="form-control search form-search" type="text" placeholder="{lang name_email_phone_enter}" value="$keyword" name="" />
+    <span aria-hidden="true" id="emptysearchcondition" class="header-closebutton">×</span>
+				
+ </form>
+</div>
+<script type="text/javascript">
+
+jQuery('#searchval').focus(function (e) {//头部搜索框变颜色
+    jQuery(this).closest('.input-search').addClass('focus');
+	if(this.value!='') jQuery('#emptysearchcondition').show();
+});
+jQuery('#searchval').blur(function (e) {//失去焦点时
+	 jQuery(this).closest('.input-search').removeClass('focus');
+	 if(this.value=='') jQuery('#emptysearchcondition').hide();
+});
+jQuery('#searchval').keyup(function (e) {//失去焦点时
+	if(this.value!='') jQuery('#emptysearchcondition').show();
+});
+jQuery('#emptysearchcondition').on('click',function(){
+	jQuery('#searchval').val('');
+	jQuery('#searchval').closest('form').submit();
+	jQuery('#emptysearchcondition').hide();
+	return false;
+});
+function search_submit(form){
+	console.log(form);
+	var keyword=jQuery('#searchval').val();
+	if(keyword){
+		location.hash='#search-'+encodeURI(jQuery('#searchval').val());
+	}else{
+		location.hash='#frequent';
+	}
+	
+	return false;
+}
+</script>

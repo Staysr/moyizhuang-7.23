@@ -1,0 +1,56 @@
+<!--<?php
+include_once gettpl('top');
+if(!$action){print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">提示信息</td>
+	</tr>
+	<tr>
+		<td class="notice">此功能可将未验证的视频设置为正常状态</td>
+	</tr>
+</table>
+<br />
+<form action=$basename method="post">
+	<input type="hidden" name="action" value="check">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="6">需要验证的视频</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'yzvod');"></td>
+			<td width="10%">ID</td>
+			<td width="10%">类别</td>
+			<td>标题</td>
+			<td width="20%">发布会员</td>
+			<td width="20%">提交时间</td>
+		</tr>
+<!--
+EOT;
+foreach($voddb as $vod){
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="yzvod[]" value="$vod[vid]"></td>
+			<td>$vod[vid]</td>
+			<td>$vod[classname]</td>
+			<td><a href="read.php?vid=$vod[vid]" target="_blank">$vod[subject]</a></td>
+			<td>$vod[author]</td>
+			<td>$vod[postdate]</td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<div class="pages">$pages</div>
+	<center>
+		<label><input type="radio" name="type" value="del">删除</label> 
+		<label><input type="radio" name="type" checked='checked' value="pass">通过</label><br /><br />
+		<input type="submit" name="hello" value="提 交">
+	</center>
+</form>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>-->

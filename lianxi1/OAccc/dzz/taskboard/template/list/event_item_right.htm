@@ -1,0 +1,43 @@
+
+
+	{eval $today=strtotime(dgmdate(TIMESTAMP,'Y-m-d'))}
+	{eval $timearr=array();}
+	
+
+<!--{loop $list $key $value}-->
+{eval $t=strtotime(dgmdate($value[dateline],'Y-m-d'));}
+	<!--{if $t==$today && !in_array($t,$timearr)}-->
+	<p class="toadytitle">{lang today}</p>
+	{eval $timearr[]=$t;}
+	<!--{elseif $t==$today-24*60*60 && !in_array($t,$timearr)}-->
+	<p class="toadytitle">{lang ytoday}</p>
+	{eval $timearr[]=$t;}
+	<!--{elseif $t==$today-24*60*60*2 && !in_array($t,$timearr)}-->
+	<p class="toadytitle">{lang bytoday}</p>
+	{eval $timearr[]=$t;}
+	<!--{elseif $t<$today-24*60*60*2 && !in_array($t,$timearr)}-->
+	<p class="toadytitle">{eval echo dgmdate($t,'Y-m-d');}</p>
+	{eval $timearr[]=$t;}
+	<!--{/if}-->
+	<div class="activity_right"> <span class="time">{eval echo dgmdate($value[dateline],'H:i');}</span>
+	  <div class="activity_right_cont"> <span class="actor_img">{eval echo avatar_block($value[uid]);}</span>
+		<div style="float:left"> <span class="actor">$value[username]</span> <span class="verb">$value[body]</span> </div>
+	  </div>
+	</div>
+	<!--{/loop}--> 
+	
+	<!--{if $next}-->
+	<div id="btn-load-more-right" class="activity-item">
+		<div class="loading-more-panel">
+		  <div class="part-loading"> </div>
+		  <button class="btn btn-link btn-block" data-loading-text="加载中..." onclick="getEventMore_right('$page')"> 加载更多... </button>
+	  </div>
+	</div>
+	<!--{else}-->
+	<div id="btn-load-more-right" class="activity-item">
+		<div class="loading-more-panel">
+		  <div class="part-loading"> </div>
+		  <button class="btn btn-link btn-block" > 没有更多内容了 </button>
+	  </div>
+	</div>
+	<!--{/if}--> 

@@ -1,0 +1,194 @@
+<!-- index.wpy -->
+<style>
+  .swiper_box swiper image {
+    width: 100%;
+  }
+  .swiper_box swiper {
+    height: 180px;
+  }
+  .shop_box {
+    border-bottom: solid 1px #eeeeee;
+  }
+  .shop_box .wrap {
+    display: flex;
+    height: 100rpx;
+  }
+  .shop_box .item {
+    font-size: 20rpx;
+  }
+  .shop_box .item.side {
+    width: 150rpx;
+    flex-grow: 0;
+  }
+  .shop_box .item.main {
+    flex-grow: 1;
+    padding: 0 20rpx 0 20rpx;
+    border-right: solid 1px #eeeeee;
+  }
+  .shop_box .button {
+    border: dashed 1px #555555;
+  }
+  .shop_box .button button {
+    border: none;
+  }
+  .vtitle {
+    font-weight: bold;
+    font-size: 27rpx;
+  }
+  .vcontent {
+    font-size: 25rpx;
+    color: #666666;
+  }
+  .main {
+    padding: 120rpx 0 0 0;
+  }
+  .scan {
+    width: 300rpx;
+    height: 300rpx;
+    border: solid 2px black;
+    border-radius: 9999px;
+    padding: 48rpx;
+  }
+  .price {
+    margin: 20rpx 0 0 0;
+  }
+  .start {
+    margin: 40rpx 20rpx 40rpx 20rpx;
+    border-radius: 200rpx;
+    width: 80%;
+    overflow: hidden;
+  }
+  .start wxc-button button {
+    width: 100%;
+  }
+  wxc-cc {
+    position: relative;
+  }
+
+</style>
+<template>
+  <!-- 轮播开始 -->
+  <view class="swiper_box">
+    <swiper 
+      indicator-dots="{{indicatorDots}}"
+      autoplay="{{autoplay}}" 
+      interval="{{interval}}" 
+      duration="{{duration}}"
+    >
+      <block wx:for="{{imgUrls}}" wx:key="{{key}}">
+        <swiper-item>
+          <image mode="aspectFill" src="{{item}}" class="slide-image" width="355" height="150"/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 轮播结束 -->
+  <!-- 主体部分开始 -->
+  <view class="main">
+    <wxc-cc>
+      <!-- 订单详情 -->
+      <view class="message">
+        <wxc-input disabled="{{true}}" type="order_sn" title="编号" value="{{goods_sn}}"></wxc-input>
+        <wxc-input disabled="{{true}}" type="price" title="单价" value="{{price}}元/小时"></wxc-input>
+        <wxc-input disabled="{{true}}" type="user" title="使用者" value="{{userInfo.user_real_name}}"></wxc-input>
+        <wxc-input disabled="{{true}}" type="shop" title="店铺" value="{{shop_name}}"></wxc-input>
+      </view>
+    </wxc-cc>
+    <!-- 开始使用按钮 -->
+    <wxc-cc>
+      <view class="start">
+        <wxc-button size="large" type="primary" @tap="start">开始使用</wxc-button>
+      </view>
+    </wxc-cc>
+  </view>
+  <!-- 主体部分结束 -->
+
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import { request, storage2data, getParams } from '../utils/util'
+  import { urls } from '../config/config'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'test',
+      usingComponents: {
+        'wxc-button': '../../packages/@minui/wxc-button/dist/index',
+        'wxc-input': '../../packages/@minui/wxc-input/dist/index',
+        'wxc-cc': '../../packages/@minui/wxc-cc/dist/index'
+      }
+    }
+    components = {}
+
+    mixins = []
+
+    data = {
+      imgUrls: [
+        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533004176699&di=d1320219f641187727adc713ea74ce04&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F6f061d950a7b02087cb51bf268d9f2d3572cc8a0.jpg ',
+        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533004176699&di=d1320219f641187727adc713ea74ce04&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F6f061d950a7b02087cb51bf268d9f2d3572cc8a0.jpg ',
+        'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533004176699&di=d1320219f641187727adc713ea74ce04&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F6f061d950a7b02087cb51bf268d9f2d3572cc8a0.jpg '
+      ],
+      price: 0,
+      goods_sn: '',
+      shop_id: 0,
+      shop_name: '',
+      userInfo: null
+    }
+
+    computed = {}
+
+    methods = {
+      async start(e) {
+        const { goods_id } = this
+
+        const MDres = await wx.showModalP({
+          title: '提示',
+          content: '确认开始计费使用吗？'
+        })
+        const { confirm } = MDres
+        console.log(MDres)
+
+        if (confirm) {
+          const result = await request(urls.OrderStart, { goods_id }, 'POST')
+          console.log('请求结果', result)
+          if (result.errno !== 0) {
+            await wx.showModalP({ title: '提示', content: result.errmsg, showCancel: false })
+          }
+          const navRes = await wx.switchTabP({ url: '/pages/service' })
+
+          console.log(navRes)
+        }
+      }
+    }
+
+    events = {}
+
+    async onLoad(options) {
+      console.log('onLoad options: ', options)
+      const { goods_id: goods_id_options, q } = options
+
+      const paramObj = getParams(q)
+      const { goods_id: goods_id_q } = paramObj
+      const goods_id = goods_id_options || goods_id_q // 商品ID
+
+      const { data } = await request(urls.GoodDetail + '?id=' + goods_id, {}, 'GET')
+
+      console.log(data)
+
+      this.goods_id = goods_id
+
+      this.shop_id = data.shop_id
+      this.goods_sn = data.goods_sn
+      this.shop_name = data.shop_name
+      this.price = data.price
+
+      this.$apply()
+    }
+
+    onShow() {
+      const _this = this
+      storage2data(_this)
+    }
+  }
+</script>

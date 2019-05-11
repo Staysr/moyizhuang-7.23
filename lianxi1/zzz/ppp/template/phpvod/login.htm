@@ -1,0 +1,53 @@
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<ol class="breadcrumb f-mt5">
+		  <li><a href="$db_wwwurl">首页</a></li>
+		  <li class="active">登录</li>
+		</ol>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<form action="login.php" method="post" name="login">
+		<input type="hidden" value="2" name="step" />
+		<table class="table">
+			<thead>
+				<tr><td colspan="2" class="f-fs18"><strong>会员登录</strong></td></tr>
+			</thead>
+			<tbody>
+				<!--{if $db_gdcheck & 2}-->
+				<tr>
+					<td>验证码</td>
+					<td>
+						<div><input type="text" id="gdcode" name="gdcode" size="6" class="u-gdcode" /></div>
+						<div class="f-mt2"><img src="ck.php?nowtime=$timestamp" align="absmiddle" style="cursor:pointer;" id="ckcode" onclick="this.src='ck.php?nowtime='+new Date().getTime();" alt="看不清楚，换一张" title="看不清楚，换一张" /></div>
+					</td>
+				</tr>
+				<!--{/if}-->
+				<tr>
+					<td class="f-w40">用户名</td>
+					<td><input type="text" name="username" class="u-text" /></td>
+				</tr>
+				<tr>
+					<td>密码</td>
+					<td><input type="password" name="password" class="u-text" /> <a href="sendpwd.php">忘记密码</a></td>
+				</tr>
+				<tr>
+					<td>Cookie 有效期</td>
+					<td>
+						<label class="f-fwn"><input type="radio" name="cktime" value="31536000" checked="checked" /> 一年</label>
+						<label class="f-fwn"><input type="radio" name="cktime" value="2592000" /> 一个月</label>
+						<label class="f-fwn"><input type="radio" name="cktime" value="86400" /> 一天</label>
+						<label class="f-fwn"><input type="radio" name="cktime" value="3600" /> 一小时</label>
+						<label class="f-fwn"><input type="radio" name="cktime" value="0" /> 即时</label>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr><td colspan="2" class="f-tac"><input type="submit" value="登 录" class="u-btn f-mt10" /></td></tr>
+			</tfoot>
+		</table>
+		</form>
+	</div>
+</div>

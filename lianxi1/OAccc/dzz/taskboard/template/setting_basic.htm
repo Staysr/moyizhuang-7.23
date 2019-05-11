@@ -1,0 +1,134 @@
+<style>
+.user-item .delete{
+	display:none;
+}
+.user-item.hover .delete{
+	display:block;
+}
+.more{
+	font-size:80px;line-height:20px;font-family: georgia;
+	color:#BBBBBB;
+}
+.more:hover{
+	color:#428bca;
+}
+.user-item .thumbnail span {
+    width: 84px;
+    height: 84px;
+    line-height: 84px;
+    font-size: 30px;
+    margin-top: 0;
+}
+</style>
+<div class="setting-basic-container" style="padding:30px;">
+  <form id="taskboardform" name="taskboardform" class="form-horizontal-left form-horizontal" action="{DZZSCRIPT}?mod={MOD_NAME}&op=setting&do=basic" method="post" >
+    <input type="hidden" name="settingsubmit" value="true" />
+    <input type="hidden" name="formhash" value="{FORMHASH}" />
+    <dl>
+            <dt>管理员<small>（<b id="count_0">{eval echo count($moderators);}</b>）</small>:</dt>
+            <dd class="clearfix">
+                <ul id="users_0" class="list-unstyled clearfix" >
+                       {eval $type=0;$users=$moderators}
+                        <!--{template user_select_list}-->
+                </ul>
+            </dd>
+        </dl>
+        <dl>
+			<dt>用户创建团队最大个数</dt>
+			<dd class="clearfix">
+				<input type="text" class="form-control input-sm" name="settingnew[maxorganization]" value="$setting[maxorganization]" />
+				<span class="help-inline">留空或0为不限制</span>
+			</dd>
+		</dl>     
+        <dl>
+            <dt>允许创建团队</dt>
+            <dd class="clearfix">
+                <div class="radio-custom radio-primary col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                    <input type="radio" name="settingnew[allowneworg]" value="0"<!--{if !$setting['allowneworg']}-->checked<!--{/if}--> onclick="jQuery('#allowneworg_users').hide()">
+                    <label>全站用户</label>
+                </div>
+            
+                <div class="radio-custom radio-primary col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                    <input type="radio"  name="settingnew[allowneworg]" value="1"<!--{if $setting['allowneworg']>0}-->checked<!--{/if}--> onclick="jQuery('#allowneworg_users').show();">
+                    <label>指定用户</label>
+                </div>
+            </dd> 
+			<dl id="allowneworg_users" class="mt20" <!--{if $setting[allowneworg]==0}-->style="display:none"<!--{/if}-->>
+				<dt>允许创建团队用户<small>（<b id="count_1">{eval echo count($neworg_users);}</b>）</small>:</dt>
+				<dd class="clearfix">
+					<ul id="users_1" class="list-unstyled clearfix" >
+						{eval $type=1;$users=$neworg_users}
+						<!--{template user_select_list}-->
+
+					</ul>
+				</dd>
+			</dl>
+        </dl> 
+    <dl>
+    	<dt>创建任务板最大个数</dt>
+        <dd class="clearfix">
+        	<input type="text" class="form-control input-sm" name="settingnew[maxboard]" value="$setting[maxboard]" />
+            <span class="help-inline">留空或0为不限制</span>
+        </dd>
+    </dl>
+    <dl>
+            <dt>允许创建任务板</dt>
+            <dd class="clearfix">
+                <div class="radio-custom radio-primary col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                    <input type="radio" name="settingnew[allownewboard]" value="0"<!--{if !$setting['allownewboard']}-->checked<!--{/if}--> onclick="jQuery('#allownewboard_users').hide()">
+                    <label>全站用户</label>
+                </div>
+            
+                <div class="radio-custom radio-primary col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                    <input type="radio"  name="settingnew[allownewboard]" value="1"<!--{if $setting['allownewboard']>0}-->checked<!--{/if}--> onclick="jQuery('#allownewboard_users').show();">
+                    <label>指定用户</label>
+                </div>
+            </dd> 
+			<dl id="allownewboard_users" class="mt20" <!--{if $setting[allownewboard]==0}-->style="display:none"<!--{/if}-->>
+				<dt>允许创建任务板用户<small>（<b id="count_2">{eval echo count($newboard_users);}</b>）</small>:</dt>
+				<dd class="clearfix">
+					<ul id="users_2" class="list-unstyled clearfix" >
+						{eval $type=2;$users=$newboard_users}
+							<!--{template user_select_list}-->
+
+					</ul>
+				</dd>
+			</dl>
+        </dl> 
+    
+    <input class="btn btn-primary"  name="settingsubmit_btn" value="保存更改" type="submit" >
+  </form>
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function(e) {
+  jQuery(document).on('mouseover','.user-item',function(){
+		jQuery(this).addClass('hover');
+	});
+	jQuery(document).on('mouseout','.user-item',function(){
+		jQuery(this).removeClass('hover');
+	});
+});
+	
+ function seluser(ids,data,type) {
+	 console.log([ids,data,type]);
+       var formdata={};
+	   formdata.type=type;
+	   formdata.formhash='{FORMHASH}';
+	   formdata.selectsubmit=true;
+	   formdata.uids=ids.join(',');
+        var url = '{MOD_URL}&op=setting&operation=selectuser';
+        jQuery.post(url, formdata, function (html) {
+			jQuery("#users_"+type).html(html);
+			jQuery("#count_"+type).html(ids.length);
+		});
+    }
+
+function deleteUser(uid,type){
+	jQuery.get('{MOD_URL}&op=setting&operation=deleteuser',{'uid':uid,'type':type},function(html){
+		jQuery("#count_"+type).html(jQuery(html).find('.user-item').length) ;
+		jQuery('#users_'+type).html(html);
+	});
+} 
+</script> 
+

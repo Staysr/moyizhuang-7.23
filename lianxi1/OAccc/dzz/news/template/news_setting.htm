@@ -1,0 +1,117 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link rel="stylesheet" href="static/css/checkbox.css">
+
+<!-- <link href="static/icheck/skins/minimal/blue.css?{VERHASH}" rel="stylesheet" media="all"> -->
+<link href="static/select2/select2.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/select2/select2-bootstrap.css?{VERHASH}" rel="stylesheet" media="all">
+ 
+<link href="static/css/app_manage.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/news/images/news.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/switchery.js"></script>
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/header.js"></script>	
+<script type="text/javascript" src="static/js/input_field.js?{VERHASH}"></script>
+<style>
+.user-item .delete {
+	display: none;
+}
+.user-item.hover .delete{
+	display: block;
+}
+.more {
+	font-size: 80px;
+	line-height: 20px;
+	font-family: georgia;
+	color: #BBBBBB;
+}
+.more:hover {
+	color: #428bca;
+}
+@media (max-width: 768px){
+	.bs-left-container {
+		display:none;
+	}
+	.bs-main-container {
+		margin-left: 0;
+	}
+}
+
+.navbar-inverse{
+	background-color: #4664d2;
+	border-color: #f17327;
+}
+.bs-left-container .nav-stacked>li>a:hover{
+	background: rgba(33,33,33,.05);
+	color: #424242; 
+}
+.bs-left-container .nav-stacked>.active>a{
+    background: rgba(33,33,33,.05);
+   color: #424242; 
+}
+.bs-left-container .nav-stacked>.active>a:hover{
+	background: rgba(33,33,33,.05);
+	color: #424242;
+}
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+
+
+<!-- <nav class="jilu-navbar bs-top-container">
+  <a href="{BASESCRIPT}?mod={MOD_NAME}">
+      <span><i class="dzz dzz-chevron-left" style="font-size: 32px;vertical-align: -7px;margin-right: 10px;"></i></span>
+      <span>{lang manage_setting}</span>
+  </a>
+</nav> -->
+
+
+
+<div class="bs-container clearfix">
+  <div class="bs-left-container affix-top clearfix">
+        <!--{template manage_left}--> 
+  </div>
+  <div class="left-drager">
+      <div class="left-drager-op"><div class="left-drager-sub"></div></div>
+  </div>
+  <div class="bs-main-container" style="position:relative">
+      <!--{if $do=='basic'}-->
+        <!--{template setting_basic}--> 
+      <!--{elseif $do=='wxapp'}-->
+           <!--{if $operation=='menu'}-->
+            <!--{template common/wx_menu}--> 
+           <!--{else}-->
+           <!--{template common/wx_appinfo}--> 
+           <!--{/if}-->
+      <!--{elseif $do=='block'}-->
+           <!--{template setting_block}--> 
+      <!--{/if}-->
+  </div>
+</div>
+<script type="text/javascript">
+  jQuery('.left-drager').leftDrager_layout(); 
+
+jQuery(document).ready(function(e) {
+    jQuery(document).on('mouseenter','.user-item',function(){
+		jQuery(this).addClass('hover');
+	});
+	jQuery(document).on('mouseleave','.user-item',function(){
+		jQuery(this).removeClass('hover');
+	});
+	// jQuery('input').iCheck({
+	// 	  checkboxClass: 'icheckbox_minimal-blue',
+	// 	  radioClass: 'iradio_minimal-blue',
+	// 	});
+	// jQuery('input').on('ifChecked',function(e){
+	// 	jQuery(this).trigger('click');
+		
+	// });
+});
+
+</script> 
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script> 
+<script type="text/javascript" src="static/icheck/icheck.min.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/select2/select2.min.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/select2/select2_locale_zh-CN.js?{VERHASH}"></script>
+<!--codestrings--> 
+<!--{template common/footer_simple}--> 

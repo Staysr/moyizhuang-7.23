@@ -1,0 +1,77 @@
+    <div class="member-boards-view container">
+    	<div id="org_header" class="header-org background-cover <!--{if $org['cover']}--> cover<!--{/if}-->" style="background-color:#28bc5c;background-image:url($org['coverurl']);">
+    		<div class="setting-basic">
+      	            <!--{if $perm>2}--><a data-href="{MOD_URL}&op=menu&do=settings&action=basic&orgid=$orgid" href="javascript:;" class=" js-popbox" style="" data-placement="left" data-auto-adapt="true"><i class="dzz dzz-settings"></i></a><!--{/if}-->
+                    <a data-href="{MOD_URL}&op=org&op=menu&do=org_share&orgid=$orgid" href="javascript:;" class=" js-popbox" style="" data-placement="left" data-auto-adapt="true"><i class="dzz dzz-share"></i></a>
+            </div>
+    		<div class="header-org-logo">
+    			<div class="org-logo-wrapper background-cover" <!--{if $org['logo']}--> style="background-image:url($org['logourl'])"<!--{else}-->style="display:none"<!--{/if}-->></div>
+    		</div>
+    		<h4 id="org_title" class="header-org-maintitle weui-cell-h4"> $org[name] </h4>
+    		 <!--{if $org[desc]}--> <div id="org_desc" class="header-org-subtitle"> $org[desc] </div><!--{/if}-->
+    	</div>
+     <!--{if $perm}-->
+        <div class="weui-cells window-module window-module-my ">            
+            <ul id="board_list_{$orgid}" class="board-list list-unstyled u-gutter clearfix">    
+               <!--{if ($newarr=createBoardPerm($orgid)) && $newarr['new']>0}-->
+                <a class="weui-cell weui-cell_access" href="{MOD_URL}&op=ajax&do=create&orgid=$org[orgid]&from=org"  title="创建任务板" > 
+                	<div class="weui-cell__hd"><span class="dzz dzz-clock weui-cell__img color-block-0"></span></div>
+                	 <div class="weui-cell__bd">
+			            <div>创建任务板</div>
+			        </div>
+			        <div class="weui-cell__ft"></div>
+				</a>	
+                <!--{/if}-->
+                  
+                <!--{loop $my $value}-->
+	               <a class="weui-cell weui-cell_access" href="{MOD_URL}&op=list&tbid=$value[tbid]" id="board_star_$value[tbid]">
+			        <div class="weui-cell__hd"><span class="dzz dzz-clock weui-cell__img color-block-$value[aid]"></span></div>
+			        <div class="weui-cell__bd">
+			            <div>$value[name]</div>
+			        </div>
+			        <div class="weui-cell__ft"></div>
+			    </a>
+                <!--{/loop}-->
+            </ul>
+        </div>
+        <!--{/if}-->
+        
+        <div class="weui-cells window-module window-module-org">
+        
+           
+             <div class=" window-module-title window-module-title-no-divider">
+				 <!--{if $perm>0}--><h4 class="article_title weui-cell-h4">其他可见的</h4><!--{/if}-->
+			</div>
+            <!--{if $visible}-->
+            <ul class="board-list u-gutter clearfix list-unstyled js-board-list">
+                <!--{loop $visible $value}-->
+                <a class="weui-cell weui-cell_access" href="{MOD_URL}&op=list&tbid=$value[tbid]" id="board_star_$value[tbid]">
+			        <div class="weui-cell__hd"><span class="dzz dzz-clock weui-cell__img color-block-$value[aid]"></span></div>
+			        <div class="weui-cell__bd">
+			            <div>$value[name]</div>
+			        </div>
+			        <div class="weui-cell__ft"></div>
+			    </a>
+                <!--{/loop}-->
+            </ul>
+                <!--{else}-->
+			<div class="weui-cell weui-cell_access" style="padding: 20px 0 20px 20px;">{lang no_visible_board}</p>
+			</div>
+                <!--{/if}-->
+         </div> 
+    
+    </div>
+<footer class="weui-tabbar">
+	 <a href="{MOD_URL}&op=org&orgid=$org[orgid]" class="weui-tabbar__item">
+        <span class="dzz dzz-content-paste"></span>
+        <p class="weui-tabbar__label">任务板</p>
+		</a>
+		<a href="{MOD_URL}&op=org&do=members&orgid=$orgid" class="weui-tabbar__item">
+		    <span class="dzz dzz-member"></span>
+		    <p class="weui-tabbar__label">成员</p>
+		</a>
+		<a href="{MOD_URL}&op=org&do=settings&orgid=$orgid" class="weui-tabbar__item">
+		    <span class="dzz dzz-settings"></span>
+		    <p class="weui-tabbar__label">设置</p>
+		</a>
+</footer>

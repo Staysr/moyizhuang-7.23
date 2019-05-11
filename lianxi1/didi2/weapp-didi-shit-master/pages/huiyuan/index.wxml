@@ -1,0 +1,56 @@
+<!--pages/huiyuan/index.wxml-->
+<view class="content">
+    <view class = "logo" bindtap = "siji">
+    <image mode='aspectFit' src='../../images/car.png' style='widthFix:65rpx;height:65rpx;' class='car'></image>
+       <span style="display:block;">司机</span>
+    </view>
+
+    <view class = "logo1" bindtap = "huiyuan">
+    <image mode='aspectFit' src='../../images/user1.png' style='widthFix:65rpx;height:65rpx' class='car'></image>
+      <span style="display:block;color:rgb(247,193,57)">会员</span>
+    </view>
+    <view style='clear:both'></view>
+
+    <form bindsubmit="formSubmit">
+        <view class="input-area">
+
+<image mode="aspectFit" class='phone' src="../../images/phone.png"></image>
+<input id="username" name="phone" maxlength='11' type="text" placeholder="手机号" bindchange="getPhoneNum" style='padding-left: 10%;width:100%rpx' class='phone1'/>
+<view class='l1'></view>
+ </view>
+    <view class="smsCode">
+    
+ <image mode="aspectFit" class='phone' src="../../images/captcha.png"></image><input id="smsCode" name="smsCode" maxlength='6' type="text" placeholder="验证码"   style='padding-left: 10%;width:100%rpx;' class='phone1'/>
+            <button bindtap = "getSmsCode" disabled="{{smsCodeDisabled}}" style="background-color:{{getSmsCodeBtnColor}}"   class="getSmsCodeBtn">{{getSmsCodeBtnTxt}}</button>
+          </view>
+          <view class="input-area">
+      <image mode="aspectFit" class="phone" src="../../images/password.png">
+    </image>
+      <input id="password" name="password" maxlength='20' type="password" placeholder="密码" style='padding-left: 10%;'/>
+  <view class='l1'></view>
+      </view>
+
+        <view class="btn-area">
+          
+                <!-- <radio-group class="radio-group" bindchange="radioChange">
+  
+                    <radio value="" checked=""/><text class='xueyi' bindtap="radio">我已阅读并同意<text class='hedao'>    ⟪河道运输用户服务协议⟫</text></text>
+
+            </radio-group> -->
+
+        <radio-group class="radio-group" bindchange="radioChange">
+                <radio bindtap = "bindtap1" wx:for-items="{{items}}" wx:key="name" value="{{item.name}}" checked = "{{item.checked}}">
+                   <text class='xueyi'>我已阅读并同意</text><text class='hedao' bindtap="radio">{{item.value}}</text>
+                </radio>
+            </radio-group>
+            <button  disabled="{{registDisabled}}" style="background-color:{{registBtnBgBgColor}}"   formType="submit"  loading="{{btnLoading}}"> {{registBtnTxt}} </button>
+            <view class="txt-area">
+                 <navigator redirect url="../findpassword/index"><text class="forgot-password">忘记密码？</text></navigator>
+                 <navigator redirect url="../login/index"><text class="register">登录账号</text></navigator>
+            </view>
+        </view>
+    </form>
+
+    <!--<progress class="myprogress" percent="{{percent }}" color="{{color}}" active/>-->
+    
+</view>

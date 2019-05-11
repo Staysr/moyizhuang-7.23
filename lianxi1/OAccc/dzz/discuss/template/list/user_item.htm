@@ -1,0 +1,54 @@
+<!--{if $type == 'adm'}-->
+  <!--{loop $list $value}-->
+    <li id="user_{$value[uid]}" perm="$value[perm]" class="user-item pull-left" style="padding:10px;width:110px;position:relative">
+      <a href="javascrip:;" class="delete" onclick="deleteUser('{$value[uid]}');return false" style="position:absolute;top:0px;right:0px;">
+      <span style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: rgba(116, 116, 116, 1);text-align: center;line-height: 20px;">
+        <i style="color:#fff;font-size:16px;line-height: 20px" class="dzz dzz-close"></i>
+      </span>
+      </a>
+      <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;overflow: hidden;"> {eval echo avatar_block($value['uid'])} </div>
+      <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span class="color_{$value[perm]}"> $value[username]</span> </p>
+      <!--{if $discuss[perm]>2}-->
+      <ul class="nav  list-unstyled">
+        <li class="dropdown text-center"> <a style="padding:5px;color: #676767;"  href="admin.php?mod=member&amp;orgid=0" data-toggle="dropdown" role="button" id="user-drop-{$value[uid]}" class="dropdown-toggle">$value[permtitle]<b class="caret"></b></a>
+          <ul aria-labelledby="user-drop-{$value[uid]}" role="menu" class="dropdown-menu" id="user-drop-{$value[uid]}-menu" style="min-width:90px;">
+            <!--{loop $permtitle $key $value1}-->
+            <li role="presentation"><a style="font-size: 14px;" href="javascript:;" role="menuitem" uid="$value[uid]" perm="$key" onclick="setPerm(this)">$value1</a></li>
+            <!--{/loop}-->
+          </ul>
+        </li>
+      </ul>
+      <!--{/if}-->
+    </li>
+  <!--{/loop}-->
+<!--{else}-->
+  <!--{loop $list $value}-->
+  <!--{if $value[perm] < 3}-->
+  <li id="user_{$value[uid]}" perm="$value[perm]" class="user-item pull-left" style="padding:10px;width:110px;position:relative">
+    <a href="javascrip:;" class="delete" onclick="deleteUser('{$value[uid]}');return false" style="position:absolute;top:0px;right:0px;">
+    <span style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: rgba(116, 116, 116, 1);text-align: center;line-height: 20px;">
+      <i style="color:#fff;font-size:16px;line-height: 20px" class="dzz dzz-close"></i>
+    </span>
+    </a>
+    <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;overflow: hidden;"> {eval echo avatar_block($value['uid'])} </div>
+    <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span class="color_{$value[perm]}"> $value[username]</span> </p>
+    <!--{if $discuss[perm]>2}-->
+    <ul class="nav list-unstyled">
+      <li class="dropdown text-center"> <a style="padding:5px;color: #676767;"  href="admin.php?mod=member&amp;orgid=0" data-toggle="dropdown" role="button" id="user-drop-{$value[uid]}" class="dropdown-toggle">$value[permtitle]<b class="caret"></b></a>
+        <ul aria-labelledby="user-drop-{$value[uid]}" role="menu" class="dropdown-menu" id="user-drop-{$value[uid]}-menu" style="min-width:90px;">
+          <!--{loop $permtitle $key $value1}-->
+          <li role="presentation"><a style="font-size: 14px;" href="javascript:;" role="menuitem" uid="$value[uid]" perm="$key" onclick="setPerm(this)">$value1</a></li>
+          <!--{/loop}-->
+        </ul>
+      </li>
+    </ul>
+    <!--{/if}-->
+  </li>
+  <!--{/if}-->
+  <!--{/loop}-->
+<!--{/if}-->
+<!--{if $next}-->
+        <li  class="{$_GET[type]}list-next pull-left" style="padding:10px;width:110px">
+          <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;overflow:hidden;text-align:center;"> <a class="more" href="javascript:;" onclick="getNext('{$nextstart}', '{$_GET[type]}');return false">...<p style="font-size:14px;line-height:35px">{lang loadmore}</p></a> </div>
+        </li>
+<!--{/if}-->

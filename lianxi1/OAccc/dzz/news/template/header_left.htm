@@ -1,0 +1,31 @@
+<ul class="nav navbar-nav navbar-nav-left" style="min-width:168px">
+    <!--{if $_GET[op]=='view' || $_GET[op]=='edit'}-->
+    <li>
+        <a href="{MOD_URL}" class="navbar-nav-left-return navbar-nav-left-appname" style="padding:8px;">
+        <div class="gb_fc" style="padding:7px;"><i class="dzz dzz-chevron-left" style="width:34px;height:34px;display:block;"></i></div>
+        </a>
+    </li>
+    <li>
+        <a href="javascript:;" onclick="window.history.go(-1);" class="navbar-nav-left-return navbar-nav-left-appname">{lang return}</a>
+    </li>
+    <!--{elseif $_GET[op]=='setting'}-->
+    <li>
+        <a href="{MOD_URL}" class="navbar-nav-left-return navbar-nav-left-appname" style="padding:8px;">
+        <!-- <i class="dzz dzz-chevron-left"></i> -->
+            <div class="gb_fc" style="padding:7px;"><i class="dzz dzz-chevron-left" style="width:34px;height:34px;display:block;"></i></div>
+        </a>
+    </li>
+    <li>
+        <a href="{MOD_URL}" class="navbar-nav-left-return navbar-nav-left-appname">{lang manage_setting}</a>
+    </li>
+    <!--{else}-->
+    <li>
+        <a href="javascript:;" class="leftTopmenu" onclick="_header.leftTopmenu(this)" style="padding:8px;">
+            <div class="gb_fc"><span class="dzz dzz-menu" style="width:24px;height:24px;display:block;"></span></div>
+        </a>
+    </li>
+    <li>
+        <a href="{MOD_URL}">{lang appname}</a>
+    </li>
+    <!--{/if}--> 
+</ul>

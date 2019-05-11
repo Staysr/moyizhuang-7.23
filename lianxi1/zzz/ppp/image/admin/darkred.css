@@ -1,0 +1,440 @@
+* {
+  margin: 0px auto;
+  padding: 0px;
+}
+html {
+  _overflow-y: scroll;
+}
+body {
+  font-family: "Microsoft YaHei", Tahoma;
+  font-size: 12px;
+  color: #ccc;
+  background-color: #333;
+}
+img {
+  border: 0px;
+}
+ul {
+  list-style-type: none;
+}
+optgroup {
+  font-style: normal;
+}
+a {
+  text-decoration: none;
+  color: #ccc;
+  outline: none;
+}
+a:hover {
+  text-decoration: underline;
+  color: white;
+}
+input,
+select,
+textarea {
+  font-family: Tahoma;
+  font-size: 12px;
+  padding: 2px;
+}
+select {
+  border: 1px solid;
+  border-color: #555;
+  padding: 0px;
+  background-color: #444;
+  color: #ccc;
+}
+input[type=text],
+input[type=password],
+textarea {
+  border: solid 1px #555;
+  background-color: #444;
+  color: #ccc;
+}
+input[type=text]:focus,
+input[type=password]:focus,
+textarea:focus {
+  border: solid 1px darkred;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px darkred;
+  color: #ccc;
+  background-color: #444;
+  outline: 0 none;
+}
+input[type=button],
+input[type=submit],
+input[type=reset] {
+  padding: 2px 5px;
+  border: solid 1px #555;
+  background-color: #444;
+  color: #ccc;
+}
+input[type=button]:hover,
+input[type=submit]:hover,
+input[type=reset]:hover {
+  border: solid 1px #666;
+  background-color: darkred;
+  color: white;
+}
+.login {
+  border: solid 1px #555;
+  width: 450px;
+  margin-top: 100px;
+}
+.login .title {
+  color: white;
+  background-color: darkred;
+  padding: 5px 15px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.login .title a {
+  display: inline-block;
+  float: right;
+  width: 8px;
+  height: 8px;
+  margin: 4px 0 0 8px;
+}
+.login .title a.default {
+  background-color: #698CC3;
+  border: solid 1px #aaa;
+}
+.login .title a.darkred {
+  background-color: darkred;
+  border: solid 1px #aaa;
+}
+.login .title a:hover {
+  border: solid 1px #ccc;
+}
+.login .content {
+  padding: 15px 0px;
+  background-color: #333;
+}
+.login .table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.login .table td {
+  height: 28px;
+  line-height: 28px;
+  padding: 5px;
+}
+.login .table td.cap {
+  width: 40%;
+  text-align: right;
+}
+.login .table td.ipt {
+  vertical-align: middle;
+  text-align: left;
+}
+.login .btn {
+  text-align: center;
+  padding: 5px 0;
+  background-color: #444;
+}
+.top {
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+.top td a {
+  text-align: center;
+  color: #ccc;
+  font-weight: bold;
+  background-color: #444;
+  display: block;
+  padding: 5px;
+}
+.top td a:hover {
+  color: white;
+  background-color: darkred;
+  text-decoration: none;
+}
+.left {
+  border-collapse: separate;
+  border-spacing: 1px;
+  background-color: #555;
+  border: solid 1px #555;
+}
+.left th {
+  color: white;
+  font-weight: bold;
+  background-color: darkred;
+  padding: 5px;
+  text-align: left;
+}
+.left td {
+  font-size: 12px;
+  color: #ccc;
+  background-color: #333;
+}
+.left td.info {
+  text-align: center;
+  padding: 5px;
+  line-height: 18px;
+}
+.left td a {
+  text-align: center;
+  color: #ccc;
+  display: block;
+  padding: 5px;
+  line-height: 18px;
+}
+.left td a:hover {
+  background-color: #444;
+  text-decoration: none;
+}
+.left td a.active {
+  background-color: #444;
+  text-decoration: none;
+}
+.tableborder {
+  border-collapse: separate;
+  border-spacing: 1px;
+  background-color: #555;
+  border: solid 1px #555;
+}
+.tableborder tr {
+  background: #333;
+}
+.tableborder tr.field {
+  background-color: #606060;
+  font-weight: bold;
+}
+.tableborder tr:hover {
+  background-color: #444;
+}
+.tableborder th {
+  padding: 5px;
+  line-height: 18px;
+  font-size: 12px;
+  color: #ccc;
+}
+.tableborder th.header {
+  color: white;
+  font-weight: bold;
+  background-color: darkred;
+  padding: 5px;
+  text-align: center;
+}
+.tableborder td {
+  padding: 5px;
+  line-height: 18px;
+  font-size: 12px;
+  color: #ccc;
+}
+.tableborder td.header {
+  color: white;
+  font-weight: bold;
+  background-color: darkred;
+  padding: 5px;
+}
+.tableborder td.notice {
+  padding: 20px;
+  line-height: 2em;
+}
+ul.nav {
+  display: block;
+  width: 98%;
+  margin: 0 auto;
+  height: 25px;
+  line-height: 25px;
+  padding: 5px 0px;
+  border-bottom: solid 2px #555;
+}
+ul.nav li {
+  height: 25px;
+  line-height: 25px;
+  float: left;
+  margin-left: 10px;
+}
+ul.nav li a {
+  display: block;
+  color: #ccc;
+  background-color: #333;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+ul.nav li a:hover {
+  color: #ccc;
+  background-color: #444;
+  text-decoration: none;
+}
+ul.nav li a.active {
+  background-color: darkred;
+  text-decoration: none;
+  color: #ccc;
+  font-weight: bold;
+}
+.pages {
+  text-align: right;
+  width: 98%;
+  margin: 5px 5px 10px 5px;
+}
+.pages strong {
+  display: inline-block;
+  border: solid 1px #555;
+  color: #ccc;
+  background-color: darkred;
+  padding: 0 5px;
+  font-weight: normal;
+}
+.pages a {
+  display: inline-block;
+  border: solid 1px #555;
+  color: #ccc;
+  background-color: #444;
+  padding: 0 5px;
+}
+.pages a:hover {
+  text-decoration: none;
+  border: solid 1px #555;
+  color: #ccc;
+  background-color: darkred;
+}
+ul.list {
+  width: 100%;
+}
+ul.list li {
+  width: 22%;
+  display: inline-block;
+  padding: 5px;
+}
+hr.line {
+  width: 70%;
+  height: 1px;
+  border: none;
+  border-top: solid 1px #ccc;
+}
+.f-cl {
+  clear: left;
+}
+.f-cr {
+  clear: right;
+}
+.f-cb {
+  clear: both;
+  height: 0px;
+  width: 0px;
+  font-size: 1px;
+}
+.f-fl {
+  float: left;
+}
+.f-fr {
+  float: right;
+}
+.f-dn {
+  display: none;
+}
+.f-db {
+  display: block;
+}
+.f-oh {
+  overflow: hidden;
+}
+.f-ff0 {
+  font-family: arial,\5b8b\4f53;
+}
+.f-ff1 {
+  font-family: "Microsoft YaHei", arial;
+}
+.f-fs12 {
+  font-size: 12px;
+}
+.f-fs14 {
+  font-size: 14px;
+}
+.f-fwn {
+  font-weight: normal;
+}
+.f-fwb {
+  font-weight: bold;
+}
+.f-tal {
+  text-align: left;
+}
+.f-tac {
+  text-align: center;
+}
+.f-tar {
+  text-align: right;
+}
+.f-vat {
+  vertical-align: top;
+}
+.f-vam {
+  vertical-align: middle;
+}
+.f-vab {
+  vertical-align: bottom;
+}
+.f-lhn {
+  line-height: normal;
+}
+.f-lh2 {
+  line-height: 2em;
+}
+.f-m0a {
+  margin: 0px auto;
+}
+.f-mt0 {
+  margin-top: 0px;
+}
+.f-mt2 {
+  margin-top: 2px;
+}
+.f-mt5 {
+  margin-top: 5px;
+}
+.f-mt10 {
+  margin-top: 10px;
+}
+.f-mt15 {
+  margin-top: 15px;
+}
+.f-mt20 {
+  margin-top: 20px;
+}
+.f-mb5 {
+  margin-bottom: 5px;
+}
+.f-mb8 {
+  margin-bottom: 8px;
+}
+.f-mb10 {
+  margin-bottom: 10px;
+}
+.f-p5 {
+  padding: 5px;
+}
+.f-p10 {
+  padding: 10px;
+}
+.f-p15 {
+  padding: 15px;
+}
+.f-w100 {
+  width: 100%;
+}
+.f-w98 {
+  width: 98%;
+}
+.f-w50 {
+  width: 50%;
+}
+.f-w40 {
+  width: 40%;
+}
+.f-w30 {
+  width: 30%;
+}
+.f-w25 {
+  width: 25%;
+}
+.f-w173px {
+  width: 173px;
+}
+.f-lh2 {
+  line-height: 2;
+}
+.f-lh1 {
+  line-height: 1;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/addr_header}-->
+    <title><!--{if $_GET['gid'] == 'all'}-->全部联系人<!--{else}-->常用联系人<!--{/if}--></title>
+</head>
+<body>
+<div class="container">
+    <div class="weui-search-bar" id="searchBar">
+        <form class="weui-search-bar__form" action="{MOD_URL}&op=list" onsubmit="formatVal()">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search" class="weui-search-bar__input" name="gid" id="searchInput" placeholder="搜索" required="">
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText">
+                <i class="weui-icon-search"></i>
+                <span>搜索</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a> 
+    </div>
+    <div class="user-wrap">
+        
+            <!--{if $keyword}-->
+                <!--{loop $orgids $key $val}-->
+                    <a class="weui-cell weui-cell_access department-item" href="{MOD_URL}&op=grouptree&do=get_children&id=gid_{$val[orgid]}">
+                        <div class="weui-cell__bd weui-cell_primary">
+                            {$val[path]}
+                        </div>
+                        <span class="weui-cell__ft"></span>
+                    </a>
+                    <!--{loop $val[users] $k $v}-->
+                        <!--成员-->
+                        <a href="{MOD_URL}&op=ajax&do=user&suggest={$v[uid]}" class="weui-media-box weui-media-box_appmsg user-item">
+                            <div class="weui-media-box__hd user-img">
+                                {eval echo avatar_block($v['uid']);}
+                            </div>
+                            <div class="weui-media-box__bd">
+                                <h4 class="weui-media-box__title">$v[username]</h4>
+                            </div>
+                        </a>
+                    <!--{/loop}-->
+                <!--{/loop}-->
+            <!--{else}-->
+                <div class="user-title">
+                    <!--{if $_GET['gid'] == 'all'}-->
+                        全部联系人
+                    <!--{else}-->
+                        常用联系人
+                    <!--{/if}-->
+                    ({$orgids['user_count']})
+                </div>
+                <!--{template mobile/addr_list}-->
+            <!--{/if}-->
+    </div>
+</div>
+<!--{template mobile/footer}-->
+</body>
+<script type="text/javascript">
+    function formatVal(){
+        $("#searchInput").val('search-'+jQuery("#searchInput").val());
+    }
+</script>
+<!--{eval output();}-->
+</html>

@@ -1,0 +1,223 @@
+<!--{template common/header_ajax}-->
+
+    <!--<h3 class="text-center">任务完成情况</h3>-->
+    <div id="charts_todo" style="height:450px;padding-top:20px;"> <p class="text-center" style="height:100%;background:#F7F7F7">没有相关的统计数据</p></div>
+    <!--<h3 class="text-center" style="padding-top:20px;">工时完成情况</h3>-->
+    <div id="charts_worktime" style="height:450px;padding-top:20px;"> </div>
+    <!--<h3 class="text-center" style="padding-top:20px;">预算完成情况</h3>-->
+    <div id="charts_money" style="height:450px;padding-top:20px;"> </div>
+ 
+<script type="text/javascript" reload="1">
+
+	try{
+		myChart.dispose();myChart_worktime.dispose();myChart_money.dispose()
+	}catch(e){}
+	var myChart = echarts.init(document.getElementById('charts_todo'));
+	// 图表使用-------------------
+	var option = {
+		title : {
+			text: '任务完成情况',
+			x:'center'
+		},
+		legend: {                                   // 图例配置
+			padding: [10,20,0,10], 
+			x:'right',
+			orient:'vertical',							// 图例内边距，单位px，默认上下左右内边距为5
+			itemGap: 10,                            // Legend各个item之间的间隔，横向布局时为水平间隔，纵向布局时为纵向间隔
+			data: ['已完成', '已过期']
+		},
+		tooltip: {                                  // 气泡提示配置
+			trigger: 'item',                        // 触发类型，默认数据触发，可选为：'axis'
+		},
+		 toolbox: {
+			show : true,
+			orient:'vertical',
+			padding:[70,20,0,0],   
+			feature : {
+				magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+				restore : {show: true},
+				saveAsImage : {show: true}
+			}
+		},
+		xAxis: [                                    // 直角坐标系中横轴数组
+			{
+				type: 'category',
+				axisLabel:{show:true,interval:0,rotate:0},              // 坐标轴类型，横轴默认为类目轴，数值轴则参考yAxis说明
+				data: [{$data['complete']['category']}]
+			}
+		],
+		yAxis: [                                    // 直角坐标系中纵轴数组
+			{
+				type: 'value',                      // 坐标轴类型，纵轴默认为数值轴，类目轴则参考xAxis说明
+				boundaryGap: [0.1, 0.1],            // 坐标轴两端空白策略，数组内数值代表百分比
+				splitNumber: 4                      // 数值轴用，分割段数，默认为5
+			}
+		],
+		series: [
+			{
+				name: '已完成',                        // 系列名称
+				type: 'bar', 
+				itemStyle:{
+					normal:{
+						color:'#089c08'
+					}
+				},
+				stack:'ios',                     // 图表类型，折线图line、散点图scatter、柱状图bar、饼图pie、雷达图radar
+				data: [{$data['complete']['completed']}]
+			},
+			{
+				name: '已过期',                    // 系列名称
+				type: 'bar',
+				stack:'ios',                       // 图表类型，折线图line、散点图scatter、柱状图bar、饼图pie、雷达图radar
+				data: [{$data['complete']['uncompleted']}],
+				itemStyle:{
+					normal:{
+						color:'#fa8734'
+					}
+				},
+			}
+			
+		]
+	};
+	myChart.setOption(option);
+	
+	var myChart_worktime = echarts.init(document.getElementById('charts_worktime'));
+	
+	// 图表使用-------------------
+	var option_worktime = {
+		title : {
+			text: '工时完成情况',
+			x:'center'
+		},
+		legend: {     
+		                              // 图例配置
+			padding: [10,20,0,10], 
+			x:'right',
+			orient:'vertical',                        // 图例内边距，单位px，默认上下左右内边距为5
+			itemGap: 10,
+			data: ['已完成', '已过期']                            // Legend各个item之间的间隔，横向布局时为水平间隔，纵向布局时为纵向间隔
+		},
+		tooltip: {                                  // 气泡提示配置
+			trigger: 'item',                        // 触发类型，默认数据触发，可选为：'axis'
+		},
+		 toolbox: {
+			show : true,
+			orient:'vertical',
+			padding:[70,20,0,10],
+			feature : {
+				magicType : {show: true, type: ['line', 'bar']},
+				restore : {show: true},
+				saveAsImage : {show: true}
+			}
+		},
+		xAxis: [                                    // 直角坐标系中横轴数组
+			{
+				type: 'category',                   // 坐标轴类型，横轴默认为类目轴，数值轴则参考yAxis说明
+				data: [{$data['worktime']['category']}]
+			}
+		],
+		yAxis: [                                    // 直角坐标系中纵轴数组
+			{
+				type: 'value',                      // 坐标轴类型，纵轴默认为数值轴，类目轴则参考xAxis说明
+				boundaryGap: [0.1, 0.1],            // 坐标轴两端空白策略，数组内数值代表百分比
+				splitNumber: 4                      // 数值轴用，分割段数，默认为5
+			}
+		],
+		series: [
+			{
+				name: '已完成',                        // 系列名称
+				type: 'bar', 
+				itemStyle:{
+					normal:{
+						color:'#089c08'
+					}
+				},
+				stack:'ios',                     // 图表类型，折线图line、散点图scatter、柱状图bar、饼图pie、雷达图radar
+				data: [{$data['worktime']['completed']}]
+			},
+			{
+				name: '已过期',                    // 系列名称
+				type: 'bar',
+				stack:'ios',                       // 图表类型，折线图line、散点图scatter、柱状图bar、饼图pie、雷达图radar
+				data: [{$data['worktime']['uncompleted']}],
+				itemStyle:{
+					normal:{
+						color:'#fa8734'
+					}
+				},
+			}
+			
+		]
+	};
+	myChart_worktime.setOption(option_worktime);
+	var myChart_money = echarts.init(document.getElementById('charts_money'));
+	
+	// 图表使用-------------------
+	var option_money = {
+		title : {
+			text: '预算完成情况',
+			x:'center'
+		},
+		legend: {                                   // 图例配置
+			padding: [10,20,0,10], 
+			x:'right',
+			orient:'vertical',                            // 图例内边距，单位px，默认上下左右内边距为5
+			itemGap: 10,
+			data: ['已完成', '已过期']                            // Legend各个item之间的间隔，横向布局时为水平间隔，纵向布局时为纵向间隔
+		},
+		tooltip: {                                  // 气泡提示配置
+			trigger: 'item',                        // 触发类型，默认数据触发，可选为：'axis'
+		},
+		 toolbox: {
+			show : true,
+			orient:'vertical',
+			padding:[70,20,0,10],
+			feature : {
+				magicType : {show: true, type: ['line', 'bar']},
+				restore : {show: true},
+				saveAsImage : {show: true}
+			}
+		},
+		xAxis: [                                    // 直角坐标系中横轴数组
+			{
+				type: 'category',                   // 坐标轴类型，横轴默认为类目轴，数值轴则参考yAxis说明
+				data: [{$data['money']['category']}]
+			}
+		],
+		yAxis: [                                    // 直角坐标系中纵轴数组
+			{
+				type: 'value',                      // 坐标轴类型，纵轴默认为数值轴，类目轴则参考xAxis说明
+				boundaryGap: [0.1, 0.1],            // 坐标轴两端空白策略，数组内数值代表百分比
+				splitNumber: 4                      // 数值轴用，分割段数，默认为5
+			}
+		],
+		series:  [
+			{
+				name: '已完成',                        // 系列名称
+				type: 'bar', 
+				itemStyle:{
+					normal:{
+						color:'#089c08'
+					}
+				},
+				stack:'ios',                     // 图表类型，折线图line、散点图scatter、柱状图bar、饼图pie、雷达图radar
+				data: [{$data['money']['completed']}]
+			},
+			{
+				name: '已过期',                    // 系列名称
+				type: 'bar',
+				stack:'ios',                       // 图表类型，折线图line、散点图scatter、柱状图bar、饼图pie、雷达图radar
+				data: [{$data['money']['uncompleted']}],
+				itemStyle:{
+					normal:{
+						color:'#fa8734'
+					}
+				},
+			}
+			
+		]
+	};
+	myChart_money.setOption(option_money);
+</script>
+
+<!--{template common/footer_ajax}--> 

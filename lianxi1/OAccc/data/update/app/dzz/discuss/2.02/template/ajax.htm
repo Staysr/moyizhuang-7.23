@@ -1,0 +1,1204 @@
+<!--{if $_GET[do]=="showwindow"}-->
+<!--{template common/header_ajax}-->
+	<!--{if $position == 'createfield'}-->
+		<div class="create_board">
+			<div class="modal-header create-header">
+				<button class="close create-close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="create-title">{lang create_discuss}</h4> 
+			</div>
+			<div class="modal-body create-body">
+				<div class="create-input">
+					<div class="inputWr1 input-black input-float">
+						<label class="control-label  input-label">{lang give_the_discuss_name}</label>
+						<div class="input-animate">
+							<input class="form-control form-control-bborder input-input" autocomplete="off" name="name" value="" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="color-wrap">
+					<div class="item-title color-title">{lang chose_icon_color}：</div>
+					<div class="color-con">
+						<div class="color-item cyan-label" data-color="#00b8c4"><i class="dzz dzz-done create-i icon-show"></i></div>
+						<div class="color-item lightBlue-label" data-color="#50ccff"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item blue-label" data-color="#3da5fe"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item orange-label" data-color="#ff822e"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item orangeRed-label" data-color="#ff5a3a"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item purple-label" data-color="#6c6ad7"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item brown-label" data-color="#be8572"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item green-label" data-color="#14d97f"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item red-label" data-color="#ff2a1a"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item darkBlue-label" data-color="#3585ff"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item lightPurple-label" data-color="#d06cff" style="margin-right: 0"><i class="dzz dzz-done create-i"></i></div>
+					</div>
+				</div>
+				<div class="share-wrap clearfix">
+					<div class="item-title" style="display: inline-block">{lang allow_discuss_share}：</div>
+					<div class="switch-wrap">
+						<input type="checkbox" name="share" id="share" class="chk_1"/>
+						<label for="share"></label>
+					</div>
+				</div>
+				<div class="rule-wrap">
+					<div class="inputWr1 input-black input-float" style="margin-top: 15px;margin-bottom: 10px;">
+						<label class="control-label  input-label">{lang discuss_rule}</label>
+						<div class="input-animate">
+							<input class="form-control form-control-bborder input-input" autocomplete="off" name="rule" value="" placeholder="">
+						</div>
+					</div>
+					<a href="javascript:;" class="help-inline basic-help" onclick="jQuery('#ubb_detail').toggle()">{lang see_ubb_code}</span></a>
+					<ul id="ubb_detail" class="help-block" style="display:none">
+						{lang ubb_code}
+					</ul>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary submit-btn" style="margin-right: 15px;">{lang confirms}</button>
+				<button class="btn cancelBtn create-cancel">{lang cancel}</button>
+			</div>
+		</div>
+		<script type="text/javascript" reload="1">
+            jQuery('.create-cancel').click(function () {
+				hideWindow('create');
+            })
+			jQuery(function () {
+                jQuery('.create_board .input-black').each(function(){
+                    InputAnimate.init(jQuery(this));
+                })
+            })
+			jQuery('.color-item').click(function () {
+				if(!jQuery(this).find('.create-i').hasClass('icon-show')) {
+				 	jQuery('.color-item').find('.create-i').removeClass('icon-show');
+				 	jQuery(this).find('.create-i').addClass('icon-show');
+                }
+            })
+			jQuery('.submit-btn').click(function () {
+			    var title='',
+					color='',
+					share='',
+					rule='';
+				if(jQuery('input[name="name"]').val()=='') {
+					showmessage('{lang give_the_discuss_name}','danger',1000,1);
+					jQuery('input[name="name"]').focus();
+					return;
+				}else {
+			    	title=jQuery('input[name="name"]').val();
+				}
+				color=jQuery('.icon-show').parents('.color-item').data('color');
+				if(jQuery('input[name="share"]').prop('checked')) {
+                    share=1;
+                }else {
+                    share=0;
+                }
+                rule=jQuery('input[name="rule"]').val();
+				var data={
+				    'name':title,
+					'iconcolor':color,
+					'allowshare':share,
+					'rules':rule,
+                    'discusssubmit':true,
+                    'formhash':'{FORMHASH}'
+
+                }
+
+				jQuery.ajax({
+					url:'{MOD_URL}&op=create',
+					data:data,
+					type:'POST',
+					success:function (res) {
+						if(jQuery(res).find('.item').length > 0) {
+							jQuery(".searchImg-wrap").remove();
+	                        jQuery('.disWrap').prepend(jQuery(res).find('.item'));
+	                        hideWindow('create');
+                        }else {
+                            showmessage(res,'danger',1000,1);
+						}
+
+                    },
+					error:function (res) {
+                        showmessage(res.message,'danger',1000,1);
+                    }
+				})
+            })
+		</script>
+	<!--{elseif $position=='settype'}-->
+	<div class="light-wrap create_board">
+		<div class="modal-header create-header">
+			<button class="close create-close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="create-title">{lang thread_class}</h4>
+		</div>
+		<div class="modal-body">
+			<div class="explain" style="margin-bottom: 30px">
+				<div class="item-title" style="display: inline-block;margin-right: 10px;">{lang chose_class}：</div>
+				<div class="btn-group explain-info">
+					<button type="button" class="btn drop-btn1 explain-btn explain-btn1" data-toggle="dropdown" data-typeid="none">
+						{lang please_chose}
+					</button>
+					<span class="dzz dzz-expand-more ul-i"></span>
+					<ul class="dropdown-menu explain-menu explain-menu1" role="menu">
+						<!--{loop $threadtypes[types] $key $value}-->
+						<li class="explain-li" data-typeid="{$key}"><a>{$value}</a></li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+			</div>
+			<div class="explain">
+				<div class="item-title" style="display: inline-block;margin-right: 10px;">{lang opt_description}：</div>
+				<div class="btn-group explain-info">
+					<button type="button" class="btn drop-btn1 explain-btn explain-btn2" data-toggle="dropdown" data-info="">
+						{lang please_chose}
+					</button>
+					<span class="dzz dzz-expand-more ul-i"></span>
+					<ul class="dropdown-menu explain-menu explain-menu2" role="menu">
+						<!--{loop $reasons $value}-->
+						<li class="explain-li" data-info="{$value}"><a>{$value}</a></li>
+						<!--{/loop}-->
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary submit-btn" style="margin-right: 15px;">{lang confirms}</button>
+			<button class="btn cancelBtn create-cancel">{lang cancel}</button>
+		</div>
+	</div>
+	<script reload="1">
+        jQuery('.create-cancel').click(function () {
+            hideWindow('settype');
+        })
+		jQuery('.explain-menu1 .explain-li').click(function () {
+            jQuery('.explain-btn1').text(jQuery(this).find('a').text());
+            jQuery('.explain-btn1').data('typeid',jQuery(this).data('typeid'));
+            console.log(jQuery('.explain-btn1').data('typeid'));
+        })
+        jQuery('.explain-menu2 .explain-li').click(function () {
+            jQuery('.explain-btn2').text(jQuery(this).find('a').text());
+            jQuery('.explain-btn2').data('info',jQuery(this).data('info'));
+            console.log(jQuery('.explain-btn2').data('info'));
+        })
+		jQuery('.submit-btn').click(function () {
+			if(jQuery('.explain-btn1').data('typeid')=='none') {
+			    showmessage('{lang please_chose_class}','danger',1000,1);
+			    return;
+			}
+
+			var typeid=jQuery('.explain-btn1').data('typeid');
+			var info=jQuery('.explain-btn2').data('info');
+            var moderate=[];
+            jQuery('input[name="board"]:checked').each(function () {
+				moderate.push(jQuery(this).data('tid'));
+            })
+			var data={
+				'fid':'{$fid}',
+				'operations[]': 'movetype',
+			    'typeid':typeid,
+				'reason':info,
+				'moderate[]':moderate,
+                'formhash':'{FORMHASH}',
+                'modsubmit':true
+			}
+			jQuery.ajax({
+				url:'{MOD_URL}&op=topicadmin&action=moderate&optgroup=1',
+				dataType:'json',
+				type:'post',
+				data:data,
+				success:function (res) {
+					if (res.code == 200) {
+						showmessage(res.message, 'success', 1000, 1);
+						hideWindow('settype');
+					} else {
+						showmessage(res.message, 'danger', 1000, 1);
+					}
+                }
+			})
+        })
+	</script>
+	<!--{elseif $position=='highlight'}-->
+		<div class="light-wrap create_board">
+			<div class="modal-header create-header">
+				<button class="close create-close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="create-title">{lang highlight}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="color-wrap">
+					<div class="item-title ">{lang title_color}：</div>
+					<div class="color-con">
+						<div class="color-item cyan-label" data-color="#00b8c4"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item lightBlue-label" data-color="#50ccff"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item blue-label" data-color="#3da5fe"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item orange-label" data-color="#ff822e"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item orangeRed-label" data-color="#ff5a3a"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item purple-label" data-color="#6c6ad7"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item brown-label" data-color="#be8572"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item green-label" data-color="#14d97f"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item red-label" data-color="#ff2a1a"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item darkBlue-label" data-color="#3585ff"><i class="dzz dzz-done create-i"></i></div>
+						<div class="color-item lightPurple-label" data-color="#d06cff" style="margin-right: 0"><i class="dzz dzz-done create-i"></i></div>
+					</div>
+				</div>
+				<div class="fontStyle">
+					<div class="item-title" style="display: inline-block">{lang title_effect}：</div>
+					<div class="font-con">
+						<div class="font-item b-item" data-font="font-weight:600;">
+							<div class="checkbox-custom checkbox-danger">
+								<input type="checkbox" name="inputCheckboxes">
+								<label></label>
+								<span><b>B</b></span>
+							</div>
+						</div>
+						<div class="font-item i-item" data-font="font-style:italic;">
+							<div class="checkbox-custom checkbox-danger">
+								<input type="checkbox" name="inputCheckboxes">
+								<label></label>
+								<span><i style="font-style: italic;">I</i></span>
+							</div>
+						</div>
+						<div class="font-item u-item" data-font="text-decoration: underline;">
+							<div class="checkbox-custom checkbox-danger">
+								<input type="checkbox" name="inputCheckboxes">
+								<label></label>
+								<span><u>U</u></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="date">
+					<div class="item-title" style="display: inline-block;margin-right: 25px;">{lang term_of_validity}：</div>
+					<div class="date-con">
+						<div class="radio-custom radio-danger data-radio">
+							<input type="radio" name="date" value="day" checked="checked">
+							<label></label>
+							<span>{lang one_day}</span>
+						</div>
+						<div class="radio-custom radio-danger data-radio">
+							<input type="radio" name="date" value="week">
+							<label></label>
+							<span>{lang one_week}</span>
+						</div>
+						<div class="radio-custom radio-danger data-radio">
+							<input type="radio" name="date" value="month">
+							<label></label>
+							<span>{lang 30_days}</span>
+						</div>
+						<div class="radio-custom radio-danger data-radio ower">
+							<input type="radio" name="date" value="diy" class="diy1">
+							<label></label>
+							<span>{lang custom}</span>
+						</div>
+
+					</div>
+				</div>
+				<div class="datepiker">
+						<div class="item-title">{lang time_frame}：</div>
+						<input type="text" id="selectStart1"  placeholder="{lang starttime}"  name="startdate" class="form-control" style="margin-right: 10px;">
+						<input type="text" id="selectEnd1"  placeholder="{lang endtime}" name="enddate" class="form-control">
+				</div>
+				<div class="explain">
+					<div class="item-title" style="display: inline-block;margin-right: 10px;">{lang opt_description}：</div>
+					<div class="btn-group explain-info">
+						<button type="button" class="btn drop-btn1 explain-btn" data-toggle="dropdown" data-info="none">
+							{lang please_chose}
+						</button>
+						<span class="dzz dzz-expand-more ul-i"></span>
+						<ul class="dropdown-menu explain-menu" role="menu">
+							<!--{loop $reasons $value}-->
+								<li class="explain-li" data-info="{$value}"><a>{$value}</a></li>
+							<!--{/loop}-->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary submit-btn" style="margin-right: 15px;">{lang confirms}</button>
+				<button class="btn cancelBtn create-cancel">{lang cancel}</button>
+			</div>
+		</div>
+		<script type="text/javascript" reload="1">
+			jQuery('.create-cancel').click(function () {
+				hideWindow('highlight');
+			})
+			jQuery(function () {
+				jQuery('.create_board .input-black').each(function(){
+					InputAnimate.init(jQuery(this));
+				})
+			})
+			jQuery('.explain .explain-li').click(function () {
+				jQuery('.explain-btn').text(jQuery(this).find('a').text());
+				jQuery('.explain-btn').data('info',jQuery(this).data('info'));
+            })
+			jQuery('.color-item').click(function () {
+                if(!jQuery(this).find('.create-i').hasClass('icon-show')) {
+                    jQuery('.color-item').find('.create-i').removeClass('icon-show');
+                    jQuery(this).find('.create-i').addClass('icon-show');
+                }else {
+					jQuery(this).find('.create-i').removeClass('icon-show');
+				}
+			})
+			jQuery('.font-item').click(function () {
+				if(jQuery(this).hasClass('font-item-active')) {
+					jQuery(this).removeClass('font-item-active');
+				}else {
+					jQuery(this).addClass('font-item-active');
+				}
+            })
+            jQuery("#selectStart1,#selectEnd1").datepicker({ //添加日期选择功能
+                numberOfMonths: 1, //显示几个月
+                showButtonPanel: false, //是否显示按钮面板
+                dateFormat: 'yy-mm-dd', //日期格式
+                clearText: __lang.clear, //清除日期的按钮名称
+                closeText: __lang.close, //关闭选择框的按钮名称
+                yearSuffix: __lang.year, //年的后缀
+                showMonthAfterYear: true, //是否把月放在年的后面
+                constrainInput: true,
+                minDate: new Date(),
+                setDate: 'date',
+            });
+
+			jQuery('input[name="date"]').change(function () {
+				if(jQuery('input.diy1').prop('checked')) {
+                    jQuery('.datepiker').show();
+                    jQuery('#selectStart1').val('');
+                    jQuery('#selectEnd1').val('');
+				}else {
+                    jQuery('.datepiker').hide();
+				}
+            })
+            jQuery('#selectStart1').change(function () {
+                var start = jQuery('#selectStart1').val();
+                var end = jQuery('#selectEnd1').val();
+                if (jQuery('#selectStart1').val() != '' &&jQuery('#selectEnd1').val() != '') {
+                    var satrtdate = new Date(start);
+                    var enddate = new Date(end);
+                    if (enddate.getTime() <= satrtdate.getTime()) {
+                        showmessage('{lang endtime_must_gt_starttime}','danger',1000,1);
+                        return;
+                    }
+                }
+            })
+            jQuery('#selectEnd1').change(function () {
+                var start = jQuery('#selectStart1').val();
+                var end = jQuery('#selectEnd1').val();
+                if (satrtdate != '' && enddate != '') {
+                    var satrtdate = new Date(start);
+                    var enddate = new Date(end);
+                    if (enddate.getTime() <= satrtdate.getTime()) {
+                        showmessage('{lang endtime_must_gt_starttime}','danger',1000,1);
+                        return;
+                    }
+                }
+            });
+			 jQuery('.submit-btn').click(function () {
+				var fid='{$_GET[fid]}';
+				var color='',
+				highlight_style=[],
+				tids=[],
+				datetime='',
+				starttime='',
+				endtime='',
+				instructions='';
+				if(jQuery('.color-con .create-i').hasClass('icon-show')) {
+                    color=jQuery('.icon-show').parents('.color-item').data('color');
+				}else{
+					color='';
+				}
+
+
+				if(jQuery('.font-con .b-item').hasClass('font-item-active')) {
+					highlight_style[0]=1;
+            	 }else {
+                    highlight_style[0]=0;
+				}
+                 if(jQuery('.font-con .i-item').hasClass('font-item-active')) {
+                     highlight_style[1]=1;
+                 }else {
+                     highlight_style[1]=0;
+                 }
+                 if(jQuery('.font-con .u-item').hasClass('font-item-active')) {
+                     highlight_style[2]=1;
+                 }else {
+                     highlight_style[2]=0;
+                 }
+
+				 if('{$_GET[type]}'=='viewthread'){
+					tids.push(jQuery('.infotitle').data('tid'));
+				}else if('$_GET[type]'=='list') {
+				 	jQuery('input[name="board"]:checked').each(function () {
+						tids.push(jQuery(this).data('tid'));
+                    })
+				 }
+
+				datetime=jQuery('input[name="date"]:checked').val();
+				if(datetime=='diy') {
+					starttime=jQuery('input[name="startdate"]').val();
+                    endtime=jQuery('input[name="enddate"]').val();
+                    if(new Date(starttime).getTime()>=new Date(endtime).getTime()) {
+                    	showmessage('{lang endtime_must_gt_starttime}','danger',1000,1);
+                    	return;
+                    }
+				}else {
+                    starttime='';
+                    endtime='';
+				}
+				if(jQuery('.explain-btn').data('info')=='none') {
+                    reason='';
+				}else {
+                    reason=jQuery('.explain-btn').data('info');
+				}
+
+
+				var data={
+				    'fid':fid,
+					'highlight_color':color,
+					'highlight_style':highlight_style,
+					'moderate':tids,
+					'effective':datetime,
+					'starttime':starttime,
+					'endtime':endtime,
+                    'operations[]':'highlight',
+                    'formhash':'{FORMHASH}',
+                    'modsubmit':true,
+					'reason':reason
+				 }
+//				 console.log(data);
+				 doAjax(data);
+             })
+
+
+			function doAjax(form) {
+				jQuery.ajax({
+					url:'{MOD_URL}&op=topicadmin&action=moderate&optgroup=1',
+					data:form,
+					type:'post',
+					dataType:'json',
+					success:function (res) {
+						if (res.code==200) {
+							var css = {};
+							if (form.highlight_color) {
+								css.color = form.highlight_color;
+							}
+							if (form.highlight_style) {
+								var hsty = form.highlight_style;
+								if (hsty[0]) css['font-weight'] = 'bold';
+								if (hsty[1]) css['font-style'] = 'italic';
+								if (hsty[2]) css['text-decoration'] = 'underline';
+							}
+							if ('{$_GET[type]}'=='viewthread') {
+								jQuery(".infotop .infotitle").removeAttr("style");
+								if (res.status > 0) jQuery(".infotop .infotitle").css(css);
+								jQuery(".highlight").attr("onclick", "cancelOperate('{lang true_cancel_highlight_status}','highlight')").text("{lang cancel_highlight}");
+							} else {
+								jQuery('input[name="board"]:checked').parents(".card").find(".xst").removeAttr("style").css(css);
+								if (res.status > 0) jQuery('input[name="board"]:checked').parents(".card").find(".xst").css(css);
+							}
+							showmessage(res.message,'success',1000,1);
+						}else {
+                            showmessage(res.message,'danger',1000,1);
+						}
+						hideWindow('highlight');
+                    },
+					error:function (res) {
+                        showmessage(res.message,'danger',1000,1);
+                    }
+
+                })
+            }
+		</script>
+	<!--{elseif $position=='elite'}-->
+		<div class="elite-wrap">
+			<div class="modal-header create-header">
+				<button class="close create-close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="create-title">{lang digest}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="elite-num">
+					<div class="item-title" style="display: inline-block;margin-right: 40px;">{lang digest}：</div>
+					<div class="radio-custom radio-danger elite-radio">
+						<input type="radio" name="elite" value="1" checked>
+						<label></label>
+						<span>{lang digest}1</span>
+					</div>
+					<div class="radio-custom radio-danger elite-radio">
+						<input type="radio" name="elite" value="2">
+						<label></label>
+						<span>{lang digest}2</span>
+					</div>
+					<div class="radio-custom radio-danger elite-radio">
+						<input type="radio" name="elite" value="3">
+						<label></label>
+						<span>{lang digest}3</span>
+					</div>
+				</div>
+				<div class="elite-date" style="margin-top: 10px;">
+					<div class="item-title" style="display: inline-block;margin-right: 25px;">{lang term_of_validity}：</div>
+					<div class="radio-custom radio-danger data-radio">
+						<input type="radio" name="date" value="day" checked>
+						<label></label>
+						<span>{lang one_day}</span>
+					</div>
+					<div class="radio-custom radio-danger data-radio">
+						<input type="radio" name="date" value="week">
+						<label></label>
+						<span>{lang one_week}</span>
+					</div>
+					<div class="radio-custom radio-danger data-radio">
+						<input type="radio" name="date" value="month">
+						<label></label>
+						<span>{lang 30_days}</span>
+					</div>
+					<div class="radio-custom radio-danger data-radio ower">
+						<input type="radio" name="date" value="diy" class="diy2" <!--{if $highlight['highlight_effective'] == 'diy'}-->checked<!--{/if}-->>
+						<label></label>
+						<span>{lang custom}</span>
+					</div>
+				</div>
+				<div class="datepiker" style="margin-bottom: 10px;">
+					<div class="item-title" style="display: inline-block;margin-right: 10px;">{lang time_frame}：</div>
+					<input type="text" id="selectStart2"  placeholder="开始时间"  name="startdate" class="form-control" style="margin-right: 10px;">
+					<input type="text" id="selectEnd2"  placeholder="结束时间" name="enddate" class="form-control">
+				</div>
+				<div class="explain">
+					<div class="item-title" style="display: inline-block;margin-right: 10px;">{lang opt_description}：</div>
+					<div class="btn-group explain-info">
+						<button type="button" class="btn drop-btn1 explain-btn" data-toggle="dropdown" data-info="none">
+							{lang please_chose}
+						</button>
+						<span class="dzz dzz-expand-more ul-i"></span>
+						<ul class="dropdown-menu explain-menu" role="menu">
+							<!--{loop $reasons $value}-->
+								<li class="explain-li" data-info="{$value}"><a>{$value}</a></li>
+							<!--{/loop}-->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary sub-btn" style="margin-right: 15px;">{lang confirms}</button>
+				<button class="btn cancelBtn create-cancel">{lang cancel}</button>
+			</div>
+		</div>
+		<script type="text/javascript" reload="1">
+            jQuery('.create-cancel').click(function () {
+                hideWindow('elite');
+            })
+            jQuery("#selectStart2,#selectEnd2").datepicker({ //添加日期选择功能
+                numberOfMonths: 1, //显示几个月
+                showButtonPanel: false, //是否显示按钮面板
+                dateFormat: 'yy-mm-dd', //日期格式
+                clearText: __lang.clear, //清除日期的按钮名称
+                closeText: __lang.close, //关闭选择框的按钮名称
+                yearSuffix: __lang.year, //年的后缀
+                showMonthAfterYear: true, //是否把月放在年的后面
+                constrainInput: true,
+                minDate: new Date(),
+                setDate: 'date',
+            });
+            jQuery('input[name="date"]').change(function () {
+                if(jQuery('input.diy2').prop('checked')) {
+                    jQuery('.datepiker').show();
+                    jQuery('#selectStart2').val('');
+                    jQuery('#selectEnd2').val('');
+                }else {
+                    jQuery('.datepiker').hide();
+                }
+            })
+            jQuery('#selectStart2').change(function () {
+                var start = jQuery('#selectStart2').val();
+                var end = jQuery('#selectEnd2').val();
+                if (jQuery('#selectStart2').val() != '' &&jQuery('#selectEnd2').val() != '') {
+                    var satrtdate = new Date(start);
+                    var enddate = new Date(end);
+                    if (enddate.getTime() <= satrtdate.getTime()) {
+                        showmessage('{lang endtime_must_gt_starttime}','danger',1000,1);
+                        return;
+                    }
+                }
+            })
+            jQuery('#selectEnd2').change(function () {
+                var start = jQuery('#selectStart2').val();
+                var end = jQuery('#selectEnd2').val();
+                if (satrtdate != '' && enddate != '') {
+                    var satrtdate = new Date(start);
+                    var enddate = new Date(end);
+                    if (enddate.getTime() <= satrtdate.getTime()) {
+                        showmessage('{lang endtime_must_gt_starttime}','danger',1000,1);
+                        return;
+                    }
+                }
+            });
+            jQuery('.explain .explain-li').click(function () {
+                jQuery('.explain-btn').text(jQuery(this).find('a').text());
+                jQuery('.explain-btn').data('info',jQuery(this).data('info'));
+            })
+			jQuery('.sub-btn').click(function () {
+				var fid='$_GET[fid]';
+				var tids=[],
+				elite_num='',
+				datetime=''
+				starttime='',
+				endtime='',
+				reason='';
+                if('{$_GET[type]}'=='viewthread'){
+                    tids.push(jQuery('.infotitle').data('tid'));
+                }else if('$_GET[type]'=='list') {
+                    jQuery('input[name="board"]:checked').each(function () {
+                        tids.push(jQuery(this).data('tid'));
+                    })
+                }
+				elite_num=jQuery('input[name="elite"]:checked').val();
+                datetime=jQuery('input[name=date]:checked').val();
+                if(datetime=='diy') {
+                    starttime=jQuery('input[name="startdate"]').val();
+                    endtime=jQuery('input[name="enddate"]').val();
+                    if(new Date(starttime).getTime()>=new Date(endtime).getTime()) {
+                        showmessage('{lang endtime_must_gt_starttime}','danger',1000,1);
+                        return;
+                    }
+                }else {
+                    starttime='';
+                    endtime='';
+                }
+                if(jQuery('.explain-btn').data('info')=='none') {
+                    reason='';
+                }else {
+                    reason=jQuery('.explain-btn').data('info');
+                }
+                var data={
+                    'fid':fid,
+                    'moderate':tids,
+					'digestlevel':elite_num,
+                    'effective':datetime,
+                    'starttime':starttime,
+                    'endtime':endtime,
+                    'operations[]':'digest',
+                    'formhash':'{FORMHASH}',
+                    'modsubmit':true,
+                    'reason':reason
+                }
+                doAjax(data);
+            })
+			function doAjax(form) {
+				jQuery.ajax({
+					url:'{MOD_URL}&op=topicadmin&action=moderate&optgroup=1',
+					dataType:'json',
+					type:'post',
+					data:form,
+					success:function (res) {
+						if(res.code==200) {
+							if ('{$_GET[type]}'=='viewthread') {
+								if (res.status < 1) {
+									jQuery(".cream").hide()
+								} else {
+									jQuery(".cream").show().html("精<small>"+form.digestlevel+"</small>");
+								}
+								jQuery(".btn_digest").attr("onclick", "cancelOperate('{lang true_cancel_dist_status}','digest')").text("{lang cancel_dist}");
+							} else {
+								if (res.status < 1) {
+									jQuery('input[name="board"]:checked').parents(".card").find(".cream").hide();
+								} else {
+									jQuery('input[name="board"]:checked').parents(".card").find(".cream").show().html("精<small>"+form.digestlevel+"</small>");
+								}
+								
+							}
+							showmessage(res.message,'success',1000,1);
+						}else {
+							showmessage(res.message,'danger',1000,1);
+						}
+						hideWindow('elite');
+                    },
+					error:function (res) {
+						showmessage(res.message,'danger',1000,1);
+                    }
+            	})
+            }
+		</script>
+<!--{elseif $position=='settop'}-->
+		<div class="settop-wrap">
+			<div class="modal-header create-header">
+				<button class="close create-close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="create-title">{lang settop}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="elite-num">
+					<div class="item-title" style="display: inline-block;margin-right: 10px;">{lang settop_type}：</div>
+					<!--{if in_array(3, $topperm) || $_G[adminid]}-->
+					<div class="radio-custom radio-danger elite-radio">
+						<input type="radio" name="top" value="3" checked>
+						<label></label>
+						<span>{lang settop_global}</span>
+					</div>
+					<!--{/if}-->
+					<!--{if in_array(2, $topperm) || $_G[adminid]}-->
+					<div class="radio-custom radio-danger elite-radio">
+						<input type="radio" name="top" value="2">
+						<label></label>
+						<span>{lang settop_plate}</span>
+					</div>
+					<!--{/if}-->
+					<!--{if in_array(1, $topperm) || $_G[adminid]}-->
+					<div class="radio-custom radio-danger elite-radio">
+						<input type="radio" name="top" value="1">
+						<label></label>
+						<span>{lang settop_class}</span>
+					</div>
+					<!--{/if}-->
+				</div>
+				<div class="elite-date" style="margin-top: 10px;">
+					<div class="item-title" style="display: inline-block;margin-right: 25px;">{lang term_of_validity}：</div>
+					<div class="radio-custom radio-danger data-radio">
+						<input type="radio" name="date" value="day" checked>
+						<label></label>
+						<span>{lang one_day}</span>
+					</div>
+					<div class="radio-custom radio-danger data-radio">
+						<input type="radio" name="date" value="week">
+						<label></label>
+						<span>{lang one_week}</span>
+					</div>
+					<div class="radio-custom radio-danger data-radio">
+						<input type="radio" name="date" value="month">
+						<label></label>
+						<span>{lang 30_days}</span>
+					</div>
+					<div class="radio-custom radio-danger data-radio ower">
+						<input type="radio" name="date" value="diy" class="diy3" <!--{if $highlight['highlight_effective'] == 'diy'}-->checked<!--{/if}-->>
+						<label></label>
+						<span>{lang custom}</span>
+					</div>
+				</div>
+				<div class="datepiker" style="margin-bottom: 10px;">
+					<div class="item-title" style="display: inline-block;margin-right: 10px;">{lang time_frame}：</div>
+					<input type="text" id="selectStart3"  placeholder="{lang starttime}"  name="startdate" class="form-control" style="margin-right: 10px;">
+					<input type="text" id="selectEnd3"  placeholder="{lang endtime}" name="enddate" class="form-control">
+				</div>
+				<div class="explain">
+					<div class="item-title" style="display: inline-block;margin-right: 10px;">{lang opt_description}：</div>
+					<div class="btn-group explain-info">
+						<button type="button" class="btn drop-btn1 explain-btn" data-toggle="dropdown" data-info="none">
+							{lang please_chose}
+						</button>
+						<span class="dzz dzz-expand-more ul-i"></span>
+						<ul class="dropdown-menu explain-menu" role="menu">
+							<!--{loop $reasons $value}-->
+								<li class="explain-li" data-info="{$value}"><a>{$value}</a></li>
+							<!--{/loop}-->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary sub-btn" style="margin-right: 15px;">{lang confirms}</button>
+				<button class="btn cancelBtn create-cancel">{lang cancel}</button>
+			</div>
+		</div>
+		<script type="text/javascript" reload="1">
+			jQuery('.create-cancel').click(function () {
+				hideWindow('settop');
+			})
+			jQuery("#selectStart3,#selectEnd3").datepicker({ //添加日期选择功能
+				numberOfMonths: 1, //显示几个月
+				showButtonPanel: false, //是否显示按钮面板
+				dateFormat: 'yy-mm-dd', //日期格式
+				clearText: __lang.clear, //清除日期的按钮名称
+				closeText: __lang.close, //关闭选择框的按钮名称
+				yearSuffix: __lang.year, //年的后缀
+				showMonthAfterYear: true, //是否把月放在年的后面
+				constrainInput: true,
+				minDate: new Date(),
+				setDate: 'date',
+			});
+			jQuery('input[name="date"]').change(function () {
+				if(jQuery('input.diy3').prop('checked')) {
+					jQuery('.datepiker').show();
+					jQuery('#selectStart3').val('');
+					jQuery('#selectEnd3').val('');
+				}else {
+					jQuery('.datepiker').hide();
+				}
+			})
+			jQuery('#selectStart3').change(function () {
+				var start = jQuery('#selectStart3').val();
+				var end = jQuery('#selectEnd3').val();
+				if (jQuery('#selectStart3').val() != '' &&jQuery('#selectEnd3').val() != '') {
+					var satrtdate = new Date(start);
+					var enddate = new Date(end);
+					if (enddate.getTime() <= satrtdate.getTime()) {
+						showmessage('{lang endtime_must_gt_starttime}','danger',1000,1);
+						return;
+					}
+				}
+			})
+			jQuery('#selectEnd3').change(function () {
+				var start = jQuery('#selectStart3').val();
+				var end = jQuery('#selectEnd3').val();
+				if (satrtdate != '' && enddate != '') {
+					var satrtdate = new Date(start);
+					var enddate = new Date(end);
+					if (enddate.getTime() < satrtdate.getTime()) {
+						showmessage('{lang endtime_must_gt_starttime}','danger',1000,1);
+						return;
+					}
+				}
+			});
+			jQuery('.explain .explain-li').click(function () {
+				jQuery('.explain-btn').text(jQuery(this).find('a').text());
+				jQuery('.explain-btn').data('info',jQuery(this).data('info'));
+			})
+            jQuery('.sub-btn').click(function () {
+                var fid='$_GET[fid]';
+                var tids=[],
+                    top_num='',
+                    datetime=''
+                	starttime='',
+                    endtime='',
+                    reason='';
+                if('{$_GET[type]}'=='viewthread'){
+                    tids.push(jQuery('.infotitle').data('tid'));
+                }else if('$_GET[type]'=='list') {
+                    jQuery('input[name="board"]:checked').each(function () {
+                        tids.push(jQuery(this).data('tid'));
+                    })
+                }
+                top_num=jQuery('input[name="top"]:checked').val();
+                datetime=jQuery('input[name=date]:checked').val();
+                if(datetime=='diy') {
+                    starttime=jQuery('input[name="startdate"]').val();
+                    endtime=jQuery('input[name="enddate"]').val();
+                    if(new Date(starttime).getTime()>=new Date(endtime).getTime()) {
+                        showmessage('{lang endtime_must_gt_starttime}','danger',1000,1);
+                        return;
+                    }
+                }else {
+                    starttime='';
+                    endtime='';
+                }
+                if(jQuery('.explain-btn').data('info')=='none') {
+                    reason='';
+                }else {
+                    reason=jQuery('.explain-btn').data('info');
+                }
+                var data={
+                    'fid':fid,
+                    'moderate':tids,
+                    'sticklevel':top_num,
+                    'effective':datetime,
+                    'starttime':starttime,
+                    'endtime':endtime,
+                    'operations[]':'stick',
+                    'formhash':'{FORMHASH}',
+                    'modsubmit':true,
+                    'reason':reason
+                }
+//                console.log(data);
+                doAjax(data);
+            })
+            function doAjax(form) {
+                jQuery.ajax({
+                    url:'{MOD_URL}&op=topicadmin&action=moderate&optgroup=1',
+                    dataType:'json',
+                    type:'post',
+                    data:form,
+                    success:function (res) {
+                        if(res.code==200) {
+                        	if (form.sticklevel == 1) {
+                        		var text = "<i class='dzz dzz-top'></i> {lang class}";
+                        	} else if (form.sticklevel == 2) {
+                        		var text = "<i class='dzz dzz-top'></i> {lang plate}";
+                        	} else {
+                        		var text = "<i class='dzz dzz-top'></i> {lang global}";
+                        	}
+                        	if ('{$_GET[type]}'=='viewthread') {
+                        		if (res.status < 1) {
+                        			jQuery(".stick").hide();
+                        		} else {
+                        			jQuery(".stick").show().html(text);
+                        		}
+                        		
+                        	} else {
+                        		if (res.status < 1) {
+                        			jQuery('input[name="board"]:checked').parents(".card").find(".stick").hide();
+                        		} else {
+                        			jQuery('input[name="board"]:checked').parents(".card").find(".stick").show().html(text);
+                        		}
+                        		
+                        	}
+                        	if ('{$_GET[type]}'=='viewthread') {
+                        		jQuery(".btn_stick").attr("onclick", "cancelOperate('{lang true_cancel_settop}','stick')").text("{lang cancel_settop}");
+                        	}
+                            showmessage(res.message,'success',1000,1);
+                        }else {
+                            showmessage(res.message,'danger',1000,1);
+                        }
+                        hideWindow('settop');
+                    },
+                    error:function (res) {
+                        showmessage(res.message,'danger',1000,1);
+                    }
+                })
+            }
+		</script>
+	<!--{/if}-->
+<!--{template common/footer_ajax}-->
+<!--{elseif $_GET['do'] == 'comment'}-->
+	<!--{if $position == 'getcmt'}-->
+		<!--{loop $cmt $value}-->
+		<!--{if !$value[pcid]}-->
+			<div class="cmt-item" id="cmt_item_{$value[cid]}">
+		        <div class="cmt-body">
+		            <div class="cmt-msg con"><span class="name"><a>{$value[author]}</a></span>
+		                <span>:</span> {$value[content]}
+		            </div>
+		            <div class="cmt-info">
+		                <span class="dateline"><span title="2018-3-21 14:11">{eval echo dgmdate($value[time],'u');}</span></span>
+		                <span class="cmt-hover a_btnWrap">
+		                    <a href="javascript:;" onclick="deleteCmt('{$value[cid]}')" data-toggle="tooltip" data-placement="bottom" title="" class="cmt-del-btn dzz dzz-delete" data-original-title="删除"></a>
+		                </span>
+		                <script>
+		                    jQuery(function() {
+		                        jQuery("[data-toggle='tooltip']").tooltip();
+		                    })
+		                </script>
+
+		            </div>
+		        </div>
+		    </div>
+	    <!--{else}-->
+	    	<div class="reply-item" id="cmt_item_{$value[cid]}" data-pcid='$value[pcid]'>
+		        <div class="cmt-body">
+		            <div class="cmt-msg con"><span class="name"><a>{$value[author]}</a><span class="reply"> {lang reply} </span><a>{$value[replyer]}</a></span><span>:</span>
+		                {$value[content]}
+		            </div>
+		            <div class="cmt-info">
+		                <span class="dateline">{eval echo dgmdate($value[time],'u');}</span>
+		                <span class="cmt-hover a_btnWrap">
+		                    <a href="javascript:;" onclick="deleteCmt('{$value[cid]}')" data-toggle="tooltip" data-placement="bottom" class="cmt-del-btn dzz dzz-delete" data-original-title="删除"></a>
+		                </span>
+		                <script>
+		                    jQuery(function() {
+		                        jQuery("[data-toggle='tooltip']").tooltip();
+		                    })
+		                </script>
+
+		            </div>
+		        </div>
+		    </div>
+	    <!--{/if}-->
+	    <!--{/loop}-->
+	<!--{elseif $position == 'getreplys'}-->
+		<!--{loop $replys $value}-->
+			<div class="reply-item">
+		        <div class="cmt-body">
+		            <div class="cmt-msg con"><span class="name"><a>{$value[author]}</a><span class="reply"> {lang reply} </span><a>{$value[replyer]}</a></span><span>:</span>
+		                {$value[content]}
+		            </div>
+		            <div class="cmt-info">
+		                <span class="dateline">{eval echo dgmdate($value[time],'u');}</span>
+		                <span class="cmt-hover a_btnWrap">
+		                	<!--{if $_G['uid']}-->
+		                    	<a href="javascript:;"  onclick="changeState(this,'{$value[author]}')" data-toggle="tooltip" data-placement="bottom" data-pcid="{$cid}" class="cmt-reply-btn dzz dzz-reply" data-original-title="{lang reply}"></a>
+		                    <!--{/if}-->
+
+		                    <!--{if $perm > 1 || $thread == $_G['uid'] || $value[uid] == $_G['uid']}-->
+			                    <div class="line"></div>
+			                    <a href="javascript:;" onclick="deleteCmt('{$value[cid]}')" data-toggle="tooltip" data-placement="bottom" title="" class="cmt-del-btn dzz dzz-delete" data-original-title="{lang delete}"></a>
+			                <!--{/if}-->
+		                </span>
+		                <script>
+		                    jQuery(function() {
+		                        jQuery("[data-toggle='tooltip']").tooltip();
+		                    })
+		                </script>
+
+		            </div>
+		        </div>
+		    </div>
+	    <!--{/loop}-->
+	    <!--{if $next}-->
+	    	<a class="cmt-loadmore1 cmt-reply-$cid" href="javascript:;" onclick="moreReply('{$cid}', '{$next}')">{lang more_reply}</a>
+	    <!--{/if}-->
+	<!--{elseif $position == 'getmorecmt'}-->
+		<!--{loop $cmts $val}-->
+            <div class="cmt-item" id="cmt_item_{$val[cid]}">
+                <div class="cmt-body">
+                    <div class="cmt-msg con"><span class="name"><a>{$val[author]}</a></span>
+                        <span>:</span> {$val[content]}
+                    </div>
+                    <div class="cmt-info">
+                        <!--<span class="username"><a href="user.php?uid=1">admin</a></span>-->
+                        <span class="dateline">{eval echo dgmdate($val[time],'u');}</span>
+                        <span class="cmt-hover a_btnWrap">
+                        	<!--{if $_G['uid'] && $val[uid] != $_G['uid']}-->
+                            	<a href="javascript:;" data-toggle="tooltip"  data-cid="{$val[cid]}" data-placement="bottom" title="" class="aa cmt-reply-btn dzz dzz-reply" data-original-title="回复" onclick="changeState(this,'{$val[author]}')"></a>
+                            	<div class="line"></div>
+							<!--{/if}-->
+                            <!--{if $perm > 1 || $thread == $_G['uid'] || $value[uid] == $_G['uid']}-->
+	                            <a href="javascript:;" onclick="deleteCmt('{$val[cid]}')" data-toggle="tooltip" data-placement="bottom" title="" class="cmt-del-btn dzz dzz-delete" data-original-title="{lang delete}"></a>
+	                        <!--{/if}-->
+                        </span>
+                        <script>
+                            jQuery(function() {
+                                jQuery("[data-toggle='tooltip']").tooltip();
+                            })
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--{if !$val['pcid']}-->
+                <!--{loop $val[replys] $v}-->
+                <div class="reply-item" id="cmt_item_{$v[cid]}" data-pcid='$v[pcid]'>
+                    <div class="cmt-body">
+                        <div class="cmt-msg con"><span class="name"><a>{$v[author]}</a><span class="reply"> {lang reply} </span><a>{$v[replyer]}</a></span><span>:</span>
+                            {$v[content]}
+                        </div>
+                        <div class="cmt-info">
+                            <span class="dateline">{eval echo dgmdate($v[time],'u');}</span>
+                            <span class="cmt-hover a_btnWrap">
+                            	<!--{if $_G['uid'] && $val[uid] != $_G['uid']}-->
+                                	<a href="javascript:;" data-toggle="tooltip" data-pcid="{$val[cid]}" data-placement="bottom" class="ss cmt-reply-btn dzz dzz-reply" data-original-title="{lang reply}" onclick="changeState(this,'{$v[author]}')"></a>
+                               		<div class="line"></div>
+                                <!--{/if}-->
+                            	<!--{if $perm > 1 || $thread == $_G['uid'] || $value[uid] == $_G['uid']}-->
+	                                <a href="javascript:;" onclick="deleteCmt('{$v[cid]}')" data-toggle="tooltip" data-placement="bottom" title="" class="cmt-del-btn dzz dzz-delete" data-original-title="{lang delete}"></a>
+	                            <!--{/if}-->
+                            </span>
+                            <script>
+                                jQuery(function() {
+                                    jQuery("[data-toggle='tooltip']").tooltip();
+                                })
+                            </script>
+
+                        </div>
+                    </div>
+                </div>
+                <!--{/loop}-->
+            <!--{/if}-->
+        <!--{if $val[replycount] > 5}-->
+            <a class="cmt-loadmore1 reply-loadmore-$val[cid]" href="javascript:;" onclick="moreReply('{$val[cid]}')">{lang more_reply}</a>
+        <!--{/if}-->
+        <!--{/loop}-->
+
+        <!--{if $value[cmtcount] > 5}-->
+            <a class="cmt-loadmore1 cmt-loadmore-$val[cid]" href="javascript:;" onclick="moreCmt('{$value[pid]}')">{lang more_comments}</a>
+        <!--{/if}-->
+    <!--{/if}-->
+<!--{elseif $_GET[do] == 'share'}-->
+	<!--分享-->
+	<div class="popbox-body" style="width:300px;">
+
+		<!--{if $qrcode}-->
+		<p class="text-center" ><img class="img-thumbnail" src="$qrcode"></p>
+		<!--{/if}-->
+		<p class="text-center">
+			<button id="js_copy_{$_GET[fid]}" class="btn cancelBtn btn-lg js_copy" data-clipboard-text="{$url}" style="width:auto;height:auto;position:relative;padding:10px 25px;font-size: 16px;font-weight: 500"><i class="dzz dzz-copy"></i> {eval echo lang('copy_address')}</button>
+		</p>
+		<!--{if $discuss[allowshare] < 1}-->
+			<p class="alert alert-warning" style="padding:10px;margin-bottom:0;">
+				{lang only_member_can_see}
+			</p>
+		<!--{/if}-->
+	</div>
+	<script type="text/javascript" reload="1">
+	    jcLoader().load({type:"js",ids:'js_clipboard',url:"static/clipboard/clipboard.min.js?{VERHASH}"},function(){
+	        var client = new Clipboard('#js_copy_{$_GET[fid]}');
+	        client.on('success',function (e) {
+	            showmessage('{lang copy_success}','success',3000,1);
+	        })
+	        client.on('error',function (e) {
+	            showmessage('{lang copy_failed}','danger',3000,1);
+	        })
+	    });
+	</script>
+<!--{elseif $_GET['do'] == 'viewthreadmore'}-->
+	<div class="popbox-body">
+		<ul class="popbox-menu list-unstyled">
+			<li>
+				<!--{if $thread[inarchive]}-->
+					<a href="javascripts:;" onclick="cancleArchive('{lang true_recovery_thread}')"><i class="dzz dzz-archive2"></i> {lang cancel_archive}</a>
+				<!--{else}-->
+					<a href="javascripts:;" onclick="archiveThread('{lang true_archive_thread}')"><i class="dzz dzz-archive2"></i> {lang archive}</a>
+				<!--{/if}-->
+			</li>
+			<!--{if !$thread[inarchive]}-->
+				<li><a href="javascript:;" onclick="deleteSub('{$thread[fid]}','{$thread[tid]}')"><i class="dzz dzz-delete"></i> {lang delete}</a></li>
+			<!--{/if}-->
+		</ul>
+	</div>
+	<script type="text/javascript">
+		function archiveThread(info) {//归档
+            showDialog(info, 'confirm', '', function(){
+                jQuery.ajax({
+                    url: '{MOD_URL}&op=ajax&do=archivethread',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {'tid':'{$_GET[tid]}'},
+                    success: function(res) {
+                        if (res.code == 400) {
+                            showmessage(res.message, 'danger', 1000, 1);
+                        } else {
+                            location.reload();
+                        }
+                    }
+                })
+            })
+        }
+
+
+        function cancleArchive(info) {//取消归档
+            showDialog(info, 'confirm', '', function(){
+                jQuery.ajax({
+                    url: '{MOD_URL}&op=ajax&do=canclearchive',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {'tid':'{$_GET[tid]}'},
+                    success: function(res) {
+                        if (res.code == 400) {
+                            showmessage(res.message, 'danger', 1000, 1);
+                        } else {
+                            location.reload();
+                        }
+                    }
+                })
+            })
+        }
+
+        function deleteSub(fid,tid) {
+            showDialog('{lang true_delete_thread}','confirm','',function () {
+                var tids = [tid];
+                var data = {
+                            'formhash':'{FORMHASH}',
+                            'modsubmit':true,
+                            'moderate[]':tids,
+                            'operations[]':'recycle',
+                            'fid': fid
+                        }
+                jQuery.ajax({
+                    url: '{MOD_URL}&op=topicadmin&action=moderate&optgroup=1',
+                    type: 'post',
+                    dataType: 'json',
+                    data: data,
+                    success: function(res){
+                        if (res.code == 200) {
+                            showmessage(res.message,'success',1000,1);
+                            setTimeout(function () {
+                                window.location.href = '{MOD_URL}';
+                            },1000);
+                        } else {
+                            showmessage(res.message,'danger',1000,1);
+                        }
+                    }
+                })
+            })
+        }
+	</script>
+<!--{/if}-->
+<!--更多-->

@@ -1,0 +1,18 @@
+/* CSS Document */
+@charset "utf-8";
+*{padding:0;margin:0;}
+body {background:#FFF;width:452px;margin:10% auto;background:#FAFAFA;}
+input{font-size:12px;vertical-align:middle;margin:0;}
+ul{ margin: 0px;  padding: 0px; list-style-type: none;  text-align: left;  clear: both;}
+li{ list-style-type: none;  line-height: 150%;}
+li,td,th,input,select,textarea,p,div{font-size:13px;font-family:'Microsoft Yahei', Tahoma, Arial!important; font-family:'Microsoft Yahei', '宋体', Tahoma, Arial;}
+
+.login_wrap {float:left;width:452px;border:1px solid #CCC;border-radius:5px 5px 5px 5px;background:#FFF;}
+.login_content {float:left;padding:20px 100px;}
+.login_content .txt {padding:3px;border:1px solid #E2E2E2;color:#333;}
+.login_content .txt:focus {border-color:#7ABBE9;}
+.login-hd {margin-bottom:10px;color:#000;font:18px "Microsoft YaHei",黑体;}
+.login-bd li {margin-bottom:14px;line-height:30px;}
+.login-bd .txt {width:250px;height:20px; line-height: 20px;font-size:14px;}
+.login-bd .checkcode{width:80px;}
+.btn_login{ color:#FFF; margin-top:10px;font-weight:700; font-size:14px;width:100px; padding:6px 0; line-height:24px; border: 1px solid #4E79A8; border-radius: 3px 3px 3px 3px;-moz-border-radius: 3px; -webkit-border-radius:3px; background:#4E79A8; text-align:center; cursor:pointer;}

@@ -1,0 +1,34 @@
+<!--{if $list}-->
+	<!--{if $list['board']}-->
+	<section class="weui-cells ">
+		<h4 class="weui-cell-h4">任务板</h4>
+		<!--{loop $list[board] $value}-->
+		<a class="weui-cell weui-cell_access" href="{MOD_URL}&op=list&tbid=$value[tbid]" id="board_star_$value[tbid]">
+		    <div class="weui-cell__hd"><span class="dzz dzz-clock weui-cell__img color-block-$value[aid]"></span></div>
+		       <div class="weui-cell__bd">
+		            <h4>$value[name]</h4>
+		        </div>
+		       <div class="weui-cell__ft"></div>
+		   </a>
+		  <!--{/loop}-->
+	</section>
+	<!--{/if}-->
+	<!--{if $list['task']}-->
+	<section class="weui-cells ">
+		<h4 class="weui-cell-h4">任务</h4>
+		<!--{loop $list[task] $value}-->
+		<a class="weui-cell weui-cell_access" href="{MOD_URL}&op=list&taskid=$value[taskid]&tbid=$value[tbid]" id="task_$value[taskid]">
+		    <div class="weui-cell__hd"><span class="dzz dzz-clock weui-cell__img color-block-$value[cover]"></span></div>
+		       <div class="weui-cell__bd">
+		            <h4>$value[name]</h4>
+		        </div>
+		       <div class="weui-cell__ft"></div>
+		   </a>
+		  <!--{/loop}-->
+	</section>
+	<!--{/if}-->
+<!--{else}-->
+<section class="weui-cells">
+	<div class="weui-cell">没有相关内容</div>
+</section>
+<!--{/if}-->

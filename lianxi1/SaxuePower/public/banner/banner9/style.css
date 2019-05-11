@@ -1,0 +1,17 @@
+.saxue-bannar9{width:100%; position:relative;overflow:hidden;}
+*html .saxue-bannar9{padding-top:0px;}
+.saxue-bannar9 ul{list-style:none;}
+.saxue-bannar9 .cc{background-position:-589px -404px;}
+.saxue-bannar9 .cnow{background-position:-589px -430px;}
+.saxue-bannar9 .pic0 #anim{background-position:0 0;}
+.saxue-bannar9 .pic1 #anim{background-position:0 -453px;}
+.saxue-bannar9 .pic2 #anim{background-position:0 -906px;}
+.saxue-bannar9 .pic3 #anim{background-position:0 0;}
+.saxue-bannar9 #marquee{position:relative;}
+.saxue-bannar9 #mPics{overflow:hidden;position:relative;}
+.saxue-bannar9 #mPics a{display:block;width:100%;height:100%;}
+.saxue-bannar9 #circle{position:relative;margin:-28px auto 0;width:960px;overflow:hidden;text-align:center;}
+.saxue-bannar9 #circle li{display:inline-block;*display:inline;zoom:1;width:30px;}
+.saxue-bannar9 #circle li a{display:block;width:11px;height:11px;overflow:hidden;text-indent:-9999px;text-align:left;}
+.saxue-bannar9 #circle li a:hover{background-position:-589px -430px;}
+.saxue-bannar9 #circle li a, .saxue-bannar9 #circle li a:hover{background-image:url(sprites.png);background-repeat:no-repeat;}

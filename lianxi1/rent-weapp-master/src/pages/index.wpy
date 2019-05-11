@@ -1,0 +1,140 @@
+<!-- index.wpy -->
+<style>
+  page {
+    background-color: #f8f8f8;
+    height: 100%;
+  }
+  .swiper_box swiper image {
+    width: 100%;
+  }
+  .swiper_box swiper {
+    height: 180px;
+  }
+  button{
+    display:inline-block;
+    font-size:30rpx;
+    padding:10rpx 20rpx;
+    margin:10rpx;
+  }
+</style>
+<template>
+<!--   <login show="1" class="mask">
+  </login> -->
+  <!-- 轮播开始 -->
+  <view class="swiper_box" @tap.stop="showModal">
+    <swiper 
+      indicator-dots="{{indicatorDots}}"
+      autoplay="{{autoplay}}" 
+      interval="{{interval}}" 
+      duration="{{duration}}"
+    >
+      <block wx:for="{{imgUrls}}" wx:key="{{key}}">
+        <swiper-item>
+          <image mode="aspectFill" src="{{item}}" class="slide-image" width="355" height="150"/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 轮播结束 -->
+  <!-- 店铺开始 -->
+  <v-shop :syncShop.sync="shop" />
+  <!-- 店铺结束 -->
+  <!-- 主体部分开始 -->
+  <v-scan :syncUserInfo.sync="userInfo" :syncTitle.sync="scanTitle" :syncNotice.sync="scanNotice" />
+  <!-- 主体部分结束 -->
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Vscan from '../components/scan'
+  import Vshop from '../components/shop'
+  import Vlogin from '../components/login'
+  import { storage2data, sleep } from '../utils/util'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'test',
+      usingComponents: {
+        'wxc-toast': '../../packages/@minui/wxc-toast/dist/index',
+        'wxc-button': '../../packages/@minui/wxc-button/dist/index',
+        'wxc-panel': '../../packages/@minui/wxc-panel/dist/index',
+        'wxc-cc': '../../packages/@minui/wxc-cc/dist/index',
+        'wxc-elip': '../../packages/@minui/wxc-elip/dist/index'
+      }
+    }
+    components = {
+      'v-scan': Vscan,
+      'v-login': Vlogin,
+      'v-shop': Vshop
+    }
+
+    mixins = []
+
+    data = {
+      imgUrls: [
+        '../static/image/dba2bd261ff861386afd05c8e5d502c7.jpg',
+        '../static/image/dba2bd261ff861386afd05c8e5d502c7.jpg',
+        '../static/image/dba2bd261ff861386afd05c8e5d502c7.jpg'
+      ],
+      '__wepy_iviewer_settings': {},
+      shop: {},
+      setting: null,
+      scanTitle: '',
+      scanNotice: '',
+      userInfo: null
+    }
+
+    computed = {}
+
+    methods = {
+      s2d() {
+
+      storage2data(this)
+      if (this.data.setting) {
+        this.scanTitle = this.data.setting.root.weapp[0].pages[0].index[0].scan[0]
+        this.scanNotice = this.data.setting.root.weapp[0].pages[0].index[0]['scan-notice'][0]
+      }
+
+      this.$apply()
+      }
+    }
+
+    events = {}
+
+    storage2data() {
+      storage2data(this)
+      if (this.data.setting) {
+        this.scanTitle = this.data.setting.root.weapp[0].pages[0].index[0].scan[0]
+        this.scanNotice = this.data.setting.root.weapp[0].pages[0].index[0]['scan-notice'][0]
+      }
+
+      this.$apply()
+    }
+
+    onLoad() {}
+
+    async onShow() {
+      this.storage2data()
+      while (!this.data.setting) {
+        this.storage2data()
+        console.log('由于网络延迟，未能及时获得setting数据，尝试再次获取')
+        await sleep(0.01)
+      }
+
+      const currentRegion = wx.getStorageSync('currentRegion')
+      const cityShops = wx.getStorageSync('cityShops')
+      const currentShops = wx.getStorageSync('currentShops')
+      const currentShop = wx.getStorageSync('currentShop')
+
+      const shop = {
+        currentRegion,
+        cityShops,
+        currentShops,
+        currentShop
+      }
+      this.shop = shop
+
+      this.$apply()
+    }
+  }
+</script>

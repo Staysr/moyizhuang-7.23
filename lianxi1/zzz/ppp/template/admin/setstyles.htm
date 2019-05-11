@@ -1,0 +1,79 @@
+<!--<?php
+include_once gettpl('top');
+if(!$action){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename" class="active">风格列表</a></li>
+	<li><a href="$basename&action=add">添加/编辑风格</a></li>
+</ul>
+<br />
+
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header" colspan="3">风格列表</td>
+	</tr>
+	<tr class="field f-tac">
+		<td width="10%">ID</td>
+		<td width="70%">风格名称</td>
+		<td>操作</td>
+	</tr>
+<!--
+EOT;
+foreach($styles as $key=>$value){
+$delstr='';
+if($value[name]!='phpvod') $delstr="<a href=\"$basename&action=del&name=$value[name]\">删除</a>";
+print <<<EOT
+-->
+	<tr class="f-tac">
+		<td>$value[sid]</td>
+		<td>$value[name]</td>
+		<td><a href="$basename&action=edit&name=$value[name]">编辑</a> $delstr</td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+<br />
+<!--
+EOT;
+}
+if ($action=='add' || $action=='edit')
+{
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename">风格列表</a></li>
+	<li><a href="$basename&action=add" class="active">添加/编辑风格</a></li>
+</ul>
+<br />
+<form action="$basename" method="post">
+	<input type="hidden" name="action" value="$action" />
+	<input type="hidden" name="oldname" value="$stylename" />
+	<input type="hidden" name="step" value="2" />
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">添加/编辑风格</td>
+		</tr>
+		<tr>
+			<td width="60%">风格名称</td>
+			<td><input type="text" name="style[name]" value="$stylename" /></td>
+		</tr>
+		<tr>
+			<td>此风格在image目录下的文件夹名称:<br />(请不要任意修改,如果需要请先手动修改image下的目录名)</td>
+			<td><input type="text" name="style[image]" value="$stylepath" /></td>
+		</tr>
+		<tr>
+			<td>此风格在template目录下的风格文件夹名称:</td>
+			<td><input type="text" name="style[tpl]" value="$tplpath" /></td>
+		</tr>
+	</table><br />
+	<center><input type="submit" value="提 交" /></center>
+</form>
+<!--
+EOT;
+}
+include_once gettpl('adminbottom');
+?>-->

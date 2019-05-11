@@ -1,0 +1,5 @@
+-rw-r--r-- 1 ftp ftp           9269 Jun 23  2017 CookieJar.php
+-rw-r--r-- 1 ftp ftp           2786 Jun 23  2017 CookieJarInterface.php
+-rw-r--r-- 1 ftp ftp           2617 Jun 23  2017 FileCookieJar.php
+-rw-r--r-- 1 ftp ftp           1920 Jun 23  2017 SessionCookieJar.php
+-rw-r--r-- 1 ftp ftp          10409 Jun 23  2017 SetCookie.php

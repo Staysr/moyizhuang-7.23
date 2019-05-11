@@ -1,0 +1,190 @@
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<ol class="breadcrumb f-mt5">
+			<li><a href="$db_wwwurl">首页</a></li>
+			<li class="active">搜索</li>
+		</ol>
+	</div>
+</div>
+
+<!--{if !$action}-->
+<form method="post" action="search.php">
+<input type="hidden" name="action" value="search" />
+<table class="table">
+	<thead>
+		<tr><td colspan="2" class="f-fs18"><strong>视频搜索</strong></td></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="f-w40">关键词</td>
+			<td>
+				<select name="field">
+					<option value="subject">标题</option>
+					<option value="playactor">演员</option>
+					<option value="director">导演</option>
+					<option value="author">会员</option>
+					<option value="tag">标签</option>
+					<option value="year">年份</option>
+					<option value="memo">备注</option>
+				</select>
+				<input type="text" name="keyword" value="" class="u-text" />
+			</td>
+		</tr>
+		<tr>
+			<td>所属类别</td>
+			<td>
+				<select name="cid">
+					<option value="">无限制</option>
+					$_class_opt
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>国家地区</td>
+			<td>
+				<select name="nid">
+					<option value="">无限制</option>
+					$_nation_opt
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>排序类型</td>
+			<td>
+				<select name="orderway">
+					<option value="postdate">发表时间</option>
+					<option value="lastdate">更新时间</option>
+					<option value="hits">人气</option>
+					<option value="reply">评论</option>
+				</select>
+				<select name="asc">
+					<option value="ASC">升序</option>
+					<option value="DESC" selected>降序</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>每页显示行数</td>
+			<td>
+				<input type="text" size="5" value="$db_perpage" name="lines" class="u-text"/>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr><td colspan="2" class="f-tac"><input type="submit" value="提 交" class="u-btn f-mt10" /></td></tr>
+	</tfoot>
+</table>
+</form>
+
+<!--{elseif $action=='search'}-->
+
+<div class="row f-mt15">
+	<div class="col-xs-5 col-md-5">
+		<div class="m-videobox">
+			<div class="title">
+				<span class="title-label">相关排行</span>
+			</div>
+			<div class="content">
+				<ul class="m-video-side-list f-mr10">
+				<!--{eval $i=1;}-->
+				<!--{loop:video:$video $tagstr_left|order=hits DESC|limit=8}-->
+				<!--{if $i==1}-->
+				<li class="l1">
+					<div class="pic"><a href="read.php?vid=$video[vid]" title="$video[subject]"><img src="$video[picurl]" alt="$video[subject]"/></a></div>
+					<div class="subject"><a href="read.php?vid=$video[vid]" title="$video[subject]">$video[subject]</a></div>
+					<div class="idx">$i</div>
+				</li>
+				<!--{else}-->
+				<li>
+					<div class="row">
+						<div class="col-xs-15">
+							<div class="left">
+								<!--{eval $bg=$i<=3?'bg1':'bg2';}-->
+								<div class="idx $bg">$i</div>
+								<a href="read.php?vid=$video[vid]" title="$video[subject]">$video[subject]</a>
+							</div>
+						</div>
+						<div class="col-xs-5">
+							<div class="right">$video[hits]</div>
+						</div>
+					</div>
+				</li>
+				<!--{/if}-->
+				<!--{eval $i++;}-->
+				<!--{/loop:video}-->
+				</ul>
+			</div>
+		</div>
+
+		<!--{$videodb=loop:video $tagstr_left|best=2|order=lastdate DESC,postdate DESC|limit=8|dateformat=1|cachetime=depend/best}-->
+		<!--{if !empty($videodb)}-->
+		<div class="m-videobox f-mt15">
+			<div class="title">
+				<span class="title-label">相关推荐</span>
+			</div>
+			<div class="content">
+				<ul class="m-video-side-list f-mr10">
+				<!--{eval $i=1;}-->
+				<!--{loop $videodb $key $video}-->
+				<!--{if $i==1}-->
+				<li class="l1">
+					<div class="pic"><a href="read.php?vid=$video[vid]" title="$video[subject]"><img src="$video[picurl]" alt="$video[subject]"/></a></div>
+					<div class="subject"><a href="read.php?vid=$video[vid]" title="$video[subject]">$video[subject]</a></div>
+					<div class="idx">$i</div>
+				</li>
+				<!--{else}-->
+				<li>
+					<div class="row">
+						<div class="col-xs-15">
+							<div class="left">
+								<!--{eval $bg=$i<=3?'bg1':'bg2';}-->
+								<div class="idx $bg">$i</div>
+								<a href="read.php?vid=$video[vid]" title="$video[subject]">$video[subject]</a>
+							</div>
+						</div>
+						<div class="col-xs-5">
+							<div class="right">$video[hits]</div>
+						</div>
+					</div>
+				</li>
+				<!--{/if}-->
+				<!--{eval $i++;}-->
+				<!--{/loop}-->
+				</ul>
+			</div>
+		</div>
+		<!--{/if}-->
+	</div>
+
+	<div class="col-xs-15 col-md-15">
+		<div class="m-videobox">
+			<div class="title">
+				<span class="title-label">视频搜索</span>
+			</div>
+			<div class="content">
+				<div class="row">
+					<!--{$videodb=loop:video $tagstr|showsub=1|order=$orderway $asc|limit=$lines|page=$page|url=$url}-->
+					<!--{loop $videodb $video}-->
+					<div class="col-xs-5 col-md-5 col-lg-4">
+						<div class="m-video-list">
+							<a href="read.php?vid=$video[vid]" title="$video[subject]"><div class="pic"><img src="$video[picurl]" alt="$video[subject]" /></div></a>
+							<div class="subject">
+								<a href="read.php?vid=$video[vid]" title="$video[subject]">$video[subject]</a>
+							</div>
+							<!--{if $video[type]=='1'}--><div class="vip">VIP</div><!--{/if}-->
+						</div>
+					</div>
+					<!--{/loop}-->
+				</div>
+
+				<!--{if !empty($pageinfo)}-->
+				<div class="u-pages"><!--{page $pageinfo}--></div>
+				<!--{/if}-->
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!--{/if}-->

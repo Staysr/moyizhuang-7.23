@@ -1,0 +1,94 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/discuss.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/input_field.js"></script>
+<script type="text/javascript" src="static/js/switchery.js"></script>
+
+<style>
+html,body{
+	overflow:hidden; 
+}
+body{
+	background:rgb(241,241,241);
+}
+
+.bs-main-container{
+	overflow:auto;
+  margin-left: 210px;
+}
+.navbar-inverse {
+    background-color: rgba(255, 90, 58, 1);
+}
+.pagination li>a, .pagination li>span{
+  background-color: #fff;
+}
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<div class="bs-container clearfix">
+  <div class="bs-left-container affix-top clearfix">
+    	<!--{template left}-->
+  </div>
+  <div class="left-drager">
+     <div class="left-drager-op"><div class="left-drager-sub"></div></div>
+  </div>
+  <div class="bs-main-container">
+    <div class="main-content clearfix" style="">
+        <!--{if $do == 'myforum'}-->
+          <div class="discuss-top clearfix">
+              <div class="new-btn">
+                  <a class="btn btn-primary newBtn" onclick="showWindow('create','{MOD_URL}&op=ajax&do=showwindow&position=createfield','get',0)">{lang create_discuss}</a>
+              </div>
+              <div class="choose-wrap">
+                  <div class="btn-group">
+                      <button type="button" class="btn drop-btn" data-toggle="dropdown">
+                          <!--{if $order == 'dateline'}-->{lang order_create_time}<!--{elseif $order == 'lastpost'}-->{lang order_post_sent_time}<!--{/if}-->  <span class="dzz dzz-expand-more"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                          <li><a href="{MOD_URL}&op=my&order=dateline&type={$_GET[type]}<!--{if $keyword}-->&keyword=$keyword<!--{/if}-->">{lang order_create_time}</a></li>
+                          <li><a href="{MOD_URL}&op=my&order=lastpost&type={$_GET[type]}<!--{if $keyword}-->&keyword=$keyword<!--{/if}-->">{lang order_post_sent_time}</a></li>
+                      </ul>
+                  </div>
+                  <div class="btn-group">
+                      <button type="button" class="btn drop-btn" data-toggle="dropdown">
+                          <!--{if !$mycreate }-->{lang all}<!--{else}-->{lang mycreate}<!--{/if}-->  <span class="dzz dzz-expand-more"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                          <li><a href="{MOD_URL}&op=my<!--{if $keyword}-->&keyword=$keyword<!--{/if}-->" class="all">{lang all}</a></li>
+                          <li><a href="{MOD_URL}&op=my&type=mycreate<!--{if $keyword}-->&keyword=$keyword<!--{/if}-->" class="mycreate">{lang mycreate}</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+        <!--{/if}-->
+        <!--{if $do=='mythread'}-->
+            <!--{template my_thread}-->
+        <!--{elseif $do=='mycomments'}-->
+            <!--{template my_comments}-->
+        <!--{elseif $do=='receivedcmt'}-->
+            <!--{template my_receivedcmt}-->  
+        <!--{else}-->
+            <!--{template my_forum}--> 
+        <!--{/if}-->
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+ jQuery('.left-drager').leftDrager_layout(); 
+ jQuery(document).ready(function(e) {
+     if(jQuery('#nextpage:visible').length){
+			jQuery('.bs-main-container').scroll(function(e) {
+				var clientHeight = jQuery('.bs-main-container').height();
+				var scrollHeight = jQuery('.main-content').height();
+				if(jQuery('.bs-main-container').scrollTop()+clientHeight>scrollHeight-20) jQuery('#nextpage td').trigger('click');
+		  });
+	  }
+});
+</script>
+<!--{if !$ismobile}-->
+<script  type="text/javascript" src="static/js/jquery.ui.touch.js?{VERHASH}"></script><!--{/if}-->
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->  

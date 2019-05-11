@@ -1,0 +1,141 @@
+<!--{template common/header_simple_start}-->
+<link rel="stylesheet" href="static/js/datepicker/datepicker.css?{VERHASH}">
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/css/checkbox.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/taskboard.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/task.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/imgReady.js?{VERHASH}"></script>
+<script type="text/javascript" src="admin/scripts/admin.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<style type="text/css">
+.bs-main-container{
+	padding: 0px 30px;
+}	
+.navbar-inverse{
+	background: #17ae4b;
+}
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<div class="bs-container" style="padding：0px;"> 
+  	<!-- 左边部分 --> 
+  	<!--{template taskboard_left}--> 
+  	<!-- 右边部分 --> 
+  	<div class="bs-main-container clearfix">
+	  	
+	    <div class="main-content" id="middleconMenu">
+	      	<form id="recycleform" name="recycleform" class="form-horizontal" action="{MOD_URL}&op=recycle" method="post">
+		        <input type="hidden" name="recyclesubmit" value="true" />
+		        <input type="hidden" name="refer" value="{eval echo urldecode($refer);}" />
+		        <input type="hidden" name="formhash" value="{FORMHASH}" />
+		        <div class="table-responsive">
+		          	<table class="table table-hover">
+			            <thead>
+			              	<th width="40"> 
+			                 	<div class="checkbox-custom checkbox-primary" style="margin-bottom:0;margin-top:0;">
+			                  		<input type="checkbox" name="chkall" id="chkall" onclick="checkAll('prefix', this.form, 'del')"/>
+			                  		<label for="chkall"></label>
+			                 	</div>
+			              	</th>
+			              	<th>名称</th>
+			              	<th>删除人</th>
+			              	<th>删除时间</th>
+			              	<th>所属团队</th>
+			              	<th>操作</th>
+			            </thead>
+		            	<tbody>
+		              		<!--{loop $list $value}-->
+			              	<tr>
+				                <td width="50">
+				                	<div class="checkbox-custom checkbox-primary"> 
+				                		<input type="checkbox" name="del[]" value="$value[tbid]"<!--{if $value[system]}--> disabled<!--{/if}--> />
+				                    	<label></label>
+				                  	</div>
+				                </td>
+								<td style="max-width:300px;">
+									<a href="{MOD_URL}&op=list&tbid=$value[tbid]" class="task_table_title">$value[name]</a>
+								</td>
+				                <td class="list-info">$value['username']</td>
+				                <td class="list-info">{eval echo dgmdate($value[statustime],'Y-m-d H:i:s');}
+				                <td class="list-info">$value[orgname]</td>
+				                <td>
+					                <div class="list-icon">
+					                	<a href="{MOD_URL}&op=recycle&do=restore&tbid=$value[tbid]" title="恢复" onclick="restore(this,'$value[tbid]');return false;"><span class="dzz dzz-restore"></span></a> 
+					                	<a class="" href="{MOD_URL}&op=recycle&do=delete&tbid=$value[tbid]" title="彻底删除" onclick="Delete(this,'$value[tbid]');return false;"><span class="dzz dzz-delete"></span></a>
+					                </div>
+				                </td>
+			              	</tr>
+			              	<!--{/loop}-->
+			            </tbody>
+		            	<tfoot>
+		              		<tr>
+		                		<td colspan="20" style="border:none;"><input type="submit" class="btn btn-danger" value="彻底删除" />
+		                  		<small class="text-danger text-center" style="padding:6px 10px"><i class="glyphicon glyphicon-exclamation-sign"></i>&nbsp;彻底删除操作无法恢复，请慎重！</small> $multi </td>
+		              		</tr>
+		            	</tfoot>
+		          	</table>
+		        </div>
+		    </form>
+	    </div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery('.left-drager').leftDrager_layout();
+	jQuery(document).ready(function(){
+		$("#starttime").datepicker({ //添加日期选择功能
+				numberOfMonths: 1, //显示几个月
+				showButtonPanel: false, //是否显示按钮面板
+				dateFormat: 'yy-mm-dd', //日期格式
+				clearText: "{lang clear}", //清除日期的按钮名称
+				closeText: "{lang close}", //关闭选择框的按钮名称
+				yearSuffix: '{lang year}', //年的后缀
+				showMonthAfterYear: true, //是否把月放在年的后面
+				constrainInput: true,
+				maxDate: new Date(),
+				setDate: 'date',
+				zIndex:'50'
+		});
+		$("#endtime").datepicker({ //添加日期选择功能
+				numberOfMonths: 1, //显示几个月
+				showButtonPanel: false, //是否显示按钮面板
+				dateFormat: 'yy-mm-dd', //日期格式
+				clearText: "{lang clear}", //清除日期的按钮名称
+				closeText: "{lang close}", //关闭选择框的按钮名称
+				yearSuffix: '{lang year}', //年的后缀
+				showMonthAfterYear: true, //是否把月放在年的后面
+				constrainInput: true,
+				maxDate: new Date(),
+				setDate: 'date',
+				zIndex:'50'
+		});
+	})
+	function Delete(obj,tbid){
+		showDialog('确定要删除此任务版？<br><small>此操作无法恢复，请谨慎操作</small>','confirm','',function(){
+			jQuery.getJSON(obj.href,function(json){
+				if(json.error){
+					showmessage(json.error,'danger',3000,1);
+				}else{
+					jQuery(obj).closest('tr').remove();
+				}
+			});
+		},1);
+	}
+	function restore(obj,tbid){
+		showDialog('确定要恢复此任务版？','confirm','',function(){
+			jQuery.getJSON(obj.href,function(json){
+				if(json.error){
+					showmessage(json.error,'danger',3000,1);
+				}else{
+					jQuery(obj).closest('tr').remove();
+				}
+			});
+		},1);
+	}
+
+</script>
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.datepicker.min.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.datepicker-zh-CN.js"></script> 
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script> 
+<!--@authorcode  codestrings--> 
+<!--{template common/footer_simple}--> 

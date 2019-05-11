@@ -1,0 +1,234 @@
+<!--pages/carxiangqing/index.wxml-->
+<!-- <text>pages/carxiangqing/index.wxml</text> -->
+<view>
+ <span color="rgb(97,99,97)">所选车型</span>
+ </view>
+  <!-- <view class="nav bc_white">
+    <view class="{{selected?'red':'default'}}" bindtap="selected">面包车</view>
+    <view class="{{selected1?'red':'default'}}" bindtap="selected1">小型厢货</view>
+    <view class="{{selected2?'red':'default'}}" bindtap="selected2">大型货车</view>
+  </view> -->
+<!--   <view class="{{selected?'show':'hidden'}}"> -->
+    <image src="/images/qiche.png" class='img'></image>
+    <view class="tabs">
+      <view class="tabs-left">
+        <span>车厢容积</span>
+        <span>2*1*1.1</span>
+      </view>
+      <view class="tabs-right">
+        <span>载重</span>
+        <span>490kg</span>
+      </view>
+    </view>
+  <!-- </view> -->
+
+  <!-- <view class="{{selected1?'show':'hidden'}}">
+    <image src="/images/xiaoqiche.png"></image>
+    <view class="tabs">
+      <view class="tabs-left">
+        <span>车厢容积</span>
+        <span>2*1*1.1</span>
+      </view>
+      <view class="tabs-right">
+        <span>载重</span>
+        <span>490kg</span>
+      </view>
+    </view>
+  </view> -->
+
+
+  <!-- <view class="{{selected2?'show':'hidden'}}">
+    <image src="/images/dahuoche.png"></image>
+    <view class="tabs">
+      <view class="tabs-left">
+        <span>车厢容积</span>
+        <span>2*1*1.1</span>
+      </view>
+      <view class="tabs-right">
+        <span>载重</span>
+        <span>490kg</span>
+      </view>
+    </view>
+  </view> -->
+
+  <view class="need">
+    <view class="need-One">
+      <view class="need-One-left">
+        <image src="/images/start.png"></image>
+      </view>
+
+      <view class="need-One-right">
+         <input type="text" placeholder='桥西区新胜利大街6号'></input>
+         <!-- <view class="weui-input" style='color:rgb(166,166,166); margin-top:12rpx; ' bindtap="sexDeparture" name="qidian">{{departure}}</view> 
+      </view> -->
+      <view class="clear"></view>
+    </view>
+
+    <view class="need-One">
+      <view class="need-One-left">
+        <image src="/images/end.png"></image>
+      </view>
+      <view class="need-One-right">
+  <input type="text" placeholder='终点'></input>
+  <!-- <view style='color:rgb(166,166,166);margin-top:10rpx;' bindtap="sexDestination" name="zhongdian">{{destination}}</view> -->
+      </view>
+      <view class="clear"></view>
+    </view>
+
+
+
+
+    <view class="need-Two">
+      <view class="need-Two-left">
+        <span>运送货物类型</span>
+      </view>
+      <view class="need-Two-right">
+        <image src=""></image>
+        <!-- <input type="text" placeholder='请选择运送类型' name="leixing"></input> -->
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    <view class="need-Two">
+      <view class="need-Two-left">
+        <span>发货人姓名</span>
+      </view>
+      <view class="need-Two-right">
+        <image></image>
+        <!-- <input type="text" placeholder='请输入发货人姓名' name="user"></input> -->
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    <view class="need-Two">
+      <view class="need-Two-left">
+        <span>联系电话</span>
+      </view>
+      <view class="need-Two-right">
+        <image src=""></image>
+        <!-- <input type="text" placeholder='请输入发货人电话' type="text" id="phone" name="phone"></input> -->
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    <view class="need-Two">
+      <view class="need-Two-left">
+        <span>收货人的姓名</span>
+      </view>
+      <view class="need-Two-right">
+        <image src=""></image>
+        <!-- <input type="text" placeholder='李某某' name="consignee"></input> -->
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    <view class="need-Two">
+      <view class="need-Two-left">
+        <span>联系人的电话</span>
+      </view>
+      <view class="need-Two-right">
+        <image src=""></image>
+        <!-- <input type="text" placeholder='15188888888' name="phone1"></input> -->
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    <view class="need-Two">
+      <view class="need-Two-left">
+        <span>数量(件）</span>
+      </view>
+      <view class="need-Two-right">
+        <image src=""></image>
+        <!-- <input type="text" placeholder='必填' name="shu"></input> -->
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    <view class="need-Two">
+      <view class="need-Two-left">
+        <span>体积（m³）</span>
+      </view>
+      <view class="need-Two-right">
+        <image src=""></image>
+        <!-- <input type="text" placeholder='必填' name="tiji"></input> -->
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+
+    <view class="need-Two">
+      <view class="need-Two-left">
+        <span>种量（kg）</span>
+      </view>
+
+      <view class="need-Two-right">
+        <image src=""></image>
+        <!-- <input type="text" placeholder='必填' name="zhongliang"></input> -->
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+
+<!-- 
+    <view class="need-Two need-Twos">
+      <view class="need-Two-left">
+        <span>备注</span>
+           <input type="text" placeholder='备注' name="beizhu">124214124124214</input> 
+      </view>
+      <view class="clear"></view>
+    </view> -->
+ <!-- <view class="need-Two">
+      <view class="need-Two-left">
+        <span>备注</span>
+      </view>
+      </view> -->
+    <!-- <view class="need-con">
+       
+    </view> -->
+
+    <view class="need-Two">
+      <view class="need-Two-left">
+        <span>备注</span>
+      </view>
+
+      <view class="need-Two-right">
+        <image src=""></image>
+        <!-- <input type="text" placeholder='必填' name="zhongliang"></input> -->
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    
+   <view class="need-Two">
+      <view class="need-Two-left">
+        <span>预算¥</span>
+      </view>
+
+      <view class="need-Two-right">
+        <image src=""></image>
+        <!-- <input type="text" placeholder='必填' name="zhongliang"></input> -->
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+
+
+    <!-- <view class="need-con"> -->
+        <!-- <input type="text" placeholder='预计金额' name="beizhu"> -->
+        <!-- <span style="color='rgb(109,109,103);' ">预计金额</span>
+       <span>¥{{jinqian}}</span> -->
+        <!-- </input> -->
+    <!-- </view> -->
+    <!-- <view class="btns" bindtap='queding'> -->
+      <!-- <button type="">{{fomttoe}}</button> -->
+
+    <!-- </view> -->
+    
+      <!-- <button type="">{{fomttoe}}</button> -->
+
+     <button  disabled="{{registDisabled}}" formType="submit"  loading="{{btnLoading}}" class='quxiao'>取消</button>
+             <button  disabled="{{registDisabled}}" formType="submit"  loading="{{btnLoading}}" class='queding'>确定</button>
+    
+    
+  </view>
+  </view>

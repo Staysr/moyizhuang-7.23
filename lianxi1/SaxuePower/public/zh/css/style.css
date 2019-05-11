@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,td,th,input,textarea,select{
+	font-size:12px;
+	font-family:"微软雅黑", Arial, Tahoma;
+	color:#666666;
+}
+html{-webkit-text-size-adjust:none;}
+body,form{margin:0;}
+dl,dt,dd{margin:0;padding:0;}
+input,textarea{outline:none;}
+img{border:0px none; vertical-align:middle;}
+table{border-collapse:collapse;}
+ul{display:block; margin:0; padding:0;}
+li{list-style:none;}
+p{display:block; margin:0; padding:0;}
+h1{color:#333; display:block; margin:0; padding:0; font-size:26px; font-weight:normal;}
+a{color:#666666; text-decoration:none; outline:none;}
+a:hover,a:active{color:#0066CC;}
+.aGray{color:#999;}
+.aGray:hover,.aGray:active{color:#888;}
+.aGray2{color:#555;}
+.aGray2:hover,.aGray2:active{color:#444;}
+.aBlue{color:#0066CC;}
+.aBlue:hover,.aBlue:active{color:#F70;}
+
+#head{width:100%; height:30px; margin:auto; background:#0067AC;}
+#headmenu{width:1000px; margin:auto; height:30px; text-align:right; position:relative; z-index:9;}
+#headmenu a{display:inline-block; padding-left:16px; padding-right:16px; border-left:1px solid #297FB9; border-right:1px solid #297FB9; color:#A8CBE3; line-height:28px; height:30px; margin-left:-1px;}
+#headmenu a:hover,#headmenu a:active{color:#FFF;}
+#headmenuSon{background:#0067AC; width:140px; text-align:left; position:absolute; z-index:10; left:834px; top:30px; display:none;}
+#headmenuSon a{display:block; padding:4px 10px; border:0px none; height:auto; line-height:normal;}
+#headmenuSon a:hover,#headmenuSon a:active{color:#FFF; background:#005791;}
+
+#top{width:1000px; height:100px; margin:auto;}
+#logo{margin-top:33px; width:150px; height:35px; float:left;}
+#menu{width:800px; height:80px; margin-top:20px; float:left; margin-left:30px;}
+#menu li{float:left; display:block; position:relative; z-index:9;}
+#menu li.split{float:left; display:block; width:1px; height:20px; padding-top:28px;}
+#menu li a{display:inline-block; height:80px; padding:0px 20px; line-height:71px; font-size:14px;}
+#menu li a:hover,#menu li a:active,#menu li a.A{color:#0067AC; background:url(../images/menu_arr.gif) no-repeat center bottom;}
+#menu li div{position:absolute; z-index:10; left:0; top:80px; background:#0067AC; width:99px; padding-left:20px; padding-right:20px; padding-top:10px; padding-bottom:15px; display:none;}
+#menu li div a{display:block; height:auto; line-height:normal; width:auto;padding:8px 10px 8px 0px; color:#C2DBEB; font-size:12px; border-bottom:1px dotted #75ADD2;}
+#menu li div a:hover,#menu li div a:active{color:#FFF; border-bottom:1px dotted #FFF; background:none;}
+#search{width:220px; height:28px; float:right; margin-top:42px;}
+
+.solution{width:210px; height:245px; background:#FFF; position:absolute; z-index:6; left:0px; top:355px; border-left:1px solid #EEE; cursor:pointer;}
+
+#mainbg{width:100%; height:35px; background:url(../images/main_bg.png) repeat-x left bottom; clear:both;}
+#bottom{width:100%; height:50px; background:#0067AC; clear:both;}
+#foot{width:100%; background:#EEEEEE; height:220px; clear:both;}
+#bottom_l{width:560px; padding-left:50px; height:50px; float:left; color:#FFF; font-size:14px; line-height:48px; background-image:url(../images/bottom_bg.png); background-repeat:no-repeat; position:relative;}
+#bottom_r{width:150px; text-align:center; height:50px; float:right; color:#FFF; font-size:14px; line-height:46px; position:relative; background:#F90; cursor:pointer;}
+.fMenu{width:150px; float:left; margin-left:40px; margin-top:31px;}
+.fMenu a{display:block; border-top:1px dotted #AAA; padding:10px 2px; color:#444;}
+.fMenu a:hover,.fMenu a:active{color:#0066CC;}
+
+#main{width:1000px; margin:auto;}
+
+#procatalog{border-top:1px dotted #CCC; margin-top:8px; padding-top:12px;}
+#procatalog li{float:left; width:150px;}
+#procatalog li a{display:block; padding:4px 0px 3px 10px; background:url(../images/arr1.gif) no-repeat left 10px;}
+#procatalog li a:hover,#procatalog li a:active{color:#0066CC; background-position:left -30px;}
+
+#newslist{clear:both; padding-top:10px;}
+#newslist a{display:block; padding:4px 0px 4px 10px; background:url(../images/arr1.gif) no-repeat left 10px;}
+#newslist a:hover,#newslist a:active{color:#0066CC; background-position:left -30px;}
+
+.more{display:inline-block; width:70px; height:23px; padding-top:6px; text-align:center; background:url(../images/more.png) no-repeat center top; color:#888;}
+.more:hover,.more:active{color:#555;}

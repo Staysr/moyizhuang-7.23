@@ -1,0 +1,8 @@
+-rw-r--r-- 1 ftp ftp           3472 Jul 15  2017 Description.php
+-rw-r--r-- 1 ftp ftp           7025 Jul 15  2017 DescriptionFactory.php
+-rw-r--r-- 1 ftp ftp           4809 Jul 15  2017 ExampleFinder.php
+-rw-r--r-- 1 ftp ftp           4772 Jul 15  2017 Serializer.php
+-rw-r--r-- 1 ftp ftp          11639 Jul 15  2017 StandardTagFactory.php
+-rw-r--r-- 1 ftp ftp            629 Jul 15  2017 Tag.php
+-rw-r--r-- 1 ftp ftp           3847 Jul 15  2017 TagFactory.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 Tags

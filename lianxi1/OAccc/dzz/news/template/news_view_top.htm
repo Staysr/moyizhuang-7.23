@@ -1,0 +1,42 @@
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="resCon">
+    <ul class="nav navbar-nav pull-left">
+        <!-- <li>        
+            <a href="{DZZSCRIPT}?mod=news"><h4 style="margin: 0;line-height: 30px;letter-spacing: 2px;">信息中心/</h4></a>
+
+        </li> -->
+        <!--{if $navlast}--><li class="active text-overflow"><h5 style="color:#fff;line-height:40px;margin-left:-15px;">$navlast</h5></li><!--{/if}-->
+    </ul>
+    <ul class="nav navbar-nav  pull-right">
+        <li>
+            <a href="javascript:;"><span style="line-height: 29px;" class="glyphicon glyphicon-th"></span></a>
+        </li>
+        <li>
+            <a href="javascript:;"><div class="message" ><span class="glyphicon glyphicon-bell"></span></div></a>
+        </li>
+        <!--{if !$_G['uid']}--> 
+        <li> <a href="user.php?mod=logging" title="{lang login_system}" onclick="_login.logging();return false;"><span style="line-height:30px;">{lang login}</span></a></li>
+        <!--{else}-->
+        <li class="popover-menu" >
+          <a href="javascript:;" id="user_menu" class="popover-menu-btn" data-placement="bottom"  data-delay="100" data-toggle="popover" data-trigger="focus"  data-html="true" tabindex="0">
+            <img class="img-circle" src="avatar.php?uid=$_G[uid]&size=small&random=1" width="30" height="30" title="$_G[username]" />
+          </a>
+          {eval if(!$_G['cache']['corpus:setting']) loadcache('corpus:setting');}
+          {eval $corpus_setting=$_G['cache']['corpus:setting'];$muids=explode(',',$corpus_setting['publishers']);}
+          <div id="user_menu_dropdown" style="display:none;z-index: 20;">
+              <ul class="popover-menu-dropdown list-unstyled" role="menu">
+                <li><a href="user.php?mod=logging&action=logout&formhash={FORMHASH}"><i class="glyphicon glyphicon-log-out"></i>&nbsp; {lang logout}</a></li>
+              </ul>
+          </div>
+     
+        </li> 
+        <script type="text/javascript">
+        jQuery(document).ready(function(e) {
+            jQuery('#user_menu').popover({
+                content:jQuery('#user_menu_dropdown').html()
+            });
+        });
+        </script>
+        <!--{/if}-->       
+    </ul>
+</div>

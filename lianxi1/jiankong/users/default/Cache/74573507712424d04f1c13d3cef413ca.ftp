@@ -1,0 +1,5 @@
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 ClassPatch
+-rw-r--r-- 1 ftp ftp           3881 Mar 03  2017 DoublerSpec.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 Generator
+-rw-r--r-- 1 ftp ftp           2451 Mar 03  2017 LazyDoubleSpec.php
+-rw-r--r-- 1 ftp ftp           1948 Mar 03  2017 NameGeneratorSpec.php

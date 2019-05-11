@@ -1,0 +1,22 @@
+<div class="m-login">
+	<form action="login.php" method="post" name="login">
+		<input type="hidden" name="cktime" value="31536000" />
+		<input type="hidden" value="2" name="step" />
+		<!--{if $db_gdcheck & 2}-->
+		<div class="form-group">
+			<label for="gdcode">认证码</label>
+			<input type="text" name="gdcode" id="gdcode" size="6" class="form-control" datatype="*" ajaxurl="ajax.php?action=check_gdcode" nullmsg="请输入验证码！" errormsg="验证码错误！" />
+			<div class="f-mt2"><img src="ck.php?nowtime=$timestamp" align="absmiddle" style="cursor:pointer;" id="ckcode" onclick="this.src='ck.php?nowtime='+new Date().getTime();$('#gdcode')[0].validform_valid='false';" alt="看不清楚，换一张" title="看不清楚，换一张" /></div>
+		</div>
+		<!--{/if}-->				
+		<div class="form-group">
+			<label for="username">用户名</label>
+			<input type="text" class="form-control" id="username" name="username" placeholder="Username">
+		</div>
+		<div class="form-group">
+			<label for="password">密码</label>
+			<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+		</div>
+		<button type="submit" class="btn btn-default">登录</button>
+	</form>
+</div>

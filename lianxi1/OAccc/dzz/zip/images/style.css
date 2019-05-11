@@ -1,0 +1,331 @@
+@charset "utf-8";
+/* CSS Document */
+html, body {
+	overflow: hidden;
+	background: #FBFBFB;
+	height:100%;
+}
+.page-loadding{
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	z-index:99999;
+	
+}
+.page-loadding .page-loadding-back{
+	display:inline-block;
+	min-width:150px;
+	max-width: 400px;
+	background:RGBA(0,0,0,0.5);
+	border-radius:5px;
+}
+.page-loadding .loading-img{
+	font-size:30px;
+	margin-bottom:15px;
+	display:none;
+}
+.page-loadding .loading-text{
+	font-size:16px;
+	color: #FFF;
+    line-height: 34px;
+    text-align: left;
+    padding: 10px 15px;
+    text-shadow: 1px 1px 1px #000;
+}
+.bs-main-container{
+	overflow:hidden;
+	margin-left:0;
+	border-top:0;
+	moz-user-select: -moz-none; 
+	-moz-user-select: none; 
+	-o-user-select:none; 
+	-khtml-user-select:none; /* you could also put this in a class */ 
+	-webkit-user-select:none;/* and add the CSS class here instead */ 
+	-ms-user-select:none; 
+	user-select:none;/**禁止选中文字*/ 
+}
+.list-file{
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+.copy-success {
+	position: absolute;
+	left: -140px;
+	top: -30px;
+	padding: 8px;
+	z-index: 100;
+}
+.module-list-toolbar {
+	position: relative;
+	z-index: 90;
+	display: none;
+	font-size:13px;
+}
+.module-list-toolbar .bar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #666;
+	margin: 0;
+	height: 30px;
+	line-height: 30px;
+	background: #F2F6FF;
+	width: 100%;
+}
+.module-list-toolbar .chk-box {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	left: 5px;
+	top: 5px;
+}
+.module-list-toolbar .chk {
+	background: transparent url(checkbox.png) no-repeat;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	top: 8px;
+	left:8px;
+}
+.module-list-toolbar .chk.chked{
+	background: transparent url(selected.png) no-repeat;
+}
+.module-list-toolbar .text {
+	margin: 0 10px 0 40px;
+}
+.module-list-view {
+	margin: 0;
+	font-size:13px;
+}
+.module-list-view .title {
+	/*background: #F7F7F7;*/
+	color: #888;
+	border-bottom:1px solid #e1e1e1;
+}
+.module-list-view .title .asc {
+	background: url(sort_asc.gif) no-repeat;
+	display: inline-block;
+	width: 13px;
+	height: 6px;
+	position: relative;
+	top: 1px;
+	visibility: hidden;
+	_vertical-align: middle;
+	_margin: 15px 0;
+}
+
+.module-list-view .title .desc {
+	background: url(sort_desc.gif) no-repeat;
+}
+.module-list-view .item {
+	border-bottom: 1px solid #e1e1e1;
+	border-top:1px solid #FFF;
+}
+.module-list-view .item:first{
+	border-top:0;
+}
+.module-list-view .item .chk {
+	width: 32px;
+	height: 30px;
+	position: absolute;
+	cursor: default;
+	top: 0;
+	left: 3px;
+}
+.module-list-view .title .item {
+	border-bottom: 1px solid transparent;
+}
+.module-list-view .item-hover {
+	background-color: #f0f8fd;
+}
+.module-list-view .item-active {
+	background-color: #f2f7ff;
+}
+.module-list-view .item .icon {
+	max-width:24px;
+	max-height:24px;
+	margin-top:-2px;
+}
+
+.module-list-view .title .c1 {
+	border-left: 0;
+}
+.module-list-view .title .item .chk {
+	top: 1px;
+	left: 2px;
+	width:30px;
+	height:30px;
+}
+.module-list-view .item .chk-ico {
+	background: transparent url(checkbox.png) no-repeat;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	top: 12px;
+	left: 12px;
+}
+.module-list-view .title .item .chk-ico {
+	top: 10px;
+	left: 12px;
+}
+.module-list-view .item .chked .chk-ico {
+	background: transparent url(selected.png) no-repeat;
+}
+.module-list-view .item .name {
+	width: 100%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-indent:38px;
+}
+.module-list-view .list-file .item .name-text {
+	cursor: pointer;
+}
+.module-list-view .list-file .item .name-text:hover {
+	text-decoration:underline;
+}
+.module-list-view .title .name {
+	text-indent: 42px;
+}
+
+.module-list-view .title .col {
+	height: 30px;
+	line-height: 30px;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #e5e5e5;
+	cursor: pointer;
+	_overflow: hidden;
+}
+.module-list-view .title .col:hover {
+	background-color: #E8F5FD;
+}
+.module-list-view .col {
+	float: left;
+	height: 38px;
+	line-height: 38px;
+	text-indent: 10px;
+	width: 10%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.module-list-view .title .col {
+	height: 38px;
+	line-height: 38px;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #e5e5e5;
+	cursor: pointer;
+	_overflow: hidden;
+}
+.module-list-view .c1 {
+	position: relative;
+	text-align: left;
+	top: 0;
+	overflow: visible;
+}
+
+
+
+.zip-toolbarbox{
+		border-bottom: 1px solid #d4d4d4;
+		background-color: #fafafa;
+		background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
+		background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
+		background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
+		background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
+		background-repeat: repeat-x;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+		
+	}
+	.zip-toolbarboxinner{
+		padding: 3px 2px 2px 2px;
+	}
+	div.zip-box {
+		position: relative;
+		display: -moz-inline-box !important;
+		display: inline-block !important;
+		vertical-align: top;
+		
+	}
+	.zip-default div {
+		width: auto;
+		height: auto;
+	}
+	.zip-default .zip-box{
+		border: none;
+		padding: 0;
+		margin: 0;
+	}
+	.zip-default .zip-button{
+		margin:1px;
+		padding:2px;
+		width:54px;
+		height:46px;
+		text-align:center;
+		line-height:42px;
+	}
+	.zip-default .zip-button .zip-icon{
+		height: 42px !important;
+		width: 50px !important;
+		background-image: url(./icons.png);
+		
+	}
+	
+	.zip-default .zip-button:hover,.zip-default .zip-button.hover{
+		background-color: #efefef;
+		padding: 1px;
+		border: 1px solid #dcac6c;
+		border-radius: 2px;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+	}
+	
+	.zip-default .zip-button.disabled:hover{
+		background-color: transparent;
+		padding: 2px;
+		border: 0;
+		border-radius: 0;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+	}
+	.zip-default .zip-button.disabled .zip-icon {
+		opacity: 0.3;
+		filter: alpha(opacity = 30);
+	}
+	
+	.zip-default .zip-separator {
+		width: 2px;
+		height: 42px;
+		margin: 2px 4px 2px 3px;
+		background: url(icons.png) -350px 0;
+	}
+	.zip-default .zip-open .zip-icon{
+		background-position: -50px 0;
+	}
+	.zip-default .zip-add .zip-icon{
+		background-position: -100px 0;
+	}
+	.zip-default .zip-save .zip-icon{
+		background-position: -250px 0;
+	}
+	.zip-default .zip-extract .zip-icon{
+		background-position: -150px 0;
+	}
+	.zip-default .zip-delete .zip-icon{
+		background-position: -200px 0;
+	}
+	.zip-default .zip-parent .zip-icon{
+		background-position: 0 0;
+	}
+	.zip-default .zip-info .zip-icon{
+		background-position: -300px 0;
+	}
+	
+	
+	.zip-default .zip-new .zip-icon{
+		background-position: 0 -352px;
+	}

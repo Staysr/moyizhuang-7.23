@@ -1,0 +1,162 @@
+<div class="main-header  clearfix">
+    <ul class="nav nav-pills nav-pills-bottomguide" >
+        <li <!--{if !$status}-->class="active"<!--{/if}-->><a href="{DZZSCRIPT}?mod=taskboard&op=setting&do=manage">正常</a></li>
+        <li <!--{if $status==1}-->class="active"<!--{/if}-->><a href="{DZZSCRIPT}?mod=taskboard&op=setting&do=manage&status=1">已归档</a></li>
+        <li <!--{if $status==2}-->class="active"<!--{/if}-->><a href="{DZZSCRIPT}?mod=taskboard&op=setting&do=manage&status=2">已删除</a></li>
+    </ul>      
+</div>
+
+
+
+
+    <form id="manageform" name="manageform" class="form-horizontal" action="{BASESCRIPT}?mod=taskboard&op=setting&do=manage" method="post" onsubmit="return validate(this);">
+        <input type="hidden" name="settingsubmit" value="true" />
+        <input type="hidden" name="refer" value="{eval echo urldecode($refer);}" />
+        <input type="hidden" name="formhash" value="{FORMHASH}" />
+        <div class="table-responsive">
+       <table class="table table-hover">
+            <thead>
+                <th style="width:40px;">
+                <div class="checkbox-custom checkbox-primary">
+                    <input type="checkbox" name="chkall" id="chkall" onclick="checkAll('prefix', this.form, 'del')"/>
+                    <label for="chkall"></label>
+					</div></th>
+                <th>名称</th>
+                <th>权限</th>
+                <th>信息</th>
+                <th>操作</th> 
+				
+            </thead>
+            <tbody>
+            <!--{loop $list $value}-->
+            <tr>
+                <td style="width:40px;">
+                    <div class="checkbox-custom checkbox-primary">
+                        <input type="checkbox" name="del[]" value="$value[tbid]" <!--{if $value[system]}-->disabled<!--{/if}--> class="input_check" />
+                        <label></label>
+                    </div>
+                </td>
+                <td style="max-width:300px;">
+                    <div  style="padding-left:15px;position:relative;height:100%" >
+                        <div class=" color-block-$value['aid']" style="position:absolute;left:0;top:0px;width:5px;height:100%"></div>
+              	            <a href="{DZZSCRIPT}?mod=taskboard&op=list&tbid=$value[tbid]">$value[name]</a>
+                            <!--{if $value[status]<1}-->
+                        &nbsp;<small  style="color:#999">$value['username']&nbsp;创建于&nbsp;<em>{eval echo dgmdate($value[dateline],'u');}</em></small>
+                            <!--{elseif $value[status]==1}-->
+                        &nbsp;<small  style="color:#999">$value['statususername']&nbsp;归档于&nbsp;<em>{eval echo dgmdate($value[statustime],'u');}</em></small>
+                            <!--{elseif $value[status]==2}-->
+                        &nbsp;<small  style="color:#999">$value['statususername']&nbsp;删除于&nbsp;<em>{eval echo dgmdate($value[statustime],'u');}</em></small>
+                            <!--{/if}-->
+                    </div>
+                </td>
+                <td><!--{if $value[viewperm]<2}-->私有<!--{else}-->公开<!--{/if}--></td>
+                <td class="taskboard-td-info">
+                    <!--{if $value['desc_status']}-->
+                    <span class="taskboard-item-info" style="padding-left:0;">
+                        <b style="color:$value[desc_status_color]">$value[desc_status]</b>
+                    </span>
+                    <!--{/if}-->
+                    <!--{if $value['desc_date']}-->
+                    <span class="taskboard-item-info" style="padding-left:0;">
+                        $value[desc_date]
+                    </span>
+                    <!--{/if}-->
+                    <!--{if $value['desc_money']}-->
+                    <span class="taskboard-item-info" >
+                        $value[desc_money]
+                    </span>
+                    <!--{/if}-->
+                    <span class="taskboard-item-info" >
+                        共$value['tasks']项
+                    </span>
+                    <span class="taskboard-item-info" >
+                        完成$value['tasks_c']项
+                    </span>
+                </td>
+                <td>  
+                    <!--{if $value[status]>0}-->
+                    <!--{if $value['status']==1}--> <a class="" href="{BASESCRIPT}?mod=taskboard&op=setting&do=manage&operation=active&tbid=$value[tbid]&refer=$refer" title="激活" onclick="if(confirm('确定要激活任务板？')){return true}else{return false}" title="激活" >激活</a><!--{/if}-->
+                    <!--{if $value['status']==2}--> <a class="" href="{BASESCRIPT}?mod=taskboard&op=setting&do=manage&operation=restore&tbid=$value[tbid]&refer=$refer" title="恢复" onclick="if(confirm('确定要恢复此任务板？')){return true}else{return false}" title="恢复" >恢复</a><!--{/if}-->
+
+                    <!--{else}-->
+           	        <a class="" href="{BASESCRIPT}?mod=taskboard&op=setting&do=manage&operation=archive&tbid=$value[tbid]&refer=$refer" title="归档" onclick="if(confirm('确定要归档此任务板？')){return true}else{return false}" title="归档" >归档</a>
+                    <!--{if $value[viewperm]>1}--> 
+            	   <button class="btn btn-link" data-loading-title="正在设置..." title="默认到首页" onclick="setForceIndex(this,'{$value[tbid]}');return false;"> 
+                    <!--{if $value['forceindex']<1}-->默认到首页<!--{else}-->取消默认<!--{/if}--></button>
+                    <!--{/if}-->
+                    <!--{/if}-->
+                </td>
+            </tr>
+            <!--{/loop}-->
+		   </tbody>
+       <tfoot>
+     <tr>
+          <td colspan="20">
+         <input type="submit" class="btn btn-primary" value="彻底删除" /><span class="text-danger text-center" style="padding:6px 10px"><b><i class="glyphicon glyphicon-exclamation-sign"></i>&nbsp;所有的删除操作都将无法恢复，请慎重！</b></span> 
+         $multi
+         </td>
+     </tr>
+     </tfoot>
+        </table>
+        </div>
+    </form>
+
+<script type="text/javascript" src="admin/scripts/admin.js"></script>
+<script type="text/javascript">
+function setForceIndex(obj,tbid){
+	var el=jQuery(obj);
+	 el.button('loading');
+	 var url='{MOD_URL}&op=setting&do=manage&operation=forceindex&tbid='+tbid;
+	 jQuery.getJSON(url,function(json){
+		 console.log(json);
+		 if(json && json.tbid>0){
+			 el.html('设置成功'); 
+			  el.button('reset');
+			 window.setTimeout(function(){
+				
+				 if(json.forceindex===true){
+					el.html('取消默认');
+				 }else{
+					el.html('默认到首页');
+				 } 
+			},1000);
+		 }else if(json.error){
+			 el.button(json.error);
+			 window.setTimeout(function(){el.button('reset')},1000); 
+		 }
+		
+	 });
+}
+
+function validate(form){
+	
+	if(confirm('任务板及所有相关的任务文件都被彻底删除，确定要彻底删除所选的任务板？（此操作无法恢复）')){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
+// 选中
+jQuery('input[class=input_check]').click(function(){
+
+    if(jQuery(this).prop('checked')){
+        jQuery(this).closest('tr').addClass('tr_checked');
+    }else{
+        jQuery(this).closest('tr').removeClass('tr_checked');
+    }
+});
+
+jQuery('input[name=chkall]').click(function(){
+
+    jQuery('input[class=input_check]').each(function(){
+        if(jQuery(this).prop('checked')){
+            jQuery(this).closest('tr').addClass('tr_checked');
+        }else{
+            jQuery(this).closest('tr').removeClass('tr_checked');
+        }
+    });
+});
+// 结束
+</script> 

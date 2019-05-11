@@ -1,0 +1,135 @@
+<style>
+  body {
+    background-color: #fff;
+  }
+</style>
+<div class="main-content clearfix" style="padding:15px;">
+  <form id="jiluform" name="jiluform" class="form-horizontal-left form-horizontal" action="{MOD_URL}&op=setting&do=basic" method="post" >
+    <input type="hidden" name="settingsubmit" value="true" />
+    <input type="hidden" name="type" value="$type" />
+    <input type="hidden" name="formhash" value="{FORMHASH}" />
+    <dl>
+      <dt>{eval echo lang('admin_set')}<small>（<b id="count_moderator">{eval echo count($moderators);}</b>）</small>:</dt>
+      <dd class="clearfix">
+        <ul id="jilu_moderator" class="list-unstyled clearfix" >
+          <li  class=" pull-left" style="padding:10px;width:110px">
+            <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;"> <a href="javascrip:;" onclick="showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=chkadd_1&stype=2&multiple=1&ids={eval echo rawurlencode(implode(',',array_keys($moderators)));}','get','0')">
+              <img style="margin:9px;" src="{MOD_PATH}/images/addUser.png" width="66" height="66" /></a> </div>
+            <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span ><a href="javascrip:;" onclick="showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=chkadd_1&stype=2&multiple=1&ids={eval echo rawurlencode(implode(',',array_keys($moderators)));}','get','0')">{eval echo lang('add_admin')}</a></span> </p> 
+          </li>
+          
+          <!--{loop $moderators $value}-->
+          
+          <li id="moderator_{$value[uid]}" perm="$value[perm]" class="user-item pull-left" style="padding:10px;width:110px;position:relative"> <a href="javascrip:;" class="delete" onclick="deleteUser('{$value[uid]}','1');return false" style="position:absolute;top:0px;right:0px;">
+            <span style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: rgba(116, 116, 116, 1);text-align: center;line-height: 20px;">
+              <i style="color:#fff;font-size:16px;line-height: 20px" class="dzz dzz-close"></i>
+            </span>
+          </a>
+            <input type="hidden" name="moderators[]" value="$value[uid]" />
+            <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;overflow: hidden;"> 
+              {eval echo avatar_block($value[uid])}
+            </div>
+            <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span> $value[username]</span> </p>
+          </li>
+          <!--{/loop}-->
+          
+        </ul>
+      </dd>
+    </dl>
+    <dl>
+      <dt>{eval echo lang('create_jilu_authority')}:</dt>
+          <dd class="clearfix">
+            <label class="radio-inline "><input type="radio" name="settingnew[allownew]" value="0"<!--{if !$setting['allownew']}-->checked<!--{/if}--> onclick="jQuery('#allownewnewjilu_users').hide()">{eval echo lang('all_user')}</label>
+          </dd>
+          <dd class="clearfix">
+            <label class="radio radio-inline"><input type="radio"  name="settingnew[allownew]" value="1"<!--{if $setting['allownew']>0}-->checked<!--{/if}--> onclick="jQuery('#allownewnewjilu_users').show();">{eval echo lang('appoint_user')}</label>
+          </dd>
+          <dd class="clearfix"> 
+             <dl id="allownewnewjilu_users" class="mt20" style="margin-left: 0" <!--{if $setting[allownew]==0}-->style="display:none"<!--{/if}-->>
+             <dt>{eval echo lang('allow_create_jilu_user')}<small>（<b id="count_poster">{eval echo count($posters);}</b>）</small>:</dt>
+              <dd class="clearfix">
+                <ul id="jilu_poster" class="list-unstyled clearfix" >
+                  <li  class=" pull-left" style="padding:10px;width:110px">
+                    <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;"> <a href="javascrip:;" onclick="showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=chkadd_0&stype=2&multiple=1&ids={eval echo rawurlencode(implode(',',array_keys($posters)));}','get','0')"><img style="margin:9px;" src="{MOD_PATH}/images/addUser.png" width="66" height="66" /></a> </div>
+                    <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span ><a href="javascrip:;" onclick="showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=chkadd_0&stype=2&multiple=1&ids={eval echo rawurlencode(implode(',',array_keys($posters)));}','get','0')">{eval echo lang('add_user')}</a></span> </p>
+                  </li>
+                  
+                  <!--{loop $posters $value}-->
+                  
+                  <li id="poster_{$value[uid]}" perm="$value[perm]" class="user-item pull-left" style="padding:10px;width:110px;position:relative"> <a href="javascrip:;" class="delete" onclick="deleteUser('{$value[uid]}','0');return false" style="width: 20px; height: 20px;border-radius: 50%;text-align: center;line-height: 20px;position:absolute;top:0px;right:0px;background-color: rgba(116, 116, 116, 1);"><i style="color:#fff;font-size:16px;font-weight: 600;line-height: 20px;" class="dzz dzz-close"></i></a>
+                    <input type="hidden" name="posters[]" value="$value[uid]" />
+                    <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;overflow: hidden"> {eval echo avatar_block($value[uid])} </div>
+                    <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span> $value[username]</span> </p>
+                  </li>
+                  <!--{/loop}-->
+                  
+                </ul>
+              </dd>
+            </dl>
+        
+    
+    <dl>
+      <dd style="margin-top: 20px;">
+        <input class="btn btn-width cancelBtn"  name="settingsubmit_btn" value="{eval echo lang('save_change')}" type="submit" >
+      </dd>
+    </dl>
+  </form>
+</div>
+<script type="text/javascript">
+  jQuery('.left-drager').leftDrager_layout();
+jQuery(document).ready(function(e) {
+    jQuery(document).on('mouseenter','.user-item',function(){
+		jQuery(this).addClass('hover');
+	});
+	jQuery(document).on('mouseleave','.user-item',function(){
+		jQuery(this).removeClass('hover');
+	});
+	jQuery('input').iCheck({
+		  checkboxClass: 'icheckbox_minimal-blue',
+		  radioClass: 'iradio_minimal-blue',
+		});
+	jQuery('input').on('ifChecked',function(e){
+		jQuery(this).trigger('click');
+		
+	});
+});
+function deleteUser(uid,type){
+	jQuery.getJSON('{MOD_URL}&op=setting&operation=deleteModerator',{'uid':uid,'type':type},function(json){
+		if(json.error){
+			showmessage(json.error,'danger',3000,1);
+		}else{
+			jQuery('#'+(type == '1'?'moderator':'poster')+'_'+uid).remove();
+			jQuery('#count_'+(type>0?'moderator':'poster')).html(parseInt(jQuery('#count_'+(type>0?'moderator':'poster')).html())-1);
+		}
+	});
+}
+
+function chkadd_1(ids, data) {
+    var sub_data = {
+              'formhash': '{FORMHASH}',
+              'selectsubmit': true,
+              'type': 1,
+              'uids': ids,  
+    }
+    var url = "{MOD_URL}&op=setting&operation=selectuser";
+    jQuery.post(url, sub_data, function (html) {
+      jQuery("#jilu_moderator").find("li:gt(0)").remove();
+      jQuery("#jilu_moderator").append(html);
+      jQuery("#count_moderator").html(jQuery("#jilu_moderator").find('li').length - 1);
+    }, 'html')
+}
+function chkadd_0(ids, data) {
+    var sub_data = {
+              'formhash': '{FORMHASH}',
+              'selectsubmit': true,
+              'type': 0,
+              'uids': ids,  
+    }
+    var url = "{MOD_URL}&op=setting&operation=selectuser";
+    jQuery.post(url, sub_data, function (html) {
+     jQuery("#jilu_poster").find("li:gt(0)").remove();
+     jQuery("#jilu_poster").append(html);
+     jQuery("#count_poster").html(jQuery("#jilu_poster").find('li').length - 1);
+    }, 'html')
+}
+</script> 

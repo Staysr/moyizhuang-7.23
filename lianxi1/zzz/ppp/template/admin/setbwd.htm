@@ -1,0 +1,31 @@
+<!--<?php
+include_once gettpl('top');
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">提示</td>
+	</tr>
+	<tr>
+		<td class="notice">1、影片简介以及评论内容如果包含不良词语将替换为 *<br />2、词语之间请用逗号(,)分开</td>
+	</tr>
+</table>
+<br />
+<form action="$basename&" method="post">
+	<input type="hidden" name="step" value="2">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td colspan="2" class="header">不良词语过滤</td>
+		</tr>
+		<tr>
+			<td width="30%">词语设置</td>
+			<td><textarea name="bwd" rows="5" cols="60">$str</textarea></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<!--
+EOT;
+include_once gettpl('adminbottom');
+?>-->

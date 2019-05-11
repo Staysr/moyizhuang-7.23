@@ -1,0 +1,53 @@
+<!--{eval include_once gettpl("hack_top");}-->
+<ul class="nav">
+	<li><a href="$basename" class="active">资源库列表</a></li>
+	<li><a href="$basename&action=setup">采集设置</a></li>
+	<li><a href="$basename&action=record">自动采集记录</a></li>
+</ul>
+<br />
+
+<table class="tableborder f-w98 f-m0a">
+<tr><td colspan="6" class="header">资源库列表</td></tr>
+<tr class="field f-tac">
+	<td width="5%">ID</td>
+	<td width="40%">资源库名称</td>
+	<td>绑定</td>
+	<td>采集</td>
+	<td width="10%">下载</td>
+	<td width="10%">操作</td>
+</tr>
+
+<!--{loop $repos_list $repos}-->
+<tr class="f-tac">
+	<td>$repos[id]</td>
+	<td><a href="$repos[url]" target="_blank">$repos[name]</a></td>
+	<td>
+		<a href="$basename&action=replace&type=class&rid=$repos[id]">绑定栏目</a>
+		<a href="$basename&action=replace&type=nation&rid=$repos[id]">绑定地区</a>
+		<a href="$basename&action=replace&type=player&rid=$repos[id]">绑定播放器</a>
+	</td>
+	<td>
+		<!--{eval $progress_file = PHPVOD_HACK_ROOT . 'cache/r' . $repos[id] . '_progress.php';}-->
+		<!--{if is_file($progress_file)}-->
+			<!--{eval include $progress_file;}-->
+			<a href="$basename&action=collect&rid={$progress[rid]}&days={$progress[days]}&page={$progress[page]}&maxpage={$progress[maxpage]}&step=2">继续采集</a>
+		<!--{/if}-->
+		<a href="$basename&action=collect&days=1&rid=$repos[id]">采集当日</a>
+		<a href="$basename&action=collect&days=7&rid=$repos[id]">采集本周</a>
+		<a href="$basename&action=collect&days=0&rid=$repos[id]">采集全部</a>
+		<a href="http://www.phpvod.com/service.php?mod=repos&ac=buy&rid=$repos[id]" target="_blank">自动采集</a>
+	</td>
+	<td><a href="$basename&action=downpic&rid=$repos[id]">下载图片</a></td>
+	<td><a href="$basename&action=video&rid=$repos[id]" class="clear_repos">清空关联</a></td>
+</tr>
+<!--{/loop}-->
+
+</table>
+
+<script type="text/javascript">
+	$(".clear_repos").click(function(){
+		return confirm("清空关联后将导致视频重复入库和无法更新，一般只在重新采集全部视频时才执行本操作。确定清空资源库与本地数据之间的关联吗？");
+	});
+</script>
+
+<!--{eval include_once gettpl("hack_bottom");}-->

@@ -1,0 +1,16 @@
+				<div class="m-footer" align="center">
+					<hr />
+					<a href="$db_ceoconnect" target="_blank">关于$db_wwwname</a> ┆ <a href="mailto:$db_ceoemail">联系我们</a>
+					<!--{eval $cookiedomain = !empty($db_cookiedomain) ? $db_cookiedomain : '';}-->
+					<!--{eval $cookiepath = $db_cookiepath;}-->
+					 ┆ <a href="javascript:;" onclick="javascript:$.cookie('pv_pcpage', '1', {expires: 365, domain: '{$cookiedomain}', path: '{$cookiepath}'}); window.location.reload(true);">电脑端</a>
+					<br />						
+					$db_copyright<br />				
+					GMT<!--{if $db_timedf>=0}-->+$db_timedf<!--{/if}-->, Processed in {$runtime} second(s), <!--{echo $db->query_num}--> queries<!--{if $db_obstart=='1'}-->, Gzip enabled <!--{/if}-->
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

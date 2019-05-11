@@ -1,0 +1,68 @@
+<!--{if empty($postarr)}-->
+    <div class="searchImg-wrap">
+        <img src="{MOD_PATH}/images/search_empty.png" alt="">
+        <p>{lang nothing}</p>
+    </div>
+<!--{/if}-->
+<!--{loop $postarr $value}-->
+    <div class="weui-media-box weui-cell__bd cmt-item1" id="post_{$value[pid]}">
+        <div class="item-top">
+            <div class="weui-media-box__hd author">
+                <div class="user-img">
+                    <!--{if !$value['anonymous']}-->{eval echo avatar_block($value[authorid])}
+                    <!--{else}--><a class="avatar avatar-lg avatar-a" title="{lang anonymous}"><span class="Topcarousel" style="background:#a966ef" title="admin">{lang anony}</span></a>
+                    <!--{/if}-->
+                </div>
+            </div>
+            <div class="de-right">
+                <div class="author-name">{$value[author]}</div>
+                <div class="author-date">{eval echo dgmdate($value[dateline],'u')}</div>
+            </div>
+            <!--{if !$value[first] && !$thread[inarchive] && !$discuss[inarchive] && $_G[uid]}--><a class="cmt" href="{MOD_URL}&op=mobile&do=postcmt&pid={$value[pid]}&tid={$value[tid]}"><i class="dzz dzz-comment"></i></a><!--{/if}-->
+        </div>
+        <div class="weui-media-box__bd con-wrapper">
+            <p class="content">{$value[message]}</p>
+            <!--{if $value[comments]}-->
+                <div class="comment-wrap">
+                    <!--{loop $value[comments] $val}-->
+                        <div class="comment-item">
+                            <div class="cmt-top">
+                                <a href="user.php?uid={$val[uid]}" class="board-a detail-a">{$val[author]}</a>
+                                <div class="author-date" style="float: right">{eval echo dgmdate($val[time],'u')}</div>
+                            </div>
+                            <div class="cmt-info">
+                                {$val[content]}
+                            </div>
+                        </div>
+                        <!--{if !$val['pcid']}-->
+                        <!--{loop $val[replys] $v}-->
+                            <div class="reply-item">
+                                <div class="cmt-top">
+                                    <div class="name-wrap">
+                                        <a href="user.php?uid={$v[uid]}" class="board-a detail-a">{$v[author]}</a><span class="author-date"> {lang reply} </span><a href="user.php?uid={$v[reuid]}" class="board-a detail-a">{$v[replyer]}</a>
+                                    </div>
+                                    <div class="author-date"  style="float: right">{eval echo dgmdate($v[time],'u')}</div>
+                                </div>
+                                <div class="cmt-info">
+                                    {$v[content]}
+                                </div>
+                            </div>
+                        <!--{/loop}-->
+                        <!--{/if}-->
+                    <!--{/loop}-->
+                    <!--{if $value[cmtcount] > 5}-->
+                    <a href="{MOD_URL}&op=mobile&do=postcmt&pid={$value[pid]}&tid={$value[tid]}" class="weui-cell weui-cell_link allcmt" target="_self" style="padding-left: 0;padding-bottom: 0;">
+                      <div class="weui-cell__bd">{lang see_all_comments}</div>
+                    </a>
+                    <!--{/if}-->
+                </div>
+            <!--{/if}-->
+        </div>
+    </div>
+<!--{/loop}-->
+<!--{if $nextpage}-->
+    <div class="weui-loadmore" data-url="{$theurl}&ajax=1&page={$nextpage}">
+      <i class="weui-loading"></i>
+      <span class="weui-loadmore__tips">{lang loading}</span>
+    </div>
+<!--{/if}-->

@@ -1,0 +1,241 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/themes/default/style.min.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/discuss.css?{VERHASH}" rel="stylesheet" media="all">
+<link rel="stylesheet" href="static/css/checkbox.css">
+<link rel="stylesheet" href="static/js/datepicker/datepicker.css">
+<style>
+html,body{
+	overflow:hidden;
+}
+body{
+    background-color: rgba(241, 241, 241, 1);
+}
+.navbar-inverse {
+    background-color: rgba(255, 90, 58, 1);
+}
+.bs-main-container{
+	margin-left:0;	
+}
+</style>
+
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="{MOD_PATH}/scripts/discuss.js?{VERHASH}"></script>
+
+<script type="text/javascript">
+	var needsave=0; 
+	try{
+		var api=_api.init();
+		var appid=api.wname.appid;
+		api.setFileExt([]);
+	}catch(e){};
+ </script>
+<!--{template common/header_simple_end}-->
+
+<!--{template common/commer_header}-->
+<div class="bs-container clearfix">
+
+  <div class="bs-main-container">
+    <div class="main-content clearfix" style="margin-bottom: 40px;">
+        <!--{if {$discuss[rules]}}-->
+        <div class="rules-wrap">
+            {$discuss[rules]}
+        </div>
+        <!--{/if}-->
+        <div class="discuss-top discuss-newtop clearfix">
+            <div>
+                <div class="board-title1">$discuss[name]</div>
+                <span>&nbsp;&nbsp;{lang today}: <strong class="text-red">$discuss[todayposts]</strong><span class="pipe">|</span>&nbsp;&nbsp;{lang thread}: <strong class="text-red">$discuss[threads]</strong>
+                </span>
+                <span class="board-title" style="margin-left: 15px;border-bottom: none;padding: 0;">
+                    <span>{lang moderator}:</span>
+                    <a href="user.php?uid=$discuss[uid]">$discuss[username]</a>
+                </span>
+                <div class="new-btn bo-btn" style="display:inline-block;margin-left: 25px;margin-top: -2px;">
+                    <!--{if $discuss[perm] > 0}-->
+                    <a href="{DZZSCRIPT}?mod=discuss&op=ajax&do=favorite&id=$discuss[fid]&idtype=forum&handlekey=favoriteforum" id="a_favorite" class="fa_fav" onclick="favorite(this);return false;">
+                        <!--{if $discuss[isfav]}-->
+                        <i class="color-i dzz dzz-star" style="font-size: 18px;vertical-align: -3px;"></i>&nbsp;{lang cancel_favorite}
+                        <!--{else}-->
+                        <i class="color-i dzz dzz-star" style="font-size: 18px;vertical-align: -3px;"></i>&nbsp;{lang favorite}
+                        <!--{/if}-->
+                    </a>
+                    <!--{/if}-->
+                </div>
+                <div class="new-btn bo-btn" style="float: right;">
+                    <!--{if (($discuss[postperm] > 1 && $discuss[perm] > 2) || ($discuss[postperm] < 2 && $discuss[perm] > 0)) && !$discuss[inarchive]}-->
+                        
+                        <a class="newthread_a" href="{MOD_URL}&op=list&fid=$fid&do=newthread&extra=$extra&forward=$forward">
+                            <div class="btn btn-primary newBtn" data-toggle="modal" data-target="#newthread_board" style="margin-right: 10px;">
+                                <i class="dzz dzz-create" style="color:#fff;font-size: 18px;vertical-align: -2px"></i>
+                                {lang send_new_thread}
+                            </div>
+                        </a>
+
+                    <!--{/if}-->
+                </div>
+            </div>
+
+        </div>
+    	<div class="discuss-container">
+            <!--{if $list}-->
+        	<div class="board-header">
+            	<div class="board-title clearfix" >
+                    <div class="board-top-wrap clearfix">
+                        <!--{if $threadclass}-->
+                            <div class="choose-wrap1">
+                                <div class="btn-group">
+                                    <button type="button" class="btn drop-btn" data-toggle="dropdown">
+                                        <!--{if $typeid}-->$threadclass[$typeid][name]<!--{else}-->{lang all}<!--{/if}-->  <span class="dzz dzz-expand-more"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" style="max-height: 360px;overflow: auto">
+                                        <li><a href="{MOD_URL}&op=list&fid=$fid&forward=$forward">{lang all}</a></li>
+                                        <!--{loop $threadclass $value}-->
+                                        <li><a class="btn-a <!--{if $typeid==$value[typeid]}-->btn-a-active<!--{/if}-->" href="{MOD_URL}&op=list&fid=$fid&typeid=$value[typeid]&forward=$forward">$value[name]</a></li>
+                                        <!--{/loop}-->
+                                    </ul>
+                                </div>
+                            </div>
+                        <!--{/if}-->
+                        <div class="choose-wrap1">
+                            <div class="btn-group">
+                                <button type="button" class="btn drop-btn" data-toggle="dropdown">
+                                    <!--{if $ordertype == 'dateline'}-->{lang order_post_sent_time}<!--{elseif $ordertype == 'lastpost'}-->{lang order_reply_time}<!--{elseif $ordertype == 'heats'}-->{lang order_heat}<!--{elseif $ordertype == 'digest'}-->{lang order_essence}<!--{/if}-->  <span class="dzz dzz-expand-more"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{DZZSCRIPT}?mod=discuss&op=list&fid=$fid&typeid=$typeid&ordertype=dateline&forward=$forward">{lang order_post_sent_time}</a></li>
+                                    <li><a href="{DZZSCRIPT}?mod=discuss&op=list&fid=$fid&typeid=$typeid&ordertype=lastpost&forward=$forward">{lang order_reply_time}</a></li>
+                                    <li><a href="{DZZSCRIPT}?mod=discuss&op=list&fid=$fid&typeid=$typeid&ordertype=heats&forward=$forward">{lang order_heat}</a></li>
+                                    <li><a href="{DZZSCRIPT}?mod=discuss&op=list&fid=$fid&typeid=$typeid&ordertype=digest&forward=$forward">{lang order_essence}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--{if $discuss[perm] >2}-->
+                        <div class="batch_opt" style="<!--{if $discuss[inarchive]}-->display: none;<!--{else}-->display: inline-block;<!--{/if}-->">
+                            <div class="all-choose" style="margin-left: 0;">
+                                <div class="checkbox-custom checkbox-warning" onclick="select_all()">
+                                    <input type="checkbox" id="chkall" name="chooseAll">
+                                    <label>{lang select_all}</label>
+                                </div>
+                            </div>
+                            <span class="choose-info">{lang selected} <span>0</span> {lang pian}</span>
+                            <span class="btngroup">
+
+                                <span class="adminsee">
+                                    <a href="javascript:;" onclick="showWindow('settype','{MOD_URL}&op=ajax&do=showwindow&position=settype&fid={$fid}&type=list','get',0)"class="sys-type">{lang thread_class}</a><span class="pipe">|</span>
+                                    <a href="javascript:;" onclick="showWindow('settop','{MOD_URL}&op=ajax&do=showwindow&position=settop&fid={$fid}&type=list','get',0)">{lang settop}</a>
+                                    <a href="javascript:;" onclick="showWindow('highlight','{MOD_URL}&op=ajax&do=showwindow&position=highlight&fid={$fid}&type=list','get',0)">{lang highlight}</a>
+                                    <a href="javascript:;" onclick="showWindow('elite','{MOD_URL}&op=ajax&do=showwindow&position=elite&fid={$fid}&type=list','get',0)" style="margin-right: 4px;">{lang digest}</a><span class="pipe">|</span>
+                                    <a href="javascript:;" onclick="deleteSub('{$fid}','{lang true_delete_seleted_thread}')">{lang delete}</a>
+                                </span>
+
+                            </span>
+                        </div>
+                        <!--{/if}-->
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!--{/if}-->
+            <div class="board-thread"> 
+                <div id="threadlist" class="board-thread-list tl" style="position:relative">
+                <div id="forumnew"></div>
+                <script type="text/javascript">var lasttime = {TIMESTAMP};var listcolspan= '5';</script>
+            	<form method="post" autocomplete="off" name="moderate" id="moderate" action="{DZZSCRIPT}?mod=discuss&op=topicadmin&action=moderate&fid=$fid&infloat=yes&nopost=yes">
+                <input type="hidden" name="formhash" value="{FORMHASH}" />
+                <input type="hidden" name="listextra" value="$extra" />
+                <table class="table table-hover" >
+                <!--{if empty($list)}-->
+                      <div class="searchImg-wrap">
+                          <img src="{MOD_PATH}/images/search_empty.png" alt="">
+                          <p>{lang no_post}</p>
+                      </div>
+                <!--{/if}-->
+                <!--{template discuss_thread_list_item}-->
+                 
+                </table>
+           </div>
+          </div>
+         
+        </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	jQuery('.left-drager').leftDrager_layout();
+	checkForumnew_handle = setTimeout(function () {checkForumnew('{$fid}', lasttime);}, checkForumtimeout);
+	jQuery(document).ready(function(e) {
+	  if(jQuery('#nextpage:visible').length){
+			jQuery('.bs-main-container').scroll(function(e) {
+				var clientHeight = jQuery('.bs-main-container').height();
+				var scrollHeight = jQuery('.main-content').height();
+				if(jQuery('.bs-main-container').scrollTop()+clientHeight>scrollHeight-20) jQuery('#nextpage td').trigger('click');
+		  });
+	  }
+
+
+});
+    function select_all(){
+        if (jQuery("#chkall").prop("checked")) {
+            jQuery('input[name="board"]').not(':disabled').prop("checked", true);
+            jQuery('.adminsee').show();
+        } else {
+            jQuery('input[name="board"]').prop("checked", false);
+            jQuery('.adminsee').hide();
+        }
+        jQuery(".choose-info span").text(jQuery('input[name="board"]:checked').length);
+    }
+    function select_one(){
+        var selected = jQuery('input[name="board"]:checked').length;
+        jQuery(".choose-info span").text(selected);
+        jQuery('.adminsee').show();
+        if(selected==0) {
+            jQuery('.adminsee').hide();
+        }
+        if (selected == jQuery('input[name="board"]').length) {
+            jQuery("#chkall").prop("checked", true);
+        } else {
+            jQuery("#chkall").prop("checked", false);
+        }
+    }
+
+    function deleteSub(fid,mes) {
+        showDialog(mes,'confirm','',function () {
+            var tids = [];
+            jQuery('input[name="board"]:checked').each(function () {
+                tids.push(jQuery(this).data('tid'));
+            })
+            var data = {
+                        'formhash':'{FORMHASH}',
+                        'modsubmit':true,
+                        'moderate[]':tids,
+                        'operations[]':'recycle',
+                        'fid': fid
+                    }
+            jQuery.ajax({
+                url: '{MOD_URL}&op=topicadmin&action=moderate&optgroup=1',
+                type: 'post',
+                dataType: 'json',
+                data: data,
+                success: function(res){
+                    if (res.code == 200) {
+                        showmessage(res.message,'success',1000,1);
+                        jQuery('input[name="board"]:checked').parents(".card-item").remove();
+                    } else {
+                        showmessage(res.message,'danger',1000,1);
+                    }
+                }
+            })
+        })
+    }
+</script>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.ui.datepicker.min.js"></script>
+<script type="text/javascript" src="static/js/datepicker/jquery.datepicker-zh-CN.js"></script>
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->  

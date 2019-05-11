@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/dis_header}-->
+    <link rel="stylesheet" href="{MOD_PATH}/images/css/footer.css">
+    <link href="dzz/system/ueditor/third-party/dzzattach/dzzattach.css?{VERHASH}"  rel="stylesheet"  media="all">
+    <script type="text/javascript" src="static/clipboard/clipboard.min.js"></script>
+    <script src="dzz/system/ueditor/third-party/highcharts/highcharts.js" type="text/javascript" defer="defer"></script>
+    <script src="dzz/system/ueditor/dialogs/charts/chart.config.js" type="text/javascript" defer="defer"></script>
+    <title>{lang discuss}</title>
+</head>
+<body style="background-color: #efeff4;">
+<div class="weui-search-bar" id="searchBar">
+    <form class="weui-search-bar__form" action="{MOD_URL}&op=search" method="post">
+        <input type="hidden" name="formhash" value="{FORMHASH}" >
+        <input type="hidden" name="searchsubmit" value="true">
+        <div class="weui-search-bar__box">
+            <i class="weui-icon-search"></i>
+            <input type="search" name="srchtxt" class="weui-search-bar__input" id="searchInput" placeholder="{lang search}" required="" value="{$_GET[kw]}">
+            <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+        </div>
+        <label class="weui-search-bar__label" id="searchText">
+            <i class="weui-icon-search"></i>
+            <span>{lang search}</span>
+        </label>
+    </form>
+    <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">{lang cancel}</a>
+</div>
+<div class="detail-con" style="margin-bottom: 0;background-color: #fff;">
+    <div class="border-bot">
+        <div class="weui-media-box board-con weui-cell__bd">
+            <div class="weui-media-box__hd board-wrap1">
+                <div class="board-img" style="background-color: rgba(61, 165, 253, 1)">{$discuss[name]}</div>
+            </div>
+            <div class="weui-media-box__bd" style="padding-left: 60px;">
+                <div class="title-wrap" style="margin-bottom: 0px;">
+                    <h4 class="weui-media-box__title t-title1">{$discuss[name]}</h4>
+                    <a href="javascript:;" class="more open-popup" data-target="#more"><i class="dzz dzz-more"></i></a>
+                </div>
+                <div class="weui-media-box__desc">
+                    <span class="board-span" style="margin-left: 0;">{lang thread}：{$discuss[threads]}</span>
+                    <span class="board-span">{lang post}：{$discuss[posts]}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--{if $threadclass}-->
+    <div class="type-wrap">
+        <a href="{MOD_URL}&op=list&fid={$fid}" class="type-item <!--{if !$typeid}-->active-type-item<!--{/if}-->">{lang all}</a>
+        <!--{loop $threadclass $key $value}-->
+            <a href="{MOD_URL}&op=list&fid={$fid}&typeid={$key}" class="type-item <!--{if $typeid == {$key}}-->active-type-item<!--{/if}-->">$value[name]</a>
+        <!--{/loop}-->
+    </div>
+    <!--{/if}-->
+    <div class="dis-wrap">
+        <!--{template mobile/thread_list}-->
+    </div>
+</div>
+
+<div id="more" class="weui-popup__container popup-bottom">
+    <div class="weui-popup__overlay">
+        <a href="javascript:;" class="close-popup" style="display: block;height: 100%"></a>
+    </div>
+    <div class="weui-popup__modal more-modal">
+
+        <div class="modal-content create-con" style="padding-bottom: 30px;">
+            <div class="weui-grids create-container2">
+                <!--{if !empty($_G[uid])}-->
+                <!--{if $discuss[perm] > 2}-->
+                <a href="{MOD_URL}&op=list&do=user&fid={$fid}" class="weui-grid js_grid more-item more-item1">
+                    <div class="weui-grid__icon item-icon">
+                        <i class="dzz dzz-group"></i>
+                    </div>
+                    <p class="weui-grid__label">
+                        {lang member}
+                    </p>
+                </a>
+                <a href="javascript:;" class="weui-grid js_grid more-item more-item1" onclick="rename('{$discuss[name]}')">
+                    <div class="weui-grid__icon item-icon">
+                        <i class="dzz dzz-netdisk-edit"></i>
+                    </div>
+                    <p class="weui-grid__label">
+                        {lang rename}
+                    </p>
+                </a>
+                <a href="javascript:;" class="weui-grid js_grid more-item more-item1" onclick="deleteBoard('{$fid}')">
+                    <div class="weui-grid__icon item-icon">
+                        <i class="dzz dzz-delete"></i>
+                    </div>
+                    <p class="weui-grid__label">
+                        {lang delete}
+                    </p>
+                </a>
+                <!--{/if}-->
+                <!--{if $discuss[perm] > 0}-->
+                <a href="javascript:;" class="weui-grid js_grid more-item more-item1" onclick="addfavorite('{$fid}')">
+                    <div class="weui-grid__icon item-icon">
+                        <i class="dzz dzz-star p_star <!--{if $discuss[isfav]}-->collected<!--{/if}-->"></i>
+                    </div>
+                    <p class="weui-grid__label p_favorite">
+                       <!--{if $discuss[isfav]}-->{lang cancel_favorite}<!--{else}-->{lang favorite}<!--{/if}-->
+                    </p>
+                </a>
+                <!--{/if}-->
+                <!--{/if}-->
+                <a href="javascript:;" class="weui-grid js_grid more-item more-item1" onclick="shareCode('discuss')">
+                    <div class="weui-grid__icon item-icon">
+                        <i class="dzz dzz-share"></i>
+                    </div>
+                    <p class="weui-grid__label">
+                        {lang share}
+                    </p>
+                </a>
+                <!--{if ($discuss[fpostperm] || $thread[authorid] == $_G[uid]) && !$discuss[inarchive] && !$thread[inarchive]}-->
+                <a href="{MOD_URL}&op=mobile&do=newthread&fid={$fid}" class="weui-grid js_grid more-item more-item1">
+                    <div class="weui-grid__icon item-icon">
+                        <i class="dzz dzz-add"></i> 
+                    </div>
+                    <p class="weui-grid__label">
+                        {lang new_post}
+                    </p>
+                </a>
+                <!--{/if}-->
+            </div>
+        </div>
+        <div class="toolbar createbar">
+            <div class="toolbar-inner">
+                <a href="javascript:;" class="btn-a close-popup">{lang cancel}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="dzz/system/ueditor/ueditor.parse.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/third-party/dzzattach/dzzattach.js?{VERHASH}" type="text/javascript"></script>
+
+<script>
+    function shareCode(type1) {
+        jQuery.modal({
+            title: "",
+            text: "<button class='shareClose' onclick='closeShare()'><i class='dzz dzz-close'></i></button><p><img class='img-thumbnail qrcodeImg' src='{MOD_PATH}/images/loading.gif' alt=''></p><p class='shareInfo'>{lang press_share_qrcode}</p>",
+            buttons:[
+                { text: "{lang copy_address}", className:"shareBtn1", onClick: function(){
+
+                    var client = new Clipboard('.shareBtn1');
+                    client.on('success',function (e) {
+                        jQuery.toptip('{lang copy_success}', 'success');
+                        jQuery.closePopup();
+                    })
+                    client.on('error',function (e) {
+                        jQuery.toptip('{lang copy_failed}', 'error');
+                        jQuery.closePopup();
+                    })
+
+                } },
+            ]
+        });
+        jQuery.ajax({
+            url:'{MOD_URL}&op=ajax&do=share&type='+type1+'&fid={$fid}',
+            type:'post',
+            dataType:'json',
+            success:function (res) {
+                if(res.code==200) {
+                    jQuery('.qrcodeImg').attr('src',res.data.qrcode);
+                    jQuery('.shareBtn1').attr('data-clipboard-text',res.data.url);
+                }
+            }
+        })
+
+    }
+    function closeShare() {
+        jQuery.closeModal();
+        jQuery.closePopup();
+    }
+    jQuery(function () {
+        uParse('.con-wrapper',{'rootPath':'dzz/system/ueditor'});dzzattach.init('.con-wrapper');
+
+        var loading = false;  //状态标记
+        jQuery(document.body).infinite().on("infinite", function() {
+          if(loading) return;
+          loading = true;
+          if (jQuery(".weui-loadmore").length > 0) {
+            var url = jQuery(".weui-loadmore").data("url");
+            jQuery.ajax({
+                url: url,
+                type: 'get',
+                success: function(res) {
+                    jQuery(".weui-loadmore").replaceWith(res);
+                    loading = false;
+                }
+            })
+          } else {
+            jQuery(document.body).destroyInfinite();
+          }
+        })
+    })
+    function rename(val) {
+        jQuery.prompt({
+            title: '{lang rename}',
+//            text: '内容文案',
+            input: val,
+            empty: false, // 是否允许为空
+            onOK: function (input) {
+                jQuery.ajax({
+                    url: "{MOD_URL}&op=ajax&do=disrename",
+                    data: {'fid': '{$fid}', 'name': input},
+                    dataType: 'json',
+                    type: 'post',
+                    success: function(res) {
+                        if (res.code == 200) {
+                            jQuery(".weui-media-box__title.t-title1").text(res.name);
+                            $.toptip(res.message, 'success');
+                        } else {
+                            $.toptip(res.message, 'error');
+                        }
+                        $.closePopup();
+                    }
+                })
+            },
+            onCancel: function () {
+                //点击取消
+            }
+        });
+    }
+   function addfavorite(id) {//加入收藏
+        var url = "{MOD_URL}&op=ajax&do=favorite&idtype=forum&handlekey=favoriteforum&id="+id+"&formhash={FORMHASH}";
+        jQuery.getJSON(url, function(res) {
+            if (res.error) {
+                $.toptip(res.error, 'warning');
+            } else {
+                $.toptip(res.msg, 'success');
+                if (res.status == 1) {
+                    jQuery(".p_star").addClass("collected");
+                    jQuery(".p_favorite").text("{lang cancel_favorite}");
+                } else {
+                    jQuery(".p_star").removeClass("collected");
+                    jQuery(".p_favorite").text("{lang favorite}");
+                }
+                
+            }
+            $.closePopup();
+        })
+    }
+    function deleteBoard(num) {
+        $.confirm('{lang true_delete_discuss}','{lang true_delete}',function () {
+            jQuery.ajax({
+                url:'{MOD_URL}&op=ajax&do=delete&position=field',
+                data:{fid:num},
+                type:'post',
+                dataType:'json',
+                success:function (res) {
+                    if(res.code==200) {
+                        $.toptip(res.message,'success');
+                        setTimeout(function () {
+                            window.location.href='{MOD_URL}';
+                        },2000)
+                    }
+                }
+            })
+        })
+    }
+</script>
+<!--{eval output();}-->
+</html>

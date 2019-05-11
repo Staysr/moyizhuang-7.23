@@ -1,0 +1,21 @@
+<view>
+<!-- 主体 -->
+<view class="nav bc_white">
+    <view class="{{selected?'red':'default'}}" bindtap="selected">已发布</view>
+    <view class="{{selected1?'red':'default'}}" bindtap="selected1">已接单</view>
+    <view class="{{selected2?'red':'default'}}" bindtap="selected2">已完结</view>
+  </view>
+
+<view class="color">
+ <view class="gear">
+<span class="gear_add">{{gear}}</span>
+<span class="gear_add">{{dizhi}}</span>
+<span class="gear_add">任务类型:{{leixing}}</span>
+<span class="gear_add">联系人姓名:{{name}}</span>
+<span class="gear_add">联系人电话:{{open}}</span>
+<span class="gear_add">所选车型:{{car}}</span>
+<span class="gear_add">结算金额: ¥{{money}}</span>
+</view>
+ </view>
+
+</view>

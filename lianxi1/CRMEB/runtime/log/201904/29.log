@@ -1,0 +1,122 @@
+---------------------------------------------------------------
+[ 2019-04-29T15:35:44+08:00 ] 0.0.0.0 GET /lianxi1/CRMEB/
+[ info ] localhost/lianxi1/CRMEB/ [运行时间：0.166014s][吞吐率：6.02req/s] [内存消耗：2,378.73kb] [文件加载：55]
+[ info ] [ LANG ] /Applications/MAMP/htdocs/18031/lianxi1/CRMEB/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://localhost/lianxi1/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=577f2a17b62ab885628d90332472f819; admin_username=admin; _aihecong_chat_visibility=false',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'prefix' => 'admin',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-04-29T15:35:44+08:00 ] 0.0.0.0 GET /lianxi1/CRMEB/admin/login/index.html
+[ info ] localhost/lianxi1/CRMEB/admin/login/index.html [运行时间：0.037069s][吞吐率：26.98req/s] [内存消耗：1,546.45kb] [文件加载：40]
+[ info ] [ LANG ] /Applications/MAMP/htdocs/18031/lianxi1/CRMEB/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'lianxi1',
+    1 => 'CRMEB',
+    2 => 'admin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://localhost/lianxi1/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=577f2a17b62ab885628d90332472f819; admin_username=admin; _aihecong_chat_visibility=false',
+)
+[ info ] [ PARAM ] array (
+  '/admin/login/index_html' => '',
+  'login' => 'index',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-04-29T15:36:38+08:00 ] 0.0.0.0 GET /lianxi1/CRMEB/
+[ info ] localhost/lianxi1/CRMEB/ [运行时间：0.055370s][吞吐率：18.06req/s] [内存消耗：2,378.72kb] [文件加载：55]
+[ info ] [ LANG ] /Applications/MAMP/htdocs/18031/lianxi1/CRMEB/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://localhost/lianxi1/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=577f2a17b62ab885628d90332472f819; admin_username=admin; _aihecong_chat_visibility=false',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'prefix' => 'admin',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-04-29T15:36:38+08:00 ] 0.0.0.0 GET /lianxi1/CRMEB/admin/login/index.html
+[ info ] localhost/lianxi1/CRMEB/admin/login/index.html [运行时间：0.044133s][吞吐率：22.66req/s] [内存消耗：1,546.45kb] [文件加载：40]
+[ info ] [ LANG ] /Applications/MAMP/htdocs/18031/lianxi1/CRMEB/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'lianxi1',
+    1 => 'CRMEB',
+    2 => 'admin',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'referer' => 'http://localhost/lianxi1/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'PHPSESSID=577f2a17b62ab885628d90332472f819; admin_username=admin; _aihecong_chat_visibility=false',
+)
+[ info ] [ PARAM ] array (
+  '/admin/login/index_html' => '',
+  'login' => 'index',
+)
+[ info ] [ LOG ] INIT File

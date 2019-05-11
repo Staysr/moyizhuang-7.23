@@ -1,0 +1,123 @@
+<!--{template common/header_ajax}-->
+<div class="found_header">
+  	<button type="button" class="close close1" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+  	<h4 class="modal-title">修改任务版</h4>
+</div>
+<form id="taskboardform" name="taskboardform" class="form-horizontal form-horizontal-left" action="{MOD_URL}&op=list&do=setting" method="post" onsubmit="return validate_$_G[handlkey](this);">
+	<div class="modal-body">
+	    <input type="hidden" name="settingsubmit" value="true"/>
+	    <input type="hidden" name="tbid" value="$tbid"/>
+	    <input type="hidden" name="operation" value="$operation"/>
+	    <input type="hidden" name="formhash" value="{FORMHASH}"/>
+	    <input type="hidden" name="refer" value="$refer"/>
+		<div class="form-group">
+    		<label class="control-label" for="name">任务版名称</label>
+		    <div class="col-sm-8">
+		      	<input type="text" class="form-control" id="name" name="setting[name]" autocomplete="off" value="$taskboard[name]" maxlength="80">
+		    </div>
+  		</div>
+
+	    <div class="form-group taskboard-coverContainer">
+	        <label class="control-label col-sm-2">任务板背景</label>
+	        <input type="hidden" id="aid" name="setting[aid]" autocomplete="off" value="$taskboard[aid]">
+	        <div class="controls col-sm-8">
+	            <ul class="color-block-container list-unstyled clearfix" style="margin-bottom:0">
+	                {eval for($i=1;$i<12;$i++){}
+	                <li><button type="button"  class="btn color-block color-block-$i" data-aid="$i" onclick="switch_cover(this,'$i');return false;"><span class="dzz dzz-done" style="visibility:<!--{if $taskboard[aid]==$i}-->visible<!--{else}-->hidden<!--{/if}-->;"></span></button></li>
+	                {eval }}
+	            </ul>
+	        </div>
+	    </div> 
+	   <div class="form-group clearfix">
+            <label class="control-label" for="name" style="line-height:35px;">权限设置：</label>
+            <div class="clearfix" style="padding-left:120px;">
+			<!--{if empty($org) || $org['perm']>2 ||  ($org && (intval($org['mperm_c']) & 1))}-->
+				<div class="radio-custom pull-left radio-primary ml20">
+					<input type="radio" name="setting[viewperm]" value="0" <!--{if $taskboard['viewperm']==0}-->checked<!--{/if}-->>
+					<label>隐私</label>
+				</div>
+				<!--{/if}-->
+			<!--{if $org['perm']>2 || ($org[perm]>1 && (intval($org['mperm_c']) & 2))}-->
+				<div class="radio-custom pull-left radio-primary ml20">
+					<input type="radio" name="setting[viewperm]" value="1" <!--{if $taskboard['viewperm']==1}-->checked<!--{/if}-->>
+					<label>小组内可见</label>
+				</div>
+			<!--{/if}-->	
+			 <!--{if empty($org) || $org['perm']>2 || ($org[perm]>1 && (intval($org['mperm_c']) & 4))}-->
+				<div class="radio-custom pull-left radio-primary ml20">
+					<input type="radio" name="setting[viewperm]" value="2" <!--{if $taskboard['viewperm']==2}-->checked<!--{/if}-->>
+					<label>公开</label>
+				</div>
+			<!--{/if}-->
+			</div>
+      		
+        </div>                     
+	   <div class="form-group">
+            <label class="control-label" for="name" style="line-height:35px;">任务列表：</label>
+            <div class="clearfix" style="padding-left:120px;">
+				<div class="radio-custom pull-left radio-primary ml20">
+					<input type="radio" name="setting[layout]" value="0" <!--{if $taskboard[layout]<1}-->checked<!--{/if}-->>
+					<label>看板</label>
+				</div>
+				<div class="radio-custom pull-left radio-primary ml20">
+					<input type="radio" name="setting[layout]" value="1"  <!--{if $taskboard[layout]>0}-->checked<!--{/if}-->>
+					<label>列表</label>
+				</div>
+				
+			</div>
+        </div> 
+	              
+	    <div class="form-group">
+			<label class="control-label" for="name">任务板状态</label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" name="setting[desc_status]" autocomplete="off" value="$taskboard[desc_status]">
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label" for="name">时间描述</label>
+			<div class="col-sm-8">
+				<input class="form-control datepicker"  autocomplete="off" id="desc_date" name="setting[desc_date]" type="text" value="$taskboard[desc_date]" placeholder="描述时间要求">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="name">预算描述</label>
+			<div class="col-sm-8">
+				<input autocomplete="off" id="desc_money" name="setting[desc_money]" type="text" value="$taskboard[desc_money]" class="form-control" placeholder="描述预算要求">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="name">任务板介绍</label>
+			<div class="col-sm-8">
+				<textarea name="setting[desc]" rows="1" class="form-control textarea-resize">$taskboard[desc]</textarea>
+			</div>
+		</div>  
+	</div>
+	<div class="modal-footer">
+	    <button type="submit" class="btn btn-primary">{lang confirms}</button>
+	    <button type="button" class="btn btn-default-outline cancel" data-dismiss="modal" aria-label="Close">{lang cancel} </button>
+	</div> 
+</form>  
+<script type="text/javascript">
+	
+function validate_{$_G[handlkey]}(form){
+	if(form.name.value==''){
+		form.name.focus();
+		return false;
+	}
+	jQuery.post(form.action,jQuery(form).serialize(),function(json){
+		console.log(json);
+		window.location.reload();
+	},'json');
+	return false;
+}
+	
+function switch_cover(obj,aid){
+	// jQuery('#cover_aid').find('img').get(0).src=SITEURL+'dzz/taskboard/images/cover/'+aid+'.png';
+    jQuery(obj).find('span').css('visibility','visible');
+    jQuery('.color-block').not(jQuery(obj)).find('span').css('visibility','hidden');
+	jQuery('#aid').val(aid);
+}
+$.getScript('static/js/jquery.textareaexplander.js',function(){$('textarea.textarea-resize').TextAreaExpander(34,999);});
+</script>
+<!--{template common/footer_ajax}-->

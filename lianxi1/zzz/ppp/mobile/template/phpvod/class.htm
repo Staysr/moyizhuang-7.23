@@ -1,0 +1,64 @@
+<div class="m-classfilter">
+	<div class="nav_row">
+		<!--{eval $classid = $cup!=0 ? $cup : $cid;}-->
+		<label>栏目: </label>
+		<div class="nav_row_content">
+			<div class="nav_row_content_inner">
+				<a href="class.php?cid=$classid{$nidurl}{$yearurl}{$orderurl}"{$sel[cid][$classid]}>全部</a>
+				<!--{loop:class:$c cid=$classid}-->
+				<a href="class.php?cid=$c[cid]{$nidurl}{$yearurl}{$orderurl}"{$sel[cid][$c[cid]]}>$c[caption]</a>
+				<!--{/loop:class}-->
+			</div>
+		</div>
+	</div>
+	<div class="nav_row">
+		<label>地区: </label>
+		<div class="nav_row_content">
+			<div class="nav_row_content_inner">
+				<a href="class.php{$cidurl}{$yearurl}{$orderurl}"{$sel[nid][all]}>全部</a>
+				<!--{loop $_nation $k $n}-->
+				<a href="class.php{$cidurl}&nid=$k{$yearurl}{$orderurl}"{$sel[nid][$k]}>$n</a>
+				<!--{/loop}-->
+			</div>
+		</div>
+	</div>				
+	<div class="nav_row">
+		<label>时间: </label>
+		<div class="nav_row_content">
+			<div class="nav_row_content_inner">
+				<a href="class.php{$cidurl}{$nidurl}{$orderurl}"{$sel[year][all]}>全部</a>
+				<!--{eval for($i=$db_yearend;$i>=$db_yearstart;$i--) {if($db_yearend-$i>=10) break;}-->
+				<a href="class.php{$cidurl}{$nidurl}&year=$i{$orderurl}"{$sel[year][$i]}>$i</a>
+				<!--{eval }}-->
+				<a href="class.php{$cidurl}{$nidurl}&year=b{$i}{$orderurl}"{$sel[year]['b'.$i]}>更早</a>
+			</div>	
+		</div>
+	</div>				
+	<div class="nav_row">
+		<label>排序: </label>
+		<div class="nav_row_content">
+			<div class="nav_row_content_inner">
+				<a href="class.php{$cidurl}{$nidurl}{$yearurl}&order=postdate"{$sel[order][postdate]}>发布时间</a><a href="class.php{$cidurl}{$nidurl}{$yearurl}&order=lastdate"{$sel[order][lastdate]}>最后更新</a><a href="class.php{$cidurl}{$nidurl}{$yearurl}&order=hits"{$sel[order][hits]}>人气</a><a href="class.php{$cidurl}{$nidurl}{$yearurl}&order=reply"{$sel[order][reply]}>评论</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<section class="m-box f-mt10">
+	<div class="m-videolist">
+		<div class="row">
+		<!--{loop:video:$video $tagstr|showsub=1|order=$orderway $orderasc,v.vid DESC|limit=15|page=$page|url=$url|sync=1}-->	
+			<div class="col-xs-4 col-sm-3">
+				<div class="item">
+					<a href="play.php?vid={$video[vid]}&playgroup=1&index=0">
+						<span class="pic"><img src="$video[picurl]" /></span>
+						<div class="title">$video[subject]</div>
+					</a>
+				</div>
+			</div>
+		<!--{/loop:video}-->
+		</div>
+	</div>
+</section>
+
+<div class="u-pages"><!--{page $pageinfo}--></div>

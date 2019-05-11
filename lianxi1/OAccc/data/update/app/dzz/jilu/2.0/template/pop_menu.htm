@@ -1,0 +1,1067 @@
+<!--{if $do=='menu'}-->
+ 	<!--{if !$step}-->
+      <div class="popbox-header">
+         <button class="close glyphicon glyphicon-remove" style="font-size:16px;font-weight:normal"></button>
+        <h3>{eval echo lang('moderate_option')}</h3>
+      </div>
+      <div class="popbox-body">
+        <ul class="popbox-menu list-unstyled">
+           <li><a href="javascript:;"  class="js-popbox-item" data-href="{MOD_URL}&op=menu&do=menu&step=1&jid=$jid" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-settings"></i> &nbsp;{eval echo lang('members_verify_base')}</a></li>
+           <li><a href="javascript:;"  class="js-popbox-item" data-href="{MOD_URL}&op=menu&do=labelmenu&step=2&jid=$jid" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-label icon-label"></i> &nbsp;{eval echo lang('define_label')}</a></li>
+          <!--{if $jilu['inarchive']<1}-->
+          <li><a href="javascript:;"  class="js-popbox-item" data-href="{MOD_URL}&op=menu&do=menu&step=2&jid=$jid" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-archive2"></i> &nbsp;{eval echo lang('navtitle_archived')}</a></li>
+          <li><a href="javascript:;"  class="js-popbox-item" data-href="{MOD_URL}&op=menu&do=menu&step=4&jid=$jid" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-delete"></i> &nbsp;{eval echo lang('delete')}</a></li>
+          <!--{/if}-->
+        
+        </ul>
+     </div>
+     <script>
+        jQuery(function() {
+          jQuery('.js-popbox-item').on('click',function() {
+            showWindow('$jid',jQuery(this).data('href'),'get',0);
+
+          })
+        })
+     </script>
+    <!--{elseif $step==1}-->
+    <!--{template common/header_ajax}-->
+    	<style>
+		.colors a{
+			float:left;
+			margin:5px;
+			border:1px solid #e1e1e1;
+			border-radius:3px;
+			padding:15px;
+		}
+		.colors a:hover{
+			border-color:#da552f;
+		}
+		.colors a.active{
+			border-color:#da552f;
+		}
+
+		.uploadwrap_1 {
+			position: relative;
+			left: 0;
+			top: 0;
+			z-index: 10;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			/* opacity: 0; */
+			opacity: 0.001;
+		}
+		.uploadwrap_1 input{
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 0;
+			opacity: 0;
+			-ms-filter: 'alpha(opacity=0)';
+			font-size: 80px;
+			direction: ltr;
+			cursor: pointer;
+		}
+		</style>
+      <div class="modal-header" style="padding-top: 0px;">
+         <!--{if $_GET['list']}--><button class="back glyphicon glyphicon-chevron-left js-popbox-prev" ></button> <!--{/if}-->
+          <h3 class="modal-title text-center" style="padding-top: 30px">{eval echo lang('members_verify_base')}</h3>
+      </div>
+      <div class="modal-body" style="padding:0px 30px 30px 30px;">
+            <div class="input-black input-fixation">
+              <label class="control-label input-label label_input">{eval echo lang('title')}:</label>
+              <div class="input-animate">
+               <input id="title_1" class="form-control form-control-bborder"  style="font-size: 14px;border-width:0;color: rgba(51, 51, 51, 1);width:90%;padding-left:0;padding-right:0;margin-top:5px;" name="title" value="$jilu[title]" placeholder="{eval echo lang('need_name_to_jilu')}" />
+              </div>
+            </div>
+            <div class="input-black input-fixation">
+              <label class="control-label input-label label_input">{eval echo lang('introduce')}:</label>
+              <div class="input-animate">
+               <input id="desc_1" class="form-control form-control-bborder"  style="font-size: 14px;border-width:0;color: rgba(51, 51, 51, 1);width:90%;display:inline-block;padding-left:0;padding-right:0" name="desc" value="$jilu[desc]" placeholder="{eval echo lang('one_word_introduction')}" />
+              </div>
+            </div>
+          <div style="padding: 0 5px;">
+              <div for="" class="switchInfo">{eval echo lang('allow_jilu_share')}</div>
+              <div class="switchwrap">
+                  <input type="checkbox" name="privacy" id="check1" <!--{if $jilu[privacy] < 1}-->checked="checked"<!--{/if}--> class="chk_1" value="{$jilu[privacy]}"/>
+                  <label for="check1"></label>
+              </div>
+          </div>
+
+      </div>
+    <div class="modal-footer basic-btnwrap" style="background-color: #fff;padding: 0 30px 30px 30px;">
+        <button class="btn sureBtn basic-sure" onclick="basicSure()">{eval echo lang('affirm')}</button>
+        <button class="btn cancelBtn basic-cancel" onclick="basicCancel()">{eval echo lang('cancel')}</button>
+    </div>
+         <script type="text/javascript" reload="1">
+          jQuery(function () {
+            jQuery('.input-black').each(function(){
+                InputAnimate.init(jQuery(this));
+            })
+            jQuery("#check1").next().on("click",function(){
+              if(jQuery(this).prev().prop("checked")){
+                jQuery("#check1").removeClass("checked");
+              } else {
+                jQuery("#check1").addClass("checked");
+              }
+            })
+        })
+          function basicSure() {
+              setSave('title',jQuery('#title_1').val());
+              setSave('desc',jQuery('#desc_1').val());
+              if(jQuery("#check1").hasClass("checked")){
+                setSave('privacy',0);
+              }else{
+                setSave('privacy',2);
+              }
+              hideWindow('$jid');
+          }
+          function basicCancel() {
+              jQuery('#title_1').val(jQuery('.avatarTit').text());
+              jQuery('#desc_1').val(jQuery('.note-info').text());
+              hideWindow('$jid');
+          }
+		 jQuery('#title_1,#desc_1').on('keyup',function(e){
+			 jQuery('#'+this.id.replace(/_1/i,'')).text(this.value);
+		 });
+		 jQuery('input.js-titlehidden').on('click',function(){
+			 var titlehidden=(jQuery(this).prop('checked'))?1:0;
+			 setSave('titlehidden',titlehidden);
+		 });
+
+		 function setSave(name,val){
+			 if(name=='title'){
+				 if(val==''){
+					 showmessage('{eval echo lang("name_not_empty")}','danger',1000,1);
+					 jQuery('#title_1').focus();
+					 return;
+				 }
+				 jQuery('#jilu_{$jid}').find('.post-url').text(val);
+			 }else if(name=='desc'){
+				  jQuery('#jilu_{$jid}').find('.desc').text(val);
+			 }else if(name=='titlehidden'){
+				 if(val>0){
+					 jQuery('.siteinfo').hide();
+				 }else{
+				    jQuery('.siteinfo').show();
+				 }
+			 }
+
+			 jQuery.post('{MOD_URL}&op=ajax&do=setSave&jid=$jid',{name:name,val:val}, function(){
+        if(name == 'title'){
+          jQuery(".avatarTit").text(val);
+        } else if( name == 'desc') {
+          jQuery(".note-info").text(val);
+        }
+        
+       });
+		 }
+		
+		 <!--{if !$_GET['list']}-->
+		 function remove_backround_url_1(obj){
+			 jQuery('#cover_preview_1').empty();
+			 jQuery('#cover_1').val('').trigger('onchange');
+			 jQuery('#imgbg').attr('src','dzz/images/b.gif');
+			 jQuery('#header').removeClass('cover');
+			 return false;
+		 }
+		 function setbackground_1(obj,color){
+			 jQuery('#color_1').val(color).trigger('onchange');;
+			 jQuery(obj).addClass('active').siblings().removeClass('active');
+			 jQuery('#wrapper_div').css('background-color',color=='0'?'transparent':color);
+			 return false;
+		 }
+		
+		 jQuery('#fileupload_1').fileupload({
+			url: '{MOD_URL}&op=ajax&do=imageupload',
+			dataType: 'json',
+			autoUpload: true,
+			maxFileSize: null, // 2 MB
+			maxChunkSize:2000000, //2M
+			acceptFileTypes:new RegExp("(\.|\/)([jpeg|jpg|gif|png|bmp])$",'i'),
+			dropZone:jQuery('#header,#cover_container'),
+			dropZone:jQuery('#header,#cover_container'),
+			sequentialUploads:true,
+				
+		}).on('fileuploaddone', function (e, data) {
+				jQuery.each(data.result.files, function (index, file) {
+					jQuery('#cover_preview_1').html('<img class="thumbnail" style="margin-bottom:0" src="'+file.data.img+'" /><a href="javascript:;" style="position:absolute;left:0;top:0;" class="ibtn glyphicon glyphicon-remove " onclick="remove_backround_url_1()"></a>');
+					jQuery('#cover_1').val(file.data.aid).trigger('onchange');
+					jQuery('#imgbg').attr('src',(file.data.img).replace(/original=0/i,'original=1'));
+					jQuery('#header').addClass('cover');
+					setImage(document.getElementById('imgbg'));
+				});
+			});
+			<!--{/if}-->
+		</script>
+<!--{template common/footer_ajax}-->
+        
+    <!--{elseif $step==2}-->
+    <!--{template common/header_ajax}-->
+     	<div class="popbox-header"> 
+        	<button class="back glyphicon glyphicon-chevron-left js-popbox-prev" ></button> 
+            <button class="close glyphicon glyphicon-remove" style="font-weight:normal;font-size:14px;"></button> 
+            <h3>{eval echo lang('archive')}{APP_NAME}</h3> 
+         </div>
+         <form class="form-horizontal " id="inarchive_form" role="form" method="post" action="{MOD_URL}&op=menu&do=menu&step=2" onsubmit="inarchive_submit();return false">
+         <div class="popbox-body" style="padding:30px"> 
+            <input type="hidden" name="handlekey" value="inarchive" />
+            <input type="hidden" name="inarchivesubmit" value="true" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+            <input type="hidden" name="jid" value="$jid" />
+     		
+      		<p class="">{eval echo lang('archived_does_not_moderate')}</p>
+          </div>
+        </form>
+        <div class="popbox-footer" style="text-align:right;padding: 0 30px 30px 30px;">
+            <button id="inarchive_return" type="button" onclick="inarchiveSure()" class="btn mr15 sureBtn" data-loading-text="{eval echo lang('In_the_save')}">{eval echo lang('affirm')}</button>
+            <button  class="btn btn-default cancel cancelBtn inatchive-cancel" onclick="inarchiveCancel()">{eval echo lang('cancel')}</button>
+        </div>
+         <script type="text/javascript" reload="1">
+		 	
+			function inarchive_submit(){
+				jQuery('#inarchive_return').button('loading');
+				ajaxpost('inarchive_form','inarchive_return','inarchive_return');
+
+			}
+			function inarchiveSure() {
+                jQuery.ajax({
+                    url:'{MOD_URL}&op=menu&do=menu&step=2&inajax=1',
+                    type:'post',
+                    data:{'handlekey':'inarchive','inarchivesubmit':true,'formhash':'{FORMHASH}','jid':'$jid'},
+                    success:function () {
+                        window.location.reload();
+                    }
+                })
+            }
+			function succeedhandle_inarchive(url, message, values) {
+				jQuery('.popbox .popbox-header .close').trigger('click');
+				window.location.reload();
+			};
+			function inarchiveCancel() {
+                hideWindow('$jid');
+            }
+		</script>
+        <!--{template common/footer_ajax}-->
+        <!--{elseif $step==5}-->
+<!--{template common/header_ajax}-->
+         <form class="form-horizontal " id="active_form" role="form" method="post" action="{MOD_URL}&op=menu&do=menu&step=5" onsubmit="active_submit();return false">
+         <div class="popbox-body" style="padding: 30px;">
+            <input type="hidden" name="handlekey" value="active" />
+            <input type="hidden" name="activesubmit" value="true" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+            <input type="hidden" name="jid" value="$jid" />
+     		
+      		<p class="text-danger">{eval echo lang('actived_can_moderate')}</p>
+          </div>
+        </form>
+        <div class="popbox-footer" style="text-align:right;padding: 0 30px 30px 30px;">
+            <button id="active_return" type="submit" onclick="active_submit()" class="btn mr15 sureBtn" data-loading-text="{eval echo lang('In_the_save')}" >{eval echo lang('affirm')}</button>
+            <button  class="btn btn-default cancel cancelBtn active-cancel" onclick="activeCancel()">{eval echo lang('cancel')}</button>&nbsp;&nbsp;
+        </div>
+         <script type="text/javascript" reload="1">
+		 	function activeCancel() {
+               hideWindow('$jid');
+            }
+			function active_submit(){
+				jQuery('#active_return').button('loading');
+				ajaxpost('active_form','active_return','active_return');
+			}
+			function succeedhandle_active(url, message, values) {
+				jQuery('.popbox .popbox-header .close').trigger('click');
+				window.location.reload();
+			};
+		</script>
+<!--{template common/footer_ajax}-->
+      <!--{elseif $step==3}-->
+      
+    	<div class="popbox-header"> 
+            <button class="close glyphicon glyphicon-remove" style="font-weight:normal;font-size:14px;"></button> 
+            <h3>{eval echo lang('share_address_and_qrcode')}</h3> 
+         </div> 
+         <div class="popbox-body" style="width:300px;"> 
+         	
+         	<!--{if $jilu['qrcode']}-->
+            <p class="text-center" ><img class="img-thumbnail" src="$jilu[qrcode]"></p>
+            <!--{/if}-->
+             <p class="text-center">
+           	 <button id="js_copy_{$jid}" class="btn cancelBtn btn-lg js_copy" data-clipboard-text="$jilu[shareurl]" style="width:auto;height:auto;position:relative;padding:10px 25px;font-size: 16px;font-weight: 500"><i class="dzz dzz-copy"></i> {eval echo lang('copy_address')}</button>
+           	</p>
+            <!--{if $jilu[privacy]>0}-->
+            	<p class="alert alert-warning" style="padding:10px;margin-bottom:0;">
+                <!--{if $jilu['privacy']>1}-->
+                	  {eval echo lang('only_author_can_view')}
+                <!--{else}-->
+                    {eval echo lang('only_user_can_view')}
+                <!--{/if}-->
+                </p>
+            <!--{/if}-->
+         </div>
+     	<script type="text/javascript" reload="1">
+			jcLoader().load({type:"js",ids:'js_clipboard',url:"static/clipboard/clipboard.min.js?{VERHASH}"},function(){
+				  var client = new Clipboard('#js_copy_{$jid}');
+				  client.on('success',function (e) {
+                      showmessage('{lang copy_success}','success',3000,1);
+                  })
+                client.on('error',function (e) {
+                    showmessage('{lang copy_failed}','danger',3000,1);
+                })
+			});
+		</script>
+    <!--{elseif $step==4}-->
+      <!--{template common/header_ajax}-->
+    	<div class="popbox-header"> 
+        	<button class="back glyphicon glyphicon-chevron-left js-popbox-prev" ></button> 
+            <button class="close glyphicon glyphicon-remove" style="font-weight:normal;font-size:14px;"></button> 
+            <h3>{eval echo lang('delete')}{APP_NAME}</h3> 
+         </div>
+         <form class="form-horizontal " id="delete_form" role="form" method="post" action="{MOD_URL}&op=menu&do=menu&step=4" onsubmit="delete_submit();return false">
+         <div class="popbox-body" style="padding:30px"> 
+            <input type="hidden" name="handlekey" value="delete" />
+            <input type="hidden" name="deletesubmit" value="true" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+            <input type="hidden" name="jid" value="$jid" />
+     		
+      		<h3 class="" style="margin-bottom:20px;font-size: 20px;color: rgb(64,64,64)">{eval echo lang('delete_jilu_alert')}</h3>
+           
+            <div class="delete-info" style="margin-bottom:0">{eval echo lang('delete_jilu_proposal')}</div>
+          </div>
+        </form>
+        <div class="popbox-footer" style="padding: 0 30px 30px 30px">
+            <button  class="btn cancel cancelBtn delete-cancel" onclick="deleteCancel()" style="float:right;">{eval echo lang('cancel')}</button>&nbsp;&nbsp;
+            <button id="delete_return" style="float:right;" type="submit" onclick="delete_submit()"  class="btn sureBtn" style="margin-right: 0" data-loading-text="{eval echo lang('In_the_save')}" >{eval echo lang('affirm')}</button>
+        </div>
+         <script type="text/javascript" reload="1">
+		 	function deleteCancel() {
+                hideWindow('$jid');
+            }
+			function delete_submit(){
+				jQuery('#delete_return').button('loading');
+				ajaxpost('delete_form','delete_return','delete_return');
+			}
+			 function succeedhandle_delete(url, message, values) {
+				jQuery('.popbox .popbox-header .close').trigger('click');
+				<!--{if $ismible}-->
+				
+					window.lopener=null;
+					window.close();
+				
+				<!--{else}-->
+					window.location.href='{MOD_URL}';
+				<!--{/if}-->
+			 };
+		</script>
+    
+        <!--{template common/footer_ajax}-->
+    <!--{elseif $step==6}-->
+    <div id="filtermenu">
+     	<div class="popbox-header">
+              <button class="close glyphicon glyphicon-remove" style="font-weight:normal;font-size:14px;"></button>
+            <h3>{eval echo lang('screening_filtration')}</h3>
+      	</div>
+          <div class="popbox-body jilu_filter"style="width:514px">
+              <!--{if !empty($_GET['jid'])}-->
+              <dl class="js-task-labelfilter" style="border-bottom: 1px solid rgba(243, 243, 243, 1);">
+                <dt>{eval echo lang('label')}:</dt>
+                <dd style="display: inline-block;width: 89%; vertical-align: top;">
+                  <ul class="label-list list-unstyled jilu_filter-checkable list-col-2 clearfix">
+                   <!--{loop $alllabels $value}-->
+                    <li class="label-item" title="$value[title]"> <a href="javascript:;" class="js-toggle-label-filter" title="$value[title]" data-color="$value[color]" pow="$value[pow]" onclick="item_filter_label('$value[pow]',this)">
+                        <span class="color-label {$value[color]}-label text-center">
+                        <i class="icon-white glyphicon"></i></span>
+                        <span class="label-name ">$value[title]</span> </a> 
+                     </li>
+                   <!--{/loop}-->
+                  </ul>
+                </dd>
+              </dl>
+              <!--{/if}-->
+              <dl class="js-task-datefilter" style="border-bottom: 1px solid rgba(243, 243, 243, 1);">
+                <dt>{eval echo lang('screen_date')}:</dt>
+                <dd style="display: inline-block;width: 45%;vertical-align: top;">
+                  <ul class="datefilter-list list-unstyled clearfix jilu_filter-checkable list-col-3">
+                    <li> <a onclick="item_filter_date('today',this,'<!--{if empty($_GET[jid])}-->{$_GET[optype]}<!--{/if}-->')" datetype="today">{eval echo lang('today')}</a> </li>
+                    <li> <a onclick="item_filter_date('week',this,'<!--{if empty($_GET[jid])}-->{$_GET[optype]}<!--{/if}-->')" datetype="week">{eval echo lang('this_week')}</a> </li>
+                    <li> <a onclick="item_filter_date('month',this,'<!--{if empty($_GET[jid])}-->{$_GET[optype]}<!--{/if}-->')" datetype="month">{eval echo lang('this_month')}</a> </li>
+                 
+                  </ul>
+                </dd>
+                <dd class="clearfix" style="width: 43%;display: inline-block;vertical-align: top;">
+                	
+                        <div class="input-group">
+                          <input id="filter_starttime" type="text" class="form-control starttime" placeholder="{eval echo lang('starttime')}" onchange="item_filter_date('starttime',this)">
+                       	 <span class="input-group-addon" style="border-left:0;border-right:0">~</span>
+                          <input id="filter_endtime" type="text" class="form-control endtime" placeholder="{eval echo lang('endtime')}" onchange="item_filter_date('endtime',this)">
+                       </div>
+                   
+                </dd>
+              </dl>
+              <!--{if $_GET[optype]=='recycle'}--> 
+              <dl class="js-task-datefilter">
+                  <dt style="padding-top: 10px;">{eval echo lang('by_member')}:</dt>
+                  <dd style="display: inline-block;width: 85%;vertical-align: top;position: relative;">
+                      <input type="text" class="searchInp searchInp1" placeholder="{eval echo lang('input_search_user_name')}" onkeyup="if(this.value!=filter.keyword)item_filter_keyword(this.value,'recycle')" autofocus/>
+                      <ul class="searchItemWrap searchItemWrap1">
+                          <li class="searchItem">{eval echo lang('nothing')}</li>
+                      </ul>
+                  </dd>
+              </dl>
+              <dl class="js-task-datefilter">
+                  <dt style="padding-top: 10px;">{eval echo lang('by_jilu')}:</dt>
+                  <dd style="display: inline-block;width: 82%;vertical-align: top;position: relative;">
+                      <input type="text" class="searchInp searchInp2" placeholder="{eval echo lang('input_search_jilu_name')}" autofocus/>
+                      <ul class="searchItemWrap searchItemWrap2">
+                          <li class="searchItem">{eval echo lang('nothing')}</li>          
+                      </ul>
+                  </dd>
+              </dl>
+              <!--{/if}-->
+              <!--{if empty($_GET['jid']) && $_GET['optype'] == 'item'}--> 
+              <dl class="js-task-datefilter">
+                  <dt style="display: block;">{eval echo lang('by_jilu')}:</dt>
+                  <dd>
+                      <ul class="datefilter-list list-unstyled clearfix jilu_filter-checkable list-col-3" style="padding-left: 5px;">
+                        <!--{loop $jilus $value}-->
+                          <li class="datafilter_li" title="$value[title]"><input onclick="item_filter_jilu('$value[jid]',this);" jid="$value[jid]" type="checkbox" class="bookInp">$value[title]</li>
+                        <!--{/loop}-->
+                      </ul>
+                  </dd>
+              </dl>
+              <!--{/if}-->
+              <!--{if !empty($_GET['jid'])}-->
+              <dl class="js-task-memberfilter">
+                <dt>{eval echo lang('member')}:</dt>
+                <dd style="display: inline-block;width: 89%; vertical-align: top;">
+                  <ul class="member-list list-unstyled clearfix jilu_filter-checkable list-col-2">
+                      <!--{loop $users $value}-->
+                      <li class="member-item"> 
+                        <a href="javascript:;" tabindex="-1" class="avatar avatar-30" title="$value[username]" onclick="item_filter_user('$value[uid]',this)" uid="$value[uid]"> 
+                                <span class="avatar-face" style="padding:0 5px;position: relative;">
+                                    <img src="avatar.php?uid=$value[uid]" alt="$value[username]">
+                                    <input type="checkbox" name="user" class="userCheckbox" style="width: 12px;height: 12px;border-radius: 50%">
+                                </span>
+                                <span class="avatar-name avaName">$value[username]</span>
+                           
+                        </a>
+                      </li>
+                     <!--{/loop}-->
+                  </ul>
+                </dd>
+              </dl>
+              <!--{/if}-->
+             <dl style="margin-top: 0;margin-bottom: 15px;text-align: right">
+                 <dd>
+                     <a href="" class="btn sureBtn">{eval echo lang('search')}</a>
+                     <a class="btn cancelBtn">{eval echo lang('reset')}</a>
+                 </dd>
+             </dl>
+           </div>
+       <script type="text/javascript" reload="1">
+           jQuery('.searchInp').focus(function () {
+               jQuery(this).parent().find('.searchItemWrap').show();
+           })
+           function Cli(cli) {
+               var _this=cli;
+               jQuery(_this).parent().prev().val(jQuery(_this).text());
+               jQuery(_this).parent().hide();
+               if(_this.innerText!= filter.keyword){item_filter_keyword(_this.innerText);}
+           }
+           jQuery('.searchInp1').keyup(function () {
+               var valu=jQuery(this).val();
+               jQuery.ajax({
+                   type:'post',
+                   url:'/{MOD_URL}&op=recycle&ajax=getuser&name='+valu,
+                   dataType:'json',
+                   success:function (res) {
+                       var wrap=jQuery('.searchItemWrap1').get(0);
+                       if(res==null) {
+                           wrap.innerHtml='<li class="searchItem">{eval echo lang('nothing')}</li>';
+                       }else{
+                           wrap.innerHTML='';
+                           for(var i in res) {
+                               wrap.innerHTML+='<li class="searchItem" onclick="Cli(this)">'+res[i]+'</li>';
+                           }
+                       }
+                   }
+               })
+           })
+            jQuery('.searchInp2').keyup(function () {
+                var vlu1=jQuery(this).val();
+                jQuery.ajax({
+                    type:'post',
+                    url:'/{MOD_URL}&op=recycle&ajax=getjilus&title='+vlu1,
+                    dataType:'json',
+                     success:function (res) {
+                        console.log(res);  
+                        var wrap=jQuery('.searchItemWrap2').get(0);
+                        if(res=='[]') {
+                            wrap.innerHtml='<li class="searchItem">{eval echo lang('nothing')}</li>';
+                        }else{
+                            wrap.innerHTML='';
+                             for(var i in res) {
+                                 wrap.innerHTML += '<li class="searchItem" onclick="Cli(this)">' + res[i].title + '</li>';
+                             }
+                        }
+                     }
+                })
+            })
+           jQuery('.cancelBtn').click(function () {
+               jQuery('.searchInp').val('');
+           })
+
+		</script>
+   </div>
+
+    <!--{/if}-->
+<!--{elseif $do=='labelmenu'}-->
+	<!--{if $step==1}-->
+    	<div class="popbox-header clearfix">
+          <button class="close glyphicon glyphicon-remove" style="font-weight:normal;font-size:14px;"></button>
+          <h3>{eval echo lang('set_label')}</h3>
+        </div>
+        <div class="popbox-body">
+          <ul class="popbox-menu list-unstyled">
+          	<!--{loop $alllabels $value}-->
+            <li class="label-item" > <a href="javascript:;" title="$value[title]" data-color="$value[color]" data-pow="$value[pow]" onclick="item_label('$rid','$value[pow]',this)">
+            	<span class="color-label {$value[color]}-label text-center">
+                <!--{if isset($item[labels][$value[pow]])}--><i  class="icon-white dzz dzz-done"></i> <!--{else}--><i  class="icon-white dzz"></i><!--{/if}--></span>
+                <span class="label-name ">$value[title]</span> </a> 
+             </li>
+           <!--{/loop}-->
+           <!--{if !$alllabels}-->
+            <li style="display: none">
+              <div class="empty-menu empty-menu1">{eval echo lang('undefined_label')}</div>
+            </li>
+            <!--{/if}-->
+            <!--{if $perm>1}-->
+            <!--<li class="divider"></li>-->
+            <li><a class="js-popbox-item1" data-href="{MOD_URL}&op=menu&do=labelmenu&step=2&jid=$item[jid]"><i class="dzz dzz-label icon-label"></i> {eval echo lang('defined_label')}</a></li>
+            <!--{/if}-->
+          </ul>
+          <script>
+               jQuery(function() {
+                jQuery('.js-popbox-item1').on('click',function() {
+                  showWindow('$item[jid]',jQuery(this).data('href'),'get',0);
+
+                })
+              })
+          </script>
+        </div>
+	<!--{elseif $step==2}-->
+    <!--{template common/header_ajax}-->
+    <div class="popbox-header">
+        <button class="back glyphicon glyphicon-chevron-left js-popbox-prev" ></button>
+        <button class="close glyphicon glyphicon-remove" style="font-weight:normal;font-size:14px;"></button>
+        <h3>{eval echo lang('defined_label')}</h3>
+    </div>
+    <div class="popbox-body">
+        <div class="settingTitwrapper1">
+            <div class="settingTit1 text-center">{eval echo lang('defined_label')}</div>
+        </div>
+     <!--<div id="labelsetting_return" class="text-success"></div>-->
+      <form class="form-horizontal labels" id="labelsetting" role="form" method="post" action="{MOD_URL}&op=menu&do=labelmenu&step=2" onsubmit="ajaxpost('labelsetting','labelsetting_return','labelsetting_return')">
+        <input type="hidden" name="handlekey" value="labelsetting" />
+        <input type="hidden" name="labelsetting" value="true" />
+        <input type="hidden" name="formhash" value="{FORMHASH}" /> 
+        <input type="hidden" name="jid" value="$jid" />
+        <!--{loop $labelarr $value}-->
+        <div class="form-group form-group1">
+          <label for="$value[color]" class="control-label"> <span class="color-label {$value[color]}-label"></span> </label>
+          <div class="formInp">
+              <div class="input-black input-static" style="margin-bottom: 12px">
+                  <div class="input-animate" style="padding-right: 30px;">
+                      <input type="text" class="js-label-title form-control form-con label-input" id="$value[color]" data-num="{$value[pow]}" name="labelname[{$value[pow]}]" value="$value[title]" placeholder="未{eval echo lang('defined_label')}">
+                  </div>
+              </div>
+              <i class="dzz dzz-delete tra" title="{eval echo lang('delete_label')}"></i>
+          </div>
+        </div>
+        <!--{/loop}-->
+      </form>
+
+    </div>
+    <div class="popbox-footer foot" style="margin-top:0px;padding:0 30px 30px 30px;">
+        <button  class="btn mr15 sureBtn label-sure" onclick="labelSure()" data-loading-text="{eval echo lang('In_the_save')}" >{eval echo lang('affirm')}</button>
+        <button  class="btn btn-simple js-popbox-prev cancelBtn" onclick="labelCancel()">{eval echo lang('cancel')}</button>
+    </div>
+<script type="text/javascript" reload="1">
+    jQuery(function () {
+        jQuery('.input-black').each(function(){
+            InputAnimate.init(jQuery(this));
+        })
+        jQuery('.label-input').on('input',function () {
+            if(jQuery(this).val()!='') {
+                jQuery(this).parents('.input-black').next().css('display','block');
+            }else {
+                jQuery(this).parents('.input-black').next().css('display','none');
+            }
+        })
+        jQuery('.tra').click(function () {
+           jQuery(this).prev().children().children().focus().val('');
+           var con=jQuery(this).prev().children().children().val();
+           if(con=='') {
+               jQuery(this).css('display','none');
+           }
+        })
+    })
+
+    function labelSure() {
+        var els=jQuery('.label-input');
+        var labelname= {};
+        for(var i=0;i<els.length;i++) {
+            labelname[jQuery(els[i]).data('num')]=els[i].value;
+        }
+
+        jQuery.ajax({
+            url:'{MOD_URL}&op=menu&do=labelmenu&step=2&inajax=1',
+            type:'post',
+            dataType:'json',
+            data:{labelname,'formhash':'{FORMHASH}','labelsetting':'true','handlekey':'labelsetting','jid':'$jid'},
+            success:function (res) {
+                hideWindow('$jid');
+                if(res.code==200) {
+                    if(res.data.length==0) {
+                        jQuery('.label-dropdown').css('display','none');
+                        return;
+                    }
+                    var ht=''
+                    for(i in res.data) {
+                         ht +=  '<li class="label-item" title="'+ res.data[i].title +'" style="margin-bottom: 14px">'
+                            +   '<a data-val="tags" href="javascript:;" class="js-toggle-label-filter" title="'+res.data[i].title+'" style="display:inline-block;width:100%;color: rgba(51, 51, 51, 1);font-size: 14px" data-color="$value[color]" pow="'+res.data[i].pow+'">'
+                            +   '<div class="checkbox-custom checkbox-warning" style="margin-bottom:0;margin-top:0;width: 100%;text-overflow: ellipsis;overflow: hidden;white-space: nowrap">'
+                            +   '<input type="checkbox" name="label" value="'+res.data[i].pow+'" style="pointer-events: none;">'
+                            +   '<label style="font-size: 14px;">'+res.data[i].title+'</label>'
+                            +   '</div>'
+                            +   '</a>'
+                            +   '</li>'
+
+                    }
+                    jQuery('.label-dropdown').find('.jilu_filter-checkable').html(ht);
+                    jQuery('.label-dropdown').css('display','block')
+                }
+
+            }
+        })
+    }
+    function labelCancel() {
+        hideWindow('$jid');
+    }
+	 function succeedhandle_labelsetting(url, message, values) {
+		jQuery('.popbox .popbox-header .js-popbox-prev').trigger('click');
+	  };
+	jQuery(
+	    function() {
+	        jQuery(".tra").click(function () {
+                jQuery(this).prev().val("");
+            })
+        }
+    )
+	</script> 
+  <!--{template common/footer_ajax}-->
+    <!--{/if}--> 
+<!--{elseif $do=='itemmenu'}-->
+ 	<!--{if !$step}-->
+      <div class="popbox-header">
+         <button class="close glyphicon glyphicon-remove" style="font-size:16px;font-weight:normal"></button>
+        <h3>{eval echo lang('moderate_option')}</h3>
+      </div>
+      <div class="popbox-body top-popbox">
+        <ul class="popbox-menu list-unstyled">
+           <!--{if $perm>1 && !$ismy}-->
+               <!--{if $item['pin_type']}-->
+                  <!--{if ($perm > 2 && $item['pin_type'] == 2) || $item['pin_type'] == 1}-->
+                    <li><a href="javascript:;" onclick="item_pin('$item[rid]',0, '{$item[pin_type]}')"><i class="glyphicon glyphicon-ban-circle"></i> &nbsp;{eval echo lang('cancel_top')}</a></li>
+                  <!--{/if}-->
+               <!--{else}-->
+                <!--{if $perm > 2}-->
+                  <li class="dropdown-submenu pop-after" style="position: relative;">
+                      <a class="city-a"><i class="dzz dzz-top"></i> &nbsp;{eval echo lang('top')}</a>
+                      <ul class="dropdown-menu choItem_wrap1" style="z-index: 9999">
+                          <li class="kj-item" onclick="item_pin('$item[rid]',1, 2)"><i class="dzz dzz-group"></i> &nbsp;{lang all_member_top}</li>
+                          <li class="kj-item" onclick="item_pin('$item[rid]',1, 1)"><i class="dzz dzz-top"></i> &nbsp;{lang ordinary_top}</li>
+                      </ul>
+                  </li>
+                <!--{else}-->
+                  <li><a href="javascript:;" onclick="item_pin('$item[rid]',1, 1)"><i class="dzz dzz-top"></i> &nbsp;{eval echo lang('top')}</a></li>
+                <!--{/if}-->
+               <!--{/if}-->
+           <!--{/if}-->
+           <!--{if $ismy}--> 
+           <!--<li><a href="javascript:;"  class="js-popbox" data-href="itemmenu&step=1&rid=$rid" data-placement="right" data-auto-adapt="true"><i class="glyphicon glyphicon-transfer"></i> &nbsp;{eval echo lang('move_to')}</a></li>-->
+           <!--{/if}--> 
+           <!--{if ($perm>=2 || $_G['uid']==$item['authorid']) && $jilu[inarchive]<1 }-->
+           <!--{if $jilu[jid]}-->
+           <li><a href="javascript:;"  class="js-popbox" data-href="{MOD_URL}&op=menu&do=labelmenu&step=1&rid=$rid" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-label icon-label"></i> &nbsp;{eval echo lang('label')}</a></li>{/if}
+            <li><a href="javascript:;"  class="js-popbox-item" data-href="{MOD_URL}&op=menu&do=itemmenu&step=1&rid=$rid&ismy={$ismy}" data-placement="right" data-auto-adapt="true"><i class="dzz dzz-change"></i> &nbsp;{eval echo lang('move_to')}</a></li>
+            <li> <a href="{MOD_URL}&op=ajax&do=item_edit&rid=$item[rid]&ismy=$ismy" class="cancel" onclick="showWindow('item_edit_{$item[rid]}',this.href,'get',0)" title="{eval echo lang('edit')}" ><i class="dzz dzz-netdisk-edit"></i> &nbsp;{eval echo lang('edit')}</a></li>
+            
+            <li><a href="javascript:;"  class="cancel" onclick="item_delete('$item[rid]')"  data-placement="right" data-auto-adapt="true"><i class="dzz dzz-delete"></i> &nbsp;{eval echo lang('delete')}</a></li>
+            <!--{elseif $jilu > 0 && $ismy}-->
+              <li><i class="glyphicon glyphicon-bookmark"></i> {eval echo lang('this_jilu_archived')}</li>
+            <!--{/if}-->
+        
+        </ul>
+        <script reload="'1">
+            jQuery(function() {
+              jQuery('.js-popbox-item').on('click',function() {
+                showWindow('$jid',jQuery(this).data('href'),'get',0);
+              })
+            })
+        </script>
+     </div>
+    <!--{elseif $step==1 && $rid}--> 
+  <!--{template common/header_ajax}-->
+  <style type="text/css">
+    .upvote1{
+      top: 7px;
+    }
+  </style>
+    <div class="popbox-header item_to">
+        <h3 style="text-align: center;">{eval echo lang('move_to_jilu')}</h3>
+    </div>
+    <div class="popboxWrap">
+    <div class="popbox-body"  style="box-sizing:border-box;background:#fff;">
+     
+      <ul class="popbox-menu list-unstyled" style="margin-top: 0px;">
+      		<!--{loop $myjilu $value}-->
+             <li class="li_item" data-rid="$item[rid]" data-jid="$value[jid]" onclick="checkInput(this)">
+                 <div class="upvote upvote1" style="left: 24px;">
+                     <div class="gridview9">
+                         <table style="table-layout:fixed;width:100%;height:100%">
+                             <tr><td align="center" valign="middle">
+                                 <!--{loop $value['cover_uids'] $uid}-->
+                                 {eval echo avatar_block($uid)}
+                                 <!--{/loop}-->
+                             </td></tr></table>
+                     </div>
+                 </div>
+                 <span class="a_item" href="javascript:;" style="padding-left: 40px;padding-right:0;margin: 0">
+
+             <span class="note-name-item">$value[title]</span> </span>
+                 <div class="checkbox-custom checkbox-warning checkItem">
+                  <input type="checkbox" name="inputCheckboxes" <!--{if $value[jid] == $item[jid]}-->checked=""<!--{/if}-->>
+                  <label></label>
+                 </div>
+             </li>
+             <!--{/loop}-->
+        </ul>
+    </div>
+    </div>
+    <div class="modal-footer" style="padding: 17px 30px 17px 30px;background-color: #fff">
+        <button  class="btn mr15 sureBtn label-sure" onclick="item_move_to( '{$_GET[ismy]}')" data-loading-text="{eval echo lang('In_the_save')}" >{eval echo lang('affirm')}</button>
+        <button  class="btn btn-simple js-popbox-prev cancelBtn" onclick="moveCancel()">{eval echo lang('cancel')}</button>
+    </div>
+    <script type="text/javascript" reload="1">
+        function checkInput(a) {
+            jQuery('.checkItem input').prop('checked',false);
+            jQuery(a).find('input').prop('checked',true);
+        }
+        function moveCancel() {
+            hideWindow('$jid');
+        }
+        jQuery('.li_item').click(function () {
+          jQuery(this).parent().find('input:checkbox').attr("checked",false);
+            if(jQuery(this).find('input:checkbox').prop('checked')) {
+                jQuery(this).find('input:checkbox').attr('checked', false);
+            }else {
+                jQuery(this).find('input:checkbox').attr('checked', true);
+            }
+        })
+        jQuery('.cancelmove').click(function () {
+            jQuery('.popbox').hide();
+        })
+
+	 function item_move_to(ismy) {
+         var rid=jQuery('.popbox-menu.list-unstyled').find('input:checked').parent().parent().data('rid');
+         var jid=jQuery('.popbox-menu.list-unstyled').find('input:checked').parent().parent().data('jid');
+		 jQuery.post('{MOD_URL}&op=ajax&do=item_move',{rid:rid,jid:jid},function(json){
+			 if(json.msg=='success'){
+        if(ismy == 1){
+          jQuery('#item_'+rid+' .item-right .item-book .note-a').html('<a href="{MOD_URL}&id='+json.jid+'" target="_dzz" title="'+json.title+'"><i class="dzz dzz-book"></i> '+json.title+'</a>');
+          jQuery('.popbox .popbox-header .close').trigger('click');
+        }else{
+          jQuery("#item_"+rid).slideUp(function(){
+            jQuery(this).remove();
+          });
+        }
+			 	 showmessage('{eval echo lang("move_success")}','success',1000,1);
+			 }else if(json.error){
+				 showmessage(json.error,'danger',3000,1);
+			 }
+		 },'json');
+		hideWindow('$jid');
+	  };
+    jQuery(function(){
+      gridview9_init(jQuery('.gridview9'));
+    })
+	
+	</script>
+<!--{template common/footer_ajax}-->
+  <!--{else}-->
+  <!--{template common/header_ajax}-->
+  <style type="text/css">
+    .upvote1{
+      top: 7px;
+    }
+  </style>
+    <div class="popbox-header item_to">
+        <h3 style="text-align: center;">{eval echo lang('add_to_jilu')}</h3>
+    </div>
+    <div class="popboxWrap">
+    <div class="popbox-body">
+     
+      <ul class="popbox-menu list-unstyled" style="margin-top: 0px;">
+          <!--{loop $myjilu $value}-->
+             <li class="li_item" data-id="{$value['jid']}" data-title="{$value['title']}" onclick="choose_move_to(this)">
+                 <div class="upvote upvote1" >
+                     <div class="gridview9">
+                         <table style="table-layout:fixed;width:100%;height:100%">
+                             <tr><td align="center" valign="middle">
+                                 <!--{loop $value['cover_uids'] $uid}-->
+                                  {eval echo avatar_block($uid)}
+                                 <!--{/loop}-->
+                             </td></tr></table>
+                     </div>
+                 </div>
+                 <span class="a_item" href="javascript:;">
+                  <span class="note-name-item">$value[title]</span>
+                 </span>
+                 <div class="checkbox-custom checkbox-warning checkItem">
+                  <input type="checkbox" name="inputCheckboxes">
+                  <label></label>
+                </div>
+             </li>
+          <!--{/loop}-->
+        </ul>
+    </div>
+    <div class="buttonWr itme_add_to_buttonWr">
+        <a class="btn sureBtn moveBtn">{eval echo lang('affirm')}</a>
+        <a class="btn cancelBtn cancelmove" onclick="hideWindow('dzz_note_add_to')">{eval echo lang('cancel')}</a>
+    </div>
+    </div>
+    <script type="text/javascript" reload="1">
+        var html = '<i class="text-success glyphicon glyphicon-ok text-success1"></i>';
+        jQuery(document).ready(function(){
+          var id = jQuery(".add_notes_to").attr("data-id");
+          jQuery(".li_item").each(function(){
+            if(jQuery(this).attr("data-id") == id){
+              jQuery(this).find("input").prop("checked", true);
+            }
+          })
+        })
+        jQuery(function(){
+          gridview9_init(jQuery('.gridview9'));
+        })
+        function choose_move_to(t){
+          jQuery(t).siblings().removeAttr("checked").find("input").prop("checked", false);
+          if(jQuery(t).attr("checked") == "checked"){
+            jQuery(t).find("input").prop("checked", false);
+            jQuery(t).removeAttr("checked", "checked")
+          }else{
+            jQuery(t).find("input").prop("checked", true);
+            jQuery(t).attr("checked", "checked")
+          }
+        }
+        jQuery('.moveBtn').click(function () {//确定
+          var id = jQuery(".li_item[checked='checked']").attr("data-id");
+          var title = jQuery(".li_item[checked='checked']").attr("data-title");
+          if(id){
+            jQuery(".add_notes_to").attr("data-id",id).html(title);
+          }else{
+            jQuery(".add_notes_to").removeAttr("data-id").html('');
+          }
+          hideWindow('dzz_note_add_to');
+        })
+    </script>
+    <!--{template common/footer_ajax}-->
+  <!--{/if}--> 
+<!--{elseif $do=='mymenu'}-->
+	<!--{if $step==1}-->
+    <div id="filtermenu">
+     	<div class="popbox-header">
+              <button class="close glyphicon glyphicon-remove" style="font-weight:normal;font-size:14px;"></button>
+            <h3>{eval echo lang('screening_filtration')}</h3>
+      	</div>
+        <div class="popbox-bodywrapper" style="overflow-x:hidden">
+          <div class="popbox-body jilu_filter"style="width:300px;padding-right:20px;">
+              <div class="input-group">
+                  <input type="text" class="form-control" onkeyup="if(this.value!=filter.keyword)item_filter_keyword(this.value)"  placeholder="{eval echo lang('please_input_keywords')}" autofocus>
+                <div class="input-group-btn">
+                  <button onclick="item_filter_clear()" class="btn btn-success">{eval echo lang('clear')}</button>
+                </div>
+              </div>
+             
+              <dl>
+                <dt>{eval echo lang('by_date')}</dt>
+                <dd>
+                  <ul class="datefilter-list list-unstyled clearfix jilu_filter-checkable list-col-3">
+                    <li> <a onclick="item_filter_date('today',this)" datetype="today">{eval echo lang('today')}</a> </li>
+                    <li> <a onclick="item_filter_date('week',this)" datetype="week">{eval echo lang('this_week')}</a> </li>
+                    <li> <a onclick="item_filter_date('month',this)" datetype="month">{eval echo lang('this_month')}</a> </li>
+                 
+                  </ul>
+                </dd>
+                <dd class="clearfix">
+                    <div class="input-group">
+                      <input id="filter_starttime" type="text" class="form-control starttime" placeholder="{eval echo lang('starttime')}" onchange="item_filter_date('starttime',this)">
+                     <span class="input-group-addon" style="border-left:0;border-right:0">~</span>
+                      <input id="filter_endtime" type="text" class="form-control endtime" placeholder="{eval echo lang('endtime')}" onchange="item_filter_date('endtime',this)">
+                   </div>
+                </dd>
+              </dl>
+              <dl>
+                <dt>{eval echo lang('by_jilu')}</dt>
+                <dd>
+                <ul class="popbox-menu list-unstyled jilufilter-list" style="margin:0">
+                	<li class="jilu-item"><a href="javascript:;" onclick="item_filter_jilu('none',this)" jid="none">
+                     <span>{eval echo lang('unin_jilu')}</span> </a> </li>
+                    <!--{loop $myjilu $value}-->
+                     <li class="jilu-item"><a href="javascript:;" onclick="item_filter_jilu('$value[jid]',this)" jid="$value[jid]">
+                     <span>$value[title]</span> </a> </li>
+                     <!--{/loop}-->     
+                </ul>
+                  
+                </dd>
+              </dl>
+             
+           </div>
+          </div>
+       <script type="text/javascript" reload="1">
+	   		jQuery('#filter_starttime').datepicker({
+				maxDate:0,
+				onClose: function( selectedDate ) {
+					jQuery( "#filter_endtime" ).datepicker( "option", "minDate", selectedDate );
+				}
+			});
+			jQuery('#filter_endtime').datepicker({
+				minDate:0,
+				maxDate:0,
+				onClose: function( selectedDate ) {
+					jQuery( "#filter_starttime" ).datepicker( "option", "maxDate", selectedDate );
+				}
+			});
+			filter_init();
+		</script>
+   </div>
+    <!--{elseif $step==2}-->
+    <!--{template common/header_ajax}-->
+    <style>
+		.colors a{
+			float:left;
+			margin:5px;
+			border:1px solid #e1e1e1;
+			border-radius:3px;
+			padding:15px;
+		}
+		.colors a:hover{
+			border-color:#da552f;
+		}
+		.colors a.active{
+			border-color:#da552f;
+		}
+		.uploadwrap_1 {
+			position: relative;
+			left: 0;
+			top: 0;
+			z-index: 10;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			/* opacity: 0; */
+			opacity: 0.001;
+		}
+		.uploadwrap_1 input{
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 0;
+			opacity: 0;
+			-ms-filter: 'alpha(opacity=0)';
+			font-size: 80px;
+			direction: ltr;
+			cursor: pointer;
+		}
+		</style>
+      <div class="popbox-header">
+          <button class="close glyphicon glyphicon-remove" style="font-weight:normal;font-size:14px;"></button>
+        <h3>{eval echo lang('cover_set')}</h3>
+      </div>
+      <div class="popbox-body" style="width:300px;">
+            
+         
+            <div class="clearfix" style="margin-bottom:20px;">
+           		 <label>{eval echo lang('background_color')} <small style="color:#BBB">({eval echo lang('set_bg_color_alert')})</small></label>
+                 <input id="color_1" name="color" type="hidden" value="$userdata[color]" onchange="coverSave('color',this.value)" />
+                 <div class="colors clearfix">
+                  <!--{loop $colors $color}-->
+                  <a <!--{if $userdata[color]==$color}-->class="active"<!--{/if}--> href="javascript:;" title="{eval echo lang('set_bg_color')}" style="background:{$color};" onclick="setbackground_1(this,'$color')">
+                  <!--{/loop}-->
+                  <a <!--{if !$userdata[color]}-->class="active"<!--{/if}--> href="javascript:;" title="{eval echo lang('cancel')}" style="background:#FFF;" onclick="setbackground_1(this,'0')">
+                 </div>
+     			
+      		</div>
+            <div id="cover_container" class="clearfix" style="margin-bottom:20px;">
+                <label>{eval echo lang('bg_images')}</label>
+                <input id="cover_1" name="cover" type="hidden" value="$userdata[cover]" onchange="coverSave('cover',this.value)" /> 
+                <div id="cover_preview_1" style="position:relative;margin-bottom:10px;">
+                	<!--{if $userdata[cover]}--><img class="thumbnail" style="margin-bottom:0" src="{DZZSCRIPT}?mod=io&op=thumbnail&width=250&height=100&path={eval echo dzzencode('attach::'.$userdata[cover]);}"  /><a href="javascript:;" style="position:absolute;left:0;top:0;" class="ibtn glyphicon glyphicon-remove" title="{eval echo lang('remove_bg_image')}" onclick="remove_backround_url_1()"></a><!--{/if}-->
+                </div>
+                <div id="cover_upload_1" class="addPhotoBar" style="position:relative;padding:10px;border:1px dashed #e1e1e1">
+                      <div class="uploadwrap"><input id="fileupload_1" type="file" name="files[]" multiple="true" accept="image/png,image/gif,image/jpeg"></div>
+                      <div class="addbtn">
+                            <i class="glyphicon glyphicon-plus"></i> {eval echo lang('add_bg_image_alert')}
+                      </div>
+                </div>
+      		</div>
+           
+             
+      </div>
+    
+         <script type="text/javascript" reload="1">
+		 function coverSave(name,val){
+			 jQuery.post('{MOD_URL}&op=ajax&do=coverSave',{name:name,val:val});
+		 }
+		
+		
+		 function remove_backround_url_1(obj){
+			 jQuery('#cover_preview_1').empty();
+			 jQuery('#cover_1').val('').trigger('onchange');
+			 jQuery('#imgbg').attr('src','dzz/images/b.gif');
+			 jQuery('#header').removeClass('cover');
+			 return false;
+		 }
+		 function setbackground_1(obj,color){
+			 jQuery('#color_1').val(color).trigger('onchange');;
+			 jQuery(obj).addClass('active').siblings().removeClass('active');
+			 jQuery('#wrapper_div').css('background-color',color=='0'?'transparent':color);
+			 return false;
+		 }
+		
+		 jQuery('#fileupload_1').fileupload({
+			url: '{MOD_URL}&op=ajax&do=imageupload',
+			dataType: 'json',
+			autoUpload: true,
+			maxFileSize: null, // 2 MB
+			maxChunkSize:2000000, //2M
+			acceptFileTypes:new RegExp("(\.|\/)([jpeg|jpg|gif|png|bmp])$",'i'),
+			dropZone:jQuery('#cover_container'),
+			dropZone:jQuery('#cover_container'),
+			sequentialUploads:true,
+				
+		}).on('fileuploaddone', function (e, data) {
+				jQuery.each(data.result.files, function (index, file) {
+					jQuery('#cover_preview_1').html('<img class="thumbnail" style="margin-bottom:0" src="'+file.data.img+'" /><a href="javascript:;" style="position:absolute;left:0;top:0;" class="ibtn glyphicon glyphicon-remove" title="{eval echo lang("remove_bg_image")}" onclick="remove_backround_url_1()"></a>');
+					jQuery('#cover_1').val(file.data.aid).trigger('onchange');
+					jQuery('#imgbg').attr('src',(file.data.img).replace(/original=0/i,'original=1'));
+					jQuery('#header').addClass('cover');
+					setImage(document.getElementById('imgbg'));
+					
+				});
+			});
+			
+		</script>
+    <!--{template common/header_ajax}-->
+	<!--{/if}--> 
+<!--{/if}--> 
+	
+

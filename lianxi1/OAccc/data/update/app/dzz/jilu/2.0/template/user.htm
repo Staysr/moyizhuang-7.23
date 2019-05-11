@@ -1,0 +1,263 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/user_select.css?{VERHASH}" rel="stylesheet" media="all">
+<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css?c1d" media="all">
+<script type="text/javascript" src="{MOD_PATH}/scripts/main.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/input_field.js"></script>
+<!--{template common/header_simple_end}-->
+<style>
+html,body{
+	overflow:hidden;
+}
+h4{
+	font-weight:bold;
+}
+a:focus, a:hover{
+  text-decoration: none;
+}
+.color_4{
+	color:#f0ad4e;
+	text-shadow:0px 1px 1px #CCC;
+}
+.color_3{
+	color:#333;
+}
+.user-item .delete{
+	display:none;
+}
+.user-item .thumbnail img{
+	max-width:100%;
+	max-height:100%;
+}
+.user-item.hover .delete{
+	display:block;
+}
+.user-item .dropdown,.user-item .dropdown-menu{
+	font-size:12px;
+}
+.more{
+	font-size:80px;line-height:20px;font-family: georgia;
+	color:#BBBBBB;
+}
+.more:hover{
+	color:#428bca;
+}
+.bs-main-container{
+	overflow:auto;
+}
+.thumbnail .Topcarousel{
+  width: 84px;
+  height: 84px;
+  margin-top: 0;
+  font-size: 30px;
+  line-height: 84px;
+}
+/*.user-item.hover .dropdown{
+	display:block;
+}*/
+</style>
+
+<nav class="jilu-navbar bs-top-container">
+ 
+  <a href="{MOD_URL}&id={$jid}" style="padding-left: 8px;display: inline-block; ">
+      <div class="gb_fc" style="width: 48px;height: 48px;margin:0;margin-right: 25px;position: relative;top:-2px;"><i class="dzz dzz-chevron-left" style="font-size: 36px;color: #fff;position: relative;top: -6px;left: -6px;"></i></div>
+      <span>{eval echo lang('member_management')}</span>
+  </a>
+</nav>
+<div class="bs-main-container" style="margin-left: 0;">
+  <div class="main-content clearfix" style="padding:15px;">
+    <div class="user_group_container">
+      <h4 style="padding:0 10px;" class="user_group_title">{eval echo lang('cooper_member')}<small>(<i id="count_user_group_m">$userlist_count</i>)</small></h4>
+      <ul id="user_group_m" class="user_group_u user_group_m list-unstyled clearfix" >
+        <!--{if $perm>2}-->
+        <li  class=" pull-left" style="padding:10px;width:110px">
+          <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;overflow: hidden"> <a href="javascrip:;" onclick="showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=chkadd_2&stype=2&multiple=1&ids={eval echo rawurlencode(implode(',',array_keys($userlist)));}','get','0')"><img style="margin:10px" src="{MOD_PATH}/images/addUser.png" width="66" height="66" /></a> </div>
+          <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span ><a href="javascrip:;" onclick="showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=chkadd_2&stype=2&multiple=1&ids={eval echo rawurlencode(implode(',',array_keys($userlist)));}','get','0')" style="color:#333333">{eval echo lang('add_cooper_member')}</a></span> </p>
+        </li> 
+        <!--{/if}-->
+        <!--{loop $userlist $value}-->
+        <li id="user_{$value[uid]}" perm="$value[perm]" class="user-item pull-left" style="padding:10px;width:110px;position:relative"> <a href="javascrip:;" class="delete"  onclick="deleteUser('{$value[uid]}');return false" style="position:absolute;top:0px;right:0px;">
+          <span style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: rgba(116, 116, 116, 1);text-align: center;line-height: 20px;">
+            <i style="color:#fff;font-size:16px;line-height: 20px" class="dzz dzz-close"></i>
+          </span>
+        </a>
+          <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%"> 
+            {eval echo avatar_block($value[uid])}
+          </div>
+          <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span class="color_{$value[perm]}"> $value[username]</span> </p>
+          <!--{if $perm>2}-->
+          <ul class="nav  list-unstyled">
+            <li class="dropdown text-center"> <a style="padding:5px;color: #676767;"  href="#" data-toggle="dropdown" role="button" id="user-drop-{$value[uid]}" class="dropdown-toggle">$value[permtitle]<b class="caret"></b></a>
+              <ul aria-labelledby="user-drop-{$value[uid]}" role="menu" class="dropdown-menu person-ul" id="user-drop-{$value[uid]}-menu" style="min-width:105px;">
+                <!--{loop $permtitle $key $value1}-->
+                <li role="presentation"><a href="javascript:;" role="menuitem" uid="$value[uid]" perm="$key" onclick="setPerm(this)">$value1</a></li>
+                <!--{/loop}-->
+              </ul>
+            </li>
+          </ul>
+          <!--{/if}-->
+        </li>
+        <!--{/loop}-->
+        <!--{if $userlist_next}-->
+        	<li  class="userlist-next pull-left" style="padding:10px;width:110px">
+              <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;overflow:hidden;text-align:center;"> <a class="more" href="javascript:;" onclick="getNext('2','{$limit}');return false">...<p style="font-size:14px;line-height:35px">{eval echo lang('upload_more')}</p></a> </div>
+            </li>
+        <!--{/if}-->
+      </ul>
+      <h4 style="padding:0 10px;" class="user_group_title">{eval echo lang('follow_member')}<small>(<i id="count_user_group_f">$follows_count</i>)</small></h4>
+      <ul id="user_group_f" class="user_group_u user_group_f list-unstyled clearfix" >
+        <!--{if $perm>2}-->
+         <li  class="pull-left" style="padding:10px;width:110px">
+          <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;"> <a href="javascript:;" onclick="showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=chkadd_1&stype=2&multiple=1&ids={eval echo rawurlencode(implode(',',array_keys($follows)));}','get','0')"><img style="margin:10px;border-radius: 50%;" src="{MOD_PATH}/images/addUser.png" width="66" height="66" /> </a></div>
+          <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span ><a style="color:#333" href="javascript:;" onclick="showWindow('adduser', 'index.php?mod=system&op=selorguser&callback=chkadd_1&stype=2&multiple=1&ids={eval echo rawurlencode(implode(',',array_keys($follows)));}','get','0')">{eval echo lang('add_follow_member')}</a></span> </p>
+        </li>
+        <!--{/if}-->
+        <!--{loop $follows $value}-->
+        <li id="user_{$value[uid]}" perm="$value[perm]" class="user-item pull-left" style="padding:10px;width:110px;position:relative"> <a href="javascrip:;" class="delete" onclick="deleteUser('{$value[uid]}');return false;" style="position:absolute;top:0px;right:0px;">
+          <span style="display: inline-block;width: 20px;height: 20px;border-radius: 50%;background-color: rgba(116, 116, 116, 1);text-align: center;line-height: 20px;">
+            <i style="color:#fff;font-size:16px;line-height: 20px" class="dzz dzz-close"></i>
+          </span>
+        </a>
+          <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;border-radius: 50%;"> 
+            {eval echo avatar_block($value[uid])}
+          </div>
+          <p class="text-center" style="height:20px;margin:5px 0;line-height:25px;overflow:hidden;"> <span class="color_{$value[perm]}"> $value[username]</span> </p>
+          <!--{if $perm>2}-->
+          <ul class="nav  list-unstyled">
+            <li class="dropdown text-center"> <a style="padding:5px;color: #676767;"  href="#" data-toggle="dropdown" role="button" id="user-drop-{$value[uid]}" class="dropdown-toggle">$value[permtitle]<b class="caret"></b></a>
+              <ul aria-labelledby="user-drop-{$value[uid]}" role="menu" class="dropdown-menu person-ul" id="user-drop-{$value[uid]}-menu" style="min-width:105px;">
+                <!--{loop $permtitle $key $value1}-->
+                <li role="presentation"><a href="javascript:;" role="menuitem" uid="$value[uid]" perm="$key" onclick="setPerm(this)">$value1</a></li>
+                <!--{/loop}-->
+              </ul>
+            </li>
+          </ul>
+          <!--{/if}-->
+        </li>
+        <!--{/loop}-->
+         <!--{if $follows_next}-->
+        	<li  class="follow-next pull-left" style="padding:10px;width:110px">
+              <div class="thumbnail" style="width:90px;height:90px;margin:0;padding:2px;overflow:hidden;text-align:center;"> <a class="more"  href="javascript:;" onclick="getNext('1','{$limit}');return false">...<p style="font-size:14px;line-height:35px">{eval echo lang('upload_more')}</p></a> </div>
+            </li>
+        <!--{/if}-->
+      </ul>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+jQuery('.left-drager').leftDrager_layout(); 
+var perm='{$jilu[perm]}';
+function getNext(type,start){
+	jQuery.get('{MOD_URL}&op=user&operation=getMore&jid={$jid}',{'type':type,'start':start,'t':new Date().getTime()},function(html){
+		if(type=='1'){
+			var li=jQuery('.follow-next');
+		}else{
+			var li=jQuery('.userlist-next');
+		}
+		li.replaceWith(html);
+	});
+}
+function deleteUser(uid){
+	jQuery.getJSON('{MOD_URL}&op=user&operation=deleteUser&jid={$jid}',{'uid':uid,'t':new Date().getTime()},function(json){
+		if(json.error){
+			showmessage(json.error,'danger',3000,1);
+		}else{
+			jQuery('#user_'+uid).remove();
+		}
+    jQuery('#count_user_group_f').html(jQuery('#user_group_f').find('.user-item').length);
+    jQuery('#count_user_group_m').html(jQuery('#user_group_m').find('.user-item').length);
+	});
+}
+function setPerm(obj){
+	var el=jQuery(obj);
+	var li =el.parent().parent().parent().parent().parent();
+	var uid=el.attr('uid');
+	var perm=parseInt(el.attr('perm'));
+	if(li.attr('perm')==perm) return;
+	jQuery('#user-drop-'+uid).html(el.html()+'<b class="caret"></b>');
+	jQuery.getJSON('{MOD_URL}&op=user&operation=changeUserPerm&jid={$jid}',{'uid':uid,perm:perm,'t':new Date().getTime()},function(json){
+		if(json.error){
+			showmessage(json.error,'danger',3000,1);
+		}else{
+      li.attr('perm', perm);
+			if(perm==1 && li.parent().attr('id')=='user_group_m'){
+				if(jQuery('.follow-next').length>0){
+					jQuery('.follow-next').before(li);
+				}else{
+					li.appendTo(jQuery('#user_group_f'));
+				}
+			}
+			if(perm>1 && li.parent().attr('id')=='user_group_f'){
+				if(jQuery('.userlist-next').length>0){
+					jQuery('.userlist-next').before(li);
+				}else{
+					li.appendTo(jQuery('#user_group_m'));
+				}
+			}
+			jQuery('#count_user_group_f').html(jQuery('#user_group_f').find('.user-item').length);
+			jQuery('#count_user_group_m').html(jQuery('#user_group_m').find('.user-item').length);
+		}
+	});
+}
+
+//确定成员选择回调函数
+function chkadd_2(ids, data) {
+      var sub_data = {
+                'formhash': '{FORMHASH}',
+                'selectsubmit': true,
+                'perm': 2,
+                'jid': '{$jid}',
+                'uids': ids,  
+      }
+      var url = "{MOD_URL}&op=user&operation=selectuser";
+      jQuery.post(url, sub_data, function (html) {
+        jQuery("#user_group_m").find("li[perm=2]").remove();
+        jQuery(ids).each(function(){
+          if(jQuery("#user_"+this).attr("perm") < 3){
+            jQuery("#user_"+this).remove();
+          }
+        })
+        jQuery("#user_group_m").append(html);
+        jQuery('#count_user_group_m').html(jQuery('#user_group_m').find('.user-item').length);
+        jQuery('#count_user_group_f').html(jQuery('#user_group_f').find('.user-item').length);
+      }, 'html')
+  }
+function chkadd_1(ids, data) {
+      var sub_data = {
+                'formhash': '{FORMHASH}',
+                'selectsubmit': true,
+                'perm': 1,
+                'jid': '{$jid}',
+                'uids': ids,  
+      }
+      var url = "{MOD_URL}&op=user&operation=selectuser";
+      jQuery.post(url, sub_data, function (html) {
+        jQuery("#user_group_f").find("li[perm=1]").remove();
+        jQuery(ids).each(function(){
+          if(jQuery("#user_"+this).attr("perm") < 3){
+            jQuery("#user_"+this).remove();
+          }
+        })
+        jQuery("#user_group_f").append(html);
+        jQuery('#count_user_group_f').html(jQuery('#user_group_f').find('.user-item').length);
+        jQuery('#count_user_group_m').html(jQuery('#user_group_m').find('.user-item').length);
+      }, 'html')
+  }
+
+
+jQuery(document).ready(function(e) {
+	
+   if($perm>2){	
+	jQuery(document).on('mouseover','.user-item',function(){
+		jQuery(this).addClass('hover');
+	});
+	jQuery(document).on('mouseout','.user-item',function(){
+		jQuery(this).removeClass('hover');
+	});
+   }
+});
+</script> 
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script> 
+<!--{template common/footer_simple}--> 

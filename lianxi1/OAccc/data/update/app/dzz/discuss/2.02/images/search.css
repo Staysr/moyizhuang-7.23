@@ -1,0 +1,17 @@
+@charset "utf-8";
+.td_srchtxt {
+	background: url(./common/searchbar.png) no-repeat 0 -35px;
+}
+#scform_form {
+	background: url(./common/searchbar.png) repeat-x 0 0;
+}
+#scform_srchtxt {
+	padding: 0 10px;
+	width: 460px;
+	background: transparent;
+	outline: none;
+}
+#scform_srchtxt, #scform_submit {
+	height: 35px;
+	border: none;
+}

@@ -1,0 +1,53 @@
+
+<a href="javascript:;" class="close-popup"><span class="dzz dzz-close"></a>
+<div class="weui-popup__modal" style="background-color: #FFF"  id="view_modal_{$taskid}_evnet">
+	
+	<style>
+		
+		.activity-list{
+			font-size:14px;
+		}
+		.btn{
+			font-size: 14px;
+    		padding: 6px 25px;
+		}
+	</style>
+	<!--{template common/header_simple_end}-->
+	<section class="weui-panel-body">  
+	 <div id="tab_events_{$taskid}" style="padding:5px 15px;">
+		<div class="activity-list">
+		  <ul id="tab_events_list_{$taskid}" class="activities list-unstyled">
+		  <!--{template list/event_item}-->
+		  </ul>
+		</div>
+	  </div>
+    </section>
+	</div>
+
+<footer class="weui-tabbar weui-view-footer">
+
+<a href="javascript:;" onclick="showTaskPanel('$taskid');return false"  class="weui-tabbar__item">
+	  <span class="dzz dzz-description"></span>
+	  <p class="weui-tabbar__label">任务详情</p>
+	</a>
+	<a href="javascript:;" onclick="showTaskPanel('$taskid','comment');return false" class="weui-tabbar__item"> <span class="dzz dzz-comment"></span>
+	  <p class="weui-tabbar__label">评论</p>
+	</a> <a href="javascript:;" onclick="showTaskPanel('$taskid','event');return false" class="weui-tabbar__item"> <span class="dzz dzz-sensitive"></span>
+	  <p class="weui-tabbar__label">动态</p>
+	  </a>
+	
+	
+	
+</footer>
+<script type="text/javascript" >
+var cpurl='{MOD_URL}&op=cp&tbid=$tbid';
+var ajaxurl='{MOD_URL}&op=list&tbid=$tbid';
+
+
+function getEventMore_{$taskid}(page,uid){
+    jQuery.get('{MOD_URL}&op=list&do=ajax&operation=getevent&taskid={$taskid}&tbid={$tbid}',{'page':parseInt(page)+1,'uid':uid},function(html){
+        jQuery('#btn-load-more-{$taskid}').replaceWith(html);
+    });
+};
+
+</script>

@@ -1,0 +1,3 @@
+---------------------------------------------------------------
+[ 2018-11-20T08:45:37+08:00 ] ::1 GET localhost/lianxi1/ThinkAdmin-master%20(1)/
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'admin_v3'[/Applications/MAMP/htdocs/18031/lianxi1/ThinkAdmin-master (1)/thinkphp/library/think/db/Connection.php:528]

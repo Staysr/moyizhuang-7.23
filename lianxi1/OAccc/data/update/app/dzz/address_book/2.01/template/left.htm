@@ -1,0 +1,201 @@
+
+<div class="leconMenu" style="margin-top:20px;">
+  <div class="latelMenu">
+    <p class="recent-use actives document-data"  data-href="{MOD_URL}&op=list&do=frequent" data-hash="frequent"><span class="dzz dzz-recent"></span>{lang frequently_contact}</p>
+  </div>
+   
+  <div class="positionMenu">
+    <div class="mechsnismMenu" id="position" class="usertree-container list-unstyled" style="padding:5px 0">
+  </div>
+   <div class="latelMenu">
+    <p class="recent-use actives document-data"  data-href="{MOD_URL}&op=listdo=all" data-hash="all"><span class="dzz dzz-assignment"></span>{lang alluser}</p>
+  </div>
+</div>
+</div>
+<!--{if $app_version}-->
+<!--{template common/copyright_left}-->
+<!--{/if}-->
+<script type="text/javascript">
+i=0;
+jQuery(document).ready(function(e) {
+	jQuery('#position').jstree({
+        "core": {
+            "multiple": true,
+            "check_callback": true,
+            "themes": {
+                "responsive": false
+            },
+            'data': function (node, cb) {
+                var self = this;
+                jQuery.getJSON('{MOD_URL}&op=grouptree&do=get_children', {'id': node.id}, function (json) {
+                    cb.call(this, json);
+                });
+            }
+        },
+        "types": {
+            "#": {
+                "max_children": -1,
+                "max_depth": -1,
+                "valid_children": -1
+            },
+            "organization": {//部门
+                "icon": "dzz dzz-account-box",
+                "valid_children": ['depart','folder']
+            },
+			 "department": {
+                "icon": "dzz/system/images/department.png",
+                "valid_children": ['depart','folder']
+            },
+			 "group": {//群组
+                 "li_attr":'aaa',
+                "icon": "dzz dzz-group",
+                "valid_children": ['folder']
+            },
+			"home": {//我的网盘
+                "icon": "dzz dzz-mydisk",
+                "valid_children": ['folder']
+            },
+            "folder": {//群组
+                "icon": "dzz dzz-folder",
+                "valid_children": ['folder']
+            },
+        },
+     
+        "plugins": ['types', 'search','wholerow']
+    });
+});
+	  $('#position').off('select_node.jstree').on('select_node.jstree', function (e, data) {
+        var inst = $('#position').jstree(true);
+        var node = data.node;
+        var hash = node.li_attr.hashs;
+		var ohash=window.location.hash.replace('#','');
+		if(ohash== hash){
+			$('.document-data').removeClass('actives');
+			$('[data-hash="'+hash+'"]').addClass('actives');
+			location.hash=hash;
+		}else{
+			location.hash=hash;
+		}
+        inst.open_node(node);
+        return false;
+    });
+	
+  
+    $("#position").off('ready.jstree').on('ready.jstree', function(e) {
+         var inst = $("#position").jstree(true);
+         var hash = location.hash;
+         if(hash) {
+            hash = (hash.replace(/^#/,''));
+			hashHandler(hash);
+        }else{
+			location.hash='#frequent';
+		}
+     });
+	$(window).on('hashchange',function(){
+        hashHandler();
+     });
+	 //左侧列表页事件
+	 $(document).off('click.document-data').on('click.document-data','.document-data',function(){
+		//var el=$(this);
+		location.hash = jQuery(this).data('hash');
+	});
+var oldhash=null;
+function hashHandler(){
+	 var hash = location.hash;
+	 hash = hash.replace(/^#/i,'');
+	if(!hash) {
+		hash = 'frequent';
+	}
+	var flag=hash.replace(/-.+?$/i,'');
+	switch (flag){
+			case 'gid':
+				var gid=hash.replace('gid-','');
+			    $('#searchval').val('');
+				open_node_by_id(gid);
+				break;
+			case 'frequent':
+				$('#searchval').val('');
+				$('#position').jstree(true).deselect_all();
+				break;
+			case 'search':
+				$('#searchval').val(hash.replace(/search-/,''));
+				break;
+			case 'group':
+				var inst=$('#position').jstree(true);
+			    inst.select_node('#group');
+				$('#searchval').val('');
+				break;
+		default:
+			if($('#position').length > 0){
+				$('#position').jstree(true).deselect_all();
+			}
+			$('#searchval').val('');
+	}
+	
+	 if(hash === oldhash){
+		 return false;
+	 }else{
+		 getRightContent(hash,$('#feed_container'));
+		 oldhash=hash;
+	 }
+	 return false; 
+}
+
+function open_node_by_id(gid){
+	var inst=$('#position').jstree(true);
+	var node=null;
+	 if(gid){
+		node=inst.get_node('#gid_'+gid);
+	}else{
+		inst.deselect_all();
+		return;
+	}
+	if(node){
+		inst.deselect_all();
+		var selects=inst.get_selected();
+		for(var i=0;i<selects.length;i++){
+			if(selects[i]===node.id){
+				continue;
+			}
+			inst.deselect_node('#'+selects[i]);
+		}
+		inst.select_node(node);
+	}else{
+		$.post('{MOD_URL}&op=grouptree&do=getParentsArr',{'gid':gid},function(data){
+			var node=inst.get_node('#'+data[0]);
+			open_node_bg(inst,node,data);
+		},'json');
+	}
+}
+function open_node_bg(inst,node,arr){
+	
+	inst.open_node(node,function(node){
+		var i=jQuery.inArray(node.id,arr);
+		if(i<arr.length && i>-1 && document.getElementById(arr[i+1])){
+			 open_node_bg(inst,document.getElementById(arr[i+1]),arr);
+		}else{
+			inst.deselect_all();
+			inst.select_node(node);
+		}
+	});
+}
+var rightLoading=0;
+function getRightContent(hash,container){//处理右侧页面加载
+    var gid=hash.replace('gid-','');
+	loading(container); 
+	rightLoading=1;
+	 $('.document-data').removeClass('actives');
+	 $('[data-hash="'+hash+'"]').addClass('actives');
+	var url='{MOD_URL}&op=list&gid='+gid;
+	jQuery('#feed_container').load(url);
+
+};
+function loading(container,flag){//右侧加载效果
+	if(flag==='hide'){
+		container.find('.loadding').remove();
+	}else{
+		container.find('.loadding').remove();
+		container.append('<div class="loadding" style="min-height:200px"></div>');
+	}
+};
+</script>

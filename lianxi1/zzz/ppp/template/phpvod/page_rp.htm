@@ -1,0 +1,29 @@
+<!--{if !empty($pageinfo)}-->
+<nav aria-label="Page navigation">
+	<ul class="pagination pagination-sm">
+		<!--{eval $page_first_url = str_replace('%page%', $pageinfo[page_first], $pageinfo[url]);}-->
+		<li><a href="{$page_first_url}"><span aria-hidden="true">首页</span></a></li>
+		<!--{eval $page_up_url = str_replace('%page%', $pageinfo[page_up], $pageinfo[url]);}-->
+		<li><a href="{$page_up_url}" aria-label="Previous"><span aria-hidden="true">上一页</span></a></li>
+		<!--{eval for($i=$pageinfo[page_current]-3;$i<$pageinfo[page_current];$i++) {}-->
+			<!--{eval if($i<1) continue;}-->
+			<!--{eval $url = str_replace('%page%', {$i}, $pageinfo[url]);}-->
+			<li><a href="{$url}">$i</a></li>
+		<!--{eval }}-->
+		<li class="active"><span>{$pageinfo[page_current]}<span class="sr-only">(current)</span></span></li>
+		<!--{if $pageinfo[page_current]<$pageinfo[page_end]}-->
+			<!--{eval $flag=0;}-->
+			<!--{eval for($i=$pageinfo[page_current]+1;$i<=$pageinfo[page_end];$i++) {}-->
+				<!--{eval $url = str_replace('%page%', {$i}, $pageinfo[url]);}-->
+				<li><a href="{$url}">$i</a></li>
+				<!--{eval $flag++;}-->
+				<!--{eval if($flag==4) break;}-->
+			<!--{eval }}-->
+		<!--{/if}-->
+		<!--{eval $page_down_url = str_replace('%page%', $pageinfo[page_down], $pageinfo[url]);}-->
+		<li><a href="{$page_down_url}" aria-label="Next"><span aria-hidden="true">下一页</span></a></li>
+		<!--{eval $page_end_url = str_replace('%page%', $pageinfo[page_end], $pageinfo[url]);}-->
+		<li><a href="{$page_end_url}"><span aria-hidden="true">尾页</span></a></li>
+	</ul>
+</nav>
+<!--{/if}-->

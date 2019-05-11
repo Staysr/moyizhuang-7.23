@@ -1,0 +1,34 @@
+/* pages/userwanjie/index.wxss *//* pages/carquanbu/index.wxss */
+/* pages/carjieshou/index.wxss */
+@import "../xuqiou/index.wxss";
+.day_add{
+  width:90%;
+  margin:50rpx auto;
+  border-radius:50rpx;
+  color: rgb(169,169,169),
+
+}
+.gear{
+  width:90%;
+  background-color: #fff; 
+  margin-left:25rpx;
+  height:700rpx;
+  border-radius:10rpx;
+}
+.gear_add{
+   padding-top:28rpx;
+   display: block;
+   margin-left: 36rpx;
+}
+.gear_xinxi{
+  width:90%;
+  background-color: #fff; 
+  margin-left:25rpx;
+  height:390rpx;
+  border-radius:10rpx;
+}
+.color{
+ background-color: rgb(244,244,244);
+ height: 1219rpx;
+ 
+}

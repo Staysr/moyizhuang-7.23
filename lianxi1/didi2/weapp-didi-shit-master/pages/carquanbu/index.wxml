@@ -1,0 +1,24 @@
+<!--pages/carquanbu/index.wxml-->
+<!-- <text>pages/carquanbu/index.wxml</text> -->
+<view>
+<view class="nav bc_white">
+    <view class="{{selected?'red':'default'}}" bindtap="selected">全部订单</view>
+    <view class="{{selected1?'red':'default'}}" bindtap="selected1">接收订单</view>
+    <view class="{{selected2?'red':'default'}}" bindtap="selected2">完结订单</view>
+  </view>
+ <view class="color">
+
+ <block wx:for="{{quanbu}}" wx:for-item="item" wx:key="index">
+ <view class="gear">
+ <!-- <image class='delete' src="../../images/delete.png"></image> -->
+<span class="gear_add">订单编号:{{item.id}}</span>
+<span class="gear_add">{{dizhi}}</span>
+<span class="gear_add">任务类型:{{item.leixing}}</span>
+<span class="gear_add">联系人姓名:{{item.user}}</span>
+<span class="gear_add">联系人电话:{{item.phone}}</span>
+<span class="gear_add">所选车型:{{car}}</span>
+<span class="gear_add">结算金额:¥{{item.money}}</span>
+</view>
+ </block>
+ </view>
+</view>

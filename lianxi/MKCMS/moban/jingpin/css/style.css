@@ -1,0 +1,7 @@
+@import "stui_block.css";
+@import "stui_custom.css";
+@import "stui_default.css";
+@import "iconfont.css";
+.page_show { margin: 20px 0; }
+.page_show a { display: inline-block; height: 40px; line-height: 40px; min-width: 40px; text-align: center; background: #F2F2F2; margin-right: 2px; }
+.page_show a:hover, .page_show a.page_current { background: #0A8; color: #FFF; }

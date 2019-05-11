@@ -1,0 +1,466 @@
+<!-- index.wpy -->
+<style lang="less">
+  .header {
+    position: relative;
+  }
+  .header .wrap {
+    position: absolute;
+    z-index: -1;
+    opacity: 0.3;
+  }
+  .user {
+    display: flex;
+    height: 200rpx;
+  }
+  .user .item {
+    
+  }
+  .user .left {
+    flex-grow: 0;
+    width: 200rpx;
+    padding:35rpx;
+    margin:0 0 0 50rpx;
+  }
+  .user .right {
+    flex-grow: 1;
+    padding: 45rpx;
+  }
+  .user .right .info {
+    width: 250rpx;
+  }
+  .user .right .info .nickname {
+    border-bottom: solid 1px #444444;
+    padding: 0 0 10rpx 0;
+  }
+  .user .right .info .mobile {
+    padding: 10rpx 0 0 0;
+  }
+  .avatar_box {
+    width: 100%;
+    height: 100%;
+    border-radius: 999rpx;
+    overflow: hidden;
+  }
+  .desc {
+    font-size: 27rpx;
+    color: #888888;
+  }
+  .position {
+    color: #333333;
+    font-size: 33rpx;
+  }
+  .position .content {
+    padding: 20rpx 20rpx 20rpx 30rpx;
+  }
+  .position text.title {
+    color: #888;
+    font-size: 30rpx;
+    font-weight: bold;
+  }
+  .my {
+
+  }
+  .change {
+    position: absolute;
+    right: 0rpx;
+  }
+  .getLocationShop {
+    bottom: 0rpx;
+  }
+  .my .title {
+    padding: 23rpx 0 50rpx 0;
+    font-size: 30rpx;
+    line-height: 30rpx;
+  }
+  .needFill {
+    padding: 200rpx 0 0 0rpx;
+    .content {
+      font-size: 32rpx;
+      text-align: center;
+      .fillBtn {
+        button {
+          line-height:46rpx;
+        }
+      }
+    }
+  }
+</style>
+<template>
+  <!-- 头部开始 -->
+  <view class="header">
+    <!-- 定位按钮 -->
+    <view class="getLocationShop change btn">
+      <wxc-button type="primary" size="small" value="定位" bind:click="bindLocate" />
+    </view>
+    <image mode="widthFix" class="wrap" src="https://rent-1256171234.cos.ap-beijing.myqcloud.com/static/bannar.jpg" />
+    <!-- 个人资料 -->
+    <wxc-flex class="user">
+      <view class="item left">
+        <wxc-cc>
+          <view class="avatar_box">
+            <image mode="aspectFill" class="avatar" src="{{userInfo.avatar}}" />
+          </view>
+        </wxc-cc>
+      </view>
+      <view class="item right">
+        <view class="info">
+          <view class="nickname">{{userInfo.nickname}}</view>
+          <view class="mobile">{{userInfo.mobile}}</view>
+        </view>
+      </view>
+    </wxc-flex>
+  </view>
+  <!-- 头部结束 -->
+  <!-- 当前店铺开始 -->
+  <view class="shop">
+    <picker mode="region" value="{{currentRegion}}" custom-item="{{customItem}}" bindchange="bindRegionChange">
+      <wxc-list
+        class="orders"
+        title="所在城市"
+        src="https://s10.mogucdn.com/mlcdn/c45406/170603_7ida8bdc21j18b91aa2ii3lk38b9i_38x38.png"
+      >
+        <view class="desc">{{currentRegion[0]}}，{{currentRegion[1]}}，{{currentRegion[2]}}</view>
+      </wxc-list>
+    </picker>
+    <picker bindchange="bindShopChange" value="{{currentShop}}" range="{{currentShops}}">
+      <wxc-list
+        class="orders"
+        title="所在医院"
+        src="https://s10.mogucdn.com/mlcdn/c45406/170603_7ida8bdc21j18b91aa2ii3lk38b9i_38x38.png"
+      >
+        <view class="desc">{{cityShops[currentShop]['name']}}</view>
+      </wxc-list>
+    </picker>
+    <!-- 存放处 -->
+    <view class="position">
+      <wxc-panel>
+        <view class="content">
+          <text class="title">店铺位置：</text>{{cityShops[currentShop].position}}
+        </view>
+        <view class="content">
+          <text class="title">设备描述：</text>{{cityShops[currentShop].equipment_desc}}
+        </view>
+      </wxc-panel>
+    </view>
+  </view>
+  <!-- 当前店铺结束 -->
+
+  <!-- 个人资料开始 -->
+  <wxc-panel wx:if="{{1}}" class="my">
+    <!-- 已完善的资料显示开始 -->
+    <!-- 修改按钮 -->
+    <view class="change btn">
+      <wxc-button type="primary" size="small" value="修改" bind:click="change" />
+    </view>
+    <!-- 标题 -->
+    <view class="title">
+      <wxc-cc>
+        领取人及患者信息
+      </wxc-cc>
+    </view>
+    <!-- 资料 -->
+    <view class="file">
+      <wxc-cc>
+        <view class="message">
+          <wxc-input disabled="{{true}}" title="{{setting.root.weapp[0].pages[0].ucenter[0].columns[0].real_name[0]}}" value="{{userInfo.real_name}}"></wxc-input>
+          <wxc-input disabled="{{true}}" title="{{setting.root.weapp[0].pages[0].ucenter[0].columns[0].gender[0]}}" value="{{userInfo.gender === 0?'未知':(userInfo.gender === 1?'男':'女')}}"></wxc-input>
+          <wxc-input disabled="{{true}}" title="{{setting.root.weapp[0].pages[0].ucenter[0].columns[0].mobile[0]}}" value="{{userInfo.mobile}}"></wxc-input>
+          <wxc-input disabled="{{true}}" title="{{setting.root.weapp[0].pages[0].ucenter[0].columns[0].card_id[0]}}" value="{{userInfo.card_id}}"></wxc-input>
+          <wxc-input disabled="{{true}}" title="{{setting.root.weapp[0].pages[0].ucenter[0].columns[0]['user-real-name'][0]}}" value="{{userInfo.user_real_name}}"></wxc-input>
+          <wxc-input disabled="{{true}}" title="{{setting.root.weapp[0].pages[0].ucenter[0].columns[0]['user-position'][0]}}" value="{{userInfo.position}}"></wxc-input>
+        </view>
+      </wxc-cc>
+    </view>
+  </wxc-panel>
+  <!-- 已完善的资料显示结束 -->
+  <!-- 提示完善资料开始 -->
+  <view wx:if="{{Integrity !== 2}}" class="needFill">
+    <view class="content">
+      {{Integrity === 0?'您还没有个人资料':(Integrity === 1?'您的个人资料不完善':'资料已经完善')}}，请
+      <wxc-button class="fillBtn" type="primary" size="small" plain="true" bind:click="change">完善</wxc-button>
+    </view>
+  </view>
+  <!-- 提示完善资料结束 -->
+  <!-- 个人资料结束 -->
+  <wxc-loadmore is-end="{{true}}" text="没有更多内容" icon="{{true}}"></wxc-loadmore>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  import { request, storage2data } from '../../utils/util'
+  import { urls, qqmap, common } from '../../config/config'
+  import QQMapWX from '../../utils/qqmap-wx-jssdk.js'
+
+  function getDistance(lat1, lng1, lat2, lng2) {
+    var radLat1 = lat1 * Math.PI / 180.0
+    var radLat2 = lat2 * Math.PI / 180.0
+    var a = radLat1 - radLat2
+    var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0
+    var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)))
+    s = s * 6378.137
+    s = Math.round(s * 10000) / 10000
+    return s
+  }
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'test',
+      usingComponents: {
+        'wxc-button': '../../packages/@minui/wxc-button/dist/index',
+        'wxc-panel': '../../packages/@minui/wxc-panel/dist/index',
+        'wxc-cc': '../../packages/@minui/wxc-cc/dist/index',
+        'wxc-list': '../../packages/@minui/wxc-list/dist/index',
+        'wxc-loadmore': '../../packages/@minui/wxc-loadmore/dist/index',
+        'wxc-input': '../../packages/@minui/wxc-input/dist/index'
+      }
+    }
+    components = {}
+
+    mixins = []
+
+    data = {
+      nickname: '',
+      avatar: '',
+      shops: [], // 拉取的所有店铺数据
+      adcode: '', // 用户所在市级行政区区划代码
+      cityShops: [], // 用户所在市级行政区的店铺数据
+      currentRegion: [], // 渲染的picker地区数组
+      currentAdcode: '', // 当前选择的行政区划代码
+      currentShops: [], // 渲染的picker店铺数组
+      currentShop: 0, // 当前的picker店铺索引
+      location: '', // 用户所在的经纬度
+      userInfo: null,
+      setting: null,
+      common: {},
+      Integrity: 0 // 0资料为空， 1不完善， 2已完善
+    }
+
+    computed = {}
+
+    methods = {
+      change() {
+        wx.navigateToP({ url: '/pages/ucenter/idcard' })
+      },
+      async bindRegionChange(e) {
+        console.log('picker发送选择改变，携带值为', e)
+
+        await this.getLocal()
+
+        this.currentShops = []
+        this.currentAdcode = e.detail.code[2]
+        this.currentRegion = e.detail.value
+
+        this.getLocalShop(this.currentAdcode)
+
+        wx.setStorageSync('currentAdcode', this.currentAdcode)
+        wx.setStorageSync('currentRegion', this.currentRegion)
+        wx.setStorageSync('cityShops', this.cityShops)
+        wx.setStorageSync('currentShops', this.currentShops)
+        wx.setStorageSync('currentShop', this.currentShop)
+
+        this.$apply()
+      },
+      bindShopChange(e) {
+        console.log('picker发送选择改变，携带值为', e)
+        this.currentShop = e.detail.value
+
+        wx.setStorageSync('cityShops', this.cityShops)
+        wx.setStorageSync('currentShop', this.currentShop)
+      }
+    }
+
+    events = {}
+
+    async onLoad() {
+      const currentAdcode = wx.getStorageSync('currentAdcode')
+      const currentRegion = wx.getStorageSync('currentRegion')
+      const cityShops = wx.getStorageSync('cityShops')
+      const currentShop = wx.getStorageSync('currentShop')
+      const currentShops = wx.getStorageSync('currentShops')
+
+      /* 获取所有存在商户的行政区域 */
+      const { data: shops } = await request(urls.ShopAll, {}, 'GET')
+
+      console.log('所有店铺：', shops)
+
+      const AC = new Set()
+      shops.forEach(shop => {
+        AC.add(shop.adcode.substr(0, 4))
+      })
+      this.AC = AC
+      this.shops = shops
+
+      if (!currentAdcode || !currentRegion || !cityShops) {
+        const { adcode, currentRegion } = await this.getLocal()
+        this.currentAdcode = adcode
+        this.currentRegion = [
+          currentRegion.province,
+          currentRegion.city,
+          currentRegion.district
+        ]
+        this.getLocalShop(this.currentAdcode)
+      } else {
+        this.currentAdcode = currentAdcode
+        this.currentRegion = currentRegion
+        this.cityShops = cityShops
+        this.currentShops = currentShops
+        this.currentShop = currentShop
+      }
+
+      this.$apply()
+    }
+
+    /* 获取当前位置经纬度和描述
+     * @method getLocal
+     * @param {}
+     * @return {String, Object} 所在位置的行政区划代码，所在位置的省市区名称
+    */
+    async getLocal() {
+      const qqmapsdk = new QQMapWX({
+        key: qqmap.key
+      })
+      qqmapsdk.reverseGeocoderP = obj => new Promise((resolve, reject) => {
+        qqmapsdk.reverseGeocoder({
+          success: function(res) {
+            resolve(res)
+          },
+          ...obj
+        })
+      })
+
+      const lres = await wx.getLocationP({
+        type: 'wgs84'
+      })
+
+      const location = {
+        latitude: lres.latitude,
+        longitude: lres.longitude
+      }
+      console.log('当前经纬度: ', location)
+
+      const addressRes = await qqmapsdk.reverseGeocoderP({
+        location: {
+          latitude: lres.latitude,
+          longitude: lres.longitude
+        }
+      })
+      console.log('当前位置描述', addressRes)
+
+      const {
+        result: {
+          ad_info: {
+            adcode
+          },
+          address_component: currentRegion
+        }
+      } = addressRes
+
+      console.log('行政区划代码', adcode)
+
+      this.location = location
+      this.adcode = adcode
+
+      this.$apply()
+
+      return { adcode, currentRegion }
+    }
+
+    /* 查看所在区域是否有店铺
+     * @method getLocalShop
+     * @param {}
+     * @return {}
+    */
+    async getLocalShop(currentAdcode) {
+      const cityAdcode = currentAdcode.substr(0, 4)
+      const haveC = this.AC.has(cityAdcode)
+      console.log('存在店铺？', haveC)
+
+      if (haveC === false) {
+        // 市级行政区内无店铺
+        wx.showModal({
+          title: `当前位置：${this.currentRegion[0]},${this.currentRegion[1]}`,
+          content: `当前区域无设备`,
+          showCancel: false
+        })
+        this.cityShops = []
+      } else if (haveC === true) {
+        // 市级行政区内有店铺
+        const cityShopsList = []
+        const cityShops = this.shops.filter(shop => {
+          if (shop.adcode.substr(0, 4) === cityAdcode) {
+            cityShopsList.push(shop.name)
+            return true
+          }
+        })
+        this.currentShops = cityShopsList
+        this.cityShops = cityShops
+        console.log('市内的店铺：', cityShops)
+
+        // 查找距离最近的店铺
+        let minDistanceShopIndex = null
+        let minDistance = Infinity
+
+        cityShops.forEach((cityShop, index) => {
+          const locationArr = cityShop.location.split('_')
+          const W = Math.pow(10, 6)
+          const x = locationArr[1] / W
+          const y = locationArr[0] / W
+          const currentDistance = getDistance(x, y, this.location.longitude, this.location.latitude)
+          cityShop.distance = currentDistance
+          if (currentDistance < minDistance) {
+            minDistanceShopIndex = index
+            minDistance = currentDistance
+          }
+        })
+        this.currentShop = minDistanceShopIndex
+        this.$apply()
+
+        wx.setStorageSync('currentAdcode', this.currentAdcode)
+        wx.setStorageSync('currentRegion', this.currentRegion)
+        wx.setStorageSync('cityShops', this.cityShops)
+        wx.setStorageSync('currentShops', this.currentShops)
+        wx.setStorageSync('currentShop', this.currentShop)
+
+        console.log('距离最近的店铺', cityShops[ minDistanceShopIndex ])
+      }
+    }
+
+    /* 点击定位按钮 */
+    async bindLocate() {
+      const { adcode, currentRegion } = await this.getLocal()
+      this.currentAdcode = adcode
+      this.currentRegion = [
+        currentRegion.province,
+        currentRegion.city,
+        currentRegion.district
+      ]
+      this.getLocalShop(this.currentAdcode)
+      this.currentShops = []
+      this.$apply()
+    }
+
+    async onShow() {
+      console.log('onShow')
+      const _this = this
+      const result = await request(urls.GetUserInfo, {}, 'GET')
+      const { data } = result
+      wx.setStorageSync('userInfo', data)
+      storage2data(_this)
+
+      // 检测资料完整度
+      const allCol = [ 'real_name', 'card_id', 'user_real_name', 'position', 'idcard_positive_img_url', 'idcard_opposite_img_url' ]
+      let _haveEmpty = false
+      allCol.forEach(col => {
+        if (!_this.userInfo || !_this.userInfo[col] || _this.userInfo[col] === '') {
+          _this.Integrity = 1
+          _haveEmpty = true
+        }
+      })
+      if (_haveEmpty === false) {
+        _this.Integrity = 2
+      }
+      this.$apply()
+    }
+  }
+</script>

@@ -1,0 +1,265 @@
+<!--<?php
+include_once gettpl('top');
+if(!$action){
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">新增版块/栏目</td>
+	</tr>
+	<tr>
+		<td class="notice" style="line-height: 1;">
+			说明：可以添加新版块, 新栏目, 支持无限级栏目<br /><br />
+			<form action="$basename" method="post">
+				<input type="hidden" name="action" value="add_board" /> 版块名称: <input type="text" name="name" size="30" />
+				<input type="submit" value="提 交" />
+			</form>
+			<br />
+			<form action="$basename" method="post">
+				<input type="hidden" name="action" value="add_sub" /> 栏目名称: <input type="text" name="caption" size="30" /> 上级栏目:
+				<select name="cup">{$_class_opt}</select>
+				<input type="submit" value="提 交" />
+			</form>
+		</td>
+	</tr>
+</table>
+<br />
+
+<form action="$basename" method="post">
+	<input type="hidden" name="action" value="update" />
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="4">栏目管理</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%">ID</td>
+			<td width="60%">标题</td>
+			<td width="20%">显示顺序</td>
+			<td width="15%">操作</td>
+		</tr>
+<!--
+EOT;
+foreach($listdb as $value){
+$edit = $value['cup']==0 ? 'edit_board' : 'edit_sub';
+print <<<EOT
+-->
+		<tr>
+			<td class="f-tac">$value[cid]</td>
+			<td class="f-tal">$value[caption]</td>
+			<td class="f-tac"><input type="text" name="selid[$value[cid]]" value="$value[vieworder]" size="8"></td>
+			<td class="f-tac">
+				<a href="$basename&action={$edit}&cid=$value[cid]">编辑</a>
+				<a href="$basename&action=delete&cid=$value[cid]">删除</a>
+			</td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table><br />
+	<center><input type="submit" value="提 交" /></center>
+</form>
+<!--
+EOT;
+}elseif($action=='edit_board'){print <<<EOT
+-->
+<form action="$basename" method="post">
+	<input type="hidden" name="action" value="edit_board" />
+	<input type="hidden" name="step" value="2" />
+	<input type="hidden" name="cid" value="$cid" />
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">编辑版块</td>
+		</tr>
+		<tr>
+			<td width="40%">显示顺序</td>
+			<td><input type="text" name="vieworder" value="{$_class[$cid][vieworder]}" size="10" /></td>
+		</tr>
+		<tr>
+			<td>版块名称</td>
+			<td><input type="text" name="caption" value="{$_class[$cid][caption]}" size="60" /></td>
+		</tr>
+		<tr>
+			<td>版块链接(填写此项，当进入版块时将转向您填写的链接地址)</td>
+			<td><input type="text" name="link" value="{$_class[$cid][link]}" size="60" /></td>
+		</tr>
+		<tr>
+			<td>模板文件<br />只需要输入文件名,扩展名为htm</td>
+			<td><input type="text" name="tplfile" value="{$_class[$cid][tplfile]}" size="10" />.htm</td>
+		</tr>
+	</table><br />
+	
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">SEO</td>
+		</tr>
+		<tr>
+			<td width="40%">title</td>
+			<td><input type="text" size="60" value="{$_class[$cid][title]}" name="title"></td>
+		</tr>
+		<tr>
+			<td>keywords</td>
+			<td><input type="text" size="60" value="{$_class[$cid][keywords]}" name="keywords"></td>
+		</tr>
+		<tr>
+			<td>description</td>
+			<td><input type="text" size="60" value="{$_class[$cid][description]}" name="description"></td>
+		</tr>
+	</table><br />	
+	<center><input type="submit" value="提 交" /></center><br />
+</form>
+<!--
+EOT;
+}elseif($action=='edit_sub'){print <<<EOT
+-->
+<form action="$basename" method="post">
+	<input type="hidden" name="action" value="edit_sub" />
+	<input type="hidden" name="step" value="2" />
+	<input type="hidden" name="cid" value="$cid" />
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">编辑栏目</td>
+		</tr>
+		<tr>
+			<td width="40%">上级栏目</td>
+			<td><select name="cup">{$_class_opt}</select></td>
+		</tr>
+		<tr>
+			<td>显示顺序</td>
+			<td><input type="text" name="vieworder" value="{$_class[$cid][vieworder]}" size="10" /></td>
+		</tr>
+		<tr>
+			<td>栏目名称</td>
+			<td><input type="text" name="caption" value="{$_class[$cid][caption]}" size="60" /></td>
+		</tr>
+		<tr>
+			<td>
+				栏目类别<br /> 开放版块: 游客与会员均可访问<br /> 正规版块: 只允许会员访问<br /> 隐藏版块: 无权限的将不可见
+			</td>
+			<td>
+				<select name="type">
+					<option value="free" $classtype_free>开放版块</option>
+					<option value="members" $classtype_members>正规版块</option>
+					<option value="hidden" $classtype_hidden>隐藏版块</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>影片排序关键字</td>
+			<td>
+				<select name="orderway">
+					<option value="postdate" $orderway_postdate>发布时间</option>
+					<option value="lastdate" $orderway_lastdate>最后更新</option>
+					<option value="hits" $orderway_hits>人气</option>
+					<option value="reply" $orderway_reply>评论</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>影片排序方式</td>
+			<td>
+				<select name="orderasc">
+					<option value="1" $orderasc_1>降序</option>
+					<option value="0" $orderasc_0>升序</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>审核设置</td>
+			<td>
+				<select name="atccheck">
+					<option value="0" $atccheck_0>无</option>
+					<option value="1" $atccheck_1>审核影片</option>
+					<option value="2" $atccheck_2>审核评论</option>
+					<option value="3" $atccheck_3>审核影片和评论</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>栏目链接(填写此项，当进入栏目时将转向您填写的链接地址)</td>
+			<td><input type="text" name="link" value="{$_class[$cid][link]}" size="60" /></td>
+		</tr>
+		<tr>
+			<td>列表页模板文件<br />只需要输入文件名,扩展名为htm</td>
+			<td><input type="text" name="tplfile" value="{$_class[$cid][tplfile]}" size="10" />.htm</td>
+		</tr>
+		<tr>
+			<td>详情页模板文件<br />只需要输入文件名,扩展名为htm</td>
+			<td><input type="text" name="read_tplfile" value="{$_class[$cid][read_tplfile]}" size="10" />.htm</td>
+		</tr>
+		<tr>
+			<td>播放页模板文件<br />只需要输入文件名,扩展名为htm</td>
+			<td><input type="text" name="play_tplfile" value="{$_class[$cid][play_tplfile]}" size="10" />.htm</td>
+		</tr>
+	</table><br />
+
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">栏目访问积分设置</td>
+		</tr>
+		<tr>
+			<td width="40%">至少需要威望</td>
+			<td><input type="text" size="10" value="{$_class[$cid][rvrcneed]}" name="rvrcneed"></td>
+		</tr>
+		<tr>
+			<td>至少需要金钱</td>
+			<td><input type="text" size="10" value="{$_class[$cid][moneyneed]}" name="moneyneed"></td>
+		</tr>
+		<tr>
+			<td>至少需要发布影片</td>
+			<td><input type="text" size="10" value="{$_class[$cid][postneed]}" name="postneed"></td>
+		</tr>
+	</table><br />
+
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">栏目权限设置 - 全不选则默认为开放栏目</td>
+		</tr>
+		<tr>
+			<td width="40%">栏目密码</td>
+			<td><input type="text" size="30" name="password" value="{$_class[$cid][password]}"> 不加密请清空!</td>
+		</tr>
+		<tr>
+			<td>允许浏览栏目</td>
+			<td>{$allowvisit}</td>
+		</tr>
+		<tr>
+			<td>允许播放影片</td>
+			<td>{$allowplay}</td>
+		</tr>
+		<tr>
+			<td>允许发布影片</td>
+			<td>{$allowpost}</td>
+		</tr>
+		<tr>
+			<td>允许发表评论</td>
+			<td>{$allowrp}</td>
+		</tr>
+	</table><br />
+	
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">SEO</td>
+		</tr>
+		<tr>
+			<td width="40%">title</td>
+			<td><input type="text" size="60" value="{$_class[$cid][title]}" name="title"></td>
+		</tr>
+		<tr>
+			<td>keywords</td>
+			<td><input type="text" size="60" value="{$_class[$cid][keywords]}" name="keywords"></td>
+		</tr>
+		<tr>
+			<td>description</td>
+			<td><input type="text" size="60" value="{$_class[$cid][description]}" name="description"></td>
+		</tr>
+	</table><br />
+		
+	<center><input type="submit" value="提 交" /></center>
+	<br />
+	
+</form>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>-->

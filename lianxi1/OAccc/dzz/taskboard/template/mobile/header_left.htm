@@ -1,0 +1,122 @@
+<ul class="nav navbar-nav navbar-nav-left clearfix weui-navbar-nav-left">
+
+    <!--{if $_GET[op]=='setting'}-->
+    <li>
+        <a href="{MOD_URL}" class="leftTopmenu">
+            <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width:24px;height:24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+        </a>
+    </li>
+    <li>
+        <a href="{MOD_URL}">设置</a>
+    </li>
+    <!--{elseif $_GET[op]=='org'}-->
+    <li>
+        <a href="{MOD_URL}" class="leftTopmenu">
+            <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width:24px;height:24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+        </a>
+    </li>
+    <li>
+        <a href="{MOD_URL}&op=org&orgid=$orgid">$org[name]</a>
+    </li>
+    <!--{elseif $_GET[op]=='list'}-->
+
+        <!--{if $_GET[do]==''}-->
+        <li>
+            <a href="{eval echo dreferer()}" class="leftTopmenu" >
+                <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width:24px;height:24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+            </a>
+        </li>
+        <li>
+            <a href="{MOD_URL}&op=list&tbid=$_GET[tbid]" title="$taskboard[name]">$taskboard[name]
+                
+            </a>
+        </li>
+        <!--{else}-->
+        <li>
+            <a href="{MOD_URL}&op=list&tbid=$_GET[tbid]" class="leftTopmenu" >
+                <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width:24px;height:24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+            </a>
+        </li>
+        <li>
+            <!--{if $_GET[do]=='archive'}-->
+            <a href="{MOD_URL}&op=list&tbid=$_GET[tbid]">归档 
+            </a>
+            <!--{elseif $_GET[do]=='recycle'}-->
+            <a href="{MOD_URL}&op=list&tbid=$_GET[tbid]">回收站
+            </a>
+            <!--{elseif $_GET[do]=='event'}-->
+            <a href="{MOD_URL}&op=list&tbid=$_GET[tbid]">动态 
+            </a>
+            <!--{elseif $_GET[do]=='stats'}-->
+            <a href="{MOD_URL}&op=list&tbid=$_GET[tbid]">统计 
+            </a>
+            <!--{/if}-->
+        </li>
+        <!--{/if}-->
+    <!--{else}-->
+    <li>
+        <a href="javascript:;" class="leftTopmenu" >
+            <div class="gb_fc"><span class="dzz dzz-menu" style="width:24px;height:24px;display:block;"></span></div>
+        </a>
+    </li>
+    <li>
+        <a href="{MOD_URL}">{lang appname}</a>
+    </li>
+    <!--{/if}-->
+</ul>
+
+<div class="weui-search-left hide" style="width: 100%;">	
+    <form name="search" action="{BASESCRIPT}" method="get" class="search_top" onsubmit="return false">
+      <input type="hidden" name="mod" value="{MOD_NAME}">
+      <input type="hidden" name="op" value="archive">
+      <input type="search" class="weui-search-bar__input book-form-control" name="keyword" autocomplete="off"  type="text" value="" placeholder="任务名称"  required="" id="searchval">
+    </form>
+    <div class="white-seach">
+        <ul class="weui-seach-others">
+            <li class="seach-label"><a href="javascript:;">标签</a> </li>
+            <li class="seach-member"><a href="javascript:;">成员</a> </li>
+            <li class="seach-date"><a href="javascript:;">日期</a> </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    //按照标签、成员、日期筛选
+    //{MOD_URL}&op=menu&do=filtermenu&tbid=$tbid;
+    $(document).on('touchend','.weui-seach-others li.seach-label',function(){
+        $(this).load('{MOD_URL}&op=menu&do=filtermenu&step=label&tbid=$tbid',function () {
+            filter_init();
+        })
+        $(this).siblings().hide();
+    })
+    $(document).on('touchend','.weui-seach-others li.seach-member',function(){
+        $(this).load('{MOD_URL}&op=menu&do=filtermenu&step=member&tbid=$tbid',function () {
+            filter_init();
+        })
+        $(this).siblings().hide();
+    })
+    $(document).on('touchend','.weui-seach-others li.seach-date',function(){
+        $(this).load('{MOD_URL}&op=menu&do=filtermenu&step=date&tbid=$tbid',function () {
+            filter_init();
+        })
+        $(this).siblings().hide();
+    })
+
+	jQuery(document).ready(function(){
+		filter_set();
+		board_filter();
+	});	
+	$(window).on('hashchange', function () {
+		filter_set();
+		board_filter();
+	});
+	jQuery('#searchval').keyup(function (e) {
+		filter.keyword=this.value;
+	});
+	jQuery('#searchval').keyup(function (e) {
+		if(e.keyCode==13){
+			var val=$('#searchval').val();
+			filter_split(val);
+			board_filter();			
+		}
+	});
+</script>

@@ -1,0 +1,13 @@
+node_modules
+
+/dist/components
+/dist/config
+/dist/mixins
+/dist/npm
+/dist/pages
+/dist/service
+/dist/static
+/dist/store
+/dist/utils
+
+.DS_Store

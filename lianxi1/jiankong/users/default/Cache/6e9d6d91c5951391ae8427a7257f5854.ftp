@@ -1,0 +1,6 @@
+-rw-r--r-- 1 ftp ftp          12122 Mar 03  2017 MethodProphecy.php
+-rw-r--r-- 1 ftp ftp           7815 Mar 03  2017 ObjectProphecy.php
+-rw-r--r-- 1 ftp ftp            556 Mar 03  2017 ProphecyInterface.php
+-rw-r--r-- 1 ftp ftp            735 Mar 03  2017 ProphecySubjectInterface.php
+-rw-r--r-- 1 ftp ftp            912 Mar 03  2017 Revealer.php
+-rw-r--r-- 1 ftp ftp            584 Mar 03  2017 RevealerInterface.php

@@ -1,0 +1,9 @@
+-rw-r--r-- 1 ftp ftp            806 Jun 23  2017 BadResponseException.php
+-rw-r--r-- 1 ftp ftp            161 Jun 23  2017 ClientException.php
+-rw-r--r-- 1 ftp ftp            726 Jun 23  2017 ConnectException.php
+-rw-r--r-- 1 ftp ftp             68 Jun 23  2017 GuzzleException.php
+-rw-r--r-- 1 ftp ftp           5687 Jun 23  2017 RequestException.php
+-rw-r--r-- 1 ftp ftp            588 Jun 23  2017 SeekException.php
+-rw-r--r-- 1 ftp ftp            161 Jun 23  2017 ServerException.php
+-rw-r--r-- 1 ftp ftp             99 Jun 23  2017 TooManyRedirectsException.php
+-rw-r--r-- 1 ftp ftp            119 Jun 23  2017 TransferException.php

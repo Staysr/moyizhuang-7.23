@@ -1,0 +1,260 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/event.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/css/checkbox.css" rel="stylesheet" media="all" />
+<link href="static/css/tip.css" rel="stylesheet" media="all" />
+<link href="static/dzzthumb/jquery.dzzthumb.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/attach/attach.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/comment/images/comment.css?{VERHASH}" rel="stylesheet" media="all">
+<link type="text/css" href="static/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" media="all" />
+<link href="{MOD_PATH}/images/taskboard.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/task.css?{VERHASH}" rel="stylesheet" media="all">
+
+<script type="text/javascript"  src="static/js/jquery.mousewheel.min.js?{VERHASH}"></script>
+<!--{if $taskboard['disable']<1}-->
+<link href="dzz/system/ueditor/themes/default/css/ueditor.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/system/ueditor/themes/default/css/ueditor_add.css?{VERHASH}" rel="stylesheet" media="all">
+<script src="dzz/system/ueditor/ueditor.config.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/ueditor.all.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/lang/$_G['language']/$_G['language'].js?{VERHASH}"></script>
+<script src="data/cache/smilies_var.js?{VERHASH}"></script>
+<!--{/if}-->
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="{MOD_PATH}/scripts/task.js?{VERHASH}"></script>
+
+<style type="text/css">
+.resNav-left>.navbar-nav-left{
+    float: left;
+    margin: 0;
+    overflow: hidden;
+}
+.navbar-nav-left>li:nth-child(2){
+    overflow: hidden;
+    float: none;
+}
+.navbar-nav-left>li:nth-child(2)>a{
+    font-size: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+	.bs-main-container{
+		padding:0;
+	}
+</style>
+
+<script type="text/javascript">
+
+var tbid='{$tbid}';
+var board=$json_board;
+var layout=board.layout;
+
+</script>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+
+<div class="bs-container">
+    <div class="bs-main-container clearfix" style="margin-left:0"> 
+        <div class="main-content" style="padding:0">
+
+            <div id="taskboard_container" class="taskboard-container layout-{$taskboard[layout]}">
+       		    <div id="catlist_container" class="catlist-container clearfix">
+                    <!--{loop $catlist  $value}-->
+                    <div id="catlist_{$value[catid]}" class="catlist" catid="$value[catid]">
+                        <div class="catlist-header clearfix">
+                            <!-- <div class="catlist-header-title"> -->
+                            <span class="catlist-header-span">$value[catname]</span>
+                            <!-- </div> -->
+                            <!--{if $taskboard['disable']<1}-->
+                            <a href="javascript:;" class="catlist-header-menu action-icon js-popbox" data-href="{MOD_URL}&op=menu&do=catmenu&catid=$value[catid]" data-catid="$value[catid]" data-placement="bottom" data-auto-adapt="true"><i class="dzz dzz-more"></i></a><!--{/if}-->
+                        </div>
+
+                        <div class="tasklist-container u-fancy-scrollbar" id="tasklist_$value[catid]"> 
+                            <div  class="task-container" catid="$value[catid]">
+                                <!--{loop $value['tasks'] $task}-->
+                                    <!--{template task_item}-->
+                                <!--{/loop}--> 
+                                <div class="task-append nodrager" style="height:0"></div>
+                                <!--{if $taskboard['disable']<1}-->
+                                <div class="task-poster hide nodrager" catid="$value[catid]">
+                                    <div class="task-poster-body task-poster-body-focus clearfix">
+                                        <div class="task-item-labels"></div>
+                                        <textarea class="form-control" name="taskname" catid="$value[catid]"></textarea>
+                                        <div class="task-poster-body-footer">
+                                            <div class="task-item-badges"></div>
+                                            <div class="task-item-members"></div>
+                                        </div>
+                                    </div>
+                                    <div class="task-poster-footer"> 
+                                        <button data-click="submit" class="btn btn-success confirm mr10" data-loading-text="保存中...">保存</button> 
+                                        <button data-click="cancel" class="btn btn-simple">取消</button> 
+                                        <!--<a href="javascript:;"  class="action-icon"  data-placement="right" data-align="middle" data-auto-adapt="true" > <i class="glyphicon glyphicon-collapse-down"></i> </a> -->
+                                    </div>
+                                </div>
+                               <!--{/if}-->
+                            </div>
+                        </div>
+                        <!--{if $taskboard['disable']<1}-->
+                        <div class="catlist-footer nodrager"> 
+                            <a href="javascript:;" class="task-add" catid="$value[catid]"><span class="dzz dzz-add"></span>新建任务</a>
+                        </div>
+                        <!--{/if}-->
+                              
+                
+                    </div>
+                    <!--{/loop}-->
+                    <!--{if $taskboard['disable']<1}-->
+                    <div class="catlist-new nodrager"> 
+                        <a href="javascript:;" class="cat-add"><span class="dzz dzz-add"></span>新建列表</a>
+                        <div class="form-catlist-add hide"> 
+                            <div class="form_div"> 
+                                <input name="catname"  placeholder="列表名" dt-enter="submit" type="text" class="list-name-input form-control" required="" autofocus> 
+                                <button data-click="submit" data-loading-text="保存+中..." class="btn btn-success">确定</button>
+                                <button data-click="cancel" class="hide">取消</button> 
+                            </div> 
+                        </div>
+                    </div>
+                    <!--{/if}-->
+        	    </div>
+            </div>
+            
+        </div>
+        <div id="rightMenu" class="rightMenu u-fancy-scrollbar" ><div class="loadding"></div></div>
+    </div>
+  
+</div>
+    
+<div id="_blank"  unselectable="on" onselectstart="return event.srcElement.type== 'text';" style="display:none; background: url(dzz/images/b.gif); z-index:10000;width:100%;height:100%;margin:0;padding:0; right: 0px; bottom: 0px;position: absolute; top:0px; left: 0px;"></div>
+<script type="text/javascript">
+
+
+var ajaxurl='{MOD_URL}&op=list&tbid=$tbid';
+var cpurl='{MOD_URL}&op=cp&tbid=$tbid';
+jQuery('.left-drager').leftDrager_layout(layout_catlist);  
+var scrolling=true;
+
+jQuery(document).ready(function(e) {
+	
+	//layout_catlist();
+	jQuery('body').addClass('layout-{$taskboard[layout]}');
+	jQuery(document).on('mouseenter','.task-item',function(){jQuery(this).addClass('task-selected');});
+	jQuery(document).on('mouseleave','.task-item',function(){jQuery(this).removeClass('task-selected')});
+	jQuery(document).on('click','.task-item',function(){
+		jQuery('.popbox .close').trigger('click');
+		if(window.kp_only) return false;
+		var taskid=jQuery(this).attr('taskid');
+		showTaskPanel(taskid);
+		return false;
+	});
+	jQuery(document).on('click','.open-taskpanel',function(){
+		jQuery('.popbox .close').trigger('click');
+		var taskid=jQuery(this).attr('taskid');
+		showTaskPanel(taskid);
+		return false;
+	});
+	
+	<!--{if $taskboard['disable']<1}-->
+	jQuery(document).on('click','.task-item-check',function(e){
+		 e.stopPropagation();
+	});
+	<!--{/if}-->
+	
+	
+	<!--{if $taskboard['layout']>0}-->
+	jQuery(document).on('click','.catlist-hide-icon',function(){
+		var el=jQuery(this).parent().parent();
+		el.toggleClass('catlistHide');
+		if(el.hasClass('catlistHide')){
+			jQuery(this).find('.glyphicon').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+		}else{
+			jQuery(this).find('.glyphicon').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+		}
+		return false;
+	});
+	
+	<!--{/if}-->
+	jQuery('.js-popbox').each(function(){
+			jQuery(this).popbox();
+		});
+	<!--{if $taskboard['disable']<1}-->
+		
+		init_catlist_add();
+		init_task_poster();
+		<!--{if $taskboard['layout']>0}-->
+		inlit_dzzdragsort('task',1);
+		inlit_dzzdragsort('catlist',1);
+		<!--{else}-->
+		inlit_dzzdragsort('task',0);
+		inlit_dzzdragsort('catlist',0);
+		<!--{/if}-->
+	 
+	<!--{/if}-->
+	
+	<!--{if $opentaskid>0}-->
+	jQuery('#task_{$opentaskid}').trigger('click');
+	<!--{/if}-->
+
+	
+});
+
+<!--{if $taskboard['layout']<1}-->
+jQuery(document).on('mousewheel','.tasklist-container',function(event){
+	event.preventDefault();
+	var scrollTop = this.scrollTop;
+	this.scrollTop = (scrollTop + ((event.deltaY * (event.deltaFactor+50)) * -1));
+	//console.log(event.deltaX,event.deltaY,event.deltaFactor);
+	 return false;
+});
+jQuery(document).on('mousewheel',function(event){
+		if(jQuery(event.target).closest('.popbox,#rightMenu,.modal,#filtermenu').length>0) return true;
+		var scrollLeft = document.getElementById('taskboard_container').scrollLeft;
+        document.getElementById('taskboard_container').scrollLeft = (scrollLeft + ((event.deltaY * (event.deltaFactor+100)) * -1));
+	});
+<!--{/if}-->
+ jQuery(document).on('click','.js-star-board',function(){
+		var el=jQuery(this);
+		var tbid=el.data('tbid');
+		var action = 'add'
+		if(el.hasClass('is-starred')){
+			el.removeClass('is-starred');
+	        action='del'
+		}else{
+			action='add'
+			el.addClass('is-starred');
+		}
+		
+		jQuery.post('{MOD_URL}&op=ajax&do=addStar',{"tbid":tbid,'action':action});
+		return false;
+	});
+</script>
+
+<!--<script  type="text/javascript" src="static/js/jquery.ui.touch.js?{VERHASH}"></script>-->
+
+<!--{if $taskboard['disable']<1}-->
+<script type="text/javascript" src="{MOD_PATH}/scripts/jquery.dzzdragersort.js?{VERHASH}"></script>
+<script type="text/javascript"  src="{MOD_PATH}/scripts/jquery.dragsort.js?{VERHASH}"></script>
+<!--{/if}-->
+
+<script  type="text/javascript" src="static/dzzthumb/jquery.dzzthumb.js?{VERHASH}"></script>
+
+<script  type="text/javascript" src="static/js/jquery.ui.core.js?{VERHASH}"></script>
+
+<script  type="text/javascript" src="static/js/datepicker/jquery.ui.datepicker.js?{VERHASH}"></script>
+<script  type="text/javascript" src="static/js/datepicker/jquery.datepicker-zh-CN.js?{VERHASH}"></script>
+
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.ui.widget.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.iframe-transport.js?{VERHASH}"></script>
+<!-- The basic File Upload plugin -->
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-process.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/jquery_file_upload/jquery.fileupload-validate.js?{VERHASH}"></script>
+
+<script src="dzz/comment/scripts/comment.js?{VERHASH}" type="text/javascript"></script>
+<script type="text/javascript"  src="static/js/smilies.js?{VERHASH}"></script>
+<script  type="text/javascript" src="static/perfect-scrollbar/js/perfect-scrollbar.min.js?{VERHASH}"></script>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/ueditor.parse.js?{VERHASH}" type="text/javascript"></script>
+<script src="dzz/system/ueditor/third-party/dzzattach/dzzattach.js?{VERHASH}" type="text/javascript"></script>
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->

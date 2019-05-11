@@ -1,0 +1,39 @@
+.main{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+label{
+    display:block;
+    width:105px;
+}
+input {
+    border: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    background-color: transparent;
+    font-size: inherit;
+    color: inherit;
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
+    background-color: transparent !important;
+}
+
+input.is-danger{
+    color: red;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}

@@ -1,0 +1,2926 @@
+[ 2018-12-24T15:04:45+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001023s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001930s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002022s ]
+ERR: SQLSTATE[HY000] [1049] Unknown database 'hrf'
+
+[ 2018-12-24T15:06:04+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000662s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000509s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000567s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0111s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2018-12-24T15:06:04+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/login/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000472s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000546s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000611s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0045s ]
+SQL: SELECT `sLogo`,`sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCheckCodeSwitch`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001330s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001423s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.043995s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044076s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001695s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001794s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002438s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002508s ]
+
+[ 2018-12-24T15:06:07+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Login/CheckLogin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000316s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001409s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001541s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0043s ]
+SQL: SELECT `sCheckCodeSwitch`,`sErrorPwdLockNum`,`sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0038s ]
+SQL: SELECT * FROM `renshi_admin` WHERE ( aUser='system' OR aTel='system' ) LIMIT 1   [ RunTime:0.0021s ]
+SQL: UPDATE `renshi_admin` SET `aLoginNum`='37',`aErrorPwdNum`='0' WHERE ( aUser='system' OR aTel='system' ) [ RunTime:0.0031s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000043s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000092s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018651s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018761s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000708s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000929s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001793s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001945s ]
+
+[ 2018-12-24T15:06:08+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000727s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000729s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000819s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0041s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0044s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0077s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0092s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0045s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0045s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0015s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000502s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000619s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030079s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030268s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000359s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000746s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001709s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001812s ]
+
+[ 2018-12-24T15:06:08+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000134s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000883s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000682s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000762s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0045s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0043s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0036s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0062s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0045s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0044s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0053s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000346s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000447s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.042623s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.042746s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000234s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000270s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000804s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000885s ]
+
+[ 2018-12-24T15:06:09+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000443s ]
+
+[ 2018-12-24T15:06:11+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Staff/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001334s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000784s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000847s ]
+NOTIC: [8] ob_end_clean(): failed to delete buffer. No buffer to delete /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/StaffController.class.php 第 5 行.
+NOTIC: [2] Declaration of Personnelsystem\Controller\StaffController::Show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/StaffController.class.php 第 7 行.
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0047s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0059s ]
+NOTIC: [8] Undefined index: depId /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/StaffController.class.php 第 183 行.
+SQL: SELECT * FROM `renshi_staff` WHERE ( stBlacklist=0 )  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000190s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000247s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025858s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025943s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000286s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000336s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000770s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000828s ]
+
+[ 2018-12-24T15:06:15+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Variables/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000505s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000792s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000873s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0045s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_variables` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `renshi_variables`  [ RunTime:0.0021s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000102s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000160s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018400s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018491s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000357s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000415s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001156s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001329s ]
+
+[ 2018-12-24T15:06:21+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/About/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000962s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002231s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002304s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0043s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000079s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000131s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019142s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019226s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000303s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000357s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000868s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000929s ]
+
+[ 2018-12-24T15:06:21+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/font-awesome.css?v=4.4.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000494s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000749s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000826s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:06:21+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/style.css?v=4.1.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000470s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000730s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000831s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:06:21+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/animate.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000055s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003961s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000486s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000538s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:06:21+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/js/content.js?v=1.0.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000549s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002943s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003045s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:06:35+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/LoginTrue/ExitLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002800s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000979s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001038s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0047s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000124s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000298s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021130s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021237s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000373s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000505s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001277s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001358s ]
+
+[ 2018-12-24T15:06:36+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000305s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000886s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000980s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0053s ]
+SQL: SELECT `sLogo`,`sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCheckCodeSwitch`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000112s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000245s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021430s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021502s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000199s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000241s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000487s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000521s ]
+
+[ 2018-12-24T15:06:47+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Login/CheckLogin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000509s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000496s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000553s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0077s ]
+SQL: SELECT `sCheckCodeSwitch`,`sErrorPwdLockNum`,`sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0044s ]
+SQL: SELECT * FROM `renshi_admin` WHERE ( aUser='system' OR aTel='system' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: UPDATE `renshi_admin` SET `aLoginNum`='38',`aErrorPwdNum`='0' WHERE ( aUser='system' OR aTel='system' ) [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000083s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000140s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020874s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021681s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.006412s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.007565s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000748s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000802s ]
+
+[ 2018-12-24T15:06:49+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001202s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000441s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000491s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0045s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0054s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0061s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0038s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000388s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000482s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.029102s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029157s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000228s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000261s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000685s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000755s ]
+
+[ 2018-12-24T15:06:49+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000724s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000842s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000937s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0042s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0046s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0041s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0039s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0049s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0072s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0051s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000519s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002981s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.035815s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035892s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000278s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000320s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000861s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000952s ]
+
+[ 2018-12-24T15:06:54+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Staff/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000331s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000592s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000653s ]
+NOTIC: [8] ob_end_clean(): failed to delete buffer. No buffer to delete /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/StaffController.class.php 第 5 行.
+NOTIC: [2] Declaration of Personnelsystem\Controller\StaffController::Show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/StaffController.class.php 第 7 行.
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0040s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0047s ]
+NOTIC: [8] Undefined index: depId /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/StaffController.class.php 第 183 行.
+SQL: SELECT * FROM `renshi_staff` WHERE ( stBlacklist=0 )  [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000227s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000310s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.028331s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028438s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000545s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000633s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001554s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001693s ]
+
+[ 2018-12-24T15:06:59+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Staff/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000326s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000429s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000476s ]
+NOTIC: [8] ob_end_clean(): failed to delete buffer. No buffer to delete /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/StaffController.class.php 第 5 行.
+NOTIC: [2] Declaration of Personnelsystem\Controller\StaffController::Show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/StaffController.class.php 第 7 行.
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0042s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: depId /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/StaffController.class.php 第 10 行.
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0045s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0042s ]
+SQL: SELECT `dId`,`dPid`,`dPsid`,`dName` FROM `renshi_department`  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_variables` [ RunTime:0.0038s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=1 ) LIMIT 1   [ RunTime:0.0015s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=2 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=3 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=4 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=5 ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000346s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000423s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031613s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031686s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000286s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000379s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000649s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000717s ]
+
+[ 2018-12-24T15:07:09+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000476s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002117s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002227s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0038s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0042s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0045s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0044s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0029s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000370s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000471s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019899s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019946s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000244s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001009s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001184s ]
+
+[ 2018-12-24T15:07:09+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000375s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000732s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000818s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0056s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0048s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0047s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0047s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0062s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0068s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000256s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000577s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020825s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020903s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000354s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004311s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.005141s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005406s ]
+
+[ 2018-12-24T15:07:09+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000530s ]
+
+[ 2018-12-24T15:07:47+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Manage/managelists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000651s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001900s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001980s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0048s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `renshi_admin`  [ RunTime:0.0009s ]
+SQL: SELECT `sErrorPwdLockNum` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000139s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000188s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0046s ]
+SQL: SELECT `arName`,`arPowers` FROM `renshi_admin_role` WHERE ( arId=0 ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT `arName`,`arPowers` FROM `renshi_admin_role` WHERE ( arId=1 ) LIMIT 1   [ RunTime:0.0016s ]
+SQL: SELECT `arName`,`arPowers` FROM `renshi_admin_role` WHERE ( arId=2 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT `arName`,`arPowers` FROM `renshi_admin_role` WHERE ( arId=6 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT `arName`,`arPowers` FROM `renshi_admin_role` WHERE ( arId=6 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0039s ]
+SQL: SELECT `dId`,`dPid`,`dPsid`,`dName` FROM `renshi_department` WHERE ( dId=1 ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.051303s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.051344s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.007672s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.007773s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.007133s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007347s ]
+
+[ 2018-12-24T15:07:48+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/System/system
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000555s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000443s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000494s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0041s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000165s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000285s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025781s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025924s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000655s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001026s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001583s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001710s ]
+
+[ 2018-12-24T15:09:07+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/System/SystemAction
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000689s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001295s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001383s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0049s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: sDepartment /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/SystemController.class.php 第 20 行.
+NOTIC: [8] Undefined index: sCopyrightName /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/SystemController.class.php 第 27 行.
+NOTIC: [8] Undefined index: sCopyrightAuthor /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/SystemController.class.php 第 31 行.
+NOTIC: [8] Undefined index: sCopyrightAuthorTel /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/SystemController.class.php 第 35 行.
+NOTIC: [8] Undefined index: sCopyrightAuthorQQ /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/SystemController.class.php 第 39 行.
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/ThinkPHP/Library/Think/Upload.class.php 第 170 行.
+SQL: UPDATE `renshi_system` SET `sName`='员工信息录入',`sUrl`='http://kongdechang.com/',`sCompany`='啧啧',`sCompanyTel`='13200009999',`sCompanyIntroduce`='啧啧',`sDepartment`='部门',`sCheckCodeSwitch`='0',`sErrorPwdLockNum`='20',`sLoginTimeout`='500',`sCopyrightName`='云南爱之情信息科技有限公司',`sCopyrightAuthor`='阮金波',`sCopyrightAuthorTel`='15887835880',`sCopyrightAuthorQQ`='309091579',`sLogo`='Uploads/Logo/20181224/5c208613d6c0c.jpg' WHERE ( sId=1 ) [ RunTime:0.0032s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000101s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000163s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014591s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014675s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000214s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000280s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000492s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000529s ]
+
+[ 2018-12-24T15:09:08+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/System/system
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000767s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000443s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000499s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0045s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000114s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000159s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013494s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013634s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000325s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000390s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001334s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001425s ]
+
+[ 2018-12-24T15:09:18+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/LoginTrue/ExitLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000499s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000801s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000879s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0048s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000122s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000222s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015647s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015708s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000182s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000215s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000546s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000590s ]
+
+[ 2018-12-24T15:09:20+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000921s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001042s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001137s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0045s ]
+SQL: SELECT `sLogo`,`sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCheckCodeSwitch`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000073s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000117s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016005s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016105s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000298s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000358s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000724s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000777s ]
+
+[ 2018-12-24T15:09:26+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Login/CheckLogin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000616s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000645s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000722s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0041s ]
+SQL: SELECT `sCheckCodeSwitch`,`sErrorPwdLockNum`,`sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0043s ]
+SQL: SELECT * FROM `renshi_admin` WHERE ( aUser='system' OR aTel='system' ) LIMIT 1   [ RunTime:0.0016s ]
+SQL: UPDATE `renshi_admin` SET `aLoginNum`='39',`aErrorPwdNum`='0' WHERE ( aUser='system' OR aTel='system' ) [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000149s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000209s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015123s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015203s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000616s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000758s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000977s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001085s ]
+
+[ 2018-12-24T15:09:28+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000501s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000554s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0045s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0041s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0056s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0044s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000280s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000329s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025714s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025754s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000247s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000318s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001276s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001415s ]
+
+[ 2018-12-24T15:09:28+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000555s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000705s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000779s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0051s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0046s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0046s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0046s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0075s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000245s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000463s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027172s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.027257s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001428s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001512s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001463s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001568s ]
+
+[ 2018-12-24T15:09:34+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Bak/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000318s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000646s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000732s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0044s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] mkdir(): File exists /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/BakController.class.php 第 8 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000145s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018939s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018994s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000238s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000291s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000581s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000621s ]
+
+[ 2018-12-24T15:09:38+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Manage/role
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000477s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000532s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000595s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0048s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `renshi_admin_role`  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000153s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000253s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0045s ]
+SQL: SELECT `aPowers`,`aUser` FROM `renshi_admin` WHERE ( aPowers=1 )  [ RunTime:0.0005s ]
+SQL: SELECT `aPowers`,`aUser` FROM `renshi_admin` WHERE ( aPowers=2 )  [ RunTime:0.0005s ]
+SQL: SELECT `aPowers`,`aUser` FROM `renshi_admin` WHERE ( aPowers=3 )  [ RunTime:0.0003s ]
+SQL: SELECT `aPowers`,`aUser` FROM `renshi_admin` WHERE ( aPowers=4 )  [ RunTime:0.0003s ]
+SQL: SELECT `aPowers`,`aUser` FROM `renshi_admin` WHERE ( aPowers=5 )  [ RunTime:0.0003s ]
+SQL: SELECT `aPowers`,`aUser` FROM `renshi_admin` WHERE ( aPowers=6 )  [ RunTime:0.0006s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.028287s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028364s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000514s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000573s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001196s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001273s ]
+
+[ 2018-12-24T15:09:40+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Manage/managelists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000327s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000613s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000675s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0045s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0055s ]
+SQL: SELECT * FROM `renshi_admin`  [ RunTime:0.0007s ]
+SQL: SELECT `sErrorPwdLockNum` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000218s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000306s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0043s ]
+SQL: SELECT `arName`,`arPowers` FROM `renshi_admin_role` WHERE ( arId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `arName`,`arPowers` FROM `renshi_admin_role` WHERE ( arId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `arName`,`arPowers` FROM `renshi_admin_role` WHERE ( arId=2 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `arName`,`arPowers` FROM `renshi_admin_role` WHERE ( arId=6 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `arName`,`arPowers` FROM `renshi_admin_role` WHERE ( arId=6 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0042s ]
+SQL: SELECT `dId`,`dPid`,`dPsid`,`dName` FROM `renshi_department` WHERE ( dId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027466s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.027525s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000473s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000524s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001229s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001335s ]
+
+[ 2018-12-24T15:09:42+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/System/system
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000533s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000696s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000862s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0047s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000115s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000161s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013745s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013818s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000228s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000272s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000671s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000725s ]
+
+[ 2018-12-24T15:10:15+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/LoginTrue/ExitLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000515s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000421s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000470s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0048s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000099s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000163s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012188s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012246s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000407s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000448s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000659s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000703s ]
+
+[ 2018-12-24T15:10:16+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000459s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000729s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000793s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0042s ]
+SQL: SELECT `sLogo`,`sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCheckCodeSwitch`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000163s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016976s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017058s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000306s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000366s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000939s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2018-12-24T15:10:22+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Login/CheckLogin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000375s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000463s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000511s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0042s ]
+SQL: SELECT `sCheckCodeSwitch`,`sErrorPwdLockNum`,`sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `renshi_admin` WHERE ( aUser='system' OR aTel='system' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: UPDATE `renshi_admin` SET `aLoginNum`='40',`aErrorPwdNum`='0' WHERE ( aUser='system' OR aTel='system' ) [ RunTime:0.0016s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000053s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000122s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014017s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014394s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000630s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000738s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002024s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002084s ]
+
+[ 2018-12-24T15:10:23+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001003s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000482s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000537s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0041s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0042s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0048s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0045s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0189s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000430s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000498s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.028701s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029094s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001008s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001411s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000876s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000971s ]
+
+[ 2018-12-24T15:10:24+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001510s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000871s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000971s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0046s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0043s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0048s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0046s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0037s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0060s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000203s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000266s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022501s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023064s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000227s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000265s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000974s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001056s ]
+
+[ 2018-12-24T15:10:30+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000067s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000834s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000518s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000574s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:10:50+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001324s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001354s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001475s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:10:50+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000347s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000730s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000802s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:11:00+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001666s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000632s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000710s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0039s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0041s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0043s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0042s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000273s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000319s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018334s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018659s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000666s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000864s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002610s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003468s ]
+
+[ 2018-12-24T15:11:00+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000061s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001116s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001525s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001621s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0040s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0047s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0037s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0039s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0036s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0082s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0021s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000248s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000337s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023675s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000353s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002988s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001205s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001295s ]
+
+[ 2018-12-24T15:11:00+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001510s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001178s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001274s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:11:01+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000392s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001494s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001576s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:11:11+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000436s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000662s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000748s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0046s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0038s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0044s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0049s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000336s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000436s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020834s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020887s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000260s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000311s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001095s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001201s ]
+
+[ 2018-12-24T15:11:11+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000637s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001022s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001119s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0052s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0053s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0046s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0046s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0011s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0048s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0052s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000360s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000469s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018842s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018946s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000351s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000418s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001214s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001342s ]
+
+[ 2018-12-24T15:11:11+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000971s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003263s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003510s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:11:11+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/bootstrap.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000382s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000747s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000811s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:14:41+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000865s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002003s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002085s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0040s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0040s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0050s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0027s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000273s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000321s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.040827s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.040869s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000863s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000949s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002133s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002227s ]
+
+[ 2018-12-24T15:14:41+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000382s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000660s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000813s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0047s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0044s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0052s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0038s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0056s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0053s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.005172s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.005786s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030977s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031211s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000504s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000582s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001217s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001361s ]
+
+[ 2018-12-24T15:14:43+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/About/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000469s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000718s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000811s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0041s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000066s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000121s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013285s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013370s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000282s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000335s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001193s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001262s ]
+
+[ 2018-12-24T15:14:43+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/font-awesome.css?v=4.4.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000505s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000619s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000684s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:14:43+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/style.css?v=4.1.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000541s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000654s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000716s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:14:43+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/animate.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000458s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000618s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000672s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:14:43+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/js/content.js?v=1.0.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000744s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001144s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001244s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:15:28+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000658s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000735s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000825s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0046s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0050s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0048s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0147s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0011s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000258s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000305s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019502s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019575s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000332s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000434s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001210s ]
+
+[ 2018-12-24T15:15:29+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000880s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000595s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000667s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0043s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0040s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0057s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0043s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0041s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0061s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000204s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000272s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015054s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015136s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000303s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000357s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000945s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001035s ]
+
+[ 2018-12-24T15:15:30+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/About/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000749s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001329s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001464s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0056s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000467s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011895s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011970s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000781s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000844s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000639s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000709s ]
+
+[ 2018-12-24T15:15:30+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/font-awesome.css?v=4.4.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000498s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001423s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001574s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:15:30+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/animate.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000571s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000654s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000725s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:15:30+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/js/content.js?v=1.0.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000561s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000489s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000547s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:15:30+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/css/style.css?v=4.1.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000341s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000433s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000478s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:15:30+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/Theme1/js/content.js?v=1.0.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000419s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000417s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000463s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:16:38+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Hdmenu/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000965s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001650s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001735s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0046s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000190s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000260s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027572s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.027628s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000786s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000849s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002356s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002494s ]
+
+[ 2018-12-24T15:16:38+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/AdminStyle/lib/webuploader/0.1.5/webuploader.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000551s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000632s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000696s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:16:38+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/AdminStyle/lib/webuploader/0.1.5/webuploader.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000465s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000865s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000947s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:16:38+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/AdminStyle/static/plupload/plupload.full.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000666s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002407s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002497s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:16:38+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/AdminStyle/static/plupload/upfiless.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000374s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000497s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000554s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:16:38+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/AdminStyle/lib/webuploader/0.1.5/webuploader.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000768s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000765s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000849s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:16:38+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Public/AdminStyle/static/plupload/plupload.full.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000367s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000426s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000472s ]
+ERR: 无法加载控制器:Public
+
+[ 2018-12-24T15:17:29+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001802s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001027s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001200s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0041s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0039s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0052s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0050s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000346s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000403s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031651s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031692s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000168s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000197s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000711s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000884s ]
+
+[ 2018-12-24T15:17:29+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000794s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002289s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002391s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0052s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0046s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0037s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0063s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0046s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0044s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000293s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000407s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.028313s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028413s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000601s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000699s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.007777s ]
+INFO: [ app_end ] --END-- [ RunTime:0.009944s ]
+
+[ 2018-12-24T15:17:30+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000466s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000478s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000529s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0051s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0046s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0043s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0055s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0032s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000306s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000361s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021476s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021847s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000385s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000488s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001323s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001509s ]
+
+[ 2018-12-24T15:17:30+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001009s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002450s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002560s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0040s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0046s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0042s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0047s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0058s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000214s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000351s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020088s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020170s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000800s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000877s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001158s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001285s ]
+
+[ 2018-12-24T15:19:18+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000414s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000670s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000733s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0046s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0041s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0045s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0045s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000300s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000351s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020269s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020353s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000394s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000437s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001083s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001375s ]
+
+[ 2018-12-24T15:19:18+08:00 ] ::1 /lianxi1/azqrsglxt(jb51.net)/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001115s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000616s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000687s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0046s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0057s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0045s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsglxt(jb51.net)/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0048s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0047s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0048s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0014s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000201s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000262s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016644s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016723s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000245s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000287s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000738s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000802s ]
+
+[ 2018-12-24T15:20:26+08:00 ] ::1 /lianxi1/azqrsg/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000053s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001210s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001791s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001944s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0052s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0040s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0047s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0065s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000247s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000296s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020269s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020342s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001358s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001478s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003594s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003762s ]
+
+[ 2018-12-24T15:20:26+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000332s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003982s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004526s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0059s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0050s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0048s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0153s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0077s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0059s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0058s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000546s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000843s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032387s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032497s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000421s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000486s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001183s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001290s ]
+
+[ 2018-12-24T15:20:27+08:00 ] ::1 /lianxi1/azqrsg/favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000355s ]
+
+[ 2018-12-24T15:20:51+08:00 ] ::1 /lianxi1/azqrsg/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000381s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000745s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000805s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0043s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0037s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0045s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0045s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0027s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000318s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000396s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021041s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021093s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000261s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000304s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001102s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001201s ]
+
+[ 2018-12-24T15:20:52+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000411s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000568s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000643s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0049s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0039s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0040s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0121s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0052s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0051s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000249s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000366s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021499s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021601s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001123s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001240s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000697s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000764s ]
+
+[ 2018-12-24T15:20:53+08:00 ] ::1 /lianxi1/azqrsg/Targets/monthadd
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000301s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001159s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001368s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0044s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_mmodels` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `renshi_mmodels` WHERE ( mMid=1 ) LIMIT 1   [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000133s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000207s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015297s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015369s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000179s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000215s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000802s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000878s ]
+
+[ 2018-12-24T15:20:57+08:00 ] ::1 /lianxi1/azqrsg/Department/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000363s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000417s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000457s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0041s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sDepartment` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000096s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000143s ]
+NOTIC: [8] Undefined variable: rs_systemInfo /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/e03550b126576d270e511c26c1942c17.php 第 38 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014730s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014809s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000335s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000401s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001269s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001387s ]
+
+[ 2018-12-24T15:23:14+08:00 ] ::1 /lianxi1/azqrsg/Department/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000709s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000410s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000451s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0046s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sDepartment` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000133s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000390s ]
+NOTIC: [8] Undefined variable: rs_systemInfo /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/e03550b126576d270e511c26c1942c17.php 第 38 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016740s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016797s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000507s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000574s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000877s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000938s ]
+
+[ 2018-12-24T15:23:19+08:00 ] ::1 /lianxi1/azqrsg/Staff/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001071s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000525s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000588s ]
+NOTIC: [8] ob_end_clean(): failed to delete buffer. No buffer to delete /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/StaffController.class.php 第 5 行.
+NOTIC: [2] Declaration of Personnelsystem\Controller\StaffController::Show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/StaffController.class.php 第 7 行.
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0046s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: depId /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/StaffController.class.php 第 10 行.
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0046s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0046s ]
+SQL: SELECT `dId`,`dPid`,`dPsid`,`dName` FROM `renshi_department`  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `renshi_variables` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=2 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=3 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=4 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=5 ) LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000349s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000468s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.039435s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.039589s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000509s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000615s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.013526s ]
+INFO: [ app_end ] --END-- [ RunTime:0.014623s ]
+
+[ 2018-12-24T15:23:25+08:00 ] ::1 /lianxi1/azqrsg/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000790s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000504s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000570s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0043s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0039s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0073s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0051s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000334s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000407s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018050s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018100s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000234s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000277s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000883s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000952s ]
+
+[ 2018-12-24T15:23:25+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000370s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000518s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000580s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0055s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0060s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0033s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0083s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0041s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0158s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0021s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0032s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000231s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000363s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009728s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009822s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000357s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000420s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000788s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000862s ]
+
+[ 2018-12-24T15:23:27+08:00 ] ::1 /lianxi1/azqrsg/Staff/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000774s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001104s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001168s ]
+NOTIC: [8] ob_end_clean(): failed to delete buffer. No buffer to delete /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/StaffController.class.php 第 5 行.
+NOTIC: [2] Declaration of Personnelsystem\Controller\StaffController::Show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/StaffController.class.php 第 7 行.
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0044s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: depId /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/StaffController.class.php 第 10 行.
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0049s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0042s ]
+SQL: SELECT `dId`,`dPid`,`dPsid`,`dName` FROM `renshi_department`  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_variables` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=2 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=3 ) LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=4 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=5 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000280s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000332s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021694s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021879s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000358s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000463s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001008s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001101s ]
+
+[ 2018-12-24T15:25:34+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000587s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000494s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000563s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0044s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0066s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0044s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0052s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000280s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000330s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032975s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033026s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000290s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000346s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000759s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000835s ]
+
+[ 2018-12-24T15:25:34+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000667s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001743s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001831s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0048s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0042s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0045s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0047s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0038s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0212s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000240s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000333s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017509s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017597s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000566s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000646s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000813s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000991s ]
+
+[ 2018-12-24T15:25:34+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Index/favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000479s ]
+
+[ 2018-12-24T15:27:44+08:00 ] ::1 /lianxi1/azqrsg/System/system
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000533s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000413s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000454s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0044s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000114s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000160s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014926s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015079s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000396s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000471s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001345s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001433s ]
+
+[ 2018-12-24T15:28:14+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000448s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000416s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000456s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0043s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0041s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0038s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0042s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0044s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000285s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000347s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017274s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017330s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000185s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000217s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000641s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000696s ]
+
+[ 2018-12-24T15:28:15+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000086s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001089s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001152s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001251s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0049s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0055s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0053s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0047s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0044s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0053s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000182s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000227s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013912s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013991s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000490s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000564s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001107s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001186s ]
+
+[ 2018-12-24T15:28:23+08:00 ] ::1 /lianxi1/azqrsg/Staff/add
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000445s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000613s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000724s ]
+NOTIC: [8] ob_end_clean(): failed to delete buffer. No buffer to delete /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/StaffController.class.php 第 5 行.
+NOTIC: [2] Declaration of Personnelsystem\Controller\StaffController::Show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/StaffController.class.php 第 7 行.
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0042s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: depId /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/StaffController.class.php 第 10 行.
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0049s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0041s ]
+SQL: SELECT `dId`,`dPid`,`dPsid`,`dName` FROM `renshi_department`  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_variables` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=2 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=3 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=4 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `renshi_variables` WHERE ( vId=5 ) LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000395s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000479s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022997s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023093s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000591s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000675s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001203s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001314s ]
+
+[ 2018-12-24T15:29:20+08:00 ] ::1 /lianxi1/azqrsg/Huodong/lists/hdPid/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000720s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000545s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000623s ]
+NOTIC: [2] Declaration of Personnelsystem\Controller\HuodongController::Show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/HuodongController.class.php 第 5 行.
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0044s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_huodonginfo` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `renshi_huodonginfo` WHERE ( hdPid=1 )  [ RunTime:0.0018s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `renshi_hdmenu` WHERE ( hdId=1 ) LIMIT 1   [ RunTime:0.0016s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000094s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000154s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015907s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016101s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000323s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000382s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000977s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001047s ]
+
+[ 2018-12-24T15:29:24+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Huodong/DelAction/hdId/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000378s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000717s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000820s ]
+NOTIC: [2] Declaration of Personnelsystem\Controller\HuodongController::Show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/HuodongController.class.php 第 5 行.
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0043s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_huodonginfo` [ RunTime:0.0040s ]
+SQL: DELETE FROM `renshi_huodonginfo` WHERE ( huodongId=1 ) [ RunTime:0.0027s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000050s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000134s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013466s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013567s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000292s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000346s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000989s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001063s ]
+
+[ 2018-12-24T15:29:26+08:00 ] ::1 /lianxi1/azqrsg/Huodong/lists/hdPid/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000309s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000800s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000861s ]
+NOTIC: [2] Declaration of Personnelsystem\Controller\HuodongController::Show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/HuodongController.class.php 第 5 行.
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0040s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_huodonginfo` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `renshi_huodonginfo` WHERE ( hdPid=1 )  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `renshi_hdmenu` WHERE ( hdId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000091s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000150s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013777s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014284s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001238s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001433s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003825s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003922s ]
+
+[ 2018-12-24T15:29:29+08:00 ] ::1 /lianxi1/azqrsg/Huodong/lists/hdPid/1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000312s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000400s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000439s ]
+NOTIC: [2] Declaration of Personnelsystem\Controller\HuodongController::Show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/HuodongController.class.php 第 5 行.
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0042s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_huodonginfo` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `renshi_huodonginfo` WHERE ( hdPid=1 )  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `renshi_hdmenu` WHERE ( hdId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000122s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000214s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016873s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016961s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000225s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000268s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000687s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000733s ]
+
+[ 2018-12-24T15:29:35+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000676s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000770s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000857s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0046s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0038s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0051s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000292s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000348s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021317s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021369s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000212s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000244s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000803s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000899s ]
+
+[ 2018-12-24T15:29:35+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000762s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001121s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0044s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0033s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0050s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0040s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0035s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0058s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000508s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000839s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.028326s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028416s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000463s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000549s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001345s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001666s ]
+
+[ 2018-12-24T15:29:38+08:00 ] ::1 /lianxi1/azqrsg/Huodong/lists/hdPid/2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000331s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000470s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000520s ]
+NOTIC: [2] Declaration of Personnelsystem\Controller\HuodongController::Show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/HuodongController.class.php 第 5 行.
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0044s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `renshi_huodonginfo` [ RunTime:0.0043s ]
+SQL: SELECT * FROM `renshi_huodonginfo` WHERE ( hdPid=2 )  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `renshi_hdmenu` WHERE ( hdId=2 ) LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000090s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000145s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013080s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013204s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000225s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000269s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000756s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000806s ]
+
+[ 2018-12-24T15:30:26+08:00 ] ::1 /lianxi1/azqrsg/Department/listsedit
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000386s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000431s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000480s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0051s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0038s ]
+SQL: SELECT * FROM `renshi_department`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000086s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000149s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012168s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012255s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000512s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000587s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000923s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000995s ]
+
+[ 2018-12-24T15:32:57+08:00 ] ::1 /lianxi1/azqrsg/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000407s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000765s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000832s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0058s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0043s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0038s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0060s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0026s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000433s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000517s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024563s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024622s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000350s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000397s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002721s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002874s ]
+
+[ 2018-12-24T15:32:57+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002172s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001074s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001220s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0053s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0061s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0043s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0053s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0011s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0042s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0051s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000199s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000256s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022332s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022437s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000611s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000687s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001230s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001390s ]
+
+[ 2018-12-24T15:39:16+08:00 ] ::1 /lianxi1/azqrsg/LoginTrue/ExitLogin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000338s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000410s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000452s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0050s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000043s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000090s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011861s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011955s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000252s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000297s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000686s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000741s ]
+
+[ 2018-12-24T15:39:17+08:00 ] ::1 /lianxi1/azqrsg/login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000554s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002447s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002549s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0053s ]
+SQL: SELECT `sLogo`,`sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCheckCodeSwitch`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000111s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000213s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.022100s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022247s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000357s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000463s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000887s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000948s ]
+
+[ 2018-12-24T15:47:39+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Login/CheckLogin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000920s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001734s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001820s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0064s ]
+SQL: SELECT `sCheckCodeSwitch`,`sErrorPwdLockNum`,`sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `renshi_admin` WHERE ( aUser='system' OR aTel='system' ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: UPDATE `renshi_admin` SET `aLoginNum`='41',`aErrorPwdNum`='0' WHERE ( aUser='system' OR aTel='system' ) [ RunTime:0.0015s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000044s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000096s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038819s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.038937s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001633s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001709s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.006172s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006256s ]
+
+[ 2018-12-24T15:47:40+08:00 ] ::1 /lianxi1/azqrsg/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000460s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000405s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000446s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0042s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sName`,`sDepartment`,`sCopyrightName`,`sCopyrightAuthor`,`sVersion`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0044s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 30 行.
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0062s ]
+SQL: SELECT * FROM `renshi_department` WHERE ( dId=0 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0050s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%12-24%' AND `stBirthdateType` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE `stBirthdate` LIKE '%11-18%' AND `stBirthdateType` = 2 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0052s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000309s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000384s ]
+NOTIC: [8] Undefined variable: rs_users /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+NOTIC: [8] Undefined variable: rs_admin /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Runtime/Cache/Personnelsystem/893122f858811a5339e67690bf0a2103.php 第 32 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030179s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030246s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000193s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000227s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001444s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001558s ]
+
+[ 2018-12-24T15:47:40+08:00 ] ::1 /lianxi1/azqrsg/Personnelsystem/Index/welcome
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002195s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000714s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000799s ]
+SQL: SHOW COLUMNS FROM `renshi_system` [ RunTime:0.0136s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT `sLoginTimeout` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_admin` [ RunTime:0.0047s ]
+SQL: SELECT `aLoginNum` FROM `renshi_admin` WHERE ( aUser='system' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `renshi_admin_role` [ RunTime:0.0096s ]
+NOTIC: [8] Undefined variable: morepowersValue /Applications/MAMP/htdocs/18031/lianxi1/azqrsg/Application/Personnelsystem/Controller/IndexController.class.php 第 76 行.
+SQL: SHOW COLUMNS FROM `renshi_hdmenu` [ RunTime:0.0057s ]
+SQL: SELECT * FROM `renshi_hdmenu`  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin_role` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_admin` LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `renshi_department` [ RunTime:0.0050s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_department` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `renshi_staff` [ RunTime:0.0059s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=0 ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=1 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stJobState=0 AND stBlacklist=0 ) LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `renshi_staff` WHERE ( stBlacklist=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT `sName`,`sCopyrightName`,`sCopyrightAuthor`,`sCopyrightAuthorTel`,`sCopyrightAuthorQQ` FROM `renshi_system` WHERE ( sId=1 ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000311s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000431s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032239s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032327s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000277s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000337s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.005569s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005832s ]
+

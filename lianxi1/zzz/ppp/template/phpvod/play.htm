@@ -1,0 +1,175 @@
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<ol class="breadcrumb f-mt5">
+		  <li><a href="$db_wwwurl">首页</a></li>
+		  <!--{loop $navpath $navitem}-->
+		  <li><a href="$navitem[url]">$navitem[caption]</a></li>
+		  <!--{/loop}-->
+		  <li><a href="read.php?vid=$video[vid]">$video[subject]</a></li>
+		  <li class="active">$urlcaption</li>
+		</ol>
+	</div>
+</div>
+
+<!--{eval $adcode = ad('nav');}-->
+<!--{if $adcode!=''}--><div class="u-adnav f-mt10">$adcode</div><!--{/if}-->
+
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<div class="m-videobox">
+			<div class="title">
+				<span class="links">
+					<a href="javascript:;" id="side_btn" onclick="show_side();">隐藏列表</a>
+					<span class="u-split">/</span>
+					<a href="read.php?vid=$vid" title="$video[subject] 详情" target="_blank">查看详情</a>
+				</span>
+				<span class="title-label">在线播放</span>
+			</div>
+			<div class="content">
+				<div class="m-play">
+					<div class="side" id="side">
+						<div class="tab">
+							<a href="javascript:;" onclick="tab('side',2,1);" id="aside_1" class="sel">播放列表</a>
+							<a href="javascript:;" onclick="tab('side',2,2);" id="aside_2">视频信息</a>
+						</div>
+						<div class="content">
+							<div id="cside_1" class="item" style="display: block;">
+								<div class="urllist">
+									<div class="row">
+										<!--{loop $urldb[$playgroup][urls] $key $value}-->
+										<!--{eval $n=$key+1;}-->
+										<div class="col-xs-4 col-md-4">
+											<a href="play.php?vid=$vid&playgroup=$playgroup&index=$key" title="$value[caption]" <!--{if $key==$index}-->class="sel"<!--{/if}-->>$n</a>
+										</div>
+										<!--{/loop}-->
+									</div>
+								</div>
+							</div>
+							<div id="cside_2" class="item" style="display: none;">
+								<div class="videoinfo">
+									<div class="row">
+										<div class="col-xs-8 col-md-8">
+											<img src="$video[picurl]" class="pic" />
+										</div>
+										<div class="col-xs-12 col-md-12">
+											<h4><a href="read.php?vid=$vid" target="_blank">$video[subject]</a></h4>
+											<p><span>栏目：</span>$video[class_name]</p>
+											<p><span>地区：</span>$video[nation_name]</p>
+											<p><span>导演：</span>$video[director_link]</p>
+											<p><span>主演：</span>$video[playactor_link]</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-20 col-md-20">
+											<div class="intro"><span>简介：</span>$video[synopsis]</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="player" id="player">$player</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--{eval $adcode = ad('play',1);}-->
+<!--{if $adcode!=''}--><div class="u-adplay f-mt15">$adcode</div><!--{/if}-->
+
+<div class="row f-mt15">
+	<div class="col-xs-15 col-md-15">
+		<div class="m-videobox">
+			<div class="title">
+				<span class="title-label">视频评论</span>
+			</div>
+			<div class="content">
+				<!--{if $db_reply=='1'}-->
+					<!--{template 'panel_reply'}-->
+				<!--{else}-->
+					<div class="alert alert-warning" role="alert">评论已关闭</div>
+				<!--{/if}-->
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xs-5 col-md-5">
+		<div class="m-videobox">
+			<div class="title">
+				<span class="title-label">栏目排行</span>
+			</div>
+			<div class="content">
+				<ul class="m-video-side-list f-ml10">
+				<!--{eval $i=1;}-->
+				<!--{loop:video:$video cid=$video[cid]|showsub=1|order=hits DESC|limit=8}-->
+				<!--{if $i==1}-->
+				<li class="l1">
+					<div class="pic"><a href="read.php?vid=$video[vid]" title="$video[subject]"><img src="$video[picurl]" alt="$video[subject]"/></a></div>
+					<div class="subject"><a href="read.php?vid=$video[vid]" title="$video[subject]">$video[subject]</a></div>
+					<div class="idx">$i</div>
+				</li>
+				<!--{else}-->
+				<li>
+					<div class="row">
+						<div class="col-xs-15">
+							<div class="left">
+								<!--{eval $bg=$i<=3?'bg1':'bg2';}-->
+								<div class="idx $bg">$i</div>
+								<a href="read.php?vid=$video[vid]" title="$video[subject]">$video[subject]</a>
+							</div>
+						</div>
+						<div class="col-xs-5">
+							<div class="right">$video[hits]</div>
+						</div>
+					</div>
+				</li>
+				<!--{/if}-->
+				<!--{eval $i++;}-->
+				<!--{/loop:video}-->
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+function show_side()
+{
+	if($('#side').is(":hidden"))
+	{
+		$('#side').show();
+		$('#side_btn').text("隐藏列表");
+		$('#player').css('margin-right','330px');
+	}
+	else
+	{
+		$('#side').hide();
+		$('#side_btn').text("显示列表");
+		$('#player').css('margin-right','0');
+	}
+	reset_player_size();
+}
+
+function reset_player_size()
+{
+	var width = $(document.body).width();
+	if($('#side').is(":hidden"))
+	{
+		if(width >= 1200)
+			$('#player').css('height','641px');
+		else
+			$('#player').css('height','552px');
+	}
+	else
+	{
+		if(width >= 1200)
+			$('#player').css('height','456px');
+		else
+			$('#player').css('height','367px');
+	}
+}
+
+$(window).resize(reset_player_size);
+</script>

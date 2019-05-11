@@ -1,0 +1,1 @@
+<?php $saxueBanner = array (1 => array ('name' => '首页','type' => '12','width' => '0','height' => '500','piccount' => '2','pics' => array (0 => array ('url' => '/attachs/image/banner2.jpg','title' => '','link' => '#',),1 => array ('url' => '/attachs/image/banner3.jpg','title' => '','link' => '#',),),),);

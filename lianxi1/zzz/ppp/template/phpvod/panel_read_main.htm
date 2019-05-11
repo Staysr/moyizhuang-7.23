@@ -1,0 +1,90 @@
+<script type="text/javascript" src="js/score/score.js"></script>
+<script type="text/javascript">
+$("#score_show").ready(function(){
+	score_show($video[vid],$video[star]);
+});
+</script>
+
+<div class="m-videobox">
+	<div class="title">
+		<span class="links">
+			<a href="javascript:;" onclick='$.ajax({type:"POST",url:"ajax.php",data:"action=add_favorite&vid=$video[vid]", success:function(msg){alert(msg);}});'>收藏</a>
+			<span class="u-split">/</span>
+			<a href="report.php?vid=$vid">举报</a>
+			<!--{if $editvideo=='1'}-->
+			<span class="u-split">/</span>
+			<a href="post.php?action=modify&vid=$video[vid]">编辑</a>
+			<!--{/if}-->
+			<!--{if $delvideo=='1'}-->
+			<span class="u-split">/</span>
+			<a href="do.php?action=del_video&vid=$video[vid]" onclick="return window.confirm('您确定要删除视频 $video[subject] 吗？');">删除</a>
+			<!--{/if}-->
+		</span>
+		<span class="title-label">视频详情</span>
+	</div>
+	<div class="content">
+		<div class="m-videodd">
+
+			<div class="videodata">
+				<div class="videopic">
+					<img src="$video[picurl]" alt="$video[subject]" />
+				</div>
+				<div class="videoinfo">
+					<div class="subject">
+						<div id="score_show"></div> <!-- 评分 -->
+						<h2>$video[subject]</h2>
+					</div>
+					<p class="line">$video[class_name] <span class="f-gray">(栏目)</span> &nbsp; $video[nation_name] <span class="f-gray">(地区)</span> &nbsp; <!--{echo $video[serialise]>0 ? '连载至第'.$video[serialise].'集' : '完结'}--> <span class="f-gray">(状态)</span> &nbsp; $video[author] <span class="f-gray">(会员)</span></p>
+					<p>演员：$video[playactor_link]</p>
+					<p>导演：$video[director_link]</p>
+					<p>标签：$video[tag_link]</p>
+					<p>年代：$video[year]</p>
+					<p>评分：$video[star] ($video[usernth]人参与评分)</p>
+					<p>人气：$video[hits]</p>
+					<p>发布时间：<!--{echo get_date($video[postdate], 'Y-m-d H:i')}--> &nbsp; 更新时间：<!--{echo get_date($video[lastdate], 'Y-m-d H:i')}--></p>
+					<p>备注：$video[memo]</p>
+				</div>
+			</div>
+
+			<!--{if $vr[result]!='1'}-->
+			<div class="alert alert-warning f-mt20" role="alert">
+				<!--{if isset($vr[buy])}-->
+					您必须购买VIP会员或支付 <span class="f-stylecolor">{$vr[buy][credit_value]} {$vr[buy][credit_type_name]}</span> 才能观看视频。 <a href="javascript:;" class="alert-link" onclick='$.ajax({type:"POST",url:"ajax.php",data:"action=buy_video&vid=$video[vid]", success:function(msg){if(msg!="1") alert(msg); else {alert("恭喜，购买成功！"); window.location.reload();}}});'>[付费购买]</a>
+				<!--{else}-->
+					您必须购买VIP会员才能观看视频
+				<!--{/if}-->
+			</div>
+			<!--{/if}-->
+
+			<!--{if $vr[result]=='1'}-->
+			<!--{loop $urldb $playgroup $msg}-->
+			<div class="videourls">
+				<div class="caption"><span class="f-fr">$msg[player]</span>播放组{$msg[playgroup]}</div>
+				<div class="content">
+					<!--{loop $msg[urls] $key $v}-->
+					<a href="play.php?vid=$video[vid]&playgroup=$msg[playgroup]&index=$key" target="_blank" title="{$v[caption]}">$v[caption]</a>
+					<!--{/loop}-->
+					<div class="f-cb"></div>
+				</div>
+			</div>
+			<!--{/loop}-->
+			<!--{/if}-->
+
+			<div class="videointro">
+				<div class="caption">视频简介</div>
+				<div class="content">$video[synopsis]</div>
+			</div>
+
+			<!--{if $db_reply=='1'}-->
+			<div class="videoreply">
+				<div class="caption">视频评论</div>
+				<div class="content">
+					<!--{template 'panel_reply'}-->
+				</div>
+			</div>
+			<!--{/if}-->
+
+		</div>
+
+	</div>
+</div>

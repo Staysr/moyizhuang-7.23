@@ -1,0 +1,7 @@
+-rw-r--r-- 1 ftp ftp           1546 May 22  2017 ChunkTest.php
+-rw-r--r-- 1 ftp ftp          15422 May 22  2017 DifferTest.php
+-rw-r--r-- 1 ftp ftp           1630 May 22  2017 DiffTest.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 fixtures
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 LCS
+-rw-r--r-- 1 ftp ftp            909 May 22  2017 LineTest.php
+-rw-r--r-- 1 ftp ftp           4236 May 22  2017 ParserTest.php

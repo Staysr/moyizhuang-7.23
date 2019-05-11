@@ -1,0 +1,206 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/datepicker.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/taskboard.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/taskboard/images/task.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script src="static/js/echarts-plain.js?{VERHASH}"></script> 
+<style>
+.navbar-inverse{
+	background-color: #4664d2;
+	border-color: #f17327;
+}
+.rangedate{
+	font-weight:bold;
+	font-size:16px;
+	padding:10px 0;
+	border-top:1px solid #FFF;
+}
+.rangedate input{
+	border:none;
+	box-shadow:none;
+	background:transparent;
+	padding:5px 10px;
+	font-weight:bold;
+	width:260px;
+}
+<!--{if $time=='month'}-->
+.rangedate input{
+	width:90px;
+}
+<!--{elseif $time=='week'}-->
+.rangedate input{
+	width:230px;
+}
+<!--{elseif $time=='day'}-->
+.rangedate input{
+	width:120px;
+}
+<!--{/if}-->
+.rangedate input:focus，.rangedate input:active{
+	box-shadow:none;
+}
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template commer_header}--> 
+
+<div class="bs-container clearfix">
+  	<!-- 左边部分 -->
+	<!--{template list/list_left}--> 
+    <!-- 右边部分 -->
+    <div class="bs-main-container clearfix" style="margin-left:0">
+        <div class="mytask_cont clearfix">
+	    	
+		    <div class="rangedate text-center" > 
+		    	<!--{if $time}--> 
+		    	<a class="btn btn-link" href="javascript:;:" onclick="next_prev('prev')"><i class="glyphicon glyphicon-chevron-left"></i></a> 
+		          	<input type="text" id="datepicker" value="$fdate">
+		          	<a class="btn btn-link" href="javascript:;:" onclick="next_prev('next')"><i class="glyphicon glyphicon-chevron-right"></i></a>
+		       	<!--{/if}-->
+		    </div>
+ 
+    
+    
+		  	<div id="charts" class="chart-container" style="padding:15px;"> 
+		   		<!-- <h3 class="text-center">任务完成情况</h3>
+		    	<div id="charts_todo" style="height:450px;"> <p class="text-center" style="height:100%;background:#F7F7F7">没有相关的统计数据</p></div>
+			    <h3 class="text-center" style="padding-top:20px;">工时完成情况</h3>
+			    <div id="charts_worktime" style="height:450px;"> </div>
+			    <h3 class="text-center" style="padding-top:20px;">预算完成情况</h3>
+			    <div id="charts_money" style="height:450px;"> </div>-->
+		  	</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+var tbid='{$tbid}';
+var url=DZZSCRIPT+'?mod=taskboard&op=list&tbid=$tbid&do=stats';
+var time='{$time}';
+var odate='{$date}';
+getdatebytime(odate);
+jQuery('.left-drager').leftDrager_layout();  
+var getdateTimer=0;
+function getdatebytime(dateText){
+	odate=dateText;
+	//console.log('odate==='+odate+'===='+dateText);
+	if(getdateTimer) window.clearTimeout(getdateTimer);
+	getdateTimer=window.setTimeout(function(){ajaxget(url+'&operation=getdata&type={$type}&time=$time&date='+dateText,'charts','charts');},500);
+}
+function redirect(val){
+	window.location.href=url+'&time={$time}&date=$date&type='+val;
+}
+function next_prev(flag){
+	var dateText='';
+	//console.log(odate);
+	if(odate) var t=new Date(odate);
+	else var t=new Date();
+	if(time=='month'){
+		var cmonth=t.getMonth();
+		var date=t.getDate();
+		var month_l=new Date(odate);
+		month_l.setDate(1);
+		if(flag=='next'){
+			month_l.setMonth(cmonth+1);
+		}else{
+			month_l.setMonth(cmonth-1);
+		}
+		getdatebytime(month_l.format('yyyy-MM-dd'));
+		jQuery('#datepicker').val(month_l.format('yyyy-MM'));
+	}else if(time=='week'){
+		//console.log(odate);
+		    var week_l=new Date(odate);;
+			var cday=week_l.getDay();
+			var date=week_l.getDate();
+			
+			if(flag=='next'){
+				week_l.setDate(date-cday+1+7);
+			}else{
+				week_l.setDate(date-cday+1-7);
+			}
+			var week_l_stamp=week_l.format('yyyy-MM-dd');
+			//console.log('week_l=='+week_l_stamp);
+			date=week_l.getDate();
+			//console.log(date);
+			week_l.setDate(date+6);
+			var week_u_stamp=week_l.format('yyyy-MM-dd');
+			jQuery('#datepicker').val(week_l_stamp+' - '+week_u_stamp);
+			getdatebytime(week_l_stamp);
+	}else if(time=='day'){
+		var today=new Date(odate);
+		var date=today.getDate();
+		if(flag=='next'){
+			today.setDate(date+1);
+		}else{
+			today.setDate(date-1);
+		}
+		jQuery('#datepicker').val(today.format('yyyy-MM-dd'));
+		getdatebytime(today.format('yyyy-MM-dd'));
+	}
+	
+}
+
+jQuery(document).ready(function(e) {
+	jQuery('#datepicker').datepicker({showWeek:true,selectWeek:true
+			,onChangeMonthYear:function(year,month,inst){
+				if(time=='month'){
+					getdatebytime(year+'-'+month+'-1');
+					jQuery('#datepicker').val(year+'-'+month);
+					
+				}
+			},onSelect:function(dateText,inst){
+				if(time=='month'){
+					jQuery('#datepicker').val(inst.selectedYear+'-'+(inst.selectedMonth+1));
+				}else if(time=='week'){
+					getdatebytime((inst.selectedYear)+'-'+(inst.selectedMonth+1)+'-'+(inst.selectedDay));
+					var t=new Date((inst.selectedYear)+'-'+(inst.selectedMonth+1)+'-'+(inst.selectedDay));
+						var cday=t.getDay();
+						var date=t.getDate();
+						var week_l=t;
+						week_l.setDate(date-cday+1);
+						week_l_stamp=week_l.format('yyyy-MM-dd');
+						var week_u=t;
+						week_u.setDate(date+(7-cday));
+						week_u_stamp=week_u.format('yyyy-MM-dd');
+						jQuery('#datepicker').val(week_l_stamp+' - '+week_u_stamp);
+					
+				}else if(time=='day'){
+					getdatebytime((inst.selectedYear)+'-'+(inst.selectedMonth+1)+'-'+(inst.selectedDay));
+					
+					jQuery('#datepicker').val(new Date((inst.selectedYear)+'-'+(inst.selectedMonth+1)+'-'+(inst.selectedDay)).format('yyyy-MM-dd'));
+				}
+				
+			}
+		}
+	);
+
+	
+});
+ Date.prototype.format = function(format) {
+       var date = {
+              "M+": this.getMonth() + 1,
+              "d+": this.getDate(),
+              "h+": this.getHours(),
+              "m+": this.getMinutes(),
+              "s+": this.getSeconds(),
+              "q+": Math.floor((this.getMonth() + 3) / 3),
+              "S+": this.getMilliseconds()
+       };
+       if (/(y+)/i.test(format)) {
+              format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+       }
+       for (var k in date) {
+              if (new RegExp("(" + k + ")").test(format)) {
+                     format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                            ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+              }
+       }
+       return format;
+}
+</script> 
+
+<script  type="text/javascript" src="static/js/datepicker/jquery.ui.core.js?{VERHASH}"></script> 
+<script  type="text/javascript" src="static/js/datepicker/jquery.ui.datepicker.js?{VERHASH}"></script> 
+<script  type="text/javascript" src="static/js/datepicker/jquery.datepicker-zh-CN.js?{VERHASH}"></script> 
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script> 
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->  

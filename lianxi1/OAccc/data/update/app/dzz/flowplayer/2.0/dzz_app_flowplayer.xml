@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Dzz! app]]></item>
+	<item id="Version"><![CDATA[2.0 beta]]></item>
+	<item id="Time"><![CDATA[2018-05-31 17:43]]></item>
+	<item id="From"><![CDATA[乐云网络 (http://www.dzzoffice.com/)]]></item>
+	<item id="Data">
+		<item id="app">
+			<item id="appname"><![CDATA[flowplayer]]></item>
+			<item id="appico"><![CDATA[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABqCAMAAAB9NgQWAAAAM1BMVEUAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACjBUbJAAAAEHRSTlMAECAwQFBgcICQ
+oLDA0ODwVOCoyAAAAn5JREFUeNrtWkGShCAMBERAReD/r93LsqAoBLG6dqqmjzNqm3SIIYH9K0hl
+rA1/sNYo+SrBZGy4hDXTSyasPlTg12GDuHahCaf5AIXIjaibI55asYYOrI+sMT50wZt+ufdwxr4Z
+LX+hzXZxgew043z/InnhTrmciUyP4PuRQYvbK/XpUkF2lT8oKlvr6KAM0WXqQCEIhh9oFIVjCQmW
+aL2w+XuxJrK3cjMjY3YdLOvT5cXzO6m+8op1QqV4WWiauwc5fHIU9WWKd/4o26VFI29jxOccYyz+
+Li73nGOUZa/kq8gxzmKqgjjOBsBdKUvpLD8NVh3+3mEmRd8g1K3DuKfmBHpm8rz4oxBkUJbyhUU0
+cWYvYI5PE5eGWPYKtitTuM+pxyGuVNEt1bmNBVyf9poluGhI1X5veK8pLlvszfCN96heU2Txy3RP
+EmElcd0X7+1jHrgFsegts5Q/s+o2Cb3o1SfvmCh7m4RexohTArNNb7Fwgp2o/rLHJxgCScLCiTX7
+MYBlF0nwFQnLx6pISSNJcJIR7lG5XTuZJMGKtigm130jkJQwvJWKbU5iukgI5axJJMl3RBLKVrHU
+mhBcLFSxXUojB0lKnwFIQpjrJDxmsiESywoICAnAXR8p/FoNYchihKQVSIIcTfUbJdVDPlqQzy+i
+kBgoiQS5JIIUd5AyFVlwp81Em8ROnVsHyCYIsZ2DbEyxW+z3mwU2egbS9kA0cCCtKERTDdEehDQ6
+ES1bRPMZ0kZHDAQQow3AkGYlj5u2vnHTFhIHYnAGHQHih5n4sWw5YHa1AbMrBsyAUTl06I8/voA/
+iIE/UkI/HGM4/pgP/sDS+NGrL7744rPwA7bGr6eM6ji2AAAAAElFTkSuQmCC
+]]></item>
+			<item id="appdesc"><![CDATA[flowplayer播放器，支持MP3,mp4,flv,wav等格式]]></item>
+			<item id="appurl"><![CDATA[{dzzscript}?mod=flowplayer&ext={ext}]]></item>
+			<item id="noticeurl"><![CDATA[]]></item>
+			<item id="disp"><![CDATA[107]]></item>
+			<item id="vendor"><![CDATA[flowplayer]]></item>
+			<item id="haveflash"><![CDATA[0]]></item>
+			<item id="isshow"><![CDATA[0]]></item>
+			<item id="havetask"><![CDATA[1]]></item>
+			<item id="hideInMarket"><![CDATA[0]]></item>
+			<item id="feature"><![CDATA[]]></item>
+			<item id="fileext"><![CDATA[mp3,mp4,flv,webm,ogv,ogg,wav,m3u8]]></item>
+			<item id="group"><![CDATA[0]]></item>
+			<item id="position"><![CDATA[1]]></item>
+			<item id="system"><![CDATA[0]]></item>
+			<item id="notdelete"><![CDATA[1]]></item>
+			<item id="open"><![CDATA[0]]></item>
+			<item id="nodup"><![CDATA[0]]></item>
+			<item id="identifier"><![CDATA[flowplayer]]></item>
+			<item id="app_path"><![CDATA[dzz]]></item>
+			<item id="version"><![CDATA[2.0]]></item>
+			<item id="upgrade_version"><![CDATA[]]></item>
+			<item id="check_upgrade_time"><![CDATA[20171114]]></item>
+			<item id="extra"><![CDATA[
+			]]></item>
+			<item id="mid"><![CDATA[29]]></item>
+		</item>
+		<item id="version"><![CDATA[2.0 beta]]></item>
+	</item>
+</root>

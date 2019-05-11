@@ -1,0 +1,202 @@
+<style>
+    .ui-state-default{border: 1px solid #E6E6E6;margin-bottom: 30px;padding: 20px;}
+</style>
+<div class="main-content clearfix" style="padding:15px;">
+<p style="margin-bottom:15px;">
+<span class="help-inline">{lang click_can_editorupdate}</span>
+</p>
+    <form id="newsform" name="newsform" class="form-horizontal-left form-horizontal" action="{BASESCRIPT}?mod=news&op=ajax" method="post" >
+        <input type="hidden" name="settingsubmit" value="true" />
+        <input type="hidden" name="formhash" value="{FORMHASH}" />
+        <input type="hidden" name="do" value="setorder" /> 
+        <ul id="ulContainer" class="clearfix list-unstyled">
+            <!--{loop $cat_list $newsinfo}-->
+            <li class="industry-item news_li_{$newsinfo[catid]}" title="{lang drag_can_be_sorted}">
+                <div class="industry-item-show">
+                    <div class="industry-left-icon">
+                        <span class="dzz dzz-menu"></span>
+                    </div>
+                    <div class="industry-item-content">
+                        <div class="industry-item-content-top">
+                            <div class="industry-item-content-title">
+                                <span class="industry-title-one" id="span_name_{$newsinfo[catid]}">{$newsinfo[name]}</span>
+                            </div>
+                            <div class="industry-item-content-icon" style="float: right;">
+                                <a class="industry-item-content-edit" href="javascript:;"><span class="dzz dzz-create"></span></a>&nbsp;&nbsp;&nbsp;
+                                <a class="industry-item-content-del" href="javascript:;" cid="{$newsinfo[catid]}"><span class="dzz dzz-delete"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="industry-item-input">
+                    <div class="industry-left-icon">
+                        <span class="dzz dzz-menu"></span>
+                    </div>
+                    <div class="industry-item-content">
+                        <div class="industry-item-content-top">
+                            <div class="industry-item-content-title">
+                                <input class="form-control industry-add-one" id="input_name_{$newsinfo[catid]}" name="arr1[]" type="text" value="{$newsinfo[name]}"> 
+                                
+                            </div>
+                            <div class="industry-item-content-icon" style="float: right;">
+                                <input id="sort_{$newsinfo[catid]}" name="disp[]" type="hidden" value="{$newsinfo[catid]}">
+                                <a class="industry-item-content-ok" cid="{$newsinfo[catid]}" href="javascript:;"><span class="dzz dzz-done"></span><span>&nbsp;&nbsp;{lang save}</span></a>&nbsp;&nbsp;&nbsp;
+                                <a class="industry-item-content-remove" href="javascript:;"><span class="dzz dzz-close"></span><span>&nbsp;&nbsp;{lang cancel}</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </li>
+            <!--{/loop}-->
+            <!-- 增加的栏目 -->
+            <li class="industry-item1" style="display:none;">
+                <div class="industry-item-show" style="display:none">
+                    <div class="industry-left-icon">
+                        <span class="dzz dzz-menu"></span>
+                    </div>
+                    <div class="industry-item-content">
+                        <div class="industry-item-content-top">
+                            <div class="industry-item-content-title">
+                                <span class="industry-title-one " id="span_name_addnewid">{lang boardtype}</span>
+                            </div>
+                            <div class="industry-item-content-icon" style="float: right;">
+                                <a class="industry-item-content-edit" href="javascript:;"><span class="dzz dzz-create"></span></a>&nbsp;&nbsp;&nbsp;
+                                <a class="industry-item-content-del" id="del_addnewid" href="javascript:;"><span class="dzz dzz-delete"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="industry-item-input" style="display:block;">
+                    <div class="industry-left-icon">
+                        <span class="dzz dzz-menu"></span>
+                    </div>
+                    <div class="industry-item-content">
+                        <div class="industry-item-content-top">
+                            <div class="industry-item-content-title">
+                                <input class="form-control industry-add-one" id="input_name_addnewid" name="arr1[]" type="text" value="" placeholder="{lang model_name}"> 
+                            </div>
+                            <div class="industry-item-content-icon" style="float: right;">
+                                <input id="sort_addnewid" name="disp[]" type="hidden" value="0">
+                                <a class="industry-item-content-ok add_new" href="javascript:;" cid="addnewid" ><span class="dzz dzz-done"></span><span>&nbsp;&nbsp;{lang save}</span></a>&nbsp;&nbsp;&nbsp;
+                                <a class="industry-item-content-remove" href="javascript:;" cid="addnewid"><span class="dzz dzz-close"></span><span>&nbsp;&nbsp;{lang cancel}</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- 结束 --> 
+            <li class="industry-add">
+                <a class="industry-add-content" href="javascript:;"><span style="font-size: 18px;">+</span>&nbsp;{lang add_new_model}</a>
+            </li>
+        </ul>
+    </form>
+</div>
+<script type="text/javascript" src="{MOD_PATH}/scripts/jquery-ui.js?{VERHASH}"></script>
+<script type="text/javascript">
+function setorder( obj ){
+    var form = jQuery(obj).parent(); 
+    jQuery.post("{BASESCRIPT}?mod=news&op=ajax", jQuery(form).serialize(), function(json) { 
+        if(json.status==1){
+            showmessage( json.info,'success',1000,1); 
+        } else{
+            showmessage(json.info,'error',1000,1);
+        }
+    }); 
+    
+}
+function editSave(){
+    $( "#ulContainer" ).sortable({
+		items: "li.industry-item ",
+		cancel:  "a,input", 
+		placeholder: "ui-state-default", 
+		update: function(event, ui) { 
+			setorder( this ); 
+		}
+    });
+    
+    jQuery("#newsform").delegate( '.industry-item-content-edit' ,'click',function(){
+        jQuery(this).closest('.industry-item-show').css('display','none');
+        jQuery(this).closest('.industry-item').find('.industry-item-input').css('display','block');
+    });
+
+    jQuery("#newsform").delegate('.industry-item-content-del' ,'click',function(){
+        var obj = jQuery(this); 
+        var catId = obj.attr('cid');
+        jQuery.post(MOD_URL+'&op=ajax&do=delcat',{'cid':catId},function(json){ 
+            if(json.status==1){ 
+                showmessage(json.info,'success',1000,1);
+                obj.closest('li.industry-item').remove();
+            }else{
+                showmessage(json.info,'error',1000,1);
+            }
+        },'json');
+    }); 
+    
+    jQuery("#newsform").delegate('.industry-item-content-remove','click',function(){
+        var obj = jQuery(this);
+        if(obj.closest('li.industry-item').hasClass('add_new')){
+            obj.closest("li.add_new").remove();
+            return false;
+        } 
+        jQuery(this).closest('.industry-item-input').css('display','none');
+        jQuery(this).closest('.industry-item').find('.industry-item-show').css('display','block');
+    });
+
+    jQuery("#newsform").delegate('.industry-item-content-ok','click',function(){
+        var obj = jQuery(this);
+        var catId = obj.attr('cid');
+        var editValue="";
+        if(catId!=""){
+            editValue=jQuery("#input_name_"+catId).val();
+        }
+        
+        var sendcatId = catId;
+        if( obj.hasClass("add_new") ){
+            sendcatId=0;
+        }
+        
+        var emptyval = /^\s*$/;
+        if(emptyval.test(editValue)){ 
+            return false;
+        } 
+        var querystr = {'catname':editValue,'cid':sendcatId};
+        /*if(!catId){
+            querystr.cid = catId;
+        }*/ 
+        jQuery.post(MOD_URL+'&op=ajax&do=editcat',querystr,function(json){
+            if(json.status){
+                showmessage(json.info,'success',1000,1);
+                jQuery("#span_name_"+catId).text( editValue );
+                if( json.data.isadd==1){
+                    var newcatid=json.data.id;
+                    obj.closest('li.industry-item').removeClass('add_new');
+                    jQuery("#span_name_"+catId).attr("id","span_name_"+newcatid);
+                    jQuery("#input_name_"+catId).attr("id","input_name_"+newcatid);
+                    jQuery("#sort_"+catId).val(newcatid);
+                    jQuery("#del_"+catId).attr('cid',newcatid).attr("id","del_"+newcatid); 
+                    obj.attr('cid',newcatid);
+                    obj.removeClass('add_new');
+                }
+                
+                obj.closest('.industry-item-input').css('display','none');
+                obj.closest('.industry-item').find('.industry-item-show').css('display','block'); 
+            }else{
+               showmessage(json.info,'error',1000,1); 
+            }
+        },'json'); 
+    });
+} 
+editSave(); 
+addnum=1000000;
+jQuery('.industry-add-content').click(function(){
+    var addLi=jQuery('.industry-item1').html();
+    var reg = new RegExp("addnewid","g");//g,表示全部替换。
+    addLi = addLi.replace(reg, addnum); 
+    var li="<li class='industry-item add_new add_new_"+addnum+"'>"+addLi+"<li>"; 
+    jQuery('.industry-add').before(li);
+    addnum++; 
+});
+</script>

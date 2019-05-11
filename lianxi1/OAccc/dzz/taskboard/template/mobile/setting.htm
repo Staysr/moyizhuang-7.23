@@ -1,0 +1,133 @@
+
+	<!--{template mobile/mobile_header}-->
+	<script type="text/javascript" src="{MOD_PATH}/scripts/mobile/task.js?{VERHASH}"></script>
+</head>
+<body>
+
+<form id="taskboardform" name="taskboardform" class="weui-cells_form form-horizontal-left" action="{MOD_URL}&op=list&do=setting" method="post" onsubmit="return validate_$_G[handlkey](this);">
+	<input type="hidden" name="settingsubmit" value="true"/>
+	    <input type="hidden" name="tbid" value="$tbid"/>
+	<header class="weui-taskboard-new weui-flex">
+		<div class="placeholder weui-taskboard-cancel">
+		<a href="javascript:;" class="weui-taskboard-macke-close">取消</a></div>
+		<div class="weui-flex__item">修改任务版</div>
+		<button class=" weui-taskboard-new-keep" type="submit">确定</button>
+	</header>
+	<div class="weui-setting-body weui-setting-form">
+	    <input type="hidden" name="settingsubmit" value="true"/>
+	    <input type="hidden" name="tbid" value="$tbid"/>
+	    <input type="hidden" name="operation" value="$operation"/>
+	    <input type="hidden" name="formhash" value="{FORMHASH}"/>
+	    <input type="hidden" name="refer" value="$refer"/>
+	    <div class="weui-cells">
+			<div class="weui-cell">
+	    		<label class="weui-label" for="name">名称</label>
+			    <div class="weui-cell__bd">
+			      	<input type="text" class="weui-input" id="name" name="setting[name]" autocomplete="off" value="$taskboard[name]" maxlength="80" placeholder="任务板名称">
+			    </div>
+	  		</div>
+		</div>
+		<div class="weui-cells">
+	    <div class="taskboard-coverContainer weui-cell">
+	        <label class="weui-label">背景</label>
+	        <input type="hidden" id="aid" name="setting[aid]" autocomplete="off" value="$taskboard[aid]">
+	        <div class="controls col-sm-8">
+	            <ul class="color-block-container list-unstyled clearfix" style="margin-bottom:0">
+	                {eval for($i=1;$i<12;$i++){}
+	                <li><button type="button"  class="btn color-block color-block-$i" data-aid="$i" onclick="switch_cover(this,'$i');return false;"><span class="dzz dzz-done" style="visibility:<!--{if $taskboard[aid]==$i}-->visible<!--{else}-->hidden<!--{/if}-->;"></span></button></li>
+	                {eval }}
+	            </ul>
+	        </div>
+	    </div> 
+	    </div>
+	    <div class="weui-cells">
+	    	<div class="weui-cell weui-cell_select">
+			  <div class="weui-cell__bd">
+			 	<p>可见性</p>
+			  </div>
+			  <div class="weui-cell-flex">
+				  <select class="weui-select" name="setting[viewperm]">
+				<!--{if empty($org) || $org['perm']>2 ||  ($org && (intval($org['mperm_c']) & 1))}-->
+				  	<option  value="0" <!--{if $taskboard[viewperm]==0}--> selected="selected"<!--{/if}-->>隐私</option>
+				<!--{/if}-->
+				<!--{if $org['perm']>1 || ($org[perm]>2 && (intval($org['mperm_c']) & 2))}-->
+					<option value="1" <!--{if $taskboard[viewperm]==1}--> selected="selected"<!--{/if}-->>小组内可见</option>
+				<!--{/if}-->	
+				<!--{if empty($org) || $org['perm']>2 || ($org[perm]>1 && (intval($org['mperm_c']) & 4))}-->
+					  <option  value="2" <!--{if $taskboard[viewperm]==2}--> selected="selected"<!--{/if}-->>公开</option>
+				<!--{/if}-->
+				  </select>
+			  </div>
+		  </div>
+			
+		<div class="weui-cell weui-cell_select">
+			  <div class="weui-cell__bd">
+			 	<p>任务列表</p>
+			  </div>
+			  <div class="weui-cell-flex">
+				  <select class="weui-select" name="setting[layout]">
+				  	<option  value="0" <!--{if $taskboard[layout]<1}--> selected="selected"<!--{/if}-->>看板</option>
+					<option value="1" <!--{if $taskboard[layout]>0}--> selected="selected"<!--{/if}-->>列表</option>	
+				  </select>
+			  </div>
+		 </div>  
+	   </div>
+       
+	    <div class="weui-cells">  
+		    <div class="weui-cell">
+				<label class="weui-label" for="name">状态</label>
+				<div class="col-sm-8">
+					<input type="text" class="weui-input" name="setting[desc_status]" autocomplete="off" value="$taskboard[desc_status]">
+				</div>
+			</div>
+		
+		<div class="weui-cell">
+			<label class="weui-label" for="name">时间</label>
+			<div class="col-sm-8">
+				<input class="weui-input datepicker"  autocomplete="off" id="desc_date" name="setting[desc_date]" type="text" value="$taskboard[desc_date]" placeholder="描述时间要求">
+			</div>
+		</div>
+		<div class="weui-cell">
+			<label class="weui-label" for="name">预算</label>
+			<div class="col-sm-8">
+				<input autocomplete="off" id="desc_money" name="setting[desc_money]" type="text" value="$taskboard[desc_money]" class="weui-input" placeholder="描述预算要求">
+			</div>
+		</div>
+		<div class="weui-cell">
+			<label class="weui-label" for="name">介绍</label>
+			<div class="col-sm-8">
+				<textarea name="setting[desc]" rows="1" class="weui-input textarea-resize">$taskboard[desc]</textarea>
+			</div>
+		</div> 
+		</div>
+	</div>
+</form> 
+</body>
+<script type="text/javascript">
+	$(document).on('touchend','.weui-taskboard-macke-close',function(){
+		window.history.go(-1);
+	});
+function validate_{$_G[handlkey]}(form){
+	if(form.name.value==''){
+		form.name.focus();
+		return false;
+	}
+	jQuery.post(form.action,jQuery(form).serialize(),function(json){
+		$.confirm('修改成功,返回任务板？',function(){
+			window.location.href='{MOD_URL}&op=list&tbid=$tbid';
+		},function(){
+			window.location.reload();
+		});
+	},'json');
+	return false;
+}
+	
+function switch_cover(obj,aid){
+	// jQuery('#cover_aid').find('img').get(0).src=SITEURL+'dzz/taskboard/images/cover/'+aid+'.png';
+    jQuery(obj).find('span').css('visibility','visible');
+    jQuery('.color-block').not(jQuery(obj)).find('span').css('visibility','hidden');
+	jQuery('#aid').val(aid);
+}
+$.getScript('static/js/jquery.textareaexplander.js',function(){$('textarea.textarea-resize').TextAreaExpander(34,999);});
+</script>
+</html>

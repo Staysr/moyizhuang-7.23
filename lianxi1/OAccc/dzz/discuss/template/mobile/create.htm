@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/dis_header}-->
+    <title>{lang create_discuss}</title>
+</head>
+<body style="position: relative;background-color: #f8f8f8;">
+    <div class="cteate-wrap">
+        <div class="weui-cells create-input">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" name="boardName" type="text" placeholder="{lang create_name_to_discuss}" maxlength="15">
+                </div>
+            </div>
+        </div>
+        <div class="color-con">
+            <label class="info-label">{lang chose_icon_color}：</label>
+            <div class="color-wrap">
+
+                <div class="color-item cyan-label" data-color="#00b8c4"><i class="dzz dzz-done create-i icon-show"></i></div>
+                <div class="color-item lightBlue-label" data-color="#50ccff"><i class="dzz dzz-done create-i"></i></div>
+                <div class="color-item blue-label" data-color="#3da5fe"><i class="dzz dzz-done create-i"></i></div>
+                <div class="color-item orange-label" data-color="#ff822e"><i class="dzz dzz-done create-i"></i></div>
+                <div class="color-item orangeRed-label" data-color="#ff5a3a"><i class="dzz dzz-done create-i"></i></div>
+                <div class="color-item purple-label" data-color="#6c6ad7"><i class="dzz dzz-done create-i"></i></div>
+                <div class="color-item brown-label" data-color="#be8572"><i class="dzz dzz-done create-i"></i></div>
+                <div class="color-item green-label" data-color="#14d97f"><i class="dzz dzz-done create-i"></i></div>
+                <div class="color-item red-label" data-color="#ff2a1a"><i class="dzz dzz-done create-i"></i></div>
+                <div class="color-item darkBlue-label" data-color="#3585ff"><i class="dzz dzz-done create-i"></i></div>
+                <div class="color-item lightPurple-label" data-color="#d06cff" style="margin-right: 0"><i class="dzz dzz-done create-i"></i></div>
+
+            </div>
+        </div>
+        <div class="switch-wrap">
+            <div class="weui-cell weui-cell_switch">
+                <div class="weui-cell__bd">{lang allow_discuss_share}</div>
+                <div class="weui-cell__ft">
+                    <label for="switchCP" class="weui-switch-cp">
+                        <input id="switchCP" name="share" class="weui-switch-cp__input" type="checkbox">
+                        <div class="weui-switch-cp__box"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn-wrap">
+        <a href="javascript:;" class="btn weui-btn weui-btn_default weui-btn_disabled">{lang create}</a>
+    </div>
+</body>
+<script>
+    jQuery(function () {
+        jQuery('input[name="boardName"]').on('change input',function () {
+            if(jQuery(this).val()=='') {
+                jQuery('.btn-wrap .btn').removeClass('weui-btn_primary');
+                jQuery('.btn-wrap .btn').addClass('weui-btn_default');
+                jQuery('.btn-wrap .btn').addClass('weui-btn_disabled');
+            }else {
+                jQuery('.btn-wrap .btn').removeClass('weui-btn_disabled');
+                jQuery('.btn-wrap .btn').removeClass('weui-btn_default');
+                jQuery('.btn-wrap .btn').addClass('weui-btn_primary');
+            }
+        })
+        jQuery('.color-item').click(function () {
+            if(!jQuery(this).find('.create-i').hasClass('icon-show')) {
+                jQuery('.color-item').find('.create-i').removeClass('icon-show');
+                jQuery(this).find('.create-i').addClass('icon-show');
+            }
+        })
+        jQuery('.btn-wrap .btn').click(function () {
+            var name=jQuery('input[name="boardName"]').val();
+            var color=jQuery('.icon-show').parents('.color-item').data('color');
+            var share;
+            if(jQuery('input[name="share"]').prop('checked')) {
+                share=1;
+            }else {
+                share=0;
+            }
+            var data={
+                'name':name,
+                'iconcolor':color,
+                'allowshare':share,
+                'rules':'',
+                'discusssubmit':true,
+                'formhash':'{FORMHASH}'
+            }
+            jQuery.ajax({
+                url:'{MOD_URL}&op=mobile&do=create',
+                type:'post',
+                dataType:'json',
+                data:data,
+                success:function (res) {
+                    if(res.code==200) {
+                        jQuery.toast("{lang create_success}");
+                    }
+                    setTimeout(function () {
+                        window.location.href=res.url;
+                    },1000);
+                }
+            })
+        })
+    })
+
+</script>
+<!--{eval output();}-->
+</html>

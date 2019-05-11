@@ -1,0 +1,91 @@
+<!--pages/guanli/index.wxml-->
+<!-- <text>pages/guanli/index.wxml</text> -->
+<view class='text-center'>
+<form bindsubmit="joinPicture">
+<view class='guanli'>
+车主姓名
+<input type="text" placeholder='请填写车主姓名' class='phone' name="vehiclename"></input>
+</view>
+
+<view class='guanli'>
+车主电话
+<input type="text" placeholder='请输入车主联系电话' name="vehiclephone" ></input>
+</view>
+
+<view class='guanli'>
+车厢体积
+<input type="text" placeholder='请输入车厢体积' name="vehiclebulk"></input>
+</view>
+
+<view class='guanli'>
+车辆载重
+<input type="text" placeholder='请输入车厢载重量' name="vehiclecarrying"></input>
+</view>
+
+    <view>
+      <view class='zhengjian'>
+       <span>身份张照片</span>
+      </view>
+      
+
+     <view class="educt_hasupload_pic" wx:for="{{evalList[0].tempFilePaths}}"  wx:key="index">
+              <image src="{{item.pic}}" class="upload"></image>
+              <!-- <image src="../../images/car.png" bindtap='clearImg' data-index="{{index}}" class="deltel"></image> -->
+          </view>
+          <view class="educt_upload_add" bindtap="joinPicture" data-index="{{0}}">
+              <image src="../../images/upload.png" class='upload_add'></image>
+          </view>
+          
+          <view >
+            <span class='shenfenzheng'>身份证反照片</span>
+          </view>
+
+           <view class="educt_hasupload_pic" wx:for="{{evalList[1].tempFilePaths}}"  wx:key="index">
+              <image src="{{item.pic}}" class="upload"></image>
+              <!-- <image src="../../images/car.png" bindtap='clearImg' data-index="{{index}}" class="deltel"></image> -->
+          </view>
+
+          <view  bindtap="joinPicture" data-index="{{0}}">
+              <image src="../../images/upload.png" class='upload_add'></image>
+          </view>
+          <view style='border-bottom:1px solid #EDEDED;'>
+            <span class='shenfenzheng'>身份证正面照</span>
+          </view>
+
+        <view class='zhengjian'>
+           <span>驾驶证照片</span>
+        </view>
+
+        <view class="educt_hasupload_pic" wx:for="{{evalList[2].tempFilePaths}}"  wx:key="index">
+              <image src="{{item.pic}}" class="upload"></image>
+              <!-- <image src="../../images/car.png" bindtap='clearImg' data-index="{{index}}" class="deltel"></image> -->
+          </view>
+          <view  bindtap="joinPicture" data-index="{{0}}">
+              <image src="../../images/upload.png" class='upload_add'></image>
+          </view>
+          <view style='border-bottom:1px solid #EDEDED;'>
+            <span class='shenfenzheng'>驾驶证照片</span>
+          </view>
+         
+
+
+         <view class='zhengjian'>
+           <span>运营证照片</span>
+        </view>
+ <view class="educt_hasupload_pic" wx:for="{{evalList[3].tempFilePaths}}"  wx:key="index">
+              <image src="{{item.pic}}" class="upload"></image>
+              <!-- <image src="../../images/car.png" bindtap='clearImg' data-index="{{index}}" class="deltel"></image> -->
+          </view>
+          <view  bindtap="joinPicture" data-index="{{0}}">
+              <image src="../../images/upload.png" class='upload_add'></image>
+          </view>
+          <view>
+            <span class='shenfenzheng'>运营证照片</span>
+          </view>
+
+           <view class='btns'>
+            <button formType="submit">{{registBtnTxt}}</button>
+           </view>
+         </view> 
+</form>
+</view>

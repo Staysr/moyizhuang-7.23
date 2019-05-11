@@ -1,0 +1,9 @@
+-rw-r--r-- 1 ftp ftp           1132 Mar 03  2017 ClassPatchInterface.php
+-rw-r--r-- 1 ftp ftp           1682 Mar 03  2017 DisableConstructorPatch.php
+-rw-r--r-- 1 ftp ftp           1489 Mar 03  2017 HhvmExceptionPatch.php
+-rw-r--r-- 1 ftp ftp           3005 Mar 03  2017 KeywordPatch.php
+-rw-r--r-- 1 ftp ftp           2413 Mar 03  2017 MagicCallPatch.php
+-rw-r--r-- 1 ftp ftp           3058 Mar 03  2017 ProphecySubjectPatch.php
+-rw-r--r-- 1 ftp ftp           1392 Mar 03  2017 ReflectionClassNewInstancePatch.php
+-rw-r--r-- 1 ftp ftp           2641 Mar 03  2017 SplFileInfoPatch.php
+-rw-r--r-- 1 ftp ftp           2306 Mar 03  2017 TraversablePatch.php

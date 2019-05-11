@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/dis_header}-->
+    <title>{lang edit}</title>
+    <link rel="stylesheet" href="{MOD_PATH}/images/css/footer.css">
+    <link href="dzz/system/ueditor/themes/default/css/ueditor.css?{VERHASH}" rel="stylesheet" media="all">
+    <link href="dzz/system/ueditor/themes/default/css/ueditor_add.css?{VERHASH}" rel="stylesheet" media="all">
+
+    <script src="dzz/system/ueditor/ueditor.config.js?{VERHASH}"></script>
+    <script src="dzz/system/ueditor/ueditor.all.js?{VERHASH}"></script>
+    <script src="dzz/system/ueditor/lang/$_G['language']/$_G['language'].js?{VERHASH}"></script>
+    <link href="dzz/system/ueditor/third-party/dzzattach/dzzattach.css?{VERHASH}"  rel="stylesheet"  media="all">
+    <script src="dzz/system/ueditor/third-party/highcharts/highcharts.js" type="text/javascript" defer="defer"></script>
+    <script src="dzz/system/ueditor/dialogs/charts/chart.config.js" type="text/javascript" defer="defer"></script>
+    <script type="text/javascript" src="static/js/common.js"></script>
+</head>
+<body style="background-color: #f8f8f8;">
+<div class="edit-con">
+    <form id="ueditorform" name="ueditorform" class="form-horizontal form-horizontal-left" action="{BASESCRIPT}?mod=discuss&op=list&do=newthread" method="post" style="margin:0" >
+        <input type="hidden" name="edit" value="true" />
+        <input type="hidden" name="fid" value="$fid" />
+        <input type="hidden" name="typeid" value="{$thread['typeid']}" />
+        <input type="hidden" name="pid" value="$pid" />
+        <input type="hidden" name="rpid" value="$rpid" />
+        <input type="hidden" id="tid" name="tid" value="$tid" />
+        <input type="hidden"  name="ac" value="$ac" />
+        <input id="first" type="hidden" name="first" value="$post[first]" />
+        <input type="hidden" name="handlekey" value="ueditorform" />
+        <input type="hidden" name="message" id="message" value="" />
+        <input type="hidden" name="formhash" value="{FORMHASH}" />
+        <input type="hidden" name="forward" value="$forward" />
+        <input type="hidden" name="extra" value="$extra" />
+         <!--{if $discuss['anonymous']==2}-->
+            <input id="anonymous" name="anonymous" type="hidden" value="2" />
+        <!--{else}-->
+             <input id="anonymous" name="anonymous" type="hidden" value="{$thread[anonymous]}" />
+        <!--{/if}-->
+    <div class="edit-wrap">
+        <div class="weui-cell" style="border-bottom: 1px solid #e5e5e5;padding: 10px;">
+            <div class="weui-cell__bd">
+                <input id="subject" class="weui-input" type="text" name="subject" placeholder="{lang please_input_content}" value="{$thread[subject]}">
+            </div>
+        </div>
+
+        <script id="container" type="text/plain">{$post[message]}</script>
+
+    </div>
+    </form>
+    <div class="save-btn">
+        <a href="javascript:;" id="ueditorform_btn" class="weui-btn weui-btn_primary" onclick="editsubmit()">{lang save}</a>
+    </div>
+</div>
+</body>
+<script src="dzz/system/ueditor/ueditor.parse.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/third-party/dzzattach/dzzattach.js?{VERHASH}" type="text/javascript"></script>
+<script>
+    jQuery(function () {
+        var ue=UE.getEditor('container',{
+            toolbars:[],
+            focus:true,
+            enableAutoSave:false,
+//            saveInterval:1000,
+            initialFrameHeight:300,
+            autoHeightEnabled: true,
+            enableContextMenu:false,
+            imageScaleEnabled:true,
+            iframeCssUrl:'dzz/system/ueditor/themes/iframe1.css',
+        });
+    })
+
+      function editsubmit(){
+          if(jQuery.trim(document.getElementById('subject').value)==''){
+               document.getElementById('subject').focus();
+               $.toptip('{lang post_title_not_empty}', 'error');
+              return false;
+          }
+          var message = UE.getEditor('container').getContent();
+          if(message.length<10){//发贴内容最少需要10个字符
+              UE.getEditor('container').focus();
+               $.toptip('{lang post_content_too_little}', 'error');
+              return false;
+          }else{
+             document.getElementById('message').value = message;
+          }
+          jQuery('#ueditorform').submit();
+      }
+
+</script>
+<!--{eval output();}-->
+</html>

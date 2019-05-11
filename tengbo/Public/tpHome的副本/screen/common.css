@@ -1,0 +1,42 @@
+@media (max-width: 750px){
+		 .min-foot{
+	    height: 110px;
+
+	    font-size: 12px;
+	  }
+	  .min-foot p{
+	  	padding-top: 0;
+	  	flex-wrap: nowrap;
+	  }
+	  .min-footer p{
+	  	font-size: 12px;
+	  }
+	  .drow span {
+	    display: block;
+	    width: 25px;
+	    height: 1px;
+	    background-color: white;
+	}
+	.drow{
+		width: 25px;
+	    height: 17px;
+	}
+	#nav a{
+		font-size: 12px;
+	}
+	.head-li ul li {
+		width: 90px;
+	}
+	._culfoot{
+		margin-bottom: 0;
+	}
+	.header_logo {
+		text-align: left;
+	}
+	.header_logo img{
+		width: 116px;
+		height: 23px;
+
+		margin-top: 25px;
+	}
+}

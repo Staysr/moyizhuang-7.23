@@ -1,0 +1,38 @@
+
+<div id="discuss_container" class="clearfix" style="padding: 0 15px;">
+      		<div class="board-page clearfix myboard" style="padding: 25px 15px;">
+           			<div class="thread-ordertype" style="padding:0">
+                    	<div class="btn-group" style="vertical-align: -5px;">
+                            <a class="btn-a  <!--{if $do=='mythread'}-->btn-a-active<!--{/if}-->" onclick="location.href='{DZZSCRIPT}?mod=discuss&op=my&do=mythread'">{lang my_post}</a>
+                            <a class="btn-a  <!--{if $do=='mycomments'}-->btn-a-active<!--{/if}-->" onclick="location.href='{DZZSCRIPT}?mod=discuss&op=my&do=mycomments'">{lang my_comment}</a>
+                            <a class="btn-a  <!--{if $do=='receivedcmt'}-->btn-a-active<!--{/if}-->" onclick="location.href='{DZZSCRIPT}?mod=discuss&op=my&do=receivedcmt'">{lang received_comments}</a>
+                        </div>
+                        <div class="btn-group" style="float: right;vertical-align: middle;">
+                            <button type="button" class="btn drop-btn" data-toggle="dropdown" aria-expanded="false">
+                                <!--{if $ordertype == 'dateline'}-->{lang order_post_sent_time}<!--{elseif $ordertype == 'lastpost'}-->{lang order_reply_time}<!--{elseif $ordertype == 'heats'}-->{lang order_heat}<!--{elseif $ordertype == 'digest'}-->{lang order_essence}<!--{/if}-->  <span class="dzz dzz-expand-more"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{MOD_URL}&op=my&do=mythread&ordertype=dateline">{lang order_post_sent_time}</a></li>
+                                <li><a href="{MOD_URL}&op=my&do=mythread&ordertype=lastpost">{lang order_reply_time}</a></li>
+                                <li><a href="{MOD_URL}&op=my&do=mythread&ordertype=heats">{lang order_heat}</a></li>
+                                <li><a href="{MOD_URL}&op=my&do=mythread&ordertype=digest">{lang order_essence}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+            <div class="board-thread">
+              <div id="threadlist" class="board-thread-list tl" style="position:relative">
+                  <div class="card-item-wrap">
+                    <!--{if empty($list)}-->
+                        <div class="searchImg-wrap">
+                            <img src="{MOD_PATH}/images/search_empty.png" alt="">
+                            <p>{lang no_post}</p>
+                        </div>
+                    <!--{/if}-->
+                  <!--{template discuss_thread_list_item}-->
+                  </div>
+              </div>
+            </div>
+          </div>
+</div>
+  

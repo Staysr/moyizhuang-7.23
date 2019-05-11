@@ -1,0 +1,35 @@
+<table class="table">
+	<thead>
+		<tr><td colspan="2" class="f-fs18"><strong>阅读短消息</strong></td></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="f-w30">用户名</td>
+			<td>$msginfo[username]</td>
+		</tr>
+		<tr>
+			<td>标题</td>
+			<td>$msginfo[title]</td>
+		</tr>
+		<tr>
+			<td>时间</td>
+			<td>$msginfo[mdate]</td>
+		</tr>
+		<tr>
+			<td>内容</td>
+			<td>$msginfo[content]</td>
+		</tr>
+		<tr>
+			<td>操作</td>
+			<td>
+				<!--{if $msginfo[fromuid] != $uid && $msginfo[fromuid] != '0'}-->
+				<a href="message.php?action=write&remid=$msginfo[mid]">回复</a>&nbsp;
+				<!--{/if}-->
+				<a href="message.php?action=del&mid=$msginfo[mid]">删除</a>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr><td colspan="2" class="f-tac"><input type="button" value="返 回" class="u-btn f-mt10" onclick="javascript:history.go(-1);"></td></tr>
+	</tfoot>
+</table>

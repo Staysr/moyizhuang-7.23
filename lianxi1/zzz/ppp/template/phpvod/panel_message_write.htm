@@ -1,0 +1,41 @@
+<form action="message.php?action=write" method="post">
+<input type="hidden" name="step" value="2" />
+<input type="hidden" name="mdate" value="$timestamp" />
+<table class="table">
+	<thead>
+		<tr><td colspan="2" class="f-fs18"><strong>写新消息</strong></td></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="f-w30">用户名</td>
+			<td><input type="text" name="msg_user" class="u-text" value="$msgid"/></td>
+		</tr>
+		<tr>
+			<td>标题</td>
+			<td><input type="text" name="msg_title" class="u-text" value="$subject" /></td>
+		</tr>
+		<tr>
+			<td>内容</td>
+			<td>
+				<!--{echo create_kindeditor('msg','msg_content','100%','200px',$content,'base_options')}-->
+			</td>
+		</tr>
+		<!--{if $db_gdcheck & 8}-->
+		<tr>
+			<td>认证码</td>
+			<td>
+				<div><input type="text" id="gdcode" name="gdcode" size="6" class="u-gdcode" /></div>
+				<div class="f-mt2"><img src="ck.php?nowtime=$timestamp" align="absmiddle" style="cursor:pointer;" id="ckcode" onclick="this.src='ck.php?nowtime='+new Date().getTime();" alt="看不清楚，换一张" title="看不清楚，换一张" /></div>
+			</td>
+		</tr>
+		<!--{/if}-->
+		<tr>
+			<td>&nbsp;</td>
+			<td><label class="f-fwn"><input type="checkbox" name="ifsave" value="1" /> 保存到发件箱</label></td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr><td colspan="2" class="f-tac"><input type="submit" value="提 交" class="u-btn f-mt10" /></td></tr>
+	</tfoot>
+</table>
+</form>

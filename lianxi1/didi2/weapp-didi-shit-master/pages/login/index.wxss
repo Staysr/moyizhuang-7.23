@@ -1,0 +1,94 @@
+/*.myprogress{margin:5px 0}*/
+.content{text-align: center}
+/* .logo{
+  margin-top: 100rpx;
+  /* margin-bottom: 120rpx */
+/* } */
+/* .logo image{
+  width:180rpx;
+  height:180rpx;
+  border-radius: 50%;
+} */
+
+.open{
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin-top: 98rpx;
+  display: block;
+  overflow: hidden;
+  margin-left: 300rpx;
+}
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.input-area{
+    background-color: #fff;
+    text-align: left;
+    border-bottom:1px solid #ddd
+}
+.phone{
+       width: 45rpx;
+       height: 45rpx;
+       margin-left: 12rpx;
+       float: left;
+       margin-top:30rpx; 
+}
+.l1{
+    clear: both;
+}
+input{
+    width:377rpx;
+    float:left;   
+}
+/* .password{
+      width: 45rpx;
+       height: 45rpx;
+       margin-left: 12rpx;
+} */
+.input-area input{
+  height:100rpx;
+ line-height: 100rpx;
+}
+
+.btn-area{
+  width: 80%;
+  margin: 0 auto;
+
+}
+.btn-area button{
+    /*background-color: #ff9900;*/
+    margin-top: 40rpx;
+    color: #fff
+}
+.txt-area{
+    margin-top: 30rpx;
+    display: flex;
+    justify-content:space-between;
+    font-size: 30rpx
+}
+.forgot-password{
+  color: #888;
+  font-size: 15px;
+  margin-top: 49rpx;
+  width: 219rpx;
+  float: left;
+  text-align: right;
+  
+
+}
+.identifying-code{
+  color: #888;
+  font-size: 15px;
+}
+.register{
+  color:#ff9900;
+  font-size:38rpx;
+
+}
+.forgot-password:active,.register:active{
+  opacity: 0.7;
+}

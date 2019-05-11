@@ -1,0 +1,153 @@
+<!--<?php
+include_once gettpl('top');
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">提示信息</td>
+	</tr>
+	<tr>
+		<td class="notice">请确认 data/player/ 目录属性为 777</td>
+	</tr>
+</table>
+<br />
+<!--
+EOT;
+if(empty($action)){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename" class="active">播放器列表</a></li>
+	<li><a href="$basename&action=add">添加/编辑播放器</a></li>
+	<li><a href="$basename&action=playerlist">在线安装播放器</a></li>
+</ul>
+<br />
+
+<form method="post" action="$basename">
+	<input name="action" type="hidden" value="del">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="6">管理播放器</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%">启动</td>
+			<td width="20%">播放器名称</td>
+			<td>描述</td>
+			<td width="15%">播放器文件名</td>
+			<td width="5%">操作</td>
+			<td width="5%">删除</td>
+		</tr>
+<!--
+EOT;
+foreach($playerdb as $key => $value){
+$hidden = $value[hidden] ? 'checked' : '';
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="applyid[]" value="$value[pid]" $hidden></td>
+			<td><a href="$basename&action=edit&pid=$value[pid]">$value[name]</a></td>
+			<td>$value[subject]</td>
+			<td>$value[playpath]</td>
+			<td><a href="$basename&action=edit&pid=$value[pid]">编辑</a></td>
+			<td><input type="checkbox" name="selid[]" value="$value[pid]"></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<!--
+EOT;
+}elseif($action=='add' || $action=='edit'){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename">播放器列表</a></li>
+	<li><a href="$basename&action=add" class="active">添加/编辑播放器</a></li>
+	<li><a href="$basename&action=playerlist">在线安装播放器</a></li>
+</ul>
+<br />
+
+<form action="$basename" method="post">
+	<input type="hidden" value="$pid" name="pid">
+	<input type="hidden" value="2" name="step">
+	<input type="hidden" value="$action" name="action">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">新增/编辑播放器</td>
+		</tr>
+		<tr>
+			<td width=40%>启动</td>
+			<td>
+				<label><input name="hidden" type="radio" value="1" $hidden_1>启动</label>
+				<label><input name="hidden" type="radio" value="0" $hidden_0>不启动</label>
+			</td>
+		</tr>
+		<tr>
+			<td>播放器名称</td>
+			<td><input type="text" name="name" value="$player[name]" size="35"></td>
+		</tr>
+		<tr>
+			<td>描述</td>
+			<td><input type="text" name="subject" value="$player[subject]" size="35"></td>
+		</tr>
+		<tr>
+			<td>播放器文件名<br />例: real.htm</td>
+			<td><input type="text" name="playpath" value="$player[playpath]">.htm</td>
+		</tr>
+		<tr>
+			<td>播放器代码<br />相关参数:<br />\$url 本集地址<br />\$urlpath 本集地址(带引号)<br />\$prevurl 上一集地址<br />\$prevpage 上一集播放页面地址<br />\$nexturl 下一集地址<br />\$nextpage 下一集播放页面地址</td>
+			<td><textarea name="content" id="content" rows="6" cols="50">$content</textarea></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<!--
+EOT;
+}elseif($action=='playerlist'){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename">播放器列表</a></li>
+	<li><a href="$basename&action=add">添加/编辑播放器</a></li>
+	<li><a href="$basename&action=playerlist" class="active">在线安装播放器</a></li>
+</ul>
+<br />
+
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header" colspan="5">在线安装播放器</td>
+	</tr>
+	<tr class="field f-tac">
+		<td width="5%">序号</td>
+		<td width="20%">播放器名称</td>
+		<td>描述</td>
+		<td width="15%">更新时间</td>
+		<td width="10%">操作</td>
+	</tr>
+<!--
+EOT;
+foreach($playerlist as $key => $player){
+print <<<EOT
+-->
+	<tr class="f-tac">
+		<td>$key</td>
+		<td>$player[name]</td>
+		<td>$player[subject]</td>
+		<td>$player[datetime]</td>
+		<td><a href="$basename&action=install&pid=$key">安装</a></td>
+	</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>
+-->

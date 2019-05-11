@@ -1,0 +1,484 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+@media (min-width: 1450px){
+  #nav .nav-ul {
+      display: none ;
+    }
+}
+.drop-down{
+  display: inline-block;
+    height: 20px;
+    margin-left: 14px;
+    line-height: 30px;
+    transform:rotate(90deg);
+  -ms-transform:rotate(90deg);   /* IE 9 */
+  -moz-transform:rotate(90deg);  /* Firefox */
+  -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+  -o-transform:rotate(90deg); 
+}
+.foote li{
+  cursor: pointer;
+}
+
+button:focus{
+		outline: none;
+}
+textarea:focus{
+		outline: none;
+}
+header{
+	width: 100%;
+	height: 80px;
+	display: flex;
+	justify-content: space-between;
+}
+.head-li{
+	position: relative;
+}
+.head-li ul{
+	left: -50%;
+  top: 50px;
+	background: #0C1B28;
+	position: absolute;
+	display: none;
+   z-index: 12000;
+}
+.head-li ul li{
+	width: 120px;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+
+}
+.min-page-head{
+	display: none;
+}
+.index-pic{
+   -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+  transition: transform 0.5s;
+}
+.index-pic:hover{
+ -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  -o-transform: scale(1.03);
+  transform: scale(1.03);
+ 
+  cursor: pointer;
+    
+}
+
+.scale-img:hover{
+  cursor: pointer;
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  -o-transform: scale(1.03);
+  transform: scale(1.03);
+   
+}
+.scale-img{
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+  transition: transform 0.5s;
+}
+a{
+	text-decoration: none;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.cf{
+
+	clear: both;
+}
+
+
+input:focus { outline: none; }
+ul li{
+	list-style: none;
+}
+.header_logo{
+	width: 260px;
+	height: 80px;
+	text-align: right;
+/*	margin-top: 15px;*/
+	
+}
+.header_logo img{
+	width: 236px;
+	height: 54px;
+
+}
+.header_search{
+	width: 240px;
+	height: 35px;
+	border: 1px solid rgba(37,83,123,1);
+	border-radius: 20px;
+	margin: 18px 65px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.header_search input{
+	border:none;
+/*	background: 1px ;*/
+	color: black;
+	height: 30px;
+  width: 180px;
+  margin-left: 10px;
+}
+.drow_btn{
+	display: none;
+}
+.drow{
+	padding-top: 10px;
+	padding-left: 30px; 
+	width: 50px;
+	height: 35px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+.drow span{
+	display: block;
+	width: 50px;
+	height: 5px;
+	background-color: white;
+}
+.foote{
+	margin-top: 70px;
+	width: 100%;
+	height: 360px;
+	background-color: rgb(27,27,27);
+	color: rgb(77,77,77);
+	overflow: hidden;
+}
+.foot-box{
+	display: flex;
+	width: 850px;
+	margin-left: 15%;
+	justify-content: space-between;
+	padding-top: 50px;
+}
+.foot-box a{
+	font-size: 18px;
+	color: rgb(77,77,77);
+	display: block;
+	padding-bottom: 24px;
+}
+.foot-box li{
+	font-size: 16px;
+	padding-top: 5px;
+}
+footer{
+	background-color: rgb(24,24,24);
+	color:  rgb(77,77,77);
+	font-size: 14px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	overflow: hidden;
+}
+.min-foot-box{
+	display: none;
+}
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+
+}
+.pagination span{
+
+}
+.pagination > li {
+  display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #181818;
+  text-decoration: none;
+  margin-left: 7px;
+  background-color:  rgba(245,245,245,1);
+  border: 1px solid  rgba(221,221,221,1);
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.pagination > li .active{
+	background: rgba(6,75,137,1);
+	color: white;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  z-index: 2;
+  color: white;
+  background-color: rgba(6,75,137,1);
+  border-color: #ddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 3;
+  color: #fff;
+  cursor: default;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
+}
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+
+@media (max-width: 750px){
+  html,body{
+    overflow-x: hidden !important;
+  }
+  #bottom-pages > li > span {
+  position: relative;
+  float: left;
+  padding: 4px 4px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #181818;
+  text-decoration: none;
+  margin-left: 0px;
+  background-color:  rgba(245,245,245,1);
+  border: 1px solid  rgba(221,221,221,1);
+}
+::-webkit-scrollbar
+
+{
+
+  width: 1px;
+
+  height: 0.1px;
+
+  background-color: #F5F5F5;
+
+}
+
+ 
+
+/*定义滚动条轨道 内阴影+圆角*/
+
+::-webkit-scrollbar-track
+
+{
+
+  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+
+  border-radius: 3px;
+
+  background-color: #F5F5F5;
+
+}
+
+ 
+
+/*定义滑块 内阴影+圆角*/
+
+::-webkit-scrollbar-thumb
+
+{
+
+  border-radius: 3px;
+
+  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.3);
+
+  background-color: #555;
+
+}
+  .header_search{
+    display: none;
+  }
+  .page-head{
+    display: none;
+  }
+  header{
+    height: 80px;
+    line-height: 100px;
+  }
+  #nav .head-li li{
+    margin-left: 15px;
+    line-height: 40px;
+    height: 40px;
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 14px;
+    background: rgb(12,27,40);
+    color: white;
+  }
+  .head-li ul{
+    display: none;
+    padding-bottom:40px !important;  
+    left:0;  
+  }
+  .header_logo img{
+    width:260px;
+    height: 50px;
+    margin-left: 10px;
+  }
+  .scre-head{
+    display: none;
+  }
+  .drow_btn{
+    display: block;
+  }
+    .foote{
+    display: none;
+  }
+  .min-foot-box{
+    display: block;
+  }
+  footer{
+    display: none;
+  }
+  .min-foot{
+    width: 100%;
+    height: 220px;
+    background-color: rgb(27,27,27);
+    font-size: 24px;
+    text-indent: 30px;
+    
+  }
+  .min-foot p{
+    padding-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .foot-p a{
+    padding-top: 20px;
+  }
+  .min-foot a{
+    display: block;
+    color: rgb(102,102,102);
+    width: 150px;
+  }
+  .min-footer{
+    font-size: 24px;
+    height: 85px;
+    line-height: 80px;
+    text-align: center;
+    background: rgb(24,24,24);
+    color: rgb(102,102,102);
+  }
+  header{
+  	background: #0C1B28;
+  }
+	
+/*	
+}
+
+::-webkit-scrollbar
+
+{
+
+  width: 16px;
+
+  height: 16px;
+
+  background-color: #F5F5F5;
+
+}
+
+ 
+
+/*定义滚动条轨道 内阴影+圆角*/
+
+::-webkit-scrollbar-track
+
+{
+
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+
+  border-radius: 10px;
+
+  background-color: #F5F5F5;
+
+}
+
+ 
+
+/*定义滑块 内阴影+圆角*/
+
+::-webkit-scrollbar-thumb
+
+{
+
+  border-radius: 10px;
+
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+
+  background-color: #555;
+
+}*/

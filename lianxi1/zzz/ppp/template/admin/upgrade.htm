@@ -1,0 +1,63 @@
+<!--<?php
+include_once gettpl('top');
+if(!$action){
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">会员组提升方案</td>
+	</tr>
+	<tr>
+		<td class="notice">
+			综合积分：综合积分是按照会员组提升方案中设定的积分比率来计算的，可以根据网站积分状况统计合理的设置会员组提升方案<br />
+			计算方法：各项积分*比率的和为综合积分的值 <br />
+			如等级提升方案设置 <br />
+			发布影片数: 1 <br />
+			威望 : 0.5 <br />
+			金钱 : -1 <br />
+			综合积分计算方法如下： <br />
+			发布影片数×1 + 威望×0.5 + 金钱×(-1)
+		</td>
+	</tr>
+</table><br />
+<form action="$basename" method="post">
+	<input type="hidden" name="action" value="upgrade" />
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">比率设置</td>
+		</tr>
+		<tr class="field">
+			<td width="30%">积分</td>
+			<td>比率</td>
+		</tr>
+		<tr>
+			<td>发布影片数</td>
+			<td><input type="text" size="5" name="upgrade[postnum]" value="$db_upgrade[postnum]"></td>
+		</tr>
+		<tr>
+			<td>威望</td>
+			<td><input type="text" size="5" name="upgrade[rvrc]" value="$db_upgrade[rvrc]"></td>
+		</tr>
+		<tr>
+			<td>金钱</td>
+			<td><input type="text" size="5" name="upgrade[money]" value="$db_upgrade[money]"></td>
+		</tr>
+<!--
+EOT;
+foreach($_creditdb as $key=>$val){print <<<EOT
+-->
+		<tr>
+			<td>$val[name]</td>
+			<td><input type="text" size="5" name="upgrade[$key]" value="$db_upgrade[$key]"></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<br />
+	<center><input type="submit" value="提 交" /></center></form>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>-->

@@ -1,0 +1,413 @@
+
+@media (max-width: 1450px) and (min-width: 750px){
+	#nav .nav-ul {
+      display: none !important;
+    }
+	.container .cul_divone:hover .cul_box{
+		background: rgb(245, 245, 245);
+		color: black;
+	}
+	.container .cul_divtwo:hover .cul_box{
+		background: rgb(245, 245, 245);
+		color: black;
+	}
+	.container .cul_divthree:hover .cul_box{
+		background: rgb(245, 245, 245);
+		color: black;
+	}
+
+
+	.bannner img{
+		height: auto;
+		max-height: 500px;
+	}
+	.technical-form .technical-form_span span{
+		width: 40px;
+	}
+	.join_box-item{
+		width: 300px;
+	}
+	.container .cul_divone{
+		height: auto;
+		height: 100%;
+		
+	}
+	.container .cul_box{
+		height: 250px;
+		width: 100%;
+	}
+	.container .cul_divtwo{
+		height: auto;
+		width: 100%;
+
+		font-size: 28px;
+	}
+	.container .cul_divthree{
+		height: auto;
+		height: 100%;
+		
+	}
+	.container .cul_divone_img{
+		width: 100%;
+	}
+	.cul_divtwo .cul_img1,.cul_divtwo .cul_img2{
+		width: 100%;
+		
+	}
+	.container .cul_box{
+		font-size: 25px;
+		height: 200px;
+		/*margin-top: 20px;*/
+		margin-bottom: 20px;
+	}
+	.history_container-left .left_div{
+		margin-left: 0;
+	}
+	.history_container-left{
+		
+		width: 100%;
+	}
+	.box-history{
+		/*background: red;*/
+		width: 70%;
+		overflow: hidden;
+		margin: 0 auto;
+	}
+	.history_container-right{
+		margin: 149px 0 0 0;
+		/*margin-bottom: 0;
+		margin-top: 149px;*/
+		width: 90%;
+	}
+	.history_container-left .left_two{
+		margin-left: 0;
+	}
+	.porContainer .porject_Personnel .item .img{
+		height: 300px;
+	}
+	.implementation .item .div table{
+		display: none;
+	}
+	.implementation .item .div .picbox{
+		display: none;
+	}
+	.porject_container{
+		overflow: hidden;
+	}
+	.theatre ul{
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	.theatre ul li span{
+		display: inline-block;
+		padding-bottom: 26px;
+		padding-top: 28px;		
+	}
+	.question_div {
+		height: 300px !important;
+
+	}
+	.question_div .title{
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.question_div .text{
+		max-height: 150px;
+		overflow: hidden;
+		
+	}
+
+}
+@media (max-width: 1300px) and (min-width: 900px){
+	
+	.bannner img{
+		height: auto;
+		
+	}
+	.text-box
+	.item{
+		width: 65%;
+	}
+	.text-box .detail{
+		width: 35%;
+	}
+	.nav_container {
+	    display: none;
+	  }
+	  .nav_container .nav-box {
+	    display: none !important;
+	  }
+	  .nav_container .line {
+	    display: none;
+	  }
+	.porContainer .porject_Personnel .item .img{
+		height: 250px;
+	}
+	.join_banner{
+		height: 350px !important;
+		background-size: 100% 100%!important;
+		
+	}
+	.join_box-item{
+		width: 300px;
+	}
+	.container .cul_box{
+		font-size: 25px;
+		height: 200px;
+		/*margin-top: 20px;*/
+		margin-bottom: 20px;
+	}
+	.history_container-left .left_div{
+		margin-left: 0;
+	}
+	.history_container-left{
+		
+		width: 100%;
+	}
+	.history_container-right{
+		margin: 149px 0 0 0;
+		width: 100%;
+	}
+	.history_container-left .left_two{
+		margin-left: 0;
+	}
+	.join_box-item{
+		width: 25%;
+		height: 35%;
+		
+	}
+	.join_box-item{
+		padding-bottom: 20px;
+	}
+	.join_box-item .title{
+		font-size: 20px;
+	}
+
+/*	.about_job .job_span span{
+		width: 45%;
+
+	}*/
+}
+@media (max-width: 900px) and (min-width: 750px){
+	.bannner img{
+		height: auto;
+		
+	}
+	.text-box
+	.item{
+		width: 65%;
+	}
+	.text-box .detail{
+		width: 35%;
+	}
+	.nav_container {
+	    display: none;
+	  }
+	  .nav_container .nav-box {
+	    display: none !important;
+	  }
+	  .nav_container .line {
+	    display: none;
+	  }
+	.porContainer .porject_Personnel .item .img{
+		height: 200px;
+	}
+	.join_banner{
+		height: 350px !important;
+		background-size: 100% 100%!important;
+		
+	}
+	.join_box-item{
+		width: 300px;
+	}
+	.container .cul_box{
+		font-size: 20px;
+		height: 150px;
+	}
+	.history_container-left .left_div{
+		margin-left: 0;
+	}
+	.history_container-left{
+		
+		width: 100%;
+	}
+	.box-history{
+		/*background: orange;*/
+		width: 80%;
+	}
+	.history_container-right{
+		margin: 149px 0 0 0;
+		width:100%;
+	}
+	.history_container-left .left_two{
+		margin-left: 0;
+	}
+	.join_box-item{
+		width: 35%;
+		height: 50%;
+		
+	}
+	.join_box-item .title{
+		font-size: 18px;
+	}
+	.join_box-item a{
+		padding-bottom: 20px;
+	}
+	.nav_container {
+	    display: none;
+	  }
+	  .nav_container .nav-box {
+	    display: none !important;
+	  }
+	  .nav_container .line {
+	    display: none;
+	  }
+/*	.about_job .job_span span{
+		width: 45%;
+
+	}*/
+}
+@media (max-width: 750px){
+	.container .cul_divone:hover .cul_box{
+		background: white;
+		color: black;
+	}
+	.container .cul_divtwo:hover .cul_box{
+		background: white;
+		color: black;
+	}
+	.container .cul_divthree:hover .cul_box{
+		background: white;
+		color: black;
+	}
+
+	.join_box-item{
+		display: block;
+		width: 300px;
+	}
+	.container{
+		width: 90%;
+
+	}
+	.container_left{
+		width: 100%;
+		
+	}
+	.container_left .one .title{
+		font-size: 25px;
+	}
+	.container_left .one .head{
+		font-size: 18px;
+	}
+	.container_left .one .text{
+		font-size: 14px;
+	}
+	.container_right{
+		width: 100%;
+		
+	}
+	.container .cul_divone_img{
+		width: 100%;
+		height: auto;
+	}
+	.container .cul_divone {
+		height: auto;
+		margin-top: 32px;
+
+	}
+
+	.container .cul_divtwo {
+		height: auto;
+		margin-top: 0;
+		
+	}
+	.container .cul_divthree {
+		height: auto;
+		margin-top: 0;
+		
+	}
+	.container .cul_box{
+		width: 100%;
+		font-size: 15px;
+		height: 70px;
+		line-height: 70px;
+		background: white;
+		display: inline-block;
+		
+		margin-bottom: 20px;
+	}
+	.container .cul_box span{
+		display: inline-block;
+		width: 40px;
+	}
+	.container .cul_divtwo .cul_img2{
+		width: 100%;
+		height: auto;
+	
+
+	}
+	.cul_divtwo .cul_box{
+		float: right !important;
+	}
+	.cul_divtwo .cul_img2{
+		float: left !important;
+	}
+	.container{
+		margin-bottom: 0;
+	}
+	.cul_divtwo2{
+		display: block;
+
+	}
+	.cul_divtwo1{
+		display: none;
+	}
+	.header_logo {
+		text-align: left;
+	}
+	.header_logo img{
+		width: 174px;
+		height: 34.5px;
+
+		margin-top: 25px;
+	}
+	.container .cul_title{
+		margin-top: 32px;
+		font-size: 19px;
+	}
+	.container .container_nav a{
+		font-size: 12px;
+	}
+	 .min-foot{
+	    height: 110px;
+
+	    font-size: 12px;
+	  }
+	  .min-foot p{
+	  	padding-top: 0;
+	  	flex-wrap: nowrap;
+	  }
+	  .min-footer p{
+	  	font-size: 12px;
+	  }
+	  .drow span {
+	    display: block;
+	    width: 37.5px;
+	    height: 1.5px;
+	    background-color: white;
+	}
+	.drow{
+		width: 37.5px;
+	    height: 25.5px;
+	}
+	#nav a{
+		font-size: 12px;
+	}
+	.head-li ul li {
+		width: 90px;
+	}
+	._culfoot{
+		margin-bottom: 0;
+	}
+}

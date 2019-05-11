@@ -1,0 +1,66 @@
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<ol class="breadcrumb f-mt5">
+		  <li><a href="$db_wwwurl">首页</a></li>
+		  <li class="active">RSS</li>
+		</ol>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-14 col-md-14">
+		<div class="f-mr10">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<strong>RSS订阅中心</strong>
+				</div>
+				<div class="panel-body">
+					<ul class="m-rss">
+						<li>
+							<span class="rsscaption">首页</span>
+							<span class="rssurl"><a href="{$db_wwwurl}/rss.php?cid=0" target="_blank">{$db_wwwurl}/rss.php?cid=0</a></span>
+							<span class="rssbtn"><a href="{$db_wwwurl}/rss.php?cid=0" target="_blank"><img src="$imgpath/$stylepath/rss.gif" alt="RSS订阅" /></a></span>
+						</li>
+						<!--{php}-->
+						include PHPVOD_ROOT . 'data/cache/class.php';
+						$cids=getsubcid();
+						foreach($_class as $cid => $class)
+						{
+							if(strpos(','.$cids.',', ','.$cid.',') === false) continue;
+							$link = pv_url('rss.php?cid=' . $class['cid'], true);
+						<!--{/php}-->
+						<li>
+							<span class="rsscaption">$class[caption]</span>
+							<span class="rssurl"><a href="$link" target="_blank">$link</a></span>
+							<span class="rssbtn"><a href="$link" target="_blank"><img src="$imgpath/$stylepath/rss.gif" alt="RSS订阅" /></a></span>
+						</li>						
+						<!--{php}-->
+						}				
+						<!--{/php}-->						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-6 col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>什么是RSS?</strong>
+			</div>
+			<div class="panel-body f-lh2">
+				RSS是在线共享内容的一种简易方式（也叫聚合内容，Really Simple Syndication）。通常在时效性比较强的内容上使用RSS订阅能更快速获取信息，网站提供RSS输出，有利于让用户获取网站内容的最新更新。
+				网络用户可以在客户端借助于支持RSS的聚合工具软件，也可以在线订阅站点，方便用户订阅、收藏关注的视频。PHPVOD遵循 RSS 2.0 版本规范。
+			</div>
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>RSS如何工作？</strong>
+			</div>
+			<div class="panel-body f-lh2">
+				您需要下载和安装一个RSS阅读器，或者在线注册rss账号，然后从网站提供的RSS目录列表中订阅您感兴趣的栏目的内容。订阅后，您将会及时获得所订阅频道的最新内容。
+			</div>
+		</div>		
+
+	</div>
+</div>

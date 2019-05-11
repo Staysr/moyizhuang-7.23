@@ -1,0 +1,999 @@
+<!--<?php
+include_once gettpl('top');
+print <<<EOT
+-->
+<form action="$basename" method="post">
+	<input type="hidden" name="action" value="$action">
+	<input type="hidden" name="step" value="2">
+<!--
+EOT;
+if($admintype=='wwwset'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td colspan="2" class="header">网站基本设置</td>
+		</tr>
+		<tr>
+			<td width="60%">
+				网站状态<br /> 当需要进行网站维护或者升级时，可以使用此功能暂时关闭网站
+			</td>
+			<td>
+				<label><input type="radio" value="1" name="config[siteifopen]" $siteifopen_1> 开启</label>
+				<label><input type="radio" value="0" name="config[siteifopen]" $siteifopen_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				网站关闭的原因 (支持html代码)<br /> 关闭网站后生成首页访问时显示关闭原因
+			</td>
+			<td>
+				<textarea name="config[whyclose]" rows="6" cols="50">$db_whyclose</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				网站名称
+			</td>
+			<td>
+				<input type="text" name="config[wwwname]" size="35" value="$db_wwwname">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				网站地址
+			</td>
+			<td>
+				<input type="text" size="35" name="config[wwwurl]" value="$db_wwwurl">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				网站首页调用文件
+			</td>
+			<td>
+				<input type="text" size="35" name="config[bfn]" value="$db_bfn">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				联系我们URL (出现在页尾)
+			</td>
+			<td>
+				<input type="text" size="35" name="config[ceoconnect]" value="$db_ceoconnect">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				管理员信箱
+			</td>
+			<td>
+				<input type="text" size="35" name="config[ceoemail]" value="$db_ceoemail">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Meta 关键词<br /> 为所有页面输入 Meta 关键词,让搜索引擎更容易找到您的网站
+			</td>
+			<td>
+				<input type="text" name="config[keywords]" size="35" value="$db_keywords">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Meta 描述 <br /> 为所有页面输入 Meta 描述,以便能够在搜索引擎中正确搜索到您的网站
+			</td>
+			<td>
+				<input type="text" name="config[description]" size="35" value="$db_description">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				版权信息 (支持html代码)<br /> 显示于网站底部版权信息
+			</td>
+			<td>
+				<textarea name="config[copyright]" rows="6" cols="50">$db_copyright</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ICP备案信息
+			</td>
+			<td>
+				<input type="text" size="35" name="config[icp]" value="$db_icp">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ICP备案信息链接地址
+			</td>
+			<td>
+				<input type="text" size="35" name="config[icpurl]" value="$db_icpurl">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				第三方统计代码
+			</td>
+			<td>
+				<textarea name="config[statcode]" rows="6" cols="50">$db_statcode</textarea>
+			</td>
+		</tr>
+	</table>
+	<br />
+<!--
+EOT;
+}if($admintype=='function'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td colspan="2" class="header">
+				核心功能设置
+			</td>
+		</tr>
+		<tr>
+			<td width="60%">进程优化<br />建议15分钟在线1000人以上站点打开此选项</td>
+			<td>
+				<label><input type="radio" value="1" name="config[lp]" $lp_1> 开启</label>
+				<label><input type="radio" value="0" name="config[lp]" $lp_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GZIP 压缩输出<br /> 允许系统通过 gzip 输出页面，明显的降低带宽需求，需要客户端支持，并会加大服务器系统开销
+			</td>
+			<td>
+				<label><input type="radio" value="1" name="config[obstart]" $obstart_1> 开启</label>
+				<label><input type="radio" value="0" name="config[obstart]" $obstart_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				DEBUG 模式运行网站<br /> 不屏蔽程序报错，网站出现异常时启动，将错误信息提交给我们，以便尽快得到解决
+			</td>
+			<td>
+				<label><input type="radio" value="1" name="config[debug]" $debug_1> 开启</label>
+				<label><input type="radio" value="0" name="config[debug]" $debug_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>通用缓存时间<br />单位(秒)，设为0时缓存永不过期，-1则禁用缓存</td>
+			<td><input type="text" name="config[cachetime]" value="$db_cachetime" /></td>
+		</tr>
+		<tr>
+			<td>
+				CC攻击防护<br /> 不使用 &nbsp; &nbsp;: 关闭CC攻击防护<br /> 普通模式 : 建议使用这种模式，可预防系统遭受cc攻击<br /> 加强模式 : 当网站正遭受CC攻击而导致访问速度很慢时，请开启此种模式可阻止攻击
+			</td>
+			<td>
+				<select name="config[cc]">
+                	<option value="0" $cc_0>不使用</option>
+                	<option value="1" $cc_1>普通模式</option>
+                	<option value="2" $cc_2>加强模式</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				内网IP匹配<br /> 开启后，站点内用户IP都显示为外网IP。
+			</td>
+			<td>
+				<label><input type="radio" value="1" name="config[xforwardip]" $xforwardip_1> 开启</label>
+				<label><input type="radio" value="0" name="config[xforwardip]" $xforwardip_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				默认编码设置<br /> 请检查您使用的版本编码是否与此处设置相同，如无需要请不要随意更改
+			</td>
+			<td>
+				<select name="config[charset]">
+					<option value="gbk" $charset_gbk>简体中文 (gbk)</option>
+					<option value="big5" $charset_big5>繁体中文 (big5)</option>
+					<option value="utf-8" $charset_utf8>UTF8编码 (utf-8)</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				强制设置编码<br /> 解决国外的空间乱码问题，如无需要请不要随意更改
+			</td>
+			<td>
+				<label><input name="config[forcecharset]" type="radio" value="1" $forcecharset_1> 开启</label>
+				<label><input name="config[forcecharset]" type="radio" value="0" $forcecharset_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				默认时区设置<br /> 网站所在时区的设置，游客和新注册用户的时间按此设置显示
+			</td>
+			<td>
+				<select name="config[timedf]">
+<!--
+EOT;
+include gettpl('timezone');
+print <<<EOT
+-->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				默认时间显示格式<br /> 格式如:yyyy-mm-dd，yy-m-d
+				<br /> yyyy代表4位数年份，yy代表2位数年份
+				<br /> mm代表有前导零01-12，m代表没前导零1-12
+				<br /> dd代表有前导零01-31，d代表没前导零1-31
+				<br />
+			</td>
+			<td>
+				<input type="text" name="config[datefm]" value="$db_datefm"><br /><br />
+				<label><input name="time_f" value="24" type="radio" $check_24>24小时制</label>
+				<label><input name="time_f" value="12" type="radio" $check_12>12小时制</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				网站默认风格
+			</td>
+			<td>
+				<select name="config[defaultstyle]">
+					$choseskin
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				风格模板自动刷新
+			</td>
+			<td>
+				<label><input name="config[tplrefresh]" type="radio" value="1" $tplrefresh_1> 开启</label>
+				<label><input name="config[tplrefresh]" type="radio" value="0" $tplrefresh_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				是否开启头像上传功能<br /> 此处为全局控制，此功能关闭则所有用户都不能使用头像上传功能
+			</td>
+			<td>
+				<label><input name="config[iconupload]" type="radio" value="1" $iconupload_1> 开启</label>
+				<label><input name="config[iconupload]" type="radio" value="0" $iconupload_0> 关闭</label>
+				<br /><br /> 头像大小: <input type="text" size="10" value="$db_iconsize" name="config[iconsize]"> KB
+			</td>
+		</tr>
+		<tr>
+			<td>Cookie前缀<br />防止与其它cookie冲突，提高站点安全性，默认pv</td>
+			<td><input type="text" name="config[cookiepre]" value="$db_cookiepre" /></td>
+		</tr>
+		<tr>
+			<td>Cookie 路径<br />默认为“/”。如果您在同一个域名下运行了多个站点，便需要将它设置为每个站点所在的目录名以防冲突。如“/vod/”、“/video/”</td>
+			<td><input type="text" name="config[cookiepath]" value="$db_cookiepath" /></td>
+		</tr>
+		<tr>
+			<td>Cookie 作用域<br />默认为空。如果您的站点有两个不同的网址，如“phpvod.com”、“vod.phpvod.com”，要使用户在两个不同的域名访问下，仍能保持登录状态，您需要在设置为“.phpvod.com” (注意域名需要以点开头)。</td>
+			<td><input type="text" name="config[cookiedomain]" value="$db_cookiedomain" /></td>
+		</tr>
+		<tr>
+			<td>站点安全验证参数<br />除非站点出现安全危机，请不要随意修改</td>
+			<td><input type="text" name="config[sitehash]" value="$db_sitehash" /></td>
+		</tr>
+	</table>
+	<br />
+<!--
+EOT;
+}if($admintype=='ck'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td colspan="2" class="header">验证码设置</td>
+		</tr>
+		<tr>
+			<td width="60%">开启验证码<br />请勾选需要开启验证码的操作</td>
+			<td>
+				<ul class="list">
+					<li><label><input type="checkbox" name="gdcheck[]" value="1" $gdcheck_1 /> 注册</label></li>
+					<li><label><input type="checkbox" name="gdcheck[]" value="2" $gdcheck_2 /> 前台登录</label></li>
+					<li><label><input type="checkbox" name="gdcheck[]" value="4" $gdcheck_4 /> 发布</label></li>
+					<li><label><input type="checkbox" name="gdcheck[]" value="8" $gdcheck_8 /> 短消息</label></li>
+					<li><label><input type="checkbox" name="gdcheck[]" value="16" $gdcheck_16 /> 其它</label></li>
+					<li><label><input type="checkbox" name="gdcheck[]" value="32" $gdcheck_32 /> 后台登录</label></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>验证码类型<br />注:启用中文验证码时，首先需要在 域名/images/fonts/ch 目录中添加中文字体</td>
+			<td>
+				<select name="config[gdtype]">
+					<option value="0" $gdtype_0>数字验证码</option>
+					<option value="1" $gdtype_1>英文验证码</option>
+					<option value="2" $gdtype_2>中文验证码</option>
+					<option value="3" $gdtype_3>随 机</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>验证码识别难度<br />请勾选需要的效果</td>
+			<td>
+				<ul class="list">
+					<li><label><input type="checkbox" name="gdstyle[]" value="1" $gdstyle_1 /> 随机字体</label></li>
+					<li><label><input type="checkbox" name="gdstyle[]" value="2" $gdstyle_2 /> 随机字体大小</label></li>
+					<li><label><input type="checkbox" name="gdstyle[]" value="4" $gdstyle_4 /> 随机倾斜</label></li>
+					<li><label><input type="checkbox" name="gdstyle[]" value="8" $gdstyle_8 /> 随机背景</label></li>
+					<li><label><input type="checkbox" name="gdstyle[]" value="16" $gdstyle_16 /> 随机颜色</label></li>
+					<li><label><input type="checkbox" name="gdstyle[]" value="32" $gdstyle_32 /> 随机干扰图形</label></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>验证码尺寸[像素]<br />尺寸请不要超过200 * 80</td>
+			<td>
+				宽: <input type="text" name="gdsize[0]" value="$gdsize[0]" size="10" />
+				高: <input type="text" name="gdsize[1]" value="$gdsize[1]" size="10" />
+			</td>
+		</tr>
+		<tr>
+			<td>验证码个数<br />建议为4个 </td>
+			<td><input type="text" name="gdsize[2]" value="$gdsize[2]" /></td>
+		</tr>
+	</table>
+	<br />
+<!--
+EOT;
+}if($admintype=='info'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td colspan="2" class="header">
+				页面细节设置
+			</td>
+		</tr>
+		<tr>
+			<td width="60%">
+				首页显示图片展示
+			</td>
+			<td>
+				<label><input type="radio" value="1" name="config[showpic]" $showpic_1> 开启</label>
+				<label><input type="radio" value="0" name="config[showpic]" $showpic_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				图片展示设置<br />请将图片上传至 $imgpath/show/ 目录下<br />每行输入一个幻灯片信息，格式：图片文件名|链接地址|说明文字
+			</td>
+			<td>
+				<textarea name="config[setshowpic]" wrap="off" rows="6" cols="50">$db_setshowpic</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				热门搜索<br />多个关键词之间请用逗号分隔
+			</td>
+			<td>
+				<input type="text" size="35" name="config[hotsearch]" value="$db_hotsearch">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				首页显示友情连接
+			</td>
+			<td>
+				<label><input type="radio" value="1" name="config[indexlink]" $indexlink_1> 开启</label>
+				<label><input type="radio" value="0" name="config[indexlink]" $indexlink_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				滚动显示友情链接
+			</td>
+			<td>
+				<label><input type="radio" value="1" name="config[indexmqlink]" $indexmqlink_1> 开启</label>
+				<label><input type="radio" value="0" name="config[indexmqlink]" $indexmqlink_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				后台每页显示项目数
+			</td>
+			<td>
+				<input type="text" name="config[adminperpage]" size="35" value="$db_adminperpage">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				前台每页显示项目数
+			</td>
+			<td>
+				<input type="text" name="config[perpage]" size="35" value="$db_perpage">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				视频每页显示评论数
+			</td>
+			<td>
+				<input type="text" name="config[readperpage]" size="35" value="$db_readperpage">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				提交评论时内容最小字节
+			</td>
+			<td>
+				<input type="text" name="config[postmin]" size="35" value="$db_postmin">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				提交评论时内容最大字节
+			</td>
+			<td>
+				<input type="text" name="config[postmax]" size="35" value="$db_postmax">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				前台显示会员评论
+			</td>
+			<td>
+				<label><input type="radio" value="1" name="config[reply]" $reply_1> 开启</label>
+				<label><input type="radio" value="0" name="config[reply]" $reply_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				视频发布页的影片发行年份
+			</td>
+			<td>
+				从
+				<input type="text" size="10" name="config[yearstart]" value="$db_yearstart"> 至
+				<input type="text" size="10" name="config[yearend]" value="$db_yearend">
+			</td>
+		</tr>
+	</table>
+	<br />
+<!--
+EOT;
+}if($admintype=='pathset'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td colspan="2" class="header">
+				动态目录设置
+			</td>
+		</tr>
+		<tr>
+			<td width="60%">
+				图片保存目录 (如果发现不可更改，请确认目录可写入)
+			</td>
+			<td>
+				<input type="text" size="35" name="set[picpath]" value="$picpath" $imgdisabled>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				定期自动更改图片链
+			</td>
+			<td>
+				<label><input type="radio" value="1" name="config[autochange]" $autochange_1> 开启</label>
+				<label><input type="radio" value="0" name="config[autochange]" $autochange_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				定时更改图片目录防止图片盗链(小时)<br /> (如果上一选项选否,此项无效)
+			</td>
+			<td>
+				<select name="config[hour]">
+					<option value="4" $hour_4>4</option>
+					<option value="6" $hour_6>6</option>
+					<option value="8" $hour_8>8</option>
+					<option value="12" $hour_12>12</option>
+					<option value="24" $hour_24>24</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<br />
+<!--
+EOT;
+}if($admintype=='sethtm'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td colspan="2" class="header">静态目录部署</td>
+		</tr>
+		<tr>
+			<td width="60%">是否开启静态目录部署功能</td>
+			<td>
+				<label><input type="radio" name="config[htmifopen]" value="1" $htmifopen_1> 是</label>
+				<label><input type="radio" name="config[htmifopen]" value="0" $htmifopen_0> 否</label>
+			</td>
+		</tr>
+		<tr>
+			<td>静态目录</td>
+			<td><input type="text" size="35" value="$db_dir" name="config[dir]"></td>
+		</tr>
+		<tr>
+			<td>静态目录扩展名设置</td>
+			<td><input type="text" size="35" value="$db_ext" name="config[ext]"></td>
+		</tr>
+		<tr>
+			<td>静态链接优化</td>
+			<td>
+				<ul class="list">
+					<li><label><input type="checkbox" name="optimizelink[]" value="1" $optimizelink_1 /> 版块链接</label></li>
+					<li><label><input type="checkbox" name="optimizelink[]" value="2" $optimizelink_2 /> 栏目链接</label></li>
+					<li><label><input type="checkbox" name="optimizelink[]" value="4" $optimizelink_4 /> 详细页链接</label></li>
+					<li><label><input type="checkbox" name="optimizelink[]" value="8" $optimizelink_8 /> 播放页链接</label></li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<br />
+<!--
+EOT;
+}if($admintype=='picupload'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td colspan="2" class="header">
+				海报上传设置
+			</td>
+		</tr>
+		<tr>
+			<td width="60%">
+				海报上传功能
+			</td>
+			<td>
+				<label><input type="radio" value="1" name="config[uploadvodpic]" $uploadvodpic_1> 开启</label>
+				<label><input type="radio" value="0" name="config[uploadvodpic]" $uploadvodpic_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				海报保存方式<br /> 本设置只影响新上传的海报，不影响已上传的海报。如使用非默认的保存方式，请确认 mkdir() 函数可正常使用，否则海报无法保存
+			</td>
+			<td>
+				<label><input value="0" type="radio" name="config[picdir]" $picdir_0> 默认(全部存入同一目录)</label> <br />
+				<label><input value="1" type="radio" name="config[picdir]" $picdir_1> 按栏目存入不同目录</label> <br />
+				<label><input value="2" type="radio" name="config[picdir]" $picdir_2> 按地区存入不同目录</label> <br />
+				<label><input value="3" type="radio" name="config[picdir]" $picdir_3> 按月份存入不同目录</label> <br />
+				<label><input value="4" type="radio" name="config[picdir]" $picdir_4> 按天存入不同目录</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				允许上传海报格式(用","半角逗号隔开)
+			</td>
+			<td>
+				<input type="text" name="config[picfiletype]" size="35" value="$db_picfiletype">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				上传海报大小上限(KB)
+			</td>
+			<td>
+				<input type="text" size="35" name="config[picmaxsize]" value="$db_picmaxsize">
+			</td>
+		</tr>
+		<tr class="field">
+			<td colspan="2">海报缩略图设置</td>
+		</tr>
+		<tr>
+			<td>
+				生成缩略图
+			</td>
+			<td>
+				<label><input type="radio" value="1" name="config[createthumb]" $createthumb_1> 开启</label>
+				<label><input type="radio" value="0" name="config[createthumb]" $createthumb_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				缩略图宽度(像素px)
+			</td>
+			<td>
+				<input type="text" name="config[thumbwidth]" size="35" value="$db_thumbwidth">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				缩略图高度(像素px)
+			</td>
+			<td>
+				<input type="text" name="config[thumbheight]" size="35" value="$db_thumbheight">
+			</td>
+		</tr>
+		<tr class="field">
+			<td colspan="2">海报水印设置</td>
+		</tr>
+		<tr>
+			<td>
+				添加图片水印
+			</td>
+			<td>
+				<label><input value="1" name="config[watermark]" type="radio" $watermark_1> 开启</label>
+				<label><input value="0" name="config[watermark]" type="radio" $watermark_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				水印位置
+			</td>
+			<td class="f-tal">
+				<table border="1" style="margin: 0px; padding: 0px;">
+					<tr>
+						<td><label><input type="radio" name="config[waterpos]" value="1" $waterpos_1 />#1</label></td>
+						<td><label><input type="radio" name="config[waterpos]" value="2" $waterpos_2 />#2</label></td>
+						<td><label><input type="radio" name="config[waterpos]" value="3" $waterpos_3 />#3</label></td>
+					</tr>
+					<tr>
+						<td><label><input type="radio" name="config[waterpos]" value="4" $waterpos_4 />#4</label></td>
+						<td><label><input type="radio" name="config[waterpos]" value="5" $waterpos_5 />#5</label></td>
+						<td><label><input type="radio" name="config[waterpos]" value="6" $waterpos_6 />#6</label></td>
+					</tr>
+					<tr>
+						<td><label><input type="radio" name="config[waterpos]" value="7" $waterpos_7 />#7</label></td>
+						<td><label><input type="radio" name="config[waterpos]" value="8" $waterpos_8 />#8</label></td>
+						<td><label><input type="radio" name="config[waterpos]" value="9" $waterpos_9 />#9</label></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>水印图片文件名<br />水印图片存放路径：$db_wwwurl/$imgpath/water，如果水印图片不存在，则使用文字水印</td>
+			<td><input name="config[waterimg]" value="$db_waterimg" type="text" size="35" /></td>
+		</tr>
+		<tr>
+			<td>水印图片文字</td>
+			<td><input name="config[watertext]" value="$db_watertext" type="text" size="35" /></td>
+		</tr>
+		<tr>
+			<td>水印图片文字字体大小</td>
+			<td><input name="config[waterfont]" value="$db_waterfont" type="text" size="35" /></td>
+		</tr>
+		<tr>
+			<td>水印图片文字颜色（十六进制颜色值，默认为#FF0000:红色)</td>
+			<td><input name="config[watercolor]" value="$db_watercolor" type="text" size="35" /></td>
+		</tr>
+		<tr>
+			<td>水印透明度，该值决定图片水印清晰度，取值范围 0 ~ 100</td>
+			<td><input name="config[waterpct]" value="$db_waterpct" type="text" size="35" /></td>
+		</tr>
+		<tr>
+			<td>图片质量，该值决定 jpg 格式图片的质量，取值范围 0 ~ 100</td>
+			<td><input name="config[jpgquality]" value="$db_jpgquality" type="text" size="35" /></td>
+		</tr>
+	</table>
+	<br />
+<!--
+EOT;
+}if($admintype=='regset'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td colspan="2" class="header">
+				会员注册设置
+			</td>
+		</tr>
+		<tr>
+			<td width="60%">
+				允许新用户注册
+			</td>
+			<td>
+				<label><input type="radio" value="1" name="reg[allowregister]" $allowregister_1> 开启</label>
+				<label><input type="radio" value="0" name="reg[allowregister]" $allowregister_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				新用户注册验证
+			</td>
+			<td>
+				<select name="reg[regcheck]">
+					<option value="0" $regcheck_0>无</option>
+					<option value="1" $regcheck_1>邮件验证</option>
+					<option value="2" $regcheck_2>后台审核</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				会员名最短长度 (用户在注册时的最小的用户名字符长度)
+			</td>
+			<td>
+				<input type="text" size="35" name="reg[regminname]" value="$rg_regminname">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				会员名最长长度 (系统稳定性考虑,请不要超过 12 字节)
+			</td>
+			<td>
+				<input type="text" size="35" name="reg[regmaxname]" value="$rg_regmaxname">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				自定义头衔最长长度
+			</td>
+			<td>
+				<input type="text" size="35" name="reg[regmaxhonor]" value="$rg_regmaxhonor">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				个性签名最长长度
+			</td>
+			<td>
+				<input type="text" size="35" name="reg[regmaxsign]" value="$rg_regmaxsign">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				注册时初始威望
+			</td>
+			<td>
+				<input type="text" size="35" name="reg[regrvrc]" value="$rg_regrvrc">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				注册时初始金钱
+			</td>
+			<td>
+				<input type="text" size="35" name="reg[regmoney]" value="$rg_regmoney">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				禁止在注册用户名中使用的关键词，多个词用","分隔<br />
+				例：如果禁用了"站长"，那么所有含有"站长"(如：我是站长)的用户名将被禁止使用
+			</td>
+			<td>
+				<textarea name="reg[banname]" rows="6" cols="50">$rg_banname</textarea>
+			</td>
+		</tr>
+	</table>
+	<br />
+<!--
+EOT;
+}if($admintype=='atcset'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="5">
+				视频奖惩设置
+			</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="20%">名称</td>
+			<td width="20%">发布视频(+)</td>
+			<td width="20%">发布评论(+)</td>
+			<td width="20%">删除视频(-)</td>
+			<td width="20%">删除评论(-)</td>
+		</tr>
+		<tr class="f-tac">
+			<td>金钱</td>
+			<td><input type="text" size="5" value="{$credit[money][Post]}" name="creditdb[money][Post]"></td>
+			<td><input type="text" size="5" value="{$credit[money][Reply]}" name="creditdb[money][Reply]"></td>
+			<td><input type="text" size="5" value="{$credit[money][Delete]}" name="creditdb[money][Delete]"></td>
+			<td><input type="text" size="5" value="{$credit[money][Deleterp]}" name="creditdb[money][Deleterp]"></td>
+		</tr>
+		<tr class="f-tac">
+			<td>威望</td>
+			<td><input type="text" size="5" value="{$credit[rvrc][Post]}" name="creditdb[rvrc][Post]"></td>
+			<td><input type="text" size="5" value="{$credit[rvrc][Reply]}" name="creditdb[rvrc][Reply]"></td>
+			<td><input type="text" size="5" value="{$credit[rvrc][Delete]}" name="creditdb[rvrc][Delete]"></td>
+			<td><input type="text" size="5" value="{$credit[rvrc][Deleterp]}" name="creditdb[rvrc][Deleterp]"></td>
+		</tr>
+<!--
+EOT;
+foreach($_creditdb as $key => $value){
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td>{$value[name]}</td>
+			<td><input type="text" size="5" value="{$credit[$key][Post]}" name="creditdb[$key][Post]"></td>
+			<td><input type="text" size="5" value="{$credit[$key][Reply]}" name="creditdb[$key][Reply]"></td>
+			<td><input type="text" size="5" value="{$credit[$key][Delete]}" name="creditdb[$key][Delete]"></td>
+			<td><input type="text" size="5" value="{$credit[$key][Deleterp]}" name="creditdb[$key][Deleterp]"></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table><br />
+<!--
+EOT;
+}if($admintype=='mobile'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">移动端设置</td>
+		</tr>
+		<tr>
+			<td width="60%">移动端状态</td>
+			<td>
+				<label><input type="radio" value="1" name="config[mobileifopen]" $mobileifopen_1 /> 开启</label>
+				<label><input type="radio" value="2" name="config[mobileifopen]" $mobileifopen_2 /> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>移动端目录</td>
+			<td><input type="text" name="config[mobiledirname]" value="$db_mobiledirname" /></td>
+		</tr>
+		<tr>
+			<td>移动端域名(如：http://m.phpvod.com)<br />注意：移动端域名与站点域名为两个不同的网址时，需要在"核心功能设置"中设置"cookie作用域"，如：.phpvod.com</td>
+			<td><input type="text" name="config[mobiledomain]" value="$db_mobiledomain" /></td>
+		</tr>
+	</table>
+	<br />
+<!--
+EOT;
+}if($admintype=='email'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">邮件设置</td>
+		</tr>
+		<tr>
+			<td width="60%">邮件发送模式</td>
+			<td>
+				<label><input type="radio" value="1" name="config[mailmethod]" $mailmethod_1 /> Mail 函数发送</label>
+				<label><input type="radio" value="2" name="config[mailmethod]" $mailmethod_2 /> SMTP 模块发送</label>
+			</td>
+		</tr>
+		<tbody id="smtp" style="display: none;">
+			<tr class="field">
+				<td colspan="2">SMTP 模块发送设置</td>
+			</tr>
+			<tr>
+				<td>SMTP 服务器</td>
+				<td><input type="text" size="25" name="config[mailsmtp]" value="$db_mailsmtp" /></td>
+			</tr>
+			<tr>
+				<td>SMTP 端口</td>
+				<td><input type="text" size="25" name="config[mailport]" value="$db_mailport" /></td>
+			</tr>
+			<tr>
+				<td>发信人地址</td>
+				<td><input type="text" size="25" name="config[mailfrom]" value="$db_mailfrom" /></td>
+			</tr>
+			<tr>
+				<td>发信人名称</td>
+				<td><input type="text" size="25" name="config[mailfromname]" value="$db_mailfromname" /></td>
+			</tr>
+			<tr>
+				<td>是否需要 Auth Login 验证</td>
+				<td>
+					<label><input type="radio" value="1" name="config[mailauth]" $mailauth_1 /> 开启</label>
+					<label><input type="radio" value="0" name="config[mailauth]" $mailauth_0 /> 关闭</label>
+				</td>
+			</tr>
+			<tr>
+				<td>验证用户名</td>
+				<td><input type="text" size="25" name="config[mailuser]" value="$db_mailuser" /></td>
+			</tr>
+			<tr>
+				<td>验证密码</td>
+				<td><input type="text" size="25" name="config[mailpass]" value="$db_mailpass" /></td>
+			</tr>
+		</tbody>
+	</table>
+	<br />
+	<script type="text/javascript">
+		var panel_list = [{"id":"smtp", "value":"2"}];
+		$("input:radio[name*=mailmethod]").on("click", function(){
+			show_panel("config[mailmethod]", panel_list);
+		});
+		show_panel("config[mailmethod]", panel_list);
+	</script>
+<!--
+EOT;
+}if($admintype=='merge'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">系统整合</td>
+		</tr>
+		<tr>
+			<td width="60%">系统类型</td>
+			<td>
+				<label><input type="radio" value="0" name="config[mergesystype]" $mergesystype_0 /> 关闭</label>
+				<label><input type="radio" value="ucenter" name="config[mergesystype]" $mergesystype_ucenter /> UCenter</label>
+			</td>
+		</tr>
+		<tbody id="ucenter" style="display: none;">
+			<tr class="field">
+				<td colspan="2">UCenter 设置</td>
+			</tr>
+			<tr>
+				<td>
+					UCenter 配置信息<br />
+					请复制应用的 UCenter 配置信息粘贴到此处。<br />如果配置错误造成系统无法访问，请删除data/uc_config.php文件后重新填写。
+				</td>
+				<td><textarea name="ucconfig" rows="6" cols="50">$ucconfig</textarea></td>
+			</tr>
+			<tr>
+				<td>导航栏显示其它应用</td>
+				<td>
+					<label><input type="radio" value="1" name="config[mergeshowapp]" $mergeshowapp_1 /> 开启</label>
+					<label><input type="radio" value="0" name="config[mergeshowapp]" $mergeshowapp_0 /> 关闭</label>
+				</td>
+			</tr>
+			<tr>
+				<td>将事件加入至UCenter Home动态</td>
+				<td>
+					<ul class="list">
+						<li><label><input type="checkbox" name="uchomefeed[]" value="1" $uchomefeed_1 /> 发布视频</label></li>
+						<li><label><input type="checkbox" name="uchomefeed[]" value="2" $uchomefeed_2 /> 发布评论</label></li>
+						<li><label><input type="checkbox" name="uchomefeed[]" value="4" $uchomefeed_4 /> 观看视频</label></li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br />
+	<script type="text/javascript">
+		var panel_list = [{"id":"ucenter", "value":"ucenter"}];
+		$("input:radio[name*=mergesystype]").on("click", function(){
+			show_panel("config[mergesystype]", panel_list);
+		});
+		show_panel("config[mergesystype]", panel_list);
+	</script>
+	<br />
+<!--
+EOT;
+}if($admintype=='setads'){print <<<EOT
+-->
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header">提示信息</td>
+		</tr>
+		<tr>
+			<td class="notice">
+				功能说明:<br />
+				就是鼓励会员宣传网站的功能。只要用户把您站点的 url 推荐给其他朋友，并引导其他人访问您的网站。那他的相应积分将会增加！<br />
+				使用方法: 在站点任意一动态页面的 url 后加上 a=用户名 或 u=用户ID<br />
+				比如以下方法均正确(用户名:admin 数字ID:1000) <br />
+				http://vod.phpvod.com/index.php?a=admin <br />
+				http://vod.phpvod.com/index.php?u=1000 <br />
+				http://vod.phpvod.com/read.php?vid=1122&a=admin <br />
+				http://vod.phpvod.com/read.php?vid=1122&u=1000 <br />
+				注意:需要注册是指:会员引导的朋友需要注册之后， 会员才会增加积分；而勿需注册则不限制，只要引导其他人访问该网站，就会增加!
+			</td>
+		</tr>
+	</table><br />
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td colspan="2" class="header">宣传设置</td>
+		</tr>
+		<tr>
+			<td width="60%">使用宣传代码</td>
+			<td>
+				<label><input type="radio" value="2" name="config[setads]" $setads_2> 需要注册</label>
+				<label><input type="radio" value="1" name="config[setads]" $setads_1> 勿需注册</label>
+				<label><input type="radio" value="0" name="config[setads]" $setads_0> 关闭</label>
+			</td>
+		</tr>
+		<tr>
+			<td>增加积分<br />每次有效推广增加的积分数</td>
+			<td>
+				<input type="text" name="config[setadsnum]" value="$db_setadsnum" size="10" />
+				<select name="config[setadstype]">
+					$credit_opts
+				</select>
+			</td>
+		</tr>
+	</table>
+	<br />
+<!--
+EOT;
+}print <<<EOT
+-->
+	<div class="f-tac"><input type="submit" value="提 交"></div>
+</form>
+<!--
+EOT;
+include_once gettpl('adminbottom');
+?>
+-->

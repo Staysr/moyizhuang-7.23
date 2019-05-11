@@ -1,0 +1,38 @@
+@charset "utf-8";
+/*---reset---*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+margin:0;padding:0;}
+* focus {outline: none;margin: 0;padding: 0;}
+a:focus { outline: none;}
+table {border-collapse:collapse;border-spacing:0;}
+fieldset, img {border:0;}
+address, caption, cite, code, dfn, em, strong, th, var {font-style:normal;}
+li {list-style:none;}
+caption, th {text-align:left;}
+h1, h2, h3, h4, h5, h6 {font-size:100%;}
+input, textarea, select {font-family:inherit;font-size:inherit;font-weight:inherit;}
+legend {color:#000;}
+.clearfix:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{display:inline-block;}
+.clearfix {display:block;}
+.clean {clear:both;}
+a{ outline:none;text-decoration:none;}
+a{ color:#333435; }
+a:hover { color:#e23a0a;}
+.fl {float:left;}
+.fr {float:right;}
+/*---layout---*/
+body {margin:0 auto;font:12px/22px 'Microsoft Yahei','\5b8b\4f53',微软雅黑, Arial, Lucida Grande, Tahoma, sans-serif;color:#131313; background-color:#fafafa;}
+#navmenu{font-size:14px;position:relative;z-index:10; width:1000px; margin:0 auto; height:39px; background-color:#61B200; border-radius:5px;}
+#navmenu ul {float:left;padding:0 2px 0 0;}
+#navmenu ul li {float:left;height:37px;line-height:37px;position:relative;padding:0 0 0 2px;}
+#navmenu ul li a {padding:0 25px 0 23px;color:#ffffff;float:left;}
+#navmenu ul li a:hover{color:#fff; text-shadow: 1px 1px 1px #000000; background-color:#51A735; border-radius:3px;}
+#navmenu ul li ul{position:absolute;top:37px;left:0;width:130px;background:#51A735;filter:alpha(opacity=90);opacity:.9;-moz-opacity:.9;display:none;}
+#navmenu ul li ul li {background:none;float:left;border-bottom:1px #ffffff solid;padding: 4px;display:block;width:108px;margin-left:2px;}
+#navmenu ul li ul li a{float:none;border-radius:5px;color:#ffffff;display: block;font-size: 14px;line-height:30px;padding:3px 10px;width:100px;}
+#navmenu ul li ul li a:hover{background:#61B200;}
+#navmenu ul li ul li ul{position:absolute;top:0;left:115px;width:120px;background:#3a3a3a;filter:alpha(opacity=90);opacity:.9;-moz-opacity:.9;display:none;}
+#navmenu ul li ul li ul li{background:none;float:left;border-bottom:1px #535252 solid;padding: 4px;display:block;width:108px;margin-left:2px;}
+#navmenu ul li ul li ul li a{float:none;border-radius:5px;color: #CFC5AC;display: block;font-size: 14px;line-height:30px;padding:3px 10px;width:90px;}
+#navmenu ul li ul li ul li a:hover{background:#1A1A1A;}

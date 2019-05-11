@@ -1,0 +1,2092 @@
+[ 2018-11-27T20:03:36+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000522s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000882s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000927s ]
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0111s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0105s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0092s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0081s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0043s ]
+ERR: 非法操作:index
+
+[ 2018-11-27T20:03:36+08:00 ] 127.0.0.1 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000456s ]
+
+[ 2018-11-27T20:05:15+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000720s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001205s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001342s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0113s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0114s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0093s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=03342U0z1Xtiwg0SJK4z1qTP0z142U0D&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:05:39+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001330s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001527s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001707s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0061s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023DqmP51AzzhL12kIM514stP51DqmPY&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:05:42+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000598s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000996s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001055s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0103s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0074s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0043s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0052s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:06:10+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000448s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001224s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001298s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0076s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0066s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0061s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033DvJsh2HXKKI0yShth2kmysh2DvJsb&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:08:29+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000426s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000939s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000992s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0069s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0054s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0062s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0067s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023kLolg2lwMMA0u0mkg2fb4lg2kLolm&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:08:31+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000431s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001020s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001073s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0071s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0064s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0068s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0052s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:09:19+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000477s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001021s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001082s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0069s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0054s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0044s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023tFJfc1hGjcu0zUdec1PpHfc1tFJf-&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:09:26+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000405s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000734s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000778s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0062s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0062s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0043s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:10:18+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000647s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001320s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001426s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0210s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0047s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=0233M9Oa0EVsDv1VhqOa0IWiOa03M9Of&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:10:20+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000419s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000939s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000988s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0103s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0101s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0068s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0059s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0059s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0064s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0059s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:10:55+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000470s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001279s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0049s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0053s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023qU8C72u7TvJ0Le7C72vhkC72qU8C5&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:10:56+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000463s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000969s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001027s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0047s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0055s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0061s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:11:06+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000402s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000892s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000938s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0055s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0084s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033PnRfF0k0FWk2J3kfF0aHyfF0PnRfP&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:11:08+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000373s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001198s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001327s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0085s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0074s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0064s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0075s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0062s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:13:23+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000497s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000882s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000936s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0059s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0059s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0065s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=0332RP6h11knqy0yz34h1SCM6h12RP6t&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:13:41+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000805s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001303s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001444s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0066s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0093s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0083s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023vJX660KgVqJ10YO860Z12760vJX6R&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:14:40+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000428s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000743s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000791s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0153s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0063s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0062s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0074s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023NeMnx1iI6ai0yseox1rXSnx1NeMnh&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:15:04+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000418s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000955s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001034s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0064s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0047s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0051s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023mo5Y409QPyK1S8XZ40cdkY40mo5YA&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:15:24+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001191s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000938s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001020s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0047s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0044s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023L2DWU1dUGbW0SaWZU12XwWU1L2DWx&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:16:17+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000565s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001327s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001427s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0065s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0065s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0084s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0051s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023Bxf161KzO5L1kMC061Ydc161Bxf1g&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:16:22+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000413s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000944s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000997s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0068s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0111s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0068s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0043s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0043s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0054s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:19:40+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000423s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001652s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001806s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0102s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0087s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0063s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0061s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023d69Iv0qAzKa1ftvIv0eAeIv0d69If&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:19:42+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000447s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000936s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000989s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0075s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0054s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0076s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0045s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:21:58+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000486s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000779s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000833s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0061s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0043s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0072s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023kGDvw1ePYV90vKwsw1r5Ovw1kGDvz&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:22:03+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000598s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000753s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000802s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0096s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0103s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0054s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0055s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:27:17+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000718s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001198s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001313s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0095s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0063s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0068s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0064s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033MAsft1GrAcd0Evrft1Cl9ft1MAsfM&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:27:31+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000401s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001032s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001100s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0093s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0086s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0045s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:31:26+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000470s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001023s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001091s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0103s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0109s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0066s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023Aw62v046wpb1OkV4v0wuR1v0Aw620&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:31:41+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000421s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001165s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001262s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0044s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033dO9lf29kMLB0rWalf2SMklf2dO9lP&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:32:45+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000527s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000983s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001036s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0049s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0048s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:33:01+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000407s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001165s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001269s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0059s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0056s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=0334Hbnx0Hb1ai1R8Eox0Z78nx04HbnM&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:33:47+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000473s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001002s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001059s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0063s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0069s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023YNm2F1BPLq10McpYE1lm52F1YNm2J&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:33:51+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000410s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001174s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001266s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0089s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0043s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0047s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0062s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:34:10+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000421s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001420s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001507s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0049s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0054s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0055s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023i2F0f2B5E7C0AYuZe29l21f2i2F06&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:34:12+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000500s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001054s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001121s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0044s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033Z1hCy0aZvUg1pYxBy0ZqpCy0Z1hCP&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:34:20+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000400s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001044s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001113s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0065s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033jzRAD1ag0S20zMqAD1BMOAD1jzRAj&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:34:29+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000411s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000900s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000947s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0063s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0041s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0054s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033q7A3u12Z2oc0cmD3u1NkV3u1q7A31&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:34:40+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000411s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001071s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001139s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0081s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0066s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0062s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023YEiEL1kZ0u51O70HL1hWkEL1YEiEx&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:38:12+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000494s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001142s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001216s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0049s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0048s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023HEMSM1Y0ze41LnITM1lvHSM1HEMSF&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:38:22+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000688s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001150s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001227s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0043s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0055s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0044s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=0331CznN0LTDJ32WuLlN0NUqnN01CznY&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:38:24+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000427s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000733s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000779s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0184s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0055s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0042s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0047s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:39:32+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000516s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000826s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000888s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0096s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0115s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0065s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023XAqV91Z2GgQ1Uv1V91g8dV91XAqVE&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:40:13+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000430s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000819s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000879s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0062s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0047s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0054s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033Oi8VG0sp6hj2n2KUG06G9VG0Oi8Vi&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:40:56+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000480s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001265s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001342s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0047s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023GNDh32UpFQN0T2Af32OFWh32GNDh-&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:43:55+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000451s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000988s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001065s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0104s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0057s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033vdMxR06bBE821nJvR08ePxR0vdMxg&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:46:45+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000510s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001690s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001785s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0107s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0055s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033pqDWu1I18vb0RCnVu1GfRWu1pqDW5&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:46:56+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000896s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001157s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001247s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0162s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0089s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0054s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0054s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033ydyQO0nuPlb2VvRQO0UrzQO0ydyQr&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:54:53+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000689s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001537s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001606s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0110s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0115s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0112s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0059s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033082le2Ui0NC0Dvzke25ufle2082lm&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:55:01+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000479s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001208s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001306s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0043s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0063s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0044s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T20:57:28+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000697s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001568s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001670s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0059s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033OcSB82RqBBR0NrZB82tpQB82OcSBz&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:43:40+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000625s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001874s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001970s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0069s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0084s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0085s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0089s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0077s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:43:40+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000569s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001065s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001133s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0061s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0056s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033tANma1UpFPP1GEtna1ZhEma1tANmX&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:43:56+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000676s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001790s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001876s ]
+ERR: 无法加载控制器:Lotter
+
+[ 2018-11-27T21:43:57+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000472s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001032s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001105s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0111s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0068s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0047s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0045s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023eqEAj1O2aWv0T0CAj1yMUAj1eqEAL&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:44:14+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000694s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001196s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001341s ]
+ERR: 无法加载控制器:Lotter
+
+[ 2018-11-27T21:44:15+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000396s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000776s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000831s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0074s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0055s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033guTmc1wte6u0af3mc1FmCmc1guTmd&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:44:41+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000480s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001108s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0052s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0004s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:44:41+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000496s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001153s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001269s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0093s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0095s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0048s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033mHunj1RVn9w0VdSkj15gonj1mHuno&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:45:56+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000467s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001312s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001438s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:45:56+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001019s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002923s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003168s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0055s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0062s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0053s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033yoN6Y1pMB1T0ivO6Y1GAC6Y1yoN6X&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:46:15+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000533s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000897s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000967s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0137s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:46:16+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000776s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001285s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001372s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0063s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0069s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0056s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033kkDO72O8NnS0TE0N727pXO72kkDOx&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:47:00+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000447s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002144s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002297s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0076s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0003s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:47:00+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000568s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000954s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001009s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0054s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0064s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0063s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0060s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=0334bFeF1OPjd10sPKbF1c1XeF14bFeM&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:48:14+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000775s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001055s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001133s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0107s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:48:14+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000409s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001054s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0093s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0064s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033fprE20MyiOD1moHG209PCE20fprEw&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:49:21+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000431s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001064s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001131s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0095s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0004s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:49:21+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000403s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001168s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001252s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0095s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0055s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033i1c2c1qzNpu0EQW0c1Ics2c1i1c25&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:49:25+08:00 ] 127.0.0.1 /Index/ttt/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000382s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000868s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000912s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0083s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0055s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0134s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0072s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0051s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:51:11+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000524s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001215s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001287s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0096s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:51:11+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000394s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000952s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000995s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0106s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0061s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033IgKIc2E3ApE0XQEIc2R3LIc2IgKIZ&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:52:03+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000485s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003513s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003664s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0102s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:52:03+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000424s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000913s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000958s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0102s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0095s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0095s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0102s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=0235iCC317OMvN1NVKB313zpC315iCCT&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T21:58:32+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000473s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001286s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001363s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0096s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0007s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002820s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002984s ]
+
+[ 2018-11-27T21:58:53+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000711s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000973s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001022s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0102s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002161s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002247s ]
+
+[ 2018-11-27T22:01:47+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000559s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001003s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001060s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0102s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002242s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002325s ]
+
+[ 2018-11-27T22:01:49+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000467s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001103s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0092s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002414s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002507s ]
+
+[ 2018-11-27T22:01:52+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000566s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001209s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001289s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0099s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0007s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002778s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002877s ]
+
+[ 2018-11-27T22:02:33+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000662s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001043s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001122s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0107s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003480s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003679s ]
+
+[ 2018-11-27T22:02:37+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000573s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001060s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001127s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0097s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002841s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002937s ]
+
+[ 2018-11-27T22:02:51+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000422s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001202s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001258s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0056s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0003s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001059s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001114s ]
+
+[ 2018-11-27T22:02:54+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000418s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000960s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001009s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0103s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002164s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002279s ]
+
+[ 2018-11-27T22:02:56+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000518s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001346s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001442s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0092s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002361s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002495s ]
+
+[ 2018-11-27T22:02:59+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000394s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001039s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001086s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0047s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0003s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001060s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001112s ]
+
+[ 2018-11-27T22:03:01+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000563s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000966s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001012s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0097s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002568s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002680s ]
+
+[ 2018-11-27T22:03:04+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000424s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000980s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001030s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0095s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002332s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002451s ]
+
+[ 2018-11-27T22:04:22+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000446s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001499s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001568s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0259s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002335s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002535s ]
+
+[ 2018-11-27T22:04:24+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000480s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001070s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001140s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0048s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0003s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001658s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001777s ]
+
+[ 2018-11-27T22:04:26+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000492s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000951s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001011s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0096s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [8] Undefined variable: pr D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 44 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002417s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002548s ]
+
+[ 2018-11-27T22:04:37+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000394s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000962s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001031s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0095s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001980s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002077s ]
+
+[ 2018-11-27T22:04:40+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000461s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001330s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001394s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0153s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002158s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002241s ]
+
+[ 2018-11-27T22:04:42+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000418s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000947s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000994s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0099s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002591s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002707s ]
+
+[ 2018-11-27T22:04:45+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000429s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001141s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001205s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0109s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0007s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002489s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002606s ]
+
+[ 2018-11-27T22:09:17+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000439s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000842s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000906s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0099s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:09:18+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000385s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000852s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000898s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0092s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0070s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0054s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0066s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023HSzG521toqL07RvE52ibQG52HSzGX&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:09:27+08:00 ] 127.0.0.1 /Index/rotate/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000424s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000872s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000917s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0104s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0102s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0092s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0115s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0077s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0057s ]
+ERR: 非法操作:rotate
+
+[ 2018-11-27T22:10:20+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001596s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001668s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001790s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0101s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:10:21+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000419s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001159s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001250s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0103s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0106s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0061s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0055s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0071s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023dNI6L1kMv061OR55L1e177L1dNI6v&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:10:24+08:00 ] 127.0.0.1 /Lotter/rotate/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000984s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001082s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001147s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0097s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:11:26+08:00 ] 127.0.0.1 /lotter/rotate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000451s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001454s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001593s ]
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002260s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002342s ]
+
+[ 2018-11-27T22:12:07+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000433s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000991s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001052s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0103s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:12:07+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000526s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000858s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000922s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0093s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0095s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0089s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0047s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023OSS8S1a7H4818xbaS1HoP8S1OSS8Q&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:12:10+08:00 ] 127.0.0.1 /Lotter/rotate/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000645s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000923s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000971s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0101s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:13:03+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000551s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000943s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001036s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0093s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:13:04+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000402s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000900s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000947s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0088s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0048s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033zQXVV0LJncV1T1qYV0Zq6WV0zQXV3&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:13:07+08:00 ] 127.0.0.1 /Lotter/rotate/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000515s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000995s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001053s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0102s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:13:17+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000463s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001236s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001312s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0136s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:13:17+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000463s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000789s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000842s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0128s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0114s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0095s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0104s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0094s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023pUueN1pOQT31HcrcN10AmeN1pUueQ&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:13:19+08:00 ] 127.0.0.1 /Lotter/rotate/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000412s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000704s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000750s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0091s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:14:02+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000495s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001036s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001104s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0092s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:14:02+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000450s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000784s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000841s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0097s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0097s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0074s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0056s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=0233iIkz0Erzdg1OeLjz0xIxkz03iIkH&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:14:05+08:00 ] 127.0.0.1 /Lotter/rotate/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000515s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000734s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000780s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0065s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0004s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:14:38+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000798s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001056s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001144s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0093s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0011s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:14:39+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000485s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001073s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001136s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0123s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0088s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0054s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=033Pc2kz0SYMcg1uiUhz058ekz0Pc2kN&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:14:52+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000513s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001468s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001538s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:14:52+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000440s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000938s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000996s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0049s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0071s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0042s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0043s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0084s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023mCEiK0ICuP62GW6jK0VVAiK0mCEiL&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:14:53+08:00 ] 127.0.0.1 /Lotter/rotate/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000477s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001099s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001172s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0098s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:15:05+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000505s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001065s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001148s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0073s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:15:05+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000953s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002766s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003031s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0049s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0089s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0065s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=023CRO721tDj0P11S2721Rw0821CRO7h&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:15:07+08:00 ] 127.0.0.1 /Lotter/rotate/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000492s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000980s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001030s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0104s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0006s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:15:50+08:00 ] 127.0.0.1 /Lotter/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000465s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001060s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001130s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0118s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0007s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:15:50+08:00 ] 127.0.0.1 /User/getsessionkey/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000431s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000766s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000820s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_integral` [ RunTime:0.0063s ]
+SQL: SHOW COLUMNS FROM `zs_user` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `zs_config` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0049s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0047s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `zs_config` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [2] file_get_contents(): Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] file_get_contents(https://api.weixin.qq.com/sns/jscode2session?appid=wxfe407cac7a49a9e4&amp;secret=4203397e80a16bd41c885a4f65be0182&amp;js_code=0230kzwk1s8xWl0PT4tk1otAwk10kzw4&amp;grant_type=authorization_code): failed to open stream: No such file or directory D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 53 行.
+NOTIC: [2] get_object_vars() expects parameter 1 to be object, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\UserController.class.php 第 55 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+
+[ 2018-11-27T22:15:52+08:00 ] 127.0.0.1 /Lotter/rotate/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000385s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000697s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000742s ]
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 45 行.
+SQL: SHOW COLUMNS FROM `zs_lottery` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `zs_lottery` WHERE ( status = 1 )  [ RunTime:0.0005s ]
+NOTIC: [2] shuffle() expects parameter 1 to be array, null given D:\phpStudy\WWW\zs\test\zs_port\Apps\Applets\Controller\LotterController.class.php 第 40 行.
+NOTIC: [2] mcrypt_generic_init(): Key size too large; supplied length: 32, max: 8 D:\phpStudy\WWW\zs\test\zs_port\Apps\Common\Model\AnalyzerModel.class.php 第 26 行.
+

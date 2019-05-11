@@ -1,0 +1,20 @@
+---------------------------------------------------------------
+[ 2018-12-18T10:19:41+08:00 ] ::1 GET localhost/lianxi1/ThinkAdmin-master%20(1)/
+[运行时间：0.210840s] [吞吐率：4.74req/s] [内存消耗：2,464.05kb] [文件加载：62]
+[ info ] [ LANG ] /Applications/MAMP/htdocs/18031/lianxi1/ThinkAdmin-master (1)/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://localhost/lianxi1/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => '1051_close=1; cart=a%3A1%3A%7Bi%3A12%3Bs%3A1%3A%220%22%3B%7D',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql

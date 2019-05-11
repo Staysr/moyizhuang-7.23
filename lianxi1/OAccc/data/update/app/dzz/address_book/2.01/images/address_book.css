@@ -1,0 +1,338 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  position: relative;
+}
+
+.bs-main-container{
+	padding:0;
+}
+.bs-main-container .main-content{
+	padding:0;
+}
+.bs-left-container{
+	background:#FBFBFB;
+}
+.feed-container{
+	padding:20px 32px;
+}
+.table{
+	margin-bottom:0;
+}
+.table td img {
+    max-width: 35px;
+    max-height: 35px;
+}
+
+.navbar-inverse {
+    background: #0c44d2;
+    border-color: #0c44d2;
+}
+
+
+
+.p_img{
+	border-radius:50%;
+    width: 36px;
+    height: 36px;
+    
+}
+.table td {
+	cursor:pointer;
+}
+.da {
+  width: 0;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-left:1px solid #e1e1e1;
+  background: white;
+  overflow: hidden;
+  z-index: 100;
+  box-shadow: 0px 5px 10px RGBA(0,0,0,0.15),inset 0 3px 5px RGBA(0,0,0,.1);
+}
+.da .da-body{
+	height:100%;
+	overflow:auto;
+}
+.da .news {
+  width: 100%;
+  padding: 20px 10px 20px 30px;
+  float: left;
+  overflow: hidden;
+}
+.da .news .news1 {
+  width: 300px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.da .news .news1 .p_name {
+  width: 80px;
+  display: inline-block;
+  color: #999;
+  text-align: right;
+  float: left;
+}
+.da .news .news1 .p_x {
+  color: #58585C;
+  margin-left: 20px;
+  float: left;
+}
+.da .jt {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  margin-top:-30px;
+}
+.da .jt :hover {
+  color: #3497DB;
+}
+.da .jt .jt1 {
+  width: 60px;
+  height: 60px;
+  background: #EBEDF0;
+  border-radius: 50px;
+  line-height: 60px;
+  text-align: center;
+  text-indent: 16px;
+  color:#999;
+  opacity:0.5
+}
+.da .jt .jt1:hover {
+	background-color: #337ab7;
+	color:#FFF;
+	opacity:1
+}
+
+.loadding {
+    background: url(../../images/loading.gif) center no-repeat;
+    width: 100%;
+    height: 100px;
+}
+.da .da-header{
+	
+}
+.da .da-username{
+	color: #333;
+	padding-top:10px;
+	text-align: center;
+	font-size:16px;
+	font-weight:bold;
+}
+.da .da-setFrequent{
+	padding-top:10px;
+	text-align: center;
+
+}
+.da .da-avatar{
+	padding:20px 20px 0 30px;
+}
+.da .da-avatar .Topcarousel{
+	width:64px;
+	height:64px;
+	line-height:64px;
+	font-size:40px
+}
+/*# sourceMappingURL=address_book.css.map */
+
+/*12.14修改*/
+/*通讯录修改样式*/
+
+
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	padding:8px;
+	
+}
+.table>tbody+thead>tr>th{
+   padding-top:30px;
+}
+/*结束*/
+.leftMenu .leconMenu .mechsnismMenu .left-seclemember .departMenu,.leftMenu .leconMenu .mechsnismMenu .left-seclemember .left-classc{
+	margin-left: 30px;
+}
+
+.leftMenu .leconMenu .mechsnismMenu .left-seclemember .left-classc .checkbox-custom{
+	left: 30px;
+}
+.user-select-content-left .left-empty{
+	margin-right: 40px;
+}
+
+.adminMenu p,.positionMenu p,.typeMenu p,.toolMenu p,.latelMenu p,.setupMenu p{
+	padding-left: 25px;
+	margin-bottom: 0;
+}
+.leconMenu{
+	padding:0;
+}
+.leconMenu .latelMenu{
+	padding: 0px;
+	border-bottom:0;
+	
+}
+.leconMenu p{
+	height: 40px;
+	line-height: 40px;
+	color:rgba(78, 85, 99, 1);
+	white-space: nowrap;
+	cursor: pointer
+}
+.leconMenu p:hover{
+	background-color: #e6edf9;
+}
+.leconMenu p span{
+	font-size: 22px;
+	vertical-align: middle;
+	margin-right: 10px;
+	line-height: 1;
+	margin-top: -1px;
+	color:rgba(78,85,99,1)
+}
+.leconMenu p.actives span{
+	color: rgba(76, 137, 251, 1);
+}
+.leconMenu p:active{
+	background-color: rgba(219, 230, 250, 1);
+}
+.leconMenu .actives {
+    background-color: rgba(219, 230, 250, 1);
+    color: rgba(76, 137, 251, 1);
+    font-weight: bold;
+}
+
+.leftMenu .leconMenu .mechsnismMenu ul .departMenu li:hover,.leftMenu .leconMenu .mechsnismMenu ul p:hover,.leftMenu .leconMenu .mechsnismMenu ul ul li:focus,.leftMenu .leconMenu .mechsnismMenu ul p:focus{
+	color:rgba(76, 137, 251, 1);
+}
+/*å·¦ä¾§ç»“æŸ*/
+/*jstreeå¼€å§‹*/
+.positionMenu .jstree-wholerow-ul{
+	/*z-index:10;*/
+	padding-left: 17px;
+}
+.positionMenu .jstree-default .jstree-anchor{
+	line-height: 42px;
+	height: 40px;
+}
+.positionMenu .jstree-default .jstree-icon:empty{
+	/*height: 40px;
+    line-height: 41px;*/
+    font-size: 22px;
+    color: rgba(78,85,99,1)
+}
+.positionMenu .jstree-default .jstree-icon{
+	width: 24px;
+	height:24px;
+	border-radius: 50%;
+	margin-top: 9px;
+}
+
+.positionMenu .jstree-default .jstree-wholerow{
+	height: 40px;
+}
+
+
+.positionMenu .jstree-default .jstree-wholerow-clicked + .jstree-ocl{
+	color: rgba(76, 137, 251, 1);
+}
+
+
+
+
+.positionMenu .jstree-default .jstree-clicked .jstree-icon:empty{
+	color: rgba(76, 137, 251, 1);
+}
+.positionMenu .jstree-default>.jstree-no-dots .jstree-open>.jstree-ocl:before{
+	        content: "\e916";
+}
+.positionMenu .jstree-default .jstree-node,.positionMenu .jstree-default .jstree-ocl{
+    font-family: 'dzz' !important;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    background-image: none!important;
+}
+
+.positionMenu .jstree-default>.jstree-no-dots .jstree-closed>.jstree-ocl:before{
+	content: "\e918";
+}
+
+.positionMenu .mechsnismMenu{
+	position: relative;
+}
+
+.jstree-default .jstree-wholerow{
+	height:30px;
+}
+.jstree-default .jstree-node{
+	padding:0;
+	margin-left: 10px;
+}
+.jstree-wholerow-ul .jstree-wholerow{
+	left: -100%;
+	right: 0px;
+	width: auto;
+}
+.positionMenu .jstree-default .jstree-wholerow-hovered{
+	background: #e6e8eb;
+}
+.positionMenu .jstree-default .jstree-wholerow-clicked{
+    color: rgba(76, 137, 251, 1);
+    font-weight: 600;
+   background:#e6edf9
+}
+.positionMenu .jstree-default .jstree-clicked{
+	color: rgba(76, 137, 251, 1);
+	font-weight: 600;
+}
+.iconFirstWord{
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	display: inline-block;
+	line-height: 24px;
+    text-align: center;
+    margin-right: 2px;
+    color: #FFFFFF;
+}
+
+.input-search .input-search-icon{
+	left: 20px;
+}
+
+
+.gb_fc:hover{
+    background-color: rgba(0,0,0,0.071);
+    outline: none;
+}
+.gb_fc {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 4px;
+    padding: 12px;
+    overflow: hidden;
+    vertical-align: middle;
+    cursor: pointer;
+    /*height: 24px;*/
+    /*width: 24px;*/
+    -webkit-user-select: none;
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+}

@@ -1,0 +1,62 @@
+
+	<div class="briefMenu clearfix">
+		<span class="task_right_title">菜单</span>
+		<a href="javascript:;" class="toggRight toggright-icon" onclick="toggleRight()">
+			<span class="dzz dzz-close"></span>
+		</a>
+	</div>
+
+	<div id="board-filter" class="briefcont clearfix">
+		<ul class="popbox-menu list-unstyled">
+            
+            <li><a href="javascript:;" style="padding-left:10px;" onclick="board_complete_archive(0,'$tbid')">归档所有完成任务</a></li>
+          <!--{if $taskboard['perm']>2}-->
+            <li> <a  href="javascript:;"  style="padding-left:10px;" onclick="board_autoarchive_toggle(this)">自动归档完成的任务<span class="text-muted small-tip"><!--{if $taskboard[autoarchive]}-->开启<!--{else}-->关闭<!--{/if}--> </span></a></li>
+            <!--{else}-->
+            <li> <a  href="javascript:;" style="padding-left:10px;color:#999;background: none; cursor: default" >自动归档完成的任务<span class="text-muted small-tip"><!--{if $taskboard[autoarchive]}-->开启<!--{else}-->关闭<!--{/if}--> </span></a></li>
+            <!--{/if}-->
+            <!--{if $taskboard['perm']>2}-->
+            <!--{if $taskboard['status']==0}-->
+            <li><a href="javascript:;" style="padding-left:10px;" onclick="board_setting_archive('$tbid')" title="归档任务板">归档任务板</a></li>
+            <li><a href="javascript:;" style="padding-left:10px;" onclick="board_setting_delete('$tbid')" class="text-danger" title="移入回收站">删除任务板</a></li>
+            <!--{elseif $taskboard['status']==1}-->
+             <li><a href="javascript:;" style="padding-left:10px;" onclick="board_setting_active('$tbid')" title="激活任务板">激活任务板</a></li>
+            <!--{elseif $taskboard['status']==2}-->
+             <li><a href="javascript:;" style="padding-left:10px;" onclick="board_setting_restore('$tbid')" title="恢复任务板">恢复任务板</a></li>
+            <!--{/if}-->
+            <!--{/if}-->
+            
+      	</ul>
+
+		
+	</div>
+
+
+	<div id="board_settings" class="briefcont clearfix" >
+		<!--{template list/board_setting}-->
+	</div>
+	<div id="board_members" class="briefcont clearfix">
+	   <!--{template list/board_user_list}-->
+	</div>
+
+	<div id="board_events" class="briefcont clearfix">
+
+		<div class="task_right_header clearfix" style="position: relative">
+			<span class="task_right_title pull-left">活动</span>
+		</div>
+		  <!--{loop $list $key $value}-->
+			<div class="activity_right">
+				<span class="time">{eval echo dgmdate($value[dateline],'u');}</span>
+				<div class="activity_right_cont">
+					<span class="actor_img">{eval echo avatar_block($value[uid]);}</span>
+					<div style="float:left">
+						<span class="actor">$value[username]</span>
+						<span class="verb">$value[body]</span>
+					</div>
+				</div>
+			</div>
+		  <!--{/loop}-->
+		<div class="task_right_footer">
+			<a class="btn btn-block btn-link" href="javascript:;" onclick="jQuery('#rightMenu').load('{MOD_URL}&op=list&tbid=$tbid&do=event')">查看更多</a>
+		</div>
+	</div>

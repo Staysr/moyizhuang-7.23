@@ -1,0 +1,30 @@
+<!--{if empty($list)}-->
+    <div class="searchImg-wrap" style="margin-top: 0">
+        <div class="info-container">
+            <img src="{MOD_PATH}/images/search_empty.png" alt="">
+            <p>{lang nothing}</p>
+        </div>
+    </div>
+<!--{/if}-->
+<!--{loop $list $value}-->
+        <a href="{MOD_URL}&op=list&fid=$value[fid]" class="weui-media-box weui-media-box_appmsg weui-cell__bd">
+            <div class="weui-media-box__hd board-wrap">
+                <div class="board-img" <!--{if $value['iconcolor']}-->style="background-color: $value['iconcolor']"<!--{/if}-->">$value[name]</div>
+            </div> 
+            <div class="weui-media-box__bd">
+                <div class="title-wrap">
+                    <h4 class="weui-media-box__title t-title">$value[name]</h4>
+                </div>
+                <div class="weui-media-box__desc">
+                    <span class="board-span" style="margin-left: 0;">{lang thread}：$value[threads]</span>
+                    <span class="board-span">{lang post}：$value[posts]</span>
+                </div>
+            </div>
+        </a>
+<!--{/if}-->
+<!--{if $nextpage}-->
+    <div class="weui-loadmore" data-url="{$theurl}&ajax=1&page={$nextpage}">
+      <i class="weui-loading"></i>
+      <span class="weui-loadmore__tips">{lang loading}</span>
+    </div>
+<!--{/if}-->

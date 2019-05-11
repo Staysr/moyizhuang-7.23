@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<ol class="breadcrumb f-mt5">
+		  <li><a href="$db_wwwurl">首页</a></li>
+		  <li class="active">短消息</li>
+		</ol>
+	</div>
+</div>
+
+<!--{eval ${$action}='active';}-->
+<div class="row">
+	<div class="col-xs-4 col-md-4">
+		<div class="list-group">
+			<a class="list-group-item $write" href="message.php?action=write">写新消息</a>
+			<!--{if $action=='read'}-->
+			<a class="list-group-item $read" href="javascript:;">阅读消息</a>
+			<!--{/if}-->
+			<a class="list-group-item $receivebox" href="message.php">收件箱</a>
+			<a class="list-group-item $sendbox" href="message.php?action=sendbox">发件箱</a>
+			<a class="list-group-item" href="message.php?action=clear" onclick="return confirm('将删除收件箱和发件箱内所有消息，请确认！');">清空</a>
+		</div>
+	</div>
+	<div class="col-xs-16 col-md-16">
+		<div class="f-ml10">
+		<!--{if $action=='write'}-->
+			<!--{template 'panel_message_write'}-->
+		<!--{elseif $action=='read'}-->
+			<!--{template 'panel_message_read'}-->
+		<!--{elseif $action=='receivebox'}-->
+			<!--{template 'panel_message_receivebox'}-->
+		<!--{elseif $action=='sendbox'}-->
+			<!--{template 'panel_message_sendbox'}-->
+		<!--{/if}-->
+		</div>
+	</div>
+</div>

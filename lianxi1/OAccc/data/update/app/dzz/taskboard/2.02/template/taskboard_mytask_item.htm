@@ -1,0 +1,76 @@
+<!--{if $tasks}-->
+<!--{loop $tasks $task}-->
+<div class="task-item clearfix <!--{if $task['status']==2}-->line-through<!--{/if}-->" id="task_{$task[taskid]}" taskid="$task[taskid]">
+   <div class="task-item-cont">
+   <div class="task-item-labels">
+    <!--{loop $task[labels] $value}-->
+        <div class="task-label {$value[color]}-label" pow="{$value[pow]}"></div>
+    <!--{/loop}-->
+    </div>
+   <div class="task-item-main">
+        <a class="task-item-check" data-taskid="$task[taskid]"> <span class="checkbox-custom checkbox-success">
+				<input type="checkbox" name="" value="2" <!--{if $task['status']==2}-->checked<!--{/if}--> onchange="task_complete('$task[taskid]',this,'$task[tbid]')"><label></label></span></a>
+        <a class="task-item-title" href="javascript:;">$task[name]</a>
+    
+   </div> 
+
+  <div class="task-badges-container">
+        <div class="task-item-badges">
+
+          
+
+            
+            <div class="task-item-badges-info">
+            	<span class="task-badge task-badge-board" title="所属任务板：{$task['bname']}"><em class="color-block-{$task[cover]}" style="font-size:12px;padding:0px;">&nbsp;</em><em style="padding-left:6px;" title="$task['bname']">{eval echo getstr($task['bname'],20);}</em></span>  
+                <!--{if $task['endtime']}-->
+                    <!--{if $task[expire]==1}-->
+                    <span class="task-badge task-badge-time badge-expire-due" title="任务已经截止" time="{eval echo dgmdate($task[endtime],'Y-m-d');}"><i class="dzz dzz-notifications"></i><em>$task[fendtime]</em></span> 		
+                    <!--{elseif $task[expire]==2}-->
+                    <span class="task-badge task-badge-time badge-expire-soon" title="任务即将截止" time="{eval echo dgmdate($task[endtime],'Y-m-d');}"><i class="dzz dzz-notifications"></i><em>$task[fendtime]</em></span> 	
+                    <!--{else}-->
+                    <span class="task-badge task-badge-time " title="截止时间：{eval echo dgmdate($task[endtime],'Y-m-d');}" time="{eval echo dgmdate($task[endtime],'Y-m-d');}"><span class="dzz dzz-notifications"></span> <em>$task[fendtime]</em></span> 	
+                    <!--{/if}-->
+                <!--{/if}-->
+                <!--{if $task['subs']}-->
+                <span class="task-badge task-badge-sub <!--{if $task[subs]==$task['subs_c']}-->badge-todo-done <!--{/if}-->" title="检查项：{$task[subs_c]}/{$task[subs]}"><i class="dzz dzz-assignment_turned"></i><em>{$task[subs_c]}/{$task[subs]}</em></span> 
+                <!--{/if}-->
+                <!--{if $task['replys']}-->
+                <span class="task-badge task-badge-comment" title="任务有 $task['replys'] 个评论"><i class="dzz dzz-comment"></i><em>$task['replys']个</em></span> 
+                <!--{/if}-->
+                <!--{if $task['attachs']}-->
+                <span class="task-badge task-badge-attach" title="任务有 $task['attachs'] 个附件"><i class="dzz dzz-attachment"></i><em>$task['attachs']个</em></span> 
+                <!--{/if}-->
+                <!--{if $task['money']}-->
+                <span class="task-badge task-badge-money " title="预算:{$task['money']}"><i class="dzz dzz-money"></i><em>{$task['money']}</em></span>
+                 <!--{/if}-->
+                <!--{if $task['worktime']>0 }-->
+                <span class="task-badge task-badge-worktime " title="工时：{$task['worktime']}小时"><i class="dzz dzz-clock"></i><em>{$task['worktime']}</em></span>  
+                <!--{/if}-->
+            </div>
+
+			  <div class="task-item-members">
+            <!--{loop $task[user_assign] $value}-->
+                 <a class="avatar avatar-30 js-popbox" data-href="{DZZSCRIPT}?mod={MOD_NAME}&op=menu&do=taskmenu&uid=$value[uid]&taskid=$task[taskid]&step=15&ac=2" data-placement="top" data-auto-adapt="true"  title="$value[username]" uid="$value[uid]" href="javascript:;">
+                     {eval echo avatar_block($value['uid']);}
+                </a>
+            <!--{/loop}-->
+            </div>
+
+            
+        </div>
+    </div>
+	</div>
+</div>
+<!--{/loop}-->
+<!--{if $next}-->
+<div class="task-more" style="line-height:30px;background:#F7F7F7;border-bottom:0;text-align:left;padding-left:20px;">
+     
+     <a id="btn-load-more" class="btn  btn-link" btn-loading-text="加载中..." style="padding:8px 25px" onclick="getMore('$theurl','{eval echo ($page+1)}')">加载更多</a>
+    
+     <!--<span class="help-inline">全部加载完成！</span>-->
+    
+</div>
+ <!--{/if}--> 
+ <!--{else}-->
+ <div  style="line-height:30px;text-align:left;padding-left:20px;padding-top:30px;">没有相关的任务</div>
+ <!--{/if}-->

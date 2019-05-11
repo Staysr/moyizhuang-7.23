@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/addr_header}-->
+    <title>详细信息</title>
+</head>
+<body>
+    <div class="da">
+        <div class="da-body">
+            <div class="da-avatar text-center">
+                <div class="img-wrap">$avatar</div>
+            </div>
+            <div class="da-username">$space['username']</div>
+            <div class="da-setFrequent text-center"><a href="javascript:;" class="setFrequent"><!--{if in_array($space[uid], $frequent_uids)}-->取消常用联系人$profiles[uid]<!--{else}-->设为常用联系人<!--{/if}--></a></div>
+            <div class="news">
+              
+                <div class="news1"><span class="p_name">{lang email}</span><span class="p_x">$space[email]</span></div>
+                 
+                <div class="news1"><span class="p_name">{lang phone}</span><span class="p_x"><!--{if $space[phone]}--><a href="tel:{$space[phone]}">$space[phone]</a><!--{else}-->{lang empty}<!--{/if}--></span></div>
+                <div class="news1"><span class="p_name">{lang weixin}</span><span class="p_x"><!--{if $space[weixinid]}-->$space[weixinid]<!--{else}-->{lang empty}<!--{/if}--></span></div>
+                 <!--{loop $profiles $value}--> 
+                <div class="news1"><span class="p_name">$value[title]</span><span class="p_x">$value[value]</span></div>
+                <!--{/if}-->
+               
+            </div>
+           
+        </div>
+    </div>
+</body>
+<script>
+    $(function () {
+        $('.setFrequent').on('touchend',function () {
+            $.ajax({
+                url:'{MOD_URL}&op=ajax&do=setFrequent&uid={$space[uid]}',
+                dataType:'json',
+                type:'post',
+                success:function (res) {
+                    if(res.add==1) {
+                        $.toptip('设置成功','success');
+                        $('.setFrequent').text('取消常用联系人');
+                    }else if(res.add==0) {
+                        $.toptip('取消成功','success');
+                        $('.setFrequent').text('设为常用联系人');
+                    }
+                }
+                
+            })
+        })
+    })
+</script>
+<!--{eval output();}-->
+</html>

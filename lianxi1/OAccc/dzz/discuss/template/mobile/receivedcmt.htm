@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/dis_header}-->
+    <title>{lang message}</title>
+</head>
+<body>
+    <div class="container container1">
+        <div class="weui-navbar" style="z-index: 1;">
+            <a class="weui-navbar__item tab-item" href="{MOD_URL}&op=my&do=mycomments">
+                <span>{lang my_comment}</span>
+            </a>
+            <a class="weui-navbar__item weui_bar__item_on tab-item" href="{MOD_URL}&op=my&do=receivedcmt">
+                <span class="word">{lang received_comments}</span>
+                <span class="line"></span>
+            </a>
+
+        </div>
+        <div class="info-con" style="background-color: #fff">
+            <!--{template mobile/recmt_list}-->
+        </div>
+    </div>
+    <!--{template mobile/footer}-->
+</body>
+<script type="text/javascript" src="static/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="static/jquery_weui/js/jquery-weui.min.js"></script>
+<script>
+    jQuery('.container').css('height',jQuery(document.body).height()-jQuery('.weui-tabbar').height());
+    jQuery('.searchImg-wrap').height(jQuery('.container').height()-55);
+    function deleteOne(cid){
+        jQuery.confirm('{lang true_delete_comment}','{lang true_delete}',function () {
+            jQuery.ajax({
+                url: '{MOD_URL}&op=ajax&do=comment&position=deletecmt',
+                type:'post',
+                dataType:'json',
+                data:{'cid':cid},
+                success: function(res){
+                    if (res.code == 200) {
+                        jQuery("#comment-item-"+cid).remove();
+                        jQuery.toast("{lang delete_success}", "success");
+                    } else {
+                        jQuery.toast("{lang delete_failed}", "forbidden");
+                    }
+                }
+            })
+        })
+    }
+    var loading = false;  //状态标记
+    jQuery(".container").infinite().on("infinite", function() {
+      if(loading) return;
+      loading = true;
+      if (jQuery(".weui-loadmore").length > 0) {
+        var url = jQuery(".weui-loadmore").data("url");
+        jQuery.ajax({
+            url: url,
+            type: 'get',
+            success: function(res) {
+                jQuery(".weui-loadmore").replaceWith(res);
+                loading = false;
+            }
+        })
+      } else {
+        jQuery(".container").destroyInfinite();
+      }
+    });
+</script>
+<!--{eval output();}-->
+</html>

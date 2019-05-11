@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="col-xs-20 col-md-20">
+		<ol class="breadcrumb f-mt5">
+			<li><a href="$db_wwwurl">首页</a></li>
+			<li><a href="arthome.php">文档</a></li>
+			<li><a href="artlist.php?classid=$article[classid]">$_artclass[$article[classid]]</a></li>
+			<li class="active">$article[subject]</li>
+		</ol>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-16 col-md-16">
+		<div class="f-mr10">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<strong>文档内容</strong>
+				</div>
+				<div class="panel-body m-article">
+					<h3>$article[subject]</h3>
+					<span class="artinfo">
+						<span>发布人：<a href="profile.php?action=show&id=$article[authorid]" target="_blank">$article[author]</a></span>
+						<span>发布时间：<!--{echo get_date($article[timestamp])}--></span>
+						<span>点击数：$article[hits]</span>
+					</span>
+					<span class="article_content">
+						$article[content]
+					</span>						
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-4 col-md-4">
+		<!--{template 'panel_article_side'}-->
+	</div>
+</div>

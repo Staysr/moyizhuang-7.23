@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/dis_header}-->
+    <title>{lang member}</title>
+    <link rel="stylesheet" href="{MOD_PATH}/images/css/user.css">
+</head>
+<body style="background-color: #f8f8f8;">
+<style type="text/css">
+    .Topcarousel{
+        line-height: 55px;
+    }
+    .loadmore{
+        position: relative;
+        bottom: 30px;
+        color: #586c94;
+        font-size: 14px;
+    }
+</style>
+<div class="user-container">
+    <div class="admin-wrap">
+        <div class="user-top">
+            <div class="weui-cell weui-cell_access" href="javascript:;">
+                 <div class="weui-cell__bd weui-cell_primary">
+                    <p>{lang administrator}</p>
+                </div>
+                <div class="user-num">{lang trash_num_g}{$adm_list_count}{lang people}<span class="weui-cell__ft"></span></div>
+
+            </div>
+        </div>
+        <div class="admin-con">
+            <!--{loop $adm_userlist $value}-->
+                <div class="user-item">
+                    <div class="user-image">{eval echo avatar_block($value['uid'])}</div>
+                    <p class="user-name">$value[username]</p>
+                </div>
+            <!--{/if}-->
+            <!--{if $adm_userlist_next}-->
+            <div class="user-item admlist-next"><a class="loadmore" href="javascript:;" onclick="loadmore('{$limit}', 'adm')">{lang loadmore}</a></div>
+            <!--{/if}-->
+            <div class="add-item adduser" perm='3'>
+                <div class="user-image"><img src="{MOD_PATH}/images/addUser1.png" alt=""></div>
+                <p class="user-name">{lang add_member}</p>
+            </div>
+        </div>
+    </div>
+    <div class="member-wrap">
+        <div class="user-top">
+            <div class="weui-cell weui-cell_access" href="javascript:;">
+                <div class="weui-cell__bd weui-cell_primary">
+                    <p>{lang member}</p>
+                </div>
+                <div class="user-num">{lang trash_num_g}{$user_list_count}{lang people}<span class="weui-cell__ft"></span></div>
+
+            </div>
+        </div>
+        <div class="admin-con">
+            <!--{loop $userlist $value}-->
+                <div class="user-item">
+                    <div class="user-image">{eval echo avatar_block($value['uid'])}</div>
+                    <p class="user-name">$value[username]</p>
+                </div>
+            <!--{/loop}-->
+            <!--{if $user_list_next}-->
+            <div class="user-item userlist-next"><a class="loadmore" href="javascript:;" onclick="loadmore('{$limit}', 'user')">{lang loadmore}</a></div>
+            <!--{/if}-->
+            <div class="add-item adduser" perm='2'>
+                <div class="user-image"><img src="{MOD_PATH}/images/addUser1.png" alt=""></div>
+                <p class="user-name">{lang add_member}</p>
+            </div>
+        </div>
+
+</div>
+</body>
+<script type="text/javascript" src="static/jquery_weui/js/jquery-weui.min.js"></script>
+<script type="text/javascript">
+    function loadmore(start, type){
+        jQuery.get('{MOD_URL}&op=list&do=user&operation=getMore&fid={$fid}&type='+type,{'start':start},function(html){
+          if (type == 'user') {
+            jQuery('.userlist-next').replaceWith(html);
+          } else {
+            jQuery('.admlist-next').replaceWith(html);
+          }
+        });
+    }
+    $(document).on('click','.adduser',function(){
+        var perm = jQuery(this).attr('perm');
+        var adm_uids = '{$adm_uids}';
+        var user_uids = '{$user_uids}';
+        if (perm == '3') {
+            uids = adm_uids;
+        } else {
+            uids = user_uids;
+        }
+        var action = '{DZZSCRIPT}?mod=system&op=selorguser&stype=2&multiple=1&ids='+uids,
+            callback_url = '{MOD_URL}&op=list&do=user&operation=selectuser&perm='+perm+'&fid={$fid}&formhash={FORMHASH}&selectsubmit=true';
+        if ($('#submitForm').length < 1) {
+            var form = $('<form id="submitForm"></form>');
+            $(document.body).append(form);
+        } else {
+            form = $('#submitForm');
+        }
+        if ($('#callbackdata').length < 1) {
+            var callbackdata = $('<input type="hidden" name="callback_url" id="callbackdata" />');
+            form.append(callbackdata);
+        } else {
+            var callbackdata = $('#callbackdata');
+        }
+        callbackdata.val(callback_url);
+        form.attr('action', action);
+        form.attr('method', 'post');
+        form.submit();
+        return false;
+    })
+
+</script>
+<!--{eval output();}-->
+</html>

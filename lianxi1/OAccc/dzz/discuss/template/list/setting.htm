@@ -1,0 +1,66 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/discuss.css?{VERHASH}" rel="stylesheet" media="all">
+<link rel="stylesheet" href="static/css/checkbox.css">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script src="static/js/switchery.js"></script>
+<script type="text/javascript" src="static/js/jquery.textareaexplander.js"></script>
+<style>
+html,body{
+	overflow:hidden;
+  background-color: rgb(241,241,241);
+}
+.bs-main-container{
+	overflow:auto;
+  margin-left: 0px;
+}
+</style>
+<!--{template common/header_simple_end}-->
+
+<!--{template common/commer_header}-->
+<div class="bs-container clearfix">
+  <div class="bs-main-container">
+    <div class="main-content clearfix board-setting-wrap">
+      <form id="discussform" name="discussform" class="form-horizontal-left form-horizontal" action="{BASESCRIPT}?mod=discuss&op=list&do=setting" method="post" onsubmit="return validate(this);" >
+        <input type="hidden" name="discusssubmit" value="true" />
+        <input type="hidden" name="fid" value="$fid" />
+        <input type="hidden" name="formhash" value="{FORMHASH}" />
+      	<!--{template list/setting_basic}-->
+      	<!--{template list/setting_extend}-->
+      	<!--{template list/setting_threadtypes}-->
+        <div class="form-group" style="padding:0 50px;margin-top: 30px;">
+          <div class="controls" style="width: 100%;">
+            <a href="{MOD_URL}&op=list&do=archive&fid=$fid&forward=$forward" data-do="archive" class="btn btn-primary-outline archive">{lang archive_discuss}</a>
+            <a href="javascript:;" class="btn btn-primary-outline" onclick="deleteBoard('{$fid}')" style="margin: 0 10px;">{lang delete_this_discuss}</a>
+            <input class="btn btn-primary btn-primary1" style="float: right;" name="editbutton" value="{lang save}"  type="submit">
+          </div>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  jQuery('.left-drager').leftDrager_layout();
+  function deleteBoard(num) {
+      showDialog('{lang can_be_recover_in_recycle}','confirm','',function () {
+          jQuery.ajax({
+              url:'{MOD_URL}&op=ajax&do=delete&position=field',
+              data:{fid:num},
+              type:'post',
+              dataType:'json',
+              success:function (res) {
+                  if(res.code==200) {
+                      showmessage(res.message,'success',1000,1);
+                      setTimeout(function () {
+                          window.location.href='{MOD_URL}&op=my';
+                      },1000)
+                  }
+              }
+          })
+      })
+  }
+
+</script>
+
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--{template common/footer_simple}--> 

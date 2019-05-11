@@ -1,0 +1,9 @@
+-rw-r--r-- 1 ftp ftp            147 Sep 07  2018 autoload_classmap.php
+-rw-r--r-- 1 ftp ftp            531 Sep 07  2018 autoload_files.php
+-rw-r--r-- 1 ftp ftp            149 Sep 07  2018 autoload_namespaces.php
+-rw-r--r-- 1 ftp ftp           1021 Sep 07  2018 autoload_psr4.php
+-rw-r--r-- 1 ftp ftp           2414 Sep 07  2018 autoload_real.php
+-rw-r--r-- 1 ftp ftp           3110 Sep 07  2018 autoload_static.php
+-rw-r--r-- 1 ftp ftp          13420 Sep 07  2018 ClassLoader.php
+-rw-r--r-- 1 ftp ftp          16797 Sep 07  2018 installed.json
+-rw-r--r-- 1 ftp ftp           1070 Sep 07  2018 LICENSE

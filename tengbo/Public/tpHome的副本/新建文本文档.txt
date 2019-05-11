@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>项目服务</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/about.css">
+	<link rel="stylesheet" href="screen/about.css">
+	<link rel="stylesheet" href="css/coop.css">
+</head>
+<body>
+	<header>
+		<div class="header_logo">
+			<img src="img/logo.png" alt="">
+		</div>
+		<div class="header_search">
+			<input type="text" class="in_search news_input" style="background:;">
+			<img src="img/search1.png" alt="">
+
+		</div>
+	</header>
+	<div class="page-head">
+			<div class="drow_btn">
+				<div class="drow">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<div class="scre-head">
+				<div class="head-nav">
+					<ul>
+						<li><a href="index.html">首页</a></li
+						><li> <a href="about_tp.html">关于腾博</a></li
+						><li><a href="javascript:;">动态聚焦</a></li
+						><li><a href="javascript:;">解决方案</a></li
+						><li><a href="javascript:;">经典案例</a></li
+						><li><a href="javascript:;">产品中心</a></li
+						><li><a href="javascript:;">技术资源</a></li
+						><li><a href="javascript:;">联系我们</a></li>	
+					</ul>
+					
+				</div>
+			</div>							
+	</div>
+	<div class="container">
+		<p class="container_nav"><a href="">首页</a> &nbsp>&nbsp <a href="">技术资源</a> &nbsp>&nbsp  <a href="" class="active">项目服务</a></p>
+		<p class="cul_title">项目服务</p>
+		<p class="porject_title">项目团队人员</p>
+		<div class="porject_Personnel">
+			<div class="item">
+			    <div class="img"><img src="" alt=""></div>
+			    <p>王池</p>
+			    <p>高级音响调音员</p>
+			</div>
+			<div class="item">
+			    <div class="img"><img src="" alt=""></div>
+			    <p>李文欢</p>
+			    <p>音响调音员</p>
+			</div>
+			<div class="item">
+			    <div class="img"><img src="" alt=""></div>
+			    <p>梁亮</p>
+			    <p>音响调音员</p>
+			</div>
+			<div class="item">
+			    <div class="img"><img src="" alt=""></div>
+			    <p>任晓楠</p>
+			    <p>三维CAD应用</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

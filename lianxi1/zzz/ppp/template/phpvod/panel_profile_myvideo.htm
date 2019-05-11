@@ -1,0 +1,103 @@
+<table class="table table-hover">
+	<thead>
+	<tr>
+		<td colspan="8" class="f-fs18">
+			<span class="f-fr f-fs14">
+				<a href="profile.php?action=myvideo&type=post">已发布</a>
+				<span class="u-split">/</span>
+				<a href="profile.php?action=myvideo&type=favorite">已收藏</a>
+				<span class="u-split">/</span>
+				<a href="profile.php?action=myvideo&type=buy">已购买</a>
+			</span>
+			<!--{if $type=='post'}-->
+				<strong>我发布的视频</strong>
+			<!--{elseif $type=='favorite'}-->
+				<strong>我收藏的视频</strong>
+			<!--{elseif $type=='buy'}-->
+				<strong>我购买的视频</strong>
+			<!--{/if}-->
+		</td>
+	</tr>
+	</thead>
+
+	<tbody>
+	<!--{if $type=='post'}-->
+	<tr>
+		<td width="8%"><strong>ID</strong></td>
+		<td width="*"><strong>标题</strong></td>
+		<td width="12%"><strong>状态</strong></td>
+		<td width="16%"><strong>更新时间</strong></td>
+		<td width="6%"><strong>人气</strong></td>
+		<td width="6%"><strong>评论</strong></td>
+		<td width="8%"><strong>审核</strong></td>
+		<td width="14%"><strong>操作</strong></td>
+	</tr>
+	<!--{loop $videolist $value}-->
+	<tr>
+		<td>$value[vid]</td>
+		<td><a href="read.php?vid=$value[vid]" target="_blank">$value[subject]</a></td>
+		<td>
+			<!--{if $value[serialise] > 0}-->
+			连载至$value[serialise]
+			<!--{else}-->
+			完结
+			<!--{/if}-->
+		</td>
+		<td>$value[lastdate]</td>
+		<td>$value[hits]</td>
+		<td>$value[reply]</td>
+		<td>
+			<!--{if $value[yz] == 1}-->
+			<span style="color: green;">通过</span>
+			<!--{else}-->
+			<span style="color: red;">未审核</span>
+			<!--{/if}-->
+		</td>
+		<td>
+			<a href="read.php?vid=$value[vid]" target="_blank">浏览</a>
+			<!--{if $SYSTEM['allowadminedit']== '1' || $gp_alloweditatc == 1}-->
+			<a href="post.php?action=modify&vid=$value[vid]">编辑</a>
+			<!--{/if}-->
+			<!--{if $SYSTEM['allowadmindel'] == '1' || $gp_allowdelatc == '1'}-->
+			<a href="do.php?action=del_video&vid=$value[vid]">删除</a>
+			<!--{/if}-->
+		</td>
+	</tr>
+	<!--{/loop}-->
+	<!--{else}-->
+	<tr>
+		<td width="8%"><strong>ID</strong></td>
+		<td width="*"><strong>标题</strong></td>
+		<td width="12%"><strong>状态</strong></td>
+		<td width="12%"><strong>会员</strong></td>
+		<td width="16%"><strong>更新时间</strong></td>
+		<td width="6%"><strong>人气</strong></td>
+		<td width="6%"><strong>评论</strong></td>
+		<td width="14%"><strong>操作</strong></td>
+	</tr>
+	<!--{loop $videolist $value}-->
+	<tr>
+		<td>$value[vid]</td>
+		<td><a href="read.php?vid=$value[vid]" target="_blank">$value[subject]</a></td>
+		<td>
+			<!--{if $value[serialise] > 0}-->
+			连载至$value[serialise]
+			<!--{else}-->
+			完结
+			<!--{/if}-->
+		<td><a href="profile.php?action=show&id=$value[authorid]" target="_blank">$value[author]</a></td>
+		<td>$value[lastdate]</td>
+		<td>$value[hits]</td>
+		<td>$value[reply]</td>
+		<td>
+			<a href="read.php?vid=$value[vid]" target="_blank">浏览</a>
+			<a href="profile.php?action=remove&type={$type}&vid=$value[vid]">移除</a>
+		</td>
+	</tr>
+	<!--{/loop}-->
+	<!--{/if}-->
+	</tbody>
+	<tfoot>
+		<td colspan="8" class="f-tac"><div class="u-pages"><!--{page $pages}--></div></td>
+	</tfoot>
+</table>

@@ -1,0 +1,403 @@
+<!--<?php
+include_once gettpl('top');
+if (empty($action)){
+print <<<EOT
+-->
+<form action="$basename&" method="post">
+	<input type="hidden" name="action" value="search">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">编辑用户</td>
+		</tr>
+		<tr>
+			<td width="40%">用户组</td>
+			<td>
+				<select name="groupid">
+					<option value="all">不限制</option>
+					$groupselect
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>用户名包含<br />(可使用通配符 "*")</td>
+			<td><input type="text" size="20" maxlength="14" name="schname"> <label><input name="schname_s" type="checkbox" value="1" checked='checked'> 精确匹配</label></td>
+		</tr>
+		<tr>
+			<td>邮箱<br />(可使用通配符 "*")</td>
+			<td><input type="text" size="20" name="schemail"></td>
+		</tr>
+		<tr>
+			<td>最后登录IP<br />(可使用通配符 "*")</td>
+			<td><input type="text" size="20" name="userip"></td>
+		</tr>
+		<tr>
+			<td>注册时间大于</td>
+			<td>
+				<select name="regdate">
+					<option value="all">不限制</option>
+					<option value="86400">一天</option>
+					<option value="172800">二天</option>
+					<option value="604800">一星期</option>
+					<option value="2592000">一个月</option>
+					<option value="7776000">三个月</option>
+					<option value="15552000">六个月</option>
+					<option value="31536000">一年</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>排序方式</td>
+			<td>
+				<select name="orderway">
+					<option value="regdate">注册时间</option>
+					<option value="username">用户名</option>
+					<option value="uid">用户ID</option>
+					<option value="postnum">视频发布数</option>
+				</select>
+				<label><input type="radio" size="5" name="asc" value="" checked="checked"> 升序</label>
+				<label><input type="radio" size="5" name="asc" value="DESC"> 降序</label>
+			</td>
+		</tr>
+		<tr>
+			<td>每页显示行数</td>
+			<td><input type="text" size="5" name="lines" value="100"></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<br />
+<form action="$basename&" method="post">
+	<input type="hidden" name="action" value="addnew">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">添加用户</td>
+		</tr>
+		<tr>
+			<td width="40%">用户名</td>
+			<td><input type="text" size="20" maxlength="14" name="username" /></td>
+		</tr>
+		<tr>
+			<td>密码</td>
+			<td><input type="password" name="password" /></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td><input type="text" name="email" /></td>
+		</tr>
+		<tr>
+			<td>用户组</td>
+			<td>
+				<select name="groupid">
+					$groupselect
+				</select>
+			</td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交" /></center>
+</form>
+<!--
+EOT;
+}elseif($action==search){print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">编辑用户</td>
+	</tr>
+	<tr>
+		<td class="notice">
+			说明：此功能可以批量修改会员头衔
+		</td>
+	</tr>
+</table>
+<br />
+<form action="$basename&" method="post">
+	<input type="hidden" name="action" value="editgroup">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="9">用户列表</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'selid');"></td>
+			<td>ID</td>
+			<td>用户名</td>
+			<td>Email</td>
+			<td>用户组</td>
+			<td>注册时间</td>
+			<td>发表数</td>
+			<td>IP</td>
+			<td>编辑</td>
+		</tr>
+<!--
+EOT;
+foreach($schdb as $key=>$sch){
+if(!$sch[username])continue;
+$uid=$sch[uid];
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="selid[]" value="$sch[uid]"></td>
+			<td>$uid</td>
+			<td>$sch[username]</td>
+			<td>$sch[email]</td>
+			<td>
+				<select name="gid[$uid]">
+					$sch[groupselect]
+				</select>
+			</td>
+			<td>$sch[regdate]</td>
+			<td>$sch[postnum]</td>
+			<td>$sch[onlineip]</td>
+			<td><a href="$basename&action=edit&uid=$sch[uid]">编辑</a></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<div class="pages">$pages</div>
+	<center>
+		<input type="checkbox" name="delmsg" id="delmsg" value="1" /> <label for="delmsg">删除用户发布的影片与评论</label><br /><br />
+		<input type="submit" value="提 交">
+		<input type="button" value="查看说明" onclick="alert('注意：更新用户组不需要勾选复选框，勾选的用户会直接删除。');">
+	</center>
+</form>
+<!--
+EOT;
+}elseif($action==edit){
+print <<<EOT
+-->
+<form action="$basename&" method="post">
+	<input type="hidden" name="action" value="edit">
+	<input type="hidden" name="uid" value="$uid">
+	<input type="hidden" name="step" value="2">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">用户设置</td>
+		</tr>
+		<tr>
+			<td width="50%">用户组</td>
+			<td>
+				<select name="groupid">
+		$groupselect
+	</select>
+			</td>
+		</tr>
+		<tr>
+			<td>用户组有效期(留空永不过期)</td>
+			<td><input type="text" size="20" class="datetimepicker" name="groupexpiry" value="$groupexpiry" /></td>
+		</tr>
+		<tr>
+			<td>过期后用户组变为</td>
+			<td>
+				<select name="togid">
+					$togidselect
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>扩展用户组</td>
+			<td>
+				<style type="text/css">
+					.extgroup {
+						height: 28px;
+						line-height: 28px;
+						clear: both;
+					}
+					
+					.extgroup .l {
+						width: 150px;
+						float: left;
+					}
+					
+					.extgroup .r {
+						float: left;
+					}
+				</style>
+<!--
+EOT;
+$groups = get_extgroups_info($uid);
+foreach($ltitle as $key => $val)
+{
+    if($ltype[$key] == 'default' || $ltype[$key] == 'member' || $key == $groupid) continue;
+	$cflag = $expiretime = '';
+	if(isset($groups[$key]))
+	{
+		$cflag = ' checked="checked"';
+		$expiretime = $groups[$key] > 0 ? get_date($groups[$key], 'Y-m-d H:i') : '';
+	}
+    $cflag = isset($groups[$key]) ? ' checked="checked"' : '';
+print <<<EOT
+-->
+				<p class="extgroup">
+					<span class="l"><label><input type="checkbox" name="groups[]" value='$key'{$cflag}> $val</label></span>
+					<span class="r">过期时间： <input type="text" class="datetimepicker" name="expiretime[$key]" value="$expiretime" /></span>
+				</p>
+<!--
+EOT;
+}
+print <<< EOT
+-->
+			</td>
+		</tr>
+		<tr>
+			<td>用户名(如无特殊需要请不要修改)</td>
+			<td>
+<!--
+EOT;
+if($db_mergesystype == '0'){
+print <<<EOT
+-->
+				<input type="text" size="20" name="username" value="$username">
+<!--
+EOT;
+}else{
+print <<<EOT
+-->
+				$username
+				<input type="hidden" size="20" name="username" value="$username">
+<!--
+EOT;
+}
+print <<<EOT
+-->
+			</td>
+		</tr>
+		<tr>
+			<td>新密码(如不更改请留空)</td>
+			<td><input type="text" size="20" name="password" value=""></td>
+		</tr>
+		<tr>
+			<td>确认密码(修改密码时需要输入)</td>
+			<td><input type="text" size="20" name="check_pwd"></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td>
+				<input type="text" size="20" name="email" value="$email">
+				<label><input name="publicmail" type="checkbox" value="1" $publicmail_1> 公开邮箱</label>
+			</td>
+		</tr>
+		<tr>
+			<td>是否接受邮件</td>
+			<td>
+				<label><input type="radio" name="receivemail" value="1" $receivemail_1> 是</label>
+				<label><input type="radio" name="receivemail" value="0" $receivemail_0> 否</label>
+			</td>
+		</tr>
+		<tr>
+			<td>视频发布数</td>
+			<td><input type="text" size="20" name="postnum" value="$postnum"></td>
+		</tr>
+		<tr>
+			<td>威望</td>
+			<td><input type="text" size="20" name="rvrc" value="$rvrc"></td>
+		</tr>
+		<tr>
+			<td>金钱</td>
+			<td><input type="text" size="20" name="money" value="$money"></td>
+		</tr>
+		<tr>
+			<td>注册日期(格式: yyyy-mm-dd hh:ii:ss)</td>
+			<td><input type="text" size="20" name="regdate" value="$regdate"></td>
+		</tr>
+		<tr>
+			<td>IP</td>
+			<td><input type="text" size="20" name="userip" value="$onlineip"></td>
+		</tr>
+		<tr>
+			<td>头像</td>
+			<td><input type="text" name="icon" value="$icon"></td>
+		</tr>
+		<tr>
+			<td>腾讯QQ</td>
+			<td><input type="text" size="20" name="oicq" value="$oicq"></td>
+		</tr>
+		<tr>
+			<td>MSN</td>
+			<td><input type="text" size="20" name="msn" value="$msn"></td>
+		</tr>
+		<tr>
+			<td>个人主页</td>
+			<td><input type="text" size="20" name="site" value="$site"></td>
+		</tr>
+		<tr>
+			<td>自定义头衔</td>
+			<td><input type="text" size="20" maxlength="75" name="honor" value="$honor"></td>
+		</tr>
+		<tr>
+			<td>性别</td>
+			<td>
+				<select name="gender">
+					<option value="0" $gender_0>保密</option>
+					<option value="1" $gender_1>男</option>
+					<option value="2" $gender_2>女</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>生日</td>
+			<td><select name="year">
+					<option value=""></option>
+<!--
+EOT;
+for($i=1960;$i<=2008;$i++){
+print <<<EOT
+-->
+					<option value="$i" $year[$i]>$i</option>
+<!--
+EOT;
+}print <<<EOT
+-->
+					</select>年
+				<select name="month">
+					<option value=""></option>
+<!--
+EOT;
+for($i=1;$i<13;$i++){
+print <<<EOT
+-->
+					<option value="$i" $month[$i]>$i</option>
+<!--
+EOT;
+}print <<<EOT
+-->
+				</select>月
+				<select name="day">
+					<option value=""></option>
+<!--
+EOT;
+for($i=1;$i<32;$i++){
+print <<<EOT
+-->
+					<option value="$i" $day[$i]>$i</option>
+<!--
+EOT;
+}print <<<EOT
+-->
+				</select>日
+			</td>
+		</tr>
+		<tr>
+			<td>个性签名</td>
+			<td><textarea cols="50" name="signature" rows="4">$signature</textarea></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<link rel="stylesheet" type="text/css" href="js/datetimepicker/jquery.datetimepicker.css" />
+<script type="text/javascript" src="js/datetimepicker/jquery.datetimepicker.js"></script>
+<script type="text/javascript">
+	$(".datetimepicker").datetimepicker({
+		lang: 'zh',
+		mask: true,
+		validateOnBlur: false,
+		format: 'Y-m-d H:i'
+	});
+</script>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>-->

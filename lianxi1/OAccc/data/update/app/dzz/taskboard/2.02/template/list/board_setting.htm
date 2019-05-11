@@ -1,0 +1,88 @@
+<div class="task_right_header clearfix" style="position: relative">
+	<!--{if $taskboard[perm]>2 && $taskboard[status]<1}-->
+	<a href="javascript:;" class="js-window clearfix briefMenu-edit" type="button" data-taskid="$task[taskid]" onClick="showWindow('boardsetting','{MOD_URL}&op=list&do=setting&tbid=$taskboard[tbid]','get',0)"><span class="dzz dzz-create"></span></a>
+	<!--{/if}-->
+	<span class="task_right_title pull-left">任务版属性</span>
+</div>
+
+<div class="task_right_cont clearfix">
+	<span class=>名称</span>
+	<span>$taskboard[name]</span>
+</div>
+<!--{if  $taskboard['status']>0 && $taskboard[perm]>2}-->
+    <div class="task_right_cont clearfix">
+       <span class=>任务版状态</span>
+		<span>
+			
+        <!--{if $taskboard['status']==2}-->
+         删除
+        <!--{else}--> 
+        归档 
+        <!--{/if}--> 
+        于{eval echo dgmdate($taskboard['statustime'],'u')}
+           <!--{if $taskboard['status']==2}-->
+            <!--{if $taskboard[perm]>2}--><a class="" href="javascript:;" onclick="board_setting_restore('$tbid')">恢复</a><!--{/if}-->
+        <!--{else}--> 
+            <!--{if $taskboard[perm]>2}--><a class="" href="javascript:;" onclick="board_setting_active('$tbid')">激活</a><!--{/if}-->
+        <!--{/if}-->
+        </span>
+        
+	</div> 
+ <!--{/if}-->
+<div class="task_right_cont clearfix">
+	<span>可见范围</span>
+	<span>
+		<!--{if $taskboard[viewperm]==0}-->
+			成员可见
+		<!--{elseif $taskboard[viewperm]==1}-->
+			团队可见
+		<!--{elseif $taskboard[viewperm]==2}-->
+			公开
+		<!--{/if}-->
+	</span>
+</div>
+<div class="task_right_cont clearfix">
+	<span>任务列表</span>
+	<span>
+		<!--{if $taskboard[layout]==0}-->
+			看板
+		<!--{else}-->
+			列表
+		<!--{/if}-->
+	</span>
+</div>
+<!--{if $org}-->
+<div class="task_right_cont clearfix">
+	<span>团队名称</span>
+   <span><a href="{MOD_URL}&op=org&orgid=$org[orgid]">$org[name]</a></span>
+</div>
+ <!--{if $org[desc]}-->
+ <div class="task_right_cont clearfix">
+	<span>团队介绍</span>
+   <span>$org[desc]</span>
+</div>
+<!--{/if}-->
+
+<!--{/if}-->
+<div class="task_right_cont clearfix">
+	<span>状态描述</span>
+	<span>$taskboard[desc_status]</span>
+</div>
+<div class="task_right_cont clearfix">
+	<span>时间描述</span>
+	<span>$taskboard[desc_date]</span>
+</div>
+<div class="task_right_cont clearfix">
+	<span>预算描述</span>
+	<span>$taskboard[desc_money]</span>
+</div>
+
+<div class="task_right_cont clearfix">
+	<span>任务板介绍</span>
+	<span>$taskboard[desc]</span>
+</div>
+<script type="text/javascript">
+	jQuery('#rightMenu .js-popbox').each(function(){
+		jQuery(this).popbox();
+	})
+</script>

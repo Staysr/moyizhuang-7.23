@@ -1,0 +1,53 @@
+<!--<?php
+include_once gettpl('top');
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">提示信息</td>
+	</tr>
+	<tr>
+		<td class="notice">此功能可将未验证会员组的用户编入普通会员组</td>
+	</tr>
+</table>
+<br />
+<form action=$basename method="post">
+	<input type="hidden" name="action" value="check">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="5">需要验证的用户</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width='5%'><input type="checkbox" onclick="check_all(this,'yzmem');"></td>
+			<td width='10%'>ID</td>
+			<td>用户名</td>
+			<td width='25%'>注册时间</td>
+			<td width='30%'>Email</td>
+		</tr>
+<!--
+EOT;
+foreach($memdb as $mem){
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="yzmem[]" value="$mem[uid]"></td>
+			<td>$mem[uid]</td>
+			<td><a href="$admin_file?adminjob=setuser&action=edit&uid=$mem[uid]">$mem[username]</a></td>
+			<td>$mem[regdate]</td>
+			<td>$mem[email]</td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<div class="pages">$pages</div>
+	<center>
+		<label><input type="radio" name="type" value="del">删除</label> 
+		<label><input type="radio" name="type" checked='checked' value="pass">通过</label> <br /><br	/>
+		<input type="submit" name="hello" value="提 交"></center>
+</form>
+<!--
+EOT;
+include_once gettpl('adminbottom');
+?>-->

@@ -1,0 +1,36 @@
+
+<!--{loop $list $value}-->
+    <a class="taskboard-item pull-left  cover-$value[aid]" data-tbid="$value[tbid]"  data-forceindex="$value[forceindex]" href="{MOD_URL}&op=list&tbid=$value[tbid]">
+                <span class="taskboard-item-upper">
+                    <span class="taskboard-item-guide <!--{if $value[viewperm]>0}-->private<!--{elseif $value[forceindex]>0}-->forceindex<!--{/if}-->"> </span>
+                   
+                     <span class="taskboard-item-title">
+                    <table cellpadding="0" cellspacing="0" width="100%" height="100%"><tr><td valign="middle">$value[name]</td></tr></table>
+                    </span>
+                   <!--{if $value['desc_status']}-->
+                    <span class="taskboard-item-info" >
+                        <b style="color:$value[desc_status_color]">$value[desc_status]</b>
+                    </span>
+                     <!--{/if}-->
+                     <!--{if $value['desc_date']}-->
+                    <span class="taskboard-item-info" >
+                        $value[desc_date]
+                    </span>
+                     <!--{/if}-->
+                     <!--{if $value['desc_money']}-->
+                    <span class="taskboard-item-info" >
+                        $value[desc_money]
+                    </span>
+                     <!--{/if}-->
+                     <span class="taskboard-item-info" >
+                        共$value['tasks']项
+                      </span>
+                     <span class="taskboard-item-info" >
+                        完成$value['tasks_c']项
+                      </span>
+                     <span class="taskboard-item-operation">
+                            <button type="button" class="btn btn-default" data-tbid="$value[tbid]" data-forceindex="$value[forceindex]" data-loading-text="加载中">关注</button>
+                     </span>
+                </span>
+            </a>
+ <!--{/loop}-->

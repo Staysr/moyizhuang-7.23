@@ -1,0 +1,27 @@
+<!--{if !empty($pageinfo)}-->
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+	<li><a href="{$pageinfo[url]}page={$pageinfo[page_first]}"><span aria-hidden="true">首页</span></a></li>
+	<li><a href="{$pageinfo[url]}page={$pageinfo[page_up]}" aria-label="Previous"><span aria-hidden="true">上一页</span></a></li>
+
+	<!--{eval for($i=$pageinfo[page_current]-3;$i<$pageinfo[page_current];$i++) {}-->
+		<!--{eval if($i<1) continue;}-->
+		<li><a href="{$pageinfo[url]}page={$i}">$i</a></li>
+	<!--{eval }}-->
+
+	<li class="active"><span>{$pageinfo[page_current]}<span class="sr-only">(current)</span></span></li>
+
+	<!--{if $pageinfo[page_current]<$pageinfo[page_end]}-->
+		<!--{eval $flag=0;}-->
+		<!--{eval for($i=$pageinfo[page_current]+1;$i<=$pageinfo[page_end];$i++) {}-->
+			<li><a href="{$pageinfo[url]}page={$i}">$i</a></li>
+			<!--{eval $flag++;}-->
+			<!--{eval if($flag==4) break;}-->
+		<!--{eval }}-->
+	<!--{/if}-->
+
+    <li><a href="{$pageinfo[url]}page={$pageinfo[page_down]}" aria-label="Next"><span aria-hidden="true">下一页</span></a></li>
+    <li><a href="{$pageinfo[url]}page={$pageinfo[page_end]}"><span aria-hidden="true">尾页</span></a></li>
+  </ul>
+</nav>
+<!--{/if}-->

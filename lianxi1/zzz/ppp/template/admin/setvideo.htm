@@ -1,0 +1,205 @@
+<!--<?php
+include_once gettpl('top');
+if (empty($action)){
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">提示信息</td>
+	</tr>
+	<tr>
+		<td class="notice">
+			1、按条件查询需要管理的视频<br /> 2、直接单击提交按钮显示所有视频
+		</td>
+	</tr>
+</table><br />
+
+<form action="$basename&" method="post">
+	<input type="hidden" name="action" value="search">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">视频管理索引</td>
+		</tr>
+		<tr>
+			<td width="40%">影片栏目</td>
+			<td>
+				<select name="cid"><option value="all">无限制</option>$_class_opt</select>
+			</td>
+		</tr>
+		<tr>
+			<td>影片产地</td>
+			<td>
+				<select name="nid"><option value="all">无限制</option>$_nation_opt</select>
+			</td>
+		</tr>
+		<tr>
+			<td>发表会员名包含<br />(可使用通配符"*")</td>
+			<td><input type="text" size="20" maxlength="14" name="author"> <label><input name="author_s" type="checkbox" value="1" checked="checked"> 精确匹配</label></td>
+		</tr>
+		<tr>
+			<td>视频标题包含<br />(可使用通配符"*")</td>
+			<td><input type="text" size="20" maxlength="14" name="subject"> <label><input name="subject_s" type="checkbox" value="1" checked="checked"> 精确匹配</label></td>
+		</tr>
+		<tr>
+			<td>内容简介包含<br />(可使用通配符"*")</td>
+			<td><input type="text" size="20" maxlength="14" name="synopsis"></td>
+		</tr>
+		<tr>
+			<td>主演包含</td>
+			<td><input type="text" size="20" maxlength="14" name="playactor"></td>
+		</tr>
+		<tr>
+			<td>导演包含</td>
+			<td><input type="text" size="20" maxlength="14" name="director"></td>
+		</tr>
+		<tr>
+			<td>推荐</td>
+			<td>
+				<select name="best">
+					<option value="all">无限制</option>
+					<option value="0">不推荐</option>
+					<option value="1">首页推荐</option>
+					<option value="2">栏目推荐</option>
+					<option value="3">首页栏目推荐</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>影片状态</td>
+			<td>
+				<select name="serialise">
+					<option value="all">无限制</option>
+					<option value="0">完结</option>
+					<option value="1">连载</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>点击数</td>
+			<td>
+				<select name="bj">
+					<option value="0">小于</option>
+					<option value="1">大于</option>
+				</select>
+				<input type="text" size="20" maxlength="14" name="hits">
+			</td>
+		</tr>
+		<tr>
+			<td>发表时间大于</td>
+			<td>
+				<select name="postdate">
+					<option value="all">不限制</option>
+					<option value="86400">一天</option>
+					<option value="172800">二天</option>
+					<option value="604800">一星期</option>
+					<option value="2592000">一个月</option>
+					<option value="7776000">三个月</option>
+					<option value="15552000">六个月</option>
+					<option value="31536000">一年</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>排序方式</td>
+			<td>
+				<select name="orderway">
+					<option value="postdate">发表时间</option>
+					<option value="lastdate">修改时间</option>
+					<option value="vid">视频ID</option>
+					<option value="author">会员名</option>
+					<option value="hits">点击数</option>
+				</select>
+				<label><input type="radio" size="5" name="asc" value="ASC" checked="checked">升序</label>
+				<label><input type="radio" size="5" name="asc" value="DESC">降序</label></td>
+		</tr>
+		<tr>
+			<td>每页显示行数</td>
+			<td><input type="text" size="5" name="lines" value="100"></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<!--
+EOT;
+}elseif($action==search){print <<<EOT
+-->
+<form action="$basename&" method="post">
+	<input type="hidden" name="action" value="setvideo">
+	<input type="hidden" name="pageurl" value="{$url}page={$page}" />
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="10">视频列表</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'selid');"></td>
+			<td width="5%">ID</td>
+			<td width="10%">发表人</td>
+			<td width="10%">栏目</td>
+			<td>标题</td>
+			<td width="10%">状态</td>
+			<td width="15%">推荐</td>
+			<td width="5%">点击数</td>
+			<td width="15%">发表时间</td>
+			<td width="5%">编辑</td>
+		</tr>
+<!--
+EOT;
+foreach($videodb as $key=>$val){
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="selid[]" value="$val[vid]"></td>
+			<td>$val[vid]</td>
+			<td><a href="profile.php?action=show&id=$val[authorid]" target="_blank">$val[author]</a></td>
+			<td>$val[caption]</td>
+			<td><a href="read.php?vid=$val[vid]" target="_blank">$val[subject]</a></td>
+			<td>
+<!--
+EOT;
+if($val[serialise]>0){
+print <<<EOT
+-->
+				连载至第$val[serialise]集
+<!--
+EOT;
+}else{
+print <<<EOT
+-->
+				完结
+<!--
+EOT;
+}
+print <<<EOT
+-->
+			</td>
+			<td>
+				<select name="best[$val[vid]]">
+					<option value="0" $val[best_0]>不推荐</option>
+					<option value="1" $val[best_1]>首页推荐</option>
+					<option value="2" $val[best_2]>栏目推荐</option>
+					<option value="3" $val[best_3]>首页栏目推荐</option>
+				</select>
+			</td>
+			<td>$val[hits]</td>
+			<td>$val[postdate]</td>
+			<td><a href="post.php?action=modify&vid=$val[vid]" target="_blank">编辑</a></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<div class="pages">$pages</div>
+	<center>
+		<input type="checkbox" name="donotupdatecredit" id="donotupdatecredit" value="1" checked="checked"> <label for="donotupdatecredit">删除视频不减用户视频数和积分</label>
+		<input type="radio" name="oper" value="del" id="oper_del" checked="checked"> <label for="oper_del">删除</label>
+		<input type="radio" name="oper" value="move" id="oper_move"> <label for="oper_move">移动至</label> <select name="movclass">$_class_opt</select><br /><br />
+		<input type="submit" value="提 交">
+		<input type="button" value="查看说明" onclick="alert('注意：推荐视频不需要勾选复选框，勾选的视频将执行删除或移动操作。');">
+	</center>
+</form>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>-->

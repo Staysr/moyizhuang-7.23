@@ -1,0 +1,167 @@
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/discuss.css?{VERHASH}" rel="stylesheet" media="all">
+<link rel="stylesheet" href="static/css/checkbox.css">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="dzz/discuss/scripts/discuss.js?{VERHASH}"></script>
+<style>
+  html,body{
+    overflow:hidden;
+  }
+  body{
+    background:rgba(241, 241, 241, 1);
+  }
+  .navbar-inverse {
+    background-color: rgba(255, 90, 58, 1);
+  }
+  .bs-main-container{
+    margin-left:210px;
+  }
+
+  .modal .modal-content{
+    background:#FBFBFB;
+  }
+  .modal .modal-body{
+    padding:0;
+  }
+  .modal .modal-footer{
+    border-top:1px solid #FFF;
+  }
+  .modal .list-group{
+    margin:0
+  }
+  .modal .list-group .list-group-item{
+    position:relative;border-left:0;border-right:0;border-top:1px solid #FFF;border-bottom:1px solid #e1e1e1;margin-bottom:0;background-color:#FBFBFB;
+    border-radius:0;
+    min-height:50px;
+  }
+  .list-group-item h4{
+    font-size:16px;
+  }
+  .modal .list-group .list-group-item:hover,.modal .list-group .list-group-item:active{
+    background-color:#F7F7F7;
+  }
+  .modal .list-group .list-group-item .board-icon{
+    position:absolute;left:10px;top:10px;
+  }
+  .modal .list-group .list-group-item .list-group-content{
+    padding-left:42px;
+    font-size:12px;
+  }
+
+</style>
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+
+<div class="bs-container clearfix" style="height: 100%;">
+  <div class="bs-left-container  clearfix" style="height: 100%;">
+    <!--{template left}-->
+  </div>
+  <div class="left-drager"></div>
+  <div class="bs-main-container" style="height: 100%">
+    <div class="comment-wrap">
+      <div class="comment-top clearfix">
+        <div class="thread-ordertype" style="padding:0">
+          <div class="btn-group" style="vertical-align: -5px;">
+            <a class="btn-a <!--{if !$type}-->btn-a-active<!--{/if}-->" href="{MOD_URL}&op=my&do=myfav">{lang favorited_post}</a>
+            <a class="btn-a <!--{if $type == 'discuss'}-->btn-a-active<!--{/if}-->" href="{MOD_URL}&op=my&do=myfav&type=discuss">{lang favorited_discuss}</a>
+          </div>
+          <div class="btn-group" style="float: right;vertical-align: middle;">
+            <button type="button" class="btn drop-btn" data-toggle="dropdown" aria-expanded="false">
+              <!--{if $ordertype == 'dateline'}--><!--{if $type == 'discuss'}-->{lang order_discuss_create_time}<!--{else}-->{lang order_post_sent_time}<!--{/if}--><!--{else}-->{lang order_favorite}<!--{/if}--> <span class="dzz dzz-expand-more"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="{MOD_URL}&op=my&do=myfav&ordertype=favtime&type={$type}">{lang order_favorite}</a></li>
+              <li><a href="{MOD_URL}&op=my&do=myfav&ordertype=dateline&type={$type}"><!--{if $type == 'discuss'}-->{lang order_discuss_create_time}<!--{else}-->{lang order_post_sent_time}<!--{/if}--></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--{if empty($list)}-->
+          <div class="searchImg-wrap">
+              <img src="{MOD_PATH}/images/noFilePage-collect.png" alt="">
+              <p>{lang no_favorite}</p>
+          </div>
+      <!--{/if}-->
+      <!--{if $type == 'discuss'}-->
+        
+        <div class="archive-wrap cancel-wrap">
+          <!--{loop $list $value}-->
+            <div class="dis-item-mesh item mesh-item">
+              <div class="mesh-con" style="cursor: pointer;" data-href="{MOD_URL}&op=list&fid={$value[fid]}&forward=$forward">
+                <div class="dis-icon mesh-icon"><div class="dis-img" style="background-color: #6c6ad7">{$value['name']}</div></div>
+                <div class="dis-info mesh-info">
+                  <a class="dis-top mesh-top" style="display: block;">{$value['name']}</a>
+                  <span style="margin-right: 20px;">{lang thread}：{$value['threads']}</span><span>{lang post}：{$value['posts']}</span>
+                  <div class="title-info1">
+                    <span class="info-word">{lang favorited}</span>
+                    <div href="javascript:;" class="stick cancel-btn" style="border-radius: 2px;cursor: pointer;" onclick="cancelCollect(this,'{$value[favid]}')">{lang cancel_favorite}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--{/loop}-->
+        </div>
+      <!--{else}-->
+      <div class="board-content cancel-wrap">
+        <!--{loop $list $value}-->
+        <div class="card-item item archive-item" style="margin: 0;">
+          <div class="card">
+            <span class="dzz dzz-file file"></span>
+            <div class="title-wrap title-wrap1">
+              <div class="title-top">
+                <a href="{DZZSCRIPT}?mod=discuss&op=viewthread&fid=$value[fid]&tid=$value[tid]&forward=$forward" class="xst" title="$value['subject']">$value['subject']</a>
+                <a class="stick" style="display:none;"><i class="dzz dzz-top"></i>
+                </a>
+                <a class="cream" style="display:none;">{lang essence}<small>0</small></a>
+              </div>
+              <div class="title-bot cleargfix">
+                <a href="{DZZSCRIPT}?mod=discuss&op=list&fid=$value[fid]&forward=$forward" title="$value['forumname']" class="board-a">$value[forumname]</a>
+                $value[dateline]
+              </div>
+              <div class="title-info">
+                <span class="info-word">{lang favorited}</span>
+                <a href="javascript:;" class="stick cancel-btn" style="border-radius: 2px;cursor: pointer;" onclick="cancelCollect(this,'{$value[favid]}')">{lang cancel_favorite}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--{/loop}-->
+      </div>
+      <!--{/if}-->
+      <!--{if $multi}-->
+        <div class="page-wrap">
+            {$multi}
+        </div>
+      <!--{/if}-->
+    </div>
+  </div>
+</div>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<script>
+    jQuery(function () {
+        jQuery('.left-drager').leftDrager_layout();
+        jQuery('.cancel-wrap').find('.mesh-con').click(function () {
+            window.location.href=jQuery(this).data('href');
+        })
+    })
+    function cancelCollect(el,id) {
+        var e=event;
+        e.stopPropagation();
+        var data=id;
+        jQuery.ajax({
+            url:'{MOD_URL}&op=ajax&do=deletefavorite',
+            type:'post',
+            dataType:'json',
+            data:{'favid':data},
+            success:function (res) {
+                if(res.code==200) {
+                    showmessage(res.message,'success',1000,1);
+                    jQuery(el).parents('.item').remove();
+                }
+            }
+        })
+    }
+</script>
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}-->

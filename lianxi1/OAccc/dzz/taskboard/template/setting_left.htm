@@ -1,0 +1,29 @@
+<style type="text/css">
+.bs-left-container .nav-stacked>.active>a {
+    background: rgba(33,33,33,.05);
+    color: #424242;
+}
+.bs-left-container .nav-stacked>.active>a:hover {
+    background: rgba(33,33,33,.05);
+    color: #424242;
+}
+</style>
+<div class="bs-left-container affix-top clearfix">
+    <div class="leconMenu clearfix">
+        <ul class="nav-stacked">
+            <li class="<!--{if $do=='basic'}-->active<!--{/if}-->"> 
+                <a  href="{MOD_URL}&op=setting&do=basic"><span class="dzz dzz-settings"></span>基本设置</a>
+            </li>
+            <li class="<!--{if $do=='manage'}-->active<!--{/if}-->"> 
+                <a  href="{MOD_URL}&op=setting&do=manage"><span class="dzz dzz-settings"></span>任务版管理</a>
+            </li>
+           
+        </ul>
+       
+    </div>
+</div>
+
+<!-- 左边拖动部分 -->
+<div class="left-drager">
+    <div class="left-drager-op"><div class="left-drager-sub"></div></div>
+</div>

@@ -1,0 +1,21 @@
+      <block wx:for="{{data_2}}" wx:key='index' wx:if="{{data_2.length}}">
+  
+          <view style='margin-left:10rpx;'>订单号： {{item.order_num}}</view>
+          <view class='page_row'>
+            <view class='centent'>
+              <view style='margin-left:10rpx;' wx:if='{{item.server_info.linkman}}'>下单人： {{item.server_info.linkman}}
+                <text style='color:#999;margin-left:40rpx;font-size:32rpx;' wx:if='{{item.server_info.tel}}'>联系电话： {{item.server_info.tel}}</text>
+              </view>
+              <view style='color:#999;margin-top:15rpx;' wx:if='{{item.car_info.title}}'>
+                <view style='color:#999;margin-left:10rpx;font-size:28rpx' bindtap='apen_add'data-name='{{item.server_info.address}}' data-latitude_siji='{{item.server_info.coordinate_start}}'><image style='width:32rpx;height:32rpx' src='../../image/location.png'/> 导航至起始地：{{item.server_info.address}} </view>
+              </view>
+              <view style='color:#999;margin-top:15rpx;' wx:if='{{item.car_info.title}}'>
+                <view style='color:#999;margin-left:10rpx;font-size:28rpx' bindtap='apen_add' data-name='{{item.server_info.address_end_text}}' data-longitude_siji='{{item.server_info.coordinate_end}}'><image style='width:32rpx;height:32rpx' src='/image/location.png'/> 导航至目的地： {{item.server_info.address_end_text}} </view>
+              </view>
+             <view style='color:#999;margin-top:15rpx;' wx:if='{{item.car_info.title}}'>
+                <view style='color:#999;margin-left:10rpx;font-size:28rpx'> 分配时间：{{item.time_tired}}</view>
+              </view>
+            </view>
+          </view>
+          <view class='xxx'></view>
+      </block>

@@ -1,0 +1,5 @@
+-rw-r--r-- 1 ftp ftp           1495 Oct 11  2018 config.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 controller
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 model
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 validate
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 view

@@ -1,0 +1,208 @@
+// --- 全局设置 --- 
+@body-color: #555;
+@body-background-color: rgb(28, 50, 92);
+@container-background-color: #F5F5F5;
+@a-color: @body-color;
+@a-hover-color: #428bca;
+
+// --- 表单设置 ---
+// COMMON
+@form-color: @body-color;
+@form-background-color: #F5F5F5;
+@form-border: solid 1px #d6d6d6;
+//SELECT
+@form-select-color: @form-color;
+@form-select-background-color: @form-background-color;
+@form-select-border-color: #c0c0c0 #ededed #ededed #c0c0c0;
+//文本(text/password/textarea)
+@form-text-border: @form-border;
+@form-text-color: @form-color;
+@form-text-background-color: @form-background-color;
+@form-text-focus-border: solid 1px #66afe9;
+@form-text-focus-border-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+@form-text-focus-color: @form-color;
+@form-text-focus-background-color: @form-background-color;
+//按钮(button/submit/reset)
+@form-btn-border: @form-border;
+@form-btn-color: @form-color;
+@form-btn-background-color: #F5F5F5;
+@form-btn-hover-border: solid 1px #698CC3;
+@from-btn-hover-color: white;
+@form-btn-hover-background-color: #698CC3;
+
+// --- 表格设置 ---
+// tableborder
+@table-color: @body-color;
+@table-background-color: @container-background-color;
+@table-border-color: #CBDAE5;
+@table-field-background-color: #DBEAF5;
+@table-header-color: white;
+@table-header-background-color: #698CC3;
+@table-hover-background-color: #DBEAF5;
+
+// --- nav 标签设置 ---
+@nav-border: solid 2px #ccc;
+@nav-a-color: @a-color;
+@nav-a-background-color: @container-background-color;
+@nav-a-hover-color: @a-color;
+@nav-a-hover-background-color: #DBEAF5;
+@nav-a-active-color: white;
+@nav-a-active-background-color: #698CC3;
+
+// --- hr 水平线设置 ---
+@hr-border: solid 1px #ccc;
+
+*{margin: 0px auto; padding: 0px;}
+html{_overflow-y:scroll;}
+body{font-family: "Microsoft YaHei",Tahoma; font-size: 12px; color: @body-color; background-color: @body-background-color;}
+img{border: 0px;}
+ul{list-style-type: none;}
+optgroup{font-style:normal;}
+
+// a
+a{
+	text-decoration: none; color: @a-color; outline: none;
+	&:hover{text-decoration: underline; color: @a-hover-color;}
+}
+
+// form
+input,select,textarea{
+	font-family: Tahoma; font-size: 12px; padding: 2px;
+}
+select{
+	border: 1px solid; border-color: @form-select-border-color; padding: 0px; background-color: @form-select-background-color; color: @form-select-color;
+}
+input[type=text], input[type=password], textarea{
+	border: @form-text-border; background-color: @form-text-background-color; color: @form-text-color;
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+	border: @form-text-focus-border; box-shadow: @form-text-focus-border-shadow; color: @form-text-focus-color; background-color: @form-text-focus-background-color; outline: 0 none;
+}
+input[type=button], input[type=submit], input[type=reset]{
+	padding: 5px 8px; border: @form-btn-border; background-color: @form-btn-background-color; color:@form-btn-color;
+}
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
+	border: @form-btn-hover-border; background-color: @form-btn-hover-background-color; color: @from-btn-hover-color;
+}
+
+//container
+.container{
+    width: 800px; margin: 15px auto; padding: 15px; background-color: #f5f5f5;
+}
+
+.header{
+    padding: 10px; margin-bottom: 20px; font-size:18px; font-weight:bolder; color:#666666; border-bottom: solid 1px #ccc;
+}
+
+.footer{
+    text-align: center; margin-top: 20px; padding: 10px; border-top: solid 1px #ccc;
+}
+
+.step_title{
+    text-align: center; font-weight:bold; color:#666666; margin-bottom: 10px; font-size: 14px;
+}
+
+// STEP: 1
+.license_content{
+    background:#E3E3EA; margin:0 auto; padding:20px; line-height: 1.8;
+}
+
+// table
+.tableborder{
+	border-collapse: separate; border-spacing: 1px; background-color: @table-border-color; border: solid 1px @table-border-color;
+	tr{
+		background: @table-background-color;
+		&.field{background-color:@table-field-background-color; font-weight: bold;}
+		&:hover{background-color: @table-hover-background-color;}
+	}
+	th{
+		padding: 5px; line-height: 18px;  font-size: 12px; color: @table-color;
+		&.header{color: @table-header-color; font-weight: bold; background-color: @table-header-background-color; padding: 5px; text-align: center}
+	}
+	td{
+		padding: 5px; line-height: 18px;  font-size: 12px; color: @table-color;
+		&.header{color: @table-header-color; font-weight: bold; background-color: @table-header-background-color; padding: 5px;}
+		&.notice{padding: 20px; line-height: 2em;}
+	}
+}
+
+// nav
+ul{
+	&.nav{
+		display: block; width: 98%; margin: 0 auto; height: 25px; line-height: 25px; padding: 5px 0px; border-bottom: @nav-border;
+		li{
+			height: 25px; line-height: 25px; float: left; margin-left: 10px;
+			a{
+				display: block; color: @nav-a-color; background-color: @nav-a-background-color; padding: 0 5px; border-radius: 5px;
+				&:hover{color: @nav-a-hover-color; background-color: @nav-a-hover-background-color; text-decoration: none;}
+				&.active{background-color: @nav-a-active-background-color; text-decoration: none; color: @nav-a-active-color; font-weight: bold;}
+			}
+		}
+	}
+}
+
+// hr
+hr.line{width: 70%; height: 1px; border: none; border-top: @hr-border}
+
+// /////////////////// FUNCTION ///////////////////
+// clear
+.f-cl{clear: left;}
+.f-cr{clear: right;}
+.f-cb{clear: both; height: 0px; width: 0px; font-size: 1px;}
+// float
+.f-fl{float: left;}
+.f-fr{float: right;}
+// display
+.f-dn{display:none;}
+.f-db{display:block;} 
+// overflow
+.f-oh{overflow:hidden;} 
+// font
+.f-ff0{font-family:arial,\5b8b\4f53;}
+.f-ff1{font-family:"Microsoft YaHei",arial;} 
+// font-size
+.f-fs12{font-size:12px;}
+.f-fs14{font-size:14px;} 
+// font-weight
+.f-fwn{font-weight:normal;}
+.f-fwb{font-weight:bold;} 
+// text-align
+.f-tal{text-align:left;}
+.f-tac{text-align:center;}
+.f-tar{text-align:right;} 
+// vertical-align
+.f-vat{vertical-align:top;}
+.f-vam{vertical-align:middle;}
+.f-vab{vertical-align:bottom;}
+// line-height
+.f-lhn{line-height:normal;} 
+.f-lh2{line-height: 2em;}
+// margin
+.f-m0a{margin: 0px auto;}
+.f-mt0{margin-top: 0px;}
+.f-mt2{margin-top: 2px;}
+.f-mt5{margin-top: 5px;}
+.f-mt10{margin-top: 10px;}
+.f-mt15{margin-top: 15px;}
+.f-mt20{margin-top: 20px;}
+.f-mb5{margin-bottom: 5px;}
+.f-mb8{margin-bottom: 8px;}
+.f-mb10{margin-bottom: 10px;}
+// padding
+.f-p5{padding: 5px;}
+.f-p10{padding: 10px;}
+.f-p15{padding: 15px;}
+// width
+.f-w100{width: 100%;}
+.f-w98{width: 98%;}
+.f-w50{width: 50%;}
+.f-w40{width: 40%;}
+.f-w30{width: 30%;}
+.f-w25{width: 25%;}
+.f-w173px{width: 173px;}
+// line-height
+.f-lh2{line-height: 2;}
+.f-lh1{line-height: 1;}
+// color
+.f-red{color: red;}
+.f-green{color: green;}

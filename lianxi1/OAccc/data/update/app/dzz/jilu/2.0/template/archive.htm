@@ -1,0 +1,102 @@
+<!--{template common/header_simple_start}-->
+<link rel="stylesheet" href="static/css/checkbox.css" media="all">
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="{MOD_PATH}/scripts/main.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<style>
+.post-actions {
+	color: #bbbbbb;
+	line-height: 1;
+	 margin: 0;
+	right: 10px;
+}
+.post .url .title{
+  max-width: 210px;
+}
+</style>
+<!--{template common/header_simple_end}-->
+<script type="text/javascript">
+var baseurl='{MOD_URL}';
+var ajaxurl='{MOD_URL}&op=archive';
+var modpath='{MOD_PATH}';
+var method='archive';
+</script>
+<!--{template common/commer_header}-->
+
+<div class="bs-container clearfix">
+    <div class="bs-left-container  clearfix">
+        <!--{template left}-->
+    </div>
+    <div class="left-drager">
+    </div>
+    <div class="bs-main-container">
+      <div class="main-content container clearfix" id="itemContainer" style="padding:0;height: 100%;">
+        <!--{template archive_item}-->
+      </div>
+    </div>
+</div>
+<script>
+
+</script>
+<div class="popbox clearfix" style="display: none;">
+    <div class="popbox-pointer">
+        <div class="gb_I" style="display: block;"></div>
+        <div class="gb_H" style="display: block;"></div>
+    </div>
+    <div class="popbox-container">
+        <div class="loadding"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--{if $ismobile}-->
+  var tap='touchend';
+<!--{else}-->
+  var tap='click';
+<!--{/if}-->
+jQuery(".bs-main-container").scroll(function(e) {//滚动加载
+    var main_container = jQuery(".bs-main-container").height();
+    var container_h = jQuery(".container").height();
+    var scroll_top = jQuery(".bs-main-container").scrollTop();
+    if(scroll_top+main_container>=container_h-20){
+         jQuery('#loadmore').trigger(tap);
+    }
+});
+gridview9_init(jQuery('.gridview9'));
+setSearchValue();
+jQuery(document).ready(function(e) {
+    jQuery('.left-drager').leftDrager_layout(function(){
+        jQuery(".empty_alert").css("display", "flex").show();
+    });
+    jQuery('.description .desc').each(function () {
+        if(jQuery(this).text()=='') {
+           jQuery(this).parent().prev().css('top','14px');
+        }else {
+            jQuery(this).parent().prev().css('top','0px');
+        }
+    });
+    jQuery('.js-popbox-item').click(function () {
+        showWindow(jQuery(this).parents('.post1').attr('jid'),jQuery(this).data('href'),'get',0);
+    })
+    jQuery('.js-popbox').each(function(){
+        jQuery(this).popbox();
+    });
+    jQuery(document).on('mouseover','.item',function(){
+		jQuery(this).addClass('hover');
+	});
+	 jQuery(document).on('mouseout','.item',function(){
+		jQuery(this).removeClass('hover');
+	});
+	<!--{if $ismobile}-->
+	 jQuery(document).on('click','.post,.post .url',function(){
+		//jQuery(this).find('.url').trigger('click');
+		window.open(jQuery(this).closest('.post').data('url'));
+		return false;
+	});
+	<!--{/if}-->
+});
+
+
+</script> 
+<!--{template common/footer_simple}-->
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+

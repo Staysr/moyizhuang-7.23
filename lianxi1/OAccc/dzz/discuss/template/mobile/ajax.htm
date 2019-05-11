@@ -1,0 +1,16 @@
+<!--{if $_GET['do'] == 'comment'}-->
+	<!--{if $position == 'getcmt'}-->
+        <!--{loop $cmt $val}-->
+    		    <div class="comment-item comment-item1" id="cmt-item-{$val[cid]}">
+                    <div class="cmt-top">
+                        <a href="user.php?uid={$val[uid]}" class="board-a detail-a">{$val[author]}</a>
+                        <a href="javascript:;" class="cmt-del" onclick="delcmt('{$val[cid]}')"><i class="dzz dzz-delete"></i></a>
+                        <div class="author-date">{eval echo dgmdate($val[time],'u')}</div>
+                    </div>
+                    <div class="cmt-info">
+                        {$val[content]}
+                    </div>
+                </div>
+        <!--{/loop}-->
+	<!--{/if}-->
+<!--{/if}-->

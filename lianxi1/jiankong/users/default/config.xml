@@ -1,0 +1,39 @@
+<keepalive>
+	<cmd name="LIST" />
+	<cmd name="NOOP" />
+	<cmd name="PWD" />
+	<cmd name="REST 0" />
+</keepalive>
+<transfer>
+	<ascii>
+		<file mask="*.asc" />
+		<file mask="*.bat" />
+		<file mask="*.c" />
+		<file mask="*.cpp" />
+		<file mask="*.cs" />
+		<file mask="*.dhtm*" />
+		<file mask="*.diz" />
+		<file mask="*.dpr" />
+		<file mask="*.h" />
+		<file mask="*.hpp" />
+		<file mask="*.htm*" />
+		<file mask="*.ini" />
+		<file mask="*.jav*" />
+		<file mask="*.log" />
+		<file mask="*.m3u" />
+		<file mask="*.nfo" />
+		<file mask="*.pas" />
+		<file mask="*.php" />
+		<file mask="*.sfv" />
+		<file mask="*.sql" />
+		<file mask="*.txt" />
+		<file mask="*.xml" />
+		<file mask="makefile" />
+	</ascii>
+	<priority>
+		<file mask="*.diz" />
+		<file mask="*.m3u" />
+		<file mask="*.nfo" />
+		<file mask="*.sfv" />
+	</priority>
+</transfer>

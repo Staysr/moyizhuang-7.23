@@ -1,0 +1,32 @@
+[ 2018-12-03T18:24:16+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001125s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002220s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002264s ]
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0074s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0068s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0076s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0067s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0077s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0075s ]
+ERR: 非法操作:index
+
+[ 2018-12-03T18:24:24+08:00 ] 127.0.0.1 HTTP://www.zs.com/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000758s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001982s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002035s ]
+SQL: SHOW COLUMNS FROM `zs_ad` [ RunTime:0.0094s ]
+SQL: SHOW COLUMNS FROM `zs_album` [ RunTime:0.0107s ]
+SQL: SHOW COLUMNS FROM `zs_home_menus` [ RunTime:0.0066s ]
+SQL: SHOW COLUMNS FROM `zs_album_music` [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `zs_atype` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `zs_favor` [ RunTime:0.0055s ]
+SQL: SHOW COLUMNS FROM `zs_order` [ RunTime:0.0051s ]
+ERR: 非法操作:index
+

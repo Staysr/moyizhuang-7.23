@@ -1,0 +1,232 @@
+.vip_info {
+    margin: 10px 10px 60px 10px;
+    width: auto;
+    position:relative;
+}
+.division_title {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: #fff none repeat scroll 0 0;
+    border-image: none;
+    color: #068ee6;
+    font-size: 25px;
+    height: 52px;
+    line-height: 52px;
+    position: relative;
+    width: 100%;
+    text-indent: 20px;
+    border-color: #e8e8e9;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+}
+.division_div {
+    background: #FFF;
+    border: 1px solid #e8e8e9;
+    width: 100%;
+}
+.vip_info table {
+    margin: 34px auto;
+}
+.vip_info table {
+    border: 1px solid #eee;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 0;
+}
+.vip_info tr {
+    height: 65px;
+}
+.vip_info td {
+    border: 1px solid #eee;
+    text-align: center;
+    border-color: #DEE6EE;
+    vertical-align: middle;
+}
+.vip_info .error {
+    width: 30px;
+    height: 20px;
+    background: url(../images/icons.png) no-repeat 0 -28px;
+    margin: 0 auto;
+}
+.vip_info .iconyes {
+    width: 30px;
+    height: 25px;
+    background: url(../images/icons.png) no-repeat;
+    margin: 0 auto;
+}
+.vip_info tbody{
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-align: left;
+    font-family: "Microsoft YaHei";
+    margin: 0;
+    padding: 0;
+    width:100%;
+}
+.vip_info tbody .tr_one {
+    height: 80px;
+}
+.tr_one {
+    background-color: #fafafa;
+    color: #666;
+    font-size: 20px;
+}
+.tr_one td {
+    height: 100px;
+}
+.tr_one td {
+    font-weight: 700;
+}
+.show-div {
+    text-align: center;
+    font-size: 24px;
+}
+.showy2 .show-into, .showy1 .show-into {
+    margin: 20px auto 20px;
+    width: 140px;
+    height: 30px;
+    border-radius: 25px;
+    display: block;
+    background: #FFF050;
+    line-height: 30px;
+    text-align: center;
+    font-size: 15px;
+    color: #986B0D;
+    cursor: pointer;
+    text-decoration: none;
+}
+.green {
+    color: #44BC7B;
+}
+.showy2 {
+    background: #F0FFF7;
+}
+.showy1 {
+    background: #FFEBEB;
+}
+.red {
+    color: red;
+}
+.bgcolor_white {
+    background-color: #fff;
+    font-size: 16px;
+}
+.bigfont{
+    font-size: 30px;
+}
+.vip{
+    width: 40px;
+    height: 20px;
+    margin: 0 auto;
+}
+/* 其他充值方式公共样式 cwq 16/2/17  */
+.conTable {width:100%;}
+.conTable .lftitle {font-weight:normal;width:30%;text-align:right;font-size:14px;color:#666666;display:inline-block; float:left}
+.conTable .rtcont {width:70%;text-align: left;font-size:14px;display:inline-block; float:left}
+.conTable .rtcont b {color: #ef4b01;font-size: 16px;}
+.conTable .payway {width:100%;text-align: center;display:inline-block;}
+
+.conTable .btnBox {height:65px;padding-bottom: 50px;}
+.conTable .mutilLine {line-height:normal;padding:0px;}
+.conTable .mutilLine .ps {padding-top:15px;display: inline-block;}
+.conTable .ps {line-height:20px;}
+.conTable .ps em {color: #fe791f;padding:0 4px;}
+.conTable .idCode span {font-size:12px;}
+.conTable .idCode img {vertical-align: middle}
+.conTable .bank div.qdRadio i {margin-right:5px;}
+.conTable .bank div.qdRadio .selArr {margin-right: 0;}
+.conTable .bank div.qdRadioSel {border-color:#fff!important;}
+.conTable .customMoney {width:60px;}
+.conTable span { display:inline-block;vertical-align: middle; padding:0 2px; padding-left: 8px;}
+.conTable span a {cursor:pointer; color:#4c7cc6;}
+
+
+/* 新加的和修改的 */
+.erma img{
+  width: 200px;
+    height: 200px;  
+}
+.div_erma{
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+.main .div_erma:hover .payinfo{
+   opacity:1;
+}
+.main .div_erma:hover{box-shadow: 0px 0px 10px #d0dae2;}
+.paynext{
+    background-color: #4F75C0;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    line-height: 39px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    width: 117px;
+    height: 40px;
+    background: url(../images/btn_bg.jpg) no-repeat;
+    text-align: center;
+}
+.span_next{
+    margin-right:15px
+}
+.span_blue{
+    font-size: 16px;
+    color: #00f;
+}
+.span_red{
+    font-size: 16px;
+    color: #f00;
+}
+.span_hui{
+    font-size: 16px;
+    color: #888;
+}
+.ht1{overflow: hidden; text-indent: -999em;}
+.ofh{white-space:nowrap;word-wrap:normal;word-break:normal;text-overflow:ellipsis;overflow:hidden}
+.backToTop{width:18px;line-height:1.2;padding:5px 0;background-color:#000;color:#fff;font-size:12px;text-align:center;position:fixed;margin-left:960px;_margin-left:200px;bottom:100px;cursor:pointer;opacity:.6;filter:Alpha(opacity=60);z-index:9;_position:absolute;_bottom:"auto";}
+.none {display: none}
+.layout_top{
+    overflow:hidden;
+}
+.main, .main input,.main select,.main textarea {
+    font: 12px "Microsoft yahei",Arial,Helvetica,sans-serif,"宋体";
+    color: #888;
+}
+.main button{
+    border:0px;
+    font: 16px "Microsoft yahei",Arial,Helvetica,sans-serif,"宋体";
+}
+.main a:hover {
+    text-decoration: none;
+}
+.payinfo{
+    display:block;
+    position: absolute;
+    top: 220px;
+    right: 80px;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    -webkit-transition: .3s;
+    transition: .3s;
+    opacity:0;
+}
+.payinfo img{
+    width:auto;
+    height:480px;
+}
+.ext-input{
+    float: right;
+    margin: 20px 20px auto;
+    }
+.white{
+    margin:5px;
+}

@@ -1,0 +1,37 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/advices/advices",
+    "pages/user/user",
+    "pages/login/index",
+    "pages/regist/index",
+    "pages/main/index",
+    "pages/radio/index",
+    "pages/huiyuan/index",
+    "pages/findpassword/index",
+    "pages/personal/index",
+    "pages/useryijiedan/index",
+    "pages/jifen/index",
+    "pages/shangcehng/index",
+    "pages/kefu/index",
+    "pages/shezi/index",
+    "pages/xuqiou/index",
+    "pages/car/index",
+    "pages/xiaoxi/index",
+    "pages/guanli/index",
+    "pages/userdingdan/index",
+    "pages/carxiangqing/index",
+    "pages/carjieshou/index",
+    "pages/carquanbu/index",
+    "pages/carwanjie/index",
+    "pages/userwanjie/index",
+    "pages/smsCode/index"
+      ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "rgb(255,255,255)",
+    "navigationBarTitleText": "同城货滴",
+    "navigationBarTextStyle":"black"
+  }
+}

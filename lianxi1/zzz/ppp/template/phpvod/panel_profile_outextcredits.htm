@@ -1,0 +1,77 @@
+<script type="text/javascript">
+var jsarray = "$jsarray";
+function changecredit(flag)
+{
+	if(flag=='totype')
+	{
+		document.getElementById('srctype').options.length = 0;
+		var totype = document.getElementById('totype').value;
+		var s = totype.split("|");
+
+		a1 = jsarray.split(";");
+		for (x in a1)
+		{
+			a2 = a1[x].split(",");
+			if(a2[0]==s[0] && a2[1]==s[1])
+			{
+				var opt = document.createElement("option");
+				opt.appendChild(document.createTextNode(a2[3]));  //源积分名称
+				opt.setAttribute("value",a2[2]+'|'+a2[4]); //源积分ID|兑换比例
+				document.getElementById('srctype').appendChild(opt);
+			}
+		}
+	}
+	else if(flag=='srctype'){}
+
+	var n1 = document.getElementById('tonum').value;
+	n1 = n1.replace(/\D/g,'');
+	document.getElementById('tonum').value = n1;
+
+	var t1 = document.getElementById('srctype').value;
+	var tmp = t1.split("|");
+	var ratio = tmp[1];
+	var n2 = Math.ceil(n1*ratio);
+	document.getElementById('srcnum').value=n2;
+}
+
+$(document).ready(function(){
+	changecredit('totype');
+})
+</script>
+
+<form action="profile.php?" method="post">
+<input type="hidden" name="action" value="outextcredits" />
+<input type="hidden" value="2" name="step" />
+<table class="table">
+	<thead>
+		<tr><td colspan="2" class="f-fs18"><strong>积分兑换</strong></td></tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td class="f-w40">兑换</td>
+		<td>
+			<input type="text" class="u-text" name="tonum" id="tonum" style="width: 80px;" onkeyup="changecredit('tonum');" />
+			<select name="totype" id="totype" onchange="changecredit('totype')">
+				<!--{loop $tocreditdb $value}-->
+				<option value="{$value[appiddesc]}|{$value[creditdesc]}">$value[title]</option>
+				<!--{/loop}-->
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>所需</td>
+		<td>
+			<input type="text" class="u-text" name="srcnum" id="srcnum" style="width: 80px;" readonly />
+			<select name="srctype" id="srctype" onChange="changecredit('srctype')"></select>
+		</td>
+	</tr>
+	<tr>
+		<td>密码</td>
+		<td><input type="password" class="u-text" name="password" /></td>
+	</tr>
+	</tbody>
+	<tfoot>
+		<tr><td colspan="2" class="f-tac"><input type="submit" class="u-btn f-mt10" value="兑 换" /></td></tr>
+	</tfoot>
+</table>
+</form>

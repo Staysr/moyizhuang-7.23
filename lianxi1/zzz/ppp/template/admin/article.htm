@@ -1,0 +1,274 @@
+<!--<?php
+include_once gettpl('top');
+if(empty($action)){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename&action=artclass">栏目列表</a></li>
+	<li><a href="$basename" class="active">文档管理</a></li>
+	<li><a href="$basename&action=add">添加/编辑文档</a></li>
+</ul>
+<br />
+
+<form action="$basename&" method="post">
+	<input type="hidden" name="action" value="search">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">搜索文档</td>
+		</tr>
+		<tr>
+			<td width="40%">栏目</td>
+			<td>
+				<select name="classid">
+					<option value="all">不限制</option>
+					$artclass_opt
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td width="40%">用户名包含<br />(可使用通配符 "*")</td>
+			<td><input type="text" size="20" maxlength="14" name="author"> <label><input name="author_s" type="checkbox" value="1" checked="checked"> 精确匹配</label></td>
+		</tr>
+		<tr>
+			<td>标题<br />(可使用通配符 "*")</td>
+			<td><input type="text" size="20" name="subject"></td>
+		</tr>
+		<tr>
+			<td>发布时间大于</td>
+			<td>
+				<select name="postdate">
+					<option value="all">不限制</option>
+					<option value="86400">一天</option>
+					<option value="172800">二天</option>
+					<option value="604800">一星期</option>
+					<option value="2592000">一个月</option>
+					<option value="7776000">三个月</option>
+					<option value="15552000">六个月</option>
+					<option value="31536000">一年</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>排序方式</td>
+			<td>
+				<select name="orderway">
+					<option value="aid">文档ID</option>
+					<option value="hits">点击数</option>
+					<option value="timestamp">发布时间</option>
+				</select>
+				<label><input type="radio" size="5" name="asc" value="" checked="checked">升序</label>
+				<label><input type="radio" size="5" name="asc" value="DESC">降序</label>
+			</td>
+		</tr>
+		<tr>
+			<td>每页显示行数</td>
+			<td><input type="text" size="5" name="lines" value="100"></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<br />
+<!--
+EOT;
+}elseif($action=='search'){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename&action=artclass">栏目列表</a></li>
+	<li><a href="$basename" class="active">文档管理</a></li>
+	<li><a href="$basename&action=add">添加/编辑文档</a></li>
+</ul>
+<br />
+
+<form method="post" action="$basename">
+	<input name="action" type="hidden" value="del">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="9">文档列表</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'selid');"></td>
+			<td width="5%">ID</td>
+			<td width="10%">栏目</td>
+			<td width="10%">发布人</td>
+			<td>标题</td>
+			<td width="15%">发表时间</td>
+			<td width="8%">点击数</td>
+			<td width="8%">显示顺序</td>
+			<td width="5%">操作</td>
+		</tr>
+<!--
+EOT;
+foreach($articledb as $key => $value){
+$artclass_caption = $_artclass[$value[classid]];
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="selid[]" value="$value[aid]"></td>
+			<td>$value[aid]</td>
+			<td>$artclass_caption</td>
+			<td>$value[author]</td>
+			<td><a href="$basename&action=edit&aid=$value[aid]" title="编辑文档">$value[subject]</a></td>
+			<td>$value[timestamp]</td>
+			<td>$value[hits]</td>
+			<td>$value[vieworder]</td>
+			<td><a href="$basename&action=edit&aid=$value[aid]" title="编辑文档">编辑</a></td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<div class="pages">$pages</div>
+	<br />
+	<center><input type="submit" value="删 除"></center>
+</form>
+<!--
+EOT;
+}elseif($action=='add' || $action=='edit'){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename&action=artclass">栏目列表</a></li>
+	<li><a href="$basename">文档管理</a></li>
+	<li><a href="$basename&action=add" class="active">添加/编辑文档</a></li>
+</ul>
+<br />
+
+<form action="$basename" method="post">
+	<input type="hidden" value="$aid" name="aid">
+	<input type="hidden" value="2" name="step">
+	<input name="action" type="hidden" value="$action">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">添加/编辑文档</td>
+		</tr>
+		<tr>
+			<td width="40%">栏目</td>
+			<td>
+				<select name="classid">
+<!--
+EOT;
+foreach($_artclass as $cid => $caption){
+print <<<EOT
+-->
+					<option value="$cid" ${'classid_'.$cid}>$caption</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>显示顺序(只能为数字,数字越大越靠前)</td>
+			<td><input type="text" size="4" name="vieworder" value="$vieworder"></td>
+		</tr>
+		<tr>
+			<td>文档标题</td>
+			<td><input type="text" size="45" name="subject" value="$subject"></td>
+		</tr>
+		<tr>
+			<td>文档内容:</td>
+			<td>
+<!--
+EOT;
+$content = create_kindeditor('article','content','600px','200px', $content);
+print <<<EOT
+-->
+				$content
+			</td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" name="add" value="提 交"></center>
+</form>
+<!--
+EOT;
+}elseif($action=='artclass'){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename&action=artclass" class="active">栏目列表</a></li>
+	<li><a href="$basename">文档管理</a></li>
+	<li><a href="$basename&action=add">添加/编辑文档</a></li>
+</ul>
+<br />
+
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">
+			添加栏目
+		</td>
+	</tr>
+	<tr>
+		<td class="notice">
+			<form action="$basename" method="POST">
+				<input type="hidden" name="action" value="artclass_add"> 栏目名称：
+				<input type="text" name="caption" />
+				<input type="submit" value="提 交">
+			</form>
+		</td>
+	</tr>
+</table>
+<br />
+
+<form method="post" action="$basename">
+	<input name="action" type="hidden" value="artclass_edit">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="4">
+				栏目列表
+			</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%">
+				ID
+			</td>
+			<td width="10%">
+				顺序
+			</td>
+			<td>
+				栏目名称
+			</td>
+			<td width="5%">
+				删除
+			</td>
+		</tr>
+<!--
+EOT;
+foreach($artclassdb as $key=> $value){
+$key=$value[cid];
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td>
+				$key
+			</td>
+			<td>
+				<input type="text" name="vieworder[$key]" value="$value[vieworder]" size="5">
+			</td>
+			<td>
+				<input type="text" name="caption[$key]" size="30" value="$value[caption]">
+			</td>
+			<td>
+				<a href="$basename&action=artclass_del&cid=$value[cid]">删除</a>
+			</td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<br />
+	<center>
+		<input type="submit" value="提 交">
+	</center>
+</form>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>
+-->

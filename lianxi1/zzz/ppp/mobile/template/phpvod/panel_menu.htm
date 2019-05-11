@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">PHPVOD</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{PHPVOD_MOBILE_URL}">PHPVOD</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<!--{loop:class:$c cid=0}-->
+				<li><a href="class.php?cid=$c[cid]">$c[caption]</a></li>
+				<!--{/loop:class}-->
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<!--{if $groupid=='guest'}-->
+				<li><a href="login.php">登录</a></li>
+				<li><a href="register.php">注册</a></li>
+				<!--{else}-->
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">$username <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="login.php?action=quit">退出</a></li>
+					</ul>
+				</li>
+				<!--{/if}-->
+				<li class="divider"></li>
+				<li><a href="search.php">搜索</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>

@@ -1,0 +1,172 @@
+<h1>这是一个没有用的页面？？</h1>
+<!--{template common/header_simple_start}-->
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/discuss.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<style>
+html,body{
+	overflow:hidden;
+}
+.bs-main-container{
+	margin-left:0;
+	overflow:auto;
+}
+</style>
+<!--{template common/header_simple_end}-->
+<nav class="navbar navbar-default bs-navbar-default navbar-fixed-top" role="navigation" style="margin:0">
+      <!--{template discuss_top}--> 
+</nav>
+
+<div class="bs-container clearfix">
+<div class="bs-main-container">
+    <div class="main-content clearfix" style="padding:15px;">
+    	<form id="discussform" name="discussform" class="form-horizontal-left form-horizontal" action="{BASESCRIPT}?mod=discuss&op=create" method="post" onsubmit="return validate(this);" >
+            <input type="hidden" name="discusssubmit" value="true" />
+            <input type="hidden" name="fid" value="$fid" />
+            <input type="hidden" name="refer" value="$refer" />
+            <input type="hidden" name="formhash" value="{FORMHASH}" />
+              <div class="form-group">
+                <label class="control-label " for="name">讨论版名称：</label>
+                <input type="text" class="form-control" id="name"  name="name" autocomplete="off" value="$discuss[name]" onkeyup="jQuery('.discuss-item-title').html(this.value);" maxlength="80">
+              </div>
+              <div class="form-group">
+                <label class="control-label ">讨论版图标：</label>
+                <input type="hidden"  id="aid"  name="aid" autocomplete="off" value="$discuss[aid]">
+                <div class="controls cover-op">
+                	<a class="cover-op-prev" href="javascript:;" onclick="moveCoverBack('prev')"></a>
+                    <a class="cover-op-next" href="javascript:;" onclick="moveCoverBack('next')"></a>
+                    <div class="discuss-create-icons" style="margin:0;width:222px;height:222px;">
+                        <div  style="overflow:hidden;width:222px;height:222px;position:relative">
+                        	{eval $width=ceil(count($covers)/3)*64;}
+                            <ul id="cover_ul" class="cover-ul list-unstyled clearfix" style="left:{$left}px;width:{$width}px;height:222px">
+                        		<!--{loop $covers $key $value}-->
+                                <li id="cover_ul_{$key}" class="pull-left cover-item <!--{if $key==0}-->selected<!--{/if}-->"  data-aid="$value[aid]" > 
+                                    <img  src="$value[img]" >
+                                    <div class="cover-item-checked"></div>
+                                </li>
+                               <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+                   <div style="padding:10px;"><button class="btn btn-primary needindzz" onclick="uploadfrom_desktop();return false;">从桌面选择图片</button></div>
+                </div>
+                
+              </div>
+              
+              <div class="form-group">
+                <label class="control-label " for="name">权限设置：</label>
+                <div  class="controls"> 
+                    <label class="radio radio-inline"><input type="radio" name="perm" value="0" checked>公开 </label>
+                    <label class="radio radio-inline"><input type="radio" name="perm" value="1" >隐私</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label " for="name">讨论版规则：</label>
+                <textarea type="textarea" name="rules" class="form-control" rows="5"></textarea>
+                 <a href="javascript:;" class="help-block" onclick="jQuery('#ubb_detail').toggle()">支持UBB代码</span></a>
+                <ul id="ubb_detail" class="help-block" style="display:none">
+                    <li>[b]粗体文字 Abc[/b]</li>
+                    <li>[i]斜体文字 Abc[/i]</li>
+                    <li>[u]下划线文字 Abc[/u]</li>
+                    <li>[color=red]红颜色[/color]</li>
+                    <li>[size=3]文字大小为 3[/size]</li>
+                    <li>[font=仿宋]字体为仿宋[/font]</li>
+                    <li>[align=Center]内容居中[/align]</li>
+                    <li>[url]http://www.dzzoffice.com[/url]<br />[url=http://www.dzzoffice.com]dzzoffice[/url]</li>
+                    <li>[img]http://www.dzzoffice.com/images/logo.png[/img]<br />
+                    	[img=宽度,高度]http://www.dzzoffice.com/images/logo.png[/img]
+                    </li>
+                </ul>
+              </div>
+              
+              <div class="form-group">
+                <label class="control-label" ></label>
+                <div class="controls">
+                  <input id="editbutton" class="btn btn-primary btn-width" name="editbutton" value="创  建"  type="submit">
+                </div>
+              </div>
+        </form>
+       
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+jQuery('.left-drager').leftDrager_layout(); 
+function validate(form){
+	if(form.name.value==''){
+		form.name.focus();
+		return false;
+	}
+	return true;
+}
+var movingTimer=false;
+function moveCoverBack(type){
+	if(movingTimer) jQuery('#cover_ul').stop(true,true);
+	movingTimer=true;
+	var width=jQuery('#cover_ul li').outerWidth(true)*3;
+	var maxwidth=jQuery('#cover_ul').width();
+	var currentLeft=parseInt(jQuery('#cover_ul').css('left'));
+	switch(type){
+		case 'next':
+			var newleft=Math.abs(currentLeft-width)>=maxwidth?0:currentLeft-width;
+			break;
+		case 'prev':
+			var newleft=(currentLeft+width)<=0?(currentLeft+width):(-maxwidth+width);
+			break;
+	}
+	jQuery('#cover_ul').animate({'left':newleft},500,function(){movingTimer=false;});
+}
+function uploadfrom_desktop(){
+	top.OpenFile('open','打开文件',{image:['图像(*.jpg,*.jpeg,*.png,*.gif)',['IMAGE','JPG','JPEG','PNG','GIF'],'']},{bz:'',multiple:false},function(data){//只打开本地盘
+		var datas=[];
+		if(data.params.multiple){
+			datas=data.icodata
+		}else{
+			datas=[data.icodata];
+		}
+		var html='';
+		var width=jQuery('#cover_ul li').outerWidth(true);
+		var maxwidth=Math.ceil((jQuery('#cover_ul li').length+1)/3)*width;
+		var index1=jQuery('#cover_ul li').length+1;
+		var aid=0;
+		for(var i in datas){
+			var img=DZZSCRIPT+'?mod=io&op=thumbnail&width=65&height=65&original=1&path='+(datas[i].apath?datas[i].apath:datas[i].dpath);
+			    html+='<li id="cover_ul_'+index1+'" class="pull-left cover-item"  data-aid="'+datas[i].aid+'" >';
+				html+='      <img src="'+img+'" width="64" height="64"><div class="cover-item-checked"></div>';
+				html+='</li>';
+				aid=datas[i].aid;
+		}
+		if(html!=''){
+			var index=Math.ceil((jQuery('#cover_ul li').length+1)/3);
+			jQuery('#cover_ul li').removeClass('selected');
+			jQuery('#cover_ul').css('width',maxwidth);
+			jQuery('#cover_ul').css('left',0);
+			if(jQuery('#cover_ul li').length>0){
+				jQuery('#cover_ul li:first').before(html);
+			}else{
+				jQuery(html).appendTo('#cover_ul');
+			}
+			jQuery('#cover_ul_'+index1).addClass('selected')
+			jQuery('#aid').val(aid);
+		}
+	});
+}
+jQuery(document).ready(function(e) {
+   try{ if(!top._config) jQuery('.needindzz').hide();}catch(e){}
+	jQuery(document).on('mouseenter','.cover-item',function(){
+		jQuery(this).addClass('hover');
+	})
+	jQuery(document).on('mouseleave','.cover-item',function(){
+		jQuery(this).removeClass('hover');
+	})
+	jQuery(document).on('click','.cover-item',function(){
+		jQuery('.cover-item').removeClass('selected');
+		jQuery(this).addClass('selected');
+		jQuery('#aid').val(jQuery(this).data('aid'));
+	});
+  
+});
+</script>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+<!--@authorcode  codestrings-->
+<!--{template common/footer_simple}--> 

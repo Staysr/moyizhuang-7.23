@@ -1,0 +1,106 @@
+<style>
+    body {
+        background-color: #eaeaea;
+    }
+    .discuss-td-info {
+        max-width:300px;
+    }
+    .discuss-td-info p{
+        margin-bottom:5px;
+    }
+    .discuss-td-info span{
+        padding:0 5px;
+        display:inline-block;
+    }
+</style>
+<form id="manageform" name="manageform" class="form-horizontal" action="{BASESCRIPT}?mod=discuss&op=setting&do=manage" method="post" onsubmit="return validate(this);">
+<input type="hidden" name="settingsubmit" value="true" />
+<input type="hidden" name="refer" value="{eval echo urldecode($refer);}" />
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+<div class="manage-wrap">
+    <div class="manage-top clearfix">
+        <div class="top-left">
+            <div class="all-choose all-choose1">
+                <div class="checkbox-custom checkbox-warning">
+                    <input type="checkbox" name="chkall" id="chkall"  onclick="checkAll('prefix', this.form, 'del')" onchange="showNum()">
+                    <label>{lang select_all}</label>
+                </div>
+            </div>
+            <span class="choose-info">{lang seleted} <span>0</span> {lang page_p}</span>
+        </div>
+        <div class="top-right">
+            <button class="btn deleteBtn" type="submit"><i class="dzz dzz-delete"></i> {lang delete}</button>
+            <div class="btn-group">
+                <button type="button" class="btn drop-btn" data-toggle="dropdown" style="font-size: 16px;color: #646464;font-weight: 400;">
+                    <!--{if $delete}-->{lang deleted}<!--{elseif $inarchive}-->{lang archived}<!--{else}-->{lang all}<!--{/if}-->  <span class="dzz dzz-expand-more"></span>
+                </button>
+                <ul class="dropdown-menu board-ul" role="menu">
+                    <li><a href="{MOD_URL}&op=setting&do=manage">{lang all}</a></li>
+                    <li><a href="{MOD_URL}&op=setting&do=manage&delete=1">{lang deleted}</a></li>
+                    <li><a href="{MOD_URL}&op=setting&do=manage&inarchive=1">{lang archived}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="manage-content">
+        <!--{loop $list $value}-->
+        <div class="manage-item" data-fid="$value[fid]">
+            <a class="manage-item-wrap" href="{DZZSCRIPT}?mod=discuss&op=list&fid=$value[fid]">
+                <div class="manage-checkbox">
+                    <div class="checkbox-custom checkbox-warning" style="display: inline-block;margin: 0;vertical-align: 10px;">
+                        <input type="checkbox" class="choNum" name="del[]" onchange="showNum()" value="$value[fid]" <!--{if $value[system]}-->disabled<!--{/if}--> />
+                        <label></label>
+                    </div>
+                    <div class="manage-icon"><div class="manage-img" style="background-color: {$value[iconcolor]}">$value[name]</div></div>
+                </div>
+                <div class="manage-info">
+                    <div class="info-top">
+                        <div class="xst">
+                            $value[name]
+                        </div>
+                    </div>
+                    <div class="info-bot clearfix">
+                        <span style="margin-right: 15px">{lang thread}:{$value['threads']}</span>
+                        <span>{lang post}:{$value['posts']}</span>
+                        <div class="info-createdata">
+                            <span style="margin-right: 15px;">$value['username']</span>
+                            <span>{lang create_in}{eval echo dgmdate($value[dateline],'u');}</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!--{/loop}-->
+    </div>
+    <!--{if $multi}-->
+    <div style="background-color: #fff;margin-top: 0;margin-bottom: 30px;padding: 20px 0;">
+      <div class="page-wrap" style="margin-top: 0;">
+          {$multi}
+      </div>
+    </div>
+    <!--{/if}-->
+</div>
+</form>
+<script type="text/javascript" src="admin/scripts/admin.js"></script>
+<script type="text/javascript">
+function validate(form){
+	
+	if(confirm('{lang true_thoroughly_delete_discuss}')){
+		return true;
+	}else{
+		return false;
+	}
+}
+jQuery(function () {
+    showNum();
+})
+function showNum() {
+    var len = jQuery(".choNum:checked").length;
+    if(len==0) {
+        jQuery('.deleteBtn').hide();
+    }else {
+        jQuery('.deleteBtn').show();
+    }
+    jQuery(".choose-info span").text(len);
+}
+</script> 

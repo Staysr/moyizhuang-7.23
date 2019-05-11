@@ -1,0 +1,29 @@
+#hd_main {
+    margin: 6px auto 8px auto;
+    width: 980px;
+    padding: 7px 10px;
+    overflow: hidden;
+    clear: both;
+    position: relative;
+    background-color: #FFF;
+    padding-bottom: 15px;
+    background-color: #FFF;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    border: 1px solid #E6E6E6;
+    min-height: 400px;
+}
+.tablecss {
+    background: #D6E0EF;
+    margin: 0px auto;
+    word-break: break-all;
+}
+.tablecss tr {
+    background: #F8F8F8;
+}
+.tablecss td {
+    padding: 5px 5px;
+    font-size: 14px;
+    border: #D6E0EF solid 1px;
+}

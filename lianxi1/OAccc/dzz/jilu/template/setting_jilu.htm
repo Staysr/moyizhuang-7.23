@@ -1,0 +1,223 @@
+
+<script type="text/javascript" src="admin/scripts/admin.js?{VERHASH}"></script>
+<style>
+html, body {
+	overflow: hidden;
+    background-color: #e8e8e8;
+}
+.bs-main-container {
+	overflow: hidden;
+}
+.main-content{
+	overflow:auto;
+}
+.table td img{
+	margin:0
+}
+.set_top_default{
+  color: #4e5563;
+    opacity: 0.65;
+}
+.set_top_default:hover{
+    opacity:1;
+}
+.toped{
+  color: #4e82f4;
+}
+.toped:hover{
+  color: #4e82f4;
+}
+
+</style>
+
+ <div class="main-header" >
+
+</div>
+<div class="main-content clearfix" style="border-top:1px solid #FFF">
+    <form id="appform" name="appform" class="form-horizontal " action="{MOD_URL}&op=setting&do=jilu" method="post">
+        <input type="hidden" name="jilusubmit" value="true">
+        <input type="hidden" name="formhash" value="{FORMHASH}">
+        <input type="hidden" name="type" value="$type">
+        <div class="main-header1 clearfix">
+            <div class="inputwrapper">
+                <div class="checkbox-custom checkbox-warning" style="display:inline-block;margin:0;vertical-align: middle;margin-right:-0.5em;">
+                    <input type="checkbox" name="chkall" id="chkall" onclick="checkAll('prefix', this.form, 'del')" onchange="showNum()">
+                    <label></label>
+                </div>
+                <span >{eval echo lang('chose_num')}</span>
+                <div class="delBtnwrapper"><button type="button" class="delBtn" onclick="emptyTrash()"><i class="dzz dzz-delete"></i>{eval echo lang('delete')}</button></div>
+            </div>
+            <div class="dropdown tabBox1">
+                <button class="chooseBtn1 dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <i class="dzz dzz-paixu" style="vertical-align: -3px;"></i> {eval echo lang('sort_order')}
+                </button>
+                <ul class="dropdown-menu menu_ul1" aria-labelledby="dropdownMenu2">
+                    <li class="chooseItem1"><a href="{MOD_URL}&op=setting&do=jilu&order=updatetime">{eval echo lang('by_updatetime')}</a></li>
+                    <li class="chooseItem1"><a href="{MOD_URL}&op=setting&do=jilu&order=dateline">{eval echo lang('by_createtime')}</a></li>
+                    <li class="chooseItem1"><a href="{MOD_URL}&op=setting&do=jilu&order=archivetime">{eval echo lang('by_archivetime')}</a></li>
+                </ul>
+            </div>
+        </div>
+       <div class="table-responsive tablewrapper">
+        <table class="table table-hover tableBox">
+          <thead>
+            <tr>
+             <th width="20"></th>
+              <th>{eval echo lang('jilu')}{eval echo lang('name')}</th>
+                <th>{eval echo lang('creater')}</th>
+                <th>{eval echo lang('jilu_nums')}</th>
+                <th>{eval echo lang('views')}</th>
+                <th>{eval echo lang('updatetime')} / {eval echo lang('createtime')}</th>
+                <th>{eval echo lang('state')}</th>
+                <th>{eval echo lang('archive_time')}</th>
+                <th>{eval echo lang('top')}</th>
+                <th>{eval echo lang('share_state')}</th>
+            </tr>
+          </thead>
+          <tbody id="taglist">
+          <!--{loop $list $value}-->
+            <tr>
+            <td>
+              <div class="checkbox-custom checkbox-warning" style="margin-left: 1em;">
+                  <input type="checkbox" name="del[]" value="$value[jid]" class="choNum" onchange="showNum()"/>
+                  <label></label>
+              </div>
+            </td>
+            <td><a href="{MOD_URL}&id=$value[jid]" target="_dzz">$value['title']</a></td>
+            <td>$value[author]</td>
+
+            <td>$value['num']</td>
+            <td>$value['views']</td>
+
+            <td>{eval echo dgmdate($value[updatetime],'u');}<br />{eval echo dgmdate($value[dateline],'u');}</td>
+            <td><!--{if $value[inarchive] == 1}-->{eval echo lang('w_archived')}<!--{elseif $value[deletetime] > 0}-->{eval echo lang('recycle')}<!--{else}-->{eval echo lang('normal')}<!--{/if}--></td>
+            <td>{eval echo $value[archivetime]?dgmdate($value[archivetime],'u'):'- -';}</td>
+            <td><a href="javascript:;" onclick="setTopDefault(this,'$value[jid]');" class="<!--{if $value[pin_type] > 1}-->toped<!--{else}-->set_top_default<!--{/if}-->"><i class="dzz dzz-top" <!--{if $value[pin_type] > 1}-->data-top='toped'<!--{/if}-->></i> <span><!--{if $value[pin_type] > 1}-->{eval echo lang('toped')}<!--{else}-->{eval echo lang('top')}<!--{/if}--></span></a></td>
+            <td>
+                <input type="checkbox"  <!--{if $value[privacy] < 1}-->checked='checked'<!--{/if}--> id="check_{$value[jid]}" class="chk_1" />
+                <label for="check_{$value[jid]}" onclick="setShare('$value[jid]');"></label>
+            </td>
+            </tr>
+           <!--{/loop}-->
+          </tbody>
+          <thead>
+         </thead>
+      </table>
+           <!--{if $multi}-->
+            <div class="clarfix text-center">$multi</div>
+           <!--{/if}-->
+
+       </div>
+   </form>
+</div>
+<script type="text/javascript">
+	var ajaxurl='{MOD_URL}&op=adminajax';
+	var baseurl='{MOD_URL}';
+  var modpath='{MOD_PATH}';
+	jQuery('.left-drager').leftDrager_layout(function(){
+		jQuery('.main-content').css('height',jQuery('.bs-main-container').outerHeight(true)-jQuery('.main-header').outerHeight(true));
+	});
+    function emptyTrash() {
+        var els=jQuery('#taglist .checkbox-custom input:checked');
+        if(confirm('{eval echo lang("complete_delete_jilu_alert")}')){
+            var data=[];
+            for(var i=0;i<els.length;i++) {
+                data.push(els[i].value);
+            }
+           jQuery.ajax({
+               url:'{MOD_URL}&op=setting&do=jilu',
+               type:'post',
+               data:{'del':data,'formhash':'{FORMHASH}','jilusubmit':true,'type':'$type'},
+               dataType: 'json',
+               success:function (msg) {
+                   if(msg.code==200) {
+                        els.parents('tr').remove();
+                   }
+                   showmessage(msg.info,'success',3000,1);
+               },
+               error:function (msg) {
+                   showmessage(msg.info,'danger',3000,1);
+               }
+           })
+
+        }
+    }
+	function setTopDefault(obj,jid){
+		if(jQuery(obj).hasClass("toped")){
+      var display = 0;
+    } else {
+      var display = 1;
+    }
+		jQuery.post('{MOD_URL}&op=ajax&do=jilu_pin_default&jid='+jid+'&display='+display,function(json){
+				if(json.msg=='success'){
+					if(display > 0){
+						jQuery(obj).removeClass("jilu_pin_default").addClass("toped").css('color', '#4e82f4');
+            jQuery(obj).children('span').html('{eval echo lang(toped)}');
+            showmessage('{eval echo lang(top_success)}', 'success', 1000, 0);
+					}else{
+						jQuery(obj).removeClass("toped").addClass("jilu_pin_default").css('color', '#333');
+            jQuery(obj).children('span').html('{eval echo lang(top)}');
+            showmessage('{eval echo lang(cancel_top_success)}', 'success', 1000, 0);
+					}
+				} else {
+          showmessage(json.msg, 'error', 1000, 1);
+        }
+			},'json');
+	}
+	function jilu_delete(obj,jid){
+		if(confirm('{eval echo lang("complete_delete_jilu_alert")}')){
+			jQuery.post('{MOD_URL}&op=ajax&do=jilu_delete&jid='+jid,function(json){
+				if(json.msg=='success'){
+					jQuery(obj).closest('tr').addClass('danger');
+					window.setTimeout(function(){
+						jQuery(obj).closest('tr').remove();
+					},500);
+				}
+			},'json');
+		}
+	}
+  function setShare(jid){
+    if(jQuery("#check_"+jid).prop("checked")){
+      jQuery.post('{MOD_URL}&op=ajax&do=setSave&jid='+jid,{name:'privacy',val:2})
+    } else {
+      jQuery.post('{MOD_URL}&op=ajax&do=setSave&jid='+jid,{name:'privacy',val:0})
+    }
+  }
+	function setStatus(obj,jid,val){
+		if(val>0){
+			jQuery(obj).parent().find('.status_1').addClass('hide');
+			jQuery(obj).parent().find('.status_0').removeClass('hide');
+		}else{
+			jQuery(obj).parent().find('.status_0').addClass('hide');
+			jQuery(obj).parent().find('.status_1').removeClass('hide');
+		}
+		jQuery.post('{MOD_URL}&op=ajax&do=setStatus&status='+val+'&jid='+jid);
+	}
+	function setPrivacy(obj,jid,val){
+		if(val>0){
+			jQuery(obj).parent().find('.privacy_1').addClass('hide');
+			jQuery(obj).parent().find('.privacy_0').removeClass('hide');
+		}else{
+			jQuery(obj).parent().find('.privacy_0').addClass('hide');
+			jQuery(obj).parent().find('.privacy_1').removeClass('hide');
+		}
+		jQuery.post('{MOD_URL}&op=ajax&do=setPrivacy&privacy='+val+'&jid='+jid);
+	}
+	jQuery(
+	    function () {
+            showNum();
+        }
+    )
+    function showNum() {
+        var len = jQuery(".choNum:checked").length;
+        if(len==0) {
+            jQuery('.delBtnwrapper').css('display','none');
+        }else {
+            jQuery('.delBtnwrapper').css('display','inline-block');
+        }
+        jQuery(".num").text(len);
+    }
+
+
+</script>  
+ 

@@ -1,0 +1,66 @@
+<ul class="nav navbar-nav navbar-nav-left clearfix">
+
+    <!--{if $_GET[op]=='setting'}-->
+    <li>
+        <a href="{MOD_URL}" class="leftTopmenu" style="padding:8px;">
+            <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+        </a>
+    </li>
+    <li>
+        <a href="{MOD_URL}">设置</a>
+    </li>
+    <!--{elseif $_GET[op]=='org'}-->
+    <li>
+        <a href="{MOD_URL}" class="leftTopmenu" style="padding:8px;">
+            <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+        </a>
+    </li>
+    <li>
+        <a href="{MOD_URL}&op=org&orgid=$orgid">$org[name]</a>
+    </li>
+    <!--{elseif $_GET[op]=='list'}-->
+
+        <!--{if $_GET[do]==''}-->
+        <li>
+            <a href="{eval echo dreferer()}" class="leftTopmenu" style="padding:8px;">
+                <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+            </a>
+        </li>
+        <li>
+            <a href="{MOD_URL}&op=list&tbid=$_GET[tbid]" title="$taskboard[name]">$taskboard[name]
+                
+            </a>
+        </li>
+        <!--{else}-->
+        <li>
+            <a href="{MOD_URL}&op=list&tbid=$_GET[tbid]" class="leftTopmenu" style="padding:8px;">
+                <div class="gb_fc"><span class="dzz dzz-chevron-left" style="width: 24px;height: 24px;display: block;font-size: 36px;position: relative;top: -6px;left: -6px;"></span></div>
+            </a>
+        </li>
+        <li>
+            <!--{if $_GET[do]=='archive'}-->
+            <a href="{MOD_URL}&op=list&tbid=$_GET[tbid]">归档 
+            </a>
+            <!--{elseif $_GET[do]=='recycle'}-->
+            <a href="{MOD_URL}&op=list&tbid=$_GET[tbid]">回收站
+            </a>
+            <!--{elseif $_GET[do]=='event'}-->
+            <a href="{MOD_URL}&op=list&tbid=$_GET[tbid]">动态 
+            </a>
+            <!--{elseif $_GET[do]=='stats'}-->
+            <a href="{MOD_URL}&op=list&tbid=$_GET[tbid]">统计 
+            </a>
+            <!--{/if}-->
+        </li>
+        <!--{/if}-->
+    <!--{else}-->
+    <li>
+        <a href="javascript:;" class="leftTopmenu" onclick="_header.leftTopmenu(this)" style="padding:8px;">
+            <div class="gb_fc"><span class="dzz dzz-menu" style="width:24px;height:24px;display:block;"></span></div>
+        </a>
+    </li>
+    <li>
+        <a href="{MOD_URL}">{lang appname}</a>
+    </li>
+    <!--{/if}-->
+</ul>

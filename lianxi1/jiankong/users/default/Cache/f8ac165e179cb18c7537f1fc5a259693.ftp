@@ -1,0 +1,14 @@
+-rw-r--r-- 1 ftp ftp            573 Mar 03  2017 AnyValuesTokenSpec.php
+-rw-r--r-- 1 ftp ftp            557 Mar 03  2017 AnyValueTokenSpec.php
+-rw-r--r-- 1 ftp ftp           1293 Mar 03  2017 ApproximateValueTokenSpec.php
+-rw-r--r-- 1 ftp ftp           1496 Mar 03  2017 ArrayCountTokenSpec.php
+-rw-r--r-- 1 ftp ftp           7324 Mar 03  2017 ArrayEntryTokenSpec.php
+-rw-r--r-- 1 ftp ftp           2949 Mar 03  2017 ArrayEveryEntryTokenSpec.php
+-rw-r--r-- 1 ftp ftp            986 Mar 03  2017 CallbackTokenSpec.php
+-rw-r--r-- 1 ftp ftp           4260 Mar 03  2017 ExactValueTokenSpec.php
+-rw-r--r-- 1 ftp ftp           4584 Mar 03  2017 IdenticalValueTokenSpec.php
+-rw-r--r-- 1 ftp ftp           2245 Mar 03  2017 LogicalAndTokenSpec.php
+-rw-r--r-- 1 ftp ftp           1685 Mar 03  2017 LogicalNotTokenSpec.php
+-rw-r--r-- 1 ftp ftp           2147 Mar 03  2017 ObjectStateTokenSpec.php
+-rw-r--r-- 1 ftp ftp           1139 Mar 03  2017 StringContainsTokenSpec.php
+-rw-r--r-- 1 ftp ftp           1411 Mar 03  2017 TypeTokenSpec.php

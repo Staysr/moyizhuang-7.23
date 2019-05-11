@@ -1,0 +1,29 @@
+<!--{if empty($list)}-->
+    <div class="searchImg-wrap" style="margin-top: 0;">
+        <div class="info-container">
+            <img src="{MOD_PATH}/images/search_empty.png" alt="">
+            <p>{lang no_content}</p>
+        </div>
+    </div>
+<!--{/if}-->
+<!--{loop $list $value}-->
+    <a href="{MOD_URL}&op=viewthread&fid=$value[fid]&tid=$value[tid]" class="weui-media-box weui-media-box_appmsg weui-cell__bd thr-item">
+        <div class="weui-media-box__bd">
+            <div class="title-wrap">
+                <h4 class="weui-media-box__title t-title" <!--{if $value[starthighlight] < TIMESTAMP}-->$value['highlight']<!--{/if}--> >$value['subject']</h4> 
+                <!--{if $value[displayorder] && $value[startstick] < TIMESTAMP}--><div class="top">{lang top}</div><!--{/if}-->
+                <!--{if $value[digest] && $value[startdigest] < TIMESTAMP}--><div class="stick">{lang essence}</div><!--{/if}-->
+            </div>
+            <div class="weui-media-box__desc">
+                <span class="board-a">#{$value['forumname']}</span>
+                <span class="board-span" style="float: right">$value[dateline]</span>
+            </div>
+        </div>
+    </a>
+<!--{/if}-->
+<!--{if $nextpage}-->
+    <div class="weui-loadmore" data-url="{$theurl}&ajax=1&page={$nextpage}">
+      <i class="weui-loading"></i>
+      <span class="weui-loadmore__tips">{lang loading}</span>
+    </div>
+<!--{/if}-->

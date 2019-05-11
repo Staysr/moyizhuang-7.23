@@ -1,0 +1,30 @@
+<!--<?php
+include_once gettpl('top');
+if(empty($action))
+{
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header" colspan="5">更新信息</td>
+	</tr>
+	<tr class="field f-tac">
+		<td width="20%">新版本</td>
+		<td width="20%">发布时间</td>
+		<td width="40%">更新内容</td>
+		<td width="20%">操作</td>
+	</tr>
+	<tr class="f-tac">
+		<td>phpvod $update_info[newver]</td>
+		<td>$update_info[datetime]</td>
+		<td style="text-align: left; padding: 10px 10px; list-style-position:inside; line-height:2;">$update_info[content]</td>
+		<td><a href="$basename&action=update">在线更新</a></td>
+	</tr>
+</table>
+<br />
+<!--
+EOT;
+}
+include_once gettpl('adminbottom');
+?>
+-->

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/dis_header}-->
+    <title>{lang my}</title>
+    <link rel="stylesheet" href="{MOD_PATH}/images/css/mycenter.css">
+</head>
+<body style="background-color: #efeff4;">
+<div class="my-container">
+    <div class="my-top">
+        <div class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__hd">
+                <div class="my-ava">{eval echo avatar_block($_G['uid'])}</div>
+            </div>
+            <div class="weui-media-box__bd">
+                <div class="name-con weui-cell_access">
+                    <h4 class="weui-media-box__title my-name">{$_G[username]}</h4>
+
+                    <!--{if $space[gender]}-->
+                        <!--{if $space[gender] == 1}--><i class="dzz dzz-male man"></i>
+                        <!--{else}--><i class="dzz dzz-female woman"></i>
+                        <!--{/if}-->
+                    <!--{/if}-->
+
+                </div>
+                <!--<a href="user.php?&mod=profile" class="weui-media-box__desc click-edit">点击编辑资料</a>-->
+            </div>
+        </div>
+    </div>
+
+    <div class="my-con">
+
+        <a class="weui-cell weui-cell_access my-item" href="{MOD_URL}&op=my&do=mythread">
+            <div class="weui-cell__hd"><i class="dzz dzz-file"></i></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <p>{lang my_post}</p>
+            </div>
+            <span class="weui-cell__ft"></span>
+        </a>
+        <a class="weui-cell weui-cell_access my-item" href="{MOD_URL}&op=my&do=myfav">
+            <div class="weui-cell__hd"><i class="dzz dzz-grade"></i></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <p>{lang my_favorite}</p>
+            </div>
+            <span class="weui-cell__ft"></span>
+        </a>
+    </div>
+
+    <div class="infos">
+        <a class="weui-cell weui-cell_access my-item" href="{DZZSCRIPT}?mod=system&op=notification">
+            <div class="weui-cell__hd"><i class="dzz dzz-notifications"></i></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <p>
+                    {lang notification}
+                    <span class="notification"></span>
+                </p>
+
+            </div>
+            <div class="infos-view">
+
+                <span class="weui-cell__ft"></span>
+            </div>
+        </a>
+        <a class="weui-cell weui-cell_access my-item" href="user.php?mod=space&op=about&modname={MOD_NAME}">
+            <div class="weui-cell__hd"><i class="dzz dzz-info-outline"></i></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <p>{lang about}</p>
+            </div>
+            <span class="weui-cell__ft"></span>
+        </a>
+    </div>
+</div>
+<!--{template mobile/footer}-->
+</body>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery.getJSON('{DZZSCRIPT}?mod=system&op=notification&filter=checknew', function(res) {
+            if (res.sum > 0) {
+                jQuery(".notification").addClass("red-view");
+            }
+        })
+    })
+</script>
+<!--{eval output();}-->
+</html>

@@ -1,0 +1,337 @@
+<!--{template common/header_simple_start}-->
+<link href="static/atwho/css/jquery.atwho.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/discuss/images/discuss.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/system/ueditor/themes/default/css/ueditor.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="dzz/system/ueditor/themes/default/css/ueditor_add.css?{VERHASH}" rel="stylesheet" media="all">
+
+<script src="dzz/system/ueditor/ueditor.config.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/ueditor.all.js?{VERHASH}"></script>
+<script src="dzz/system/ueditor/lang/$_G['language']/$_G['language'].js?{VERHASH}"></script>
+<script src="data/cache/smilies_var.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/input_field.js"></script>
+<script src="static/atwho/js/jquery.caret.js?{VERHASH}"></script>
+<script src="static/atwho/js/jquery.atwho.js?{VERHASH}"></script>
+<script type="text/javascript">  
+var i=0;
+try{
+	var api=_api.init();
+	var appid=api.wname.appid;
+	api.setFileExt(['image','document','attach','dzzdoc','link','video']);
+}catch(e){}
+</script>
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script> 
+<!--{template common/header_simple_end}-->
+<!--{template common/commer_header}-->
+<style>
+html,body{
+	overflow:hidden;
+    background-color: rgba(241, 241, 241, 1);
+}
+.bs-main-container{
+	overflow:auto;
+	margin-left:0;
+}
+.navbar-inverse {
+background-color: rgba(255, 90, 58, 1);
+}
+</style>
+<div class="bs-container clearfix">
+<div class="bs-main-container">
+<div class="main-content new-container clearfix" style="padding: 60px;margin-top: 14px;">
+
+       <form id="ueditorform" name="ueditorform" class="form-horizontal form-horizontal-left" action="{BASESCRIPT}?mod=discuss&op=list&do=newthread" method="post" style="margin:0" onsubmit="validate(this);return false" >
+        <input type="hidden" name="edit" value="true" />
+        <input type="hidden" name="fid" value="$fid" />
+        <input type="hidden" name="typeid" value="<!--{if $_GET['ac'] == 'edit' && $thread['typeid']}-->{$thread['typeid']}<!--{/if}-->" />
+        <input type="hidden" name="pid" value="$pid" />
+         <input type="hidden" name="rpid" value="$rpid" />
+        <input type="hidden" id="tid" name="tid" value="$tid" />
+        <input type="hidden"  name="ac" value="$ac" />
+        <input id="first" type="hidden" name="first" value="$post[first]" />
+        <input type="hidden" name="handlekey" value="ueditorform" />
+        <input type="hidden" name="message" id="message" value="" />
+        <input type="hidden" name="formhash" value="{FORMHASH}" />
+        <input type="hidden" name="forward" value="$forward" />
+        <input type="hidden" name="extra" value="$extra" />
+         <!--{if $discuss['anonymous']==2}-->
+            <input id="anonymous" name="anonymous" type="hidden" value="2" />
+        <!--{else}-->
+        	 <input id="anonymous" name="anonymous" type="hidden" value="0" />
+        <!--{/if}-->
+        
+          <div class="newthread-subject-container clearfix">
+             <!--{if $post[first]}-->
+              <div class="input-black" style="margin-bottom: 40px;">
+                   <div class="input-animate title-input clearfix">
+                        <input id="subject" name="subject" class="form-control" style="width:100% !important;padding-right: 150px !important;" value="$post[subject]" placeholder="帖子标题" autocomplete="off"  onkeyup="strLenCalc(this, 'checklen', 80);">
+                        <span class="help-inline" style="padding:6px;">{lang can_be_input}</span>
+                   </div>
+              </div>
+               <!--{/if}-->
+           </div>
+         
+       </form>
+    <!--{if $post[first]}-->
+    <div class="choose-content clearfix">
+    	<!--{if $ac != 'edit'}-->
+	        <div class="btn-group cho-ul" id="module">
+	            <button type="button" id="moduleBtn" class="btn drop-btn1 clearfix" data-toggle="dropdown" data-fid="{$forum['fid']}">
+	               <div class="btn-div"><!--{if $fid}-->{$forum[name]}<!--{else}-->{lang please_choose_post_mod}<!--{/if}--></div>
+	            </button>
+                <span class="dzz dzz-expand-more ul-i"></span>
+	            <ul class="dropdown-menu cho-ul" role="menu" style="z-index: 2000;">
+	            	<!--{loop $forums $value}-->
+	                	<li><a data-fid="{$value[fid]}">$value['name']</a></li>
+	                <!--{/loop}-->
+	            </ul>
+	        </div>
+        <!--{/if}-->
+        <!--{if $discuss[threadtypes][available] && $threadclass}-->
+	        <div class="btn-group cho-ul" id="type" <!--{if $ac != 'edit'}-->style="float: right;"<!--{/if}-->>
+	            <button type="button" id="typeBtn" class="btn drop-btn1 clearfix" data-toggle="dropdown" <!--{if $_GET['ac'] == 'edit' && $thread['typeid']}-->data-typeid="{$thread['typeid']}"<!--{/if}--> aria-expanded="false">
+                    <div class="btn-div"><!--{if $_GET['ac'] == 'edit' && $thread['typeid']}-->$threadclass[$thread['typeid']]['name']<!--{else}-->{lang please_choose_thread_class}<!--{/if}--></div>
+	            </button>
+                <span class="dzz dzz-expand-more ul-i"></span>
+	            <ul class="dropdown-menu cho-ul" role="menu" style="z-index: 2000;">
+	            	<!--{loop $threadclass $value}-->
+	                	<li><a data-typeid="{$value[typeid]}">{$value[name]}</a></li>
+	                <!--{/loop}-->
+	            </ul>
+	        </div>
+        <!--{/if}-->
+    </div>
+    <!--{/if}-->
+       <div class="editor-wrap">
+            <script type="text/plain" id="editor" style="position:relative;height:220px;margin:0 auto">$post[message]</script>
+            <p style="margin:34px 0 0"><button type="button" id="ueditorform_btn" class="btn btn-primary newBtn issueBtn" onclick="document.getElementById('ueditorform').onsubmit();" ><!--{if $pid}-->{lang save}<!--{else}-->{lang release}<!--{/if}--></button>
+            <!--{if $discuss['anonymous']==1}-->
+            &nbsp;&nbsp;<label class="checkbox-inline anonymous_in"><input id="anonymous_1"  type="checkbox" value="1" checked="checked" />{lang anonymous_post}</label>
+            <!--{elseif $discuss['anonymous']==2}-->
+             &nbsp;&nbsp;<span class="text-danger anonymous_in">{lang coercion_anonymity_desc}</span>
+            <!--{/if}-->
+            &nbsp;&nbsp;<small id="error_msg"  style="color:red;padding:0 10px"></small></p>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+ <script type="text/javascript">
+    jQuery(function () {
+        jQuery(document).on('click','#module li a',function () {
+            jQuery('#moduleBtn .btn-div').text(jQuery(this).text());
+            jQuery('#moduleBtn').attr('data-fid',jQuery(this).data('fid'));
+            jQuery('input[name="fid"]').val(jQuery(this).data('fid'));
+            jQuery.ajax({
+                url:'{MOD_URL}&op=list&do=ajax&position=getdiscuss&fid='+jQuery(this).data('fid'),
+                dataType:'json',
+                type:'post',
+                success:function (res) {
+                    var html='<div class="btn-group cho-ul" id="type" style="float: right;">'+
+                                '<button type="button" id="typeBtn" class="btn drop-btn1 clearfix" data-toggle="dropdown">'+
+                                    '<div class="btn-div">{lang please_choose_thread_class}</div>'+
+                                '</button>'+
+                                '<span class="dzz dzz-expand-more ul-i"></span>'+
+                                '<ul class="dropdown-menu cho-ul" role="menu" style="z-index: 2000;">';
+                    for(var i=0;i<res.threadtypes.length;i++) {
+                        html+='<li><a data-typeid="'+res.threadtypes[i].typeid+'">'+res.threadtypes[i].name+'</a></li>'
+                    }
+                    html+='</ul></div>';
+                    jQuery('.choose-content').children('.cho-ul').remove('#type');
+                    if(res.threadtypes.length > 0) {
+                        jQuery('.choose-content').append(html);
+                    }
+                    jQuery('.rules-wrap').html(res.rules);
+                    jQuery(".anonymous_in").remove();
+                    if (res.anonymous == 2) {
+                    	jQuery("#error_msg").before('<span class="text-danger anonymous_in">{lang coercion_anonymity_desc}</span>');
+                    } else if(res.anonymous == 1) {
+                    	jQuery("#error_msg").before('<label class="checkbox-inline anonymous_in"><input id="anonymous_1"  type="checkbox" value="1" checked="checked" />{lang anonymous_post}</label>');
+                    }
+                },
+                error:function (res) {
+                }
+            })
+        })
+        jQuery(document).on('click','#type li a',function () {
+            jQuery('#typeBtn .btn-div').text(jQuery(this).text());
+            jQuery('#typeBtn').attr('data-typeid',jQuery(this).data('typeid'));
+            jQuery('input[name="typeid"]').val(jQuery(this).data('typeid'));
+        })
+    })
+ jQuery('.left-drager').leftDrager_layout(); 
+  function validate(form){
+	  needsave=0;
+	  window.onbeforeunload=null;
+	 try{ 
+	    api.win.needsave=0;
+	    api.setFileExt([]);
+	  }catch(e){}
+	  var first=document.getElementById('first').value;
+	  if(first>0){//新主题时判断标题不能为空
+		  if(trim(document.getElementById('subject').value)==''){
+			   document.getElementById('subject').focus();
+			   showError('{lang post_title_not_empty}');
+			  return false;
+		  }
+	  }
+	  if(jQuery('#moduleBtn').attr('data-fid')=='') {
+	      showError('{lang please_choose_post_mod}')
+          return false;
+      }
+	  var message=UE.getEditor('editor').getContent();
+	  if(message.length<10){//发贴内容最少需要10个字符
+		  UE.getEditor('editor').focus();
+		   showError('{lang post_content_too_little}');
+		  return false;
+	  }else{
+		 document.getElementById('message').value = message;
+	  }
+	  if(jQuery('#anonymous_1').prop('checked')){
+		  jQuery('#anonymous').val(1);
+	  }
+	  ajaxpost(form.id,'ueditorform_btn','ueditorform_btn',null,null,function(){
+//		  window.setTimeout(function(){jQuery('#ueditorform_btn').button('reset');},3000);
+	  });
+  }
+  var errorShowTimer=null;
+  function showError(msg){
+	  if(errorShowTimer) window.clearTimeout(errorShowTimer);
+	  jQuery('#error_msg').html(msg);
+	  window.setTimeout(function(){
+		  jQuery('#error_msg').html('');
+	  },3000);
+  }
+  function succeedhandle_ueditorform(url, message, values) {
+	var data= eval('(' + decodeURIComponent(values['data']) + ')');
+	//创建目录树
+	//jQuery("#classtree").jstree(true).set_text(jQuery("#classtree").jstree(true).get_node(data.id),data.text);
+	var href='{DZZSCRIPT}?mod=discuss&';
+	if(data.ac=='newthread'){
+		href+='op=viewthread&fid='+data.fid+'&tid='+data.tid+'&extra='+encodeURIComponent(data.extra)+'&forward='+encodeURIComponent(data.forward);
+	}else if(data.ac=='edit'){
+		if(data.first>0) href+='op=viewthread&fid='+data.fid+'&tid='+data.tid+'&extra='+encodeURIComponent(data.extra)+'&forward='+encodeURIComponent(data.forward);
+		else href+='op=redirect&goto=findpost&fid='+data.fid+'&ptid='+data.tid+'&pid='+data.pid+'&extra='+encodeURIComponent(data.extra)+'&forward='+encodeURIComponent(data.forward);
+	}else if(data.ac=='fastreply' || data.ac=='reply'){
+		href+='op=redirect&goto=lastpost&fid='+data.fid+'&tid='+data.tid+'&extra='+encodeURIComponent(data.extra)+'&forward='+encodeURIComponent(data.forward)+'#lastpost';
+	}else{
+		href='$refer';
+	}
+	location.href=href;
+  };
+  jQuery(document).ready(function(e) {
+	  var ue = UE.getEditor('editor', {
+			UEDITOR_HOME_URL:SITEURL+'dzz/system/ueditor/',
+			<!--{if $ismobile}-->
+			toolbars: UEDITOR_CONFIG.mode.mini,
+			autoHeightEnabled:false,
+			<!--{else}-->
+			toolbars: [
+                ['fullscreen','undo', 'redo', '|','paragraph', 'fontfamily', 'fontsize','|', 'bold', 'italic',
+                    'underline', 'strikethrough', '|', 'forecolor', 'backcolor',  '|',
+                    'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain','|', 'inserttable', 'insertcharts','charts','|',
+                    'insertorderedlist', 'insertunorderedlist', 'indent',
+                    'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+                    'insertcode', 'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage','scrawl', '|',
+                    'link', 'unlink','simpleupload', 'insertvideo','attachment','emotion','|','drafts'
+                ]
+            ],
+			<!--{/if}-->
+			serverUrl:SITEURL+DZZSCRIPT + "?mod=attach&op=controller",
+			focus: true,
+			zIndex : 1900,
+			iframeCssUrl:'{MOD_PATH}/images/iframe1.css',
+			initialFrameWidth:'100%', //初始化编辑器宽度,默认500
+			topOffset:jQuery('.bs-main-container').offset().top+1,
+			scrollContainer:'.bs-main-container'
+		});
+		
+		ue.addListener( 'contentChange', function() {
+			 needsave=1;
+			 try{api.win.needsave=needsave;}catch(e){}
+			 i++;
+			// if(i>10) AutoSave();
+		 });
+		 //增加ctrl+enter提交表单
+		// ue.addshortcutkey("autosubmit", "ctrl+13"); 
+		
+		 ue.ready(function(editor){
+			
+			 <!--{if $ismobile}-->ue.setHeight(jQuery('.bs-main-container').outerHeight(true)-jQuery('.newthread-subject-container').outerHeight(true)-jQuery('#edui1_toolbarbox').outerHeight(true)-30-50); <!--{/if}-->
+			 var cachequeryMentions = [], itemsMentions;
+			jQuery(this.document.body).atwho('setIframe', document.getElementById('ueditor_0')).atwho({
+				at: "@",
+				//data: '{DZZSCRIPT}?mod=feed&op=ajax&do=getUserToJson',
+				data: '{MOD_URL}&op=ajax&do=getAtList&fid=$fid',
+				callbacks:{
+							remote_filter: function (query, render_view) {
+								var thisVal = query,
+								self = jQuery(this);
+								if( !self.data('active') && thisVal.length >= 2 ){
+									self.data('active', true);                            
+									itemsMentions = cachequeryMentions[thisVal]
+									if(typeof itemsMentions == "object"){
+										render_view(itemsMentions);
+									}else
+									{                            
+										if (self.xhr) {
+											self.xhr.abort();
+										}
+										self.xhr = jQuery.getJSON('{MOD_URL}&op=ajax&do=getAtList&fid=$fid',{
+											term: thisVal
+										}, function(data) {
+											cachequeryMentions[thisVal] = data
+											render_view(data);
+										});
+									}                            
+									self.data('active', false);                            
+								}                    
+							}
+				},
+				 tpl: "<li data-value='@[${name}:${id}]' title='${title}'>${avatar}&nbsp;${name}</li>",
+				 insert_tpl: "<a class='at-item' href='user.php?uid=${uid}' data-id='${id}'>@${name}</a>",
+				 search_key: "searchkey",
+				 start_with_space: true,
+				 limit: 5,
+				 max_len: 20,
+				 display_timeout: 300
+			});
+		 });
+		
+	});	
+    
+	
+	window.onbeforeunload=function(){
+		try{
+			api.setFileExt([]);
+		}catch(e){}
+		if(needsave>0) return '{lang current_content_not_saved}';
+		
+	}
+	Date.prototype.format = function(format) {
+		   var date = {
+				  "M+": this.getMonth() + 1,
+				  "d+": this.getDate(),
+				  "h+": this.getHours(),
+				  "m+": this.getMinutes(),
+				  "s+": this.getSeconds(),
+				  "q+": Math.floor((this.getMonth() + 3) / 3),
+				  "S+": this.getMilliseconds()
+		   };
+		   if (/(y+)/i.test(format)) {
+				  format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+		   }
+		   for (var k in date) {
+				  if (new RegExp("(" + k + ")").test(format)) {
+						 format = format.replace(RegExp.$1, RegExp.$1.length == 1
+								? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+				  }
+		   }
+		   return format;
+	}
+</script>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script>
+
+<!--{template common/footer_simple}-->

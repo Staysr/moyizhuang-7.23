@@ -1,0 +1,40 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.box{
+    width: 400px;
+    margin: 30px auto 0;
+}
+.box .link{
+    width: 100%;
+    overflow: hidden;
+}
+.box .link li{
+    width: 150px;
+    float: left;
+    font-size:16px;
+    color:#F30;
+    border:#BFBFFF solid 1px;
+    display:inline-block;
+    height:26px;
+    line-height:26px;
+    padding:0 4px;
+    margin:0 5px;
+    background:#FFF;
+    border-radius:6px;
+}
+.link li.cur{
+    background:#259add;
+    color:#FFF;
+}
+.con {
+    display: none;
+}
+.active{
+    display: block;
+}
+
+

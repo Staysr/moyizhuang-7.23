@@ -1,0 +1,12 @@
+
+<div class="footer">
+    <a class="weui-navbar__item <!--{if $_GET['gid'] == 'frequent'}-->weui-bar__item--on<!--{/if}-->" href="{MOD_URL}&op=list&gid=frequent">
+        常用联系人
+    </a>
+    <a class="weui-navbar__item <!--{if $_GET['gid'] == 'all'}-->weui-bar__item--on<!--{/if}-->" href="{MOD_URL}&op=list&gid=all">
+        全部联系人
+    </a>
+    <a class="weui-navbar__item <!--{if $_GET['op'] == 'grouptree'}-->weui-bar__item--on<!--{/if}-->" href="{MOD_URL}&op=grouptree&do=get_children">
+        部门
+    </a>
+</div>

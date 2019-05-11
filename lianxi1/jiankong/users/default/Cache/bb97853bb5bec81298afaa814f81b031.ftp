@@ -1,0 +1,16 @@
+-rw-r--r-- 1 ftp ftp           3752 Jan 29  2017 ArrayComparatorTest.php
+-rw-r--r-- 1 ftp ftp           2411 Jan 29  2017 autoload.php
+-rw-r--r-- 1 ftp ftp            150 Jan 29  2017 bootstrap.php
+-rw-r--r-- 1 ftp ftp           6845 Jan 29  2017 DateTimeComparatorTest.php
+-rw-r--r-- 1 ftp ftp           4198 Jan 29  2017 DOMNodeComparatorTest.php
+-rw-r--r-- 1 ftp ftp           3245 Jan 29  2017 DoubleComparatorTest.php
+-rw-r--r-- 1 ftp ftp           3648 Jan 29  2017 ExceptionComparatorTest.php
+-rw-r--r-- 1 ftp ftp           5240 Jan 29  2017 FactoryTest.php
+-rw-r--r-- 1 ftp ftp           5486 Jan 29  2017 MockObjectComparatorTest.php
+-rw-r--r-- 1 ftp ftp           2886 Jan 29  2017 NumericComparatorTest.php
+-rw-r--r-- 1 ftp ftp           4110 Jan 29  2017 ObjectComparatorTest.php
+-rw-r--r-- 1 ftp ftp           2782 Jan 29  2017 ResourceComparatorTest.php
+-rw-r--r-- 1 ftp ftp           4736 Jan 29  2017 ScalarComparatorTest.php
+-rw-r--r-- 1 ftp ftp           3361 Jan 29  2017 SplObjectStorageComparatorTest.php
+-rw-r--r-- 1 ftp ftp           2493 Jan 29  2017 TypeComparatorTest.php
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 _files

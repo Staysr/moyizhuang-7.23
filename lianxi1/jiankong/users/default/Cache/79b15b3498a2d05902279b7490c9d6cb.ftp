@@ -1,0 +1,16 @@
+-rw-r--r-- 1 ftp ftp            105 Feb 27  2017 classExtendsNamespacedClass.php
+-rw-r--r-- 1 ftp ftp             46 Feb 27  2017 classInNamespace.php
+-rw-r--r-- 1 ftp ftp             66 Feb 27  2017 classInScopedNamespace.php
+-rw-r--r-- 1 ftp ftp             58 Feb 27  2017 classUsesNamespacedFunction.php
+-rw-r--r-- 1 ftp ftp            356 Feb 27  2017 class_with_method_that_declares_anonymous_class.php
+-rw-r--r-- 1 ftp ftp            248 Feb 27  2017 class_with_method_that_declares_anonymous_class2.php
+-rw-r--r-- 1 ftp ftp            259 Feb 27  2017 closure.php
+-rw-r--r-- 1 ftp ftp             26 Feb 27  2017 issue19.php
+-rw-r--r-- 1 ftp ftp             85 Feb 27  2017 issue30.php
+-rw-r--r-- 1 ftp ftp             97 Feb 27  2017 multipleNamespacesWithOneClassUsingBraces.php
+-rw-r--r-- 1 ftp ftp            125 Feb 27  2017 multipleNamespacesWithOneClassUsingNonBraceSyntax.php
+-rw-r--r-- 1 ftp ftp            468 Feb 27  2017 source.php
+-rw-r--r-- 1 ftp ftp            109 Feb 27  2017 source2.php
+-rw-r--r-- 1 ftp ftp            305 Feb 27  2017 source3.php
+-rw-r--r-- 1 ftp ftp            436 Feb 27  2017 source4.php
+-rw-r--r-- 1 ftp ftp            275 Feb 27  2017 source5.php

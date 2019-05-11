@@ -1,0 +1,63 @@
+<div class="clearfix setting-basic">
+  <h4 class="basic-title">{lang basic}</h4>
+  <div class="form-group">
+    <label class="control-label" for="name">{lang discuss_name}：</label>
+    <input type="text" class="form-control" id="name" maxlenth="50"  name="name" autocomplete="off" value="$discuss[name]" onkeyup="jQuery('.discuss-item-title').html(this.value);" maxlength="80">
+  </div>
+  <div class="form-group">
+    <label class="control-label " for="name">{lang discuss_rule}：</label>
+    <textarea type="textarea" style="resize: none;" name="rules" class="form-control" rows="1" id="rule-input">$discuss[rules]</textarea>
+    <a href="javascript:;" class="help-inline basic-help" onclick="jQuery('#ubb_detail').toggle()">{lang see_ubb_code}</span></a>
+    <ul id="ubb_detail" class="help-block" style="display:none">
+        {lang ubb_code}
+    </ul>
+  </div>
+    <div class="">
+
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery('#rule-input').TextAreaExpander(34,99999);
+    })
+function validate(form){
+	if(form.name.value==''){
+		form.name.focus();
+		return false;
+	}
+	return true;
+}
+var movingTimer=false;
+function moveCoverBack(type){
+	if(movingTimer) jQuery('#cover_ul').stop(true,true);
+	movingTimer=true;
+	var width=jQuery('#cover_ul li').outerWidth(true)*3;
+	var maxwidth=jQuery('#cover_ul').width();
+	var currentLeft=parseInt(jQuery('#cover_ul').css('left'));
+	switch(type){
+		case 'next':
+			var newleft=Math.abs(currentLeft-width)>=maxwidth?0:currentLeft-width;
+			break;
+		case 'prev':
+			var newleft=(currentLeft+width)<=0?(currentLeft+width):(-maxwidth+width);
+			break;
+	}
+	jQuery('#cover_ul').animate({'left':newleft},500,function(){movingTimer=false;});
+}
+
+jQuery(document).ready(function(e) {
+    try{ if(!top._config) jQuery('.needindzz').hide();}catch(e){}
+	jQuery(document).on('mouseenter','.cover-item',function(){
+		jQuery(this).addClass('hover');
+	})
+	jQuery(document).on('mouseleave','.cover-item',function(){
+		jQuery(this).removeClass('hover');
+	})
+	jQuery(document).on('click','.cover-item',function(){
+		jQuery('.cover-item').removeClass('selected');
+		jQuery(this).addClass('selected');
+		jQuery('#aid').val(jQuery(this).data('aid'));
+	});
+  
+});
+</script>

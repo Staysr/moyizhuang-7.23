@@ -1,0 +1,171 @@
+<!--<?php
+include_once gettpl('top');
+if(empty($action)){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename" class="active">插件列表</a></li>
+</ul>
+<br />
+
+<form method="post" action="$basename">
+	<input name="action" type="hidden" value="update">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="8">已安装插件</td>
+		</tr>
+		<tr class="field f-tac">
+			<td width="5%">启动</td>
+			<td width="10%">ID</td>
+			<td>插件名称</td>
+			<td>插件目录</td>
+			<td>版本号</td>
+			<td>前台显示</td>
+			<td>监听器</td>
+			<td width="25%">操作</td>
+		</tr>
+<!--
+EOT;
+foreach($_hack as $key => $value){
+	$hidden = $value[hidden] ? 'checked=checked' : '';
+	if($value['spos']=='1') $spos='导航栏'; elseif($value['spos']=='2') $spos='菜单栏'; else $spos='不显示';
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="applyid[]" value="$value[hid]" $hidden></td>
+			<td>$value[hid]</td>
+			<td>$value[name]</td>
+			<td>$value[directory]</td>
+			<td>$value[version]</td>
+			<td>$spos</td>
+			<td>$value[listener]</td>
+			<td>
+<!--
+EOT;
+if(is_file(PHPVOD_ROOT . "hack/{$value[directory]}/upgrade.xml")){
+print <<<EOT
+-->
+				<a href="$basename&action=upgrade&directory=$value[directory]">升级</a>
+<!--
+EOT;
+}
+if(is_file(PHPVOD_ROOT . "hack/{$value[directory]}/admin.php")){
+print <<<EOT
+-->
+				<a href="$admin_file?adminjob=hack&hackname=$value[directory]">配置</a>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+				<a href="$basename&action=edit&directory=$value[directory]">编辑</a>
+				<a href="$basename&action=del&directory=$value[directory]">卸载</a>
+				<a href="$basename&action=parse&directory=$value[directory]">更新缓存</a>
+			</td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<br />
+
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header" colspan="4">未安装插件</td>
+	</tr>
+	<tr class="field f-tac">
+		<td width="40%">插件名称</td>
+		<td width="20%">插件目录</td>
+		<td width="15%">版本号</td>
+		<td width="25%">操作</td>
+	</tr>
+<!--
+EOT;
+foreach($uninstall_list as $hackconfig){
+print <<<EOT
+-->
+	<tr class="f-tac">
+		<td>$hackconfig[name]</td>
+		<td>$hackconfig[directory]</td>
+		<td>$hackconfig[version]</td>
+		<td><a href="$basename&action=add&directory=$hackconfig[directory]">安装</a></td>
+	</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<!--
+EOT;
+}elseif($action=='edit'){
+print <<<EOT
+-->
+<ul class="nav">
+	<li><a href="$basename">插件列表</a></li>
+	<li><a href="javascript:;" class="active">编辑插件</a></li>
+</ul>
+<br />
+
+<form action="$basename" method="post">
+	<input type="hidden" value="$directory" name="directory">
+	<input type="hidden" value="2" name="step">
+	<input type="hidden" value="edit" name="action">
+<!--
+EOT;
+if(!$exists_index){
+print <<<EOT
+-->
+	<input type="hidden" value="0" name="spos">
+<!--
+EOT;
+}
+print <<<EOT
+-->		
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">编辑插件</td>
+		</tr>
+		<tr>
+			<td width="40%">启动</td>
+			<td>
+				<label><input name="hidden" type="radio" value="1" $hidden_1>启动</label>
+				<label><input name="hidden" type="radio" value="0" $hidden_0>不启动</label>
+			</td>
+		</tr>
+		<tr>
+			<td>插件名称</td>
+			<td><input type="text" name="name" value="{$_hack[$directory][name]}" size="40"></td>
+		</tr>
+<!--
+EOT;
+if($exists_index){
+print <<<EOT
+-->		
+		<tr>
+			<td>前台显示位置<br />前台入口文件index.php必须存在</td>
+			<td>
+				<select name="spos">
+					<option value="0" $spos_0>不显示</option>
+					<option value="1" $spos_1>导航栏</option>
+					<option value="2" $spos_2>菜单栏</option>
+				</select>
+			</td>
+		</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->	
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>
+-->

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<base href="$db_wwwurl/" />
+	<meta http-equiv="Content-Type" content="text/html; charset=$db_charset" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--{if PHPFUNC=='showmsg'}-->
+	<title>提示信息 - powered by PHPvod.com</title>
+	<meta name="keywords" content="$db_keywords" />
+	<meta name="description" content="$db_description" />
+<!--{elseif PHPSELF=='category'}-->
+	<!--{if !empty($_class[$cid][title])}-->
+		<title>$_class[$cid][title] - powered by PHPvod.com</title>
+	<!--{else}-->
+		<title>$_class[$cid][caption] - $db_wwwname - powered by PHPvod.com</title>
+	<!--{/if}-->
+	<!--{if !empty($_class[$cid][keywords])}-->
+		<meta name="keywords" content="$_class[$cid][keywords]" />
+	<!--{else}-->
+		<meta name="keywords" content="$db_keywords" />
+	<!--{/if}-->
+	<!--{if !empty($_class[$cid][description])}-->
+		<meta name="description" content="$_class[$cid][description]" />
+	<!--{else}-->
+		<meta name="description" content="$db_description" />
+	<!--{/if}-->
+<!--{elseif PHPSELF=='class'}-->
+	<!--{if !empty($_class[$cid][title])}-->
+		<title>$_class[$cid][title] - powered by PHPvod.com</title>
+	<!--{else}-->
+		<title>$_class[$cid][caption] - $db_wwwname - powered by PHPvod.com</title>
+	<!--{/if}-->
+	<!--{if !empty($_class[$cid][keywords])}-->
+		<meta name="keywords" content="$_class[$cid][keywords]" />
+	<!--{else}-->
+		<meta name="keywords" content="$db_keywords" />
+	<!--{/if}-->
+	<!--{if !empty($_class[$cid][description])}-->
+		<meta name="description" content="$_class[$cid][description]" />
+	<!--{else}-->
+		<meta name="description" content="$db_description" />
+	<!--{/if}-->
+<!--{elseif PHPSELF=='read'}-->
+	<title>$video[subject] - $db_wwwname - powered by PHPvod.com</title>
+	<meta name="keywords" content="<!--{eval echo str_replace(array('"',"\'",'&nbsp;'), '', strip_tags($video['subject']))}-->" />
+	<meta name="description" content="<!--{eval echo pv_substr(preg_replace('/\s/i', '', strip_tags($video['synopsis'])), 200, 1);}-->" />
+<!--{elseif PHPSELF == 'article'}-->
+	<title>$article[subject] - $db_wwwname - powered by PHPvod.com</title>
+	<meta name="keywords" content="<!--{eval echo str_replace(array('"',"\'",'&nbsp;'), '', strip_tags($article['subject']));}-->" />
+	<meta name="description" content="<!--{eval echo pv_substr(preg_replace('/\s/i', '', strip_tags($article['content'])), 200, 1);}-->" />
+<!--{else}-->
+	<!--{if PHPSELF=='index'}-->
+		<title>$db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF=='play'}-->
+		<title>$video[subject]({$urlcaption}) - $db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF == 'post'}-->
+		<title>发布视频 - $db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF == 'arthome'}-->
+		<title>文档首页- $db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF == 'artlist'}-->
+		<title>$_artclass[$classid] - $db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF == 'hack'}-->
+		<title>$_hack[$hackname][name] - 插件 - $db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF == 'login'}-->
+		<title>会员登录 - $db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF == 'message'}-->
+		<title>短消息 - $db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF == 'profile'}-->
+		<title>个人中心 - $db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF == 'register'}-->
+		<title>会员注册 - $db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF == 'report'}-->
+		<title>举报 - $db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF == 'search'}-->
+		<!--{eval if(!empty($keyword)) $search_keyword = $keyword . ' - '; else $search_keyword = '';}-->
+		<title>{$search_keyword}搜索 - $db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF == 'sendpwd'}-->
+		<title>找回密码 - $db_wwwname - powered by PHPvod.com</title>
+	<!--{elseif PHPSELF == 'rss'}-->
+		<title>RSS - $db_wwwname - powered by PHPvod.com</title>		
+	<!--{else}-->
+		<title>$db_wwwname</title>
+	<!--{/if}-->
+	<meta name="keywords" content="$db_keywords" />
+	<meta name="description" content="$db_description" />
+<!--{/if}-->
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="$imgpath/$stylepath/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" id="csslink" href="$imgpath/$stylepath/default.css" />
+	<!-- JS -->
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<!--
+	<script type="text/javascript" src="$imgpath/$stylepath/bootstrap/js/bootstrap.min.js"></script>
+	-->
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="$imgpath/$stylepath/phpvod.js"></script>
+</head>
+<body>
+<!--{template 'panel_nav'}-->
+<div class="container u-min-width">
+	<div class="row">
+		<div class="col-md-20">
+			<!--{eval $adcode = ad('header');}-->
+			<!--{if $adcode!=''}--><div class="u-adheader f-m0a">$adcode</div><!--{/if}-->
+			<!--{template 'panel_header'}-->
+			<!--{template 'panel_menu'}-->

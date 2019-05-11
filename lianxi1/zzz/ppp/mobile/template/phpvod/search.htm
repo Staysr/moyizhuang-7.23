@@ -1,0 +1,39 @@
+<!--{if !$action}-->
+
+<div class="m-search">
+	<form method="post" action="search.php">
+		<input type="hidden" name="action" value="search" />
+		<input type="hidden" name="field" value="subject" />
+		<input type="hidden" name="cid" value="" />
+		<input type="hidden" name="nid" value="" />
+		<input type="hidden" name="orderway" value="postdate" />
+		<input type="hidden" name="asc" value="DESC" />
+		<input type="hidden" name="lines" value="15" />
+		<input type="hidden" name="showtype" value="0" />
+		<div class="form-group">
+			<label for="keyword">关键词</label>
+			<input type="text" class="form-control" id="keyword" name="keyword" placeholder="Keyword" />
+		</div>
+		<button type="submit" class="btn btn-default">搜索</button>
+	</form>
+</div>
+
+<!--{elseif $action=='search'}-->
+
+<section class="m-box f-mt10">
+	<!--{$videodb=loop:video $tagstr|showsub=1|order=$orderway $asc|limit=$lines|page=$page|url=$url}-->
+	<ul class="m-videolist n3">
+		<!--{loop $videodb $video}-->
+		<li>
+			<a href="play.php?vid={$video[vid]}&playgroup=1&index=0">
+				<span class="pic"><img src="$video[picurl]" /></span>
+				<div class="title">$video[subject]</div>
+			</a>
+		</li>
+		<!--{/loop}-->
+	</ul>
+</section>
+
+<div class="u-pages"><!--{page $pageinfo}--></div>
+
+<!--{/if}-->

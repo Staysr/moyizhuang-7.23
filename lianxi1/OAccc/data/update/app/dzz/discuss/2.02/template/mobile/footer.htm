@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="{MOD_PATH}/images/css/footer.css">
+<div class="footer-container">
+    <div class="weui-tabbar" style="z-index: 1;">
+        <a href="{MOD_URL}" class="weui-tabbar__item <!--{if !$_GET[op]}-->weui-bar__item--on<!--{/if}-->">
+            <!--<span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>-->
+            <div class="weui-tabbar__icon">
+                <i class="dzz dzz-home"></i>
+            </div>
+            <p class="weui-tabbar__label nav-name">{lang post}</p>
+        </a>
+        <a href="{MOD_URL}&op=my" class="weui-tabbar__item <!--{if $_GET[op] == 'my' && !$_GET[do]}-->weui-bar__item--on<!--{/if}-->">
+            <div class="weui-tabbar__icon">
+                <i class="dzz dzz-sms2"></i>
+            </div>
+            <p class="weui-tabbar__label nav-name">{lang discuss}</p>
+        </a>
+        <a href="javascript:;" class="weui-tabbar__item add-a">
+            <div class="weui-tabbar__icon add  open-popup"  data-target="#create">
+                <i class="dzz dzz-add"></i>
+            </div>
+        </a>
+        <a href="{MOD_URL}&op=my&do=mycomments" class="weui-tabbar__item <!--{if $_GET[op] == 'my' && $_GET[do]=='mycomments' || $_GET[do]=='receivedcmt'}-->weui-bar__item--on<!--{/if}-->">
+            <div class="weui-tabbar__icon">
+                <i class="dzz dzz-notifications"></i>
+            </div>
+            <p class="weui-tabbar__label nav-name">{lang message}</p>
+        </a>
+        <a href="{MOD_URL}&op=mobile&do=mycenter" class="weui-tabbar__item <!--{if $_GET[op] == 'mobile' && $_GET[do]=='mycenter'}-->weui-bar__item--on<!--{/if}-->">
+            <div class="weui-tabbar__icon">
+                <i class="dzz dzz-person"></i>
+            </div>
+            <p class="weui-tabbar__label nav-name">{lang my}</p>
+        </a>
+    </div>
+</div>
+
+<div id="create" class="weui-popup__container popup-bottom">
+    <div class="weui-popup__overlay">
+         <a href="javascript:;" class="close-popup" style="display: block;height: 100%"></a>
+    </div>
+    <div class="weui-popup__modal create-modal">
+        <div class="modal-content create-con">
+            <div class="weui-grids create-container">
+                <a class="weui-grid js_grid create-item" href="{MOD_URL}&op=mobile&do=newthread">
+                    <div class="weui-grid__icon create-icon">
+                        <img src="{MOD_PATH}/images/mobile/create2.png" alt="">
+                    </div>
+                    <p class="weui-grid__label">
+                        {lang send_new_thread}
+                    </p>
+                </a>
+                <a class="weui-grid js_grid create-item" href="{MOD_URL}&op=mobile&do=create">
+                    <div class="weui-grid__icon create-icon">
+                        <img src="{MOD_PATH}/images/mobile/create1.png" alt="">
+                    </div>
+                    <p class="weui-grid__label">
+                        {lang create_discuss}
+                    </p>
+                </a>
+
+            </div>
+        </div>
+        <div class="toolbar createbar">
+            <div class="toolbar-inner create-inner">
+                <a href="javascript:;" class="picker-button close-popup close-btn"><i class="dzz dzz-close"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

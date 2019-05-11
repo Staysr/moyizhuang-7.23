@@ -1,0 +1,38 @@
+/* pages/personal/index.wxss */
+ .open{
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin-top: 55rpx;
+  display: block;
+  overflow: hidden;
+  margin-left: 300rpx;
+}
+.name{
+  margin-top: 15rpx;
+}
+.dingdan{
+    font-size: 15rpx;
+}
+image{
+    width: 50rpx;
+    height: 50rpx;
+    /* margin-top: 12rpx; */
+ vertical-align:middle;
+}
+.img{
+   text-align: left;
+   width: 90%;
+   margin: 0 auto;
+   margin-top: 12rpx;
+   border-bottom: 1rpx solid rgb(234,234,234); 
+   padding-bottom: 12rpx;
+}
+.content{
+  text-align: center;
+  }
+  .text1{
+    margin-left: 30rpx;
+    color: rgb(84, 84, 84);
+    font-size: 30rpx;
+  }

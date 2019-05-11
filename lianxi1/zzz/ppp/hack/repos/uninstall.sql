@@ -1,0 +1,26 @@
+DROP TABLE IF EXISTS `pv_repos`;
+DROP TABLE IF EXISTS `pv_reposlog`;
+DROP TABLE IF EXISTS `pv_reposreplace`;
+
+DELETE FROM `pv_hackvar` WHERE hk_name='col_update_subject';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_update_pic';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_update_playactor';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_update_director';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_update_year';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_update_memo';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_update_content';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_samename';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_compare_cid';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_compare_nid';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_compare_director';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_compare_playactor';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_compare_year';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_compare_memo';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_random_username';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_random_postdate_start';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_random_postdate_end';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_random_hits_min';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_random_hits_max';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_downpic_auto';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_downpic_step';
+DELETE FROM `pv_hackvar` WHERE hk_name='col_random_userinfo';

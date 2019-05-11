@@ -1,0 +1,140 @@
+<div class="settings-wrap container">
+	
+    <div class="window-module clearfix">
+      <div class="window-module-title" style="margin-left:0">
+        <h3 class="u-inline">{lang group_visibility}</h3>
+      </div>
+      <div class="setting-item">
+        <div class="setting-item-detail">
+        	<!--{if $perm>2}-->
+            <label><input type="radio" name="privacy" value="0" class="js-privacy"  <!--{if !$org['privacy']}--> checked="checked" <!--{/if}--> /> <span class="icon-sm icon-public fa fa-globe"></span> <strong>{lang open}</strong> <span class="icon-sm js-ok <!--{if !$org['privacy']}-->fa fa-check<!--{/if}-->"></span></label> 			<!--{else}-->
+              <span class="icon-sm icon-public fa fa-globe"></span> <strong>{lang open}</strong> <span class="icon-sm js-ok <!--{if !$org['privacy']}-->fa fa-check<!--{/if}-->"></span>
+            <!--{/if}-->
+            <span class="help-block"> {lang anyone_can_view_this_group_but_only_members_of_the_group_can_create_new_board}</span>
+        </div>
+        <div class="setting-item-detail">
+        <!--{if $perm>2}-->
+            <label><input type="radio" name="privacy" value="1" class="js-privacy" <!--{if $org['privacy']}--> checked="checked" <!--{/if}--> /> <span class="icon-sm icon-private fa fa-lock"></span> <strong>{lang privately_owned}</strong>  <span class="icon-sm js-ok <!--{if $org['privacy']}-->fa fa-check<!--{/if}-->"></span></label> 		<!--{else}-->
+             <span class="icon-sm icon-private fa fa-lock"></span> <strong>{lang privately_owned}</strong>  <span class="icon-sm js-ok <!--{if $org['privacy']}-->fa fa-check<!--{/if}-->"></span>
+        <!--{/if}-->
+            <span class="help-block"> {lang private_only_group_members_can_view_this_group}</span>
+        </div>
+       
+      </div>
+    </div>
+    <div class="window-module clearfix">
+      <div class="window-module-title" style="margin-left:0">
+        <h3 class="u-inline">{lang members_can_be_created_within_the_group}</h3>
+      </div>
+      <div class="setting-item">
+        <div class="setting-item-detail">
+         <!--{if $perm>2}-->
+             <label  class="js-checkbox"><input type="checkbox" name="mperm_c[]" value="4" <!--{if $org[mperm_c] & 4}-->checked="checked"<!--{/if}--> /> <span class="icon-sm icon-public fa fa-globe"></span> <strong>{lang open_board}</strong> <span class="icon-sm js-ok <!--{if $org[mperm_c] & 4}-->fa fa-check<!--{/if}-->"></span> </label>
+         <!--{else}-->
+         <span class="icon-sm icon-public fa fa-globe"></span> <strong>{lang open_board}</strong> <span class="icon-sm js-ok <!--{if $org[mperm_c] & 4}-->fa fa-check<!--{/if}-->"></span>
+         <!--{/if}-->
+            <span class="help-block">{lang public_collections_anyone_can_be_viewed_and_only_members_of_the_board_can_be_edited}</span>
+        </div>
+         <div class="setting-item-detail">
+          <!--{if $perm>2}-->
+            <label  class="js-checkbox"><input type="checkbox" name="mperm_c[]" value="2" <!--{if $org[mperm_c] & 2}-->checked="checked"<!--{/if}--> /> <span class="icon-sm icon-organization-visible fa fa-th-large"></span> <strong>{lang group_visibility_board}</strong> <span class="icon-sm js-ok <!--{if $org[mperm_c] & 2}-->fa fa-check<!--{/if}-->"></span></label>
+          <!--{else}-->
+        <span class="icon-sm icon-organization-visible fa fa-th-large"></span> <strong>{lang group_visibility_board}</strong> <span class="icon-sm js-ok <!--{if $org[mperm_c] & 2}-->fa fa-check<!--{/if}-->"></span>
+         <!--{/if}-->
+            <span class="help-block"> {lang within_the_group_you_can_see_the_board}</span>
+        </div>
+         <div class="setting-item-detail">
+          <!--{if $perm>2}-->
+             <label class="js-checkbox"><input type="checkbox" name="mperm_c[]" value="1" <!--{if $org[mperm_c] & 1}-->checked="checked"<!--{/if}--> /> <span class="icon-sm icon-private fa fa-lock"></span> <strong>{lang private_board}</strong> <span class="icon-sm js-ok <!--{if $org[mperm_c] & 1}-->fa fa-check<!--{/if}-->"></span></label> 
+          <!--{else}-->
+       		<span class="icon-sm icon-private fa fa-lock"></span> <strong>{lang private_board}</strong> <span class="icon-sm js-ok <!--{if $org[mperm_c] & 1}-->fa fa-check<!--{/if}-->"></span>
+         <!--{/if}-->
+            <span class="help-block">{lang private_board_of_essays_that_only_members_can_view_or_edit}</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="window-module clearfix">
+      <div class="window-module-title" style="margin-left:0">
+        <h3 class="u-inline">{lang the_group_board_removes_permissions}</h3>
+      </div>
+      <div class="setting-item">
+        <div class="setting-item-detail">
+           
+            <!--{if $perm>2}-->
+              <label><input type="radio" name="removeperm" value="0" class="js-removeperm"  <!--{if !$org['removeperm']}--> checked="checked" <!--{/if}--> />  <strong>{lang no_remove}</strong> <span class="icon-sm js-ok <!--{if !$org['removeperm']}-->fa fa-check<!--{/if}-->"></span></label> 
+          <!--{else}-->
+       		<span  <strong>{lang no_remove}</strong> <span class="icon-sm js-ok <!--{if !$org['removeperm']}-->fa fa-check<!--{/if}-->"></span></span>
+         <!--{/if}-->
+            <span class="help-block"> {lang the_board_administrator_is_not_allowed_to_remove_his_collected_board_from_the_group}</span>
+        </div>
+        <div class="setting-item-detail">
+          <!--{if $perm>2}-->
+             <label><input type="radio" name="removeperm" value="1" class="js-removeperm" <!--{if $org['removeperm']}--> checked="checked" <!--{/if}--> /> <strong>{lang allow_to_remove}</strong>  <span class="icon-sm js-ok <!--{if $org['removeperm']}-->fa fa-check<!--{/if}-->"></span></label> 
+          <!--{else}-->
+       		<span  <strong>{lang allow_to_remove}</strong>  <span class="icon-sm js-ok <!--{if $org['removeperm']}-->fa fa-check<!--{/if}-->"></span></span>
+         <!--{/if}-->
+            <span class="help-block">{lang the_board_administrator_is_allowed_to_remove_his_collected_board_from_the_group}</span>
+        </div>
+       
+      </div>
+    </div>
+    <!--{if $perm>2}-->
+    <div class="window-module  clearfix">
+    	
+    	<a class=" js-popbox" data-href="{MOD_URL}&op=org&op=menu&do=org_delete&orgid=$orgid" href="javascript:;" data-placement="top" data-auto-adapt="true" style="padding: 6px 11px; margin-top: 20px;">{lang deletion_team}</a>
+      
+     </div>
+       <!--{/if}-->
+</div>
+<script type="text/javascript">
+
+jQuery(document).ready(function(e) {
+	jQuery('.settings-wrap .js-popbox').popbox();
+	jQuery(document).on('change','.js-checkbox input',function(){
+		var el=jQuery(this);
+		
+		var mperm_c=0;
+		el.closest('.setting-item').find('input').each(function(){
+			if(jQuery(this).prop('checked')){
+				jQuery(this).parent().find('.js-ok').addClass('fa fa-check');
+				mperm_c+=parseInt(jQuery(this).val());
+			}else{
+				jQuery(this).parent().find('.js-ok').removeClass('fa fa-check');
+			}
+		});
+		setSave('mperm_c',mperm_c,'$orgid');
+	});
+	jQuery(document).on('change','.js-privacy',function(){
+		var el=jQuery(this);
+		setSave('privacy',el.val(),'$orgid');
+		el.closest('.setting-item').find('.js-ok').removeClass('fa fa-check');
+		if(el.prop('checked')){
+			el.parent().find('.js-ok').addClass('fa fa-check');
+		}else{
+			el.parent().find('.js-ok').removeClass('fa fa-check');
+		}
+	});
+	jQuery(document).on('change','.js-inviteperm',function(){
+		var el=jQuery(this);
+		setSave('inviteperm',el.val(),'$orgid');
+		el.closest('.setting-item').find('.js-ok').removeClass('fa fa-check');
+		if(el.prop('checked')){
+			el.parent().find('.js-ok').addClass('fa fa-check');
+		}else{
+			el.parent().find('.js-ok').removeClass('fa fa-check');
+		}
+	});
+	jQuery(document).on('change','.js-removeperm',function(){
+		var el=jQuery(this);
+		setSave('removeperm',el.val(),'$orgid');
+		el.closest('.setting-item').find('.js-ok').removeClass('fa fa-check');
+		if(el.prop('checked')){
+			el.parent().find('.js-ok').addClass('fa fa-check');
+		}else{
+			el.parent().find('.js-ok').removeClass('fa fa-check');
+		}
+	});
+});
+
+</script> 

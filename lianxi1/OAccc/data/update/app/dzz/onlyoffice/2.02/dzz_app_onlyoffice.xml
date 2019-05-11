@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Dzz! app]]></item>
+	<item id="Version"><![CDATA[2.0 beta]]></item>
+	<item id="Time"><![CDATA[2018-09-09 15:08]]></item>
+	<item id="From"><![CDATA[乐云网络 (http://www.dzzoffice.com/)]]></item>
+	<item id="Data">
+		<item id="app">
+			<item id="appname"><![CDATA[onlyoffice]]></item>
+			<item id="appico"><![CDATA[data:image/png;base64,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
+Jw3PiD1p+BBNXV1iVNbdNwAAAABJRU5ErkJggg==
+]]></item>
+			<item id="appdesc"><![CDATA[]]></item>
+			<item id="appurl"><![CDATA[{dzzscript}?mod=onlyoffice]]></item>
+			<item id="appadminurl"><![CDATA[{dzzscript}?mod=onlyoffice&op=admin]]></item>
+			<item id="noticeurl"><![CDATA[]]></item>
+			<item id="disp"><![CDATA[113]]></item>
+			<item id="vendor"><![CDATA[]]></item>
+			<item id="haveflash"><![CDATA[0]]></item>
+			<item id="isshow"><![CDATA[0]]></item>
+			<item id="havetask"><![CDATA[1]]></item>
+			<item id="hideInMarket"><![CDATA[0]]></item>
+			<item id="feature"><![CDATA[]]></item>
+			<item id="fileext"><![CDATA[docx,xlsx,pptx,ppsx,doc,xls,ppt,pps,odt,ods,odp,rtf,csv]]></item>
+			<item id="group"><![CDATA[0]]></item>
+			<item id="position"><![CDATA[1]]></item>
+			<item id="system"><![CDATA[0]]></item>
+			<item id="notdelete"><![CDATA[1]]></item>
+			<item id="open"><![CDATA[0]]></item>
+			<item id="nodup"><![CDATA[0]]></item>
+			<item id="identifier"><![CDATA[onlyoffice]]></item>
+			<item id="app_path"><![CDATA[dzz]]></item>
+			<item id="version"><![CDATA[2.02]]></item>
+			<item id="upgrade_version"><![CDATA[]]></item>
+			<item id="check_upgrade_time"><![CDATA[20180909]]></item>
+			<item id="extra">
+				<item id="enablefile"><![CDATA[enable.php]]></item>
+			</item>
+			<item id="mid"><![CDATA[33]]></item>
+		</item>
+		<item id="version"><![CDATA[2.0]]></item>
+	</item>
+</root>

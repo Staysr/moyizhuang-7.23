@@ -1,0 +1,30 @@
+<form action="message.php" method="post">
+<input type="hidden" name="action" value="del" />
+<table class="table">
+	<thead>
+		<tr><td colspan="5" class="f-fs18"><strong>发件箱</strong></td></tr>
+		<tr>
+			<td width="5%"><input type="checkbox" onclick="check_all(this,'delid');"></td>
+			<td width="6%"><strong>ID</strong></td>
+			<td><strong>标题</strong></td>
+			<td width="15%"><strong>收件人</strong></td>
+			<td width="18%"><strong>时间</strong></td>
+		</tr>
+	</thead>
+	<tbody>
+		<!--{loop $msgdb $key $value}-->
+		<!--{eval $key++;}-->
+		<tr>
+			<td><input type="checkbox" name="delid[]" value="$value[mid]" /></td>
+			<td>$key</td>
+			<td><a href="message.php?action=read&mid=$value[mid]">$value[title]</a></td>
+			<td>$value[touser]</td>
+			<td>$value[mdate]</td>
+		</tr>
+		<!--{/loop}-->
+	</tbody>
+	<tfoot>
+		<tr><td colspan="5" class="f-tac"><input type="submit" value="删 除" class="u-btn f-mt10" /></td></tr>
+	</tfoot>
+</table>
+</form>

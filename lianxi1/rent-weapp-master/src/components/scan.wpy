@@ -1,0 +1,97 @@
+<style>
+.scan .scan_circle {
+  position: relative;
+  width: 380rpx;
+  height: 380rpx;
+  border: solid 1px #eeeeee;
+  background-color: white;
+  border-radius: 9999px;
+  text-align: center;
+  font-size: 40rpx;
+  box-shadow:0rpx 0rpx 40rpx -10rpx gray;
+}
+.scan .scan_circle image {
+  display: inline-block;
+  margin: 70rpx 0 0 0;
+  width: 155rpx;
+  height: 155rpx;
+}
+.scan {
+  padding: 120rpx 0 0 0;
+}
+.scan .notice {
+  padding: 130rpx 0 40rpx 0;
+  font-size: 30rpx;
+}
+.scan .price {
+  margin: 20rpx 0 0 0;
+}
+</style>
+<template>
+  <!-- 主体部分开始 -->
+  <view class="scan">
+    <wxc-cc>
+      <view class="scan_circle">
+        <view class="zone" catchtap="scan"></view>
+        <v-getmobile wx:if="{{!syncUserInfo.mobile || syncUserInfo.mobile === ''}}"></v-getmobile>
+        <v-login wx:if="{{!syncUserInfo.id}}"></v-login>
+        <image mode="aspectFill" src="../static/image/scan.png" />
+        <view class="price">
+          {{syncTitle}}
+        </view>
+      </view>
+    </wxc-cc>
+    <wxc-cc>
+      <view class="notice">
+        {{syncNotice}}
+      </view>
+    </wxc-cc>
+  </view>
+  <!-- 主体部分结束 -->
+</template>
+<script>
+  import wepy from 'wepy'
+  import Vlogin from './login'
+  import Vgetmobile from './getmobile'
+  import { getParams } from '../utils/util'
+  export default class Scan extends wepy.component {
+    data = {
+      title: ''
+    }
+
+    props = {
+      syncUserInfo: {
+        type: Object,
+        default: null
+      },
+      syncTitle: {
+        type: String,
+        default: ''
+      },
+      syncNotice: {
+        type: String,
+        default: ''
+      }
+    }
+
+    components = {
+      'v-login': Vlogin,
+      'v-getmobile': Vgetmobile
+    }
+
+    events = {}
+
+    watch = {}
+
+    onLoad() {}
+
+    methods = {
+      async scan(e) {
+        const scanResult = await wx.scanCodeP()
+        const { result } = scanResult
+        const parmams = getParams(result)
+        await wx.navigateToP({ url: '/pages/check?goods_id=' + parmams.goods_id })
+      }
+    }
+  }
+</script>

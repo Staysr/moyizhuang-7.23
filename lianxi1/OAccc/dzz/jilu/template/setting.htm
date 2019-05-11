@@ -1,0 +1,101 @@
+<!--{template common/header_simple_start}-->
+<link rel="stylesheet" href="static/css/checkbox.css" media="all">
+<link href="static/css/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/common.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="static/icheck/skins/minimal/blue.css?{VERHASH}" rel="stylesheet" media="all">
+<link href="{MOD_PATH}/images/user_select.css?{VERHASH}" rel="stylesheet" media="all">
+<script type="text/javascript" src="static/js/jquery.leftDrager.js?{VERHASH}"></script>
+<script type="text/javascript" src="static/js/switchery.js"></script>
+<script type="text/javascript" src="static/js/common.js"></script>
+<script type="text/javascript" src="static/js/input_field.js"></script>
+<style>
+@media (min-width:768px){
+	.bs-navbar-default .container-fluid>.navbar-header {
+	 margin-left: 0; 
+	 margin-right: 0; 
+	}
+}
+.bs-main-container {
+	overflow: auto;
+}
+.user-item .delete {
+	display: none;
+}
+.user-item.hover .delete {
+	display: block;
+}
+.user-item .thumbnail img{
+	max-width:100%;
+	max-height:100%;
+}
+.user-item .thumbnail span{
+  width: 84px;
+  height: 84px;
+  line-height: 84px;
+  font-size: 30px;
+  margin-top: 0;
+}
+.more {
+	font-size: 80px;
+	line-height: 20px;
+	font-family: georgia;
+	color: #BBBBBB;
+}
+.more:hover {
+	color: #428bca;
+}
+@media (max-width: 768px){
+	.bs-left-container {
+		display:none;
+	}
+	.bs-main-container {
+		margin-left: 0;
+	}
+}
+
+</style>
+<!--{template common/header_simple_end}-->
+<nav class="jilu-navbar bs-top-container">
+  <a href="{MOD_URL}" style="padding-left: 8px;display: inline-block; ">
+      <div class="gb_fc" style="width: 48px;height: 48px;margin:0;margin-right: 25px;position: relative;top:-2px;"><i class="dzz dzz-chevron-left" style="font-size: 36px;color: #fff;position: relative;top: -6px;left: -6px;"></i></div>
+      <span>{eval echo lang('set')}</span>
+  </a>
+</nav>
+<div class="bs-container clearfix">
+	<div class="bs-left-container affix-top clearfix">
+        <!--{template setting_left}-->
+   </div>
+   <div class="left-drager">
+     <div class="left-drager-op"><div class="left-drager-sub"></div></div>
+   </div>
+   <div class="bs-main-container" style="position:relative">
+    <!--{if $do=='basic'}-->
+    	<!--{template setting_basic}-->
+
+    <!--{elseif $do=='jilu'}-->
+    	<!--{template setting_jilu}--> 
+    <!--{elseif $do=='wxapp'}-->
+         <!--{if $operation=='menu'}-->
+          <!--{template common/wx_menu}--> 
+         <!--{else}-->
+         <!--{template common/wx_appinfo}--> 
+         <!--{/if}-->
+         <script type="text/javascript">
+			jQuery('.left-drager').leftDrager_layout(); 
+		</script>
+     <!--{elseif $do=='wxmp'}-->
+         <!--{if $operation=='menu'}-->
+          <!--{template common/wx_menu}--> 
+         <!--{else}-->
+         <!--{template common/wx_mpinfo}--> 
+         <!--{/if}-->
+         <script type="text/javascript">
+			jQuery('.left-drager').leftDrager_layout(); 
+		</script>
+    <!--{/if}-->
+  </div>
+</div>
+<script src="static/bootstrap/js/bootstrap.min.js?{VERHASH}"></script> 
+<script type="text/javascript" src="static/icheck/icheck.min.js?{VERHASH}"></script>
+<!--codestrings--> 
+<!--{template common/footer_simple}--> 

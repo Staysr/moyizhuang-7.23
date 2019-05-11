@@ -1,0 +1,61 @@
+# 将 RewriteEngine 模式打开
+RewriteEngine On
+# 安装目录路径
+RewriteBase /
+
+#正在热映即将上映
+RewriteRule ^up/(.*)-up(.*).html$ index.php\?s=/Home-up-show-dir-$1-s-up-data-$2 [L]
+RewriteRule ^up/(.*)-(.*).html$ index.php\?s=/Home-up-show-dir-$1-data-$2 [L]
+#专题拼音伪静态
+RewriteRule ^special/$ index.php\?s=/special-show [L]
+RewriteRule ^special/index(.*)$ index.php\?s=/special-show-p-$1 [L]
+RewriteRule ^special/(.*)/$ index.php\?s=/special-read-name-$1 [L]
+
+
+#新闻页面
+RewriteRule ^news/(.*)/$ index.php\?s=/Home-news-show-id-$1 [L]
+RewriteRule ^news/(.*)/index.html$ index.php\?s=/Home-news-show-id-$1 [L]
+RewriteRule ^news/(.*)/index(.*).html$ index.php\?s=/Home-news-show-id-$1-p-$2 [L]
+RewriteRule ^news/(.*).html$ index.php\?s=/Home-news-read-id-$1 [L]
+
+#作品新闻页面
+RewriteRule ^(.*)/news/$ index.php\?s=/Home-ting-news-name-$1 [L]
+RewriteRule ^(.*)/news/index.html$ index.php\?s=/Home-ting-news-name-$1 [L]
+RewriteRule ^(.*)/news/index(.*).html$ index.php\?s=/Home-ting-news-name-$1-p-$2 [L]
+#作品内容页面
+RewriteRule ^(.*)/(.*)/$ index.php\?s=/Home-ting-read-name-$2 [L]
+#作品播放页面
+RewriteRule ^(.*)/(.*)/(.*)-(.*).html$ index.php\?s=/ting-play-name-$2-sid-$3-pid-$4-listname-$1
+#作品播放页面播放地址
+RewriteRule ^(.*)/(.*)/play-(.*)-(.*)-(.*).js$ index.php\?s=/play-index-name-$2-sid-$4-pid-$5
+RewriteRule ^(.*)/(.*)/(.*)-(.*).html$ index.php\?s=/ting-play-name-$2-sid-$3-pid-$4-listname-$1 [L]
+RewriteRule ^(.*)/(.*)/([a-z]+).html$ index.php\?s=/Home-tv-read-name-$2-wpy-$3-listname-$1 [L]
+
+#分类检索伪静态
+RewriteRule ^(.*)/index_(.*)_(.*)_(.*)_(.*)_(.*)_(.*)_(.*)_(.*).html index.php\?s=/Home-ting-type-dir-$1-p-$2-mcid-$3-lz-$4-year-$5-letter-$6-order-$7-area-$8-picm-$9 [L]
+#分类检索伪静态
+RewriteRule ^(.*)/$ index.php\?s=/Home-ting-show-dir-$1 [L]
+RewriteRule ^(.*)/index.html$ index.php\?s=/Home-ting-show-dir-$1 [L]
+RewriteRule ^(.*)/index([0-9]+).html$ index.php\?s=/Home-ting-show-dir-$1-p-$2 [L]
+
+#分类图片模式
+RewriteRule ^(.*)/pic.html$ index.php\?s=/Home-ting-show-dir-$1-picm-1
+#分类列表模式
+RewriteRule ^(.*)/list.html$ index.php\?s=/Home-ting-show-dir-$1-picm-2
+#排行榜
+RewriteRule ^top(.*).html$  index.php\?s=/my-show-id-top$1.html
+#最近更新
+RewriteRule ^new(.*).html$  index.php\?s=/my-show-id-new.html
+
+#网站地图
+RewriteRule ^sitemap.html$  index.php\?s=/my-show-id-sitemap.html
+RewriteRule ^map/(rss|google|baidu|sitemap).html$ index.php\?s=/map-show-id-$1-limit-500.html
+RewriteRule ^map-(.*)$ index.php\?s=/Home-map-$1
+#网站TAG
+RewriteRule ^tag-(.*)$ index.php\?s=/Home-tag-$1
+#留言
+RewriteRule ^gb-(.*)$ index.php\?s=/User-gb-$1
+RewriteRule ^cm-(.*)$ index.php\?s=/Home-cm-$1
+#自定义页面
+RewriteRule ^my-(.*)$ index.php\?s=/Home-my-$1
+RewriteRule ^ting-search(.*)$ index.php\?s=/Home-ting-search-$1

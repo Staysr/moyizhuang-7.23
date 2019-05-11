@@ -1,0 +1,63 @@
+  <!--{if $list}-->
+      <!--{if !$_GET['nextStart']}-->
+      <div class="num_info">
+        {eval echo lang('archived_count', array('count' => $count))} 
+      </div>
+      <ul class="posts-group posts-gtoup1">
+      <!--{/if}-->
+      <!--{loop $list $value}-->
+        <li class="post post1" id="jilu_{$value['jid']}" jid="$value[jid]" data-url="{MOD_URL}&id=$value[jid]" style="cursor: pointer;">
+            <a class="post-url title" href="{MOD_URL}&id=$value[jid]" style="display: inline-block;width: 90%;text-overflow: ellipsis;">
+          <div class="post-content post-content1">
+             <div class="upvote upvote_archive" >
+            	<div class="gridview9">
+               	<table style="table-layout:fixed;width:100%;height:100%">
+                <tr><td align="center" valign="middle">
+                 <!--{loop $value['cover_uids'] $uid}-->
+                 {eval echo avatar_block($uid)}
+                 <!--{/loop}-->
+               	</td></tr></table>
+                </div>
+            </div>
+            <div class="url">
+                <p class="title">$value[title]</p>
+            </div>
+            <span class="post-tagline description">
+                	<span class="desc" style="margin:0">$value['desc']</span>
+                </span>
+          </div>
+                <span class="ctime" title="{eval echo lang('archive_time')}">{eval echo dgmdate($value['archivetime'],'u');}</span>
+            </a>
+
+            <div class="time-btn" style="top: 0px;right: 20px">
+                <!--{if $value['perm'] > 2 || $perm > 1}-->
+                <div class="btnWr1">
+                    <button class="js-popbox-item btn btn1 achiveBtn sureBtn" style="margin-right: 0" data-href="{MOD_URL}&op=menu&do=menu&step=5&jid=$value[jid]" onclick="showWindow(jQuery(this).parents('.post1').attr('jid'),jQuery(this).data('href'),'get',0);" data-placement="left" data-auto-adapt="true">{eval echo lang('activation')}</button>
+                </div>
+                <div class="achiveInfo">{lang w_archived}</div>
+                <!--{/if}-->
+            </div>
+        </li>
+      <!--{/loop}-->
+       <!--{if $nextStart}-->
+         <div class="m-loadm" id="loadmore"  onclick="loadmore('$theurl&nextStart=$nextStart');">
+             <div class="loader"><div class="loader-inner ball-beat"><div></div><div></div><div></div></div></div>
+         </div>
+       <!--{/if}-->
+       <!--{if !$_GET['nextStart']}--></ul><!--{/if}-->
+  <!--{else}-->
+    <!--{if $_GET['do'] == 'loadmore'}-->
+     <div class="empty_alert">
+      <div class="empty_alert_content empty_alert_search">
+        <img src="{MOD_PATH}/images/search_empty.png">
+        <span><!--{if $_GET['uids'] || $_GET['after'] || $_GET['before'] || $_GET['mytype']}-->{eval echo lang('no_results_in_screen')}<!--{else}-->{eval echo lang('no_record_archive')}<!--{/if}--></span>
+      </div>
+     </div>
+     <script type="text/javascript">
+       jQuery(".empty_alert").css("display", "flex").show();
+     </script>
+    <!--{/if}-->
+  <!--{/if}-->
+  <script type="text/javascript">
+    gridview9_init(jQuery('.gridview9'));
+  </script>

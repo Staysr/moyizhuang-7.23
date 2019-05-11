@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--{template mobile/dis_header}-->
+    <title>{lang my_post}</title>
+</head>
+<body style="background-color: rgba(245, 245, 245, 1);">
+<div class="thread-container">
+    <!--{template mobile/my_thread_list}-->
+</div>
+
+</body>
+<script type="text/javascript" src="static/jquery_weui/js/jquery-weui.min.js"></script>
+<script type="text/javascript">
+    jQuery('.searchImg-wrap').height(jQuery('body').height());
+    var loading = false;  //状态标记
+    jQuery(document.body).infinite().on("infinite", function() {
+        if(loading) return;
+        loading = true;
+        if (jQuery(".weui-loadmore").length > 0) {
+            var url = jQuery(".weui-loadmore").data("url");
+            jQuery.ajax({
+                url: url,
+                type: 'get',
+                success: function(res) {
+                    jQuery(".weui-loadmore").replaceWith(res);
+                    loading = false;
+                }
+            })
+        } else {
+            jQuery(document.body).destroyInfinite();
+        }
+    });
+
+</script>
+<!--{eval output();}-->
+</html>

@@ -1,0 +1,1 @@
+if(!__lang){var __lang={};}__lang.system_busy="\u7cfb\u7edf\u7e41\u5fd9!";__lang.password_back_email_sent_successfully="\u5bc6\u7801\u627e\u56de\u90ae\u4ef6\u53d1\u9001\u6210\u529f";

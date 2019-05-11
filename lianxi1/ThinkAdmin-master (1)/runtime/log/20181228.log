@@ -1,0 +1,20 @@
+---------------------------------------------------------------
+[ 2018-12-28T16:14:51+08:00 ] ::1 GET localhost/lianxi1/ThinkAdmin-master%20(1)/
+[运行时间：0.259159s] [吞吐率：3.86req/s] [内存消耗：3,593.50kb] [文件加载：62]
+[ info ] [ LANG ] /Applications/MAMP/htdocs/18031/lianxi1/ThinkAdmin-master (1)/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://localhost/lianxi1/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'cart=a%3A1%3A%7Bi%3A12%3Bs%3A1%3A%220%22%3B%7D; PHPSESSID=8e2cfa836177f4834c12100c8b6921e4; foxphp_liangjiala=ad450effd39d39539fc1fc144df60258; 9aff737ba48690ef586f6bd38eafe716=zh; AKml_2132_saltkey=MKn6qkH8; AKml_2132_lastvisit=1545717019; AKml_2132_ulastactivity=5948ZWCQ9UL29DvcyjIa-NrgvZ6jjUCUMorgCOu8aj8rcIxBU5MV; AKml_2132_auth=7f07pmX4B2NyZdsCVf8FITrLGNlb8pfkttw7rQ0xdROrrWj8Ko3v_uOU_c10pbH_a5OkDy8uL8zKxC-u1Yk-; JRCg_2132_saltkey=gjOaaVnj; JRCg_2132_lastvisit=1545718171; JRCg_2132_auth=aab8sPcIsFh97JLBD__WCjEVvTdUw-Bc31IcYPxVjInlkzhBi7P5HXuopGDLXFpIn2NDO61GJVxhm_Q-m5VG; JRCg_2132_seccodeSK82Nca0=c4bdi-jXXJGhG47-2wHRjDxb3pdslarGKfjtE6nPUz1yKpiDaVZZ3vOpNjI2yoLE7wp7lA8K7BndHFXGEkA; __51cke__=; JRCg_2132_ulastactivity=6038EQKa46dA7mvDDV_vereZ9rAZbSVfD-AKEAuzfLTiLoC7z1lb; __tins__18885840=%7B%22sid%22%3A%201545887104852%2C%20%22vd%22%3A%204%2C%20%22expires%22%3A%201545888911524%7D; __51laig__=129',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql

@@ -1,0 +1,105 @@
+<!--<?php
+include_once gettpl('top');
+if (empty($action)){
+print <<<EOT
+-->
+<table class="tableborder f-w98 f-m0a">
+	<tr>
+		<td class="header">提示信息</td>
+	</tr>
+	<tr>
+		<td class="notice">提示：删除符合条件的短消息,用于清理系统冗余数据,此操作不可恢复,请谨慎使用！</td>
+	</tr>
+</table><br />
+
+<form action="$basename&" method="post">
+	<input type="hidden" name="action" value="del">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="2">删除短消息</td>
+		</tr>
+		<tr>
+			<td width="20%">信箱类型</td>
+			<td>
+				<select name="type">
+					<option value="all">无限制</option>
+					<option value="rebox">收件箱</option>
+					<option value="sebox">发件箱</option>
+				</select>
+				<label><input type="checkbox" name="keepnew" value="1" checked="checked"> 保留新消息</label>
+			</td>
+		</tr>
+		<tr>
+			<td>发件人</td>
+			<td><input type="text" size="20" name="fromuser"> 可使用通配符 "*"</td>
+		</tr>
+		<tr>
+			<td>收件人</td>
+			<td><input type="text" size="20" name="touser"> 可使用通配符 "*"</td>
+		</tr>
+		<tr>
+			<td>删除</td>
+			<td><input type="text" size="20" name="msgdate"> 天前的短消息
+			</td>
+		</tr>
+		<tr>
+			<td>关键字包含(多个关键字用","分隔)</td>
+			<td><input type="text" size="20" name="keyword"> 可使用通配符 "*"</td>
+		</tr>
+		<tr>
+			<td>每页显示行数</td>
+			<td><input type="text" size="5" name="lines" value="30"> <label><input type="checkbox" name="direct" value="1"> 直接删除(直接删除符合条件的项目)</label></td>
+		</tr>
+	</table>
+	<br />
+	<center><input type="submit" value="提 交"></center>
+</form>
+<!--
+EOT;
+}elseif($action=='del' && !$step){print <<<EOT
+-->
+<form action="$basename&" method="post">
+	<input type="hidden" name="action" value="$action">
+	<input type="hidden" name="step" value="2">
+	<table class="tableborder f-w98 f-m0a">
+		<tr>
+			<td class="header" colspan="7">短消息列表</td>
+		</tr>
+		<tr class="field f-tac">
+			<td><input type="checkbox" onclick="check_all(this,'delid');"></td>
+			<td>ID</td>
+			<td>标题</td>
+			<td>发件人</td>
+			<td>收件人</td>
+			<td>信箱</td>
+			<td>时间</td>
+		</tr>
+<!--
+EOT;
+foreach($messagedb as $key=>$message){
+if(!$message[title])continue;
+print <<<EOT
+-->
+		<tr class="f-tac">
+			<td><input type="checkbox" name="delid[]" value="$message[mid]"></td>
+			<td>$message[mid]</td>
+			<td>$message[title]</td>
+			<td>$message[fromuser]</td>
+			<td>$message[touser]</td>
+			<td>$message[type]</td>
+			<td>$message[date]</td>
+		</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	</table>
+	<div class="pages">$pages</div>
+	<center>
+		<input type="submit" value="删 除">
+	</center>
+</form>
+<!--
+EOT;
+}include_once gettpl('adminbottom');
+?>-->

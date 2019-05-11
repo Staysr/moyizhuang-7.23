@@ -1,0 +1,151 @@
+<!-- index.wpy -->
+<style lang="less">
+.wrap {
+    .title {
+      background-color: #eeeeee;
+      font-size: 35rpx;
+      text-align: center;
+    }
+    .start {
+      margin: 40rpx 20rpx 40rpx 20rpx;
+      border-radius: 200rpx;
+      width: 80%;
+      overflow: hidden;
+    }
+    .start wxc-button button {
+      width: 100%;
+    }
+  }
+</style>
+<template>
+  <view class="wrap">
+    <!-- 身份资料开始 -->
+    <wxc-panel class="id">
+      <view class="title">身份资料</view>
+      <wxc-cc>
+        <view class="id_box">
+          <view class="message">
+            <wxc-input data-type="real_name" title="{{setting.root.weapp[0].pages[0].ucenter[0].columns[0].real_name[0]}}" value="{{userInfo.real_name}}" bind:input="input"></wxc-input>
+            <wxc-input data-type="gender" title="{{setting.root.weapp[0].pages[0].ucenter[0].columns[0].real_name[0]}}" value="{{userInfo.gender}}" bind:input="input"></wxc-input>
+            <wxc-input data-type="birthday" title="出生日期" value="{{userInfo.birthday}}" bind:input="input"></wxc-input>
+            <wxc-input data-type="address" title="居住地" value="{{userInfo.address}}" bind:input="input"></wxc-input>
+            <wxc-input data-type="shop" title="店铺" value="{{currentShopName}}" bind:input="input"></wxc-input>
+          </view>
+        </view>
+      </wxc-cc>
+    </wxc-panel>
+    <!-- 身份资料结束 -->
+    <!-- 使用者信息开始 -->
+    <wxc-panel class="id">
+      <view class="title">使用者信息</view>
+      <wxc-cc>
+        <view class="id_box">
+          <view class="message">
+            <wxc-input data-type="user_real_name" title="{{setting.root.weapp[0].pages[0].ucenter[0].columns[0].real_name[0]}}" value="{{userInfo.user_real_name}}" bind:input="input"></wxc-input>
+            <wxc-input data-type="position" title="{{setting.root.weapp[0].pages[0].ucenter[0].columns[0]['user-position'][0]}}" value="{{userInfo.position}}" bind:input="input"></wxc-input>
+          </view>
+        </view>
+      </wxc-cc>
+    </wxc-panel>
+    <!-- 使用者信息结束 -->
+    <!-- 开始使用按钮 -->
+    <wxc-cc>
+      <view class="start">
+        <wxc-button size="large" type="primary" bind:click="go">{{filedsTouched?'保存修改':'完成'}}</wxc-button>
+      </view>
+    </wxc-cc>
+  </view>
+
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import { storage2data, request } from '../../utils/util'
+  import config from '../../config/config'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: 'test',
+      usingComponents: {
+        'wxc-panel': '../../packages/@minui/wxc-panel/dist/index',
+        'wxc-input': '../../packages/@minui/wxc-input/dist/index',
+        'wxc-button': '../../packages/@minui/wxc-button/dist/index',
+        'wxc-cc': '../../packages/@minui/wxc-cc/dist/index'
+      }
+    }
+    components = {}
+
+    mixins = []
+
+    data = {
+      userInfo: null,
+      setting: null,
+      changedFields: {},
+      currentShopName: '',
+      filedsTouched: false
+    }
+
+    computed = {}
+
+    methods = {
+      async go() {
+        const requestParams = {
+          id: this.userInfo.id,
+          ...this.changedFields
+        }
+        if (this.filedsTouched) {
+          await request(config.urls.UploadUserDetail, requestParams, 'POST', {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          })
+          const result = await request(config.urls.GetUserInfo, {}, 'GET')
+          if (result.errno === 0) {
+            wx.setStorageSync('userInfo', result.data)
+            const showModalResult = await wx.showModalP({
+              title: '提示',
+              content: '修改信息成功',
+              showCancel: false
+            })
+            if (showModalResult.confirm === true) {
+              wx.switchTabP({ url: '/pages/ucenter/index' })
+            }
+          }
+        } else {
+          wx.switchTabP({ url: '/pages/ucenter/index' })
+        }
+      },
+      input(e) {
+        console.log('输入修改e: ', e)
+        const { type } = e.target.dataset
+        const { value } = e.detail
+        this.changedFields[type] = value
+        if (this.filedsTouched === false) {
+          this.filedsTouched = true
+        }
+        this.$apply()
+      }
+    }
+
+    events = {}
+
+    onLoad() {}
+
+    async onShow() {
+      const _this = this
+      const result = await request(config.urls.GetUserInfo, {}, 'GET')
+      const { data } = result
+      
+      wx.setStorageSync('userInfo', data)
+      storage2data(_this)
+
+      const currentShops = wx.getStorageSync('currentShops')
+      const currentShop = wx.getStorageSync('currentShop')
+
+      this.currentShopName = currentShops[currentShop]
+      this.userInfo.gender = this.userInfo.gender === 1 ? '男' : (this.userInfo.gender === 2 ? '女' : '未知')
+      this.userInfo.birthday = new Date(this.userInfo.birthday * 1000).Format('yyyy年M月dd日')
+
+      this.$apply()
+    }
+  }
+</script>

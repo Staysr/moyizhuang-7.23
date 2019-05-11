@@ -1,0 +1,13 @@
+-rw-r--r-- 1 ftp ftp            967 Oct 20  2015 BatchDeleteFailException.php
+-rw-r--r-- 1 ftp ftp            956 Oct 20  2015 BatchSendFailException.php
+-rw-r--r-- 1 ftp ftp            137 Oct 16  2015 InvalidArgumentException.php
+-rw-r--r-- 1 ftp ftp            134 Oct 19  2015 MalformedXMLException.php
+-rw-r--r-- 1 ftp ftp            137 Oct 19  2015 MessageNotExistException.php
+-rw-r--r-- 1 ftp ftp           1476 Oct 16  2015 MnsException.php
+-rw-r--r-- 1 ftp ftp            139 Oct 16  2015 QueueAlreadyExistException.php
+-rw-r--r-- 1 ftp ftp            135 Oct 19  2015 QueueNotExistException.php
+-rw-r--r-- 1 ftp ftp            140 Oct 19  2015 ReceiptHandleErrorException.php
+-rw-r--r-- 1 ftp ftp            146 Jan 04  2016 SubscriptionAlreadyExistException.php
+-rw-r--r-- 1 ftp ftp            141 Jan 04  2016 SubscriptionNotExistException.php
+-rw-r--r-- 1 ftp ftp            139 Jan 04  2016 TopicAlreadyExistException.php
+-rw-r--r-- 1 ftp ftp            135 Jan 04  2016 TopicNotExistException.php

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link rel="shortcut icon" href="/statics/img/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/statics/css/style.css" type="text/css">
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/statics/js/stui_default.js"></script>
+<meta name="applicable-device" content="pc,mobile">
+<meta property="og:image" content="{playpage:pic}">
+<script src="http://bdimg.share.baidu.comhttp://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=422602"></script>
+<link href="/statics/css/stui_default.css" rel="styleSheet" type="text/css"><title>热剧网</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+<header class="stui-header__top clearfix top-fixed headroom--not-bottom top-fixed-up headroom--top" id="header-top">
+<div class="container">
+<div class="row">
+<div class="stui-header_bd clearfix">
+<div class="stui-header__logo">
+<a class="logo" href="/"></a><a class="head-ad" href="/tv/detail/Qbltan7lRz4oOH.html" style='background-image:url(http://p3.qhimg.com/t01323120150978bb65.png)'></a>
+
+</div>
+<div class="stui-header__side">
+<ul class="stui-header__user">
+<li class="visible-xs"><a class="open-popup" href="javascript:;"><i class="icon iconfont icon-viewgallery"></i></a></li>
+</ul>
+<div class="stui-header__search">
+<form name="formsearch" id="formsearch" action="/search/" method="post" autocomplete="off">
+<input class="form-control" id="wd" placeholder="输入影片关键词.." name="searchword" type="text" required="">
+<input type="submit" id="searchbutton" value="" class="hide">
+<button class="submit" id="submit" onclick="$('#formsearch').submit();"><i class="icon iconfont icon-search"></i></button>
+</form>
+<div id="word" class="autocomplete-suggestions active " style="display: none;"></div>
+</div>
+</div>
+<nav class="stui-header__menu type-slide">
+<li><a href="/">首页</a></li>
+<li ><a href="/movie/">  看电影</a></li>
+<li ><a href="/tv/">  追热剧</a><i class="eb-subhead-hot-icon"></i></li>
+<li ><a href="/zongyi/">  综艺</a></li>
+<li ><a href="/dongman/">  动漫</a></li>
+
+</nav>
+</div>
+</div>
+</div>
+</header>
+<div class="popup clearfix">
+<div class="popup-head bottom-line">
+<h5 class="title pull-right">全部分类</h5>
+<a href="javascript:;" class="close-popup"><i class="icon iconfont icon-back"></i></a>
+</div>
+<div class="popup-body col-pd">
+<ul class="tag tag-type">
+<li class="col-xs-4"><a href="/movie/">电影</a></li>
+<li class="col-xs-4"><a href="/tv/">电视剧</a></li>
+<li class="col-xs-4"><a href="/dongman/">动漫</a></li>
+<li class="col-xs-4"><a href="/zongyi/">综艺</a></li>
+<li class="col-xs-4"><a href="#">动作</a></li>
+<li class="col-xs-4"><a href="#">爱情</a></li>
+<li class="col-xs-4 active"><a href="#">恐怖</a></li>
+<li class="col-xs-4"><a href="#">剧情</a></li>
+<li class="col-xs-4"><a href="#">战争</a></li>
+<li class="col-xs-4"><a href="#">冒险</a></li>
+<li class="col-xs-4"><a href="#">科幻</a></li>
+<li class="col-xs-4"><a href="#">国产</a></li>
+<li class="col-xs-4"><a href="#">港台</a></li>
+<li class="col-xs-4"><a href="#">日韩</a></li>
+<li class="col-xs-4"><a href="#">欧美</a></li>
+<li class="col-xs-4"><a href="#">悬疑</a></li>
+<li class="col-xs-4"><a href="#">其他</a></li>
+<li class="col-xs-4"><a href="#">海外</a></li>
+<li class="col-xs-4"><a href="#">动画</a></li>
+<li class="col-xs-4"><a href="#">喜剧</a></li>
+<li class="col-xs-4"><a href="#">福利</a></li>
+</ul>
+</div>
+</div><div class="container">
+<div class="row">
+<!-- 幻灯片 -->
+<div class="stui-pannel stui-pannel-bg clearfix">
+<div class="stui-pannel-box clearfix">
+<div class="stui-pannel-bd">
+<div class="carousel carousel_default flickity-page">
+<div class="col-md-2 col-xs-1">
+<a href="#" class="stui-vodlist__thumb" title="烈火如歌" alt="烈火如歌" style="background: url(http://r1.ykimg.com/051000005ABE5D76ADC0B0172A0F268F) no-repeat; background-position:50% 50%; background-size: cover; padding-top: 45%;">
+<span class="pic-text text-center">烈火如歌</span>
+</a>
+</div>
+<div class="col-md-2 col-xs-1">
+<a href="#" class="stui-vodlist__thumb" title="南方有乔木" alt="南方有乔木" style="background: url(http://puui.qpic.cn/tv/0/21224143_1680580/0) no-repeat; background-position:50% 50%; background-size: cover; padding-top: 45%;">
+<span class="pic-text text-center">南方有乔木</span>
+</a>
+</div>
+<div class="col-md-2 col-xs-1">
+<a href="#" class="stui-vodlist__thumb" title="远大前程" alt="远大前程" style="background: url(https://puui.qpic.cn/tv/0/21953729_1680580/0) no-repeat; background-position:50% 50%; background-size: cover; padding-top: 45%;">
+<span class="pic-text text-center">远大前程</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 分类列表 -->
+<div class="stui-pannel stui-pannel-bg clearfix">
+<div class="stui-pannel-box clearfix">
+<div class="col-lg-wide-75 col-xs-1 padding-0">
+<div class="stui-pannel_hd">
+<div class="stui-pannel__head clearfix">
+<a class="more text-muted pull-right" href="/tv/">更多 <i class="icon iconfont icon-more"></i></a>
+<h3 class="title"><img src="/statics/icon/icon_2.png"><a href="/tv/">电视剧</a></h3>
+<ul class="nav nav-text pull-right hidden-sm hidden-xs">
+<li><a href="/tv/?area=10" class="text-muted">国产剧</a> <span class="split-line"></span></li>
+<li><a href="/tv/?area=11" class="text-muted">港台剧</a> <span class="split-line"></span></li>
+<li><a href="/tv/?area=12" class="text-muted">日韩剧</a> <span class="split-line"></span></li>
+<li><a href="/tv/?area=13" class="text-muted">欧美剧</a> <span class="split-line"></span></li>
+</ul>
+</div>
+</div>
+<div class="stui-pannel_bd clearfix">
+<ul class="stui-vodlist clearfix">
+</ul>
+</div>
+</div>
+<div class="col-lg-wide-25 hidden-md hidden-sm hidden-xs">
+<div class="stui-pannel_hd">
+<div class="stui-pannel__head clearfix">
+<a class="more text-muted pull-right" href="/tv/">更多 <i class="icon iconfont icon-more"></i></a>
+<h3 class="title"><img src="/statics/icon/icon_12.png">同步热播</h3>
+</div>
+</div>
+<div class="stui-pannel_bd">
+<style>
+li.w-newfigure.w-newfigure-180x153 {
+    list-style: none;
+    margin: 10px 10px 0;
+}
+
+.w-newfigure-imglink.g-playicon.js-playicon {
+    float: left;
+    margin-right: 10px;
+    position: relative;
+    width: 120px;
+    height: 66px;
+    overflow: hidden;
+}
+li:nth-child(n+4) .w-newfigure-imglink {display:none}
+
+img.hotju {
+    width: 100%;
+}
+span.w-newfigure-hint {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    padding: 0;
+    background: rgba(0,0,0,.8);
+    color: #fff;
+    border-radius: 2px;
+    font-size: 12px;
+}
+.w-newfigure-detail {
+    overflow: hidden;
+    position: relative;
+    height: 66px;
+}
+li:nth-child(n+4) .w-newfigure-detail {height: 44px;}
+p.title.g-clear {
+    margin: 0;
+    width: 150px;
+    color: #222;
+    height: 20px;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+p.title.g-clear:hover {
+    color: #ff9900;
+}
+
+p.w-newfigure-desc {
+    margin-top: 10px;
+    color: #999;
+    font-size: 12px;
+}
+li:nth-child(n+4) .w-newfigure-desc {margin-top: 0;}
+li:nth-child(n+4) span.s1 {background: url(/statics/img/hot.png) 0 center no-repeat;
+    padding-left: 20px;}
+</style>
+<ul class="list w-newfigure-list g-clear">
+            <li  title='远大前程' class='w-newfigure w-newfigure-180x153'><a href='/tv/detail/PLRsbH7lRz8rNH.html'  class='js-link'><div class='w-newfigure-imglink g-playicon js-playicon'> <span class="play hidden-xs"></span><img class='hotju' src='http://p6.qhimg.com/t01c5faafc3cc3ac3db.jpg' alt='远大前程'  /><span class='w-newfigure-hint'>更新至11集</span></div><div class='w-newfigure-detail'><p class='title g-clear'><span class='s1'>远大前程</span></p><p class='w-newfigure-desc'>每日同步湖南卫视更新</p></div></a></li><li  title='好久不见' class='w-newfigure w-newfigure-180x153'><a href='/tv/detail/QrZtcH7lRz8mNn.html'  class='js-link'><div class='w-newfigure-imglink g-playicon js-playicon'> <span class="play hidden-xs"></span><img class='hotju' src='http://p0.qhimg.com/t018b9277f815da8f60.gif' alt='好久不见'  /><span class='w-newfigure-hint'>更新至21集</span></div><div class='w-newfigure-detail'><p class='title g-clear'><span class='s1'>好久不见</span></p><p class='w-newfigure-desc'>每日同步北京、东方卫视更新</p></div></a></li><li  title='南方有乔木' class='w-newfigure w-newfigure-180x153'><a href='/tv/detail/QLVqan7lRz8mMX.html'  class='js-link'><div class='w-newfigure-imglink g-playicon js-playicon'> <span class="play hidden-xs"></span><img class='hotju' src='http://p0.qhimg.com/t01cb76488d328f59d0.gif' alt='南方有乔木'  /><span class='w-newfigure-hint'>更新至24集</span></div><div class='w-newfigure-detail'><p class='title g-clear'><span class='s1'>南方有乔木</span></p><p class='w-newfigure-desc'>每日同步浙江、江苏卫视更新</p></div></a></li><li  title='后妈的春天' class='w-newfigure w-newfigure-180x153'><a href='/tv/detail/QbVrb07lRz4rNH.html'  class='js-link'><div class='w-newfigure-imglink g-playicon js-playicon'> <span class="play hidden-xs"></span><img class='hotju' src='http://p2.qhimg.com/t0116c138d91468ad10.jpg' alt='后妈的春天'  /><span class='w-newfigure-hint'>全40集</span></div><div class='w-newfigure-detail'><p class='title g-clear'><span class='s1'>后妈的春天</span></p><p class='w-newfigure-desc'>每日同步江西卫视更新</p></div></a></li><li  title='老男孩' class='w-newfigure w-newfigure-180x153'><a href='/tv/detail/QLhxan7lRz4pM3.html'  class='js-link'><div class='w-newfigure-imglink g-playicon js-playicon'> <span class="play hidden-xs"></span><img class='hotju' src='http://p7.qhimg.com/t0124f27c2082478c64.jpg' alt='老男孩'  /><span class='w-newfigure-hint'>全47集</span></div><div class='w-newfigure-detail'><p class='title g-clear'><span class='s1'>老男孩</span></p><p class='w-newfigure-desc'>每日同步湖南卫视更新</p></div></a></li><li  title='我的父亲我的兵' class='w-newfigure w-newfigure-180x153'><a href='/tv/detail/QbRraX7lRz4mOX.html'  class='js-link'><div class='w-newfigure-imglink g-playicon js-playicon'> <span class="play hidden-xs"></span><img class='hotju' src='http://p9.qhimg.com/t01ef4965b85011917b.jpg' alt='我的父亲我的兵'  /><span class='w-newfigure-hint'>全43集</span></div><div class='w-newfigure-detail'><p class='title g-clear'><span class='s1'>我的父亲我的兵</span></p><p class='w-newfigure-desc'>每日同步央视八套更新</p></div></a></li><li  title='风光大嫁' class='w-newfigure w-newfigure-180x153'><a href='/tv/detail/PLZwan7lRz4nNH.html'  class='js-link'><div class='w-newfigure-imglink g-playicon js-playicon'> <span class="play hidden-xs"></span><img class='hotju' src='http://p8.qhimg.com/t01a9fb7a25c8595d6b.jpg' alt='风光大嫁'  /><span class='w-newfigure-hint'>全36集</span></div><div class='w-newfigure-detail'><p class='title g-clear'><span class='s1'>风光大嫁</span></p><p class='w-newfigure-desc'>每日同步安徽卫视更新</p></div></a></li><li  title='利刃出击' class='w-newfigure w-newfigure-180x153'><a href='/tv/detail/PbNoaX7lRz4oMn.html'  class='js-link'><div class='w-newfigure-imglink g-playicon js-playicon'> <span class="play hidden-xs"></span><img class='hotju' src='http://p3.qhimg.com/t01dd805209c5ebb25a.jpg' alt='利刃出击'  /><span class='w-newfigure-hint'>全45集</span></div><div class='w-newfigure-detail'><p class='title g-clear'><span class='s1'>利刃出击</span></p><p class='w-newfigure-desc'>每日同步江苏卫视更新</p></div></a></li><li  title='谈判官' class='w-newfigure w-newfigure-180x153'><a href='/tv/detail/QrdoaX7lRz0nM3.html'  class='js-link'><div class='w-newfigure-imglink g-playicon js-playicon'> <span class="play hidden-xs"></span><img class='hotju' src='http://p0.qhimg.com/t01aa304ad094162574.jpg' alt='谈判官'  /><span class='w-newfigure-hint'>全43集</span></div><div class='w-newfigure-detail'><p class='title g-clear'><span class='s1'>谈判官</span></p><p class='w-newfigure-desc'>每日同步湖南卫视更新</p></div></a></li><li  title='和平饭店' class='w-newfigure w-newfigure-180x153'><a href='/tv/detail/PLRraH7lRz0lMH.html'  class='js-link'><div class='w-newfigure-imglink g-playicon js-playicon'> <span class="play hidden-xs"></span><img class='hotju' src='http://p7.qhimg.com/t01deeb09c743f0923a.jpg' alt='和平饭店'  /><span class='w-newfigure-hint'>全39集</span></div><div class='w-newfigure-detail'><p class='title g-clear'><span class='s1'>和平饭店</span></p><p class='w-newfigure-desc'>每日同步浙江卫视更新</p></div></a></li>
+        </div>
+</div>
+</div>
+</div>
+
+<div class="stui-pannel stui-pannel-bg clearfix">
+<div class="stui-pannel-box clearfix">
+<div class="col-lg-wide-75 col-xs-1 padding-0">
+<div class="stui-pannel_hd">
+<div class="stui-pannel__head clearfix">
+<a class="more text-muted pull-right" href="/movie/">更多 <i class="icon iconfont icon-more"></i></a>
+<h3 class="title"><img src="/statics/icon/icon_1.png"><a href="/movie/">热映大片</a></h3>
+<ul class="nav nav-text pull-right hidden-sm hidden-xs">
+<li><a href="/tv/?area=10" class="text-muted">华语强档</a> <span class="split-line"></span></li>
+<li><a href="/tv/?area=11" class="text-muted">网络热映</a> <span class="split-line"></span></li>
+<li><a href="/tv/?area=11" class="text-muted">欧美范儿</a> <span class="split-line"></span></li>
+<li><a href="/tv/?area=13" class="text-muted">亚洲风情</a> <span class="split-line"></span></li>
+</ul>
+</div>
+</div>
+<div class="stui-pannel_bd clearfix">
+<ul class="stui-vodlist clearfix">
+	
+<li class='col-md-5 col-sm-4 col-xs-3'>
+<div class='stui-vodlist__box'>
+<a class='stui-vodlist__thumb lazyload' href='/movie/detail/gaPrYRH4QnH5Tx.html' title='捉妖记2' alt='捉妖记2' data-original='http://p0.qhimg.com/t0182dbb1560ec2e33a.jpg'>
+<span class='play hidden-xs'></span>
+<span class='pic-text text-right'>2018 </span>
+</a><div class='stui-vodlist__detail'>
+<h4 class='title text-overflow'>
+<a href='/movie/detail/gaPrYRH4QnH5Tx.html' title='捉妖记2'>捉妖记2</a>
+</h4>
+<p class='text text-overflow text-muted hidden-xs'>主演：白百何 井柏然 梁朝伟 李宇春 杨祐宁</p>
+</div>
+</div>
+</li>	
+<li class='col-md-5 col-sm-4 col-xs-3'>
+<div class='stui-vodlist__box'>
+<a class='stui-vodlist__thumb lazyload' href='/movie/detail/faXkYhH3Qnj7UB.html' title='闺蜜2' alt='闺蜜2' data-original='http://p0.qhimg.com/t01b10d99e1b98c749f.jpg'>
+<span class='play hidden-xs'></span>
+<span class='pic-text text-right'>2018 </span>
+</a><div class='stui-vodlist__detail'>
+<h4 class='title text-overflow'>
+<a href='/movie/detail/faXkYhH3Qnj7UB.html' title='闺蜜2'>闺蜜2</a>
+</h4>
+<p class='text text-overflow text-muted hidden-xs'>主演：薛凯琪 陈意涵 张钧甯 迈克·泰森 王水林</p>
+</div>
+</div>
+</li>	
+<li class='col-md-5 col-sm-4 col-xs-3'>
+<div class='stui-vodlist__box'>
+<a class='stui-vodlist__thumb lazyload' href='/movie/detail/f6bkYxH4QnL4SR.html' title='破·局' alt='破·局' data-original='http://p1.qhimg.com/d/dy_e6ff108a71d79db283f813374789b126.'>
+<span class='play hidden-xs'></span>
+<span class='pic-text text-right'>2017 </span>
+</a><div class='stui-vodlist__detail'>
+<h4 class='title text-overflow'>
+<a href='/movie/detail/f6bkYxH4QnL4SR.html' title='破·局'>破·局</a>
+</h4>
+<p class='text text-overflow text-muted hidden-xs'>主演：郭富城 王千源 刘涛 余皑磊 冯嘉怡</p>
+</div>
+</div>
+</li>	
+<li class='col-md-5 col-sm-4 col-xs-3'>
+<div class='stui-vodlist__box'>
+<a class='stui-vodlist__thumb lazyload' href='/movie/detail/g6XqYRH4QXj8Sx.html' title='心理罪' alt='心理罪' data-original='http://p1.qhimg.com/d/dy_322ced71af593f526f2bf3842ef53207.jpg'>
+<span class='play hidden-xs'></span>
+<span class='pic-text text-right'>2017 </span>
+</a><div class='stui-vodlist__detail'>
+<h4 class='title text-overflow'>
+<a href='/movie/detail/g6XqYRH4QXj8Sx.html' title='心理罪'>心理罪</a>
+</h4>
+<p class='text text-overflow text-muted hidden-xs'>主演：廖凡 李易峰 万茜 李纯 张国柱</p>
+</div>
+</div>
+</li>	
+<li class='col-md-5 col-sm-4 col-xs-3'>
+<div class='stui-vodlist__box'>
+<a class='stui-vodlist__thumb lazyload' href='/movie/detail/hqPkYhH4RXX0Tx.html' title='祖宗十九代' alt='祖宗十九代' data-original='http://p0.qhimg.com/t017a5040ec817a8508.jpg'>
+<span class='play hidden-xs'></span>
+<span class='pic-text text-right'>2018 </span>
+</a><div class='stui-vodlist__detail'>
+<h4 class='title text-overflow'>
+<a href='/movie/detail/hqPkYhH4RXX0Tx.html' title='祖宗十九代'>祖宗十九代</a>
+</h4>
+<p class='text text-overflow text-muted hidden-xs'>主演：岳云鹏 吴秀波 王宝强 大鹏 吴君如</p>
+</div>
+</div>
+</li>	
+<li class='col-md-5 col-sm-4 col-xs-3'>
+<div class='stui-vodlist__box'>
+<a class='stui-vodlist__thumb lazyload' href='/movie/detail/favjZhH3Qnj7UR.html' title='西游记·女儿国' alt='西游记·女儿国' data-original='http://p0.qhimg.com/t01388ad47f42caceaa.jpg'>
+<span class='play hidden-xs'></span>
+<span class='pic-text text-right'>2018 </span>
+</a><div class='stui-vodlist__detail'>
+<h4 class='title text-overflow'>
+<a href='/movie/detail/favjZhH3Qnj7UR.html' title='西游记·女儿国'>西游记·女儿国</a>
+</h4>
+<p class='text text-overflow text-muted hidden-xs'>主演：郭富城 冯绍峰 小沈阳 赵丽颖 罗仲谦</p>
+</div>
+</div>
+</li>	
+<li class='col-md-5 col-sm-4 col-xs-3'>
+<div class='stui-vodlist__box'>
+<a class='stui-vodlist__thumb lazyload' href='/movie/detail/f6flYxH4R0r1Th.html' title='小马宝莉大电影' alt='小马宝莉大电影' data-original='http://p3.qhimg.com/d/dy_d057f5cc2e647672f80737a3afa40c6e.jpg'>
+<span class='play hidden-xs'></span>
+<span class='pic-text text-right'>2018 </span>
+</a><div class='stui-vodlist__detail'>
+<h4 class='title text-overflow'>
+<a href='/movie/detail/f6flYxH4R0r1Th.html' title='小马宝莉大电影'>小马宝莉大电影</a>
+</h4>
+<p class='text text-overflow text-muted hidden-xs'>主演：奥卓·阿杜巴 艾米莉·布朗特 克里斯汀·肯诺恩斯 泰雅·迪格斯 迈克尔·佩纳</p>
+</div>
+</div>
+</li>	
+<li class='col-md-5 col-sm-4 col-xs-3'>
+<div class='stui-vodlist__box'>
+<a class='stui-vodlist__thumb lazyload' href='/movie/detail/f6TmYxH4RnH4SB.html' title='深宫怨灵' alt='深宫怨灵' data-original='http://p0.qhimg.com/t01b6d56ed18c650c40.jpg'>
+<span class='play hidden-xs'></span>
+<span class='pic-text text-right'>2017 </span>
+</a><div class='stui-vodlist__detail'>
+<h4 class='title text-overflow'>
+<a href='/movie/detail/f6TmYxH4RnH4SB.html' title='深宫怨灵'>深宫怨灵</a>
+</h4>
+<p class='text text-overflow text-muted hidden-xs'>主演：陈钰芸 李依馨 凯蒂·萨瓦 Catherine Siggins Drae Williamson</p>
+</div>
+</div>
+</li>	
+<li class='col-md-5 col-sm-4 col-xs-3'>
+<div class='stui-vodlist__box'>
+<a class='stui-vodlist__thumb lazyload' href='/movie/detail/fqXlYhH1QHTATR.html' title='空中营救' alt='空中营救' data-original='http://p3.qhimg.com/t01e9f1c08605d08323.jpg'>
+<span class='play hidden-xs'></span>
+<span class='pic-text text-right'>2014 </span>
+</a><div class='stui-vodlist__detail'>
+<h4 class='title text-overflow'>
+<a href='/movie/detail/fqXlYhH1QHTATR.html' title='空中营救'>空中营救</a>
+</h4>
+<p class='text text-overflow text-muted hidden-xs'>主演：连姆·尼森 朱丽安·摩尔 斯科特·麦克纳里 米歇尔·道克瑞 露皮塔·尼永奥</p>
+</div>
+</div>
+</li>	
+<li class='col-md-5 col-sm-4 col-xs-3'>
+<div class='stui-vodlist__box'>
+<a class='stui-vodlist__thumb lazyload' href='/movie/detail/faXjZBH4RXr4Tx.html' title='24小时：末路重生' alt='24小时：末路重生' data-original='http://p0.qhimg.com/t01711b2105f435aafa.jpg'>
+<span class='play hidden-xs'></span>
+<span class='pic-text text-right'>2018 </span>
+</a><div class='stui-vodlist__detail'>
+<h4 class='title text-overflow'>
+<a href='/movie/detail/faXjZBH4RXr4Tx.html' title='24小时：末路重生'>24小时：末路重生</a>
+</h4>
+<p class='text text-overflow text-muted hidden-xs'>主演：伊桑·霍克 许晴 保罗·安德森 鲁特格尔·哈尔 利亚姆·坎宁安</p>
+</div>
+</div>
+</li>	
+<li class='col-md-5 col-sm-4 col-xs-3 hidden-lg hidden-md'>
+<div class='stui-vodlist__box'>
+<a class='stui-vodlist__thumb lazyload' href='/movie/detail/g6frZhH1QXb0Tx.html' title='冬荫功2：拳霸天下' alt='冬荫功2：拳霸天下' data-original='http://p1.qhimg.com/t0165705fe153653dc5.jpg'>
+<span class='play hidden-xs'></span>
+<span class='pic-text text-right'>2013 </span>
+</a><div class='stui-vodlist__detail'>
+<h4 class='title text-overflow'>
+<a href='/movie/detail/g6frZhH1QXb0Tx.html' title='冬荫功2：拳霸天下'>冬荫功2：拳霸天下</a>
+</h4>
+<p class='text text-overflow text-muted hidden-xs'>主演：托尼·贾 RZA 派特察泰·王卡姆劳 杰佳·亚宁 马雷塞·克伦普</p>
+</div>
+</div>
+</li>	
+<li class='col-md-5 col-sm-4 col-xs-3 hidden-lg hidden-md'>
+<div class='stui-vodlist__box'>
+<a class='stui-vodlist__thumb lazyload' href='/movie/detail/f6LnYRH4QXr4UR.html' title='二次初恋' alt='二次初恋' data-original='http://p0.qhimg.com/t013e1fd1fb3f59532c.jpg'>
+<span class='play hidden-xs'></span>
+<span class='pic-text text-right'>2017 </span>
+</a><div class='stui-vodlist__detail'>
+<h4 class='title text-overflow'>
+<a href='/movie/detail/f6LnYRH4QXr4UR.html' title='二次初恋'>二次初恋</a>
+</h4>
+<p class='text text-overflow text-muted hidden-xs'>主演：朱茵 杜天皓 王志飞 黄征 夏志远</p>
+</div>
+</div>
+</li></ul>
+</div>
+</div>
+<div class="col-lg-wide-25 hidden-md hidden-sm hidden-xs">
+<div class="stui-pannel_hd">
+<div class="stui-pannel__head clearfix">
+<a class="more text-muted pull-right" href="/movie/">更多 <i class="icon iconfont icon-more"></i></a>
+<h3 class="title"><img src="/statics/icon/icon_9.png">评分榜TOP10</h3>
+</div>
+</div>
+<div class="stui-pannel_bd">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<ul class="stui-vodlist__media active col-pd clearfix">
+
+<li><div class='thumb'>
+<a class='m-thumb stui-vodlist__thumb lazyload' href='/movie/detail/g6vmYkb8QnH0SB.html' title='公正' data-original='http://p3.qhimg.com/d/dy_146dcb5f634ba441f41ecaa375d059db.'>
+<span class='pic-tag pic-tag-h'>1</span>
+</a></div><div class='detail detail-side'>
+<h4 class='title'><a href='/movie/detail/g6vmYkb8QnH0SB.html'><i class='icon iconfont icon-more text-muted pull-right'></i> 公正</a></h4>
+<p class='font-12'>
+<span class='text-muted'>评分：</span>9.7分</p>
+<p class='font-12 margin-0'>主演：Erik Palladino 达芬妮·鲁宾-维佳 Ajay Naidu Catherine Kellner Marisa Ryan</p>
+</div>
+</li>
+<li style='padding: 0;margin-bottom: 10px;'>
+<a href='/movie/detail/gKTlYhD1Q0T3Th.html' title='夜晚的游戏'>
+<span class='text-muted pull-right'>9.6分</span>
+<span class='badge badge-second'>2</span>夜晚的游戏</a>
+</li>
+<li style='padding: 0;margin-bottom: 10px;'>
+<a href='/movie/detail/gqXmYUX4SHPASR.html' title='肖申克的救赎'>
+<span class='text-muted pull-right'>9.6分</span>
+<span class='badge badge-third'>3</span>肖申克的救赎</a>
+</li>
+<li style='padding: 0;margin-bottom: 10px;'>
+<a href='/movie/detail/gqfkYkP8RHrATR.html' title='罗宁'>
+<span class='text-muted pull-right'>9.6分</span>
+<span class='badge'>4</span>罗宁</a>
+</li>
+<li style='padding: 0;margin-bottom: 10px;'>
+<a href='/movie/detail/faLmZEP8R0X1UB.html' title='控方证人'>
+<span class='text-muted pull-right'>9.6分</span>
+<span class='badge'>5</span>控方证人</a>
+</li>
+<li style='padding: 0;margin-bottom: 10px;'>
+<a href='/movie/detail/hqnnZkT5R0T3TR.html' title='美丽人生'>
+<span class='text-muted pull-right'>9.5分</span>
+<span class='badge'>6</span>美丽人生</a>
+</li>
+<li style='padding: 0;margin-bottom: 10px;'>
+<a href='/movie/detail/gaLlZUH4S0r4SB.html' title='罗小黑战记'>
+<span class='text-muted pull-right'>9.5分</span>
+<span class='badge'>7</span>罗小黑战记</a>
+</li>
+<li style='padding: 0;margin-bottom: 10px;'>
+<a href='/movie/detail/f6foYUYpQXH3UR.html' title='这个杀手不太冷'>
+<span class='text-muted pull-right'>9.4分</span>
+<span class='badge'>8</span>这个杀手不太冷</a>
+</li>
+<li style='padding: 0;margin-bottom: 10px;'>
+<a href='/movie/detail/gaPiYhH2S0b7Sx.html' title='小刀'>
+<span class='text-muted pull-right'>9.4分</span>
+<span class='badge'>9</span>小刀</a>
+</li>
+<li style='padding: 0;margin-bottom: 10px;'>
+<a href='/movie/detail/gqnkYkD5RHL6TB.html' title='阿甘正传'>
+<span class='text-muted pull-right'>9.4分</span>
+<span class='badge'>10</span>阿甘正传</a>
+</li></ul></div>
+<div class="stui-pannel_bd">
+<div class="stui-pannel__head clearfix">
+<a class="more text-muted pull-right" href="/movie/">更多 <i class="icon iconfont icon-more"></i></a>
+<h3 class="title"><img src="/statics/icon/icon_25.png">筛选</h3>
+</div>
+</div>
+<div class="stui-pannel_bd col-pd">
+<ul class="stui-vodlist__screen clearfix">
+<li>
+<a href="/movie/?area=10" title="大陆">大陆</a></li>
+<li><a href="/movie/?area=15" title="香港">香港</a></li>
+<li><a href="/movie/?area=18" title="台湾">台湾</a></li>
+<li><a href="/movie/?area=14" title="日本">日本</a></li>
+<li><a href="/movie/?area=13" title="韩国">韩国</a></li>
+<li><a href="/movie/?area=11" title="欧美">欧美</a></li>
+<li><a href="/movie/?area=21" title="泰国">泰国</a></li>
+<li><a href="/movie/?area=other" title="其他">其他</a></li>
+</ul>
+<ul class="stui-vodlist__screen top-line-dot clearfix">
+<li><a href="/movie/?year=2018" title="2018">2018</a></li>
+<li><a href="/movie/?year=2017" title="2017">2017</a></li>
+<li><a href="/movie/?year=2016" title="2016">2016</a></li>
+<li><a href="/movie/?year=2015" title="2015">2015</a></li>
+<li><a href="/movie/?year=2014" title="2014">2014</a></li>
+<li><a href="/movie/?year=2013" title="2013">2013</a></li>
+<li><a href="/movie/?year=2012" title="2012">2012</a></li>
+<li><a href="/movie/?year=2011" title="2011">2011</a></li>
+<li><a href="/movie/?year=2010" title="2010">2010</a></li>
+<li><a href="/movie/?year=2009" title="2009">2009</a></li>
+<li><a href="/movie/?year=2008" title="2008">2008</a></li>
+<li><a href="/movie/?year=more" title="更早">更早</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="stui-pannel stui-pannel-bg hidden-sm hidden-xs clearfix">
+<div class="stui-pannel-box">
+<div class="stui-pannel_hd">
+<div class="stui-pannel__head clearfix">
+<h3 class="title"><img src="/statics/icon/icon_26.png">友情链接</h3>
+</div>
+</div>
+<div class="stui-pannel_bd clearfix">
+<div class="col-xs-1">
+<ul class="stui-link__text clearfix">
+<li><a class="text-color-999" href="http://svip7.cc/" target="_blank">超级影视会员网</a></li>
+<li><a class="text-color-999" href="http://above40.top/" target="_blank">零零七影视</a></li>
+</ul></div></div></div></div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="stui-foot clearfix">
+<div class="col-pd text-center hidden-xs"></div>
+<p class="bdsharebuttonbox text-center margin-0 hidden-sm hidden-xs"><span class="bds_shere"></span>
+<a class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+<a class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+<a class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+<a class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+<a class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+<a class="bds_bdhome" data-cmd="bdhome" title="分享到百度新首页"></a>
+<a class="bds_tqf" data-cmd="tqf" title="分享到腾讯朋友"></a>
+<a class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+<a class="bds_more" data-cmd="more" title="更多"></a>
+</p>
+<p class="text-center">本站所有视频均由程序自动采集而来，版权归原创者所有，如果侵犯了你的权益，请通知我们删除侵权内容，谢谢合作。</p>
+<p class="text-muted text-center visible-xs">Copyright © 2018</p>
+</div>
+</div>
+</div>
+<ul class="stui-extra clearfix">
+<li><a class="backtop" href="javascript:scroll(0,0)" style="display: block;"><i class="icon iconfont icon-less"></i></a></li>
+<li class="visible-xs"><a class="open-share" href="javascript:;"><i class="icon iconfont icon-share"></i></a></li>
+<li class="hidden-xs"><span><i class="icon iconfont icon-qrcode"></i></span>
+<div class="sideslip">
+<div class="col-pd">
+<img class="qrcode" width="150" height="150" src="http://b.bshare.cn/barCode?site=weixin&url=http://hotju.wang/statics/css/iconfont.eot">
+<p class="text-center font-12">扫码用手机访问</p>
+</div>
+</div>
+</li>
+<li title="点击加群"><a class="open-share" href="http://qm.qq.com/cgi-bin/qm/qr?k=C0bDwh2wjlbF9sbps4OKVcFuZNEXh06K"><i class="icon iconfont icon-smile"></i></a></li>
+<li><a href="http://qm.qq.com/cgi-bin/qm/qr?k=C0bDwh2wjlbF9sbps4OKVcFuZNEXh06K"><i class="icon iconfont icon-comments"></i></a></li>
+</ul>
+<div class="hide">
+<script type="text/javascript" charset="utf-8">
+	window._bd_share_config = {
+		common: {
+			bdText: '',
+			bdDesc: '',
+			bdUrl: '',
+			bdPic: ''
+		},
+		share: [{
+			"bdSize": 24,
+			bdCustomStyle: '/statics/css/stui_default.css'
+		}]
+	}
+	with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.comhttp://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>
+</div>
+
+</body>
+</html>

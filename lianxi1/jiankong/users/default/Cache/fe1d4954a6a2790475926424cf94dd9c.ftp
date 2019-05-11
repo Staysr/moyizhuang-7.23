@@ -1,0 +1,9 @@
+-rw-r--r-- 1 ftp ftp           6148 Jan 08  2018 .DS_Store
+-rw-r--r-- 1 ftp ftp            638 Jul 19  2017 composer.json
+-rw-r--r-- 1 ftp ftp          39803 Jul 19  2017 composer.lock
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 lib
+-rw-r--r-- 1 ftp ftp            757 Jul 18  2017 LICENSE
+-rw-r--r-- 1 ftp ftp           1110 Jul 18  2017 phpunit.integration.xml
+-rw-r--r-- 1 ftp ftp            998 Jul 18  2017 phpunit.xml
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 tests
+drwxr-xr-x 1 ftp ftp              0 Oct 15  2018 vendor
